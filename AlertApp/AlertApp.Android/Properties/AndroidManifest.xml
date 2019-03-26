@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.00.02" package="gr.avmap.alert247" android:installLocation="internalOnly" android:versionCode="00002">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<application android:label="Alert247" android:allowBackup="false">
+		<receiver android:name=".OtpVerificationBroadcastReceiver" android:exported="true">
+			<intent-filter>
+				<action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
+			</intent-filter>
+		</receiver>
+		<meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@mipmap/icon" />
+		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
+		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+				<category android:name="${applicationId}" />
+			</intent-filter>
+		</receiver>
+	</application>
+</manifest>

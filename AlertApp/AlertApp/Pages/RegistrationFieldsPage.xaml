@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Navigation="{Binding NavigationService}" 
+             BackgroundColor="{StaticResource RegistrationBackgrounColor}"             
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
+             x:Class="AlertApp.Pages.RegistrationFieldsPage">
+    <ContentPage.Content>
+        <Grid Margin="{StaticResource RegistrationMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Vertical" Grid.Row="0" Margin="0,20,0,0" VerticalOptions="StartAndExpand">
+                <Label Margin="2,0,0,0" Text="{infrastructure:Translate Register}" HorizontalTextAlignment="Center" Style="{StaticResource Headline5Bold}"></Label>
+                <Label Margin="2,0,0,0" Text="{infrastructure:Translate RegisterMessage}" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1}"></Label>
+            </StackLayout>
+            <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout x:Name="registrationContainer" Grid.Row="1" Orientation="Vertical"></StackLayout>
+            </ScrollView>
+            <infrastructure:LoadingIndicator  Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            <Button Margin="0,15,0,15" Grid.Row="2" Style="{StaticResource RegistrationButtonStyle}" Text="{infrastructure:Translate FinishRegistration}" Command="{Binding ContinueCommand}" IsVisible="{Binding ShowFinishButton,Mode=TwoWay}" Clicked="SubmitRegistrationButton_Clicked"></Button>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

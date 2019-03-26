@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
+             x:Class="AlertApp.Pages.DependandsPage"
+             Navigation="{Binding NavigationService}"      
+             Title="{infrastructure:Translate TabDependands}" >
+    <ContentPage.Content>
+        <Grid BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListView
+                 Grid.Row="0"
+                 SeparatorVisibility="None"
+                 ItemsSource="{Binding Dependands}" 
+                 CachingStrategy="RecycleElement" 
+                 RowHeight="-1"
+                 HasUnevenRows="True"                            
+                 BackgroundColor="White">
+                <!--<ListView.Behaviors>
+                <infrastructure:EventToCommandBehavior EventName="ItemTapped" Command="{Binding SelectLanguageCommand}" EventArgsConverter="{StaticResource ItemTappedConverter}" />
+            </ListView.Behaviors>-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Image Margin="16,16,16,16"  WidthRequest="56" HeightRequest="56" HorizontalOptions="Center" VerticalOptions="Center" Source="empty_contact.png"/>
+                                <StackLayout Orientation="Vertical" Margin="0,16,0,0" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding FullName}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource Headline6}"/>
+                                    <StackLayout  Orientation="Horizontal" Spacing="8"  HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Vertical">
+                                            <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="hand_help.png"/>
+                                            <Label Text="10" VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical">
+                                            <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="hand_help.png"/>
+                                            <Label Text="20" VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical">
+                                            <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="hand_help.png"/>
+                                            <Label Text="20" VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand">
+                                            <Frame HorizontalOptions="EndAndExpand" BackgroundColor="White" BorderColor="Black" VerticalOptions="End" Padding="4" Margin="0,0,4,0">
+                                                <Label Text="Settings" TextColor="Black" Style="{StaticResource Subtitle1}"/>
+                                            </Frame>
+                                            <Frame HorizontalOptions="EndAndExpand" BackgroundColor="Green" VerticalOptions="End" Padding="4" Margin="0,0,4,0">
+                                                <Label Text="Accepted" TextColor="White" Style="{StaticResource Subtitle1}"/>
+                                            </Frame>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Grid.Row="1" BackgroundColor="{StaticResource GreenCircleButton}"  Margin="0,0,8,8" HorizontalOptions="End"  Style="{StaticResource CircleButton}" Image="add_contact.png" Command="{Binding OpenContactsScreen}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

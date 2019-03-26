@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+  x:Class="AlertApp.Styles"
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AlertApp"
+  xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+  xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core">
+    <ResourceDictionary.MergedDictionaries>
+        <!--<local:FontStyles />-->
+        <local:Sizes />
+        <local:Colors />
+        <local:Fonts />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="White"/>
+        <Setter Property="BarTextColor" Value="{StaticResource PrimaryColor}"/>
+    </Style>
+
+    <Style x:Key="DefaultButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="Padding">
+            <Thickness
+                Left="{StaticResource Default2Margin}"
+                Right="{StaticResource Default2Margin}" />
+        </Setter>
+        <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+    </Style>
+    <Style x:Key="AccentColorButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+        <Setter Property="TextColor">White</Setter>
+    </Style>
+    <Style x:Key="PrimaryColorButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="TextColor" Value="White"></Setter>
+    </Style>
+    <Style x:Key="PrimaryColorRadiusButtonStyle" BasedOn="{StaticResource PrimaryColorButtonStyle}" TargetType="Button">
+        <Setter Property="CornerRadius">5</Setter>
+        <Setter Property="HeightRequest">56</Setter>
+    </Style>
+
+    <Style x:Key="AccentColorRadiusButtonStyle" BasedOn="{StaticResource AccentColorButtonStyle}" TargetType="Button">
+        <Setter Property="CornerRadius">20</Setter>
+        <Setter Property="HeightRequest">40</Setter>
+    </Style>
+
+    <Style x:Key="RegistrationButtonStyle" BasedOn="{StaticResource PrimaryColorButtonStyle}" TargetType="Button">
+        <Setter Property="CornerRadius">20</Setter>
+        <Setter Property="HeightRequest">40</Setter>
+    </Style>
+    
+    <Style x:Key="RegistrationEntryStyle" TargetType="{x:Type Entry}">
+        <Setter Property="TextColor" Value="{StaticResource RegistrationEntryTextColor}" />
+        
+    </Style>
+    
+    <Style x:Key="RegistrationLabelStyle" TargetType="{x:Type Label}">
+        <Setter Property="TextColor" Value="{StaticResource RegistrationLabelTextColor}" />
+       
+    </Style>
+    <Style x:Key="RegistrationPickerStyle" TargetType="{x:Type Picker}">
+        <Setter Property="TextColor" Value="{StaticResource RegistrationEntryTextColor}" />
+    </Style>
+
+    <Style x:Key="CircleButton" TargetType="Button">
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="WidthRequest" Value="80" />
+        <Setter Property="HeightRequest" Value="80" />
+        <Setter Property="CornerRadius" Value="40" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="BorderColor" Value="Black" />
+    </Style>
+
+    <Style x:Key="BigCircleButton" TargetType="Button">
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="WidthRequest" Value="90" />
+        <Setter Property="HeightRequest" Value="90" />
+        <Setter Property="CornerRadius" Value="45" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="BorderColor" Value="Black" />
+    </Style>
+
+</ResourceDictionary>

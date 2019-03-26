@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlertApp.Infrastructure.LoadingIndicator">
+  <ContentView.Content>
+      <StackLayout>
+            <Frame HorizontalOptions="Center" HasShadow="False" BackgroundColor="#333333" Padding="20,20,20,20" VerticalOptions="Center" CornerRadius="5" IsVisible="{Binding Busy}">
+                <ActivityIndicator IsRunning="{Binding Busy}" IsVisible="{Binding Busy}" Color ="White"/>
+            </Frame>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

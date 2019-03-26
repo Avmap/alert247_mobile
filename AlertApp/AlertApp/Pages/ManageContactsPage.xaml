@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
+             xmlns:pages="clr-namespace:AlertApp.Pages;assembly=AlertApp"
+             x:Class="AlertApp.Pages.ManageContactsPage"              
+             Title="{infrastructure:Translate ManageContacts}"
+            >
+  <!--Pages can be added as references or inline-->
+    <pages:SuggestionsPage/>
+    <pages:MyCommunityPage/>
+    <pages:DependandsPage/>
+    <pages:WhoAlertsMePage/>
+       
+</TabbedPage>

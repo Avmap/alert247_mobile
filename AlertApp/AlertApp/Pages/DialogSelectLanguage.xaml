@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Navigation="{Binding NavigationService}"                                
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure"
+             xmlns:converters="clr-namespace:AlertApp.Converters;assembly=AlertApp"
+             x:Class="AlertApp.Pages.DialogSelectLanguage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <infrastructure:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
+            <converters:SelectedLanguageColorConverter x:Key="SelectedLanguageColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Margin="2,8,0,16" Text="{infrastructure:Translate SelectLanguage}" HorizontalTextAlignment="Center" Style="{StaticResource Headline5Bold}"></Label>
+            <ListView
+                 ItemsSource="{Binding Languages}" 
+                 CachingStrategy="RecycleElement" 
+                 RowHeight="-1"                 
+                 HasUnevenRows="True"                            
+                 BackgroundColor="White">
+                <ListView.Behaviors>
+                    <infrastructure:EventToCommandBehavior EventName="ItemTapped" Command="{Binding SelectLanguageCommand}" EventArgsConverter="{StaticResource ItemTappedConverter}" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell StyleId="disclosure">
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <Image Margin="16,8,0,8" WidthRequest="40" HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding Flag}"/>
+                                <Label Text="{Binding Name}" TextColor="{Binding Selected,Converter={StaticResource SelectedLanguageColorConverter},Mode=TwoWay}"  FontSize="18" LineBreakMode="WordWrap" VerticalTextAlignment="Center" Style="{StaticResource Regular}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

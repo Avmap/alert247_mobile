@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" 
+ 
+             Navigation="{Binding NavigationService}" 
+             BackgroundColor="{StaticResource RegistrationBackgrounColor}"             
+             x:Class="AlertApp.Pages.EnterApplicationPinCodePage">
+    <ContentPage.Content>
+        <ScrollView>
+            <AbsoluteLayout BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout  Margin="{StaticResource RegistrationMargin}" Orientation="Vertical" Spacing="20" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                    <StackLayout Orientation="Vertical" Margin="0,70,0,0" VerticalOptions="StartAndExpand">
+                        <Image  HorizontalOptions="Center"  VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="200">
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="ImageSource" iOS="select_language.png" Android="select_language.png" />
+                            </Image.Source>
+                        </Image>
+                        <StackLayout HorizontalOptions="FillAndExpand" Spacing="20" Margin="0,10,0,0">
+                            <Label Margin="2,0,0,0" Text="{infrastructure:Translate EnterPin}" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1}"></Label>
+                            <Entry Keyboard="Telephone" HorizontalTextAlignment="Center" MaxLength="4" Text="{Binding Pin}" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                                <Label  Text="{infrastructure:Translate LocationTracking}" Style="{StaticResource Subtitle1}"></Label>
+                                <Switch IsToggled="{Binding LocationTracking,Mode=TwoWay}"></Switch>
+                            </StackLayout>
+                            <Button Margin="0,40,0,0" Style="{StaticResource RegistrationButtonStyle}" Text="{infrastructure:Translate Continue}" Command="{Binding ContinueCommand}"></Button>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <infrastructure:LoadingIndicator x:Name="loadingIndicator" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
+            </AbsoluteLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

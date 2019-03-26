@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+  x:Class="AlertApp.Colors"
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!--
+    
+    Below colors like Accent & Primary should be in sync with those defined in Android's colors.xml. This way, we assure
+    their semantic keep consistent between both sides.    
+    Thanks!
+      <color name="colorPrimary">#800000</color>
+    <color name="colorPrimaryDark">#4f0000</color>
+    <color name="colorAccent">#b73d2a</color>
+    <color name="primaryTextColor">#ffffff</color> 
+  -->
+
+    <Color x:Key="AccentColor">#b73d2a</Color>
+    <Color x:Key="PrimaryColor">#800000</Color>
+    <Color x:Key="PrimaryColorDark">#4f0000</Color>
+
+    <!--<Color x:Key="RegistrationBackgrounColor">#4f0000</Color>-->
+
+    <Color x:Key="medium_primary">#BE0000</Color>
+    <Color x:Key="RegistrationBackgrounColor">#FFFFFF</Color>
+
+    <OnPlatform x:TypeArguments="Color" Android="#37474F" iOS="#37474F" x:Key="RegistrationEntryTextColor" />
+    <OnPlatform x:TypeArguments="Color" Android="#37474F" iOS="#37474F" x:Key="RegistrationLabelTextColor" />
+
+    <Color x:Key="AlertButtonColor">#CC0000</Color>
+    <Color x:Key="BlueCircleButton">#2B78E4</Color>
+    <Color x:Key="OrangeCircleButton">#FF9900</Color>
+    <Color x:Key="RedCircleButton">#CF2A27</Color>
+    <Color x:Key="GreenCircleButton">#38761D</Color>
+    <Color x:Key="CianCircleButton">#76A5AF</Color>
+    <Color x:Key="GreyCircleButton">#CCCCCC</Color>
+
+
+</ResourceDictionary>

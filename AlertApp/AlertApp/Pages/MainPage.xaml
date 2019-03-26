@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlertApp.Pages.MainPage"
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
+             Title="{infrastructure:Translate AppName}"
+             Navigation="{Binding NavigationService}" 
+             >
+    <ContentPage.Content>
+        <Grid Margin="{StaticResource PageMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" BackgroundColor="{StaticResource AlertButtonColor}" BorderColor="#000000" BorderWidth="1" Text="SOS" Style="{StaticResource SosButton}" Command="{Binding SosCommand}"></Button>
+            <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8"  HeightRequest="110" VerticalOptions="Center">
+                <Button  BackgroundColor="{StaticResource BlueCircleButton}" Style="{StaticResource CircleButton}" Image="{Binding Icon}" />
+                <Button  BackgroundColor="{StaticResource OrangeCircleButton}" Style="{StaticResource CircleButton}" Image="{Binding Icon}"/>
+                <Button  BackgroundColor="{StaticResource RedCircleButton}" Style="{StaticResource CircleButton}" Image="{Binding Icon}"/>
+            </StackLayout>
+            <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="16"  HeightRequest="110" VerticalOptions="End">
+                <Button  BackgroundColor="{StaticResource GreenCircleButton}"  Style="{StaticResource BigCircleButton}" Image="manage_contact.png" Command="{Binding OpenContactsScreen}"/>
+                <Button  BackgroundColor="{StaticResource CianCircleButton}" Style="{StaticResource BigCircleButton}" Image="{Binding Icon}"/>
+                <Button  BackgroundColor="{StaticResource GreyCircleButton}" Style="{StaticResource BigCircleButton}"  Image="{Binding Icon}"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
