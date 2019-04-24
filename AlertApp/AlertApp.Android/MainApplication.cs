@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Plugin.CurrentActivity;
 using Plugin.FirebasePushNotification;
 
 namespace AlertApp.Droid
@@ -23,7 +24,8 @@ namespace AlertApp.Droid
         public override void OnCreate()
         {
             base.OnCreate();
-
+            CrossCurrentActivity.Current.Init(this);
+            String test = AppHashKeyHelper.GetAppHashKey(this);
             //Set the default notification channel for your app when running Android Oreo
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {

@@ -153,6 +153,9 @@
   <data name="EnterVerificationCodeTitle" xml:space="preserve">
     <value>Verification</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
   <data name="FinishRegistration" xml:space="preserve">
     <value>Finish</value>
   </data>

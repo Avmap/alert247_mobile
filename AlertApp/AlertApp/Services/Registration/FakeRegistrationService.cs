@@ -51,7 +51,7 @@ namespace AlertApp.Services.Registration
             throw new NotImplementedException();
         }
 
-        Task<ConfirmRegistrationResponse> IRegistrationService.ConfirmRegistration(string cellphone, string otpVerifcationCode)
+        Task<Response<ConfirmRegistrationResponse>> IRegistrationService.ConfirmRegistration(string cellphone, string otpVerifcationCode)
         {
             throw new NotImplementedException();
         }

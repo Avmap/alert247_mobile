@@ -24,54 +24,122 @@ namespace AlertApp.Pages
 
         private void Verification1_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+            try
             {
-                Verification2.Focus();
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    Verification2.Focus();
+                }
             }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         private void Verification2_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+            try
             {
-                Verification3.Focus();
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    Verification3.Focus();
+                }
             }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         private void Verification3_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+            try
             {
-                Verification4.Focus();
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    Verification4.Focus();
+                }
             }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         private void Verification4_TextChanged(object sender, TextChangedEventArgs e)
         {
-
-            if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+            try
             {
-                Verification5.Focus();
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    Verification5.Focus();
+                }
             }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         private void Verification5_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+            try
             {
-                Verification6.Focus();
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    Verification6.Focus();
+                }
             }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         private void Verification6_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+            try
+            {
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    var vm = this.BindingContext as EnterActivationCodePageModel;
+                    if (vm != null)
+                    {
+                        vm.ContinueCommand.Execute(null);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (this.BindingContext != null && this.BindingContext is EnterActivationCodePageModel)
             {
                 var vm = this.BindingContext as EnterActivationCodePageModel;
-                if (vm != null)
-                {
-                    vm.ContinueCommand.Execute(null);
-                }
+                vm.RegisterForSmsEvent();
+
+            }
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            if (this.BindingContext != null && this.BindingContext is EnterActivationCodePageModel)
+            {
+                var vm = this.BindingContext as EnterActivationCodePageModel;
+                vm.UnRegisterForSmsEvent();
             }
         }
     }

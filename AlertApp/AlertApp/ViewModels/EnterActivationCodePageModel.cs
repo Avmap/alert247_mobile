@@ -2,6 +2,7 @@
 using AlertApp.MessageCenter;
 using AlertApp.Model;
 using AlertApp.Pages;
+using AlertApp.Resx;
 using AlertApp.Services;
 using AlertApp.Services.Registration;
 using AlertApp.Services.Settings;
@@ -194,7 +195,33 @@ namespace AlertApp.ViewModels
             _smsTimer = new System.Timers.Timer();
             _smsTimer.Interval = 1000;
             _smsTimer.Elapsed += OnTimedEvent;
+//#if Release
             RequestVerificationCode();
+//#endif
+            
+        }
+
+        public void RegisterForSmsEvent()
+        {
+            MessagingCenter.Subscribe<IOtpMessageNotifier, OtpMessageReceivedEvent>(this, OtpMessageReceivedEvent.Event, (sender, arg) =>
+            {
+                if (arg != null && !string.IsNullOrWhiteSpace(arg.VerificationMessage))
+                {
+                    VerificationCode = GetCode(arg.VerificationMessage);
+                }
+            });
+        }
+
+        public void UnRegisterForSmsEvent()
+        {
+            MessagingCenter.Unsubscribe<IOtpMessageNotifier, OtpMessageReceivedEvent>(this, OtpMessageReceivedEvent.Event);
+        }
+
+        private string GetCode(string message)
+        {
+            int lineBreakPosition = message.IndexOf('\n');
+            var code = message.Substring(lineBreakPosition - 6, 6);
+            return code;
         }
 
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
@@ -221,29 +248,47 @@ namespace AlertApp.ViewModels
         private async void RequestVerificationCode()
         {
             SetBusy(true);
-            var result = await _registrationService.Register(_MobileNumber, _localSettingsService.GetSelectedLanguage());
-            if (result.IsOk)
+            if (Device.RuntimePlatform == Device.Android)
             {
+                var otpVerificationService = DependencyService.Get<IOtpVerification>();
+                if (otpVerificationService != null)
+                {
+                    otpVerificationService.StartSmsRetriever();
+                }
+            }
+            var response = await _registrationService.Register(_MobileNumber, _localSettingsService.GetSelectedLanguage());
+            if (response.IsOk)
+            {
+
                 _smsTimer.Start();
-                // VerificationCode = "089289";
                 CanResendCode = false;
+            }
+            if (!response.IsOk && response.ErrorDescription != null && response.ErrorDescription.Labels != null)
+            {
+                showOKMessage(AppResources.Error, response.ErrorDescription.Labels[_localSettingsService.GetSelectedLanguage()]);
             }
             SetBusy(false);
         }
 
         private async void Continue()
         {
-            var registeredUser = await _registrationService.ConfirmRegistration(_MobileNumber, VerificationCode);
-            if (registeredUser != null && !string.IsNullOrWhiteSpace(registeredUser.Status))
+            SetBusy(true);
+            var response = await _registrationService.ConfirmRegistration(_MobileNumber, VerificationCode);
+            if (response != null && response.Result != null && !string.IsNullOrWhiteSpace(response.Status))
             {
-                _localSettingsService.SaveAuthToken(registeredUser.Token);
-                App.TempRegistrationFields = registeredUser.Fields;
+                _localSettingsService.SaveAuthToken(response.Result.Token);
+                App.TempRegistrationFields = response.Result.Fields;
                 await NavigationService.PushAsync(new EnterApplicationPinCodePage(), false);
             }
             else
             {
-                //error here.
+                if (!response.IsOk && response.ErrorDescription != null && response.ErrorDescription.Labels != null)
+                {
+                    showOKMessage(AppResources.Error,response.ErrorDescription.Labels[_localSettingsService.GetSelectedLanguage()]);
+                }
+
             }
+            SetBusy(false);
         }
 
         #region BaseViewModel

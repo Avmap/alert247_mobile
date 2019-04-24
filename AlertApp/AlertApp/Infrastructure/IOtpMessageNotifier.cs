@@ -4,8 +4,7 @@ using System.Text;
 
 namespace AlertApp.Infrastructure
 {
-    public interface IOtpVerification
+    public interface IOtpMessageNotifier
     {
-        void StartSmsRetriever();
     }
 }

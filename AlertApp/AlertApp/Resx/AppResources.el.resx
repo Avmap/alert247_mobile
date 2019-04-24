@@ -153,6 +153,9 @@
   <data name="EnterVerificationCodeTitle" xml:space="preserve">
     <value>Επιβεβαίωση</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Σφάλμα</value>
+  </data>
   <data name="FinishRegistration" xml:space="preserve">
     <value>Τέλος</value>
   </data>

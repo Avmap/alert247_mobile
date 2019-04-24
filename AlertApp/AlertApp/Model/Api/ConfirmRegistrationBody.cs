@@ -6,7 +6,7 @@ using System.Text;
 namespace AlertApp.Model.Api
 {
     [DataContract]
-    public class ConfirmRegistrationBody
+    public class ConfirmRegistrationBody : BaseBody
     {
         [DataMember(Name = "cellphone")]
         public string Cellphone { get; set; }
