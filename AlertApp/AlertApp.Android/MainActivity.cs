@@ -35,14 +35,9 @@ namespace AlertApp.Droid
         protected override void OnNewIntent(Intent intent)
         {
             base.OnNewIntent(intent);
-            //hanlde action. from notification click.
+            //hanlde action from notification click.
             var action = intent.Action;            
             FirebasePushNotificationManager.ProcessIntent(this, intent);
-        }
-        private void testSmsApi()
-        {
-            
-
-        }       
+        }             
     }
 }

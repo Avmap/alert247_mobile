@@ -7,5 +7,6 @@ namespace AlertApp.Infrastructure
     public interface IOtpVerification
     {
         void StartSmsRetriever();
+        string GetApplicationHash();
     }
 }

@@ -248,15 +248,18 @@ namespace AlertApp.ViewModels
         private async void RequestVerificationCode()
         {
             SetBusy(true);
+            string applicationHash = "FoH283gIlH0";
+            //if device is android , start sms retreiver to listen for otp sms message
             if (Device.RuntimePlatform == Device.Android)
             {
                 var otpVerificationService = DependencyService.Get<IOtpVerification>();
                 if (otpVerificationService != null)
                 {
                     otpVerificationService.StartSmsRetriever();
-                }
+                    applicationHash = otpVerificationService.GetApplicationHash();
+                }                
             }
-            var response = await _registrationService.Register(_MobileNumber, _localSettingsService.GetSelectedLanguage());
+            var response = await _registrationService.Register(_MobileNumber, _localSettingsService.GetSelectedLanguage(), applicationHash);
             if (response.IsOk)
             {
 

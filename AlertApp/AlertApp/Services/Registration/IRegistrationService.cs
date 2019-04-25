@@ -9,7 +9,7 @@ namespace AlertApp.Services.Registration
 {
     public interface IRegistrationService
     {
-        Task<Response> Register(string cellphone, string language);
+        Task<Response> Register(string cellphone, string language, string applicationHash);
 
         Task<Response<ConfirmRegistrationResponse>> ConfirmRegistration(string cellphone, string otpVerifcationCode);     
     }

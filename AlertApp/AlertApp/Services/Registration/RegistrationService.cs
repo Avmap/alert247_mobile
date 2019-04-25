@@ -11,9 +11,9 @@ namespace AlertApp.Services.Registration
 {
     public class RegistrationService : BaseService, IRegistrationService
     {
-        public async Task<Response> Register(string cellphone, string language)
+        public async Task<Response> Register(string cellphone, string language,string applicationHash)
         {
-            var json = JsonConvert.SerializeObject(new RegisterBody { Cellphone = cellphone, Language = language, Hash = "FoH283gIlH0" });
+            var json = JsonConvert.SerializeObject(new RegisterBody { Cellphone = cellphone, Language = language, Hash = applicationHash });
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync("post/alert/register", content);
             if (response.Content != null)

@@ -35,16 +35,13 @@ namespace AlertApp.Droid
                     case CommonStatusCodes.Success:
                         // Get SMS message contents
                         var messageContent = (string)extrasBundleundle.Get(SmsRetriever.ExtraSmsMessage);
-                        // Extract one-time code from the message and complete verification
-                        // by sending the code back to your server.
-                        //ShowResultOnUI("SMS retrieved: " + messageContent);
+                        //send message to application
                         MessagingCenter.Send<IOtpMessageNotifier, OtpMessageReceivedEvent>(this, OtpMessageReceivedEvent.Event, new OtpMessageReceivedEvent { VerificationMessage = messageContent });
                         break;
 
                     case CommonStatusCodes.Timeout:
                         // Waiting for SMS timed out (5 minutes)
-                        // Handle the error ...
-                        //ShowResultOnUI("Timed Out Error! SMS retrieval failed!");
+                        //here handle timeout
                         break;
                 }
             }

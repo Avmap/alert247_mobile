@@ -70,12 +70,12 @@ namespace AlertApp.ViewModels
         {
             if (!string.IsNullOrWhiteSpace(Mobile))
             {
-                string message = AppResources.SmsVerificationMessage + " " + Mobile;
+                string message = AppResources.SmsVerificationMessage + " " + String.Format("{0}{1}",CountryPrefix,Mobile);
 
                 var confirm = await showAlertMessage(AppResources.Verification, message, AppResources.ContinueDialogButton, AppResources.Cancel);
                 if (confirm)
                 {
-                    await NavigationService.PushAsync(new EnterActivationCodePage(Mobile), false);
+                    await NavigationService.PushAsync(new EnterActivationCodePage(String.Format("{0}{1}", CountryPrefix, Mobile)), false);
                 }
 
             }

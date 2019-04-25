@@ -24,8 +24,7 @@ namespace AlertApp.Droid
         public override void OnCreate()
         {
             base.OnCreate();
-            CrossCurrentActivity.Current.Init(this);
-            String test = AppHashKeyHelper.GetAppHashKey(this);
+            CrossCurrentActivity.Current.Init(this);            
             //Set the default notification channel for your app when running Android Oreo
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
