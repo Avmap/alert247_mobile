@@ -268,7 +268,7 @@ namespace AlertApp.ViewModels
             }
             if (!response.IsOk && response.ErrorDescription != null && response.ErrorDescription.Labels != null)
             {
-                showOKMessage(AppResources.Error, response.ErrorDescription.Labels[_localSettingsService.GetSelectedLanguage()]);
+                showOKMessage(AppResources.Error, GetErrorDescription(response.ErrorDescription.Labels));
             }
             SetBusy(false);
         }
@@ -288,7 +288,7 @@ namespace AlertApp.ViewModels
             {
                 if (!response.IsOk && response.ErrorDescription != null && response.ErrorDescription.Labels != null)
                 {
-                    showOKMessage(AppResources.Error,response.ErrorDescription.Labels[_localSettingsService.GetSelectedLanguage()]);
+                    showOKMessage(AppResources.Error, GetErrorDescription(response.ErrorDescription.Labels));
                 }
 
             }

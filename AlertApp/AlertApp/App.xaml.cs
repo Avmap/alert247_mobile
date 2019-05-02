@@ -20,7 +20,7 @@ namespace AlertApp
         public App()
         {
             InitializeComponent();
-            var isUserRegistered = true;// Xamarin.Essentials.Preferences.Get(Settings.IsRegistered,false);
+            var isUserRegistered = false;// Xamarin.Essentials.Preferences.Get(Settings.IsRegistered,false);
             if (!isUserRegistered)
             {
                 var languageService = DependencyService.Get<ILocalize>();
@@ -36,7 +36,8 @@ namespace AlertApp
             }
             else
             {
-                MainPage = new NavigationPage(new RegistrationFieldsPage(new RegistrationField []{ }));                
+                //MainPage = new NavigationPage(new RegistrationFieldsPage(new RegistrationField []{ }));
+                MainPage = new NavigationPage(new MainPage());
             }
 
         }

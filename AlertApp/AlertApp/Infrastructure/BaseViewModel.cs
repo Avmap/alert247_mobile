@@ -1,9 +1,12 @@
-﻿using AlertApp.Resx;
+﻿using AlertApp.Model;
+using AlertApp.Resx;
+using AlertApp.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AlertApp.Infrastructure
@@ -174,5 +177,21 @@ namespace AlertApp.Infrastructure
             }
         }
         public abstract void SetBusy(bool isBusy);
+
+        protected string GetErrorDescription(Dictionary<string, string> labels)
+        {
+            if (labels == null)
+                return "Unknown error. No error description.";
+
+            if (labels.Keys.Count == 0)
+                return "Unknown error. No error description.";
+
+            var selectedlanguage = Preferences.Get(Settings.SelectedLanguage, Language.Codes.English);
+
+            var errorDescription = labels[selectedlanguage];
+            
+
+            return errorDescription;
+        }
     }
 }
