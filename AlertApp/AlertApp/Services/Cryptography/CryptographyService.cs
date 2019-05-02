@@ -16,7 +16,7 @@ namespace AlertApp.Services.Cryptography
 {
     public class CryptographyService : ICryptographyService
     {
-        #region Properties
+        #region Services
         readonly ILocalSettingsService _localSettingsService;
         #endregion
 

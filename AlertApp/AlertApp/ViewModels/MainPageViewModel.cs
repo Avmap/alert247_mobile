@@ -1,6 +1,7 @@
 ﻿using AlertApp.Infrastructure;
 using AlertApp.Pages;
 using AlertApp.Services.Profile;
+using AlertApp.Services.Settings;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +14,7 @@ namespace AlertApp.ViewModels
     {
         #region Services
         readonly IUserProfileService _userProfileService;
+        readonly ILocalSettingsService _localSettingsService;
         #endregion
 
         #region Commands
@@ -48,10 +50,19 @@ namespace AlertApp.ViewModels
 
         #endregion
 
-        public MainPageViewModel(IUserProfileService userProfileService)
+        public MainPageViewModel(IUserProfileService userProfileService, ILocalSettingsService localSettingsService)
         {
             _userProfileService = userProfileService;
+            _localSettingsService = localSettingsService;
+            PingServer();
         }
+
+        private async void PingServer()
+        {
+            var userToken = await _localSettingsService.GetAuthToken();
+            await _userProfileService.Ping(userToken,22.3121, 22.3122);
+        }
+
         private async void OpenSendAlertScreen()
         {
             await NavigationService.PushAsync(new SendingAlertPage(Model.AlertType.UserAlert),true);

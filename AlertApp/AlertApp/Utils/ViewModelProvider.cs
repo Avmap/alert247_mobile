@@ -49,7 +49,7 @@ namespace AlertApp.Utils
 
         internal static MainPageViewModel MainPageViewModel()
         {
-            return new MainPageViewModel(provideUserProfileService());
+            return new MainPageViewModel(provideUserProfileService(),provideLocalSettingsService());
         }
 
         internal static DialogSelectLanguageViewModel DialogSelectLanguageViewModel()

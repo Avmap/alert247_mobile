@@ -12,10 +12,11 @@ namespace AlertApp.Services.Profile
 {
     public class UserProfileService : BaseService, IUserProfileService
     {
-        #region Properties
+        #region Services
         readonly ILocalSettingsService _localSettingsService;
         readonly ICryptographyService _cryptographyService;
         #endregion
+
         public UserProfileService(ILocalSettingsService localSettingsService, ICryptographyService cryptographyService)
         {
             _localSettingsService = localSettingsService;
