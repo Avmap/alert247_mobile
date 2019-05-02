@@ -67,22 +67,8 @@ namespace AlertApp.ViewModels
             else
             {
                 SetBusy(true);
-                await Task.Run(() => GenerateKeys());
-              
-                //var privateKey = await _localSettingsService.GetPrivateKey();
-                //var publicKey = await _localSettingsService.GetPublicKey();
-                //if (string.IsNullOrWhiteSpace(privateKey))
-                //{
-                //    var keys = await _cryptohraphyService.CreateKeys(Pin);
-                //    _localSettingsService.SavePrivateKey(keys.PrivateKey);
-                //    _localSettingsService.SavePublicKey(keys.PublicKey);
-                //}
-                //else
-                //{
-                //    var unectupted = _cryptohraphyService.DecryptAES(privateKey, Pin);
-                //}
+                await Task.Run(() => _cryptohraphyService.GenerateKeys(Pin));                             
                 SetBusy(false);
-
                 //we keep TempRegistrationFields in static field in App.xaml.cs.
                 await NavigationService.PushAsync(new RegistrationFieldsPage(App.TempRegistrationFields), true);
             }
@@ -107,6 +93,7 @@ namespace AlertApp.ViewModels
             Device.BeginInvokeOnMainThread(() =>
             {
                 this.Busy = isBusy;
+                ((Command)ContinueCommand).ChangeCanExecute();
             });
         }
         #endregion

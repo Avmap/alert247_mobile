@@ -4,85 +4,198 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
+
 using System.Text;
 using System.Threading.Tasks;
+using PCLCrypto;
+using System.Diagnostics;
+using static PCLCrypto.WinRTCrypto;
+using ICryptoTransform = System.Security.Cryptography.ICryptoTransform;
 
 namespace AlertApp.Services.Cryptography
 {
     public class CryptographyService : ICryptographyService
     {
+        #region Properties
         readonly ILocalSettingsService _localSettingsService;
+        #endregion
+
         public CryptographyService(ILocalSettingsService localSettingsService)
         {
             _localSettingsService = localSettingsService;
         }
 
-        public async Task<RsaKeys> CreateKeys(string pin)
+        public void GenerateKeys(string userPin)
         {
-            // Create an instance of the RSA algorithm class  
-            //  RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(4096);
-            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
-            // Get the public keyy   
-            string publicKey = rsa.ToXmlString(false); // false to get the public key   
-            string privateKey = rsa.ToXmlString(true); // true to get the private key   
-            
-            _localSettingsService.SavePrivateKey(privateKey);
-            _localSettingsService.SavePublicKey(publicKey);
-        
-            // Call the encryptText method   
-            EncryptText(publicKey, "Hello from C# Corner", "encryptedData.dat");
+            var asym = AsymmetricKeyAlgorithmProvider.OpenAlgorithm(PCLCrypto.AsymmetricAlgorithm.RsaPkcs1);
+            _localSettingsService.SaveApplicationPin(userPin);
+            ICryptographicKey key = asym.CreateKeyPair(4096);
 
+            var publicKey = key.ExportPublicKey();
+            var privateKey = key.Export();
+
+            var publicKeyString = Convert.ToBase64String(publicKey);
+            var privateKeyString = Convert.ToBase64String(privateKey);
+
+            _localSettingsService.SavePublicKey(publicKeyString);
+
+            var encryptedPrivateKey = Encrypt(privateKeyString, userPin);
+
+            _localSettingsService.SavePrivateKey(encryptedPrivateKey);
+        }
+        public async Task<string> EncryptProfileData(string profileData)
+        {
+            try
+            {
+                var fileKey = GetRandomASCIIString(32);
+                if (fileKey != null)
+                {
+                    var base64FileKey = Convert.ToBase64String(fileKey);
+                    var userPublicKey = await _localSettingsService.GetPublicKey();
+                    var encryptedBase64FileKey = Encrypt(base64FileKey, userPublicKey);
+
+                    _localSettingsService.SaveEncryptedFileKey(encryptedBase64FileKey);
+
+                    return Encrypt(profileData, encryptedBase64FileKey);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
             return null;
         }
-      
-        static void EncryptText(string publicKey, string text, string fileName)
+        public async Task<string> DecryptProfileData(string profileData)
         {
-            // Convert the text to an array of bytes   
-            UnicodeEncoding byteConverter = new UnicodeEncoding();
-            byte[] dataToEncrypt = byteConverter.GetBytes(text);
-
-            // Create a byte array to store the encrypted data in it   
-            byte[] encryptedData;
-            using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider())
+            try
             {
-                // Set the rsa pulic key   
-                rsa.FromXmlString(publicKey);
-
-                // Encrypt the data and store it in the encyptedData Array   
-                encryptedData = rsa.Encrypt(dataToEncrypt, false);
+                var fileKey = await _localSettingsService.GetEncryptedFileKey();
+                if (fileKey != null)
+                {
+                    var publicKey = await _localSettingsService.GetPublicKey();
+                    var decryptedFileKey = Decrypt(fileKey, publicKey);
+                    return Decrypt(profileData, fileKey);
+                }
             }
-
-            Console.WriteLine("Data has been encrypted");
-        }
-        
-        static string DecryptData(string privateKey, string data)
-        {
-            // read the encrypted bytes from the file   
-     
-            // Create an array to store the decrypted data in it   
-            byte[] decryptedData;
-            UnicodeEncoding byteConverter = new UnicodeEncoding();
-            byte[] dataToDecrypt = byteConverter.GetBytes(data);
-            using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider())
+            catch (Exception ex)
             {
-                // Set the private key of the algorithm   
-                rsa.FromXmlString(privateKey);
-                decryptedData = rsa.Decrypt(dataToDecrypt, false);
+                Debug.WriteLine(ex);
             }
-
-            // Get the string value from the decryptedData byte array               
-            return byteConverter.GetString(decryptedData);
+            return null;
         }
 
-        public string EncryptAES(string data, string pin)
+        #region Private Methods
+        private static byte[] CreateKey(string password, int keyBytes = 32)
         {
-            throw new NotImplementedException();
+            byte[] salt = new byte[8];
+            int iterations = 300;
+            var keyGenerator = new Rfc2898DeriveBytes(password, salt, iterations);
+            return keyGenerator.GetBytes(keyBytes);
         }
-
-        public string DecryptAES(string data, string pin)
+        private string Encrypt(string clearValue, string encryptionKey)
         {
-            throw new NotImplementedException();
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = CreateKey(encryptionKey);
+
+                byte[] encrypted = AesEncryptStringToBytes(clearValue, aes.Key, aes.IV);
+                return Convert.ToBase64String(encrypted) + ";" + Convert.ToBase64String(aes.IV);
+            }
         }
+        private string Decrypt(string encryptedValue, string encryptionKey)
+        {
+            string iv = encryptedValue.Substring(encryptedValue.IndexOf(';') + 1, encryptedValue.Length - encryptedValue.IndexOf(';') - 1);
+            encryptedValue = encryptedValue.Substring(0, encryptedValue.IndexOf(';'));
+
+            return AesDecryptStringFromBytes(Convert.FromBase64String(encryptedValue), CreateKey(encryptionKey), Convert.FromBase64String(iv));
+        }
+        private string AesDecryptStringFromBytes(byte[] cipherText, byte[] key, byte[] iv)
+        {
+            if (cipherText == null || cipherText.Length <= 0)
+                throw new ArgumentNullException($"{nameof(cipherText)}");
+            if (key == null || key.Length <= 0)
+                throw new ArgumentNullException($"{nameof(key)}");
+            if (iv == null || iv.Length <= 0)
+                throw new ArgumentNullException($"{nameof(iv)}");
+
+            string plaintext = null;
+
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = key;
+                aes.IV = iv;
+
+                using (MemoryStream memoryStream = new MemoryStream(cipherText))
+                using (ICryptoTransform decryptor = aes.CreateDecryptor())
+                using (System.Security.Cryptography.CryptoStream cryptoStream = new System.Security.Cryptography.CryptoStream(memoryStream, decryptor, System.Security.Cryptography.CryptoStreamMode.Read))
+                using (StreamReader streamReader = new StreamReader(cryptoStream))
+                    plaintext = streamReader.ReadToEnd();
+
+            }
+            return plaintext;
+        }
+        private byte[] AesEncryptStringToBytes(string plainText, byte[] key, byte[] iv)
+        {
+            if (plainText == null || plainText.Length <= 0)
+                throw new ArgumentNullException($"{nameof(plainText)}");
+            if (key == null || key.Length <= 0)
+                throw new ArgumentNullException($"{nameof(key)}");
+            if (iv == null || iv.Length <= 0)
+                throw new ArgumentNullException($"{nameof(iv)}");
+
+            byte[] encrypted;
+
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = key;
+                aes.IV = iv;
+
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    using (ICryptoTransform encryptor = aes.CreateEncryptor())
+                    using (System.Security.Cryptography.CryptoStream cryptoStream = new System.Security.Cryptography.CryptoStream(memoryStream, encryptor, System.Security.Cryptography.CryptoStreamMode.Write))
+                    using (StreamWriter streamWriter = new StreamWriter(cryptoStream))
+                    {
+                        streamWriter.Write(plainText);
+                    }
+                    encrypted = memoryStream.ToArray();
+                }
+            }
+            return encrypted;
+        }
+        private byte[] GetRandomUnicodeString(int length, int maxValue, Predicate<int> valueFilter)
+        {
+            byte[] seedBuff = new byte[4];
+            byte[] charBuff;
+
+            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+            rng.GetBytes(seedBuff); // The array is now filled with cryptographically strong random bytes.
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (StreamWriter sw = new StreamWriter(ms, new UTF8Encoding(false, false)))
+                {
+                    var random = new Random(BitConverter.ToInt32(seedBuff, 0));
+
+                    for (int i = 0; i < length; i++)
+                    {
+                        int temp = random.Next(maxValue); //should we cap? 
+
+                        while (!valueFilter(temp))
+                            temp = random.Next(maxValue);
+
+                        sw.Write((char)temp);
+                    }
+                }
+                charBuff = ms.ToArray();
+            }
+            return charBuff;
+            // return new System.Text.UTF8Encoding(false, false).GetString(charBuff);
+        }
+        private byte[] GetRandomASCIIString(int length)
+        {
+            return GetRandomUnicodeString(length, 0x7E, o => o >= 0x21 && o <= 0x7E);
+        }
+        #endregion
     }
 }

@@ -21,7 +21,7 @@ namespace AlertApp.ViewModels
         public bool ShowFinishButton => !Busy;
         #endregion
 
-        public RegistrationFieldsPageViewModel(IUserProfileService userProfileService,ILocalSettingsService localSettingsService)
+        public RegistrationFieldsPageViewModel(IUserProfileService userProfileService, ILocalSettingsService localSettingsService)
         {
             _userProfileService = userProfileService;
             _localSettingsService = localSettingsService;
@@ -32,9 +32,14 @@ namespace AlertApp.ViewModels
             try
             {
                 SetBusy(true);
-                var storedProfile = await _userProfileService.StoreProfile(registrationValues, await _localSettingsService.GetAuthToken(),"test");
+
+#if DEBUG
+                registrationValues = new Dictionary<string, string>();
+                registrationValues.Add("fullname", "thanos");
+#endif
+                var storedProfile = await _userProfileService.StoreProfile(registrationValues, await _localSettingsService.GetAuthToken(), await _localSettingsService.GetPublicKey());
                 if (storedProfile.IsOk)
-                {
+                {                    
                     await NavigationService.PushAsync(new MainPage(), true);
                 }
             }
@@ -42,7 +47,7 @@ namespace AlertApp.ViewModels
             {
                 Debug.WriteLine(ex.Message);
             }
-            SetBusy(false);           
+            SetBusy(false);
         }
 
         #region BaseViewModel

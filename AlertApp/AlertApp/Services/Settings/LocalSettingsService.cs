@@ -36,6 +36,32 @@ namespace AlertApp.Services.Settings
             }
         }
 
+        public async Task<string> GetEncryptedFileKey()
+        {
+            try
+            {
+                return await SecureStorage.GetAsync(utils.Settings.FileKey);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                return Preferences.Get(utils.Settings.FileKey, "");
+            }
+        }
+
+        public async Task<string> GetEncryptedProfileData()
+        {
+            try
+            {
+                return await SecureStorage.GetAsync(utils.Settings.ProfileData);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                return Preferences.Get(utils.Settings.ProfileData, "");
+            }
+        }
+
         public async Task<string> GetPrivateKey()
         {
 
@@ -68,6 +94,19 @@ namespace AlertApp.Services.Settings
             return Preferences.Get(utils.Settings.SelectedLanguage, Language.Codes.English);
         }
 
+        public async Task<string> GetUserId()
+        {
+            try
+            {
+                return await SecureStorage.GetAsync(utils.Settings.UserId);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                return Preferences.Get(utils.Settings.UserId, "");
+            }
+        }
+
         public async void SaveApplicationPin(string pin)
         {
             try
@@ -91,6 +130,32 @@ namespace AlertApp.Services.Settings
             {
                 // Possible that device doesn't support secure storage on device.
                 Preferences.Set(utils.Settings.AuthToken, token);
+            }
+        }
+
+        public async void SaveEncryptedFileKey(string fileKey)
+        {
+            try
+            {
+                await SecureStorage.SetAsync(utils.Settings.FileKey, fileKey);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                Preferences.Set(utils.Settings.FileKey, fileKey);
+            }
+        }
+
+        public async void SaveEncryptedProfileData(string profileDataJson)
+        {
+            try
+            {
+                await SecureStorage.SetAsync(utils.Settings.ProfileData, profileDataJson);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                Preferences.Set(utils.Settings.ProfileData, profileDataJson);
             }
         }
 
@@ -135,6 +200,19 @@ namespace AlertApp.Services.Settings
             {
                 // Possible that device doesn't support secure storage on device.
                 Preferences.Set(key, value);
+            }
+        }
+
+        public async void SaveUserId(string userId)
+        {
+            try
+            {
+                await SecureStorage.SetAsync(utils.Settings.UserId, userId);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                Preferences.Set(utils.Settings.UserId, userId);
             }
         }
     }

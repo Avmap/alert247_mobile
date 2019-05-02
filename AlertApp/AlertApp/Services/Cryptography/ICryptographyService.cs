@@ -8,8 +8,8 @@ namespace AlertApp.Services.Cryptography
 {
     public interface ICryptographyService
     {
-        Task<RsaKeys> CreateKeys(string pin);        
-        string EncryptAES(string data, string pin);
-        string DecryptAES(string data, string pin);
+        void GenerateKeys(string userPin);
+        Task<string> EncryptProfileData(string profileData);
+        Task<string> DecryptProfileData(string profileData);
     }
 }

@@ -12,6 +12,9 @@ namespace AlertApp.Utils
         public static string ApplicationPin = "ApplicationPin";      
         public static string PrivateKey = "PrivateKey";
         public static string PublicKey = "PublicKey";
+        public static string FileKey = "FileKey";
+        public static string UserId = "UserId";
+        public static string ProfileData = "ProfileData";
 
     }
 }

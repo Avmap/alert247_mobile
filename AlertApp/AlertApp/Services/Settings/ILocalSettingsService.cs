@@ -17,6 +17,11 @@ namespace AlertApp.Services.Settings
         Task<string> GetPublicKey();
         void SavePrivateKey(string key);
         void SavePublicKey(string key);
-
+        void SaveEncryptedFileKey(string key);
+        Task<string> GetEncryptedFileKey();
+        void SaveUserId(string userId);
+        Task<string> GetUserId();
+        void SaveEncryptedProfileData(string profileDataJson);
+        Task<string> GetEncryptedProfileData();
     }
 }

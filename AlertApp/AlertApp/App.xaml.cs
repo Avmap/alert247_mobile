@@ -2,6 +2,8 @@
 using AlertApp.Infrastructure;
 using AlertApp.Model.Api;
 using AlertApp.Pages;
+using AlertApp.Services.Cryptography;
+using AlertApp.Services.Settings;
 using AlertApp.Utils;
 using Plugin.FirebasePushNotification;
 using System;
@@ -18,7 +20,7 @@ namespace AlertApp
         public App()
         {
             InitializeComponent();
-            var isUserRegistered = false;// Xamarin.Essentials.Preferences.Get(Settings.IsRegistered,false);
+            var isUserRegistered = true;// Xamarin.Essentials.Preferences.Get(Settings.IsRegistered,false);
             if (!isUserRegistered)
             {
                 var languageService = DependencyService.Get<ILocalize>();
@@ -27,24 +29,37 @@ namespace AlertApp
                     var systemlanguage = languageService.GetCurrentCultureInfo();
                     if (systemlanguage != null)
                     {
-                        Preferences.Set(Settings.SelectedLanguage, systemlanguage.Name);                        
+                        Preferences.Set(Settings.SelectedLanguage, systemlanguage.Name);
                     }
                 }
                 MainPage = new NavigationPage(new SelectLanguagePage());
-               // MainPage = new NavigationPage(new EnterApplicationPinCodePage());               
             }
             else
             {
-                MainPage = new NavigationPage(new MainPage());
+                MainPage = new NavigationPage(new RegistrationFieldsPage(new RegistrationField []{ }));                
             }
-           
+
+        }
+
+        private async void TEST()
+        {
+            var crypto = new CryptographyService(new LocalSettingsService());
+            crypto.GenerateKeys("1770");
+            
+            //var entrypted = crypto.Encrypt("thanos", "1770");
+            //var decrypted = crypto.Decrypt("KhcyLh+CWe1d3PID2zRYvQ==;ADkE8o2ftXL0Q4E1lWMBMgd==", "1770");
+
+            var profileData = await crypto.EncryptProfileData("i am thanos");
+
+            var decryptProfileData = await crypto.DecryptProfileData(profileData);
+
         }
 
         protected override void OnStart()
         {
             // Handle when your app starts
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
-            {                
+            {
                 CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
                 {
                     //here send registrationid to server

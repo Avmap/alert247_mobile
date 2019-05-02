@@ -71,7 +71,7 @@ namespace AlertApp.Utils
 
         private static IUserProfileService provideUserProfileService()
         {
-            return new UserProfileService();
+            return new UserProfileService(provideLocalSettingsService(),provideCryptographyService());
         }
         private static ILocalSettingsService provideLocalSettingsService()
         {
@@ -79,9 +79,9 @@ namespace AlertApp.Utils
         }
         private static ICryptographyService provideCryptographyService()
         {   
-            var cryptoService = DependencyService.Get<ICryptographyService>();
-            return cryptoService;
-           // return new CryptographyService(provideLocalSettingsService());
+            //var cryptoService = DependencyService.Get<ICryptographyService>();
+            //return cryptoService;
+            return new CryptographyService(provideLocalSettingsService());
         }
 
         private static ICommunityService provideCommunityService()

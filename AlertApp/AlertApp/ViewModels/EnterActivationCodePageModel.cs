@@ -280,6 +280,7 @@ namespace AlertApp.ViewModels
             if (response != null && response.Result != null && !string.IsNullOrWhiteSpace(response.Status))
             {
                 _localSettingsService.SaveAuthToken(response.Result.Token);
+                _localSettingsService.SaveUserId(response.Result.UserID);
                 App.TempRegistrationFields = response.Result.Fields;
                 await NavigationService.PushAsync(new EnterApplicationPinCodePage(), false);
             }

@@ -6,7 +6,7 @@ using System.Text;
 namespace AlertApp.Model.Api
 {
     [DataContract]
-    public class UserProfileBody
+    public class UserProfileBody : BaseBody
     {
         [DataMember(Name = "token")]
         public string Token { get; set; }

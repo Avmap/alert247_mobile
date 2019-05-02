@@ -21,7 +21,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(AlertApp.Droid.DependencyService.CryptographyService))]
 namespace AlertApp.Droid.DependencyService
 {
-    public class CryptographyService : ICryptographyService
+    public class CryptographyService// : ICryptographyService
     {
         public async Task<RsaKeys> CreateKeys(string pin)
         {
