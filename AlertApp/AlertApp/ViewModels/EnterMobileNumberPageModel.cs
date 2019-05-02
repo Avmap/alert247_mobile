@@ -31,21 +31,7 @@ namespace AlertApp.ViewModels
         #endregion
 
         #region Properties
-        public string CountryPrefix
-        {
-            get
-            {
-                try
-                {   
-                    var selectedLang= Preferences.Get(Settings.SelectedLanguage, Language.Codes.English);
-                    return Language.SupportedLanguages.Where(l => l.NetLanguageName.Equals(selectedLang)).FirstOrDefault().CountryMobilePrefix;
-                }
-                catch (Exception)
-                {
-                    return "";
-                }
-            }
-        }
+        public string CountryPrefix { get; set; }
         public Language SelectedLanguage
         {
             get
@@ -61,16 +47,20 @@ namespace AlertApp.ViewModels
                 }
             }
         }
-        public string Mobile { get; set; }
-
+        public string Mobile { get; set; }        
         #endregion
 
+        public EnterMobileNumberPageModel()
+        {
+            var selectedLang = Preferences.Get(Settings.SelectedLanguage, Language.Codes.English);
+            CountryPrefix =  Language.SupportedLanguages.Where(l => l.NetLanguageName.Equals(selectedLang)).FirstOrDefault().CountryMobilePrefix;
+        }
 
         public async void Continue()
         {
             if (!string.IsNullOrWhiteSpace(Mobile))
             {
-                string message = AppResources.SmsVerificationMessage + " " + String.Format("{0}{1}",CountryPrefix,Mobile);
+                string message = AppResources.SmsVerificationMessage + " " + String.Format("{0}{1}", CountryPrefix, Mobile);
 
                 var confirm = await showAlertMessage(AppResources.Verification, message, AppResources.ContinueDialogButton, AppResources.Cancel);
                 if (confirm)
