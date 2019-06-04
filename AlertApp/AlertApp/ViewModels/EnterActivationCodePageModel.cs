@@ -195,10 +195,10 @@ namespace AlertApp.ViewModels
             _smsTimer = new System.Timers.Timer();
             _smsTimer.Interval = 1000;
             _smsTimer.Elapsed += OnTimedEvent;
-//#if Release
+            //#if Release
             RequestVerificationCode();
-//#endif
-            
+            //#endif
+
         }
 
         public void RegisterForSmsEvent()
@@ -257,20 +257,22 @@ namespace AlertApp.ViewModels
                 {
                     otpVerificationService.StartSmsRetriever();
                     applicationHash = otpVerificationService.GetApplicationHash();
-                }                
+                }
             }
             var response = await _registrationService.Register(_MobileNumber, _localSettingsService.GetSelectedLanguage(), applicationHash);
+
             if (response.IsOk)
             {
-
                 _smsTimer.Start();
                 CanResendCode = false;
             }
+
             if (!response.IsOk && response.ErrorDescription != null && response.ErrorDescription.Labels != null)
             {
-                showOKMessage(AppResources.Error, GetErrorDescription(response.ErrorDescription.Labels));
-                _smsTimer.Start();
-                CanResendCode = false;
+                //showOKMessage(AppResources.Error, GetErrorDescription(response.ErrorDescription.Labels));
+
+                _smsTimer.Stop();
+                CanResendCode = true;
 
                 var requestNewOtpCode = await _registrationService.OtpRequest(_MobileNumber);
                 if (requestNewOtpCode.IsOk)
@@ -278,13 +280,15 @@ namespace AlertApp.ViewModels
 
                 }
                 else
-                {                    
+                {
                     showOKMessage(AppResources.Error, GetErrorDescription(requestNewOtpCode.ErrorDescription.Labels));
                 }
 
-            }else if (!response.IsOk && !response.IsOnline)
+            }
+            else if (!response.IsOk && !response.IsOnline)
             {
                 showOKMessage(AppResources.Error, "Please check your internet connection.");
+                ResetCounter();
             }
             SetBusy(false);
         }
@@ -309,6 +313,11 @@ namespace AlertApp.ViewModels
 
             }
             SetBusy(false);
+        }
+
+        private void ResetCounter()
+        {
+            CanResendCode = true;
         }
 
         #region BaseViewModel

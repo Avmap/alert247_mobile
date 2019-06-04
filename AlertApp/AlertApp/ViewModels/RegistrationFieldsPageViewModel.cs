@@ -1,5 +1,6 @@
 ﻿using AlertApp.Infrastructure;
 using AlertApp.Pages;
+using AlertApp.Resx;
 using AlertApp.Services.Profile;
 using AlertApp.Services.Settings;
 using System;
@@ -33,14 +34,14 @@ namespace AlertApp.ViewModels
             {
                 SetBusy(true);
 
-#if DEBUG
-                registrationValues = new Dictionary<string, string>();
-                registrationValues.Add("fullname", "thanos");
-#endif
                 var storedProfile = await _userProfileService.StoreProfile(registrationValues, await _localSettingsService.GetAuthToken(), await _localSettingsService.GetPublicKey());
                 if (storedProfile.IsOk)
-                {                    
+                {
                     await NavigationService.PushAsync(new MainPage(), true);
+                }
+                else if (!storedProfile.IsOnline)
+                {
+                    showOKMessage(AppResources.Error, "Please check your internet connection.");
                 }
             }
             catch (Exception ex)
