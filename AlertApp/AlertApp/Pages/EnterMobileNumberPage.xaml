@@ -27,7 +27,7 @@
                             <Entry Keyboard="Telephone"  Margin="2,0,0,0" TextColor="LightGray" Text="{Binding CountryPrefix}" Style="{StaticResource Headline5BoldEntry}"></Entry>
                             <Entry Keyboard="Telephone" Text="{Binding Mobile}" Margin="2,0,0,0" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
                         </StackLayout>
-                        <Button Margin="0,20,0,0" Style="{StaticResource RegistrationButtonStyle}" Text="{translate:Translate Continue}" Command="{Binding ContinueCommand}" ></Button>
+                        <Button Clicked="OnButtonNextClicked" Margin="0,20,0,0" Style="{StaticResource RegistrationButtonStyle}" Text="{translate:Translate Continue}"></Button>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

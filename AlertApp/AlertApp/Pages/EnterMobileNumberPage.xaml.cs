@@ -1,4 +1,6 @@
 ﻿using AlertApp.Infrastructure;
+using AlertApp.Resx;
+using AlertApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +21,25 @@ namespace AlertApp.Pages
             NavigationPage.SetHasNavigationBar(this, false);
             this.BindingContext = Utils.ViewModelProvider.EnterMobileNumberViewModel();
 		}
+
+        private async void OnButtonNextClicked(object sender, EventArgs e)
+        {
+            var vm = this.BindingContext as EnterMobileNumberPageModel;
+
+            if (!string.IsNullOrWhiteSpace(vm.Mobile))
+            {
+                string message = AppResources.SmsVerificationMessage + " " + String.Format("{0}{1}", vm.CountryPrefix, vm.Mobile);
+
+                var confirm = await DisplayAlert(AppResources.Verification, message, AppResources.ContinueDialogButton, AppResources.Cancel);
+                if (confirm)
+                {
+                    await Navigation.PushAsync(new EnterActivationCodePage(String.Format("{0}{1}", vm.CountryPrefix, vm.Mobile)), false);
+                }
+            }
+            else
+            {
+                await DisplayAlert(AppResources.Warning, AppResources.WarningFillNumber, "OK");                
+            }
+        }
     }
 }
