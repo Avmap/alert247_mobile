@@ -35,6 +35,8 @@ namespace AlertApp.Model.Api
         public bool IsOk => !string.IsNullOrWhiteSpace(Status) && Status.ToLower().Equals("ok");
 
         public static Response FailResponse => new Response { Status = "error" };
+
+        public bool IsOnline { get; set; }
     }
 
 }

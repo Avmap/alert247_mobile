@@ -11,32 +11,43 @@ namespace AlertApp.Services.Registration
 {
     public class RegistrationService : BaseService, IRegistrationService
     {
-        public async Task<Response> Register(string cellphone, string language,string applicationHash)
+        public async Task<Response> Register(string cellphone, string language, string applicationHash)
         {
-            var json = JsonConvert.SerializeObject(new RegisterBody { Cellphone = cellphone, Language = language, Hash = applicationHash });
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("post/alert/register", content);
-            if (response.Content != null)
+            var res = new Response();
+            try
             {
-                var data = response.Content;
-                if (data != null)
+                var json = JsonConvert.SerializeObject(new RegisterBody { Cellphone = cellphone, Language = language, Hash = applicationHash });
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("post/alert/register", content);
+                if (response.Content != null)
                 {
-                    var apiResponse = await data.ReadAsStringAsync();
-                    if (apiResponse != null)
+                    var data = response.Content;
+                    if (data != null)
                     {
-                        return JsonConvert.DeserializeObject<Response>(apiResponse);
+                        var apiResponse = await data.ReadAsStringAsync();
+                        if (apiResponse != null)
+                        {
+                            return JsonConvert.DeserializeObject<Response>(apiResponse);
+                        }
                     }
                 }
-            }
 
-            return Response.FailResponse;
+                return Response.FailResponse;
+            }
+            catch (Exception ex)
+            {
+                res.ErrorCode = ex.Message;
+                res.Status = "error";
+                res.IsOnline = false;
+            }
+            return res;
         }
 
         public async Task<Response<ConfirmRegistrationResponse>> ConfirmRegistration(string cellphone, string otpVerifcationCode)
         {
             var res = new Response<ConfirmRegistrationResponse>();
             try
-            {                
+            {
                 var json = JsonConvert.SerializeObject(new ConfirmRegistrationBody { Cellphone = cellphone, Otp = otpVerifcationCode });
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await _httpClient.PostAsync("post/alert/confirmRegistration", content);
@@ -53,29 +64,42 @@ namespace AlertApp.Services.Registration
             {
                 res.ErrorCode = ex.Message;
                 res.Status = "error";
+                res.IsOnline = false;
             }
             return res;
         }
 
         public async Task<Response> OtpRequest(string cellphone)
         {
-            var json = JsonConvert.SerializeObject(new OtpRequestBody { Cellphone = cellphone });
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("post/alert/otpRequest", content);
-            if (response.Content != null)
+            var res = new Response();
+            try
             {
-                var data = response.Content;
-                if (data != null)
+                var json = JsonConvert.SerializeObject(new OtpRequestBody { Cellphone = cellphone });
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("post/alert/otpRequest", content);
+                if (response.Content != null)
                 {
-                    var apiResponse = await data.ReadAsStringAsync();
-                    if (apiResponse != null)
+                    var data = response.Content;
+                    if (data != null)
                     {
-                        return JsonConvert.DeserializeObject<Response>(apiResponse);
+                        var apiResponse = await data.ReadAsStringAsync();
+                        if (apiResponse != null)
+                        {
+                            return JsonConvert.DeserializeObject<Response>(apiResponse);
+                        }
                     }
                 }
-            }
 
-            return Response.FailResponse;
+                return Response.FailResponse;
+
+            }
+            catch (Exception ex)
+            {
+                res.ErrorCode = ex.Message;
+                res.Status = "error";
+                res.IsOnline = false;
+            }
+            return res;
         }
     }
 }

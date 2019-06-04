@@ -282,6 +282,9 @@ namespace AlertApp.ViewModels
                     showOKMessage(AppResources.Error, GetErrorDescription(requestNewOtpCode.ErrorDescription.Labels));
                 }
 
+            }else if (!response.IsOk && !response.IsOnline)
+            {
+                showOKMessage(AppResources.Error, "Please check your internet connection.");
             }
             SetBusy(false);
         }
