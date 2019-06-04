@@ -56,5 +56,26 @@ namespace AlertApp.Services.Registration
             }
             return res;
         }
+
+        public async Task<Response> OtpRequest(string cellphone)
+        {
+            var json = JsonConvert.SerializeObject(new OtpRequestBody { Cellphone = cellphone });
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync("post/alert/otpRequest", content);
+            if (response.Content != null)
+            {
+                var data = response.Content;
+                if (data != null)
+                {
+                    var apiResponse = await data.ReadAsStringAsync();
+                    if (apiResponse != null)
+                    {
+                        return JsonConvert.DeserializeObject<Response>(apiResponse);
+                    }
+                }
+            }
+
+            return Response.FailResponse;
+        }
     }
 }

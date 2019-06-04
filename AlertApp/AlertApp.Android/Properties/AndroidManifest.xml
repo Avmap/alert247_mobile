@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.00.04" package="gr.avmap.alert247" android:installLocation="internalOnly" android:versionCode="00004">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.00.05" package="gr.avmap.alert247" android:installLocation="internalOnly" android:versionCode="00005">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<application android:label="Alert247" android:allowBackup="false">
