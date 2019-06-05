@@ -7,6 +7,7 @@ using AlertApp.Services.Settings;
 using AlertApp.Utils;
 using Plugin.FirebasePushNotification;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,7 +21,7 @@ namespace AlertApp
         public App()
         {
             InitializeComponent();
-            var isUserRegistered = false;// Xamarin.Essentials.Preferences.Get(Settings.IsRegistered,false);
+            var isUserRegistered = IsRegister().Result;
             if (!isUserRegistered)
             {
                 var languageService = DependencyService.Get<ILocalize>();
@@ -40,6 +41,24 @@ namespace AlertApp
                 MainPage = new NavigationPage(new MainPage());
             }
 
+        }
+
+        private async Task<bool> IsRegister()
+        {
+            string userID = null;
+            try
+            {
+                userID =  await SecureStorage.GetAsync(Settings.UserId);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                userID =  Preferences.Get(Settings.UserId, "");
+            }
+            if (!string.IsNullOrWhiteSpace(userID))
+                return true;
+
+            return false;
         }
 
         private async void TEST()

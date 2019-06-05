@@ -269,21 +269,10 @@ namespace AlertApp.ViewModels
 
             if (!response.IsOk && response.ErrorDescription != null && response.ErrorDescription.Labels != null)
             {
-                //showOKMessage(AppResources.Error, GetErrorDescription(response.ErrorDescription.Labels));
+                showOKMessage(AppResources.Error, GetErrorDescription(response.ErrorDescription.Labels));
 
                 _smsTimer.Stop();
-                CanResendCode = true;
-
-                var requestNewOtpCode = await _registrationService.OtpRequest(_MobileNumber);
-                if (requestNewOtpCode.IsOk)
-                {
-
-                }
-                else
-                {
-                    showOKMessage(AppResources.Error, GetErrorDescription(requestNewOtpCode.ErrorDescription.Labels));
-                }
-
+                CanResendCode = true;               
             }
             else if (!response.IsOk && !response.IsOnline)
             {
