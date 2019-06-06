@@ -23,7 +23,7 @@ namespace AlertApp.Pages
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            this.BindingContext = ViewModelLocator.Instance.Resolve<SelectLanguagePageModel>();       
+            this.BindingContext = ViewModelLocator.Instance.Resolve<SelectLanguagePageViewModel>();       
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

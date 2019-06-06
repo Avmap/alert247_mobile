@@ -16,7 +16,7 @@ using Xamarin.Forms;
 
 namespace AlertApp.ViewModels
 {
-    public class SelectLanguagePageModel : BaseViewModel
+    public class SelectLanguagePageViewModel : BaseViewModel
     {
         #region Services
         readonly ILocalSettingsService _localSettingsService;
@@ -78,7 +78,7 @@ namespace AlertApp.ViewModels
         }
         #endregion
 
-        public SelectLanguagePageModel(ILocalSettingsService localSettingsService)
+        public SelectLanguagePageViewModel(ILocalSettingsService localSettingsService)
         {
             _localSettingsService = localSettingsService;
             SetSelectedLanguage();

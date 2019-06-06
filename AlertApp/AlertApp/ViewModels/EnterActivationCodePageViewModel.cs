@@ -18,7 +18,7 @@ using Xamarin.Forms;
 
 namespace AlertApp.ViewModels
 {
-    public class EnterActivationCodePageModel : BaseViewModel
+    public class EnterActivationCodePageViewModel : BaseViewModel
     {
         #region Services
         readonly IRegistrationService _registrationService;
@@ -186,7 +186,7 @@ namespace AlertApp.ViewModels
         }
         #endregion
 
-        public EnterActivationCodePageModel(IRegistrationService registrationService, ILocalSettingsService localSettingsService, string mobilenumber)
+        public EnterActivationCodePageViewModel(IRegistrationService registrationService, ILocalSettingsService localSettingsService, string mobilenumber)
         {
             _registrationService = registrationService;
             _localSettingsService = localSettingsService;

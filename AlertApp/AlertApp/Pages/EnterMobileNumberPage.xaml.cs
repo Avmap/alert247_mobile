@@ -19,12 +19,12 @@ namespace AlertApp.Pages
 		{
 			InitializeComponent ();
             NavigationPage.SetHasNavigationBar(this, false);
-            this.BindingContext = ViewModelLocator.Instance.Resolve<EnterMobileNumberPageModel>();
+            this.BindingContext = ViewModelLocator.Instance.Resolve<EnterMobileNumberPageViewModel>();
 		}
 
         private async void OnButtonNextClicked(object sender, EventArgs e)
         {
-            var vm = this.BindingContext as EnterMobileNumberPageModel;
+            var vm = this.BindingContext as EnterMobileNumberPageViewModel;
 
             if (!string.IsNullOrWhiteSpace(vm.Mobile))
             {

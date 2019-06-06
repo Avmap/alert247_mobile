@@ -20,7 +20,7 @@ namespace AlertApp.Pages
             NavigationPage.SetHasNavigationBar(this, false);
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("mobilenumber", mobilenumber);
-            this.BindingContext = ViewModelLocator.Instance.Resolve<EnterActivationCodePageModel>(parameters); 
+            this.BindingContext = ViewModelLocator.Instance.Resolve<EnterActivationCodePageViewModel>(parameters); 
         }
 
 
@@ -110,7 +110,7 @@ namespace AlertApp.Pages
             {
                 if (e.NewTextValue != null && e.NewTextValue.Length == 1)
                 {
-                    var vm = this.BindingContext as EnterActivationCodePageModel;
+                    var vm = this.BindingContext as EnterActivationCodePageViewModel;
                     if (vm != null)
                     {
                         vm.ContinueCommand.Execute(null);
@@ -127,9 +127,9 @@ namespace AlertApp.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (this.BindingContext != null && this.BindingContext is EnterActivationCodePageModel)
+            if (this.BindingContext != null && this.BindingContext is EnterActivationCodePageViewModel)
             {
-                var vm = this.BindingContext as EnterActivationCodePageModel;
+                var vm = this.BindingContext as EnterActivationCodePageViewModel;
                 vm.RegisterForSmsEvent();
 
             }
@@ -138,9 +138,9 @@ namespace AlertApp.Pages
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            if (this.BindingContext != null && this.BindingContext is EnterActivationCodePageModel)
+            if (this.BindingContext != null && this.BindingContext is EnterActivationCodePageViewModel)
             {
-                var vm = this.BindingContext as EnterActivationCodePageModel;
+                var vm = this.BindingContext as EnterActivationCodePageViewModel;
                 vm.UnRegisterForSmsEvent();
             }
         }

@@ -14,7 +14,7 @@ using static PCLCrypto.WinRTCrypto;
 
 namespace AlertApp.ViewModels
 {
-    public class EnterApplicationPinCodePageModel : BaseViewModel
+    public class EnterApplicationPinCodePageViewModel : BaseViewModel
     {
         #region Services
         readonly ILocalSettingsService _localSettingsService;
@@ -51,7 +51,7 @@ namespace AlertApp.ViewModels
         }
         #endregion
 
-        public EnterApplicationPinCodePageModel(ILocalSettingsService localSettingsService, ICryptographyService cryptohraphyService)
+        public EnterApplicationPinCodePageViewModel(ILocalSettingsService localSettingsService, ICryptographyService cryptohraphyService)
         {
             _localSettingsService = localSettingsService;
             _cryptohraphyService = cryptohraphyService;

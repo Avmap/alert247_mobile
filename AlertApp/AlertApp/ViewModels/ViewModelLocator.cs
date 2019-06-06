@@ -47,10 +47,10 @@ namespace AlertApp.ViewModels
             
 
             // View models
-            _unityContainer.RegisterType<SelectLanguagePageModel>();
-            _unityContainer.RegisterType<EnterMobileNumberPageModel>();
-            _unityContainer.RegisterType<EnterActivationCodePageModel>();
-            _unityContainer.RegisterType<EnterApplicationPinCodePageModel>();
+            _unityContainer.RegisterType<SelectLanguagePageViewModel>();
+            _unityContainer.RegisterType<EnterMobileNumberPageViewModel>();
+            _unityContainer.RegisterType<EnterActivationCodePageViewModel>();
+            _unityContainer.RegisterType<EnterApplicationPinCodePageViewModel>();
             _unityContainer.RegisterType<RegistrationFieldsPageViewModel>();
             _unityContainer.RegisterType<SendingAlertPageViewModel>();
             _unityContainer.RegisterType<MainPageViewModel>();

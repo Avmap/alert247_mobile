@@ -14,7 +14,7 @@ using Xamarin.Forms;
 
 namespace AlertApp.ViewModels
 {
-    public class EnterMobileNumberPageModel : BaseViewModel
+    public class EnterMobileNumberPageViewModel : BaseViewModel
     {
         #region Commands
         private ICommand _ContinueCommand;
@@ -50,7 +50,7 @@ namespace AlertApp.ViewModels
         public string Mobile { get; set; }        
         #endregion
 
-        public EnterMobileNumberPageModel()
+        public EnterMobileNumberPageViewModel()
         {
             var selectedLang = Preferences.Get(Settings.SelectedLanguage, Language.Codes.English);
             CountryPrefix =  Language.SupportedLanguages.Where(l => l.NetLanguageName.Equals(selectedLang)).FirstOrDefault().CountryMobilePrefix;
