@@ -49,14 +49,17 @@ namespace AlertApp
         private async Task<bool> IsRegister()
         {
             string userID = null;
+            string token = null;
             try
             {
                 userID =  await SecureStorage.GetAsync(Settings.UserId);
+                token = await SecureStorage.GetAsync(Settings.AuthToken);
             }
             catch (Exception ex)
             {
                 // Possible that device doesn't support secure storage on device.
                 userID =  Preferences.Get(Settings.UserId, "");
+                token =  Preferences.Get(Settings.AuthToken, "");
             }
             if (!string.IsNullOrWhiteSpace(userID))
                 return true;

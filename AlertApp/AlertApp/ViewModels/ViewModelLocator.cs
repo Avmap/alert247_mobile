@@ -43,8 +43,8 @@ namespace AlertApp.ViewModels
             // Data services
             RegisterSingleton<IRegistrationService, RegistrationService>();
             RegisterSingleton<IUserProfileService, UserProfileService>();
-            RegisterSingleton<ICommunityService, CommunityService>();
-            
+            RegisterSingleton<ICommunityService, CommunityService>();                        
+
 
             // View models
             _unityContainer.RegisterType<SelectLanguagePageViewModel>();

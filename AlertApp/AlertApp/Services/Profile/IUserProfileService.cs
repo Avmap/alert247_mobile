@@ -10,5 +10,8 @@ namespace AlertApp.Services.Profile
     {
         Task<Response> StoreProfile(Dictionary<string, string> registrationValues, string token, string publicKey);
         Task<Response> Ping(string token, double? lat, double? lng);
+        Task<Response<GetProfileResponse>> GetProfile(string token, string userid);
+
+        
     }
 }

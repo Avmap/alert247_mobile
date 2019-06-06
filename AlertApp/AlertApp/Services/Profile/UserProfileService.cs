@@ -23,6 +23,34 @@ namespace AlertApp.Services.Profile
             _cryptographyService = cryptographyService;
         }
 
+        public async Task<Response<GetProfileResponse>> GetProfile(string token, string userid)
+        {
+            var res = new Response<GetProfileResponse>();
+            try
+            {                                    
+                var json = JsonConvert.SerializeObject(new GetProfileBody { UserId = userid, Token = token });
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("post/alert/getProfile", content);
+
+                if (response.Content != null)
+                {
+                    var apiResponse = await response.Content.ReadAsStringAsync();
+                    if (apiResponse != null)
+                    {
+                        res = JsonConvert.DeserializeObject<Response<GetProfileResponse>>(apiResponse);                       
+                        return res;
+                    }
+                }                
+            }
+            catch (Exception ex)
+            {
+                res.ErrorCode = ex.Message;
+                res.Status = "error";
+                res.IsOnline = false;
+            }
+            return res;
+        }
+
         public async Task<Response> Ping(string token, double? lat, double? lng)
         {
             var json = JsonConvert.SerializeObject(new PingUserBody { Token = token, Lat = lat, Lng = lng });
