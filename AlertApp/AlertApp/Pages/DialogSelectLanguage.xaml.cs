@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AlertApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace AlertApp.Pages
 		public DialogSelectLanguage ()
 		{
 			InitializeComponent ();
-            this.BindingContext = Utils.ViewModelProvider.DialogSelectLanguageViewModel();
+            this.BindingContext = ViewModelLocator.Instance.Resolve<DialogSelectLanguageViewModel>();
 		}
 	}
 }

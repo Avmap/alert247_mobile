@@ -1,6 +1,7 @@
 ﻿using AlertApp.Infrastructure;
 using AlertApp.Model;
 using AlertApp.Resx;
+using AlertApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -27,7 +28,7 @@ namespace AlertApp.Pages
         {
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
-            this.BindingContext = Utils.ViewModelProvider.SendingAlertPageViewModel(alertType);
+            this.BindingContext = ViewModelLocator.Instance.Resolve<SendingAlertPageViewModel>();
             sendingAlert = AppResources.SendingAlertIn + " ";           
             StartTimer();
             SetApplicationPin();

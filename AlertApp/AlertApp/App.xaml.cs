@@ -3,11 +3,16 @@ using AlertApp.Infrastructure;
 using AlertApp.Model.Api;
 using AlertApp.Pages;
 using AlertApp.Services.Cryptography;
+using AlertApp.Services.Profile;
+using AlertApp.Services.Registration;
 using AlertApp.Services.Settings;
 using AlertApp.Utils;
+using AlertApp.ViewModels;
+using CommonServiceLocator;
 using Plugin.FirebasePushNotification;
 using System;
 using System.Threading.Tasks;
+using Unity;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,7 +25,7 @@ namespace AlertApp
         public static RegistrationField[] TempRegistrationFields { get; set; }
         public App()
         {
-            InitializeComponent();
+            InitializeComponent();            
             var isUserRegistered = IsRegister().Result;
             if (!isUserRegistered)
             {
@@ -36,13 +41,11 @@ namespace AlertApp
                 MainPage = new NavigationPage(new SelectLanguagePage());
             }
             else
-            {
-                //MainPage = new NavigationPage(new RegistrationFieldsPage(new RegistrationField []{ }));
+            {                
                 MainPage = new NavigationPage(new MainPage());
             }
-
         }
-
+  
         private async Task<bool> IsRegister()
         {
             string userID = null;
@@ -59,20 +62,6 @@ namespace AlertApp
                 return true;
 
             return false;
-        }
-
-        private async void TEST()
-        {
-            var crypto = new CryptographyService(new LocalSettingsService());
-            crypto.GenerateKeys("1770");
-            
-            //var entrypted = crypto.Encrypt("thanos", "1770");
-            //var decrypted = crypto.Decrypt("KhcyLh+CWe1d3PID2zRYvQ==;ADkE8o2ftXL0Q4E1lWMBMgd==", "1770");
-
-            var profileData = await crypto.EncryptProfileData("i am thanos");
-
-            var decryptProfileData = await crypto.DecryptProfileData(profileData);
-
         }
 
         protected override void OnStart()

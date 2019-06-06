@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace AlertApp.Pages
@@ -22,7 +23,7 @@ namespace AlertApp.Pages
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            this.BindingContext = Utils.ViewModelProvider.SelectLanguageViewModel();
+            this.BindingContext = ViewModelLocator.Instance.Resolve<SelectLanguagePageModel>();       
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

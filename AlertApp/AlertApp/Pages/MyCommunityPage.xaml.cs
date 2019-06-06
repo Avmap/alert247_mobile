@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AlertApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace AlertApp.Pages
         {
             InitializeComponent();
             bottomSheet.TranslationY = DeviceDisplay.MainDisplayInfo.Height;
-            this.BindingContext = Utils.ViewModelProvider.MyCommunityPageViewModel();
+            this.BindingContext = ViewModelLocator.Instance.Resolve<MyCommunityPageViewModel>();
         }
 
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)

@@ -215,5 +215,10 @@ namespace AlertApp.Services.Settings
                 Preferences.Set(utils.Settings.UserId, userId);
             }
         }
+
+        public LocalSettingsService()
+        {
+
+        }
     }
 }

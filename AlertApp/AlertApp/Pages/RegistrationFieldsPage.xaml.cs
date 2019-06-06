@@ -24,7 +24,7 @@ namespace AlertApp.Pages
             _localSettingsService = new LocalSettingsService();
             NavigationPage.SetHasBackButton(this, false);
             NavigationPage.SetHasNavigationBar(this, false);
-            vm = Utils.ViewModelProvider.RegistrationFieldsPageViewModel();
+            vm = ViewModelLocator.Instance.Resolve<RegistrationFieldsPageViewModel>();            
             this.BindingContext = vm;
             AddRegistrationFields(registrationField);
 

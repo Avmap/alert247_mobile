@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AlertApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace AlertApp.Pages
         {
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
-            this.BindingContext = Utils.ViewModelProvider.MainPageViewModel();
+            this.BindingContext = ViewModelLocator.Instance.Resolve<MainPageViewModel>();
         }
         protected override bool OnBackButtonPressed()
         {

@@ -19,7 +19,7 @@ namespace AlertApp.Pages
 			InitializeComponent ();
             NavigationPage.SetHasBackButton(this, false);
             NavigationPage.SetHasNavigationBar(this, false);
-            this.BindingContext = Utils.ViewModelProvider.EnterApplicationPinCodeViewModel();
+            this.BindingContext = ViewModelLocator.Instance.Resolve<EnterApplicationPinCodePageModel>();
 		}
 
         protected override bool OnBackButtonPressed()

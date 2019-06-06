@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Unity.Resolution;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,7 +18,9 @@ namespace AlertApp.Pages
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            this.BindingContext = Utils.ViewModelProvider.EnterActivationCodeViewModel(mobilenumber);
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("mobilenumber", mobilenumber);
+            this.BindingContext = ViewModelLocator.Instance.Resolve<EnterActivationCodePageModel>(parameters); 
         }
 
 
