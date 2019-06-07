@@ -14,6 +14,7 @@ using Java.Util;
 using Plugin.FirebasePushNotification;
 using Android.Content;
 using Plugin.CurrentActivity;
+using Firebase.Analytics;
 
 namespace AlertApp.Droid
 {
@@ -21,15 +22,25 @@ namespace AlertApp.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
-        {
+        {           
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-            base.OnCreate(savedInstanceState);            
+            base.OnCreate(savedInstanceState);
+
+            //If debug you should reset the token each time.
+#if DEBUG
+            FirebasePushNotificationManager.Initialize(this, true);
+#else
+              FirebasePushNotificationManager.Initialize(this,false);
+#endif
+
             Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CarouselViewRenderer.Init();
             LoadApplication(new App());
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
+
+
 
         }
         protected override void OnNewIntent(Intent intent)

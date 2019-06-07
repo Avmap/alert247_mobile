@@ -216,6 +216,32 @@ namespace AlertApp.Services.Settings
             }
         }
 
+        public async void SaveFirebaseToken(string token)
+        {
+            try
+            {
+                await SecureStorage.SetAsync(utils.Settings.FirebaseToken, token);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                Preferences.Set(utils.Settings.FirebaseToken, token);
+            }
+        }
+
+        public async Task<string> GetFirebaseToken()
+        {
+            try
+            {
+                return await SecureStorage.GetAsync(utils.Settings.FirebaseToken);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                return Preferences.Get(utils.Settings.FirebaseToken, "");
+            }
+        }
+
         public LocalSettingsService()
         {
 

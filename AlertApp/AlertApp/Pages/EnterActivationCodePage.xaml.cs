@@ -18,7 +18,7 @@ namespace AlertApp.Pages
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("mobilenumber", mobilenumber);
             this.BindingContext = ViewModelLocator.Instance.Resolve<EnterActivationCodePageViewModel>(parameters); 
         }

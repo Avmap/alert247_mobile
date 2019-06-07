@@ -9,7 +9,7 @@ namespace AlertApp.Services.Profile
     public interface IUserProfileService
     {
         Task<Response> StoreProfile(Dictionary<string, string> registrationValues, string token, string publicKey);
-        Task<Response> Ping(string token, double? lat, double? lng);
+        Task<Response> Ping(string token, double? lat, double? lng,string firebaseToken);
         Task<Response<GetProfileResponse>> GetProfile(string token, string userid);
 
         

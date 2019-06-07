@@ -25,7 +25,7 @@ namespace AlertApp
         public static RegistrationField[] TempRegistrationFields { get; set; }
         public App()
         {
-            InitializeComponent();            
+            InitializeComponent();
             var isUserRegistered = IsRegister().Result;
             if (!isUserRegistered)
             {
@@ -41,25 +41,25 @@ namespace AlertApp
                 MainPage = new NavigationPage(new SelectLanguagePage());
             }
             else
-            {                
+            {
                 MainPage = new NavigationPage(new MainPage());
             }
         }
-  
+
         private async Task<bool> IsRegister()
         {
             string userID = null;
             string token = null;
             try
             {
-                userID =  await SecureStorage.GetAsync(Settings.UserId);
+                userID = await SecureStorage.GetAsync(Settings.UserId);
                 token = await SecureStorage.GetAsync(Settings.AuthToken);
             }
             catch (Exception ex)
             {
                 // Possible that device doesn't support secure storage on device.
-                userID =  Preferences.Get(Settings.UserId, "");
-                token =  Preferences.Get(Settings.AuthToken, "");
+                userID = Preferences.Get(Settings.UserId, "");
+                token = Preferences.Get(Settings.AuthToken, "");
             }
             if (!string.IsNullOrWhiteSpace(userID))
                 return true;
@@ -72,20 +72,47 @@ namespace AlertApp
             // Handle when your app starts
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
+                var localSettings = ViewModelLocator.Instance.Resolve<ILocalSettingsService>();
                 CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
                 {
-                    //here send registrationid to server
+                    if (!string.IsNullOrWhiteSpace(p.Token))
+                    {
+                        localSettings.SaveFirebaseToken(p.Token);
+                        //here send registrationid to server
+                        var userProfileService = ViewModelLocator.Instance.Resolve<IUserProfileService>();
+                        if (userProfileService != null)
+                        {
+
+                            Task.Run(async () =>
+                            {
+                                var userToken = await localSettings.GetAuthToken();
+                                await userProfileService.Ping(userToken, 22.1, 22.2, p.Token);
+                            });
+
+                        }
+                    }
+
                 };
                 MessagingCenter.Subscribe<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString(), (sender, data) =>
                 {
                     //here handle messages from firebase on each platform
                 });
             }
+
+            var analyticsService = DependencyService.Get<IFirebaseAnalyticsService>();
+            if (analyticsService != null)
+            {
+                analyticsService.LogOpenAppEvent();
+            }
         }
 
         protected override void OnSleep()
         {
-            // Handle when your app sleeps
+            var analyticsService = DependencyService.Get<IFirebaseAnalyticsService>();
+            if (analyticsService != null)
+            {
+                analyticsService.LogOpenAppEvent();
+            }
         }
 
         protected override void OnResume()

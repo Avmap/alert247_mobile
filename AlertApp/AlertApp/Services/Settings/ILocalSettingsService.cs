@@ -23,5 +23,8 @@ namespace AlertApp.Services.Settings
         Task<string> GetUserId();
         void SaveEncryptedProfileData(string profileDataJson);
         Task<string> GetEncryptedProfileData();
+
+        void SaveFirebaseToken(string token);
+        Task<string> GetFirebaseToken();
     }
 }

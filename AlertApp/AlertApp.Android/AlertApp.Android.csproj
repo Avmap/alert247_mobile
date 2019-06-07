@@ -63,12 +63,15 @@
       <Version>2.1.0.4</Version>
     </PackageReference>
     <PackageReference Include="Plugin.FirebasePushNotification">
-      <Version>2.3.5</Version>
+      <Version>2.3.6</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Firebase.Common">
+      <Version>60.1142.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Core">
       <Version>60.1142.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Firebase.Iid">
@@ -103,6 +106,7 @@
     <Compile Include="AppHashKeyHelper.cs" />
     <Compile Include="CustomRenderers\OtpEntryRenderer.cs" />
     <Compile Include="DependencyService\CryptographyService.cs" />
+    <Compile Include="DependencyService\FirebaseAnalyticsService.cs" />
     <Compile Include="DependencyService\Localize.cs" />
     <Compile Include="DependencyService\OtpVerification.cs" />
     <Compile Include="AlertFirebaseMessagingService.cs" />

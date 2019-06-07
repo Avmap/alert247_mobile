@@ -1,4 +1,5 @@
-﻿using AlertApp.Services.Community;
+﻿using AlertApp.Services.Alert;
+using AlertApp.Services.Community;
 using AlertApp.Services.Cryptography;
 using AlertApp.Services.Profile;
 using AlertApp.Services.Registration;
@@ -44,6 +45,7 @@ namespace AlertApp.ViewModels
             RegisterSingleton<IRegistrationService, RegistrationService>();
             RegisterSingleton<IUserProfileService, UserProfileService>();
             RegisterSingleton<ICommunityService, CommunityService>();                        
+            RegisterSingleton<IAlertService, FakeAlertService>();
 
 
             // View models
@@ -63,7 +65,7 @@ namespace AlertApp.ViewModels
         {
             return _unityContainer.Resolve<T>();
         }
-        public T Resolve<T>(Dictionary<string,string> param)
+        public T Resolve<T>(Dictionary<string,object> param)
         {
             var parameters = new ParameterOverrides();
             foreach (var item in param)

@@ -14,5 +14,7 @@ namespace AlertApp.Model.Api
         public double? Lat { get; set; }
         [DataMember(Name = "lng")]
         public double? Lng { get; set; }
+        [DataMember(Name = "deviceID")]
+        public string FirebaseToken { get; set; }
     }
 }

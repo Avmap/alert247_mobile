@@ -2,6 +2,7 @@
 using AlertApp.Pages;
 using AlertApp.Services.Profile;
 using AlertApp.Services.Settings;
+using Plugin.FirebasePushNotification;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -45,7 +46,7 @@ namespace AlertApp.ViewModels
 
         private async void NavigateToContactScreen()
         {
-            await NavigationService.PushAsync(new ManageContactsPage(),true);
+            await NavigationService.PushAsync(new ManageContactsPage(), true);
         }
 
         #endregion
@@ -60,12 +61,13 @@ namespace AlertApp.ViewModels
         private async void PingServer()
         {
             var userToken = await _localSettingsService.GetAuthToken();
-            await _userProfileService.Ping(userToken,22.3121, 22.3122);
+            var firebaseToken = await _localSettingsService.GetFirebaseToken();
+            await _userProfileService.Ping(userToken, 22.3121, 22.3122, firebaseToken);
         }
 
         private async void OpenSendAlertScreen()
         {
-            await NavigationService.PushAsync(new SendingAlertPage(Model.AlertType.UserAlert),true);
+            await NavigationService.PushAsync(new SendingAlertPage(Model.AlertType.UserAlert), true);
         }
 
         #region BaseViewModel

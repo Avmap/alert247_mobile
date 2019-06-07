@@ -15,6 +15,7 @@ namespace AlertApp.Utils
         public static string FileKey = "FileKey";
         public static string UserId = "UserId";
         public static string ProfileData = "ProfileData";
+        public static string FirebaseToken = "FirebaseToken";
 
     }
 }

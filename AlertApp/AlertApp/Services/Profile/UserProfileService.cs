@@ -51,21 +51,32 @@ namespace AlertApp.Services.Profile
             return res;
         }
 
-        public async Task<Response> Ping(string token, double? lat, double? lng)
+        public async Task<Response> Ping(string token, double? lat, double? lng,string firebaseToken)
         {
-            var json = JsonConvert.SerializeObject(new PingUserBody { Token = token, Lat = lat, Lng = lng });
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("post/alert/ping", content);
-            if (response.Content != null)
+            var res = new Response();
+            try
             {
-                var apiResponse = await response.Content.ReadAsStringAsync();
-                if (apiResponse != null)
+                var json = JsonConvert.SerializeObject(new PingUserBody { Token = token, Lat = lat, Lng = lng,FirebaseToken = firebaseToken });
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("post/alert/ping", content);
+                if (response.Content != null)
                 {
-                    return JsonConvert.DeserializeObject<Response>(apiResponse);
+                    var apiResponse = await response.Content.ReadAsStringAsync();
+                    if (apiResponse != null)
+                    {
+                        return JsonConvert.DeserializeObject<Response>(apiResponse);
+                    }
                 }
-            }
 
-            return Response.FailResponse;
+                return Response.FailResponse;
+            }
+            catch (Exception ex)
+            {
+                res.ErrorCode = ex.Message;
+                res.Status = "error";
+                res.IsOnline = false;
+            }
+            return res;
         }
 
         public async Task<Response> StoreProfile(Dictionary<string, string> registrationValues, string token, string publicKey)
