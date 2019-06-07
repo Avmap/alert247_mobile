@@ -1,5 +1,6 @@
 ﻿using AlertApp.Services.Alert;
 using AlertApp.Services.Community;
+using AlertApp.Services.Contacts;
 using AlertApp.Services.Cryptography;
 using AlertApp.Services.Profile;
 using AlertApp.Services.Registration;
@@ -46,6 +47,7 @@ namespace AlertApp.ViewModels
             RegisterSingleton<IUserProfileService, UserProfileService>();
             RegisterSingleton<ICommunityService, CommunityService>();                        
             RegisterSingleton<IAlertService, FakeAlertService>();
+            RegisterSingleton<IContactsService, ContactsService>();
 
 
             // View models
