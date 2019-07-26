@@ -61,6 +61,7 @@ namespace AlertApp.ViewModels
             _unityContainer.RegisterType<DialogSelectLanguageViewModel>();
             _unityContainer.RegisterType<MyCommunityPageViewModel>();
             _unityContainer.RegisterType<DependandsPageViewModel>();            
+            _unityContainer.RegisterType<MainTabbedPageViewModel>();
         }
 
         public T Resolve<T>()

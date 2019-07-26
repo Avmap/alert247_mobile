@@ -37,7 +37,8 @@ namespace AlertApp.ViewModels
                 var storedProfile = await _userProfileService.StoreProfile(registrationValues, await _localSettingsService.GetAuthToken(), await _localSettingsService.GetPublicKey());
                 if (storedProfile.IsOk)
                 {
-                    await NavigationService.PushAsync(new MainPage(), true);
+                    //await NavigationService.PushAsync(new MainPage(), true);
+                    await NavigationService.PushAsync(new MainTabbedPage(), true);
                 }
                 else if (!storedProfile.IsOnline)
                 {

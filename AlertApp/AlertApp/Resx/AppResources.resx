@@ -126,6 +126,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="CancelSendAlert" xml:space="preserve">
+    <value>Press to cancel</value>
+  </data>
   <data name="Continue" xml:space="preserve">
     <value>Continue</value>
   </data>

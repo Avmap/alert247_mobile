@@ -126,6 +126,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Ακυρο</value>
   </data>
+  <data name="CancelSendAlert" xml:space="preserve">
+    <value>Πατήστε για ακύρωση</value>
+  </data>
   <data name="Continue" xml:space="preserve">
     <value>Συνέχεια</value>
   </data>

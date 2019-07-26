@@ -88,6 +88,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Press to cancel.
+        /// </summary>
+        internal static string CancelSendAlert {
+            get {
+                return ResourceManager.GetString("CancelSendAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue.
         /// </summary>
         internal static string Continue {

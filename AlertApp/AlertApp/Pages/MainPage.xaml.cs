@@ -13,7 +13,7 @@ namespace AlertApp.Pages
     { 
         public MainPage()
         {
-            InitializeComponent();
+            InitializeComponent();            
             NavigationPage.SetHasBackButton(this, false);
             this.BindingContext = ViewModelLocator.Instance.Resolve<MainPageViewModel>();
         }

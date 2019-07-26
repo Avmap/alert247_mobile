@@ -1,11 +1,13 @@
 ﻿using AlertApp.Infrastructure;
 using AlertApp.Pages;
+using AlertApp.Resx;
 using AlertApp.Services.Profile;
 using AlertApp.Services.Settings;
 using Plugin.FirebasePushNotification;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -32,29 +34,74 @@ namespace AlertApp.ViewModels
             }
         }
 
-        private ICommand _OpenContactsScreen;
-        public ICommand OpenContactsScreen
+
+        private ICommand _CancelCommand;
+        public ICommand CancelCommand
         {
             get
             {
-                return _OpenContactsScreen ?? (_OpenContactsScreen = new Command(NavigateToContactScreen, () =>
+                return _CancelCommand ?? (_CancelCommand = new Command(CancelSendAlert, () =>
                 {
                     return !Busy;
                 }));
             }
         }
 
-        private async void NavigateToContactScreen()
+
+        #endregion
+
+        #region Properties
+
+        private string _SosButtonText;
+        public string SosButtonText
         {
-            await NavigationService.PushAsync(new ManageContactsPage(), true);
+            get { return _SosButtonText; }
+            set
+            {
+                _SosButtonText = value;
+                OnPropertyChanged("SosButtonText");
+            }
         }
 
+
+        private string _CancelButtonText;
+        public string CancelButtonText
+        {
+            get { return _CancelButtonText; }
+            set
+            {
+                _CancelButtonText = value;
+                OnPropertyChanged("CancelButtonText");
+            }
+        }
+
+
+        public bool ShowSosButton
+        {
+            get { return !ShowCancelButton; }
+        }
+
+        private bool _ShowCancelButton;
+        public bool ShowCancelButton
+        {
+            get { return _ShowCancelButton; }
+            set
+            {
+                _ShowCancelButton = value;
+                OnPropertyChanged("ShowCancelButton");
+                OnPropertyChanged("ShowSosButton");
+            }
+        }
+
+        volatile bool stop = false;
+        volatile int seconds = 10;
         #endregion
 
         public MainPageViewModel(IUserProfileService userProfileService, ILocalSettingsService localSettingsService)
         {
             _userProfileService = userProfileService;
             _localSettingsService = localSettingsService;
+            SosButtonText = "SOS";
             PingServer();
         }
 
@@ -67,7 +114,41 @@ namespace AlertApp.ViewModels
 
         private async void OpenSendAlertScreen()
         {
-            await NavigationService.PushAsync(new SendingAlertPage(Model.AlertType.UserAlert), true);
+            ShowCancelButton = true;
+            stop = false;
+            StartTimer();
+        }
+        private async void CancelSendAlert()
+        {
+            stop = true;            
+        }
+
+        private async void StartTimer()
+        {
+            for (int i = 0; i < seconds; i++)
+            {
+                if (!stop)
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        CancelButtonText = AppResources.CancelSendAlert + "\n" + (seconds - i);
+                    });
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                }
+                if (stop)
+                {
+                    ShowCancelButton = false;
+                    break;
+                }
+
+            }
+
+            if (!stop)
+            {
+                await NavigationService.PushAsync(new SendingAlertPage(Model.AlertType.UserAlert), true);
+            }
+
+            ShowCancelButton = false;
         }
 
         #region BaseViewModel
@@ -80,3 +161,4 @@ namespace AlertApp.ViewModels
         #endregion        
     }
 }
+
