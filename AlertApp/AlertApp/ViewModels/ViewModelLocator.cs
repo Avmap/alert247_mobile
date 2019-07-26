@@ -62,6 +62,7 @@ namespace AlertApp.ViewModels
             _unityContainer.RegisterType<MyCommunityPageViewModel>();
             _unityContainer.RegisterType<DependandsPageViewModel>();            
             _unityContainer.RegisterType<MainTabbedPageViewModel>();
+            _unityContainer.RegisterType<SettingsPageViewModel>();            
         }
 
         public T Resolve<T>()

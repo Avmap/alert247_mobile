@@ -111,12 +111,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppHashKeyHelper.cs" />
+    <Compile Include="Boot.cs" />
     <Compile Include="CustomRenderers\OtpEntryRenderer.cs" />
     <Compile Include="DependencyService\CryptographyService.cs" />
     <Compile Include="DependencyService\FirebaseAnalyticsService.cs" />
+    <Compile Include="DependencyService\GuardianPlatform.cs" />
     <Compile Include="DependencyService\Localize.cs" />
     <Compile Include="DependencyService\OtpVerification.cs" />
     <Compile Include="AlertFirebaseMessagingService.cs" />
+    <Compile Include="Guardian.cs" />
     <Compile Include="LocationJobService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />

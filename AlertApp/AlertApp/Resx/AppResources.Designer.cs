@@ -61,6 +61,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allways On.
+        /// </summary>
+        internal static string AllwaysOn {
+            get {
+                return ResourceManager.GetString("AllwaysOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application.
+        /// </summary>
+        internal static string Application {
+            get {
+                return ResourceManager.GetString("Application", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alert247.
         /// </summary>
         internal static string AppName {

@@ -11,5 +11,5 @@
 
     <alertapp:MainPage Title="Home" Icon="baseline_home_black_24"/>
     <ContentPage Title="Info" Icon="outline_info_black_24"/>
-    <ContentPage Title="Settings" Icon="outline_settings_black_24"/>
+    <alertapp:SettingsPage Title="Settings" Icon="outline_settings_black_24"/>
 </TabbedPage>
