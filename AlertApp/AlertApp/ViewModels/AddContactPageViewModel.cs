@@ -129,6 +129,7 @@ namespace AlertApp.ViewModels
         #endregion
 
         #region Services
+        readonly IContactProfileImageProvider _contactProfileImageProvider;
         readonly IContactsService _contactsService;
         readonly ILocalSettingsService _localSettingsService;
         #endregion
@@ -137,6 +138,7 @@ namespace AlertApp.ViewModels
         {
             _contactsService = contactsService;
             _localSettingsService = localSettingsService;
+            _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
             GetContacts();
         }
 
@@ -162,7 +164,7 @@ namespace AlertApp.ViewModels
                 Contacts = new ObservableCollection<ImportContact>();
                 foreach (var item in contacts.Where(c => c.Number != null).OrderBy(c => c.Name))
                 {
-                    Contacts.Add(new ImportContact(item));
+                    Contacts.Add(new ImportContact(item,_contactProfileImageProvider));
                 }
                 this.OriginalContacts = new ObservableCollection<ImportContact>(this.Contacts);
             }
