@@ -244,4 +244,25 @@
   <data name="WhoAlertMe" xml:space="preserve">
     <value>Με ειδοποιούν</value>
   </data>
+  <data name="AddContactsPage" xml:space="preserve">
+    <value>Επιλέξτε επαφές</value>
+  </data>
+  <data name="OtherText" xml:space="preserve">
+    <value>Άλλο</value>
+  </data>
+  <data name="ShareVia" xml:space="preserve">
+    <value>Πρόσκληση μέσω</value>
+  </data>
+  <data name="AlertAddContactsMessage" xml:space="preserve">
+    <value>Θέλετε να στείλετε αίτημα στις επιλεγμένες επαφές;</value>
+  </data>
+  <data name="AlertAddContactsTitle" xml:space="preserve">
+    <value>Προσθήκη επαφών</value>
+  </data>
+  <data name="EnterMobileDialogMessage" xml:space="preserve">
+    <value>Παρακαλώ εισάγετε τον αριθμό τηλεφώνου</value>
+  </data>
+  <data name="EnterMobileDialogTitle" xml:space="preserve">
+    <value>Εισάγετε αριθμό </value>
+  </data>
 </root>

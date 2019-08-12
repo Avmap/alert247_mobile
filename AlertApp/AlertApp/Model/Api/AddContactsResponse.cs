@@ -9,6 +9,6 @@ namespace AlertApp.Model.Api
     public class AddContactsResponse
     {
         [DataMember(Name = "contacts")]
-        public Dictionary<string,string> Contacts { get; set; }
+        Dictionary<string, string> Contacts { get; set; }        
     }
 }

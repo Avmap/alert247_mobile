@@ -1,10 +1,13 @@
 ﻿using AlertApp.Infrastructure;
 using AlertApp.Model.Api;
+using AlertApp.Pages;
 using AlertApp.Services.Community;
 using AlertApp.Services.Settings;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace AlertApp.ViewModels
 {
@@ -29,6 +32,21 @@ namespace AlertApp.ViewModels
 
         #endregion
 
+        #region Commands
+        private ICommand _OpenContactsScreenCommand;
+        public ICommand OpenContactsScreenCommand
+        {
+            get
+            {
+                return _OpenContactsScreenCommand ?? (_OpenContactsScreenCommand = new Command(OpenAddContactsPage, () =>
+                {
+                    return !Busy;
+                }));
+            }
+        }
+
+
+        #endregion
         public MyCommunityPageViewModel(ICommunityService communityService, ILocalSettingsService localSettingsService)
         {
             _communityService = communityService;
@@ -45,6 +63,10 @@ namespace AlertApp.ViewModels
                 Community = result.Result.MyCommunity;
             }
             SetBusy(false);
+        }
+        private async void OpenAddContactsPage()
+        {
+            await NavigationService.PushAsync(new AddContactPage(), true);
         }
 
         #region BaseViewModel

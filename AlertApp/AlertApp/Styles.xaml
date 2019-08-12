@@ -66,20 +66,20 @@
 
     <Style x:Key="CircleButton" TargetType="Button">
         <Setter Property="FontSize" Value="Medium" />
-        <Setter Property="WidthRequest" Value="80" />
-        <Setter Property="HeightRequest" Value="80" />
-        <Setter Property="CornerRadius" Value="40" />
+        <Setter Property="WidthRequest" Value="56" />
+        <Setter Property="HeightRequest" Value="56" />
+        <Setter Property="CornerRadius" Value="28" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Center" />
-        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="BorderWidth" Value="0" />
         <Setter Property="BorderColor" Value="Black" />
     </Style>
 
     <Style x:Key="BigCircleButton" TargetType="Button">
         <Setter Property="FontSize" Value="Medium" />
-        <Setter Property="WidthRequest" Value="90" />
-        <Setter Property="HeightRequest" Value="90" />
-        <Setter Property="CornerRadius" Value="45" />
+        <Setter Property="WidthRequest" Value="76" />
+        <Setter Property="HeightRequest" Value="76" />
+        <Setter Property="CornerRadius" Value="38" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="BorderWidth" Value="1" />

@@ -8,5 +8,6 @@ namespace AlertApp.Infrastructure
     {
         void StartGuardianService();
         void StopGuardianService();
+        void StartDetector();
     }
 }

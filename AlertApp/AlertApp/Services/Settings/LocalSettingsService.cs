@@ -242,6 +242,16 @@ namespace AlertApp.Services.Settings
             }
         }
 
+        public bool GetAlwaysOn()
+        {
+            return Preferences.Get(utils.Settings.AlwaysOn, false);
+        }
+
+        public void SetAlwaysOn(bool value)
+        {
+            Preferences.Set(utils.Settings.AlwaysOn, value);
+        }
+
         public LocalSettingsService()
         {
 

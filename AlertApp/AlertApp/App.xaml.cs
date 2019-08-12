@@ -42,6 +42,7 @@ namespace AlertApp
             }
             else
             {
+              //  MainPage = new NavigationPage(new ManageContactsPage());
                 MainPage = new NavigationPage(new MainTabbedPage());
             }
         }

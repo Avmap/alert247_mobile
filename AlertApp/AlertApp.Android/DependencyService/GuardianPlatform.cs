@@ -18,6 +18,11 @@ namespace AlertApp.Droid.DependencyService
     {
         Context context => Plugin.CurrentActivity.CrossCurrentActivity.Current.AppContext;
 
+        public void StartDetector()
+        {
+            Detector.initiate(context);
+        }
+
         public void StartGuardianService()
         {
             Intent i = new Intent(context, typeof(Guardian));
@@ -26,9 +31,13 @@ namespace AlertApp.Droid.DependencyService
 
         public void StopGuardianService()
         {
-            throw new NotImplementedException();
+            Intent i = new Intent(context, typeof(Guardian));
+            context.StopService(i);
+            //Intent intent = new Intent(Activity.this, MyBackgroundService.class);
+            //stopService(intent);
+            //  Detector.initiate(context);
         }
     }
 
-  
+
 }

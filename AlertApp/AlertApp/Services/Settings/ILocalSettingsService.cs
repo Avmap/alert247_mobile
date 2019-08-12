@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 namespace AlertApp.Services.Settings
 {
     public interface ILocalSettingsService
-    {     
+    {
         void SaveAuthToken(string token);
         void SaveSelectedLanguage(string language);
         void SaveApplicationPin(string pin);
         string GetSelectedLanguage();
-        Task<string> GetAuthToken();     
+        Task<string> GetAuthToken();
         Task<string> GetApplicationPin();
         Task<string> GetPrivateKey();
         Task<string> GetPublicKey();
@@ -26,5 +26,8 @@ namespace AlertApp.Services.Settings
 
         void SaveFirebaseToken(string token);
         Task<string> GetFirebaseToken();
+
+        bool GetAlwaysOn();
+        void SetAlwaysOn(bool value);
     }
 }

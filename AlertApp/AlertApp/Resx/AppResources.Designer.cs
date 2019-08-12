@@ -61,6 +61,33 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Contacts.
+        /// </summary>
+        internal static string AddContactsPage {
+            get {
+                return ResourceManager.GetString("AddContactsPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to send request to selected contacts?.
+        /// </summary>
+        internal static string AlertAddContactsMessage {
+            get {
+                return ResourceManager.GetString("AlertAddContactsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add contacts.
+        /// </summary>
+        internal static string AlertAddContactsTitle {
+            get {
+                return ResourceManager.GetString("AlertAddContactsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allways On.
         /// </summary>
         internal static string AllwaysOn {
@@ -138,6 +165,24 @@ namespace AlertApp.Resx {
         internal static string EnterApplicationPinTitle {
             get {
                 return ResourceManager.GetString("EnterApplicationPinTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter mobile number.
+        /// </summary>
+        internal static string EnterMobileDialogMessage {
+            get {
+                return ResourceManager.GetString("EnterMobileDialogMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter mobile.
+        /// </summary>
+        internal static string EnterMobileDialogTitle {
+            get {
+                return ResourceManager.GetString("EnterMobileDialogTitle", resourceCulture);
             }
         }
         
@@ -259,6 +304,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        internal static string OtherText {
+            get {
+                return ResourceManager.GetString("OtherText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registration.
         /// </summary>
         internal static string Register {
@@ -318,6 +372,15 @@ namespace AlertApp.Resx {
         internal static string SendingAlertIn {
             get {
                 return ResourceManager.GetString("SendingAlertIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share via.
+        /// </summary>
+        internal static string ShareVia {
+            get {
+                return ResourceManager.GetString("ShareVia", resourceCulture);
             }
         }
         

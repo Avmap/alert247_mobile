@@ -48,6 +48,9 @@ namespace AlertApp.Services.Contacts
                 if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                 {
                     //generic error handling here
+                    res.ErrorCode = "Internal server error";
+                    res.Status = "error";                    
+                    return res;
                 }
                 if (response.Content != null)
                 {

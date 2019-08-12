@@ -15,6 +15,7 @@ namespace AlertApp.Infrastructure
     {
         public bool? IsVisible { get; set; }
 
+        public bool NotBusy { get { return !Busy; } }
 
         private INavigation _NavigationService;
         public INavigation NavigationService
@@ -67,6 +68,7 @@ namespace AlertApp.Infrastructure
             set
             {
                 SetProperty(ref _Busy, value, BusyPropertyName);
+              OnPropertyChanged("NotBusy");
             }
         }
 
@@ -189,7 +191,7 @@ namespace AlertApp.Infrastructure
             var selectedlanguage = Preferences.Get(Settings.SelectedLanguage, Language.Codes.English);
 
             var errorDescription = labels[selectedlanguage];
-            
+
 
             return errorDescription;
         }

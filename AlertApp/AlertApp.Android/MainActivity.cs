@@ -15,6 +15,7 @@ using Plugin.FirebasePushNotification;
 using Android.Content;
 using Plugin.CurrentActivity;
 using Firebase.Analytics;
+using Plugin.Permissions;
 
 namespace AlertApp.Droid
 {
@@ -26,7 +27,7 @@ namespace AlertApp.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
-
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
             //If debug you should reset the token each time.
 #if DEBUG
             FirebasePushNotificationManager.Initialize(this, true);
@@ -39,9 +40,6 @@ namespace AlertApp.Droid
             CarouselViewRenderer.Init();
             LoadApplication(new App());
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
-
-
-
         }
         protected override void OnNewIntent(Intent intent)
         {
@@ -49,6 +47,12 @@ namespace AlertApp.Droid
             //hanlde action from notification click.
             var action = intent.Action;            
             FirebasePushNotificationManager.ProcessIntent(this, intent);
-        }             
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] global::Android.Content.PM.Permission[] grantResults)
+        {
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 }

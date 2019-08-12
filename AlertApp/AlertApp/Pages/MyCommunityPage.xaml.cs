@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,7 +13,7 @@ namespace AlertApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MyCommunityPage : ContentPage
-    {
+    {     
         public MyCommunityPage()
         {
             InitializeComponent();
@@ -47,9 +48,7 @@ namespace AlertApp.Pages
         private void ShadowClicked(object sender, EventArgs e)
         {
             ShowBottomSheet();
-        }
-        
-
+        }        
         protected override bool OnBackButtonPressed()
         {
             if (bottomSheet.IsVisible)
@@ -60,5 +59,8 @@ namespace AlertApp.Pages
 
             return base.OnBackButtonPressed();
         }
+
+      
+        
     }
 }

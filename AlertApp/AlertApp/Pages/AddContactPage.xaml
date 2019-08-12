@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"              
+             xmlns:converters="clr-namespace:AlertApp.Converters;assembly=AlertApp"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlertApp.Pages.AddContactPage"
+             Navigation="{Binding NavigationService}" 
+             Title="{infrastructure:Translate AddContactsPage}">
+  
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <infrastructure:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
+            <converters:SelectedListItemColorConverter x:Key="SelectedListItemColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Orientation="Vertical">
+        <SearchBar x:Name="searchh"
+                               Text="{Binding SearchText}"
+                               Placeholder="Search contact" 
+                               SearchCommandParameter="{Binding Text,Mode=TwoWay, Source={x:Reference searchh}}"
+                               SearchCommand="{Binding FilterContactsCommand}">
+        </SearchBar>
+        <AbsoluteLayout BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical" Spacing="20" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <ListView
+                        x:Name="contactList"
+                        Grid.Row="0"
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0,1,1,1"
+                        SeparatorVisibility="None"                    
+                        ItemsSource="{Binding Contacts}"
+                        CachingStrategy="RecycleElement"
+                        RowHeight="-1"                    
+                        HasUnevenRows="True"                        
+                        BackgroundColor="White">
+                    <ListView.Footer>
+                        <StackLayout HeightRequest="76"></StackLayout>
+                    </ListView.Footer>
+                    <ListView.Behaviors>
+                        <infrastructure:EventToCommandBehavior EventName="ItemTapped" Command="{Binding SelectContactCommand}" EventArgsConverter="{StaticResource ItemTappedConverter}" />
+                    </ListView.Behaviors>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Tapped="ViewCell_Tapped">
+                                <Grid BackgroundColor="{Binding Selected,Converter={StaticResource SelectedListItemColorConverter},Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  Width="52"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ContentView Margin="3" WidthRequest="54" Grid.Column="0">
+                                        <Image HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50" HeightRequest="50" Source="account_circle.png"/>
+                                    </ContentView>
+                                    <StackLayout Grid.Column="1" >
+                                        <Label  Text="{Binding Name}" VerticalOptions="CenterAndExpand"  LineBreakMode="WordWrap" FontFamily="{StaticResource Regular}"/>
+                                    </StackLayout>
+                                    <Frame Grid.Column="2" CornerRadius="15" Padding="0" BackgroundColor="AntiqueWhite" Margin="15,10,15,10" HasShadow="False">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.InviteCommand, Source={x:Reference contactList}}" CommandParameter="{Binding .}"  NumberOfTapsRequired="1" />
+                                        </Frame.GestureRecognizers>
+                                        <Label Margin="5" HorizontalOptions="Center" BackgroundColor="Transparent" Text="INVITE" FontFamily="{StaticResource Regular}" />
+                                    </Frame>
+                                </Grid>
+                                <!--<StackLayout BackgroundColor="{Binding Selected,Converter={StaticResource SelectedListItemColorConverter},Mode=TwoWay}" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0">
+                                    <ContentView Margin="3" WidthRequest="54">
+                                        <Image HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50" HeightRequest="50" Source="account_circle.png"/>
+                                    </ContentView>
+                                    <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" FontFamily="{StaticResource Regular}"/>
+                                    <Frame  CornerRadius="15" Padding="0" BackgroundColor="AntiqueWhite" Margin="15,10,15,10" HasShadow="False">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.InviteCommand, Source={x:Reference contactList}}" CommandParameter="{Binding .}"  NumberOfTapsRequired="1" />
+                                        </Frame.GestureRecognizers>
+                                        <Label Margin="5" HorizontalOptions="Center" BackgroundColor="Transparent" Text="Invite" />
+                                    </Frame>
+                                </StackLayout>-->
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <infrastructure:LoadingIndicator x:Name="loadingIndicator" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
+            <StackLayout AbsoluteLayout.LayoutBounds="1, 1" AbsoluteLayout.LayoutFlags="XProportional,YProportional">
+                <Button x:Name="fab" IsVisible="{Binding NotBusy}" Clicked="Fab_Clicked" BackgroundColor="{StaticResource AccentColor}"  Margin="0,0,16,16" Style="{StaticResource CircleButton}" Image="baseline_done_white_24.png" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </StackLayout>
+</ContentPage>

@@ -241,4 +241,25 @@
   <data name="WhoAlertMe" xml:space="preserve">
     <value>Who alerts me</value>
   </data>
+  <data name="AddContactsPage" xml:space="preserve">
+    <value>Select Contacts</value>
+  </data>
+  <data name="AlertAddContactsMessage" xml:space="preserve">
+    <value>Do you want to send request to selected contacts?</value>
+  </data>
+  <data name="AlertAddContactsTitle" xml:space="preserve">
+    <value>Add contacts</value>
+  </data>
+  <data name="OtherText" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="ShareVia" xml:space="preserve">
+    <value>Share via</value>
+  </data>
+  <data name="EnterMobileDialogMessage" xml:space="preserve">
+    <value>Please enter mobile number</value>
+  </data>
+  <data name="EnterMobileDialogTitle" xml:space="preserve">
+    <value>Enter mobile</value>
+  </data>
 </root>

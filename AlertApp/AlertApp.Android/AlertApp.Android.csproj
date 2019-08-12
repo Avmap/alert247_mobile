@@ -65,6 +65,9 @@
     <PackageReference Include="Plugin.FirebasePushNotification">
       <Version>2.3.6</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.Permissions">
+      <Version>3.0.0.12</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design">
       <Version>28.0.0.1</Version>
     </PackageReference>
@@ -93,6 +96,9 @@
     <PackageReference Include="Xamarin.Forms">
       <Version>4.1.0.618606</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Forms.Contacts">
+      <Version>1.0.5</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Auth.Api.Phone">
       <Version>60.1142.1</Version>
     </PackageReference>
@@ -112,6 +118,7 @@
   <ItemGroup>
     <Compile Include="AppHashKeyHelper.cs" />
     <Compile Include="Boot.cs" />
+    <Compile Include="CustomRenderers\Dialog.cs" />
     <Compile Include="CustomRenderers\OtpEntryRenderer.cs" />
     <Compile Include="DependencyService\CryptographyService.cs" />
     <Compile Include="DependencyService\FirebaseAnalyticsService.cs" />
@@ -119,6 +126,7 @@
     <Compile Include="DependencyService\Localize.cs" />
     <Compile Include="DependencyService\OtpVerification.cs" />
     <Compile Include="AlertFirebaseMessagingService.cs" />
+    <Compile Include="Detector.cs" />
     <Compile Include="Guardian.cs" />
     <Compile Include="LocationJobService.cs" />
     <Compile Include="MainActivity.cs" />
@@ -268,6 +276,19 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\extinguisher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="JNI\altermarkive_guardian_Detector.h" />
+    <Content Include="JNI\detector.c" />
+    <Content Include="JNI\detector.h" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\account_circle.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_done_white_24.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\baseline_done_white_24.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\baseline_done_white_24.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_action_name.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_name.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_name.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_name.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

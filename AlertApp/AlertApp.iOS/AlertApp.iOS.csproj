@@ -99,6 +99,7 @@
     <Compile Include="CustomRenderers\OtpEntryRenderer.cs" />
     <Compile Include="DependencyService\FirebaseAnalyticsService.cs" />
     <Compile Include="DependencyService\Localize.cs" />
+    <Compile Include="Dialogs.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -176,6 +177,9 @@
       <Version>60.1142.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.618606" />
+    <PackageReference Include="Xamarin.Forms.Contacts">
+      <Version>1.0.5</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
