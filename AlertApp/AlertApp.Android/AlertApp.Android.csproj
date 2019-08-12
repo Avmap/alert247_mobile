@@ -195,9 +195,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\calendar.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\add_contact.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\hand_help.png" />
   </ItemGroup>
   <ItemGroup>
@@ -290,6 +287,10 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_name.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_name.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_name.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_person_add_white_24.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\baseline_person_add_white_24.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\baseline_person_add_white_24.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\baseline_person_add_white_24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

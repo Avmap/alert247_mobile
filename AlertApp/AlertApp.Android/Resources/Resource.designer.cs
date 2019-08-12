@@ -6766,10 +6766,7 @@ namespace AlertApp.Droid
 			public const int account_circle = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int add_contact = 2130837588;
-			
-			// aapt resource value: 0x7f020055
-			public const int avd_hide_password = 2130837589;
+			public const int avd_hide_password = 2130837588;
 			
 			// aapt resource value: 0x7f020162
 			public const int avd_hide_password_1 = 2130837858;
@@ -6780,8 +6777,8 @@ namespace AlertApp.Droid
 			// aapt resource value: 0x7f020164
 			public const int avd_hide_password_3 = 2130837860;
 			
-			// aapt resource value: 0x7f020056
-			public const int avd_show_password = 2130837590;
+			// aapt resource value: 0x7f020055
+			public const int avd_show_password = 2130837589;
 			
 			// aapt resource value: 0x7f020165
 			public const int avd_show_password_1 = 2130837861;
@@ -6792,11 +6789,14 @@ namespace AlertApp.Droid
 			// aapt resource value: 0x7f020167
 			public const int avd_show_password_3 = 2130837863;
 			
+			// aapt resource value: 0x7f020056
+			public const int baseline_done_white_24 = 2130837590;
+			
 			// aapt resource value: 0x7f020057
-			public const int baseline_done_white_24 = 2130837591;
+			public const int baseline_home_black_24 = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int baseline_home_black_24 = 2130837592;
+			public const int baseline_person_add_white_24 = 2130837592;
 			
 			// aapt resource value: 0x7f020059
 			public const int bg_BG = 2130837593;
