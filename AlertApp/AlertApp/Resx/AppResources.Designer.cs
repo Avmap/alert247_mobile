@@ -349,6 +349,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Safety Radius.
+        /// </summary>
+        internal static string SafetyRadius {
+            get {
+                return ResourceManager.GetString("SafetyRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Language.
         /// </summary>
         internal static string SelectLanguage {

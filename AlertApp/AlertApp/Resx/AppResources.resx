@@ -262,4 +262,7 @@
   <data name="EnterMobileDialogTitle" xml:space="preserve">
     <value>Enter mobile</value>
   </data>
+  <data name="SafetyRadius" xml:space="preserve">
+    <value>Safety Radius</value>
+  </data>
 </root>

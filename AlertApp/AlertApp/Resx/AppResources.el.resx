@@ -265,4 +265,10 @@
   <data name="EnterMobileDialogTitle" xml:space="preserve">
     <value>Εισάγετε αριθμό </value>
   </data>
+  <data name="SafetyRadius" xml:space="preserve">
+    <value>SafetyRadius</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value> </value>
+  </data>
 </root>
