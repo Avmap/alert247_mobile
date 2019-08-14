@@ -271,4 +271,16 @@
   <data name="String1" xml:space="preserve">
     <value> </value>
   </data>
+  <data name="AcceptRequest" xml:space="preserve">
+    <value>Αποδοχή</value>
+  </data>
+  <data name="BlockRequest" xml:space="preserve">
+    <value>Αποκλεισμός</value>
+  </data>
+  <data name="CommunityRequestPage" xml:space="preserve">
+    <value>New Community Request</value>
+  </data>
+  <data name="IgnoreRequest" xml:space="preserve">
+    <value>Παράλειψη</value>
+  </data>
 </root>

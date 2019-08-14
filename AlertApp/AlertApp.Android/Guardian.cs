@@ -48,8 +48,12 @@ namespace AlertApp.Droid
             // The PendingIntent that leads to a call to onStartCommand() in this service.
             var servicePendingIntent = PendingIntent.GetService(this, 0, intent, PendingIntentFlags.UpdateCurrent);
 
+            var mainActivityIntent = new Intent(this, typeof(MainActivity));
+            mainActivityIntent.SetAction("stop.service");
+            mainActivityIntent.PutExtra("test", true);
             // The PendingIntent to launch activity.
-            var activityPendingIntent = PendingIntent.GetActivity(this, 0, new Intent(this, typeof(MainActivity)), 0);
+            var activityPendingIntent = PendingIntent.GetActivity(this, 0, mainActivityIntent, 0);            
+            
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .AddAction(Resource.Mipmap.icon, "Open App",

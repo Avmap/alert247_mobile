@@ -99,6 +99,9 @@
     <PackageReference Include="Xamarin.Forms.Contacts">
       <Version>1.0.5</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Forms.Maps">
+      <Version>4.1.0.618606</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Auth.Api.Phone">
       <Version>60.1142.1</Version>
     </PackageReference>

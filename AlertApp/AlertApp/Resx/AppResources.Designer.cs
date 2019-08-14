@@ -61,6 +61,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accept.
+        /// </summary>
+        internal static string AcceptRequest {
+            get {
+                return ResourceManager.GetString("AcceptRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Contacts.
         /// </summary>
         internal static string AddContactsPage {
@@ -124,6 +133,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Block.
+        /// </summary>
+        internal static string BlockRequest {
+            get {
+                return ResourceManager.GetString("BlockRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string Cancel {
@@ -138,6 +156,15 @@ namespace AlertApp.Resx {
         internal static string CancelSendAlert {
             get {
                 return ResourceManager.GetString("CancelSendAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Community Request.
+        /// </summary>
+        internal static string CommunityRequestPage {
+            get {
+                return ResourceManager.GetString("CommunityRequestPage", resourceCulture);
             }
         }
         
@@ -264,6 +291,15 @@ namespace AlertApp.Resx {
         internal static string GoodEvening {
             get {
                 return ResourceManager.GetString("GoodEvening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore.
+        /// </summary>
+        internal static string IgnoreRequest {
+            get {
+                return ResourceManager.GetString("IgnoreRequest", resourceCulture);
             }
         }
         

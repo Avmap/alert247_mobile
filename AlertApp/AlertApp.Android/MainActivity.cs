@@ -37,9 +37,13 @@ namespace AlertApp.Droid
 
             Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.FormsMaps.Init(this, savedInstanceState);
             CarouselViewRenderer.Init();
             LoadApplication(new App());
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
+            var action = Intent.Action;
+
+
         }
         protected override void OnNewIntent(Intent intent)
         {

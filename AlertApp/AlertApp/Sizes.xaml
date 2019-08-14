@@ -11,8 +11,7 @@
     <Thickness x:Key="LoginControlsMargin" Bottom="0" Left="32" Right="32" Top="0" />
 
     <Thickness x:Key="ButtonMargin" Bottom="16" Left="16" Right="16" Top="16" />
-    <Thickness x:Key="MarginPage" Bottom="10" Left="7" Right="7" Top="7" />
-
+    
     <Thickness x:Key="ButtonsScreenScanPadding" Bottom="10" Left="0" Right="0" Top="10" />
 
     <x:Double x:Key="DefaultMargin">16</x:Double>

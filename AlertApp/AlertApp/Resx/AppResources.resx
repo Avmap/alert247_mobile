@@ -265,4 +265,16 @@
   <data name="SafetyRadius" xml:space="preserve">
     <value>Safety Radius</value>
   </data>
+  <data name="AcceptRequest" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="BlockRequest" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="CommunityRequestPage" xml:space="preserve">
+    <value>New Community Request</value>
+  </data>
+  <data name="IgnoreRequest" xml:space="preserve">
+    <value>Ignore</value>
+  </data>
 </root>
