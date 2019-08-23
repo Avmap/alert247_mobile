@@ -13,7 +13,7 @@
             <TableView Grid.Row="0" Intent="Settings">
                 <TableRoot>
                     <TableSection Title="{infrastructure:Translate Application}">
-                        <SwitchCell  Text="{infrastructure:Translate AllwaysOn}" On="{Binding AllwaysOn,Mode=TwoWay}"/>
+                        <SwitchCell x:Name="guardianSwitch" OnChanged="SwitchCell_OnChanged" Text="{infrastructure:Translate AllwaysOn}" />
                     </TableSection>
                 </TableRoot>
             </TableView>

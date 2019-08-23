@@ -128,17 +128,18 @@
     <Compile Include="DependencyService\FirebaseAnalyticsService.cs" />
     <Compile Include="DependencyService\GuardianPlatform.cs" />
     <Compile Include="DependencyService\Localize.cs" />
+    <Compile Include="DependencyService\Location.cs" />
     <Compile Include="DependencyService\OtpVerification.cs" />
     <Compile Include="AlertFirebaseMessagingService.cs" />
     <Compile Include="Detector.cs" />
     <Compile Include="Guardian.cs" />
-    <Compile Include="LocationJobService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="OtpVerificationBroadcastReceiver.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashActivity.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\OpenSans-Bold.ttf" />

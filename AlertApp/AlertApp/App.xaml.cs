@@ -44,7 +44,7 @@ namespace AlertApp
             {
               // MainPage = new NavigationPage(new ManageContactsPage());
                 MainPage = new NavigationPage(new MainTabbedPage());
-                MainPage = new NavigationPage(new CommunityRequestPage());
+              ///  MainPage = new NavigationPage(new SelectPositionFromMapPage());
             }
         }
 

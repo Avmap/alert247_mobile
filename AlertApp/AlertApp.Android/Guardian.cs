@@ -5,9 +5,12 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Gms.Location;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Support.V4.App;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Java.Lang;
@@ -18,10 +21,17 @@ namespace AlertApp.Droid
     [Service(Label = "GuardianService", Enabled = true, Exported = true)]
     public class Guardian : Service
     {
-        string ChannelId = "Guardian_Channel";        
+        private FusedLocationProviderClient fusedLocationProviderClient;
+        private LocationRequest locationRequest;
+        private FusedLocationProviderCallback locationCallback;
+        NotificationCompat.Builder builder;
+        string ChannelId = "alert_247_channel";
+        Thread t;
         public override void OnCreate()
         {
             base.OnCreate();
+            builder = new NotificationCompat.Builder(this);
+            ConfigLocationUpdates();
         }
         public override IBinder OnBind(Intent intent)
         {
@@ -30,10 +40,29 @@ namespace AlertApp.Droid
 
         [return: GeneratedEnum]
         public override StartCommandResult OnStartCommand(Intent intent, [GeneratedEnum] StartCommandFlags flags, int startId)
-        {            
+        {
+
             this.StartForeground(67236723, GetNotification());
             new AccelerometerTest().ToggleAccelerometer();
+            StartLocationUpdates();
+            //t = new Thread(() =>
+            //{
+            //    while (true)
+            //    {
+            //        bool isLocationEnabled = Utils.isLocationEnabled(this);
+            //        Thread.Sleep(1000);
+            //    }
+            //});
+            //t.Start();
+
             return StartCommandResult.Sticky;
+        }
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+            StopLocationUpdates();
+            //t.Stop();
         }
 
         Notification GetNotification()
@@ -52,10 +81,10 @@ namespace AlertApp.Droid
             mainActivityIntent.SetAction("stop.service");
             mainActivityIntent.PutExtra("test", true);
             // The PendingIntent to launch activity.
-            var activityPendingIntent = PendingIntent.GetActivity(this, 0, mainActivityIntent, 0);            
-            
+            var activityPendingIntent = PendingIntent.GetActivity(this, 0, mainActivityIntent, PendingIntentFlags.UpdateCurrent);
 
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+
+            builder
                 .AddAction(Resource.Mipmap.icon, "Open App",
                     activityPendingIntent)
                 //.AddAction(Resource.Mipmap.icon, "stop updates",
@@ -71,47 +100,105 @@ namespace AlertApp.Droid
             if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
             {
                 builder.SetChannelId(ChannelId);
+                NotificationManager notificationManager = (NotificationManager)GetSystemService(Context.NotificationService);
+                NotificationChannel mChannel = new NotificationChannel(ChannelId, "AlertGuardian", NotificationImportance.High);
+                notificationManager.CreateNotificationChannel(mChannel);
             }
 
             return builder.Build();
         }
-        public class AccelerometerTest
+
+        private void ConfigLocationUpdates()
         {
-            // Set speed delay for monitoring changes.
-            SensorSpeed speed = SensorSpeed.UI;
+            locationRequest = new LocationRequest();
+            locationRequest.SetInterval(5000);
+            locationRequest.SetFastestInterval(500);
+            locationRequest.SetPriority(LocationRequest.PriorityHighAccuracy);
+            locationRequest.SetSmallestDisplacement(5);
+            fusedLocationProviderClient = LocationServices.GetFusedLocationProviderClient(this);
+            locationCallback = new FusedLocationProviderCallback(this);
+        }
 
-            public AccelerometerTest()
+        private void StartLocationUpdates()
+        {
+            fusedLocationProviderClient.RequestLocationUpdates(locationRequest, locationCallback, null /* Looper */);
+        }
+
+        public void StopLocationUpdates()
+        {
+            if (fusedLocationProviderClient != null && locationCallback != null)
+                fusedLocationProviderClient.RemoveLocationUpdates(locationCallback);
+        }
+
+    }
+
+
+    public class AccelerometerTest
+    {
+        // Set speed delay for monitoring changes.
+        SensorSpeed speed = SensorSpeed.UI;
+
+        public AccelerometerTest()
+        {
+            // Register for reading changes, be sure to unsubscribe when finished
+            Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
+        }
+
+        void Accelerometer_ReadingChanged(object sender, AccelerometerChangedEventArgs e)
+        {
+            var data = e.Reading;
+            Console.WriteLine($"Reading: X: {data.Acceleration.X}, Y: {data.Acceleration.Y}, Z: {data.Acceleration.Z}");
+            // Process Acceleration X, Y, and Z
+        }
+
+        public void ToggleAccelerometer()
+        {
+            try
             {
-                // Register for reading changes, be sure to unsubscribe when finished
-                Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
+                if (Accelerometer.IsMonitoring)
+                    Accelerometer.Stop();
+                else
+                    Accelerometer.Start(speed);
             }
-
-            void Accelerometer_ReadingChanged(object sender, AccelerometerChangedEventArgs e)
+            catch (FeatureNotSupportedException fnsEx)
             {
-                var data = e.Reading;
-                Console.WriteLine($"Reading: X: {data.Acceleration.X}, Y: {data.Acceleration.Y}, Z: {data.Acceleration.Z}");
-                // Process Acceleration X, Y, and Z
+                // Feature not supported on device
             }
-
-            public void ToggleAccelerometer()
+            catch (System.Exception ex)
             {
-                try
-                {
-                    if (Accelerometer.IsMonitoring)
-                        Accelerometer.Stop();
-                    else
-                        Accelerometer.Start(speed);
-                }
-                catch (FeatureNotSupportedException fnsEx)
-                {
-                    // Feature not supported on device
-                }
-                catch (System.Exception ex)
-                {
-                    // Other error has occurred.
-                }
+                // Other error has occurred.
             }
         }
-     
     }
+
+    public class FusedLocationProviderCallback : LocationCallback
+    {
+        readonly Context context;
+
+        public FusedLocationProviderCallback(Context context)
+        {
+            this.context = context;
+        }
+
+        public override void OnLocationAvailability(LocationAvailability locationAvailability)
+        {
+            Log.Debug("FusedLocationProviderSample", "IsLocationAvailable: {0}", locationAvailability.IsLocationAvailable);
+        }
+
+
+        public override void OnLocationResult(LocationResult result)
+        {
+            if (result.Locations.Any())
+            {
+                var location = result.LastLocation;
+                Toast.MakeText(context, "New location", ToastLength.Short).Show();
+
+            }
+            else
+            {
+
+            }
+        }
+    }
+
 }

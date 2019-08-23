@@ -29,7 +29,7 @@ namespace AlertApp.Droid.CustomRenderers
         {
             EditText et = new EditText(activity);
             TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
-            var builder = new AlertDialog.Builder(activity);
+            var builder = new AppCompatAlertDialog.Builder(activity);
             builder.SetTitle(title);
             builder.SetMessage(message);
             builder.SetCancelable(false);

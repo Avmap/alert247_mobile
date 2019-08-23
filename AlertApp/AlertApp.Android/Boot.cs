@@ -6,6 +6,7 @@ using System.Text;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
@@ -20,8 +21,22 @@ namespace AlertApp.Droid
         {
             if (intent.Action != null && intent.Action == Intent.ActionBootCompleted)
             {
-                Intent i = new Intent(context, typeof(Guardian));
-                context.StartService(i);
+                try
+                {
+                    Intent i = new Intent(context, typeof(Guardian));
+                    if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
+                    {
+                        context.StartForegroundService(i);                      
+                    }
+                    else
+                    {
+                        context.StartService(i);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
         }
     }

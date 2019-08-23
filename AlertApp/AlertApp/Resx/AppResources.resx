@@ -277,4 +277,7 @@
   <data name="IgnoreRequest" xml:space="preserve">
     <value>Ignore</value>
   </data>
+  <data name="SelectPositionFromMapPage" xml:space="preserve">
+    <value>Select position</value>
+  </data>
 </root>

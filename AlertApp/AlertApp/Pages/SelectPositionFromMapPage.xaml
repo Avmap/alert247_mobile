@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"    
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="AlertApp.Pages.SelectPositionFromMapPage"    
+             Navigation="{Binding NavigationService}" 
+             Title="{infrastructure:Translate SelectPositionFromMapPage}">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <maps:Map x:Name="map"                                              
+                  IsShowingUser="true"
+                  HasZoomEnabled="True"                  
+                  MapClicked="Map_MapClicked"
+                  MapType="Street" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

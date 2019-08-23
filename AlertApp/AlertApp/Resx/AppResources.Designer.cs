@@ -412,6 +412,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select position.
+        /// </summary>
+        internal static string SelectPositionFromMapPage {
+            get {
+                return ResourceManager.GetString("SelectPositionFromMapPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sending alert in.
         /// </summary>
         internal static string SendingAlertIn {

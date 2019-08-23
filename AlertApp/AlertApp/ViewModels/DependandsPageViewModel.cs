@@ -140,14 +140,7 @@ namespace AlertApp.ViewModels
             SetBusy(false);
             return new LocationResult { Ok = false};
         }
-
-        private class LocationResult
-        {
-            public bool Ok { get; set; }
-            public string ErroMessage { get; set; }
-            public Location Location { get; set; }
-        }
-
+       
         #region BaseViewModel
         public override void SetBusy(bool isBusy)
         {

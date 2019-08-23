@@ -246,7 +246,7 @@ namespace AlertApp.ViewModels
         {
             var dialogs = DependencyService.Get<IDialog>();
             var mobileNumber = await dialogs.showInputDialog(AppResources.EnterMobileDialogTitle, AppResources.EnterMobileDialogMessage, DialogType.Phone);
-            if (mobileNumber != null)
+            if (!string.IsNullOrWhiteSpace(mobileNumber as string))
             {
                 SetBusy(true);
                 var userToken = await _localSettingsService.GetAuthToken();

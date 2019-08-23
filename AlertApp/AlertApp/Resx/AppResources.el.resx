@@ -283,4 +283,7 @@
   <data name="IgnoreRequest" xml:space="preserve">
     <value>Παράλειψη</value>
   </data>
+  <data name="SelectPositionFromMapPage" xml:space="preserve">
+    <value>Επιλέξτε σημείο</value>
+  </data>
 </root>
