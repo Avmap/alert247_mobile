@@ -33,7 +33,7 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,6 +47,10 @@
     <AndroidSupportedAbis>armeabi-v7a;arm64-v8a</AndroidSupportedAbis>
     <MandroidI18n>
     </MandroidI18n>
+    <AndroidLinkSkip>
+    </AndroidLinkSkip>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -63,7 +67,7 @@
       <Version>2.1.0.4</Version>
     </PackageReference>
     <PackageReference Include="Plugin.FirebasePushNotification">
-      <Version>2.3.6</Version>
+      <Version>2.3.5</Version>
     </PackageReference>
     <PackageReference Include="Plugin.Permissions">
       <Version>3.0.0.12</Version>
@@ -274,12 +278,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\manage_contact_primary.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\car_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\extinguisher.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="JNI\altermarkive_guardian_Detector.h" />
     <Content Include="JNI\detector.c" />
     <Content Include="JNI\detector.h" />
@@ -304,6 +302,9 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_radio_unchecked.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_radio_checked.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_more_menu.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\alert_ambulande.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\alert_police.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\alert_fire.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

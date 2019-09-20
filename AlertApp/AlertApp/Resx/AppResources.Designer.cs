@@ -61,6 +61,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accepted.
+        /// </summary>
+        internal static string Accepted {
+            get {
+                return ResourceManager.GetString("Accepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accept.
         /// </summary>
         internal static string AcceptRequest {
@@ -295,6 +304,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ignored.
+        /// </summary>
+        internal static string Ignored {
+            get {
+                return ResourceManager.GetString("Ignored", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ignore.
         /// </summary>
         internal static string IgnoreRequest {
@@ -345,6 +363,15 @@ namespace AlertApp.Resx {
         internal static string OtherText {
             get {
                 return ResourceManager.GetString("OtherText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pending.
+        /// </summary>
+        internal static string Pending {
+            get {
+                return ResourceManager.GetString("Pending", resourceCulture);
             }
         }
         
@@ -471,6 +498,15 @@ namespace AlertApp.Resx {
         internal static string TabSuggestions {
             get {
                 return ResourceManager.GetString("TabSuggestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to get location permission.
+        /// </summary>
+        internal static string UnableToGetLocationPermission {
+            get {
+                return ResourceManager.GetString("UnableToGetLocationPermission", resourceCulture);
             }
         }
         

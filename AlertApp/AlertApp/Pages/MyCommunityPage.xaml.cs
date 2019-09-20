@@ -17,6 +17,7 @@ namespace AlertApp.Pages
         public MyCommunityPage()
         {
             InitializeComponent();
+            bottomSheet.IsVisible = false;
             bottomSheet.TranslationY = DeviceDisplay.MainDisplayInfo.Height;
             this.BindingContext = ViewModelLocator.Instance.Resolve<MyCommunityPageViewModel>();
         }

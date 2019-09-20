@@ -1,4 +1,5 @@
-﻿
+﻿using static PCLCrypto.WinRTCrypto;
+using ICryptoTransform = System.Security.Cryptography.ICryptoTransform;
 using AlertApp.Infrastructure;
 using AlertApp.Model.Api;
 using AlertApp.Pages;
@@ -9,13 +10,20 @@ using AlertApp.Services.Settings;
 using AlertApp.Utils;
 using AlertApp.ViewModels;
 using CommonServiceLocator;
+using PCLCrypto;
 using Plugin.FirebasePushNotification;
 using System;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Unity;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Diagnostics;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace AlertApp
@@ -42,10 +50,12 @@ namespace AlertApp
             }
             else
             {
-              // MainPage = new NavigationPage(new ManageContactsPage());
                 MainPage = new NavigationPage(new MainTabbedPage());
-              ///  MainPage = new NavigationPage(new SelectPositionFromMapPage());
             }
+
+#if DEBUG            
+            //generatePclCryptoKeys();
+#endif
         }
 
         private async Task<bool> IsRegister()
@@ -79,26 +89,42 @@ namespace AlertApp
                 {
                     if (!string.IsNullOrWhiteSpace(p.Token))
                     {
-                        localSettings.SaveFirebaseToken(p.Token);
                         //here send registrationid to server
                         var userProfileService = ViewModelLocator.Instance.Resolve<IUserProfileService>();
                         if (userProfileService != null)
                         {
-
                             Task.Run(async () =>
                             {
-                                var userToken = await localSettings.GetAuthToken();
-                                await userProfileService.Ping(userToken, 22.1, 22.2, p.Token);
+                                Debug.WriteLine("Firebase", "New Token: " + p.Token);                                
+                                localSettings.SaveFirebaseToken(p.Token);
+                                Location location = null;
+                                try
+                                {
+                                    var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                                    if (locationPermissionStatus == PermissionStatus.Granted)
+                                    {
+                                        location = await Geolocation.GetLastKnownLocationAsync();
+                                    }
+                                  
+                                }
+                                catch (Exception ex)
+                                {
+
+                                }
+                           
+                              var authToken = await localSettings.GetAuthToken();
+                                if (!string.IsNullOrWhiteSpace(authToken))
+                                {
+                                    await userProfileService.Ping(authToken, location != null ? location.Latitude : (double?)null, location != null ? location.Longitude : (double?)null, p.Token);
+                                }
                             });
 
                         }
                     }
 
                 };
-                MessagingCenter.Subscribe<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString(), (sender, data) =>
-                {
-                    //here handle messages from firebase on each platform
-                });
+                //   Subscribe();
+
             }
 
             var analyticsService = DependencyService.Get<IFirebaseAnalyticsService>();
@@ -113,13 +139,31 @@ namespace AlertApp
             var analyticsService = DependencyService.Get<IFirebaseAnalyticsService>();
             if (analyticsService != null)
             {
-                analyticsService.LogOpenAppEvent();
+                analyticsService.LogOpenSleepEvent();
             }
+            MessagingCenter.Unsubscribe<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString());
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
+            // Subscribe();
         }
+
+
+        private void Subscribe()
+        {
+            MessagingCenter.Subscribe<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString(), (sender, data) =>
+            {
+                //here handle messages from firebase on each platform
+                if (data is NotificationAction)
+                {
+                    Debug.WriteLine("Hanlde once", "New asdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:");
+                    //Current.MainPage.Navigation.PushAsync(new AlertRespondPage(data as NotificationAction), true);
+                }
+            });
+
+        }
+
     }
 }

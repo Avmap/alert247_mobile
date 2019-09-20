@@ -33,7 +33,7 @@ namespace AlertApp.Pages
             this.BindingContext = ViewModelLocator.Instance.Resolve<SendingAlertPageViewModel>(parameters);
             sendingAlert = AppResources.SendingAlertIn + " ";           
             StartTimer();
-            SetApplicationPin();
+            SetApplicationPin();            
         }
 
         protected override bool OnBackButtonPressed()

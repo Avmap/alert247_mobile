@@ -14,9 +14,9 @@
             <Button Grid.Row="0" BackgroundColor="{StaticResource AlertButtonColor}" IsVisible="{Binding ShowSosButton,Mode=TwoWay}" BorderColor="#000000" BorderWidth="1" Text="{Binding SosButtonText,Mode=TwoWay}" Style="{StaticResource SosButton}" Command="{Binding SosCommand}"></Button>
             <Button Grid.Row="0" BackgroundColor="{StaticResource AlertButtonColor}" IsVisible="{Binding ShowCancelButton,Mode=TwoWay}" BorderColor="#000000" BorderWidth="1" Text="{Binding CancelButtonText,Mode=TwoWay}" Style="{StaticResource SosButton}" Command="{Binding CancelCommand}"></Button>
             <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8"  HeightRequest="110" VerticalOptions="Center">
-                <Image Source="car_icon.png" HeightRequest="80" WidthRequest="80"></Image>
-                <Image Source="extinguisher.png" HeightRequest="80" WidthRequest="80"></Image>
-                <Image Source="extinguisher.png" HeightRequest="80" WidthRequest="80" ></Image>
+                <Image Source="alert_police.png" HeightRequest="80" WidthRequest="80"></Image>
+                <Image Source="alert_fire.png" HeightRequest="80" WidthRequest="80"></Image>
+                <Image Source="alert_ambulande.png" HeightRequest="80" WidthRequest="80" ></Image>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

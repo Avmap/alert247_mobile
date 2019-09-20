@@ -1,4 +1,5 @@
-﻿using AlertApp.ViewModels;
+﻿using AlertApp.Infrastructure;
+using AlertApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,12 @@ namespace AlertApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainTabbedPage : TabbedPage
     {
+        public MainTabbedPage() : this(null)
+        {
 
-        public MainTabbedPage()
+        }
+
+        public MainTabbedPage(NotificationAction notificationAction)
         {
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
@@ -24,10 +29,20 @@ namespace AlertApp.Pages
                 Icon = "manage_contact_primary.png",
                 Command = ((MainTabbedPageViewModel)this.BindingContext).OpenContactsScreen,
             });
-        }
-        protected override bool OnBackButtonPressed()
-        {
-            return true;
-        }
+
+            if (notificationAction != null)
+            {
+                switch (notificationAction.Type)
+                {
+                    case (int)NotificationAction.ActionType.Sos:
+                    //    navigate(notificationAction);
+                        break;
+                }
+            }
+        } 
+        //protected override bool OnBackButtonPressed()
+        //{
+        //    return true;
+        //}
     }
 }

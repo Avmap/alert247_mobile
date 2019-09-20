@@ -10,5 +10,6 @@ namespace AlertApp.Services.Contacts
     {
         Task<Response<GetContactsResponse>> GetContacts(string token);
         Task<Response<AddContactsResponse>> AddContacts(string token,string [] mobilephones);
+        Task<Response<CheckContactsResponse>> CheckContacts(string token,string [] mobilephones);
     }
 }

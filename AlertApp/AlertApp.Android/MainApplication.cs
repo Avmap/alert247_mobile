@@ -32,7 +32,7 @@ namespace AlertApp.Droid
                 FirebasePushNotificationManager.DefaultNotificationChannelId = "Alert247";
 
                 //Change for your default notification channel name here
-                FirebasePushNotificationManager.DefaultNotificationChannelName = "General";
+                FirebasePushNotificationManager.DefaultNotificationChannelName = "General";                
             }
 
 

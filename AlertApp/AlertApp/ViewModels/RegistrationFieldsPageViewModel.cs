@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace AlertApp.ViewModels
 {
@@ -37,8 +38,9 @@ namespace AlertApp.ViewModels
                 var storedProfile = await _userProfileService.StoreProfile(registrationValues, await _localSettingsService.GetAuthToken(), await _localSettingsService.GetPublicKey());
                 if (storedProfile.IsOk)
                 {
-                    //await NavigationService.PushAsync(new MainPage(), true);
-                    await NavigationService.PushAsync(new MainTabbedPage(), true);
+                    //await NavigationService.PushAsync(new MainPage(), true);                    
+                    App.Current.MainPage = new NavigationPage(new MainTabbedPage());
+
                 }
                 else if (!storedProfile.IsOnline)
                 {

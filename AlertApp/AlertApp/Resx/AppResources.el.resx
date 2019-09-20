@@ -286,4 +286,16 @@
   <data name="SelectPositionFromMapPage" xml:space="preserve">
     <value>Επιλέξτε σημείο</value>
   </data>
+  <data name="Accepted" xml:space="preserve">
+    <value>Εχει Αποδεχτεί</value>
+  </data>
+  <data name="Ignored" xml:space="preserve">
+    <value>Ignored</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Εκρεμμής</value>
+  </data>
+  <data name="UnableToGetLocationPermission" xml:space="preserve">
+    <value>Unable to get location permission</value>
+  </data>
 </root>

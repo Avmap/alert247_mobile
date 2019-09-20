@@ -36,6 +36,40 @@ namespace AlertApp.Services.Contacts
             return res;
         }
 
+        public async Task<Response<CheckContactsResponse>> CheckContacts(string token, string[] mobilephones)
+        {
+            var res = new Response<CheckContactsResponse>();
+            try
+            {
+                var json = JsonConvert.SerializeObject(new CheckContactsPostBody { Token = token ,Contacts = mobilephones});
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("post/alert/checkContacts", content);
+
+                if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+                {
+                    //generic error handling here
+                    res.ErrorCode = "Internal server error";
+                    res.Status = "error";
+                    return res;
+                }
+                if (response.Content != null)
+                {
+                    var apiResponse = await response.Content.ReadAsStringAsync();
+                    if (apiResponse != null)
+                    {
+                        return JsonConvert.DeserializeObject<Response<CheckContactsResponse>>(apiResponse);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                res.ErrorCode = ex.Message;
+                res.Status = "error";
+                res.IsOnline = false;
+            }
+            return res;
+        }
+
         public async Task<Response<GetContactsResponse>> GetContacts(string token)
         {
             var res = new Response<GetContactsResponse>();

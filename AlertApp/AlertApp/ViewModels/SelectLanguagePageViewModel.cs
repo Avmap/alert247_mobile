@@ -4,6 +4,7 @@ using AlertApp.Model;
 using AlertApp.Pages;
 using AlertApp.Services.Settings;
 using AlertApp.Utils;
+using Plugin.FirebasePushNotification;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -111,7 +112,7 @@ namespace AlertApp.ViewModels
         }
 
         public async void Continue()
-        {
+        {          
             _localSettingsService.SaveSelectedLanguage(Language.SupportedLanguages[LanguageSelectedIndex].NetLanguageName);            
             CultureInfo ci = new CultureInfo(Language.SupportedLanguages[LanguageSelectedIndex].NetLanguageName);
             Thread.CurrentThread.CurrentCulture = ci;

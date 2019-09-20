@@ -29,5 +29,8 @@ namespace AlertApp.Services.Settings
 
         bool GetAlwaysOn();
         void SetAlwaysOn(bool value);
+
+        void SaveSendLocationSetting(bool sendLocation);
+        bool GetSendLocationSetting();
     }
 }

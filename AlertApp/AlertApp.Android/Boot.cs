@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using AlertApp.Utils;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -23,14 +23,19 @@ namespace AlertApp.Droid
             {
                 try
                 {
-                    Intent i = new Intent(context, typeof(Guardian));
-                    if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
+                    //Settings.AlwaysOn
+                    ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(context);                
+                    if (prefs.GetBoolean(Settings.AlwaysOn, false))
                     {
-                        context.StartForegroundService(i);                      
-                    }
-                    else
-                    {
-                        context.StartService(i);
+                        Intent i = new Intent(context, typeof(Guardian));
+                        if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
+                        {
+                            context.StartForegroundService(i);
+                        }
+                        else
+                        {
+                            context.StartService(i);
+                        }
                     }
                 }
                 catch (Exception ex)

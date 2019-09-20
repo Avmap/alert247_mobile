@@ -12,7 +12,7 @@
             </Grid.RowDefinitions>
             <TableView Grid.Row="0" Intent="Settings">
                 <TableRoot>
-                    <TableSection Title="{infrastructure:Translate Application}">
+                    <TableSection x:Name="table" Title="{infrastructure:Translate Application}">
                         <SwitchCell x:Name="guardianSwitch" OnChanged="SwitchCell_OnChanged" Text="{infrastructure:Translate AllwaysOn}" />
                     </TableSection>
                 </TableRoot>

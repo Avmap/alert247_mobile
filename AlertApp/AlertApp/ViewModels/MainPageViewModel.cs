@@ -101,17 +101,9 @@ namespace AlertApp.ViewModels
         {
             _userProfileService = userProfileService;
             _localSettingsService = localSettingsService;
-            SosButtonText = "SOS";
-            PingServer();
+            SosButtonText = "SOS";            
         }
-
-        private async void PingServer()
-        {
-            var userToken = await _localSettingsService.GetAuthToken();
-            var firebaseToken = await _localSettingsService.GetFirebaseToken();
-            await _userProfileService.Ping(userToken, 22.3121, 22.3122, firebaseToken);
-        }
-
+    
         private async void OpenSendAlertScreen()
         {
             ShowCancelButton = true;

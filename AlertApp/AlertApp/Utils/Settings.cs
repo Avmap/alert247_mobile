@@ -17,6 +17,7 @@ namespace AlertApp.Utils
         public static string ProfileData = "ProfileData";
         public static string FirebaseToken = "FirebaseToken";
         public static string AlwaysOn = "PreferenceAlwaysOn";
+        public static string SendLocation = "SendLocation";
 
     }
 }

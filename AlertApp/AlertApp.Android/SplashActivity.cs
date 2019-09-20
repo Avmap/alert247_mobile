@@ -21,6 +21,10 @@ namespace AlertApp.Droid
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.splash_screen);
+            TextView version  = FindViewById<TextView>(Resource.Id.appversion);
+            var appVersion = Application.Context.ApplicationContext.PackageManager.GetPackageInfo(Application.Context.ApplicationContext.PackageName, 0).VersionName;
+            version.Text = "Version " + appVersion;
+
         }
 
         // Launches the startup task

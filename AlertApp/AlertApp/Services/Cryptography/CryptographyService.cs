@@ -11,6 +11,7 @@ using PCLCrypto;
 using System.Diagnostics;
 using static PCLCrypto.WinRTCrypto;
 using ICryptoTransform = System.Security.Cryptography.ICryptoTransform;
+using AlertApp.Model.Api;
 
 namespace AlertApp.Services.Cryptography
 {
@@ -27,37 +28,92 @@ namespace AlertApp.Services.Cryptography
 
         public void GenerateKeys(string userPin)
         {
-            var asym = AsymmetricKeyAlgorithmProvider.OpenAlgorithm(PCLCrypto.AsymmetricAlgorithm.RsaPkcs1);
             _localSettingsService.SaveApplicationPin(userPin);
-            ICryptographicKey key = asym.CreateKeyPair(4096);
+            var asymmAlgorithm = AsymmetricKeyAlgorithmProvider.OpenAlgorithm(PCLCrypto.AsymmetricAlgorithm.RsaPkcs1);
 
-            var publicKey = key.ExportPublicKey();
-            var privateKey = key.Export();
+            ICryptographicKey key = asymmAlgorithm.CreateKeyPair(4096);
 
-            var publicKeyString = Convert.ToBase64String(publicKey);
-            var privateKeyString = Convert.ToBase64String(privateKey);
+            var privateKeyBytes = key.Export(CryptographicPrivateKeyBlobType.Pkcs1RsaPrivateKey);
+            var publicKeyBytes = key.ExportPublicKey(CryptographicPublicKeyBlobType.Pkcs1RsaPublicKey);
 
-            _localSettingsService.SavePublicKey(publicKeyString);
+            var privateKeyBase64 = Convert.ToBase64String(privateKeyBytes);
+            var publicKeyBase64 = Convert.ToBase64String(publicKeyBytes);
 
-            var encryptedPrivateKey = Encrypt(privateKeyString, userPin);
+            //save public key
+            _localSettingsService.SavePublicKey(publicKeyBase64);
 
+            var encryptedPrivateKey = AesEncrypt(privateKeyBase64, userPin);
+
+            //save private key
             _localSettingsService.SavePrivateKey(encryptedPrivateKey);
+
+            //too slow method with RSACryptoServiceProvider
+            //using (var rsa = new RSACryptoServiceProvider(4096))
+            //{
+            //    _localSettingsService.SaveApplicationPin(userPin);
+
+            //    rsa.PersistKeyInCsp = false;
+
+            //    var publicKey = rsa.ToXmlString(false);
+            //    var privateKey = rsa.ToXmlString(true);
+
+            //    _localSettingsService.SavePublicKey(publicKey);
+            //    var encryptedPrivateKey = AesEncrypt(privateKey, userPin);
+
+            //    _localSettingsService.SavePrivateKey(encryptedPrivateKey);
+            //}
         }
-        public async Task<string> EncryptProfileData(string profileData)
+        public async Task<EncryptedProfileData> EncryptProfileData(string profileData)
         {
             try
             {
-                var fileKey = GetRandomASCIIString(32);
-                if (fileKey != null)
-                {
-                    var base64FileKey = Convert.ToBase64String(fileKey);
-                    var userPublicKey = await _localSettingsService.GetPublicKey();
-                    var encryptedBase64FileKey = Encrypt(base64FileKey, userPublicKey);
+                //Create algorithm
+                var asymmAlgorithm = AsymmetricKeyAlgorithmProvider.OpenAlgorithm(PCLCrypto.AsymmetricAlgorithm.RsaPkcs1);
+                //get base 64 public key from settings
+                var publicKeyBase64 = await _localSettingsService.GetPublicKey();
+                //import public key
+                ICryptographicKey publicKeyEncryptor = asymmAlgorithm.ImportPublicKey(Convert.FromBase64String(publicKeyBase64), CryptographicPublicKeyBlobType.Pkcs1RsaPublicKey);
 
-                    _localSettingsService.SaveEncryptedFileKey(encryptedBase64FileKey);
+                byte[] profileDataBytes = Encoding.UTF8.GetBytes(profileData);
 
-                    return Encrypt(profileData, encryptedBase64FileKey);
-                }
+                //encrypt profile data with rsa and user public key
+                byte[] ciphertext = WinRTCrypto.CryptographicEngine.Encrypt(publicKeyEncryptor, profileDataBytes);
+
+                //convert encrypted profile data to base 64
+                string cipheredDataBase64 = Convert.ToBase64String(ciphertext);
+
+
+                return new EncryptedProfileData { Data = cipheredDataBase64, PublicKey = publicKeyBase64 };
+
+
+                //using (var rsa = new RSACryptoServiceProvider(4096))
+                //{
+                //    rsa.PersistKeyInCsp = false;
+                //    var fileKey = GetRandomASCIIString(32);
+                //    if (fileKey != null)
+                //    {
+                //        //generate base64 filekey
+                //       // var base64FileKey = Convert.ToBase64String(fileKey);
+
+                //        //get publickey
+                //        var publicKey = await _localSettingsService.GetPublicKey();
+
+                //        rsa.FromXmlString(publicKey);
+
+                //        byte[] profileDataBytes = Encoding.UTF8.GetBytes(profileData);
+                //        byte[] cipherProfile= rsa.Encrypt(profileDataBytes, false);
+                //        string base64EncryptedProfile = Convert.ToBase64String(cipherProfile);
+
+                //       // var encryptedBase64FileKey = AesEncrypt(base64FileKey, publicKey);
+
+                //        //_localSettingsService.SaveEncryptedFileKey(encryptedBase64FileKey);
+
+
+                //        var publicKeyBytes = System.Text.Encoding.UTF8.GetBytes(publicKey);
+
+                //        return new EncryptedProfileData { Data = base64EncryptedProfile, PublicKey = Convert.ToBase64String(publicKeyBytes) };
+                //    }
+
             }
             catch (Exception)
             {
@@ -65,23 +121,51 @@ namespace AlertApp.Services.Cryptography
             }
             return null;
         }
-        public async Task<string> DecryptProfileData(string profileData)
+        public async Task<string> DecryptProfileData(string profileDataBase64)
         {
             try
             {
-                var fileKey = await _localSettingsService.GetEncryptedFileKey();
-                if (fileKey != null)
-                {
-                    var publicKey = await _localSettingsService.GetPublicKey();
-                    var decryptedFileKey = Decrypt(fileKey, publicKey);
-                    return Decrypt(profileData, fileKey);
-                }
+
+                var enctyptedPrivateKey = await _localSettingsService.GetPrivateKey();
+                var userPin = await _localSettingsService.GetApplicationPin();
+
+                var decryptedPrivateKey = AesDecrypt(enctyptedPrivateKey, userPin);
+
+                var privateKey = Convert.FromBase64String(decryptedPrivateKey);
+
+                var asymmAlgorithm = AsymmetricKeyAlgorithmProvider.OpenAlgorithm(PCLCrypto.AsymmetricAlgorithm.RsaPkcs1);
+                ICryptographicKey privateKeyDecryptor = asymmAlgorithm.ImportKeyPair(privateKey, CryptographicPrivateKeyBlobType.Pkcs1RsaPrivateKey);
+
+                var encryptedProfileData = Convert.FromBase64String(profileDataBase64);
+
+                byte[] plaintext = WinRTCrypto.CryptographicEngine.Decrypt(privateKeyDecryptor, encryptedProfileData);
+
+                string decryptedProfileData = Encoding.UTF8.GetString(plaintext);
+                return decryptedProfileData;
+
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
             }
             return null;
+        }
+        public string AesEncrypt(string clearValue, string encryptionKey)
+        {
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = CreateKey(encryptionKey);
+
+                byte[] encrypted = AesEncryptStringToBytes(clearValue, aes.Key, aes.IV);
+                return Convert.ToBase64String(encrypted) + ";" + Convert.ToBase64String(aes.IV);
+            }
+        }
+        public string AesDecrypt(string encryptedValue, string encryptionKey)
+        {
+            string iv = encryptedValue.Substring(encryptedValue.IndexOf(';') + 1, encryptedValue.Length - encryptedValue.IndexOf(';') - 1);
+            encryptedValue = encryptedValue.Substring(0, encryptedValue.IndexOf(';'));
+
+            return AesDecryptStringFromBytes(Convert.FromBase64String(encryptedValue), CreateKey(encryptionKey), Convert.FromBase64String(iv));
         }
 
         #region Private Methods
@@ -92,23 +176,7 @@ namespace AlertApp.Services.Cryptography
             var keyGenerator = new Rfc2898DeriveBytes(password, salt, iterations);
             return keyGenerator.GetBytes(keyBytes);
         }
-        private string Encrypt(string clearValue, string encryptionKey)
-        {
-            using (Aes aes = Aes.Create())
-            {
-                aes.Key = CreateKey(encryptionKey);
 
-                byte[] encrypted = AesEncryptStringToBytes(clearValue, aes.Key, aes.IV);
-                return Convert.ToBase64String(encrypted) + ";" + Convert.ToBase64String(aes.IV);
-            }
-        }
-        private string Decrypt(string encryptedValue, string encryptionKey)
-        {
-            string iv = encryptedValue.Substring(encryptedValue.IndexOf(';') + 1, encryptedValue.Length - encryptedValue.IndexOf(';') - 1);
-            encryptedValue = encryptedValue.Substring(0, encryptedValue.IndexOf(';'));
-
-            return AesDecryptStringFromBytes(Convert.FromBase64String(encryptedValue), CreateKey(encryptionKey), Convert.FromBase64String(iv));
-        }
         private string AesDecryptStringFromBytes(byte[] cipherText, byte[] key, byte[] iv)
         {
             if (cipherText == null || cipherText.Length <= 0)
@@ -195,6 +263,47 @@ namespace AlertApp.Services.Cryptography
         private byte[] GetRandomASCIIString(int length)
         {
             return GetRandomUnicodeString(length, 0x7E, o => o >= 0x21 && o <= 0x7E);
+        }
+
+        public async Task<string> DecryptFileKey(string encryptedFileKey)
+        {
+            var privateKey = await _localSettingsService.GetPrivateKey();
+            var pin = await _localSettingsService.GetApplicationPin();
+            var decryptedPrivate = AesDecrypt(privateKey, pin);
+            return AesDecrypt(encryptedFileKey, privateKey);
+        }
+
+        public async Task<AlertRecipient> GetAlertRecipient(string senderProfileData, Contact recipient)
+        {
+            try
+            {
+                //Create algorithm
+                var asymmAlgorithm = AsymmetricKeyAlgorithmProvider.OpenAlgorithm(PCLCrypto.AsymmetricAlgorithm.RsaPkcs1);
+                //create filekey
+                var fileKey = GetRandomASCIIString(32);
+                //make base64 file key
+                var base64FileKey = Convert.ToBase64String(fileKey);
+
+                var aesProfileData = AesEncrypt(senderProfileData, base64FileKey);
+
+                //import public key
+                ICryptographicKey publicKeyEncryptor = asymmAlgorithm.ImportPublicKey(Convert.FromBase64String(recipient.PublicKey), CryptographicPublicKeyBlobType.Pkcs1RsaPublicKey);
+
+                byte[] encryptedFileKey = Encoding.UTF8.GetBytes(base64FileKey);
+
+                //encrypt profile data with rsa and user public key
+                byte[] ciphertext = WinRTCrypto.CryptographicEngine.Encrypt(publicKeyEncryptor, encryptedFileKey);
+
+                //convert encrypted profile data to base 64
+                string cipheredDataBase64 = Convert.ToBase64String(ciphertext);
+
+                return new AlertRecipient { Cellphone = recipient.Cellphone, Filekey = cipheredDataBase64, Profiledata = aesProfileData };
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return null;
         }
         #endregion
     }

@@ -46,7 +46,7 @@ namespace AlertApp.ViewModels
             RegisterSingleton<IRegistrationService, RegistrationService>();
             RegisterSingleton<IUserProfileService, UserProfileService>();
             RegisterSingleton<ICommunityService, CommunityService>();                        
-            RegisterSingleton<IAlertService, FakeAlertService>();
+            RegisterSingleton<IAlertService, AlertService>();
             RegisterSingleton<IContactsService, ContactsService>();
 
 

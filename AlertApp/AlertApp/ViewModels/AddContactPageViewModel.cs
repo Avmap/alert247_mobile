@@ -144,6 +144,8 @@ namespace AlertApp.ViewModels
 
         private async void GetContacts()
         {
+
+
             var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
             if (contactPermissionStatus != PermissionStatus.Granted)
             {
@@ -164,16 +166,26 @@ namespace AlertApp.ViewModels
                 Contacts = new ObservableCollection<ImportContact>();
                 foreach (var item in contacts.Where(c => c.Number != null).OrderBy(c => c.Name))
                 {
-                    Contacts.Add(new ImportContact(item,_contactProfileImageProvider));
+                    Contacts.Add(new ImportContact(item, _contactProfileImageProvider));
                 }
                 this.OriginalContacts = new ObservableCollection<ImportContact>(this.Contacts);
+
+                //call service to find which number is app user
+                var serverContacts = await _contactsService.CheckContacts(await _localSettingsService.GetAuthToken(), this.OriginalContacts.Select(c => c.FormattedNumber).ToArray());
+
+                //get contacts where not app user
+                var serverContactsNeedInvitation = serverContacts.Result.Contacts.Where(x => x.Value == false).Select(x => x.Key).ToList();
+
+                var needInvitationContacts = this.OriginalContacts.Where(c => serverContactsNeedInvitation.Contains(c.FormattedNumber)).ToList();
+                needInvitationContacts.ForEach(c => c.NeedsInvitation = true);
+
             }
             SetBusy(false);
         }
 
         private async void InviteUser(ImportContact contact)
         {
-            string messageText = String.Format("Download Alert247 {0}", "https://play.google.com/store/apps/details?id=hotech.Merchandizer");
+            string messageText = String.Format("Download Alert247 {0}", "https://play.google.com/store/apps/details?id=gr.avmap.alert247");
             string action = await DisplayActionSheet(AppResources.ShareVia, new string[] { "SMS", AppResources.OtherText });
             if (action == "SMS")
             {
@@ -214,7 +226,7 @@ namespace AlertApp.ViewModels
                 {
                     SetBusy(true);
                     var userToken = await _localSettingsService.GetAuthToken();
-                    var addContactsResults = await _contactsService.AddContacts(userToken, this.Contacts.Where(c => c.Selected).Select(c => c.Number).ToArray());
+                    var addContactsResults = await _contactsService.AddContacts(userToken, this.Contacts.Where(c => c.Selected).Select(c => c.FormattedNumber).ToArray());
                     if (addContactsResults.IsOk)
                     {
 

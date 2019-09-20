@@ -86,7 +86,7 @@ namespace AlertApp.Services.Profile
             {
                 var profileDataJson = JsonConvert.SerializeObject(registrationValues);
                 var encryptedProfileData = await _cryptographyService.EncryptProfileData(profileDataJson);
-                var json = JsonConvert.SerializeObject(new UserProfileBody { Token = token, PublicKey = publicKey, ProfileData = encryptedProfileData });
+                var json = JsonConvert.SerializeObject(new UserProfileBody { Token = token, PublicKey = encryptedProfileData.PublicKey, ProfileData = encryptedProfileData.Data });
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await _httpClient.PostAsync("post/alert/storeProfile", content);
 
@@ -97,7 +97,7 @@ namespace AlertApp.Services.Profile
                     {
                         res = JsonConvert.DeserializeObject<Response>(apiResponse);
                         if (res.IsOk)
-                            _localSettingsService.SaveEncryptedProfileData(encryptedProfileData);
+                            _localSettingsService.SaveEncryptedProfileData(encryptedProfileData.Data);
                         return res;
                     }
                 }

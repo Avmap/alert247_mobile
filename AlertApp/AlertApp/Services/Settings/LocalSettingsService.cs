@@ -252,6 +252,16 @@ namespace AlertApp.Services.Settings
             Preferences.Set(utils.Settings.AlwaysOn, value);
         }
 
+        public void SaveSendLocationSetting(bool sendLocation)
+        {
+            Preferences.Set(utils.Settings.SendLocation, sendLocation);
+        }
+
+        public bool GetSendLocationSetting()
+        {
+            return Preferences.Get(utils.Settings.SendLocation, false);
+        }
+
         public LocalSettingsService()
         {
 

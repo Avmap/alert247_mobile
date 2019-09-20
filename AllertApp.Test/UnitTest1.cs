@@ -1,7 +1,9 @@
 using AlertApp.Services.Cryptography;
 using AlertApp.Services.Profile;
+using AlertApp.Services.Settings;
 using AlertApp.ViewModels;
 using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace Tests
 {
@@ -24,10 +26,6 @@ namespace Tests
             Assert.IsNotNull(res.Result.Profile);
         }
 
-        [Test]
-        public void Test1()
-        {
-            Assert.Pass();
-        }
+
     }
 }

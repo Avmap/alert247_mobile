@@ -14,6 +14,7 @@
                 </Grid.RowDefinitions>
                 <ListView
                         Grid.Row="0"
+                    Margin="0,16,0,0"
                         AbsoluteLayout.LayoutFlags="All"
                         AbsoluteLayout.LayoutBounds="0,1,1,1"
          SeparatorVisibility="None"
@@ -22,29 +23,32 @@
          RowHeight="-1"
          HasUnevenRows="True"
          ItemTapped="ListView_ItemTapped"
+         IsPullToRefreshEnabled="True"
+         RefreshCommand="{Binding GetCommunityCommand}"       
+                    IsRefreshing="{Binding Busy}"
          BackgroundColor="White">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <Image Margin="16,16,16,16"  WidthRequest="56" HeightRequest="56" HorizontalOptions="Center" VerticalOptions="Center" Source="empty_contact.png"/>
-                                    <StackLayout Orientation="Vertical" Margin="0,16,0,0" HorizontalOptions="FillAndExpand">
-                                        <Label Text="{Binding FullName}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource Headline6}"/>
+                                    <Image   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding ProfileImage}"/>
+                                    <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                                        <Label Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource Headline6}"/>
                                         <StackLayout  Orientation="Horizontal" Spacing="8"  HorizontalOptions="FillAndExpand">
                                             <StackLayout Orientation="Vertical">
                                                 <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="hand_help.png"/>
-                                                <Label Text="10" VerticalTextAlignment="Center"/>
+                                                <Label Text="{Binding Stats.Helped}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                             </StackLayout>
                                             <StackLayout Orientation="Vertical">
                                                 <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="hand_help.png"/>
-                                                <Label Text="20" VerticalTextAlignment="Center"/>
+                                                <Label Text="{Binding Stats.Ignored}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                             </StackLayout>
                                             <StackLayout Orientation="Vertical">
                                                 <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="hand_help.png"/>
-                                                <Label Text="20" VerticalTextAlignment="Center"/>
+                                                <Label Text="{Binding Stats.Asked}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                             </StackLayout>
-                                            <Frame HorizontalOptions="EndAndExpand" BackgroundColor="Green" VerticalOptions="End" Padding="4" Margin="0,0,4,0">
-                                                <Label Text="Accepted" TextColor="White" Style="{StaticResource Subtitle1}"/>
+                                            <Frame HorizontalOptions="EndAndExpand" BackgroundColor="{Binding BackgroundStatusColor}" VerticalOptions="End" Padding="4" Margin="0,0,4,0">
+                                                <Label Text="{Binding Status}" TextColor="White" Style="{StaticResource Subtitle1}"/>
                                             </Frame>
                                         </StackLayout>
                                     </StackLayout>
@@ -60,6 +64,8 @@
                     <TapGestureRecognizer Tapped="ShadowClicked"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
+            <Label HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasContacts}" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" Text="No Items" FontFamily="{StaticResource Regular}" />
+            <infrastructure:LoadingIndicator x:Name="loadingIndicator" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
             <!--Bottom Sheet-->
             <ContentView x:Name="bottomSheet" IsVisible="True" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0, 1, 1,200" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional">
                 <StackLayout Orientation="Vertical">

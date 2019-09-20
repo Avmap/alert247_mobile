@@ -1,6 +1,7 @@
 ﻿using AlertApp.Infrastructure;
 using AlertApp.Model;
 using AlertApp.Model.Api;
+using AlertApp.Pages;
 using AlertApp.Services.Community;
 using AlertApp.Services.Settings;
 using Plugin.Permissions;
@@ -85,6 +86,11 @@ namespace AlertApp.ViewModels
                     {
                         return;
                     }
+                }
+
+                if (radiusSetting.Id == 3)
+                {
+                    await NavigationService.PushAsync(new SelectPositionFromMapPage(), false);
                 }
 
                 radiusSetting.Checked = true;

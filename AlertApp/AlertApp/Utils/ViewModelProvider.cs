@@ -32,21 +32,12 @@ namespace AlertApp.Utils
             return new EnterActivationCodePageModel(provideRegistrationService(), provideLocalSettingsService(), mobilenumber);
         }
 
-        internal static EnterApplicationPinCodePageModel EnterApplicationPinCodeViewModel()
-        {
-            return new EnterApplicationPinCodePageModel(provideLocalSettingsService(), provideCryptographyService());
-        }
-
         internal static RegistrationFieldsPageViewModel RegistrationFieldsPageViewModel()
         {
             return new RegistrationFieldsPageViewModel(provideUserProfileService(), provideLocalSettingsService());
         }
 
-        internal static SendingAlertPageViewModel SendingAlertPageViewModel(AlertType alertType)
-        {
-            return new SendingAlertPageViewModel(provideAlertService(), provideLocalSettingsService(), alertType);
-        }
-
+ 
         internal static MainPageViewModel MainPageViewModel()
         {
             return new MainPageViewModel(provideUserProfileService(),provideLocalSettingsService());
@@ -57,10 +48,7 @@ namespace AlertApp.Utils
             return new DialogSelectLanguageViewModel(provideLocalSettingsService());
         }
 
-        internal static MyCommunityPageViewModel MyCommunityPageViewModel()
-        {
-            return new MyCommunityPageViewModel(provideCommunityService(), provideLocalSettingsService());
-        }
+      
         internal static DependandsPageViewModel DependandsPageViewModel()
         {
             return new DependandsPageViewModel(provideCommunityService(), provideLocalSettingsService());
@@ -92,11 +80,7 @@ namespace AlertApp.Utils
         {
             return new RegistrationService();
         }
-
-        private static IAlertService provideAlertService()
-        {
-            return new FakeAlertService();
-        }
+        
         #endregion
     }
 }

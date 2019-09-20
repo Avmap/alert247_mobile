@@ -191,8 +191,7 @@ namespace AlertApp.Droid
             if (result.Locations.Any())
             {
                 var location = result.LastLocation;
-                Toast.MakeText(context, "New location", ToastLength.Short).Show();
-
+              //  Toast.MakeText(context, "New location", ToastLength.Short).Show();
             }
             else
             {

@@ -25,7 +25,7 @@ namespace AllertApp.Test
         public void GetContacts()
         {
             var contactsService = ViewModelLocator.Instance.Resolve<ContactsService>();
-            var token = "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTk5MDE4NzYsIm5iZiI6MTU1OTkwMTg3NiwiZXhwIjoxNTU5OTA1NDc2LCJpc3MiOiJBbGVydCBzZXJ2ZXIiLCJhdWQiOiJBbGVydCBtb2JpbGUiLCJ1c2VySUQiOiIxNSJ9.xJrFki4UgZGAziCLJU7Cg81fRQ2oHRo0YA0CpLSk2mk";
+            var token = "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NjQwNTU0NzUsIm5iZiI6MTU2NDA1NTQ3NSwiZXhwIjoxNTY0MDU5MDc1LCJpc3MiOiJBbGVydCBzZXJ2ZXIiLCJhdWQiOiJBbGVydCBtb2JpbGUiLCJ1c2VySUQiOiIxNSJ9.Z1I7KyPAdBUdPjCBf4nz5ZvzcREKRVzLcs6D025eb9s";
             var res = contactsService.GetContacts(token).Result;
             if (res.IsOk)
             {

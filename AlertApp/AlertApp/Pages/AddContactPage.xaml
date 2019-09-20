@@ -41,7 +41,7 @@
                     </ListView.Behaviors>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell Tapped="ViewCell_Tapped">
+                            <ViewCell >
                                 <Grid BackgroundColor="{Binding Selected,Converter={StaticResource SelectedListItemColorConverter},Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition  Width="52"/>
@@ -54,7 +54,7 @@
                                     <StackLayout Grid.Column="1" >
                                         <Label  Text="{Binding Name}" VerticalOptions="CenterAndExpand"  LineBreakMode="WordWrap" FontFamily="{StaticResource Regular}"/>
                                     </StackLayout>
-                                    <Frame Grid.Column="2" CornerRadius="15" Padding="0" BackgroundColor="AntiqueWhite" Margin="15,10,15,10" HasShadow="False">
+                                    <Frame Grid.Column="2" CornerRadius="15" Padding="0" BackgroundColor="AntiqueWhite" Margin="15,10,15,10" HasShadow="False" IsVisible="{Binding NeedsInvitation}">
                                         <Frame.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding BindingContext.InviteCommand, Source={x:Reference contactList}}" CommandParameter="{Binding .}"  NumberOfTapsRequired="1" />
                                         </Frame.GestureRecognizers>

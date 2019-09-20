@@ -10,8 +10,11 @@ using Android.Content;
 using Android.Graphics;
 using Android.Media;
 using Android.OS;
+using Android.Runtime;
 using Android.Support.V4.App;
 using Android.Util;
+using Android.Views;
+using Android.Widget;
 using Firebase.Messaging;
 using Xamarin.Forms;
 
@@ -22,6 +25,12 @@ namespace AlertApp.Android
     public class AlertFirebaseMessagingService : FirebaseMessagingService, ICrossFirebase
     {
         const string TAG = "AlertFirebaseMsgService";
+        public const string Channelid = "gr.avmap.alert247";
+        public const string WakeLock = "gr.avmap.alert247.WakeLock";
+
+        public const string ACTION_OPEN_SOS = "ACTION.OPEN_SOS_ALERT";
+        public const string EXTRA_PROFILE_DATA = "EXTRA_PROFILE_DATA";
+        public const string EXTRA_FILE_KEY = "EXTRA_FILE_KEY";
 
         /**
          * Called when message is received.
@@ -36,28 +45,39 @@ namespace AlertApp.Android
             //handle messages when foreground and send from firebase console
             try
             {
-                if (message.GetNotification() != null)
-                {
-                    Log.Debug(TAG, "From: " + message.From);
-                    Log.Debug(TAG, "Notification Message Body: " + message.GetNotification().Body);
-                    SendNotification(message.GetNotification().Title ?? "FCM message", message.GetNotification().Body ?? "");
-                }
-                else
-                {
-                    string msgT = "";
-                    message.Data.TryGetValue("MsgT", out msgT);
-                    string msgB = "";
-                    message.Data.TryGetValue("MsgB", out msgB);
 
-                    msgT = "Notification From Alert247";
-                   //  msgB = message.Data.ToString();
+                //  if (message.GetNotification() != null && message.Data != null)
+                if (message.Data != null)
+                {
+                    // Log.Debug(TAG, "From: " + message.From);
+                    //  Log.Debug(TAG, "Notification Message Body: " + message.GetNotification().Body);
+                    //  SendNotification(message.GetNotification().Title ?? "FCM message", message.GetNotification().Body ?? "");
+
+                    string msgT = "";
+                    message.Data.TryGetValue("title", out msgT);
+                    string msgB = "";
+                    message.Data.TryGetValue("body", out msgB);
+
+                    string type = "";
+                    message.Data.TryGetValue("type", out type);
+
+                    string profiledata = "";
+                    message.Data.TryGetValue("profile_data", out profiledata);
+
+                    string filekey = "";
+                    message.Data.TryGetValue("filekey", out filekey);
 
                     if (!string.IsNullOrWhiteSpace(msgT) || !string.IsNullOrWhiteSpace(msgB))
-                        SendNotification(msgT ?? "", msgB ?? "");
+                        SendAlertNotification(msgT ?? "", msgB ?? "", profiledata ?? "", filekey ?? "");
 
-                    MessagingCenter.Send<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString(), message);
-                    SaveNotificationToDatabase(msgT, msgB);
+                    //where to send the message ???? in Activity maybe/
+                    //MessagingCenter.Send<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString(), message);
+
+                    //Handler h = new Handler(Looper.MainLooper);
+                    //h.Post(() => showAlert());
+
                 }
+
             }
             catch (Exception ex)
             {
@@ -65,25 +85,66 @@ namespace AlertApp.Android
             }
         }
 
-        void SaveNotificationToDatabase(string title, string message)
+        private void showAlert()
         {
-           
+
+
+            IWindowManager windowManager = GetSystemService(WindowService).JavaCast<IWindowManager>();
+            if (windowManager != null)
+            {
+                ImageView overlayImage = new ImageView(this);
+                overlayImage.SetImageResource(Resource.Drawable.alert_fire);
+
+                var param = new WindowManagerLayoutParams(
+                                ViewGroup.LayoutParams.MatchParent,
+                                ViewGroup.LayoutParams.MatchParent,
+                                WindowManagerTypes.SystemOverlay,
+                                WindowManagerFlags.Fullscreen | WindowManagerFlags.WatchOutsideTouch | WindowManagerFlags.AllowLockWhileScreenOn | WindowManagerFlags.NotTouchable | WindowManagerFlags.NotFocusable,
+                                Format.Translucent);
+
+                param.Gravity = GravityFlags.Top;
+
+                overlayImage.SetScaleType(ImageView.ScaleType.FitXy);
+
+                windowManager.AddView(overlayImage, param);
+
+            }
+
+            //View mView = mInflater.inflate(R.layout.score, null);
+
+            //WindowManager.LayoutParams mLayoutParams = new WindowManager.LayoutParams(
+            //ViewGroup.LayoutParams.WRAP_CONTENT,
+            //ViewGroup.LayoutParams.WRAP_CONTENT, 0, 0,
+            //WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+            //WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+            //    | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+            //    | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+            ///* | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON */,
+            //PixelFormat.RGBA_8888);
+
+            //mWindowManager.addView(mView, mLayoutParams);
         }
 
-        /**
-         * Create and show a simple notification containing the received FCM message.
-         */
+        void SaveNotificationToDatabase(string title, string message)
+        {
+
+        }
+
+
         void SendNotification(string title, string messageBody)
         {
             PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
-            PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, "gr.avmap.alert247.WakeLock");
+            PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, WakeLock);
             wl.SetReferenceCounted(false);
             wl.Acquire(8000);
             var channelid = "gr.avmap.alert247";
             Bitmap bm = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.icon);
+
             var intent = new Intent(this, typeof(MainActivity));
             intent.SetAction("mycustom.action.test");//here we can send custom actions depends on notification content and type.
             intent.AddFlags(ActivityFlags.ClearTop);
+
+
             var pendingIntent = PendingIntent.GetActivity(this, 0 /* Request code */, intent, PendingIntentFlags.OneShot);
 
             var defaultSoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
@@ -103,6 +164,55 @@ namespace AlertApp.Android
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
                 NotificationChannel channel = new NotificationChannel(channelid,
+                        "Alert 247",
+                        NotificationImportance.Max);
+                notificationManager.CreateNotificationChannel(channel);
+            }
+            else
+            {
+                notificationBuilder.SetPriority((int)NotificationPriority.Max);
+            }
+            int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
+            notificationManager.Notify(notificationID /* ID of notification */, notificationBuilder.Build());
+        }
+
+        void SendAlertNotification(string title, string messageBody, string profiledata, string fileKey)
+        {
+            //create wake lock
+            PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
+            PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, WakeLock);
+            wl.SetReferenceCounted(false);
+            wl.Acquire(8000);
+
+            Bitmap bm = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.icon);
+
+            //create pending intent action
+            var intent = new Intent(this, typeof(MainActivity));
+            //here we can send custom actions depends on notification content and type.
+            intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop | ActivityFlags.NewTask);
+            intent.SetAction(ACTION_OPEN_SOS + Java.Lang.JavaSystem.CurrentTimeMillis());
+            intent.PutExtra(EXTRA_FILE_KEY, fileKey);
+            intent.PutExtra(EXTRA_PROFILE_DATA, profiledata);
+
+            var pendingIntent = PendingIntent.GetActivity(this, 0 /* Request code */, intent, PendingIntentFlags.UpdateCurrent);
+
+            var defaultSoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
+            var notificationBuilder = new NotificationCompat.Builder(this, Channelid)
+                .SetSmallIcon(Resource.Mipmap.icon)
+                .SetContentTitle(title)
+                .SetContentText(messageBody)
+                .SetStyle(new NotificationCompat.BigTextStyle().BigText(messageBody))
+                .SetAutoCancel(true)
+                .SetSound(defaultSoundUri)
+                .SetContentIntent(pendingIntent);
+            if (bm != null)
+            {
+                notificationBuilder.SetLargeIcon(bm);
+            }
+            var notificationManager = NotificationManager.FromContext(this);
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            {
+                NotificationChannel channel = new NotificationChannel(Channelid,
                         "Alert 247",
                         NotificationImportance.Max);
                 notificationManager.CreateNotificationChannel(channel);

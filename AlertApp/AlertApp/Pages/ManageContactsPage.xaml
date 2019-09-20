@@ -7,9 +7,9 @@
              Title="{infrastructure:Translate ManageContacts}"
             >
   <!--Pages can be added as references or inline-->
-    <pages:SuggestionsPage/>
+    <!--<pages:SuggestionsPage/>-->
     <pages:MyCommunityPage/>
     <pages:DependandsPage/>
-    <pages:WhoAlertsMePage/>
+    <!--<pages:WhoAlertsMePage/>-->
        
 </TabbedPage>

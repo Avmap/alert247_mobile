@@ -17,9 +17,9 @@ namespace AlertApp.Pages
             NavigationPage.SetHasBackButton(this, false);
             this.BindingContext = ViewModelLocator.Instance.Resolve<MainPageViewModel>();
         }
-        protected override bool OnBackButtonPressed()
-        {
-            return true;
-        }
+        //protected override bool OnBackButtonPressed()
+        //{
+        //    return true;
+        //}
     }
 }

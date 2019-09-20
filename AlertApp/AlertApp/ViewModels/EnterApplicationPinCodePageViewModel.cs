@@ -1,14 +1,18 @@
 ﻿using AlertApp.Infrastructure;
+using AlertApp.Model;
 using AlertApp.Pages;
 using AlertApp.Resx;
 using AlertApp.Services.Cryptography;
 using AlertApp.Services.Settings;
 using PCLCrypto;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using static PCLCrypto.WinRTCrypto;
 
@@ -66,25 +70,60 @@ namespace AlertApp.ViewModels
             }
             else
             {
+                if (LocationTracking)
+                {
+                    var locationStatus = await GetLocationStatus();
+                    if (!locationStatus.Ok)
+                    {
+                        showOKMessage(AppResources.Warning, locationStatus.ErroMessage);
+                        return;
+                    }
+                }
+                _localSettingsService.SaveSendLocationSetting(LocationTracking);
                 SetBusy(true);
-                await Task.Run(() => _cryptohraphyService.GenerateKeys(Pin));                             
+                await Task.Run(() => _cryptohraphyService.GenerateKeys(Pin));
                 SetBusy(false);
                 //we keep TempRegistrationFields in static field in App.xaml.cs.
                 await NavigationService.PushAsync(new RegistrationFieldsPage(App.TempRegistrationFields), true);
             }
         }
 
-        private void GenerateKeys()
+        private async Task<LocationResult> GetLocationStatus()
         {
-            var asym = AsymmetricKeyAlgorithmProvider.OpenAlgorithm(AsymmetricAlgorithm.RsaPkcs1);
-            _localSettingsService.SaveApplicationPin(Pin);
-            ICryptographicKey key = asym.CreateKeyPair(4096);
+            try
+            {
+                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                if (locationPermissionStatus != PermissionStatus.Granted)
+                {
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location });
+                    locationPermissionStatus = results[Permission.Location];
+                }
 
-            var publicKey = key.ExportPublicKey();
-            var privateKey = key.Export();
+                if (locationPermissionStatus != PermissionStatus.Granted)
+                {
+                    return new LocationResult { Ok = false, ErroMessage = AppResources.UnableToGetLocationPermission };
+                }
 
-            var publicKeyString = Convert.ToBase64String(publicKey);
-            var privateKeyString = Convert.ToBase64String(privateKey);
+                return new LocationResult { Ok = true }; ;
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Handle not supported on device exception
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                // Handle not enabled on device exception
+            }
+            catch (PermissionException pEx)
+            {
+                // Handle permission exception
+            }
+            catch (Exception ex)
+            {
+                // Unable to get location
+            }
+            //SetBusy(false);
+            return new LocationResult { Ok = false };
         }
 
         #region BaseViewModel

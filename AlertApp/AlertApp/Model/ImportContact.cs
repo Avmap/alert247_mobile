@@ -2,12 +2,13 @@
 using Plugin.ContactService.Shared;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms;
 
 namespace AlertApp.Model
 {
-    public class ImportContact : Contact
+    public class ImportContact : Contact, INotifyPropertyChanged
     {
         IContactProfileImageProvider _profileImageProvider;
 
@@ -26,7 +27,7 @@ namespace AlertApp.Model
         {
             get
             {
-                var image = _profileImageProvider.GetProfileImage(PhotoUriThumbnail);              
+                var image = _profileImageProvider.GetProfileImage(PhotoUriThumbnail);
                 if (image != null)
                 {
                     return image;
@@ -35,7 +36,65 @@ namespace AlertApp.Model
                 return ImageSource.FromFile("account_circle.png");
             }
         }
+        
+        private bool _Selected;
+        public bool Selected
+        {
+            get { return _Selected; }
+            set
+            {
+                _Selected = value;
+                OnPropertyChanged("Selected");
+            }
+        }
 
-        public bool Selected { get; set; }
+        private bool _NeedsInvitation;
+        public bool NeedsInvitation
+        {
+            get { return _NeedsInvitation; }
+            set
+            {
+                _NeedsInvitation = value;
+                OnPropertyChanged("NeedsInvitation");
+            }
+        }
+
+        public string FormattedNumber
+        {
+            get
+            {
+                string clearedNumber = Number.Trim().Replace("-", "").Replace(" ", "");
+
+                if (clearedNumber.StartsWith("+"))
+                {
+                    return clearedNumber;
+                }
+
+                if (clearedNumber.StartsWith("00"))
+                {
+                    return clearedNumber.Replace("00", "+");
+                }
+
+                if (clearedNumber.Length == 10)
+                {
+                    return "+30" + clearedNumber;
+                }
+
+                return clearedNumber;
+            }
+        }
+
+        #region INotifyPropertyChanged
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
     }
 }

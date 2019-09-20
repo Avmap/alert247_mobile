@@ -2,10 +2,15 @@
 using AlertApp.Pages;
 using AlertApp.Services.Profile;
 using AlertApp.Services.Settings;
+using Plugin.FirebasePushNotification;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AlertApp.ViewModels
@@ -45,7 +50,7 @@ namespace AlertApp.ViewModels
         }
 
         private async void NavigateToContactScreen()
-        {
+        {          
             await NavigationService.PushAsync(new ManageContactsPage(), true);
         }
 
@@ -56,17 +61,44 @@ namespace AlertApp.ViewModels
             _userProfileService = userProfileService;
             _localSettingsService = localSettingsService;
             PingServer();
+
         }
 
         private async void PingServer()
         {
             var userToken = await _localSettingsService.GetAuthToken();
-            var firebaseToken = await _localSettingsService.GetFirebaseToken();
-            await _userProfileService.Ping(userToken, 22.3121, 22.3122, firebaseToken);
+            var firebaseToken = CrossFirebasePushNotification.Current.Token;
+            Location location = null;
+            try
+            {
+                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                if (locationPermissionStatus == PermissionStatus.Granted)
+                {
+                    location = await Geolocation.GetLastKnownLocationAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            await _userProfileService.Ping(userToken, location != null ? location.Latitude : (double?)null, location != null ? location.Longitude : (double?)null, firebaseToken);
+
+            //var locales = await TextToSpeech.GetLocalesAsync();
+
+            //// Grab the first locale
+            //var locale = locales.LastOrDefault();
+            //var settings = new SpeechOptions()
+            //{
+            //    Volume = 1f,
+            //    Pitch = 1.0f,
+            //    Locale = locale
+            //};
+            //await TextToSpeech.SpeakAsync("Hello from Barcelona", settings);
+
         }
 
         private async void OpenSendAlertScreen()
-        {
+        {                        
             await NavigationService.PushAsync(new SendingAlertPage(Model.AlertType.UserAlert), true);
         }
         #region BaseViewModel
