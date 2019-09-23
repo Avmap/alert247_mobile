@@ -22,6 +22,66 @@ namespace AlertApp.Pages
             this.BindingContext = ViewModelLocator.Instance.Resolve<EnterApplicationPinCodePageViewModel>();
 		}
 
+        private void Pin1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    Pin2.Focus();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+        private void Pin2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    Pin3.Focus();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+        private void Pin3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    Pin4.Focus();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+        private void Pin4_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                   // Pin4.Focus();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
         protected override bool OnBackButtonPressed()
         {
             return true;

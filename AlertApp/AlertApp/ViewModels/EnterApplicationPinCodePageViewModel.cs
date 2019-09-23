@@ -26,7 +26,10 @@ namespace AlertApp.ViewModels
         #endregion
 
         #region Properties
-        public string Pin { get; set; }
+        public string Pin1 { get; set; }
+        public string Pin2 { get; set; }
+        public string Pin3 { get; set; }
+        public string Pin4 { get; set; }
         private bool _LocationTracking;
 
         public bool LocationTracking
@@ -64,7 +67,7 @@ namespace AlertApp.ViewModels
 
         public async void Continue()
         {
-            if (string.IsNullOrWhiteSpace(Pin))
+            if (string.IsNullOrWhiteSpace(Pin1) || string.IsNullOrWhiteSpace(Pin2) || string.IsNullOrWhiteSpace(Pin3) || string.IsNullOrWhiteSpace(Pin4))
             {
                 showOKMessage(AppResources.Warning, AppResources.WarningFillPin);
             }
@@ -81,7 +84,7 @@ namespace AlertApp.ViewModels
                 }
                 _localSettingsService.SaveSendLocationSetting(LocationTracking);
                 SetBusy(true);
-                await Task.Run(() => _cryptohraphyService.GenerateKeys(Pin));
+                await Task.Run(() => _cryptohraphyService.GenerateKeys(String.Format("{0}{1}{2}{3}",Pin1,Pin2,Pin3,Pin4)));
                 SetBusy(false);
                 //we keep TempRegistrationFields in static field in App.xaml.cs.
                 await NavigationService.PushAsync(new RegistrationFieldsPage(App.TempRegistrationFields), true);

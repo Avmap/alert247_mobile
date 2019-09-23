@@ -18,7 +18,16 @@
                         </Image>
                         <StackLayout HorizontalOptions="FillAndExpand" Spacing="20" Margin="0,10,0,0">
                             <Label Margin="2,0,0,0" Text="{infrastructure:Translate EnterPin}" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1}"></Label>
-                            <Entry Keyboard="Telephone" HorizontalTextAlignment="Center" MaxLength="4" Text="{Binding Pin}" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                            <!--<Entry Keyboard="Telephone" HorizontalTextAlignment="Center" MaxLength="4" Text="{Binding Pin}" Style="{StaticResource Headline5BoldEntry}"></Entry>-->
+
+                            <StackLayout Orientation="Horizontal"  Spacing="2" HorizontalOptions="FillAndExpand">
+                                <Entry x:Name="Pin1" TextChanged="Pin1_TextChanged"  Keyboard="Telephone" Text="{Binding Pin1,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                                <Entry x:Name="Pin2" TextChanged="Pin2_TextChanged"  Keyboard="Telephone" Text="{Binding Pin2,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                                <Entry x:Name="Pin3" TextChanged="Pin3_TextChanged" Keyboard="Telephone" Text="{Binding Pin3,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                                <Entry x:Name="Pin4" TextChanged="Pin4_TextChanged" Keyboard="Telephone" Text="{Binding Pin4,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                            </StackLayout>
+
+
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
                                 <Label  Text="{infrastructure:Translate LocationTracking}" Style="{StaticResource Subtitle1}"></Label>
                                 <Switch IsToggled="{Binding LocationTracking,Mode=TwoWay}"></Switch>
