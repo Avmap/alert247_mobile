@@ -1,4 +1,9 @@
-﻿using System;
+﻿using AlertApp.Infrastructure;
+using AlertApp.MessageCenter;
+using AlertApp.Model;
+using AlertApp.Resx;
+using AlertApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +17,72 @@ namespace AlertApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ManageContactsPage : TabbedPage
     {
-        public ManageContactsPage ()
+        int tabsAdded = 0;
+        public ManageContactsPage()
         {
+            this.BindingContext = ViewModelLocator.Instance.Resolve<ManageContactsPageViewModel>();
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            RegisterForRefreshContacts();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            UnRegisterForRefreshContacts();
+        }
+
+        public void RegisterForRefreshContacts()
+        {
+            MessagingCenter.Subscribe<BaseViewModel, RefreshContactsEvent>(this, RefreshContactsEvent.Event, (sender, arg) =>
+            {
+                RefreshContacts();
+            });
+        }
+
+        public void UnRegisterForRefreshContacts()
+        {
+            MessagingCenter.Unsubscribe<BaseViewModel, RefreshContactsEvent>(this, RefreshContactsEvent.Event);
+        }
+
+        
+
+        protected override void OnChildAdded(Element child)
+        {
+            base.OnChildAdded(child);
+            tabsAdded++;
+            if (tabsAdded == 3)
+            {
+                RefreshContacts();
+            }
+        }
+
+        public void RefreshContacts()
+        {
+            Task.Run(async () =>
+            {
+                var vm = this.BindingContext as ManageContactsPageViewModel;
+                var response = await vm.GetContacts();
+                if (response != null)
+                {
+                    foreach (var item in this.Children)
+                    {
+                        if (item.BindingContext is IHaveContacts)
+                        {
+                            ((IHaveContacts)item.BindingContext).SetContacts(response);
+                        }
+                    }
+                }
+                if (response.IsOnline == false) 
+                {
+                    await  DisplayAlert(AppResources.Warning, AppResources.NoInternetConnection, AppResources.OK);                    
+                }
+            });
+        }
+
     }
 }

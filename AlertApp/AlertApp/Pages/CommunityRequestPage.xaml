@@ -2,28 +2,30 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlertApp.Pages.CommunityRequestPage"
-             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"   
-             Navigation="{Binding NavigationService}" 
-             Title="{infrastructure:Translate CommunityRequestPage}">
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"                    
+             NavigationPage.HasNavigationBar="false"
+             Navigation="{Binding NavigationService}" >
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Margin="{StaticResource PageMargin}"  Orientation="Vertical" Spacing="20">
-                <StackLayout Orientation="Vertical" Margin="0,8,0,0" VerticalOptions="StartAndExpand">
-                    <Image  HorizontalOptions="Center"  VerticalOptions="CenterAndExpand" WidthRequest="100" HeightRequest="100">
-                        <Image.Source>
-                            <OnPlatform x:TypeArguments="ImageSource" iOS="select_language.png" Android="select_language.png" />
-                        </Image.Source>
-                    </Image>
-                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="8" Margin="0,10,0,0">
-                        <Label   Text="Joseph Hudson" HorizontalTextAlignment="Center" Style="{StaticResource Headline5Bold}"></Label>
-                        <Label   Text="Joseph Hudson wants you to participate in his community" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1Bold}"></Label>
-                        <!--<Label   Text="{infrastructure:Translate SelectLanguageMessage}" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1}"></Label>-->
-                        <Button  Style="{StaticResource RegistrationButtonStyle}" BackgroundColor="{StaticResource AcceptButton}" Text="{infrastructure:Translate AcceptRequest}" Command="{Binding ContinueCommand}" ></Button>
-                        <Button  Margin="0,24,0,0" Style="{StaticResource RegistrationButtonStyle}" Text="{infrastructure:Translate IgnoreRequest}" Command="{Binding ContinueCommand}" ></Button>
-                        <Button  Style="{StaticResource RegistrationButtonStyle}" Text="{infrastructure:Translate BlockRequest}" Command="{Binding ContinueCommand}" ></Button>
+        <StackLayout>
+            <Frame>
+                <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{infrastructure:Translate NewCommunityRequestTitlePage}"></Label>
+            </Frame>
+            <ScrollView  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout Margin="{StaticResource PageMargin}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Orientation="Vertical" Spacing="20">
+                    <StackLayout Orientation="Vertical" Margin="0,8,0,0" VerticalOptions="StartAndExpand">
+                        <Image   HorizontalOptions="FillAndExpand" HeightRequest="100" WidthRequest="100" VerticalOptions="FillAndExpand" Source="{Binding Contact.ProfileImage}" />
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Spacing="8" Margin="0,10,0,0">
+                            <Label   Text="{Binding Contact.Title}" HorizontalTextAlignment="Center" Style="{StaticResource Headline5Bold}"></Label>
+                            <Label   Text="{Binding Contact.NewRequestMessage}" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1Bold}"></Label>
+                            <Label   Text="{Binding Contact.NewRequestMessage2}" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1}"></Label>
+                            <Button  Margin="0,64,0,0" Style="{StaticResource RegistrationButtonStyle}" BackgroundColor="{StaticResource AcceptButton}" Text="{infrastructure:Translate AcceptRequest}" Command="{Binding AcceptRequestCommand}" ></Button>
+                            <Button  Margin="0,24,0,0" Style="{StaticResource RegistrationButtonStyle}" Text="{infrastructure:Translate IgnoreRequest}" Command="{Binding IgnoreRequestCommand}" ></Button>
+                            <Button  Style="{StaticResource RegistrationButtonStyle}" Text="{infrastructure:Translate BlockRequest}" Command="{Binding BlockRequestCommand}" ></Button>
+                        </StackLayout>
                     </StackLayout>
                 </StackLayout>
-            </StackLayout>
-        </ScrollView>
+            </ScrollView>
+        </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

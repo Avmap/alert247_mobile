@@ -3,7 +3,6 @@ using AlertApp.MessageCenter;
 using AlertApp.Model;
 using AlertApp.Model.Api;
 using AlertApp.Pages;
-using AlertApp.Services.Community;
 using AlertApp.Services.Contacts;
 using AlertApp.Services.Settings;
 using Plugin.Permissions;
@@ -19,66 +18,54 @@ using Xamarin.Forms;
 
 namespace AlertApp.ViewModels
 {
-    public class MyCommunityPageViewModel : BaseViewModel, IHaveContacts
+    public class WhoAlertsMePageViewModel : BaseViewModel, IHaveContacts
     {
+        #region Properties
+        private ObservableCollection<Contact> _AlertMeContacts;
+        public ObservableCollection<Contact> AlertMeContacts
+        {
+            get
+            {
+                if (_AlertMeContacts == null)
+                {
+                    _AlertMeContacts = new ObservableCollection<Contact>();
+                }
+                return _AlertMeContacts;
+            }
+            set
+            {
+                _AlertMeContacts = value;
+                OnPropertyChanged("AlertMeContacts");
+                OnPropertyChanged("HasContacts");
+            }
+        }
+
+        public bool HasContacts => AlertMeContacts == null || AlertMeContacts.Count == 0;
+
+        #endregion
+
         #region Services
         readonly IContactsService _contactsService;
         readonly ILocalSettingsService _localSettingsService;
         readonly IContactProfileImageProvider _contactProfileImageProvider;
         #endregion
 
-        #region Properties
-        private ObservableCollection<Contact> _Community;
-        public ObservableCollection<Contact> Community
-        {
-            get
-            {
-                if (_Community == null)
-                {
-                    _Community = new ObservableCollection<Contact>();
-                }
-                return _Community;
-            }
-            set
-            {
-                _Community = value;
-                OnPropertyChanged("Community");
-                OnPropertyChanged("HasContacts");
-            }
-        }
-
-        public bool HasContacts => Community == null || Community.Count == 0;
-
-        #endregion
-
         #region Commands
-        private ICommand _OpenContactsScreenCommand;
-        public ICommand OpenContactsScreenCommand
+
+        private ICommand _GetAlertMeCommand;
+        public ICommand GetAlertMeCommand
         {
             get
             {
-                return _OpenContactsScreenCommand ?? (_OpenContactsScreenCommand = new Command(OpenAddContactsPage, () =>
+                return _GetAlertMeCommand ?? (_GetAlertMeCommand = new Command(GetAlertMe, () =>
                 {
                     return !Busy;
                 }));
             }
         }
-
-        private ICommand _GetCommunityCommand;
-        public ICommand GetCommunityCommand
-        {
-            get
-            {
-                return _GetCommunityCommand ?? (_GetCommunityCommand = new Command(GetCommunity, () =>
-                {
-                    return !Busy;
-                }));
-            }
-        }
-
         #endregion
 
-        public MyCommunityPageViewModel(IContactsService contactsService, ILocalSettingsService localSettingsService)
+        public WhoAlertsMePageViewModel(IContactsService contactsService, ILocalSettingsService localSettingsService)
         {
             _contactsService = contactsService;
             _localSettingsService = localSettingsService;
@@ -86,34 +73,64 @@ namespace AlertApp.ViewModels
             SetBusy(true);
         }
 
-        private void GetCommunity()
+        private void GetAlertMe()
         {
             SetBusy(true);
             MessagingCenter.Send((BaseViewModel)this, RefreshContactsEvent.Event, new RefreshContactsEvent { });
         }
 
-        private async void SetCommunity(Response<GetContactsResponse> webServiceContacts)
+        public async void NavigateToAcceptCommunityReqeustScreen(Contact contact)
+        {
+            SetBusy(true);
+            if (contact.ProfileImageUri != null)
+            {
+                var image = _contactProfileImageProvider.GetProfileImage(contact.ProfileImageUri);
+                contact.ProfileImage = image;
+            }
+
+            var modal = new CommunityRequestPage(contact);
+            modal.Disappearing += (sender2, e2) =>
+            {
+                SetBusy(false);
+                var vm = modal.BindingContext as CommunityRequestPageViewModel;
+                if (vm.HasChange)
+                {
+                    var parentPage = NavigationService.NavigationStack.LastOrDefault() as ManageContactsPage;
+                    if (parentPage != null)
+                        parentPage.RefreshContacts();
+
+                }
+            };
+            await NavigationService.PushModalAsync(modal);
+        }
+
+        private void Modal_Disappearing(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private async void SetAlertMeContacts(Response<GetContactsResponse> webServiceContacts)
         {
             if (webServiceContacts != null && webServiceContacts.IsOk)
             {
-                var community = webServiceContacts.Result.Contacts.Community;
+                var community = webServiceContacts.Result.Contacts.AlertMe;
                 if (community != null && community.Count > 0)
                 {
                     var addressBook = await GetAddressbook();
                     //search in addressBook for contacts
                     if (addressBook != null)
                     {
-                        Community.Clear();
+                        AlertMeContacts.Clear();
                         foreach (var item in community)
                         {
                             var addressBookItem = addressBook.Where(c => c.FormattedNumber == item.Cellphone).FirstOrDefault();
                             if (addressBookItem != null)
                             {
-                                Community.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage });
+                                AlertMeContacts.Add(new Contact { ProfileImageUri = addressBookItem.PhotoUri, Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage });
                             }
                             else
                             {
-                                Community.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, Stats = item.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") });
+                                AlertMeContacts.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, Stats = item.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") });
                             }
                         }
                         SetBusy(false);
@@ -121,10 +138,10 @@ namespace AlertApp.ViewModels
                     else
                     {
                         var contacts = community.Select(c => new Contact { Accepted = c.Accepted, Cellphone = c.Cellphone, Stats = c.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") }).ToList();
-                        Community.Clear();
+                        AlertMeContacts.Clear();
                         foreach (var item in contacts)
                         {
-                            Community.Add(item);
+                            AlertMeContacts.Add(item);
                         }
                         SetBusy(false);
                     }
@@ -133,6 +150,7 @@ namespace AlertApp.ViewModels
                 {
                     SetBusy(false);
                 }
+
             }
             else
             {
@@ -140,10 +158,6 @@ namespace AlertApp.ViewModels
             }
             OnPropertyChanged("HasContacts");
 
-        }
-        private async void OpenAddContactsPage()
-        {
-            await NavigationService.PushAsync(new AddContactPage(), true);
         }
 
         private async Task<List<ImportContact>> GetAddressbook()
@@ -177,27 +191,13 @@ namespace AlertApp.ViewModels
             return null;
         }
 
-        public async Task<bool> RemoveUser(Contact contact)
-        {
-            SetBusy(true);
-            SetBusy(false);
-            return true;
-
-        }
-        public async Task<bool> BlockUser(Contact contact)
-        {
-            SetBusy(true);
-            SetBusy(false);
-            return true;
-        }
         #region BaseViewModel
         public override void SetBusy(bool isBusy)
         {
             Device.BeginInvokeOnMainThread(() =>
             {
                 this.Busy = isBusy;
-                ((Command)OpenContactsScreenCommand).ChangeCanExecute();
-                ((Command)GetCommunityCommand).ChangeCanExecute();
+                ((Command)GetAlertMeCommand).ChangeCanExecute();
             });
         }
         #endregion
@@ -205,10 +205,9 @@ namespace AlertApp.ViewModels
         #region IHaveContacts
         public void SetContacts(Response<GetContactsResponse> response)
         {
-            SetCommunity(response);
+            SetAlertMeContacts(response);
         }
 
         #endregion
-
     }
 }

@@ -106,6 +106,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SOS.
+        /// </summary>
+        internal static string AlertSosTitle {
+            get {
+                return ResourceManager.GetString("AlertSosTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allways On.
         /// </summary>
         internal static string AllwaysOn {
@@ -147,6 +156,24 @@ namespace AlertApp.Resx {
         internal static string BlockRequest {
             get {
                 return ResourceManager.GetString("BlockRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By accepting.
+        /// </summary>
+        internal static string ByAccepting {
+            get {
+                return ResourceManager.GetString("ByAccepting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to will be able to alert you via this app whenever he&apos;s in need of help.
+        /// </summary>
+        internal static string ByAcceptingWillAbleToHelpYou {
+            get {
+                return ResourceManager.GetString("ByAcceptingWillAbleToHelpYou", resourceCulture);
             }
         }
         
@@ -313,11 +340,29 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IGNORE.
+        /// </summary>
+        internal static string IgnoreHelp {
+            get {
+                return ResourceManager.GetString("IgnoreHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ignore.
         /// </summary>
         internal static string IgnoreRequest {
             get {
                 return ResourceManager.GetString("IgnoreRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I WILL HELP.
+        /// </summary>
+        internal static string IWillHelp {
+            get {
+                return ResourceManager.GetString("IWillHelp", resourceCulture);
             }
         }
         
@@ -340,11 +385,38 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Community Request.
+        /// </summary>
+        internal static string NewCommunityRequestTitlePage {
+            get {
+                return ResourceManager.GetString("NewCommunityRequestTitlePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to wants you to participate in his community!.
+        /// </summary>
+        internal static string NewCommunityRequestWantParticipateMessage {
+            get {
+                return ResourceManager.GetString("NewCommunityRequestWantParticipateMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         internal static string NextRegistration {
             get {
                 return ResourceManager.GetString("NextRegistration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please check your internet connection..
+        /// </summary>
+        internal static string NoInternetConnection {
+            get {
+                return ResourceManager.GetString("NoInternetConnection", resourceCulture);
             }
         }
         

@@ -29,11 +29,17 @@ namespace AlertApp.Model.Api
 
         public ImageSource ProfileImage { get; set; }
 
+        public string ProfileImageUri { get; set; }
+
         #region Computed
         public Color BackgroundStatusColor => Accepted ? Color.Green : Color.Orange;
         public string Status => Accepted ? AppResources.Accepted : AppResources.Pending;
         public string FullName => String.Format("{0} {1}", FirstName, LastName);
         public string Title => !string.IsNullOrWhiteSpace(FullName) ? FullName : Cellphone;
+
+        public string NewRequestMessage => String.Format("{0} {1}", Title, AppResources.NewCommunityRequestWantParticipateMessage);
+
+        public string NewRequestMessage2 => String.Format("{0},{1} {2}", AppResources.ByAccepting, Title, AppResources.ByAcceptingWillAbleToHelpYou);
         #endregion
 
     }

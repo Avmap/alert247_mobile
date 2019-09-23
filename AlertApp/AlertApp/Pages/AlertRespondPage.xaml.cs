@@ -1,4 +1,5 @@
 ﻿using AlertApp.Infrastructure;
+using AlertApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,10 @@ namespace AlertApp.Pages
 		public AlertRespondPage (NotificationAction notificationAction)
 		{
 			InitializeComponent ();
-		}
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("notificationAction", notificationAction);
+            this.BindingContext = ViewModelLocator.Instance.Resolve<AlertRespondPageViewModel>(parameters);
+        }
        
     }
 }

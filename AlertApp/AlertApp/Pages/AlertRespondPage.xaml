@@ -3,13 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlertApp.Pages.AlertRespondPage"
              Navigation="{Binding NavigationService}" 
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"   
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              NavigationPage.HasNavigationBar="false"
              >
     <ContentPage.Content>
-        <StackLayout>
-            <Frame>
-                <Label HorizontalOptions="Center" VerticalOptions="Center">ALERT FALL</Label>
+        <StackLayout >
+            <Frame BackgroundColor="{StaticResource AlertButtonColor}">
+                <Label HorizontalOptions="Center" Style="{StaticResource Headline5Bold}" TextColor="White"  VerticalOptions="Center" Text="{Binding AlertTextTitle}"></Label>
             </Frame>
+            <StackLayout Margin="16,0,16,0" Orientation="Horizontal" VerticalOptions="Start">
+                <Image Source="empty_contact.png" HeightRequest="100" WidthRequest="100"></Image>
+                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                    <Label Style="{StaticResource Headline5Bold}" Text="{Binding ContactName}"></Label>
+                </StackLayout>
+            </StackLayout>
+            <maps:Map x:Name="map"  
+                  Margin="16,0,16,0"
+                  IsShowingUser="true"
+                  HasZoomEnabled="True"                                    
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand"
+                  MapType="Street" />
+            <StackLayout Margin="16,0,16,0" Orientation="Vertical" VerticalOptions="End">
+                <Button  Margin="0,0,0,16" Style="{StaticResource RegistrationButtonStyle}" BackgroundColor="{StaticResource AcceptButton}" Text="{infrastructure:Translate IWillHelp}" Command="{Binding AcceptCommand}" ></Button>
+                <Button  Margin="0,0,0,16" Style="{StaticResource RegistrationButtonStyle}" Text="{infrastructure:Translate IgnoreHelp}" Command="{Binding IgnoreCommand}" ></Button>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

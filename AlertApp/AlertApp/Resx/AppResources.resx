@@ -292,4 +292,28 @@
   <data name="UnableToGetLocationPermission" xml:space="preserve">
     <value>Unable to get location permission</value>
   </data>
+  <data name="NewCommunityRequestTitlePage" xml:space="preserve">
+    <value>New Community Request</value>
+  </data>
+  <data name="ByAccepting" xml:space="preserve">
+    <value>By accepting</value>
+  </data>
+  <data name="ByAcceptingWillAbleToHelpYou" xml:space="preserve">
+    <value>will be able to alert you via this app whenever he's in need of help</value>
+  </data>
+  <data name="NewCommunityRequestWantParticipateMessage" xml:space="preserve">
+    <value>wants you to participate in his community!</value>
+  </data>
+  <data name="NoInternetConnection" xml:space="preserve">
+    <value>Please check your internet connection.</value>
+  </data>
+  <data name="IgnoreHelp" xml:space="preserve">
+    <value>IGNORE</value>
+  </data>
+  <data name="IWillHelp" xml:space="preserve">
+    <value>I WILL HELP</value>
+  </data>
+  <data name="AlertSosTitle" xml:space="preserve">
+    <value>SOS</value>
+  </data>
 </root>

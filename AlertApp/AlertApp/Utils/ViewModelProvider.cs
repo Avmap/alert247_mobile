@@ -22,11 +22,6 @@ namespace AlertApp.Utils
             return new SelectLanguagePageModel(provideLocalSettingsService());
         }
 
-        internal static EnterMobileNumberPageModel EnterMobileNumberViewModel()
-        {
-            return new EnterMobileNumberPageModel();
-        }
-
         internal static EnterActivationCodePageModel EnterActivationCodeViewModel(string mobilenumber)
         {
             return new EnterActivationCodePageModel(provideRegistrationService(), provideLocalSettingsService(), mobilenumber);

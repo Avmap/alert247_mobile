@@ -16,5 +16,7 @@ namespace AlertApp.Services.Cryptography
         string AesDecrypt(string encrypteddata,string key);
         string AesEncrypt(string plainText, string key);
         Task<AlertRecipient> GetAlertRecipient(string senderProfileData,Contact recipient);
+
+        Task<Dictionary<string,string>> GetAlertSenderProfileData(string encryptedProfileData, string fileKey);
     }
 }

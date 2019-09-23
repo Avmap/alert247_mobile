@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using AlertApp.Droid;
 using AlertApp.Infrastructure;
+using AlertApp.Model;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -16,6 +18,8 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Firebase.Messaging;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
 
 namespace AlertApp.Android
@@ -31,6 +35,10 @@ namespace AlertApp.Android
         public const string ACTION_OPEN_SOS = "ACTION.OPEN_SOS_ALERT";
         public const string EXTRA_PROFILE_DATA = "EXTRA_PROFILE_DATA";
         public const string EXTRA_FILE_KEY = "EXTRA_FILE_KEY";
+        public const string EXTRA_NOTIFICATION_ID = "EXTRA_NOTIFICATION_ID";
+        public const string EXTRA_POSITION = "EXTRA_POSITION";
+        public const string EXTRA_ALERT_TYPE = "EXTRA_ALERT_TYPE";
+
 
         /**
          * Called when message is received.
@@ -38,43 +46,37 @@ namespace AlertApp.Android
 
         public override void OnMessageReceived(RemoteMessage message)
         {
-            // TODO(developer): Handle FCM messages here.
-            // If the application is in the foreground handle both data and notification messages here.
-            // Also if you intend on generating your own notifications as a result of a received FCM
-            // message, here is where that should be initiated. See sendNotification method below.
-            //handle messages when foreground and send from firebase console
+
             try
             {
 
-                //  if (message.GetNotification() != null && message.Data != null)
                 if (message.Data != null)
                 {
-                    // Log.Debug(TAG, "From: " + message.From);
-                    //  Log.Debug(TAG, "Notification Message Body: " + message.GetNotification().Body);
-                    //  SendNotification(message.GetNotification().Title ?? "FCM message", message.GetNotification().Body ?? "");
 
                     string msgT = "";
                     message.Data.TryGetValue("title", out msgT);
+
                     string msgB = "";
                     message.Data.TryGetValue("body", out msgB);
 
-                    string type = "";
-                    message.Data.TryGetValue("type", out type);
+                    string messageType = "";
+                    message.Data.TryGetValue("messageType", out messageType);
 
                     string profiledata = "";
-                    message.Data.TryGetValue("profile_data", out profiledata);
+                    message.Data.TryGetValue("profiledata", out profiledata);
 
                     string filekey = "";
                     message.Data.TryGetValue("filekey", out filekey);
 
-                    if (!string.IsNullOrWhiteSpace(msgT) || !string.IsNullOrWhiteSpace(msgB))
-                        SendAlertNotification(msgT ?? "", msgB ?? "", profiledata ?? "", filekey ?? "");
+                    string alertType = "";
+                    message.Data.TryGetValue("alertType", out alertType);
 
-                    //where to send the message ???? in Activity maybe/
-                    //MessagingCenter.Send<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString(), message);
+                    string position = "";
+                    message.Data.TryGetValue("position", out position);
 
-                    //Handler h = new Handler(Looper.MainLooper);
-                    //h.Post(() => showAlert());
+                    //manual sos alert
+                    if (!string.IsNullOrWhiteSpace(messageType) && messageType.Equals("alert") && !string.IsNullOrWhiteSpace(alertType) && alertType == "1")
+                        SendAlertNotification(msgT ?? "", msgB ?? "", profiledata ?? "", filekey ?? "", messageType, alertType,position);
 
                 }
 
@@ -125,12 +127,6 @@ namespace AlertApp.Android
             //mWindowManager.addView(mView, mLayoutParams);
         }
 
-        void SaveNotificationToDatabase(string title, string message)
-        {
-
-        }
-
-
         void SendNotification(string title, string messageBody)
         {
             PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
@@ -176,16 +172,16 @@ namespace AlertApp.Android
             notificationManager.Notify(notificationID /* ID of notification */, notificationBuilder.Build());
         }
 
-        void SendAlertNotification(string title, string messageBody, string profiledata, string fileKey)
+        void SendAlertNotification(string title, string messageBody, string profiledata, string fileKey, string messageType, string alertType,string position)
         {
+            int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
             //create wake lock
             PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
             PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, WakeLock);
             wl.SetReferenceCounted(false);
             wl.Acquire(8000);
 
-            Bitmap bm = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.icon);
-
+            Bitmap bm = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.icon);            
             //create pending intent action
             var intent = new Intent(this, typeof(MainActivity));
             //here we can send custom actions depends on notification content and type.
@@ -193,6 +189,9 @@ namespace AlertApp.Android
             intent.SetAction(ACTION_OPEN_SOS + Java.Lang.JavaSystem.CurrentTimeMillis());
             intent.PutExtra(EXTRA_FILE_KEY, fileKey);
             intent.PutExtra(EXTRA_PROFILE_DATA, profiledata);
+            intent.PutExtra(EXTRA_NOTIFICATION_ID, notificationID);
+            intent.PutExtra(EXTRA_POSITION, position);
+            intent.PutExtra(EXTRA_ALERT_TYPE, Int32.Parse(alertType));
 
             var pendingIntent = PendingIntent.GetActivity(this, 0 /* Request code */, intent, PendingIntentFlags.UpdateCurrent);
 
@@ -202,7 +201,7 @@ namespace AlertApp.Android
                 .SetContentTitle(title)
                 .SetContentText(messageBody)
                 .SetStyle(new NotificationCompat.BigTextStyle().BigText(messageBody))
-                .SetAutoCancel(true)
+                .SetOngoing(true)
                 .SetSound(defaultSoundUri)
                 .SetContentIntent(pendingIntent);
             if (bm != null)
@@ -221,8 +220,29 @@ namespace AlertApp.Android
             {
                 notificationBuilder.SetPriority((int)NotificationPriority.Max);
             }
-            int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
+
             notificationManager.Notify(notificationID /* ID of notification */, notificationBuilder.Build());
+        }
+
+        private async Task<ImportContact> GetContact(string cellPhone)
+        {
+            var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
+            if (contactPermissionStatus == PermissionStatus.Granted)
+            {
+                var contacts = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
+                if (contacts != null)
+                {
+                    var result = new List<ImportContact>();
+                    var contact = contacts.Where(c => c.Number == cellPhone).FirstOrDefault();
+                    if (contact != null)
+                    {
+                        IContactProfileImageProvider _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
+                        return new ImportContact(contact, _contactProfileImageProvider);
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

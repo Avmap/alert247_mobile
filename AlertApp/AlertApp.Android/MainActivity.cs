@@ -33,34 +33,41 @@ namespace AlertApp.Droid
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
-            
+
             Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
             CarouselViewRenderer.Init();
             LoadApplication(new App());
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
-            //Firebase.FirebaseApp.InitializeApp(this);
-            var action = Intent.Action;
-            handleIntentActions(action, Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_FILE_KEY), Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_PROFILE_DATA),Intent.Flags);
 
-          //  var token = Firebase.FirebaseApp.Instance.GetToken(true);
+            var action = Intent.Action;
+            handleIntentActions(
+            action,
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_FILE_KEY),
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_PROFILE_DATA),
+            Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_ID, 0),
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_POSITION),
+            Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TYPE, 0),
+            Intent.Flags);
+
         }
 
         protected override void OnResume()
         {
             base.OnResume();
-            
+
         }
 
-        private void handleIntentActions(string action, string fileKey, string profiledata, ActivityFlags flags)
+        private void handleIntentActions(string action, string fileKey, string profiledata, int notificationId, string position, int alertType, ActivityFlags flags)
         {
             if (action != null && action.Contains(AlertFirebaseMessagingService.ACTION_OPEN_SOS) && !flags.HasFlag(ActivityFlags.LaunchedFromHistory))
             {
                 var notificationData = new NotificationAction();
                 notificationData.Type = NotificationAction.ActionType.Sos;
-                notificationData.Data = new AlertNotificationData { FileKey = fileKey, ProfileData = profiledata };
-                MessagingCenter.Send<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString(), notificationData);                           
+                notificationData.NotificationId = notificationId;
+                notificationData.Data = new AlertNotificationData { FileKey = fileKey, ProfileData = profiledata, Position = position, AlertType = alertType };
+                MessagingCenter.Send<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString(), notificationData);
                 Xamarin.Forms.Application.Current.MainPage.Navigation.PushModalAsync(new AlertRespondPage(notificationData));
                 Intent = null;
             }
@@ -72,8 +79,15 @@ namespace AlertApp.Droid
             Intent = intent;
             //hanlde action from notification click.
             var action = intent.Action;
-            handleIntentActions(action, intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_FILE_KEY), intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_PROFILE_DATA), intent.Flags);
-            
+            handleIntentActions(
+        action,
+        Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_FILE_KEY),
+        Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_PROFILE_DATA),
+        Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_ID, 0),
+        Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_POSITION),
+        Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TYPE, 0),
+        Intent.Flags);
+
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] global::Android.Content.PM.Permission[] grantResults)

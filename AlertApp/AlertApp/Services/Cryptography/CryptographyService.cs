@@ -12,6 +12,7 @@ using System.Diagnostics;
 using static PCLCrypto.WinRTCrypto;
 using ICryptoTransform = System.Security.Cryptography.ICryptoTransform;
 using AlertApp.Model.Api;
+using Newtonsoft.Json;
 
 namespace AlertApp.Services.Cryptography
 {
@@ -302,6 +303,36 @@ namespace AlertApp.Services.Cryptography
             catch (Exception ex)
             {
 
+            }
+            return null;
+        }
+
+        public async Task<Dictionary<string, string>> GetAlertSenderProfileData(string encryptedProfileData, string fileKey)
+        {
+            try
+            {
+                var enctyptedPrivateKey = await _localSettingsService.GetPrivateKey();
+                var userPin = await _localSettingsService.GetApplicationPin();
+
+                var decryptedPrivateKey = AesDecrypt(enctyptedPrivateKey, userPin);
+
+                var privateKey = Convert.FromBase64String(decryptedPrivateKey);
+
+                var asymmAlgorithm = AsymmetricKeyAlgorithmProvider.OpenAlgorithm(PCLCrypto.AsymmetricAlgorithm.RsaPkcs1);
+                ICryptographicKey privateKeyDecryptor = asymmAlgorithm.ImportKeyPair(privateKey, CryptographicPrivateKeyBlobType.Pkcs1RsaPrivateKey);
+
+                var fileKeyString = Convert.FromBase64String(fileKey);
+
+                byte[] plaintextFileKey = WinRTCrypto.CryptographicEngine.Decrypt(privateKeyDecryptor, fileKeyString);                
+
+                string descryptedProfileData= AesDecrypt(encryptedProfileData, Encoding.UTF8.GetString(plaintextFileKey));
+                
+                return JsonConvert.DeserializeObject<Dictionary<string, string>>(descryptedProfileData);
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
             }
             return null;
         }

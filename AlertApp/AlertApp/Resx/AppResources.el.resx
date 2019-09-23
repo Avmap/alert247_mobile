@@ -298,4 +298,28 @@
   <data name="UnableToGetLocationPermission" xml:space="preserve">
     <value>Unable to get location permission</value>
   </data>
+  <data name="NewCommunityRequestTitlePage" xml:space="preserve">
+    <value>Νέο αίτημα</value>
+  </data>
+  <data name="ByAccepting" xml:space="preserve">
+    <value>Αν αποδεχτείς</value>
+  </data>
+  <data name="ByAcceptingWillAbleToHelpYou" xml:space="preserve">
+    <value>θα μπορεί να σε ειδοποιεί αν βρίσκεται σε κίνδυνο.</value>
+  </data>
+  <data name="NewCommunityRequestWantParticipateMessage" xml:space="preserve">
+    <value>θέλει να συμμετάσχεις στην κοινότητα του.</value>
+  </data>
+  <data name="NoInternetConnection" xml:space="preserve">
+    <value>Δεν υπάρχει σύνδεση.</value>
+  </data>
+  <data name="AlertSosTitle" xml:space="preserve">
+    <value>SOS</value>
+  </data>
+  <data name="IgnoreHelp" xml:space="preserve">
+    <value>ΑΓΝΟΗΣΗ</value>
+  </data>
+  <data name="IWillHelp" xml:space="preserve">
+    <value>ΘΑ ΒΟΗΘΗΣΩ</value>
+  </data>
 </root>

@@ -16,6 +16,14 @@ namespace AlertApp.Model.Api
             public const string Bool = "bool";
             public const string Boolean = "boolean";
         }
+        public static class Name
+        {
+            public const string FullName = "fullname";
+            public const string FirstName = "firstname";
+            public const string Surname = "surname";
+            public const string Area = "area";
+            public const string BirthDate = "birthdate";            
+        }
 
         [DataMember(Name = "field")]
         public string FieldName { get; set; }
@@ -24,4 +32,6 @@ namespace AlertApp.Model.Api
         [DataMember(Name = "labels")]
         public Dictionary<string, string> Labels { get; set; }
     }
+
+
 }

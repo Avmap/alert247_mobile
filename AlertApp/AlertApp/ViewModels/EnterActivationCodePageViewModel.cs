@@ -276,7 +276,7 @@ namespace AlertApp.ViewModels
             }
             else if (!response.IsOk && !response.IsOnline)
             {
-                showOKMessage(AppResources.Error, "Please check your internet connection.");
+                showOKMessage(AppResources.Error, AppResources.NoInternetConnection);
                 ResetCounter();
             }
             SetBusy(false);

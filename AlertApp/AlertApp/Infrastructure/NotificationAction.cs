@@ -10,6 +10,7 @@ namespace AlertApp.Infrastructure
      
         public object Data { get; set; }
 
+        public int NotificationId { get; set; }
 
         public enum ActionType { Sos }
     }

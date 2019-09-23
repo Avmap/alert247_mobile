@@ -1,4 +1,6 @@
-﻿using AlertApp.ViewModels;
+﻿using AlertApp.MessageCenter;
+using AlertApp.Model.Api;
+using AlertApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,8 @@ namespace AlertApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MyCommunityPage : ContentPage
-    {     
+    {
+        private Contact ClickedContact { get; set; }
         public MyCommunityPage()
         {
             InitializeComponent();
@@ -24,7 +27,12 @@ namespace AlertApp.Pages
 
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            ShowBottomSheet();
+            var vm = this.BindingContext as MyCommunityPageViewModel;
+            if (!vm.Busy)
+            {
+                ClickedContact = e.Item as Contact;
+                ShowBottomSheet();
+            }            
         }
 
         private async void ShowBottomSheet()
@@ -33,14 +41,14 @@ namespace AlertApp.Pages
             //if (popupLoginView.TranslationY == -mainDisplayInfo.Height)
             if (bottomSheet.TranslationY == mainDisplayInfo.Height)
             {
-                shadow.IsVisible = true;                
+                shadow.IsVisible = true;
                 bottomSheet.IsVisible = true;
                 //  popupLoginView.TranslationY = 0;
                 await bottomSheet.TranslateTo(0, 0, 100);//, Easing.BounceIn
             }
             else
             {
-                shadow.IsVisible = false;                
+                shadow.IsVisible = false;
                 await bottomSheet.TranslateTo(bottomSheet.TranslationX, mainDisplayInfo.Height, 100);
                 //popupLoginView.TranslationY = -mainDisplayInfo.Height;
                 bottomSheet.IsVisible = false;
@@ -49,7 +57,26 @@ namespace AlertApp.Pages
         private void ShadowClicked(object sender, EventArgs e)
         {
             ShowBottomSheet();
-        }        
+        }
+        private void OnRemoveUserClick(object sender, EventArgs e)
+        {            
+            var vm = this.BindingContext as MyCommunityPageViewModel;
+            Task.Run(async () =>
+            {
+                await vm.RemoveUser(ClickedContact);
+            });
+            ShowBottomSheet();
+        }
+        private void OnBlockUserClick(object sender, EventArgs e)
+        {            
+            var vm = this.BindingContext as MyCommunityPageViewModel;
+            Task.Run(async () =>
+            {
+                await vm.BlockUser(ClickedContact);
+            });
+            ShowBottomSheet();
+        }
+
         protected override bool OnBackButtonPressed()
         {
             if (bottomSheet.IsVisible)
@@ -61,7 +88,5 @@ namespace AlertApp.Pages
             return base.OnBackButtonPressed();
         }
 
-      
-        
     }
 }

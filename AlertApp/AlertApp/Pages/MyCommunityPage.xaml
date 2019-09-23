@@ -70,6 +70,9 @@
             <ContentView x:Name="bottomSheet" IsVisible="True" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0, 1, 1,200" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional">
                 <StackLayout Orientation="Vertical">
                     <StackLayout Orientation="Horizontal" Margin="16,0,0,0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnRemoveUserClick"/>
+                        </StackLayout.GestureRecognizers>
                         <Image WidthRequest="24" HeightRequest="24" HorizontalOptions="Center" VerticalOptions="Center" Source="delete.png"/>
                         <StackLayout  Margin="16,8,0,0" Orientation="Vertical" MinimumHeightRequest="200" >
                             <Label HorizontalOptions="Start" Style="{StaticResource Subtitle1Bold}" Text="Remove this user" ></Label>
@@ -77,6 +80,9 @@
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" Margin="16,0,0,0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBlockUserClick" />
+                        </StackLayout.GestureRecognizers>
                         <Image WidthRequest="24" HeightRequest="24" HorizontalOptions="Center" VerticalOptions="Center" Source="delete.png"/>
                         <StackLayout  Margin="16,8,0,0" Orientation="Vertical" MinimumHeightRequest="200" >
                             <Label HorizontalOptions="Start" Style="{StaticResource Subtitle1Bold}" Text="Block this user"></Label>

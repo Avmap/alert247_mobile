@@ -8,5 +8,8 @@ namespace AlertApp.Model
     {
         public string FileKey { get; set; }
         public string ProfileData { get; set; }
+        public string Cellphone { get; set; }
+        public string Position { get; set; }
+        public int AlertType { get; set; }
     }
 }

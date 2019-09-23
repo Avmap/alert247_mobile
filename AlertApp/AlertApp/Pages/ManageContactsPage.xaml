@@ -10,6 +10,6 @@
     <!--<pages:SuggestionsPage/>-->
     <pages:MyCommunityPage/>
     <pages:DependandsPage/>
-    <!--<pages:WhoAlertsMePage/>-->
+    <pages:WhoAlertsMePage/>
        
 </TabbedPage>
