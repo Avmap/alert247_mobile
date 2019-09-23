@@ -197,8 +197,9 @@ namespace AlertApp.Android
 
             var defaultSoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
             var notificationBuilder = new NotificationCompat.Builder(this, Channelid)
-                .SetSmallIcon(Resource.Mipmap.icon)
+                .SetSmallIcon(Resource.Mipmap.launcher_foreground)
                 .SetContentTitle(title)
+                .SetColor(Resource.Color.colorAccent)
                 .SetContentText(messageBody)
                 .SetStyle(new NotificationCompat.BigTextStyle().BigText(messageBody))
                 .SetOngoing(true)
