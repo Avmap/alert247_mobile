@@ -64,13 +64,7 @@ namespace AlertApp.ViewModels
         {
             try
             {
-                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
-                if (locationPermissionStatus != PermissionStatus.Granted)
-                {
-                    var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location });
-                    locationPermissionStatus = results[Permission.Location];
-                }
-
+                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);              
                 if (locationPermissionStatus != PermissionStatus.Granted)
                 {                   
                     return new LocationResult { Ok = false, ErroMessage = "Permissions Denied. Unable to get location." };

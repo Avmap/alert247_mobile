@@ -9,7 +9,7 @@
             Title="{infrastructure:Translate AppName}"
             x:Class="AlertApp.Pages.MainTabbedPage">
 
-    <alertapp:MainPage Title="Home" Icon="baseline_home_black_24"/>
-    <ContentPage Title="Info" Icon="outline_info_black_24"/>
-    <alertapp:SettingsPage Title="Settings" Icon="outline_settings_black_24"/>
+    <alertapp:MainPage Title="{infrastructure:Translate HomeTab}" Icon="baseline_home_black_24"/>
+    <ContentPage Title="{infrastructure:Translate InfoTab}" Icon="outline_info_black_24"/>
+    <alertapp:SettingsPage Title="{infrastructure:Translate SettingsTab}" Icon="outline_settings_black_24"/>
 </TabbedPage>

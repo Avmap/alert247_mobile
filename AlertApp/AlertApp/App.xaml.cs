@@ -37,6 +37,7 @@ namespace AlertApp
             var isUserRegistered = IsRegister().Result;
             if (!isUserRegistered)
             {
+                Preferences.Set(Settings.AlwaysOn, true);
                 var languageService = DependencyService.Get<ILocalize>();
                 if (languageService != null)
                 {
@@ -46,7 +47,7 @@ namespace AlertApp
                         Preferences.Set(Settings.SelectedLanguage, systemlanguage.Name);
                     }
                 }
-                MainPage = new NavigationPage(new EnterApplicationPinCodePage());
+                MainPage = new NavigationPage(new SelectLanguagePage());
             }
             else
             {

@@ -17,10 +17,8 @@ namespace AlertApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SendingAlertPage : ContentPage
     {
-
-        volatile int timerRunMaxTimes = 12;
-        // volatile int timerRunTimes = 0;
-        volatile int timerRunTimes = 10;
+                
+        volatile int timerRunTimes = 11;
         volatile bool stop = false;
         Timer timer = null;
         string applicationPin;
@@ -51,7 +49,7 @@ namespace AlertApp.Pages
         private async void StartTimer()
         {
             applicationPin = await ((ISendAlert)this.BindingContext).GetApplicationPin();
-            for (int i = timerRunTimes; i < 11; i++)
+            for (int i = 0; i < 11; i++)
             {
                 if (!stop)
                 {
@@ -86,6 +84,69 @@ namespace AlertApp.Pages
                 stop = true;                
                 await this.Navigation.PopAsync();
             }
+        }
+
+        private void Pin1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    Pin2.Focus();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+        private void Pin2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    Pin3.Focus();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+        private void Pin3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    Pin4.Focus();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+        private async void Pin4_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                string userInput = String.Format("{0}{1}{2}{3}", Pin1.Text, Pin2.Text, Pin3.Text, Pin4.Text);
+                if (!string.IsNullOrWhiteSpace(e.NewTextValue) && userInput.Equals(applicationPin))
+                {
+                    stop = true;
+                    await this.Navigation.PopAsync();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
     }
 }

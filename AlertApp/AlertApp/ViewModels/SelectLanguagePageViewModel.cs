@@ -5,6 +5,8 @@ using AlertApp.Pages;
 using AlertApp.Services.Settings;
 using AlertApp.Utils;
 using Plugin.FirebasePushNotification;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -112,13 +114,47 @@ namespace AlertApp.ViewModels
         }
 
         public async void Continue()
-        {          
+        {
+            await RequestPermissions();
             _localSettingsService.SaveSelectedLanguage(Language.SupportedLanguages[LanguageSelectedIndex].NetLanguageName);            
             CultureInfo ci = new CultureInfo(Language.SupportedLanguages[LanguageSelectedIndex].NetLanguageName);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             Resx.AppResources.Culture = ci;
             await NavigationService.PushAsync(new EnterMobileNumberPage(), false);
+        }
+
+        private async Task<LocationResult> RequestPermissions()
+        {
+            try
+            {
+                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
+                if (locationPermissionStatus != PermissionStatus.Granted || contactPermissionStatus != PermissionStatus.Granted)
+                {
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location,Permission.Contacts });                    
+                }
+
+                        
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Handle not supported on device exception
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                // Handle not enabled on device exception
+            }
+            catch (PermissionException pEx)
+            {
+                // Handle permission exception
+            }
+            catch (Exception ex)
+            {
+                // Unable to get location
+            }
+            //SetBusy(false);
+            return new LocationResult { Ok = false };
         }
 
         #region BaseViewModel

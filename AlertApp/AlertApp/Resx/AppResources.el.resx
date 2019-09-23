@@ -124,7 +124,7 @@
     <value>Εφαρμογή</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Alert247</value>
+    <value>Alert 24/7</value>
   </data>
   <data name="BackRegistration" xml:space="preserve">
     <value>Πίσω</value>
@@ -321,5 +321,14 @@
   </data>
   <data name="IWillHelp" xml:space="preserve">
     <value>ΘΑ ΒΟΗΘΗΣΩ</value>
+  </data>
+  <data name="HomeTab" xml:space="preserve">
+    <value>Αρχική</value>
+  </data>
+  <data name="InfoTab" xml:space="preserve">
+    <value>Πληροφορίες</value>
+  </data>
+  <data name="SettingsTab" xml:space="preserve">
+    <value>Ρυθμίσεις</value>
   </data>
 </root>

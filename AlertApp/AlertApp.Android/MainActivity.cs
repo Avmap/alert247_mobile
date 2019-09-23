@@ -41,6 +41,9 @@ namespace AlertApp.Droid
             LoadApplication(new App());
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
+            
+            Window.SetFlags(WindowManagerFlags.KeepScreenOn, WindowManagerFlags.KeepScreenOn);
+
             var action = Intent.Action;
             handleIntentActions(
             action,

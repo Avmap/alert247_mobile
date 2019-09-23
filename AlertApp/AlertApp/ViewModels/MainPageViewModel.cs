@@ -94,7 +94,7 @@ namespace AlertApp.ViewModels
         }
 
         volatile bool stop = false;
-        volatile int seconds = 1;
+        volatile int seconds = 5;
         #endregion
 
         public MainPageViewModel(IUserProfileService userProfileService, ILocalSettingsService localSettingsService)
@@ -108,8 +108,7 @@ namespace AlertApp.ViewModels
         {
             ShowCancelButton = true;
             stop = false;
-            //StartTimer();
-            await NavigationService.PushAsync(new SendingAlertPage(Model.AlertType.UserAlert), true);
+            StartTimer();            
         }
         private async void CancelSendAlert()
         {

@@ -124,7 +124,7 @@
     <value>Application</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Alert247</value>
+    <value>Alert 24/7</value>
   </data>
   <data name="BackRegistration" xml:space="preserve">
     <value>Back</value>
@@ -315,5 +315,14 @@
   </data>
   <data name="AlertSosTitle" xml:space="preserve">
     <value>SOS</value>
+  </data>
+  <data name="HomeTab" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="InfoTab" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="SettingsTab" xml:space="preserve">
+    <value>Settings</value>
   </data>
 </root>

@@ -133,7 +133,7 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alert247.
+        ///   Looks up a localized string similar to Alert 24/7.
         /// </summary>
         internal static string AppName {
             get {
@@ -331,6 +331,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        internal static string HomeTab {
+            get {
+                return ResourceManager.GetString("HomeTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ignored.
         /// </summary>
         internal static string Ignored {
@@ -354,6 +363,15 @@ namespace AlertApp.Resx {
         internal static string IgnoreRequest {
             get {
                 return ResourceManager.GetString("IgnoreRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Info.
+        /// </summary>
+        internal static string InfoTab {
+            get {
+                return ResourceManager.GetString("InfoTab", resourceCulture);
             }
         }
         
@@ -525,6 +543,15 @@ namespace AlertApp.Resx {
         internal static string SendingAlertIn {
             get {
                 return ResourceManager.GetString("SendingAlertIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string SettingsTab {
+            get {
+                return ResourceManager.GetString("SettingsTab", resourceCulture);
             }
         }
         
