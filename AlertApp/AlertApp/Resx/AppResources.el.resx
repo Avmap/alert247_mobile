@@ -358,4 +358,7 @@
   <data name="SendingAlert" xml:space="preserve">
     <value>Αποστολή Alert</value>
   </data>
+  <data name="BlockedUsersPage" xml:space="preserve">
+    <value>Αποκλεισμένοι</value>
+  </data>
 </root>

@@ -151,6 +151,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blocked.
+        /// </summary>
+        internal static string BlockedUsersPage {
+            get {
+                return ResourceManager.GetString("BlockedUsersPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Block.
         /// </summary>
         internal static string BlockRequest {

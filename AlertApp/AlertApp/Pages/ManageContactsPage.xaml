@@ -6,10 +6,10 @@
              x:Class="AlertApp.Pages.ManageContactsPage"              
              Title="{infrastructure:Translate ManageContacts}"
             >
-  <!--Pages can be added as references or inline-->
-    <!--<pages:SuggestionsPage/>-->
+
     <pages:MyCommunityPage/>
     <pages:DependandsPage/>
     <pages:WhoAlertsMePage/>
+    <pages:BlockedUsersPage/>
        
 </TabbedPage>

@@ -109,14 +109,13 @@ namespace AlertApp.ViewModels
             throw new NotImplementedException();
         }
 
-        private async void SetAlertMeContacts(Response<GetContactsResponse> webServiceContacts)
+        private async void SetAlertMeContacts(Response<GetContactsResponse> response, List<ImportContact> addressBook)
         {
-            if (webServiceContacts != null && webServiceContacts.IsOk)
+            if (response != null && response.IsOk)
             {
-                var community = webServiceContacts.Result.Contacts.AlertMe;
+                var community = response.Result.Contacts.AlertMe;
                 if (community != null && community.Count > 0)
-                {
-                    var addressBook = await GetAddressbook();
+                {                    
                     //search in addressBook for contacts
                     if (addressBook != null)
                     {
@@ -204,9 +203,9 @@ namespace AlertApp.ViewModels
         #endregion
 
         #region IHaveContacts
-        public void SetContacts(Response<GetContactsResponse> response)
+        public void SetContacts(Response<GetContactsResponse> response, List<ImportContact> addressBook)
         {
-            SetAlertMeContacts(response);
+            SetAlertMeContacts(response, addressBook);
         }
 
         #endregion

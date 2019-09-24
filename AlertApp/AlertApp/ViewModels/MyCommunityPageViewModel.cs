@@ -92,14 +92,13 @@ namespace AlertApp.ViewModels
             MessagingCenter.Send((BaseViewModel)this, RefreshContactsEvent.Event, new RefreshContactsEvent { });
         }
 
-        private async void SetCommunity(Response<GetContactsResponse> webServiceContacts)
+        private async void SetCommunity(Response<GetContactsResponse> response, List<ImportContact> addressBook)
         {
-            if (webServiceContacts != null && webServiceContacts.IsOk)
+            if (response != null && response.IsOk)
             {
-                var community = webServiceContacts.Result.Contacts.Community;
+                var community = response.Result.Contacts.Community;
                 if (community != null && community.Count > 0)
                 {
-                    var addressBook = await GetAddressbook();
                     //search in addressBook for contacts
                     if (addressBook != null)
                     {
@@ -146,38 +145,6 @@ namespace AlertApp.ViewModels
         {
             await NavigationService.PushAsync(new AddContactPage(), true);
         }
-
-        private async Task<List<ImportContact>> GetAddressbook()
-        {
-            var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
-            if (contactPermissionStatus != PermissionStatus.Granted)
-            {
-                var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Contacts });
-                contactPermissionStatus = results[Permission.Contacts];
-            }
-
-            if (contactPermissionStatus != PermissionStatus.Granted)
-            {
-                showOKMessage("Permissions Denied", "Unable get contacts.");
-                return null;
-            }
-            SetBusy(true);
-
-            var contacts = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
-            if (contacts != null)
-            {
-                var result = new List<ImportContact>();
-                foreach (var item in contacts.Where(c => c.Number != null).OrderBy(c => c.Name))
-                {
-                    result.Add(new ImportContact(item, _contactProfileImageProvider));
-                }
-                return result;
-
-            }
-
-            return null;
-        }
-
         public async Task<bool> RemoveUser(Contact contact)
         {
             SetBusy(true);
@@ -215,9 +182,9 @@ namespace AlertApp.ViewModels
         #endregion
 
         #region IHaveContacts
-        public void SetContacts(Response<GetContactsResponse> response)
+        public void SetContacts(Response<GetContactsResponse> response, List<ImportContact> addressBook)
         {
-            SetCommunity(response);
+            SetCommunity(response,addressBook);
         }
 
         #endregion

@@ -68,6 +68,7 @@ namespace AlertApp.ViewModels
             _unityContainer.RegisterType<ManageContactsPageViewModel>();
             _unityContainer.RegisterType<WhoAlertsMePageViewModel>();
             _unityContainer.RegisterType<AlertRespondPageViewModel>();
+            _unityContainer.RegisterType<BlockedUsersPageViewModel>();
 
         }
 

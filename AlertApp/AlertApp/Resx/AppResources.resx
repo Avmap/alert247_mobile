@@ -352,4 +352,7 @@
   <data name="SendingAlert" xml:space="preserve">
     <value>Sending alert</value>
   </data>
+  <data name="BlockedUsersPage" xml:space="preserve">
+    <value>Blocked</value>
+  </data>
 </root>

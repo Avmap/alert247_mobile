@@ -18,8 +18,12 @@ namespace AlertApp.Pages
     public partial class ManageContactsPage : TabbedPage
     {
         int tabsAdded = 0;
+        int tabsCount = 4;
+        readonly IContactProfileImageProvider _contactProfileImageProvider;
+        public int MyProperty { get; set; }
         public ManageContactsPage()
         {
+            _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
             this.BindingContext = ViewModelLocator.Instance.Resolve<ManageContactsPageViewModel>();
             InitializeComponent();
         }
@@ -55,7 +59,7 @@ namespace AlertApp.Pages
         {
             base.OnChildAdded(child);
             tabsAdded++;
-            if (tabsAdded == 3)
+            if (tabsAdded == tabsCount)
             {
                 RefreshContacts();
             }
@@ -65,15 +69,17 @@ namespace AlertApp.Pages
         {
             Task.Run(async () =>
             {
+                //IF WE ADD NEW TAB WE MUST CHANGE tabsCount PROPERTY !!!!!!OnChildAdded!!!!!!!!!
                 var vm = this.BindingContext as ManageContactsPageViewModel;
                 var response = await vm.GetContacts();
+                var addressBook = await ContactsHelp.GetAddressbook(_contactProfileImageProvider);
                 if (response != null)
                 {
                     foreach (var item in this.Children)
                     {
                         if (item.BindingContext is IHaveContacts)
                         {
-                            ((IHaveContacts)item.BindingContext).SetContacts(response);
+                            ((IHaveContacts)item.BindingContext).SetContacts(response,addressBook);
                         }
                     }
                 }

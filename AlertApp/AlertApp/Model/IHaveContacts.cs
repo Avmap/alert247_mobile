@@ -7,6 +7,6 @@ namespace AlertApp.Model
 {
     public interface IHaveContacts
     {
-        void SetContacts(Response<Api.GetContactsResponse> response);
+        void SetContacts(Response<Api.GetContactsResponse> response, List<ImportContact> addressBook);
     }
 }
