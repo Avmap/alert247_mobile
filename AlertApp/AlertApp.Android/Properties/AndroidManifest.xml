@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.00.17" package="gr.avmap.alert247" android:installLocation="internalOnly" android:versionCode="000017">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.00.18" package="gr.avmap.alert247" android:installLocation="internalOnly" android:versionCode="000018">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
 	<!--<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />-->
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
