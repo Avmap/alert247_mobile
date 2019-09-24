@@ -47,6 +47,7 @@ namespace AlertApp.ViewModels
             {
                 _Contacts = value;
                 OnPropertyChanged("Contacts");
+                OnPropertyChanged("FabVisibile");
             }
         }
         private ObservableCollection<ImportContact> _OriginalContacts;
@@ -59,6 +60,8 @@ namespace AlertApp.ViewModels
                 OnPropertyChanged("Original");
             }
         }
+
+        public bool FabVisibile { get { return !Busy && this.Contacts.Where(c => c.Selected).Count() > 0; } }
         #endregion
 
         #region Commands
@@ -214,8 +217,13 @@ namespace AlertApp.ViewModels
         }
         private void SelectContact(ImportContact contact)
         {
-            contact.Selected = !contact.Selected;
-            OnPropertyChanged("Contacts");
+            if (!contact.NeedsInvitation)
+            {
+                contact.Selected = !contact.Selected;
+                OnPropertyChanged("Contacts");
+                OnPropertyChanged("FabVisibile");
+            }
+
         }
         private async void AddContacts()
         {

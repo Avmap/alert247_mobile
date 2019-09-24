@@ -68,7 +68,7 @@
             </StackLayout>
             <infrastructure:LoadingIndicator x:Name="loadingIndicator" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
             <StackLayout AbsoluteLayout.LayoutBounds="1, 1" AbsoluteLayout.LayoutFlags="XProportional,YProportional">
-                <Button x:Name="fab" IsVisible="{Binding NotBusy}" Clicked="Fab_Clicked" BackgroundColor="{StaticResource AccentColor}"  Margin="0,0,16,16" Style="{StaticResource CircleButton}" Image="baseline_done_white_24.png" />
+                <Button x:Name="fab" IsVisible="{Binding FabVisibile}" Clicked="Fab_Clicked" BackgroundColor="{StaticResource AccentColor}"  Margin="0,0,16,16" Style="{StaticResource CircleButton}" Image="baseline_done_white_24.png" />
             </StackLayout>
         </AbsoluteLayout>
     </StackLayout>
