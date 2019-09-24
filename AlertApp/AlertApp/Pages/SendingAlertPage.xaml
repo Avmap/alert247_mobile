@@ -13,11 +13,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" BackgroundColor="{StaticResource AlertButtonColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Style="{StaticResource AlertLabel}" Text="{Binding AlertTypeLabel,Mode=TwoWay}" ></Label>
-            <ScrollView x:Name="scrollView"  Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <StackLayout x:Name="countdownStack"  Orientation="Vertical"  Spacing="5">
-                </StackLayout>
-            </ScrollView>
+            <Label Grid.Row="0" x:Name="alertLabel" BackgroundColor="{StaticResource AlertButtonColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource SosButton}" ></Label>
             <infrastructure:LoadingIndicator  Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
             <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                 <!--<Entry x:Name="pinEntry" Keyboard="Telephone" MaxLength="4" Style="{StaticResource Headline5BoldEntry}" TextChanged="PinEntry_TextChanged"  HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"></Entry>-->

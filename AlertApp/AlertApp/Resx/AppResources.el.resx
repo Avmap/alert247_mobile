@@ -331,4 +331,28 @@
   <data name="SettingsTab" xml:space="preserve">
     <value>Ρυθμίσεις</value>
   </data>
+  <data name="BlockUser" xml:space="preserve">
+    <value>Αποκλεισμός χρήστη</value>
+  </data>
+  <data name="BlockUserSubtitle" xml:space="preserve">
+    <value>Ο χρήστης δεν θα μπορεί να επικοινωνήσει μαζί σας..</value>
+  </data>
+  <data name="Invite" xml:space="preserve">
+    <value>Πρόσκληση</value>
+  </data>
+  <data name="RemoveUser" xml:space="preserve">
+    <value>Διαγραφή του χρήστη</value>
+  </data>
+  <data name="RemoveUserSubtitle" xml:space="preserve">
+    <value>Ο χρήστης θα διαγραφεί αλλά ...</value>
+  </data>
+  <data name="SearchBarPlaceHolder" xml:space="preserve">
+    <value>Αναζήτηση...</value>
+  </data>
+  <data name="SuccessAddContactMessage" xml:space="preserve">
+    <value>Η επαφή προστέθηκε επιτυχώς</value>
+  </data>
+  <data name="SuccessAddContactTitle" xml:space="preserve">
+    <value>Ειδοποίηση</value>
+  </data>
 </root>

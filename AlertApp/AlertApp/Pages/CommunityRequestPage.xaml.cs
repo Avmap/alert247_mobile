@@ -21,5 +21,14 @@ namespace AlertApp.Pages
             parameters.Add("contact", contact);
             this.BindingContext = ViewModelLocator.Instance.Resolve<CommunityRequestPageViewModel>(parameters);
         }
-	}
+
+        protected override bool OnBackButtonPressed()
+        {
+            var vm = this.BindingContext as CommunityRequestPageViewModel;
+            if (!vm.Busy)
+                return base.OnBackButtonPressed();
+            else
+                return false;
+        }
+    }
 }

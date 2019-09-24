@@ -181,5 +181,31 @@ namespace AlertApp.Services.Contacts
             }
             return res;
         }
+
+        public async Task<Response<bool>> RemoveContacts(string token, List<string> mobilephones)
+        {
+            var res = new Response<bool>();
+            try
+            {
+                var json = JsonConvert.SerializeObject(new AddContactBody { Token = token, MobileNumbers = mobilephones.ToArray() });
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("post/alert/removeContacts", content);
+                if (response.Content != null)
+                {
+                    var apiResponse = await response.Content.ReadAsStringAsync();
+                    if (apiResponse != null)
+                    {
+                        return JsonConvert.DeserializeObject<Response<bool>>(apiResponse);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                res.ErrorCode = ex.Message;
+                res.Status = "error";
+                res.IsOnline = false;
+            }
+            return res;
+        }
     }
 }

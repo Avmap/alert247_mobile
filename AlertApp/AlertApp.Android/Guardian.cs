@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Preferences;
 using Android.Runtime;
 using Android.Support.V4.App;
+using Android.Support.V4.Content;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -83,17 +84,19 @@ namespace AlertApp.Droid
             // The PendingIntent to launch activity.
             var activityPendingIntent = PendingIntent.GetActivity(this, 0, mainActivityIntent, PendingIntentFlags.UpdateCurrent);
 
-
+            int color = ContextCompat.GetColor(this, Resource.Color.notificationColor);
             builder
-                .AddAction(Resource.Mipmap.icon, "Open App",
+                //.AddAction(Resource.Mipmap.icon, "Open App",
+                //    activityPendingIntent)
+                .AddAction(0,"Open App",
                     activityPendingIntent)
-                //.AddAction(Resource.Mipmap.icon, "stop updates",
-                //    servicePendingIntent)
-                .SetContentText("Alert247")
+
+                .SetContentText("Alert 24/7")
                 .SetContentTitle("You are protected")
                 .SetOngoing(true)
+                .SetColor(color)
                 .SetPriority((int)NotificationPriority.High)
-                .SetSmallIcon(Resource.Mipmap.icon)
+                          .SetSmallIcon(Resource.Drawable.ic_stat_logo_icon_notification)
                 .SetTicker("ticker")
                 .SetWhen(JavaSystem.CurrentTimeMillis());
 

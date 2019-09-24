@@ -87,10 +87,8 @@ namespace AlertApp.ViewModels
             {
                 HasChange = true;
             }
-
-            await NavigationService.PopModalAsync();
-
             SetBusy(false);
+            await NavigationService.PopModalAsync();           
         }
 
         private async void BlockRequest()
@@ -101,10 +99,8 @@ namespace AlertApp.ViewModels
             {
                 HasChange = true;
             }
-
-            await NavigationService.PopModalAsync();
-
             SetBusy(false);
+            await NavigationService.PopModalAsync();           
         }
 
         private async void IgnoreRequest()
@@ -115,10 +111,8 @@ namespace AlertApp.ViewModels
             {
                 HasChange = true;
             }
-
-            await NavigationService.PopModalAsync();
-
             SetBusy(false);
+            await NavigationService.PopModalAsync();           
         }
         #region BaseViewModel
         public override void SetBusy(bool isBusy)

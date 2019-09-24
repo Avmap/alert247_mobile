@@ -131,6 +131,7 @@ namespace AlertApp.ViewModels
                 }
                 else
                 {
+                    Community.Clear();
                     SetBusy(false);
                 }
             }
@@ -180,13 +181,24 @@ namespace AlertApp.ViewModels
         public async Task<bool> RemoveUser(Contact contact)
         {
             SetBusy(true);
+            List<string> contacts = new List<string>();
+            contacts.Add(contact.Cellphone);
+            var response = await _contactsService.RemoveContacts(await _localSettingsService.GetAuthToken(), contacts);
+            if (response.IsOk)
+            {
+                GetCommunity();
+            }
             SetBusy(false);
             return true;
-
         }
         public async Task<bool> BlockUser(Contact contact)
         {
             SetBusy(true);
+            var response = await _contactsService.BlockAdd(await _localSettingsService.GetAuthToken(), contact.Cellphone);
+            if (response.IsOk)
+            {
+                GetCommunity();
+            }
             SetBusy(false);
             return true;
         }

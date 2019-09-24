@@ -52,6 +52,7 @@ namespace AlertApp.Droid
             Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_ID, 0),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_POSITION),
             Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TYPE, 0),
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_CELLPHONE),
             Intent.Flags);
 
         }
@@ -62,7 +63,7 @@ namespace AlertApp.Droid
 
         }
 
-        private void handleIntentActions(string action, string fileKey, string profiledata, int notificationId, string position, int alertType, ActivityFlags flags)
+        private void handleIntentActions(string action, string fileKey, string profiledata, int notificationId, string position, int alertType,string cellphone, ActivityFlags flags)
         {
             if (action != null && action.Contains(AlertFirebaseMessagingService.ACTION_OPEN_SOS) && !flags.HasFlag(ActivityFlags.LaunchedFromHistory))
             {
@@ -83,13 +84,14 @@ namespace AlertApp.Droid
             //hanlde action from notification click.
             var action = intent.Action;
             handleIntentActions(
-        action,
-        Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_FILE_KEY),
-        Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_PROFILE_DATA),
-        Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_ID, 0),
-        Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_POSITION),
-        Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TYPE, 0),
-        Intent.Flags);
+           action,
+           Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_FILE_KEY),
+           Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_PROFILE_DATA),
+           Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_ID, 0),
+           Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_POSITION),
+           Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TYPE, 0),
+           Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_CELLPHONE),
+           Intent.Flags);
 
         }
 

@@ -325,4 +325,28 @@
   <data name="SettingsTab" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="BlockUser" xml:space="preserve">
+    <value>Block this user</value>
+  </data>
+  <data name="BlockUserSubtitle" xml:space="preserve">
+    <value>This user will be no longer be able to contact you...</value>
+  </data>
+  <data name="Invite" xml:space="preserve">
+    <value>INVITE</value>
+  </data>
+  <data name="RemoveUser" xml:space="preserve">
+    <value>Remove this user</value>
+  </data>
+  <data name="RemoveUserSubtitle" xml:space="preserve">
+    <value>This user will be removed, but you can still...</value>
+  </data>
+  <data name="SearchBarPlaceHolder" xml:space="preserve">
+    <value>Search...</value>
+  </data>
+  <data name="SuccessAddContactMessage" xml:space="preserve">
+    <value>Contact added successfully.</value>
+  </data>
+  <data name="SuccessAddContactTitle" xml:space="preserve">
+    <value>Success</value>
+  </data>
 </root>

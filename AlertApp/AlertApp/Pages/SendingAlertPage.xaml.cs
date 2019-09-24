@@ -16,9 +16,8 @@ namespace AlertApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SendingAlertPage : ContentPage
-    {
-                
-        volatile int timerRunTimes = 11;
+    {        
+        volatile int seconds = 10;
         volatile bool stop = false;
         Timer timer = null;
         string applicationPin;
@@ -49,23 +48,15 @@ namespace AlertApp.Pages
         private async void StartTimer()
         {
             applicationPin = await ((ISendAlert)this.BindingContext).GetApplicationPin();
-            for (int i = 0; i < 11; i++)
+            for (int i = 0; i < seconds; i++)
             {
                 if (!stop)
                 {
-                    Debug.WriteLine("i = " + i + "  " + (60 - (i * 5)));
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        countdownStack.Children.Add(new Label
-                        {
-                            Text = sendingAlert + (60 - (i * 5)) + "\"",
-                            TextColor = Color.Black,
-                            FontSize = 22,
-                            HorizontalTextAlignment = TextAlignment.Center
-                        });
-                        scrollView.ScrollToAsync(0, scrollView.Height, false);
+                        alertLabel.Text = AppResources.SendingAlertIn + "\n" + (seconds - i);
                     });
-                    await Task.Delay(TimeSpan.FromSeconds(5));
+                    await Task.Delay(TimeSpan.FromSeconds(1));                    
                 }
                 if (stop)
                     i = 11;

@@ -14,6 +14,7 @@ using Android.Media;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V4.App;
+using Android.Support.V4.Content;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -38,7 +39,7 @@ namespace AlertApp.Android
         public const string EXTRA_NOTIFICATION_ID = "EXTRA_NOTIFICATION_ID";
         public const string EXTRA_POSITION = "EXTRA_POSITION";
         public const string EXTRA_ALERT_TYPE = "EXTRA_ALERT_TYPE";
-
+        public const string EXTRA_CELLPHONE = "EXTRA_CELLPHONE";
 
         /**
          * Called when message is received.
@@ -74,9 +75,14 @@ namespace AlertApp.Android
                     string position = "";
                     message.Data.TryGetValue("position", out position);
 
+                    string cellphone = "";
+                    message.Data.TryGetValue("cellphone", out cellphone);
+
+                    
+
                     //manual sos alert
                     if (!string.IsNullOrWhiteSpace(messageType) && messageType.Equals("alert") && !string.IsNullOrWhiteSpace(alertType) && alertType == "1")
-                        SendAlertNotification(msgT ?? "", msgB ?? "", profiledata ?? "", filekey ?? "", messageType, alertType,position);
+                        SendAlertNotification(msgT ?? "", msgB ?? "", profiledata ?? "", filekey ?? "", messageType, alertType,position,cellphone);
 
                 }
 
@@ -172,7 +178,7 @@ namespace AlertApp.Android
             notificationManager.Notify(notificationID /* ID of notification */, notificationBuilder.Build());
         }
 
-        void SendAlertNotification(string title, string messageBody, string profiledata, string fileKey, string messageType, string alertType,string position)
+        void SendAlertNotification(string title, string messageBody, string profiledata, string fileKey, string messageType, string alertType,string position,string cellphone)
         {
             int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
             //create wake lock
@@ -192,23 +198,26 @@ namespace AlertApp.Android
             intent.PutExtra(EXTRA_NOTIFICATION_ID, notificationID);
             intent.PutExtra(EXTRA_POSITION, position);
             intent.PutExtra(EXTRA_ALERT_TYPE, Int32.Parse(alertType));
+            intent.PutExtra(EXTRA_CELLPHONE, cellphone);
 
             var pendingIntent = PendingIntent.GetActivity(this, 0 /* Request code */, intent, PendingIntentFlags.UpdateCurrent);
-
+            int color = ContextCompat.GetColor(this, Resource.Color.notificationColor);
             var defaultSoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
             var notificationBuilder = new NotificationCompat.Builder(this, Channelid)
-                .SetSmallIcon(Resource.Mipmap.launcher_foreground)
+                .SetSmallIcon(Resource.Drawable.ic_stat_logo_icon_notification)
                 .SetContentTitle(title)
-                .SetColor(Resource.Color.colorAccent)
+                .SetColor(color)
                 .SetContentText(messageBody)
                 .SetStyle(new NotificationCompat.BigTextStyle().BigText(messageBody))
                 .SetOngoing(true)
                 .SetSound(defaultSoundUri)
                 .SetContentIntent(pendingIntent);
+
             if (bm != null)
             {
-                notificationBuilder.SetLargeIcon(bm);
+                //notificationBuilder.SetLargeIcon(bm);
             }
+
             var notificationManager = NotificationManager.FromContext(this);
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {

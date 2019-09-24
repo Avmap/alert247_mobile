@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="launcher_background">#FFFFFF</color>
-    <color name="colorPrimary">#800000</color>
-    <color name="colorPrimaryDark">#4f0000</color>
-    <color name="colorAccent">#b73d2a</color>
-    <color name="primaryTextColor">#ffffff</color>
-  
+  <color name="launcher_background">#FFFFFF</color>
+  <color name="colorPrimary">#800000</color>
+  <color name="colorPrimaryDark">#4f0000</color>
+  <color name="colorAccent">#b73d2a</color>
+  <color name="primaryTextColor">#ffffff</color>
+
+  <color name="notificationColor">#800000</color>
 </resources>

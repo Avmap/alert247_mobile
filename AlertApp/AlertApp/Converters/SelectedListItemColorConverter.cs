@@ -14,7 +14,7 @@ namespace AlertApp.Converters
             var selected = value as bool?;
             if (selected.HasValue && selected.Value)
             {
-                return Color.Beige;
+                return Color.FromHex("#b73d2a");
             }
             return Color.White;
         }

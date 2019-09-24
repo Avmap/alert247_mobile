@@ -207,8 +207,8 @@ namespace AlertApp.ViewModels
             {
                 await Share.RequestAsync(new ShareTextRequest
                 {
-                    Text = "https://play.google.com/store/apps/details?id=hotech.Merchandizer",
-                    Title = "Get Alert247 app",
+                    Text = "https://play.google.com/store/apps/details?id=gr.avmap.alert247",
+                    Title = "Get Alert 24/7 app",
                 });
             }
         }
@@ -265,7 +265,18 @@ namespace AlertApp.ViewModels
                 var addContactsResults = await _contactsService.AddContacts(userToken, new string[] { mobileNumber as string });
                 if (addContactsResults.IsOk)
                 {
+                    showOKMessage(AppResources.SuccessAddContactTitle, AppResources.SuccessAddContactMessage);
+                }
+                else
+                {
+                    if (!addContactsResults.IsOnline)
+                    {
 
+                    }
+                    else
+                    {
+
+                    }
                 }
                 SetBusy(false);
             }

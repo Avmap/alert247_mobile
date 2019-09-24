@@ -160,6 +160,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Block this user.
+        /// </summary>
+        internal static string BlockUser {
+            get {
+                return ResourceManager.GetString("BlockUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This user will be no longer be able to contact you....
+        /// </summary>
+        internal static string BlockUserSubtitle {
+            get {
+                return ResourceManager.GetString("BlockUserSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to By accepting.
         /// </summary>
         internal static string ByAccepting {
@@ -376,6 +394,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to INVITE.
+        /// </summary>
+        internal static string Invite {
+            get {
+                return ResourceManager.GetString("Invite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I WILL HELP.
         /// </summary>
         internal static string IWillHelp {
@@ -493,6 +520,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove this user.
+        /// </summary>
+        internal static string RemoveUser {
+            get {
+                return ResourceManager.GetString("RemoveUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This user will be removed, but you can still....
+        /// </summary>
+        internal static string RemoveUserSubtitle {
+            get {
+                return ResourceManager.GetString("RemoveUserSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resend Code.
         /// </summary>
         internal static string ResendCodeButton {
@@ -507,6 +552,15 @@ namespace AlertApp.Resx {
         internal static string SafetyRadius {
             get {
                 return ResourceManager.GetString("SafetyRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search....
+        /// </summary>
+        internal static string SearchBarPlaceHolder {
+            get {
+                return ResourceManager.GetString("SearchBarPlaceHolder", resourceCulture);
             }
         }
         
@@ -570,6 +624,24 @@ namespace AlertApp.Resx {
         internal static string SmsVerificationMessage {
             get {
                 return ResourceManager.GetString("SmsVerificationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact added successfully..
+        /// </summary>
+        internal static string SuccessAddContactMessage {
+            get {
+                return ResourceManager.GetString("SuccessAddContactMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success.
+        /// </summary>
+        internal static string SuccessAddContactTitle {
+            get {
+                return ResourceManager.GetString("SuccessAddContactTitle", resourceCulture);
             }
         }
         

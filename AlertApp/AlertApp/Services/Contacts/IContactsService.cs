@@ -14,5 +14,6 @@ namespace AlertApp.Services.Contacts
         Task<Response<bool>> AcceptAdd(string token, string mobilephone);
         Task<Response<bool>> IgnoreAdd(string token, string mobilephone);
         Task<Response<bool>> BlockAdd(string token, string mobilephone);
+        Task<Response<bool>> RemoveContacts(string token, List<string> mobilephones);        
     }
 }

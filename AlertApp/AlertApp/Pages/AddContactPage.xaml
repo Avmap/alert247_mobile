@@ -16,7 +16,7 @@
     <StackLayout Orientation="Vertical">
         <SearchBar x:Name="searchh"
                                Text="{Binding SearchText}"
-                               Placeholder="Search contact" 
+                               Placeholder="{infrastructure:Translate SearchBarPlaceHolder}" 
                                SearchCommandParameter="{Binding Text,Mode=TwoWay, Source={x:Reference searchh}}"
                                SearchCommand="{Binding FilterContactsCommand}">
         </SearchBar>
@@ -58,7 +58,7 @@
                                         <Frame.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding BindingContext.InviteCommand, Source={x:Reference contactList}}" CommandParameter="{Binding .}"  NumberOfTapsRequired="1" />
                                         </Frame.GestureRecognizers>
-                                        <Label Margin="5" HorizontalOptions="Center" BackgroundColor="Transparent" Text="INVITE" FontFamily="{StaticResource Regular}" />
+                                        <Label Margin="5" HorizontalOptions="Center" BackgroundColor="Transparent" Text="{infrastructure:Translate Invite}" FontFamily="{StaticResource Bold}" />
                                     </Frame>
                                 </Grid>
                             </ViewCell>

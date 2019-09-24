@@ -6,6 +6,7 @@ using AlertApp.Services.Cryptography;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -72,26 +73,41 @@ namespace AlertApp.ViewModels
 
         #region Services
         private readonly ICryptographyService _cryptographyService;
+        private readonly INotificationManager _notificationManager;
         #endregion
 
         public AlertRespondPageViewModel(ICryptographyService cryptographyService, NotificationAction notificationAction)
         {
             _cryptographyService = cryptographyService;
             _notificationAction = notificationAction;
-            SetProfileData();
+            _notificationManager = DependencyService.Get<INotificationManager>();
+
         }
 
-        private async void SetProfileData()
+        public async void SetProfileData()
         {
             var data = _notificationAction.Data as AlertNotificationData;
             if (!string.IsNullOrWhiteSpace(data.ProfileData))
             {
                 var profileData = await _cryptographyService.GetAlertSenderProfileData(data.ProfileData, data.FileKey);
-                if (profileData.ContainsKey(RegistrationField.Name.FullName))
+                if (profileData != null && profileData.ContainsKey(RegistrationField.Name.FullName))
                 {
                     ContactName = profileData[RegistrationField.Name.FullName];
                 }
+                else if (profileData == null)
+                {
+
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                    _notificationManager.CloseNotification(_notificationAction.NotificationId);
+                    await App.Current.MainPage.Navigation.PopModalAsync();
+                }
             }
+            else
+            {
+                //here get contact from addressbook
+            }
+
+
 
             if (data.AlertType == (int)AlertType.UserAlert)
             {
@@ -101,15 +117,13 @@ namespace AlertApp.ViewModels
 
         private async void Accept()
         {
-            var notifcationManager = DependencyService.Get<INotificationManager>();
-            notifcationManager.CloseNotification(_notificationAction.NotificationId);
-            await NavigationService.PopModalAsync();
+            _notificationManager.CloseNotification(_notificationAction.NotificationId);
+            await App.Current.MainPage.Navigation.PopModalAsync();
         }
         private async void Ignore()
         {
-            var notifcationManager = DependencyService.Get<INotificationManager>();
-            notifcationManager.CloseNotification(_notificationAction.NotificationId);
-            await NavigationService.PopModalAsync();
+            _notificationManager.CloseNotification(_notificationAction.NotificationId);
+            await App.Current.MainPage.Navigation.PopModalAsync();
         }
 
         #region BaseViewModel
