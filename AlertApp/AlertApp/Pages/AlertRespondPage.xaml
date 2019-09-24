@@ -13,7 +13,7 @@
                 <Label HorizontalOptions="Center" Style="{StaticResource Headline5Bold}" TextColor="White"  VerticalOptions="Center" Text="{Binding AlertTextTitle}"></Label>
             </Frame>
             <StackLayout Margin="16,0,16,0" Orientation="Horizontal" VerticalOptions="Start">
-                <Image Source="empty_contact.png" HeightRequest="100" WidthRequest="100"></Image>
+                <Image Source="{Binding ProfileImage}" HeightRequest="100" WidthRequest="100"></Image>
                 <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
                     <Label Style="{StaticResource Headline5Bold}" Text="{Binding ContactName}"></Label>
                 </StackLayout>
@@ -21,10 +21,16 @@
             <maps:Map x:Name="map"  
                   Margin="16,0,16,0"
                   IsShowingUser="true"
-                  HasZoomEnabled="True"                                    
+                  HasZoomEnabled="True"                              
                   HorizontalOptions="FillAndExpand"
                   VerticalOptions="FillAndExpand"
-                  MapType="Street" />
+                  MapType="Street" >
+                <maps:Map.ItemTemplate>
+                    <DataTemplate>
+                        <maps:Pin Position="{Binding Position}"/>
+                    </DataTemplate>
+                </maps:Map.ItemTemplate>
+            </maps:Map>
             <StackLayout Margin="16,0,16,0" Orientation="Vertical" VerticalOptions="End">
                 <Button  Margin="0,0,0,16" Style="{StaticResource RegistrationButtonStyle}" BackgroundColor="{StaticResource AcceptButton}" Text="{infrastructure:Translate IWillHelp}" Command="{Binding AcceptCommand}" ></Button>
                 <Button  Margin="0,0,0,16" Style="{StaticResource RegistrationButtonStyle}" Text="{infrastructure:Translate IgnoreHelp}" Command="{Binding IgnoreCommand}" ></Button>

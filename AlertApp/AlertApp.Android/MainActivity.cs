@@ -70,7 +70,7 @@ namespace AlertApp.Droid
                 var notificationData = new NotificationAction();
                 notificationData.Type = NotificationAction.ActionType.Sos;
                 notificationData.NotificationId = notificationId;
-                notificationData.Data = new AlertNotificationData { FileKey = fileKey, ProfileData = profiledata, Position = position, AlertType = alertType };
+                notificationData.Data = new AlertNotificationData { FileKey = fileKey, ProfileData = profiledata, Position = position, AlertType = alertType,Cellphone = cellphone };
                 MessagingCenter.Send<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString(), notificationData);
                 Xamarin.Forms.Application.Current.MainPage.Navigation.PushModalAsync(new AlertRespondPage(notificationData));
                 Intent = null;

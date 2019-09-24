@@ -3,18 +3,36 @@ using AlertApp.Model;
 using AlertApp.Model.Api;
 using AlertApp.Resx;
 using AlertApp.Services.Cryptography;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 
 namespace AlertApp.ViewModels
 {
     public class AlertRespondPageViewModel : BaseViewModel
     {
         #region Properties
+
+        private ImageSource _ProfileImage;
+
+        public ImageSource ProfileImage
+        {
+            get { return _ProfileImage; }
+            set
+            {
+                _ProfileImage = value;
+                OnPropertyChanged("ProfileImage");
+            }
+        }
+
+
         private NotificationAction _notificationAction;
 
         private string _ContactName;
@@ -41,6 +59,19 @@ namespace AlertApp.ViewModels
                 OnPropertyChanged("AlertTextTitle");
             }
         }
+
+        private Position _Position;
+
+        public Position Position
+        {
+            get { return _Position; }
+            set
+            {
+                _Position = value;
+                OnPropertyChanged("Position");
+            }
+        }
+
 
         #endregion
 
@@ -74,6 +105,7 @@ namespace AlertApp.ViewModels
         #region Services
         private readonly ICryptographyService _cryptographyService;
         private readonly INotificationManager _notificationManager;
+        IContactProfileImageProvider _contactProfileImageProvider;
         #endregion
 
         public AlertRespondPageViewModel(ICryptographyService cryptographyService, NotificationAction notificationAction)
@@ -81,18 +113,31 @@ namespace AlertApp.ViewModels
             _cryptographyService = cryptographyService;
             _notificationAction = notificationAction;
             _notificationManager = DependencyService.Get<INotificationManager>();
-
+            _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
+            ProfileImage = ImageSource.FromFile("account_circle.png");
         }
 
         public async void SetProfileData()
         {
             var data = _notificationAction.Data as AlertNotificationData;
+
+
+            if (data.AlertType == (int)AlertType.UserAlert)
+            {
+                AlertTextTitle = "ALERT: " + AppResources.AlertSosTitle;
+            }
+
             if (!string.IsNullOrWhiteSpace(data.ProfileData))
             {
                 var profileData = await _cryptographyService.GetAlertSenderProfileData(data.ProfileData, data.FileKey);
                 if (profileData != null && profileData.ContainsKey(RegistrationField.Name.FullName))
                 {
                     ContactName = profileData[RegistrationField.Name.FullName];
+                    var addressBookContact = await GetContact(data.Cellphone);
+                    if (addressBookContact != null)
+                    {
+                        ProfileImage = addressBookContact.ProfileImage;
+                    }
                 }
                 else if (profileData == null)
                 {
@@ -109,10 +154,6 @@ namespace AlertApp.ViewModels
 
 
 
-            if (data.AlertType == (int)AlertType.UserAlert)
-            {
-                AlertTextTitle = "ALERT: " + AppResources.AlertSosTitle;
-            }
         }
 
         private async void Accept()
@@ -124,6 +165,26 @@ namespace AlertApp.ViewModels
         {
             _notificationManager.CloseNotification(_notificationAction.NotificationId);
             await App.Current.MainPage.Navigation.PopModalAsync();
+        }
+
+        private async Task<ImportContact> GetContact(string cellPhone)
+        {
+            var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
+            if (contactPermissionStatus == PermissionStatus.Granted)
+            {
+                var contacts = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
+                if (contacts != null)
+                {
+                    var result = new List<ImportContact>();
+                    var contact = contacts.Where(c => c.Number == cellPhone).FirstOrDefault();
+                    if (contact != null)
+                    {
+                        return new ImportContact(contact, _contactProfileImageProvider);
+                    }
+                }
+            }
+
+            return null;
         }
 
         #region BaseViewModel

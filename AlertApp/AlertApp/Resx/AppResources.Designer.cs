@@ -592,6 +592,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sending alert.
+        /// </summary>
+        internal static string SendingAlert {
+            get {
+                return ResourceManager.GetString("SendingAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sending alert in.
         /// </summary>
         internal static string SendingAlertIn {

@@ -234,25 +234,6 @@ namespace AlertApp.Android
             notificationManager.Notify(notificationID /* ID of notification */, notificationBuilder.Build());
         }
 
-        private async Task<ImportContact> GetContact(string cellPhone)
-        {
-            var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
-            if (contactPermissionStatus == PermissionStatus.Granted)
-            {
-                var contacts = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
-                if (contacts != null)
-                {
-                    var result = new List<ImportContact>();
-                    var contact = contacts.Where(c => c.Number == cellPhone).FirstOrDefault();
-                    if (contact != null)
-                    {
-                        IContactProfileImageProvider _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
-                        return new ImportContact(contact, _contactProfileImageProvider);
-                    }
-                }
-            }
-
-            return null;
-        }
+       
     }
 }

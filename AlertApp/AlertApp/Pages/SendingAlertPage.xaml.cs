@@ -64,6 +64,10 @@ namespace AlertApp.Pages
 
             if (!stop)
             {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    alertLabel.Text = AppResources.SendingAlert;
+                });
                 ((ISendAlert)this.BindingContext).SendUserAlert();
             }
         }

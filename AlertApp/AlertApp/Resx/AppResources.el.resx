@@ -355,4 +355,7 @@
   <data name="SuccessAddContactTitle" xml:space="preserve">
     <value>Ειδοποίηση</value>
   </data>
+  <data name="SendingAlert" xml:space="preserve">
+    <value>Αποστολή Alert</value>
+  </data>
 </root>
