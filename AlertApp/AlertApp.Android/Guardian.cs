@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
+using AlertApp.Services.Profile;
+using AlertApp.ViewModels;
 using Android.App;
 using Android.Content;
 using Android.Gms.Location;
@@ -15,6 +17,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Java.Lang;
+using Plugin.FirebasePushNotification;
 using Xamarin.Essentials;
 
 namespace AlertApp.Droid
@@ -26,6 +29,8 @@ namespace AlertApp.Droid
         private LocationRequest locationRequest;
         private FusedLocationProviderCallback locationCallback;
         NotificationCompat.Builder builder;
+
+
         string ChannelId = "alert_247_channel";
         Thread t;
         public override void OnCreate()
@@ -88,7 +93,7 @@ namespace AlertApp.Droid
             builder
                 //.AddAction(Resource.Mipmap.icon, "Open App",
                 //    activityPendingIntent)
-                .AddAction(0,"Open App",
+                .AddAction(0, "Open App",
                     activityPendingIntent)
 
                 .SetContentText("Alert 24/7")
@@ -178,6 +183,19 @@ namespace AlertApp.Droid
     {
         readonly Context context;
 
+        private IUserProfileService _userProfileService;
+        public IUserProfileService UserProfileService
+        {
+            get
+            {
+                if (_userProfileService == null)
+                {
+                    _userProfileService = ViewModelLocator.Instance.Resolve<IUserProfileService>();
+                }
+                return _userProfileService;
+            }
+            set { _userProfileService = value; }
+        }
         public FusedLocationProviderCallback(Context context)
         {
             this.context = context;
@@ -193,8 +211,17 @@ namespace AlertApp.Droid
         {
             if (result.Locations.Any())
             {
-                var location = result.LastLocation;
-              //  Toast.MakeText(context, "New location", ToastLength.Short).Show();
+                Task.Run(async () =>
+                {
+                    var location = result.LastLocation;                   
+                    var token = await SecureStorage.GetAsync(AlertApp.Utils.Settings.AuthToken);
+                    var firebaseToken = CrossFirebasePushNotification.Current.Token;
+                    if (!string.IsNullOrWhiteSpace(firebaseToken))
+                    {                        
+                        await UserProfileService.Ping(token, location.Latitude, location.Longitude, firebaseToken);
+                    }                    
+                });
+                //  Toast.MakeText(context, "New location", ToastLength.Short).Show();
             }
             else
             {
