@@ -11,6 +11,7 @@
         <ResourceDictionary>
             <infrastructure:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
             <converters:SelectedListItemColorConverter x:Key="SelectedListItemColorConverter" />
+            <converters:SelectedContactTextColorConverter x:Key="SelectedContactTextColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout Orientation="Vertical">
@@ -52,7 +53,7 @@
                                         <Image HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50" HeightRequest="50" Source="{Binding ProfileImage}"/>
                                     </ContentView>
                                     <StackLayout Grid.Column="1" >
-                                        <Label  Text="{Binding Name}" VerticalOptions="CenterAndExpand"  LineBreakMode="WordWrap" FontFamily="{StaticResource Regular}"/>
+                                        <Label TextColor="{Binding Selected,Converter={StaticResource SelectedContactTextColorConverter},Mode=TwoWay}" Text="{Binding Name}" VerticalOptions="CenterAndExpand"  LineBreakMode="WordWrap" FontFamily="{StaticResource Regular}"/>
                                     </StackLayout>
                                     <Frame Grid.Column="2" CornerRadius="15" Padding="0" BackgroundColor="AntiqueWhite" Margin="15,10,15,10" HasShadow="False" IsVisible="{Binding NeedsInvitation}">
                                         <Frame.GestureRecognizers>

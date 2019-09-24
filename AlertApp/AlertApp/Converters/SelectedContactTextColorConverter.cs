@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace AlertApp.Converters
 {
-    public class SelectedListItemColorConverter : IValueConverter
+    public class SelectedContactTextColorConverter : IValueConverter
     {
         #region IValueConverter implementation
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -14,9 +14,9 @@ namespace AlertApp.Converters
             var selected = value as bool?;
             if (selected.HasValue && selected.Value)
             {
-                return Color.FromHex("#800000");
+                return Color.White;
             }
-            return Color.White;
+            return Color.Black;
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
