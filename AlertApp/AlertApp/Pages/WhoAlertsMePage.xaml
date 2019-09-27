@@ -48,7 +48,7 @@
                                                 <Label Text="{Binding Stats.Asked}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                             </StackLayout>
                                             <Frame HorizontalOptions="EndAndExpand" BackgroundColor="{Binding BackgroundStatusColor}" VerticalOptions="End" Padding="4" Margin="0,0,4,0">
-                                                <Label Text="{Binding Status}" TextColor="White" Style="{StaticResource Subtitle1}"/>
+                                                <Label Text="{Binding StatusAlertMe}" TextColor="White" Style="{StaticResource Subtitle1}"/>
                                             </Frame>
                                         </StackLayout>
                                     </StackLayout>

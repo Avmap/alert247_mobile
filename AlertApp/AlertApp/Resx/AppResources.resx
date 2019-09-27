@@ -355,4 +355,10 @@
   <data name="BlockedUsersPage" xml:space="preserve">
     <value>Blocked</value>
   </data>
+  <data name="AcceptedFromMe" xml:space="preserve">
+    <value>I have accept</value>
+  </data>
+  <data name="DontUseOtpAsPinMessage" xml:space="preserve">
+    <value>Attention : Don't use OTP code as pin</value>
+  </data>
 </root>

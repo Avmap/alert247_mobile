@@ -128,6 +128,7 @@
     <Compile Include="ContactProfileImageProvider.cs" />
     <Compile Include="CustomRenderers\Dialog.cs" />
     <Compile Include="CustomRenderers\OtpEntryRenderer.cs" />
+    <Compile Include="DependencyService\ContactsService.cs" />
     <Compile Include="DependencyService\CryptographyService.cs" />
     <Compile Include="DependencyService\FirebaseAnalyticsService.cs" />
     <Compile Include="DependencyService\GuardianPlatform.cs" />

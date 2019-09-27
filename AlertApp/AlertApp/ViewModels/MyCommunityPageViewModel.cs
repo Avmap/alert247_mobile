@@ -143,8 +143,29 @@ namespace AlertApp.ViewModels
         }
         private async void OpenAddContactsPage()
         {
-            await NavigationService.PushAsync(new AddContactPage(), true);
+            var contactsPage = new AddContactPage();
+            contactsPage.Disappearing += (sender2, e2) =>
+            {
+                SetBusy(false);
+                var vm = contactsPage.BindingContext as AddContactPageViewModel;
+                if (vm.HasChange)
+                {
+                    foreach (var page in NavigationService.NavigationStack)
+                    {
+                        if (page is ManageContactsPage)
+                        {
+                            SetBusy(true);
+                            ((ManageContactsPage)page).RefreshContacts();
+                            break;
+                        }
+                    }
+                }
+            };
+            await NavigationService.PushAsync(contactsPage, true);
         }
+
+
+
         public async Task<bool> RemoveUser(Contact contact)
         {
             SetBusy(true);
@@ -155,7 +176,10 @@ namespace AlertApp.ViewModels
             {
                 GetCommunity();
             }
-            SetBusy(false);
+            else
+            {
+                SetBusy(false);
+            }
             return true;
         }
         public async Task<bool> BlockUser(Contact contact)
@@ -166,7 +190,11 @@ namespace AlertApp.ViewModels
             {
                 GetCommunity();
             }
-            SetBusy(false);
+            else
+            {
+                SetBusy(false);
+            }
+
             return true;
         }
         #region BaseViewModel
@@ -176,7 +204,6 @@ namespace AlertApp.ViewModels
             {
                 this.Busy = isBusy;
                 ((Command)OpenContactsScreenCommand).ChangeCanExecute();
-              //  ((Command)GetCommunityCommand).ChangeCanExecute();
             });
         }
         #endregion
@@ -184,7 +211,7 @@ namespace AlertApp.ViewModels
         #region IHaveContacts
         public void SetContacts(Response<GetContactsResponse> response, List<ImportContact> addressBook)
         {
-            SetCommunity(response,addressBook);
+            SetCommunity(response, addressBook);
         }
 
         #endregion

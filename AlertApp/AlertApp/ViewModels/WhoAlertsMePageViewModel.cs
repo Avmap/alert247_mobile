@@ -82,12 +82,7 @@ namespace AlertApp.ViewModels
         public async void NavigateToAcceptCommunityReqeustScreen(Contact contact)
         {
             SetBusy(true);
-            if (contact.ProfileImageUri != null)
-            {
-                var image = _contactProfileImageProvider.GetProfileImage(contact.ProfileImageUri);
-                contact.ProfileImage = image;
-            }
-
+           
             var modal = new CommunityRequestPage(contact);
             modal.Disappearing += (sender2, e2) =>
             {
@@ -97,8 +92,10 @@ namespace AlertApp.ViewModels
                 {
                     var parentPage = NavigationService.NavigationStack.LastOrDefault() as ManageContactsPage;
                     if (parentPage != null)
+                    {
+                        SetBusy(true);
                         parentPage.RefreshContacts();
-
+                    }
                 }
             };
             await NavigationService.PushModalAsync(modal);
@@ -115,7 +112,7 @@ namespace AlertApp.ViewModels
             {
                 var community = response.Result.Contacts.AlertMe;
                 if (community != null && community.Count > 0)
-                {                    
+                {
                     //search in addressBook for contacts
                     if (addressBook != null)
                     {

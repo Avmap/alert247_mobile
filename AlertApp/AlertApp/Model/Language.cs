@@ -18,8 +18,8 @@ namespace AlertApp.Model
     {
             new Language{ Name = "English",NetLanguageName=Codes.English,CountryMobilePrefix = "+44",Flag="en_US.png"},
             new Language{ Name = "Ελληνικά",NetLanguageName=Codes.Greek,CountryMobilePrefix = "+30",Flag="gr_GR.png"},
-            new Language{ Name = "French",NetLanguageName=Codes.French,CountryMobilePrefix = "+33",Flag="fr_FR.png"},
-            new Language{ Name = "German",NetLanguageName=Codes.German,CountryMobilePrefix = "+49",Flag="de_DE.png"},
+            new Language{ Name = "Français",NetLanguageName=Codes.French,CountryMobilePrefix = "+33",Flag="fr_FR.png"},
+            new Language{ Name = "Deutsch",NetLanguageName=Codes.German,CountryMobilePrefix = "+49",Flag="de_DE.png"},
             new Language{ Name = "Italian",NetLanguageName=Codes.Italian,CountryMobilePrefix = "+39",Flag="it_IT.png"},
             new Language{ Name = "Russian",NetLanguageName=Codes.Russian,CountryMobilePrefix = "+7",Flag="ru_RU.png"},
             new Language{ Name = "Bulgarian",NetLanguageName=Codes.Bulgarian,CountryMobilePrefix = "+359",Flag="bg_BG.png"},

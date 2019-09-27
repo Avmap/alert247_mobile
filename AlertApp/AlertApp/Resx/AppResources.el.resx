@@ -361,4 +361,10 @@
   <data name="BlockedUsersPage" xml:space="preserve">
     <value>Αποκλεισμένοι</value>
   </data>
+  <data name="AcceptedFromMe" xml:space="preserve">
+    <value>Έχω αποδεχτεί</value>
+  </data>
+  <data name="DontUseOtpAsPinMessage" xml:space="preserve">
+    <value>Προσοχή: μη χρησιμοποιήσετε το OTP που σας στάλθηκε ως PIN</value>
+  </data>
 </root>

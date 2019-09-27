@@ -4,8 +4,8 @@
              x:Class="AlertApp.Infrastructure.LoadingIndicator">
   <ContentView.Content>
       <StackLayout>
-            <Frame HorizontalOptions="Center" HasShadow="False" BackgroundColor="#333333" Padding="20,20,20,20" VerticalOptions="Center" CornerRadius="5" IsVisible="{Binding Busy}">
-                <ActivityIndicator IsRunning="{Binding Busy}" IsVisible="{Binding Busy}" Color ="White"/>
+            <Frame HorizontalOptions="Center" HasShadow="True" BackgroundColor="Transparent" Padding="20,20,20,20" VerticalOptions="Center" CornerRadius="5" IsVisible="{Binding Busy}">
+                <ActivityIndicator IsRunning="{Binding Busy}" IsVisible="{Binding Busy}" Color ="Black"/>
             </Frame>
         </StackLayout>
   </ContentView.Content>

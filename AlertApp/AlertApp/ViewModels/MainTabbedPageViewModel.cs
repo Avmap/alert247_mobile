@@ -68,8 +68,7 @@ namespace AlertApp.ViewModels
         private async void PingServer()
         {
             var userToken = await _localSettingsService.GetAuthToken();
-            var firebaseToken = CrossFirebasePushNotification.Current.Token;
-            Debug.WriteLine("Firebase", "New Token: " + firebaseToken);
+            var firebaseToken = CrossFirebasePushNotification.Current.Token;            
             Location location = null;
             try
             {

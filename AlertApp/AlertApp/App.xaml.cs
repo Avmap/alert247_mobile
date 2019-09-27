@@ -81,7 +81,7 @@ namespace AlertApp
         }
 
         protected override void OnStart()
-        {
+        {          
             // Handle when your app starts
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {

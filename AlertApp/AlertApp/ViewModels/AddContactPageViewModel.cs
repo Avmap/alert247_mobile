@@ -61,7 +61,10 @@ namespace AlertApp.ViewModels
             }
         }
 
-        public bool FabVisibile { get { return !Busy && this.Contacts != null &&  this.Contacts.Where(c => c.Selected).Count() > 0; } }
+        public bool FabVisibile { get { return !Busy && this.Contacts != null && this.Contacts.Where(c => c.Selected).Count() > 0; } }
+
+        public bool HasChange { get; set; }
+
         #endregion
 
         #region Commands
@@ -237,7 +240,8 @@ namespace AlertApp.ViewModels
                     var addContactsResults = await _contactsService.AddContacts(userToken, this.Contacts.Where(c => c.Selected).Select(c => c.FormattedNumber).ToArray());
                     if (addContactsResults.IsOk)
                     {
-
+                        HasChange = true;
+                        await NavigationService.PopAsync();
                     }
                     SetBusy(false);
                 }
@@ -265,7 +269,7 @@ namespace AlertApp.ViewModels
         private async void EnterNumber()
         {
             var dialogs = DependencyService.Get<IDialog>();
-            var mobileNumber = await dialogs.showInputDialog(AppResources.EnterMobileDialogTitle, AppResources.EnterMobileDialogMessage, DialogType.Phone);
+            var mobileNumber = await dialogs.showInputDialog(AppResources.EnterMobileDialogTitle, AppResources.EnterMobileDialogMessage, AppResources.OK, AppResources.Cancel, DialogType.Phone);
             if (!string.IsNullOrWhiteSpace(mobileNumber as string))
             {
                 SetBusy(true);

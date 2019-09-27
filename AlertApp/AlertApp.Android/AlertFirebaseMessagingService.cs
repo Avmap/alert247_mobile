@@ -40,6 +40,7 @@ namespace AlertApp.Android
         public const string EXTRA_POSITION = "EXTRA_POSITION";
         public const string EXTRA_ALERT_TYPE = "EXTRA_ALERT_TYPE";
         public const string EXTRA_CELLPHONE = "EXTRA_CELLPHONE";
+        public const string EXTRA_NOTIFICATION_TYPE = "EXTRA_NOTIFICATION_TYPE";
 
         /**
          * Called when message is received.
@@ -50,8 +51,8 @@ namespace AlertApp.Android
 
             try
             {
-               // Handler h = new Handler(Looper.MainLooper);
-               // h.Post(() => showAlert());
+                // Handler h = new Handler(Looper.MainLooper);
+                // h.Post(() => showAlert());
 
                 if (message.Data != null)
                 {
@@ -84,6 +85,11 @@ namespace AlertApp.Android
                     if (!string.IsNullOrWhiteSpace(messageType) && messageType.Equals("alert") && !string.IsNullOrWhiteSpace(alertType) && alertType == "1")
                         SendAlertNotification(msgT ?? "", msgB ?? "", profiledata ?? "", filekey ?? "", messageType, alertType, position, cellphone);
 
+                    if (!string.IsNullOrWhiteSpace(messageType) && messageType.Equals("contact") && !string.IsNullOrWhiteSpace(cellphone))
+                    {
+                        SendContactRequestNotification("Community Request", "You have a new community request", position, cellphone);
+                    }
+
                 }
 
             }
@@ -101,7 +107,7 @@ namespace AlertApp.Android
             PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, WakeLock);
             wl.SetReferenceCounted(false);
             wl.Acquire(8000);
-            
+
             var builder = new AppCompatAlertDialog.Builder(this);
             builder.SetTitle("Alert");
             builder.SetMessage("Content");
@@ -117,7 +123,7 @@ namespace AlertApp.Android
             {
                 alert.Window.SetType(WindowManagerTypes.Toast);
             }
-           
+
             alert.Show();
             //IWindowManager windowManager = GetSystemService(WindowService).JavaCast<IWindowManager>();
             //if (windowManager != null)
@@ -143,52 +149,7 @@ namespace AlertApp.Android
 
         }
 
-
-        void SendNotification(string title, string messageBody)
-        {
-            PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
-            PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, WakeLock);
-            wl.SetReferenceCounted(false);
-            wl.Acquire(8000);
-            var channelid = "gr.avmap.alert247";
-            Bitmap bm = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.icon);
-
-            var intent = new Intent(this, typeof(MainActivity));
-            intent.SetAction("mycustom.action.test");//here we can send custom actions depends on notification content and type.
-            intent.AddFlags(ActivityFlags.ClearTop);
-
-
-            var pendingIntent = PendingIntent.GetActivity(this, 0 /* Request code */, intent, PendingIntentFlags.OneShot);
-
-            var defaultSoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
-            var notificationBuilder = new NotificationCompat.Builder(this, channelid)
-                .SetSmallIcon(Resource.Mipmap.icon)
-                .SetContentTitle(title)
-                .SetContentText(messageBody)
-                .SetStyle(new NotificationCompat.BigTextStyle().BigText(messageBody))
-                .SetAutoCancel(true)
-                .SetSound(defaultSoundUri)
-                .SetContentIntent(pendingIntent);
-            if (bm != null)
-            {
-                notificationBuilder.SetLargeIcon(bm);
-            }
-            var notificationManager = NotificationManager.FromContext(this);
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
-            {
-                NotificationChannel channel = new NotificationChannel(channelid,
-                        "Alert 247",
-                        NotificationImportance.Max);
-                notificationManager.CreateNotificationChannel(channel);
-            }
-            else
-            {
-                notificationBuilder.SetPriority((int)NotificationPriority.Max);
-            }
-            int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
-            notificationManager.Notify(notificationID /* ID of notification */, notificationBuilder.Build());
-        }
-
+      
         void SendAlertNotification(string title, string messageBody, string profiledata, string fileKey, string messageType, string alertType, string position, string cellphone)
         {
             int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
@@ -209,6 +170,61 @@ namespace AlertApp.Android
             intent.PutExtra(EXTRA_NOTIFICATION_ID, notificationID);
             intent.PutExtra(EXTRA_POSITION, position);
             intent.PutExtra(EXTRA_ALERT_TYPE, Int32.Parse(alertType));
+            intent.PutExtra(EXTRA_CELLPHONE, cellphone);
+            intent.PutExtra(EXTRA_NOTIFICATION_TYPE, "alert");
+
+            var pendingIntent = PendingIntent.GetActivity(this, 0 /* Request code */, intent, PendingIntentFlags.UpdateCurrent);
+            int color = ContextCompat.GetColor(this, Resource.Color.notificationColor);
+            var defaultSoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
+            var notificationBuilder = new NotificationCompat.Builder(this, Channelid)
+                .SetSmallIcon(Resource.Drawable.ic_stat_logo_icon_notification)
+                .SetContentTitle(title)
+                .SetColor(color)
+                .SetContentText(messageBody)
+                .SetStyle(new NotificationCompat.BigTextStyle().BigText(messageBody))
+                .SetOngoing(true)
+                .SetSound(defaultSoundUri)
+                .SetContentIntent(pendingIntent);
+
+            if (bm != null)
+            {
+                //notificationBuilder.SetLargeIcon(bm);
+            }
+
+            var notificationManager = NotificationManager.FromContext(this);
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            {
+                NotificationChannel channel = new NotificationChannel(Channelid,
+                        "Alert 24/7",
+                        NotificationImportance.Max);
+                notificationManager.CreateNotificationChannel(channel);
+            }
+            else
+            {
+                notificationBuilder.SetPriority((int)NotificationPriority.Max);
+            }
+
+            notificationManager.Notify(notificationID /* ID of notification */, notificationBuilder.Build());
+        }
+
+        void SendContactRequestNotification(string title, string messageBody, string position, string cellphone)
+        {
+            int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
+            //create wake lock
+            PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
+            PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, WakeLock);
+            wl.SetReferenceCounted(false);
+            wl.Acquire(8000);
+
+            Bitmap bm = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.icon);
+            //create pending intent action
+            var intent = new Intent(this, typeof(MainActivity));
+            //here we can send custom actions depends on notification content and type.
+            intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop | ActivityFlags.NewTask);
+            intent.SetAction(Java.Lang.JavaSystem.CurrentTimeMillis().ToString());            
+            intent.PutExtra(EXTRA_NOTIFICATION_ID, notificationID);
+            intent.PutExtra(EXTRA_POSITION, position);
+            intent.PutExtra(EXTRA_NOTIFICATION_TYPE, "contact");
             intent.PutExtra(EXTRA_CELLPHONE, cellphone);
 
             var pendingIntent = PendingIntent.GetActivity(this, 0 /* Request code */, intent, PendingIntentFlags.UpdateCurrent);
@@ -233,7 +249,7 @@ namespace AlertApp.Android
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
                 NotificationChannel channel = new NotificationChannel(Channelid,
-                        "Alert 247",
+                        "Alert 24/7",
                         NotificationImportance.Max);
                 notificationManager.CreateNotificationChannel(channel);
             }
@@ -242,9 +258,7 @@ namespace AlertApp.Android
                 notificationBuilder.SetPriority((int)NotificationPriority.Max);
             }
 
-            notificationManager.Notify(notificationID /* ID of notification */, notificationBuilder.Build());
+            notificationManager.Notify(notificationID, notificationBuilder.Build());
         }
-
-
     }
 }

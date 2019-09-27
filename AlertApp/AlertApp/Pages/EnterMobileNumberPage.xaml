@@ -24,8 +24,8 @@
                             <Label Text="{Binding SelectedLanguage.Name}" LineBreakMode="WordWrap" VerticalTextAlignment="Center" FontFamily="{StaticResource Regular}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Spacing="2" HorizontalOptions="FillAndExpand">
-                            <Entry Keyboard="Telephone"  Margin="2,0,0,0" TextColor="LightGray" Text="{Binding CountryPrefix}" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                            <Entry Keyboard="Telephone" Text="{Binding Mobile}" Margin="2,0,0,0" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                            <Entry Keyboard="Telephone"  Margin="2,0,0,0" MaxLength="5" Text="{Binding CountryPrefix}" HorizontalTextAlignment="Center" WidthRequest="90" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                            <Entry Keyboard="Telephone" Text="{Binding Mobile}" MaxLength="12" Margin="2,0,0,0" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
                         </StackLayout>
                         <Button Clicked="OnButtonNextClicked" Margin="0,20,0,0" Style="{StaticResource RegistrationButtonStyle}" Text="{translate:Translate Continue}"></Button>
                     </StackLayout>

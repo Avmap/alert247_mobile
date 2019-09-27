@@ -18,14 +18,14 @@ using Xamarin.Forms;
 namespace AlertApp.Droid.CustomRenderers
 {
     public class Dialog : IDialog
-    {        
+    {
         Activity activity => Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity;
-        public async Task<object> showInputDialog(string title, string message, AlertApp.Infrastructure.DialogType inputTupe)
+        public async Task<object> showInputDialog(string title, string message, string ok, string cancel, AlertApp.Infrastructure.DialogType inputTupe)
         {
-            return await showInputDialog(title, message, "", inputTupe);
+            return await showInputDialog(title, message, "", ok, cancel, inputTupe);
         }
 
-        public async Task<object> showInputDialog(string title, string message, object text, AlertApp.Infrastructure.DialogType inputTupe)
+        public async Task<object> showInputDialog(string title, string message, object text, string ok, string cancel, AlertApp.Infrastructure.DialogType inputTupe)
         {
             EditText et = new EditText(activity);
             TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
@@ -49,18 +49,19 @@ namespace AlertApp.Droid.CustomRenderers
                     break;
             }
             builder.SetView(et);
-            builder.SetNegativeButton("Cancel", (sender, e) =>
+            builder.SetNegativeButton(cancel, (sender, e) =>
             {
                 ((AppCompatAlertDialog)sender).Dismiss();
             });
-            builder.SetPositiveButton("OK", (sender, e) =>
+            builder.SetPositiveButton(ok, (sender, e) =>
             {
                 string input = et.Text;
                 tcs.SetResult(input);
             });
 
-
-            builder.Create().Show();
+            AppCompatAlertDialog dialog = builder.Create();
+            dialog.Window.SetSoftInputMode(SoftInput.StateVisible);
+            dialog.Show();
             return await tcs.Task;
         }
 

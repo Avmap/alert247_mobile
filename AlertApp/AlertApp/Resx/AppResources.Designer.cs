@@ -70,6 +70,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I have accept.
+        /// </summary>
+        internal static string AcceptedFromMe {
+            get {
+                return ResourceManager.GetString("AcceptedFromMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accept.
         /// </summary>
         internal static string AcceptRequest {
@@ -246,6 +255,15 @@ namespace AlertApp.Resx {
         internal static string ContinueDialogButton {
             get {
                 return ResourceManager.GetString("ContinueDialogButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attention : Don&apos;t use OTP code as pin.
+        /// </summary>
+        internal static string DontUseOtpAsPinMessage {
+            get {
+                return ResourceManager.GetString("DontUseOtpAsPinMessage", resourceCulture);
             }
         }
         

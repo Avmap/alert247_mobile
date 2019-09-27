@@ -41,7 +41,7 @@ namespace AlertApp.Droid
             LoadApplication(new App());
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
-            
+
             Window.SetFlags(WindowManagerFlags.KeepScreenOn, WindowManagerFlags.KeepScreenOn);
 
             var action = Intent.Action;
@@ -53,6 +53,7 @@ namespace AlertApp.Droid
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_POSITION),
             Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TYPE, 0),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_CELLPHONE),
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_TYPE),
             Intent.Flags);
 
         }
@@ -63,16 +64,22 @@ namespace AlertApp.Droid
 
         }
 
-        private void handleIntentActions(string action, string fileKey, string profiledata, int notificationId, string position, int alertType,string cellphone, ActivityFlags flags)
+        private void handleIntentActions(string action, string fileKey, string profiledata, int notificationId, string position, int alertType, string cellphone, string notification, ActivityFlags flags)
         {
             if (action != null && action.Contains(AlertFirebaseMessagingService.ACTION_OPEN_SOS) && !flags.HasFlag(ActivityFlags.LaunchedFromHistory))
             {
                 var notificationData = new NotificationAction();
                 notificationData.Type = NotificationAction.ActionType.Sos;
                 notificationData.NotificationId = notificationId;
-                notificationData.Data = new AlertNotificationData { FileKey = fileKey, ProfileData = profiledata, Position = position, AlertType = alertType,Cellphone = cellphone };
-                MessagingCenter.Send<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString(), notificationData);
+                notificationData.Data = new AlertNotificationData { FileKey = fileKey, ProfileData = profiledata, Position = position, AlertType = alertType, Cellphone = cellphone };
+                // MessagingCenter.Send<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString(), notificationData);
                 Xamarin.Forms.Application.Current.MainPage.Navigation.PushModalAsync(new AlertRespondPage(notificationData));
+                Intent = null;
+            }
+            else if (action != null && notification == "contact" && !flags.HasFlag(ActivityFlags.LaunchedFromHistory))
+            {
+                var contact = new AlertApp.Model.Api.Contact { Cellphone = cellphone };
+                Xamarin.Forms.Application.Current.MainPage.Navigation.PushModalAsync(new CommunityRequestPage(contact));
                 Intent = null;
             }
         }
@@ -82,16 +89,17 @@ namespace AlertApp.Droid
             base.OnNewIntent(intent);
             Intent = intent;
             //hanlde action from notification click.
-            var action = intent.Action;
+            var action = Intent.Action;
             handleIntentActions(
-           action,
-           Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_FILE_KEY),
-           Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_PROFILE_DATA),
-           Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_ID, 0),
-           Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_POSITION),
-           Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TYPE, 0),
-           Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_CELLPHONE),
-           Intent.Flags);
+            action,
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_FILE_KEY),
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_PROFILE_DATA),
+            Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_ID, 0),
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_POSITION),
+            Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TYPE, 0),
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_CELLPHONE),
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_TYPE),
+            Intent.Flags);
 
         }
 

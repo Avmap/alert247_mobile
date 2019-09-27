@@ -53,6 +53,7 @@ namespace AlertApp.ViewModels
         #region Services
         readonly IContactsService _contactsService;
         readonly ILocalSettingsService _localSettingsService;
+        readonly IContactProfileImageProvider _contactProfileImageProvider;
         #endregion
 
         #region Properties        
@@ -76,7 +77,17 @@ namespace AlertApp.ViewModels
         {
             _contactsService = contactsService;
             _localSettingsService = localSettingsService;
+            _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
+
+            var contactService = DependencyService.Get<IContacts>();
+            var addressBookContact = contactService.GetContactDetails(contact.Cellphone);
             Contact = contact;
+            if (addressBookContact != null && !string.IsNullOrWhiteSpace(addressBookContact.ProfileImageUri))
+            {
+                var image = _contactProfileImageProvider.GetProfileImage(addressBookContact.ProfileImageUri);
+                Contact.ProfileImage = image;
+                Contact.FirstName = addressBookContact.FirstName;
+            }
         }
 
         private async void AcceptRequest()
@@ -88,7 +99,7 @@ namespace AlertApp.ViewModels
                 HasChange = true;
             }
             SetBusy(false);
-            await NavigationService.PopModalAsync();           
+            await NavigationService.PopModalAsync();
         }
 
         private async void BlockRequest()
@@ -100,7 +111,7 @@ namespace AlertApp.ViewModels
                 HasChange = true;
             }
             SetBusy(false);
-            await NavigationService.PopModalAsync();           
+            await NavigationService.PopModalAsync();
         }
 
         private async void IgnoreRequest()
@@ -112,7 +123,7 @@ namespace AlertApp.ViewModels
                 HasChange = true;
             }
             SetBusy(false);
-            await NavigationService.PopModalAsync();           
+            await NavigationService.PopModalAsync();
         }
         #region BaseViewModel
         public override void SetBusy(bool isBusy)

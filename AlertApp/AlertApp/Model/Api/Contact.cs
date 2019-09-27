@@ -32,6 +32,9 @@ namespace AlertApp.Model.Api
         public string ProfileImageUri { get; set; }
 
         #region Computed
+
+        
+         public string StatusAlertMe => Accepted ? AppResources.AcceptedFromMe : AppResources.Pending;
         public Color BackgroundStatusColor => Accepted ? Color.Green : Color.Orange;
         public string Status => Accepted ? AppResources.Accepted : AppResources.Pending;
         public string FullName => String.Format("{0} {1}", FirstName, LastName);
