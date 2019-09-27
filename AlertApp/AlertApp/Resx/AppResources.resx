@@ -361,4 +361,7 @@
   <data name="DontUseOtpAsPinMessage" xml:space="preserve">
     <value>Attention : Don't use OTP code as pin</value>
   </data>
+  <data name="NoItems" xml:space="preserve">
+    <value>No contacts found</value>
+  </data>
 </root>

@@ -367,4 +367,7 @@
   <data name="DontUseOtpAsPinMessage" xml:space="preserve">
     <value>Προσοχή: μη χρησιμοποιήσετε το OTP που σας στάλθηκε ως PIN</value>
   </data>
+  <data name="NoItems" xml:space="preserve">
+    <value>Δεν βρέθηκαν επαφές</value>
+  </data>
 </root>
