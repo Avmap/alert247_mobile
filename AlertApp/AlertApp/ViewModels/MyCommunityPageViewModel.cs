@@ -176,7 +176,7 @@ namespace AlertApp.ViewModels
             {
                 this.Busy = isBusy;
                 ((Command)OpenContactsScreenCommand).ChangeCanExecute();
-                ((Command)GetCommunityCommand).ChangeCanExecute();
+              //  ((Command)GetCommunityCommand).ChangeCanExecute();
             });
         }
         #endregion

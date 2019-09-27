@@ -13,7 +13,9 @@
             <TableView Grid.Row="0" Intent="Settings">
                 <TableRoot>
                     <TableSection x:Name="table" Title="{infrastructure:Translate Application}">
-                        <SwitchCell x:Name="guardianSwitch" OnChanged="SwitchCell_OnChanged" Text="{infrastructure:Translate AllwaysOn}" />
+                        <SwitchCell Tapped="GuardianSwitch_Tapped" x:Name="guardianSwitch"  OnChanged="SwitchCell_OnChanged" Text="{infrastructure:Translate AllwaysOn}" >
+                            
+                        </SwitchCell>
                     </TableSection>
                 </TableRoot>
             </TableView>

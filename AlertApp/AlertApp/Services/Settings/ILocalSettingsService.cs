@@ -32,5 +32,8 @@ namespace AlertApp.Services.Settings
 
         void SaveSendLocationSetting(bool sendLocation);
         bool GetSendLocationSetting();
+
+        void SaveAppHasRunSetting(bool firstRun);
+        bool GetAppHasRunSetting();
     }
 }

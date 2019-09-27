@@ -22,7 +22,7 @@ using Firebase.Messaging;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
-
+using AppCompatAlertDialog = Android.Support.V7.App.AlertDialog;
 namespace AlertApp.Android
 {
     [Service]
@@ -50,6 +50,8 @@ namespace AlertApp.Android
 
             try
             {
+               // Handler h = new Handler(Looper.MainLooper);
+               // h.Post(() => showAlert());
 
                 if (message.Data != null)
                 {
@@ -78,11 +80,9 @@ namespace AlertApp.Android
                     string cellphone = "";
                     message.Data.TryGetValue("cellphone", out cellphone);
 
-                    
-
                     //manual sos alert
                     if (!string.IsNullOrWhiteSpace(messageType) && messageType.Equals("alert") && !string.IsNullOrWhiteSpace(alertType) && alertType == "1")
-                        SendAlertNotification(msgT ?? "", msgB ?? "", profiledata ?? "", filekey ?? "", messageType, alertType,position,cellphone);
+                        SendAlertNotification(msgT ?? "", msgB ?? "", profiledata ?? "", filekey ?? "", messageType, alertType, position, cellphone);
 
                 }
 
@@ -96,42 +96,53 @@ namespace AlertApp.Android
         private void showAlert()
         {
 
+            //create wake lock
+            PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
+            PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, WakeLock);
+            wl.SetReferenceCounted(false);
+            wl.Acquire(8000);
+            
+            var builder = new AppCompatAlertDialog.Builder(this);
+            builder.SetTitle("Alert");
+            builder.SetMessage("Content");
+            builder.SetCancelable(false);
+            builder.SetPositiveButton("Help", (senderAlert, args) => { AppCompatAlertDialog t = senderAlert as AppCompatAlertDialog; t.Dismiss(); });
 
-            IWindowManager windowManager = GetSystemService(WindowService).JavaCast<IWindowManager>();
-            if (windowManager != null)
+            AppCompatAlertDialog alert = builder.Create();
+            if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
             {
-                ImageView overlayImage = new ImageView(this);
-                overlayImage.SetImageResource(Resource.Drawable.alert_fire);
-
-                var param = new WindowManagerLayoutParams(
-                                ViewGroup.LayoutParams.MatchParent,
-                                ViewGroup.LayoutParams.MatchParent,
-                                WindowManagerTypes.SystemOverlay,
-                                WindowManagerFlags.Fullscreen | WindowManagerFlags.WatchOutsideTouch | WindowManagerFlags.AllowLockWhileScreenOn | WindowManagerFlags.NotTouchable | WindowManagerFlags.NotFocusable,
-                                Format.Translucent);
-
-                param.Gravity = GravityFlags.Top;
-
-                overlayImage.SetScaleType(ImageView.ScaleType.FitXy);
-
-                windowManager.AddView(overlayImage, param);
-
+                alert.Window.SetType(WindowManagerTypes.ApplicationOverlay);
             }
+            else
+            {
+                alert.Window.SetType(WindowManagerTypes.Toast);
+            }
+           
+            alert.Show();
+            //IWindowManager windowManager = GetSystemService(WindowService).JavaCast<IWindowManager>();
+            //if (windowManager != null)
+            //{
+            //    ImageView overlayImage = new ImageView(this);
+            //    overlayImage.SetImageResource(Resource.Drawable.alert_fire);
 
-            //View mView = mInflater.inflate(R.layout.score, null);
+            //    var param = new WindowManagerLayoutParams(
+            //                    ViewGroup.LayoutParams.MatchParent,
+            //                    ViewGroup.LayoutParams.MatchParent,
+            //                    WindowManagerTypes.SystemAlert,
+            //                    WindowManagerFlags.Fullscreen ,
+            //                    Format.Translucent);
 
-            //WindowManager.LayoutParams mLayoutParams = new WindowManager.LayoutParams(
-            //ViewGroup.LayoutParams.WRAP_CONTENT,
-            //ViewGroup.LayoutParams.WRAP_CONTENT, 0, 0,
-            //WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
-            //WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-            //    | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
-            //    | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
-            ///* | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON */,
-            //PixelFormat.RGBA_8888);
+            //    param.Gravity = GravityFlags.Top;
 
-            //mWindowManager.addView(mView, mLayoutParams);
+            //    overlayImage.SetScaleType(ImageView.ScaleType.FitXy);
+
+            //    windowManager.AddView(overlayImage, param);
+
+            //}
+
+
         }
+
 
         void SendNotification(string title, string messageBody)
         {
@@ -178,7 +189,7 @@ namespace AlertApp.Android
             notificationManager.Notify(notificationID /* ID of notification */, notificationBuilder.Build());
         }
 
-        void SendAlertNotification(string title, string messageBody, string profiledata, string fileKey, string messageType, string alertType,string position,string cellphone)
+        void SendAlertNotification(string title, string messageBody, string profiledata, string fileKey, string messageType, string alertType, string position, string cellphone)
         {
             int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
             //create wake lock
@@ -187,7 +198,7 @@ namespace AlertApp.Android
             wl.SetReferenceCounted(false);
             wl.Acquire(8000);
 
-            Bitmap bm = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.icon);            
+            Bitmap bm = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.icon);
             //create pending intent action
             var intent = new Intent(this, typeof(MainActivity));
             //here we can send custom actions depends on notification content and type.
@@ -234,6 +245,6 @@ namespace AlertApp.Android
             notificationManager.Notify(notificationID /* ID of notification */, notificationBuilder.Build());
         }
 
-       
+
     }
 }

@@ -101,18 +101,29 @@ namespace AlertApp.ViewModels
         {
             _userProfileService = userProfileService;
             _localSettingsService = localSettingsService;
-            SosButtonText = "SOS";            
+            SosButtonText = "SOS";
+
+            var appHasRun = _localSettingsService.GetAppHasRunSetting();
+            if (!appHasRun)
+            {
+                var guardian = DependencyService.Get<IGuardian>();
+                if (guardian != null)
+                {
+                    guardian.StartGuardianService();
+                }
+                _localSettingsService.SaveAppHasRunSetting(true);
+            }
         }
-    
+
         private async void OpenSendAlertScreen()
         {
             ShowCancelButton = true;
             stop = false;
-            StartTimer();            
+            StartTimer();
         }
         private async void CancelSendAlert()
         {
-            stop = true;            
+            stop = true;
         }
 
         private async void StartTimer()

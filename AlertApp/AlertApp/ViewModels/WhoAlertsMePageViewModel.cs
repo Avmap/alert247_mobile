@@ -197,7 +197,7 @@ namespace AlertApp.ViewModels
             Device.BeginInvokeOnMainThread(() =>
             {
                 this.Busy = isBusy;
-                ((Command)GetAlertMeCommand).ChangeCanExecute();
+                //((Command)GetAlertMeCommand).ChangeCanExecute();
             });
         }
         #endregion

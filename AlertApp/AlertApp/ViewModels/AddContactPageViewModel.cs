@@ -61,7 +61,7 @@ namespace AlertApp.ViewModels
             }
         }
 
-        public bool FabVisibile { get { return !Busy && this.Contacts.Where(c => c.Selected).Count() > 0; } }
+        public bool FabVisibile { get { return !Busy && this.Contacts != null &&  this.Contacts.Where(c => c.Selected).Count() > 0; } }
         #endregion
 
         #region Commands

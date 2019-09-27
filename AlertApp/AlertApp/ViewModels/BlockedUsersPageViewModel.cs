@@ -134,7 +134,7 @@ namespace AlertApp.ViewModels
             Device.BeginInvokeOnMainThread(() =>
             {
                 this.Busy = isBusy;
-                ((Command)_GetBlockedContactsCommand).ChangeCanExecute();
+              //  ((Command)_GetBlockedContactsCommand).ChangeCanExecute();
             });
         }
         #endregion

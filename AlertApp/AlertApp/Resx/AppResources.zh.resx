@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllwaysOn" xml:space="preserve">
+    <value>永远在线</value>
+  </data>
+  <data name="Application" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Alert 24/7</value>
+  </data>
+  <data name="BackRegistration" xml:space="preserve">
+    <value>背部</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="CancelSendAlert" xml:space="preserve">
+    <value>按取消</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>继续</value>
+  </data>
+  <data name="ContinueDialogButton" xml:space="preserve">
+    <value>继续</value>
+  </data>
+  <data name="EnterApplicationPinTitle" xml:space="preserve">
+    <value>输入pin</value>
+  </data>
+  <data name="EnterMobileMessage" xml:space="preserve">
+    <value>请输入您的手机号码以通过短信接收验证码。</value>
+  </data>
+  <data name="EnterMobileNumberTitle" xml:space="preserve">
+    <value>进入手机</value>
+  </data>
+  <data name="EnterMobilePrompt" xml:space="preserve">
+    <value>验证您的号码</value>
+  </data>
+  <data name="EnterPin" xml:space="preserve">
+    <value>输入应用程序引脚</value>
+  </data>
+  <data name="EnterPinToCancel" xml:space="preserve">
+    <value>输入PIN码取消</value>
+  </data>
+  <data name="EnterVerificationCodeTitle" xml:space="preserve">
+    <value>验证</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="FinishRegistration" xml:space="preserve">
+    <value>完</value>
+  </data>
+  <data name="GoodEvening" xml:space="preserve">
+    <value>晚上好</value>
+    <comment>this is a comment from developer</comment>
+  </data>
+  <data name="LocationTracking" xml:space="preserve">
+    <value>位置跟踪</value>
+  </data>
+  <data name="ManageContacts" xml:space="preserve">
+    <value>管理联系人</value>
+  </data>
+  <data name="NextRegistration" xml:space="preserve">
+    <value>下一个</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>好</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="RegisterMessage" xml:space="preserve">
+    <value>请输入所需信息</value>
+  </data>
+  <data name="RegistrationPageTitle" xml:space="preserve">
+    <value>欢迎</value>
+  </data>
+  <data name="ResendCodeButton" xml:space="preserve">
+    <value>重新发送验证码</value>
+  </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>选择语言</value>
+  </data>
+  <data name="SelectLanguageMessage" xml:space="preserve">
+    <value>请选择应用程序语言</value>
+  </data>
+  <data name="SendingAlertIn" xml:space="preserve">
+    <value>发送警报</value>
+  </data>
+  <data name="SmsVerificationMessage" xml:space="preserve">
+    <value>验证码将发送至</value>
+  </data>
+  <data name="TabDependands" xml:space="preserve">
+    <value>家属</value>
+  </data>
+  <data name="TabMyCommunity" xml:space="preserve">
+    <value>我的社区</value>
+  </data>
+  <data name="TabSuggestions" xml:space="preserve">
+    <value>建议</value>
+  </data>
+  <data name="Verification" xml:space="preserve">
+    <value>验证</value>
+  </data>
+  <data name="WaitForSMS" xml:space="preserve">
+    <value>等待OTP消息..当收到短信时，应用程序将自动激活</value>
+  </data>
+  <data name="WaitForSmsMessage" xml:space="preserve">
+    <value>请使用...</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="WarningFillNumber" xml:space="preserve">
+    <value>请输入手机号码</value>
+  </data>
+  <data name="WarningFillPin" xml:space="preserve">
+    <value>请输入申请PIN码</value>
+  </data>
+  <data name="WelcomeMessage" xml:space="preserve">
+    <value>欢迎来到Alert247</value>
+  </data>
+  <data name="WhoAlertMe" xml:space="preserve">
+    <value>谁提醒我</value>
+  </data>
+  <data name="AddContactsPage" xml:space="preserve">
+    <value>选择联系人</value>
+  </data>
+  <data name="AlertAddContactsMessage" xml:space="preserve">
+    <value>您要向选定的联系人发送请求吗？</value>
+  </data>
+  <data name="AlertAddContactsTitle" xml:space="preserve">
+    <value>添加联系人</value>
+  </data>
+  <data name="OtherText" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="ShareVia" xml:space="preserve">
+    <value>分享通过</value>
+  </data>
+  <data name="EnterMobileDialogMessage" xml:space="preserve">
+    <value>请输入手机号码</value>
+  </data>
+  <data name="EnterMobileDialogTitle" xml:space="preserve">
+    <value>进入手机</value>
+  </data>
+  <data name="SafetyRadius" xml:space="preserve">
+    <value>安全半径</value>
+  </data>
+  <data name="AcceptRequest" xml:space="preserve">
+    <value>接受</value>
+  </data>
+  <data name="BlockRequest" xml:space="preserve">
+    <value>块</value>
+  </data>
+  <data name="CommunityRequestPage" xml:space="preserve">
+    <value>新社区请求</value>
+  </data>
+  <data name="IgnoreRequest" xml:space="preserve">
+    <value>忽视</value>
+  </data>
+  <data name="SelectPositionFromMapPage" xml:space="preserve">
+    <value>选择位置</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
+    <value>公认</value>
+  </data>
+  <data name="Ignored" xml:space="preserve">
+    <value>忽视</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>有待</value>
+  </data>
+  <data name="UnableToGetLocationPermission" xml:space="preserve">
+    <value>无法获得位置许可</value>
+  </data>
+  <data name="NewCommunityRequestTitlePage" xml:space="preserve">
+    <value>新社区要求</value>
+  </data>
+  <data name="ByAccepting" xml:space="preserve">
+    <value>通过接受</value>
+  </data>
+  <data name="ByAcceptingWillAbleToHelpYou" xml:space="preserve">
+    <value>只要他需要帮助，便可以通过此应用提醒您</value>
+  </data>
+  <data name="NewCommunityRequestWantParticipateMessage" xml:space="preserve">
+    <value>希望您参与他的社区！</value>
+  </data>
+  <data name="NoInternetConnection" xml:space="preserve">
+    <value>请检查您的互联网连接。</value>
+  </data>
+  <data name="IgnoreHelp" xml:space="preserve">
+    <value>忽视</value>
+  </data>
+  <data name="IWillHelp" xml:space="preserve">
+    <value>我会帮助</value>
+  </data>
+  <data name="AlertSosTitle" xml:space="preserve">
+    <value>SOS</value>
+  </data>
+  <data name="HomeTab" xml:space="preserve">
+    <value>家</value>
+  </data>
+  <data name="InfoTab" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="SettingsTab" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="BlockUser" xml:space="preserve">
+    <value>阻止此用户</value>
+  </data>
+  <data name="BlockUserSubtitle" xml:space="preserve">
+    <value>该用户将无法再与您联系...</value>
+  </data>
+  <data name="Invite" xml:space="preserve">
+    <value>邀请</value>
+  </data>
+  <data name="RemoveUser" xml:space="preserve">
+    <value>删除该用户</value>
+  </data>
+  <data name="RemoveUserSubtitle" xml:space="preserve">
+    <value>该用户将被删除，但您仍然可以...</value>
+  </data>
+  <data name="SearchBarPlaceHolder" xml:space="preserve">
+    <value>搜索...</value>
+  </data>
+  <data name="SuccessAddContactMessage" xml:space="preserve">
+    <value>联系人已成功添加。</value>
+  </data>
+  <data name="SuccessAddContactTitle" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="SendingAlert" xml:space="preserve">
+    <value>正在发送警报</value>
+  </data>
+  <data name="BlockedUsersPage" xml:space="preserve">
+    <value>阻止</value>
+  </data>
+</root>

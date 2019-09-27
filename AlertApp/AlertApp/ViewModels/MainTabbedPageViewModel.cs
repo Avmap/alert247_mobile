@@ -7,6 +7,7 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
@@ -68,6 +69,7 @@ namespace AlertApp.ViewModels
         {
             var userToken = await _localSettingsService.GetAuthToken();
             var firebaseToken = CrossFirebasePushNotification.Current.Token;
+            Debug.WriteLine("Firebase", "New Token: " + firebaseToken);
             Location location = null;
             try
             {

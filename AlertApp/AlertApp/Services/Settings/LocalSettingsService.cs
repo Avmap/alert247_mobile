@@ -262,6 +262,16 @@ namespace AlertApp.Services.Settings
             return Preferences.Get(utils.Settings.SendLocation, false);
         }
 
+        public void SaveAppHasRunSetting(bool firstRun)
+        {
+            Preferences.Set(utils.Settings.AppHasRun, firstRun);
+        }
+
+        public bool GetAppHasRunSetting()
+        {
+            return Preferences.Get(utils.Settings.AppHasRun, false);
+        }
+
         public LocalSettingsService()
         {
 
