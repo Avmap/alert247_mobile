@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CarouselView.FormsPlugin.iOS;
 using Foundation;
+using ImageCircle.Forms.Plugin.iOS;
 using UIKit;
 
 namespace AlertApp.iOS
@@ -28,6 +29,7 @@ namespace AlertApp.iOS
             CarouselViewRenderer.Init();
             LoadApplication(new App());
             Firebase.Core.App.Configure();
+            ImageCircleRenderer.Init();
             return base.FinishedLaunching(app, options);
         }
     }

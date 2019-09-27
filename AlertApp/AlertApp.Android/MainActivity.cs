@@ -21,6 +21,7 @@ using Firebase.Messaging;
 using Xamarin.Forms;
 using AlertApp.Pages;
 using AlertApp.Model;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace AlertApp.Droid
 {
@@ -38,6 +39,7 @@ namespace AlertApp.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
             CarouselViewRenderer.Init();
+            ImageCircleRenderer.Init();
             LoadApplication(new App());
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
