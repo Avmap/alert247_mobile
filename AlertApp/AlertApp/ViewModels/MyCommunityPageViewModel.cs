@@ -143,7 +143,7 @@ namespace AlertApp.ViewModels
         }
         private async void OpenAddContactsPage()
         {
-            var contactsPage = new AddContactPage();
+            var contactsPage = new AddContactPage(Community.Select(c => c.Cellphone).ToList());
             contactsPage.Disappearing += (sender2, e2) =>
             {
                 SetBusy(false);

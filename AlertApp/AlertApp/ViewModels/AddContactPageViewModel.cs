@@ -140,15 +140,15 @@ namespace AlertApp.ViewModels
         readonly ILocalSettingsService _localSettingsService;
         #endregion
 
-        public AddContactPageViewModel(IContactsService contactsService, ILocalSettingsService localSettingsService)
+        public AddContactPageViewModel(IContactsService contactsService, ILocalSettingsService localSettingsService, List<string> community)
         {
             _contactsService = contactsService;
             _localSettingsService = localSettingsService;
             _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
-            GetContacts();
+            GetContacts(community);
         }
 
-        private async void GetContacts()
+        private async void GetContacts(List<string> community)
         {
 
 
@@ -172,7 +172,8 @@ namespace AlertApp.ViewModels
                 Contacts = new ObservableCollection<ImportContact>();
                 foreach (var item in contacts.Where(c => c.Number != null).OrderBy(c => c.Name))
                 {
-                    Contacts.Add(new ImportContact(item, _contactProfileImageProvider));
+                    if (!community.Contains(ImportContact.GetFormattedNumber(item.Number)))
+                        Contacts.Add(new ImportContact(item, _contactProfileImageProvider));
                 }
                 this.OriginalContacts = new ObservableCollection<ImportContact>(this.Contacts);
 
@@ -192,7 +193,7 @@ namespace AlertApp.ViewModels
         private async void InviteUser(ImportContact contact)
         {
             string messageText = String.Format("Download Alert247 {0}", "https://play.google.com/store/apps/details?id=gr.avmap.alert247");
-            string action = await DisplayActionSheet(AppResources.ShareVia, new string[] { "SMS", AppResources.OtherText } ,AppResources.Cancel);
+            string action = await DisplayActionSheet(AppResources.ShareVia, new string[] { "SMS", AppResources.OtherText }, AppResources.Cancel);
             if (action == "SMS")
             {
                 try

@@ -84,6 +84,28 @@ namespace AlertApp.Model
             }
         }
 
+        public static string GetFormattedNumber(string number)
+        {
+            string clearedNumber = number.Trim().Replace("-", "").Replace(" ", "");
+
+            if (clearedNumber.StartsWith("+"))
+            {
+                return clearedNumber;
+            }
+
+            if (clearedNumber.StartsWith("00"))
+            {
+                return clearedNumber.Replace("00", "+");
+            }
+
+            if (clearedNumber.Length == 10)
+            {
+                return "+30" + clearedNumber;
+            }
+
+            return clearedNumber;
+        }
+
         #region INotifyPropertyChanged
         protected void OnPropertyChanged(string name)
         {
