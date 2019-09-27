@@ -192,7 +192,7 @@ namespace AlertApp.ViewModels
         private async void InviteUser(ImportContact contact)
         {
             string messageText = String.Format("Download Alert247 {0}", "https://play.google.com/store/apps/details?id=gr.avmap.alert247");
-            string action = await DisplayActionSheet(AppResources.ShareVia, new string[] { "SMS", AppResources.OtherText });
+            string action = await DisplayActionSheet(AppResources.ShareVia, new string[] { "SMS", AppResources.OtherText } ,AppResources.Cancel);
             if (action == "SMS")
             {
                 try

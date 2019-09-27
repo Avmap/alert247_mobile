@@ -130,9 +130,9 @@ namespace AlertApp.Infrastructure
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected Task<string> DisplayActionSheet(string title, string[] listItems)
+        protected Task<string> DisplayActionSheet(string title, string[] listItems,string buttonText)
         {
-            var test = Application.Current.MainPage.DisplayActionSheet(title, "Cancel", null, listItems);
+            var test = Application.Current.MainPage.DisplayActionSheet(title, buttonText, null, listItems);
             if (test != null)
             {
                 return test;
