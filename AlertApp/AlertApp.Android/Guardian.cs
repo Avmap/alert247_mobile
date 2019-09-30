@@ -136,7 +136,7 @@ namespace AlertApp.Droid
     public class ApplicationAccelerometer
     {
         // Set speed delay for monitoring changes.
-        SensorSpeed speed = SensorSpeed.UI;
+        SensorSpeed speed = SensorSpeed.Fastest;
         Context Context;
         public ApplicationAccelerometer(Context context)
         {
@@ -182,7 +182,18 @@ namespace AlertApp.Droid
 
         private void Accelerometer_ShakeDetected(object sender, EventArgs e)
         {
-            Context.StartActivity(new Intent(Context, typeof(MainActivity)));
+            //if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
+            //{
+            //    Context.StartActivity(new Intent(Context, typeof(MainActivity)));
+            //}
+            //else
+            //{
+            var intent = new Intent(Context, typeof(MainActivity));
+            intent.AddFlags(ActivityFlags.ReorderToFront);
+
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity.StartActivity(intent);
+            // }
+
         }
     }
 
