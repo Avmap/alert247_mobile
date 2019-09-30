@@ -15,6 +15,11 @@ using Plugin.FirebasePushNotification;
 namespace AlertApp.Droid
 {
     [Application]
+#if DEBUG
+    [MetaData("com.google.android.maps.v2.API_KEY", Value = "AIzaSyD0tos4Y8_QAWxkEnYRuKT7ftEfMT_MZpU")]
+#else
+       [MetaData("com.google.android.maps.v2.API_KEY", Value = "AIzaSyD-QGABb7MdzQ_46ZGWgu5yCFwYHbypx0o")]
+#endif
     class MainApplication : Application
     {
         public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(handle, transer)
@@ -24,7 +29,7 @@ namespace AlertApp.Droid
         public override void OnCreate()
         {
             base.OnCreate();
-            CrossCurrentActivity.Current.Init(this);            
+            CrossCurrentActivity.Current.Init(this);
             //Set the default notification channel for your app when running Android Oreo
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
@@ -32,7 +37,7 @@ namespace AlertApp.Droid
                 FirebasePushNotificationManager.DefaultNotificationChannelId = "Alert247";
 
                 //Change for your default notification channel name here
-                FirebasePushNotificationManager.DefaultNotificationChannelName = "General";                
+                FirebasePushNotificationManager.DefaultNotificationChannelName = "General";
             }
 
 
