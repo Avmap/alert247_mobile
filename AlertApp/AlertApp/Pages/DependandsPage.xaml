@@ -3,29 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"             
              x:Class="AlertApp.Pages.DependandsPage"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              Navigation="{Binding NavigationService}"      
              Title="{infrastructure:Translate TabDependands}" >
     <ContentPage.Content>
         <AbsoluteLayout BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
                 <ListView
+                Margin="0,16,0,0"
                  AbsoluteLayout.LayoutFlags="All"
                  AbsoluteLayout.LayoutBounds="0,1,1,1"                 
                  SeparatorVisibility="None"
                  ItemsSource="{Binding Dependands}" 
                  CachingStrategy="RecycleElement" 
                  RowHeight="-1"                 
-                 HasUnevenRows="True"                            
-                 BackgroundColor="White">
+                 HasUnevenRows="True"   
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding GetDependantsCommand}"       
+                IsRefreshing="{Binding Busy}"
+                BackgroundColor="White">
                     <ListView.Footer>
                         <StackLayout HeightRequest="76"></StackLayout>
                     </ListView.Footer>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <Image Margin="16,16,16,16"  WidthRequest="56" HeightRequest="56" HorizontalOptions="Center" VerticalOptions="Center" Source="empty_contact.png"/>
-                                    <StackLayout Orientation="Vertical" Margin="0,16,0,0" HorizontalOptions="FillAndExpand">
+                                <StackLayout Margin="8,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <circle:CircleImage Source="{Binding ProfileImage}" Aspect="AspectFill">
+                                        <circle:CircleImage.WidthRequest>
+                                            <OnPlatform x:TypeArguments="x:Double">
+                                                <On Platform="Android, iOS">55</On>
+                                            </OnPlatform>
+                                        </circle:CircleImage.WidthRequest>
+                                        <circle:CircleImage.HeightRequest>
+                                            <OnPlatform x:TypeArguments="x:Double">
+                                                <On Platform="Android, iOS">55</On>
+                                            </OnPlatform>
+                                        </circle:CircleImage.HeightRequest>
+                                    </circle:CircleImage>
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                                         <StackLayout Orientation="Horizontal">
                                             <Label Text="{Binding FullName}" LineBreakMode="TailTruncation" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" Style="{StaticResource Headline6}"/>
                                             <Image Margin="8,8,8,8" Source="ic_more_menu.png">
@@ -38,19 +54,19 @@
                                         <StackLayout  Orientation="Horizontal" Spacing="8"  HorizontalOptions="FillAndExpand">
                                             <StackLayout Orientation="Vertical">
                                                 <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="hand_help.png"/>
-                                                <Label Text="10" VerticalTextAlignment="Center"/>
+                                                <Label Text="{Binding Stats.Helped}"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                             </StackLayout>
                                             <StackLayout Orientation="Vertical">
                                                 <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="hand_help.png"/>
-                                                <Label Text="20" VerticalTextAlignment="Center"/>
+                                                <Label Text="{Binding Stats.Ignored}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                             </StackLayout>
                                             <StackLayout Orientation="Vertical">
                                                 <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="hand_help.png"/>
-                                                <Label Text="20" VerticalTextAlignment="Center"/>
+                                                <Label Text="{Binding Stats.Asked}"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                             </StackLayout>
 
-                                            <Frame HorizontalOptions="EndAndExpand" BackgroundColor="Green" VerticalOptions="End" Padding="4" Margin="0,0,4,0">
-                                                <Label Text="Accepted" TextColor="White" Style="{StaticResource Subtitle1}"/>
+                                            <Frame HorizontalOptions="EndAndExpand" BackgroundColor="{Binding BackgroundStatusColor}" VerticalOptions="End" Padding="4" Margin="0,0,4,0">
+                                                <Label Text="{Binding Status}" TextColor="White" Style="{StaticResource Subtitle1}"/>
                                             </Frame>
                                         </StackLayout>
                                     </StackLayout>
@@ -60,6 +76,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
+            <Label HorizontalOptions="CenterAndExpand" IsVisible="{Binding NoContacts}" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" Text="{infrastructure:Translate NoItems}" FontFamily="{StaticResource Regular}" />
             <StackLayout AbsoluteLayout.LayoutBounds="1, 1" AbsoluteLayout.LayoutFlags="XProportional,YProportional">
                 <Button BackgroundColor="{StaticResource AccentColor}"  Margin="0,0,16,16" HorizontalOptions="End"  Style="{StaticResource CircleButton}" Image="baseline_person_add_white_24.png" Command="{Binding OpenContactsScreen}"/>
             </StackLayout>

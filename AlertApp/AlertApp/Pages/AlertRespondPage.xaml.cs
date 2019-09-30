@@ -34,7 +34,10 @@ namespace AlertApp.Pages
             SetAlertPosition();
 
         }
-
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
         private async void SetAlertPosition()
         {
             try
