@@ -22,6 +22,7 @@ using Firebase.Messaging;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
+using static Android.App.KeyguardManager;
 using AppCompatAlertDialog = Android.Support.V7.App.AlertDialog;
 namespace AlertApp.Android
 {
@@ -44,15 +45,14 @@ namespace AlertApp.Android
 
         /**
          * Called when message is received.
-         */
-
+        */
         public override void OnMessageReceived(RemoteMessage message)
         {
 
             try
             {
-                // Handler h = new Handler(Looper.MainLooper);
-                // h.Post(() => showAlert());
+               // Handler h = new Handler(Looper.MainLooper);
+                //h.Post(() => showAlert());
 
                 if (message.Data != null)
                 {
@@ -103,29 +103,31 @@ namespace AlertApp.Android
         {
 
             //create wake lock
-            PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
-            PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, WakeLock);
-            wl.SetReferenceCounted(false);
-            wl.Acquire(8000);
+            //PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
+            //  PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, WakeLock);
+            // wl.SetReferenceCounted(false);
+            // wl.Acquire(8000);
 
-            var builder = new AppCompatAlertDialog.Builder(this);
-            builder.SetTitle("Alert");
-            builder.SetMessage("Content");
-            builder.SetCancelable(false);
-            builder.SetPositiveButton("Help", (senderAlert, args) => { AppCompatAlertDialog t = senderAlert as AppCompatAlertDialog; t.Dismiss(); });
+            //var builder = new AlertDialog.Builder(this);
+            //builder.SetTitle("Alert");
+            //builder.SetMessage("Content");
+            //builder.SetCancelable(false);
+            //builder.SetPositiveButton("Help", (senderAlert, args) => { AlertDialog t = senderAlert as AlertDialog; t.Dismiss(); });
 
-            AppCompatAlertDialog alert = builder.Create();
-            if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
-            {
-                alert.Window.SetType(WindowManagerTypes.ApplicationOverlay);
-            }
-            else
-            {
-                alert.Window.SetType(WindowManagerTypes.Toast);
-            }
+            //AlertDialog alert = builder.Create();
+            //if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
+            //{
+            //    alert.Window.SetType(WindowManagerTypes.ApplicationOverlay);
+            //}
+            //else
+            //{
+            //    alert.Window.SetType(WindowManagerTypes.Toast);
+            //}
 
-            alert.Show();
-            //IWindowManager windowManager = GetSystemService(WindowService).JavaCast<IWindowManager>();
+            //alert.Show();
+
+            IWindowManager windowManager = GetSystemService(WindowService).JavaCast<IWindowManager>();
+
             //if (windowManager != null)
             //{
             //    ImageView overlayImage = new ImageView(this);
@@ -134,22 +136,35 @@ namespace AlertApp.Android
             //    var param = new WindowManagerLayoutParams(
             //                    ViewGroup.LayoutParams.MatchParent,
             //                    ViewGroup.LayoutParams.MatchParent,
-            //                    WindowManagerTypes.SystemAlert,
-            //                    WindowManagerFlags.Fullscreen ,
-            //                    Format.Translucent);
+            //                    WindowManagerTypes.ApplicationOverlay,
+            //                    WindowManagerFlags.ShowWhenLocked
+            //                    | WindowManagerFlags.KeepScreenOn | WindowManagerFlags.TurnScreenOn | WindowManagerFlags.DismissKeyguard,
+            //                    Format.Rgba8888);
 
             //    param.Gravity = GravityFlags.Top;
 
-            //    overlayImage.SetScaleType(ImageView.ScaleType.FitXy);
+            //    //  overlayImage.SetScaleType(ImageView.ScaleType.FitXy);
+
+            //    overlayImage.Click += (sender, e) =>
+            //    {
+            //        windowManager.RemoveView(overlayImage);
+            //    };
+
+            //    overlayImage.ViewAttachedToWindow += OverlayImage_ViewAttachedToWindow;
 
             //    windowManager.AddView(overlayImage, param);
 
             //}
 
-
+            StartActivity(new Intent(this, typeof(MainActivity)));
         }
 
-      
+        private void OverlayImage_ViewAttachedToWindow(object sender, global::Android.Views.View.ViewAttachedToWindowEventArgs e)
+        {
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity.Window.AddFlags(WindowManagerFlags.TurnScreenOn
+                | WindowManagerFlags.ShowWhenLocked | WindowManagerFlags.KeepScreenOn | WindowManagerFlags.DismissKeyguard);
+        }
+
         void SendAlertNotification(string title, string messageBody, string profiledata, string fileKey, string messageType, string alertType, string position, string cellphone)
         {
             int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
@@ -221,7 +236,7 @@ namespace AlertApp.Android
             var intent = new Intent(this, typeof(MainActivity));
             //here we can send custom actions depends on notification content and type.
             intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop | ActivityFlags.NewTask);
-            intent.SetAction(Java.Lang.JavaSystem.CurrentTimeMillis().ToString());            
+            intent.SetAction(Java.Lang.JavaSystem.CurrentTimeMillis().ToString());
             intent.PutExtra(EXTRA_NOTIFICATION_ID, notificationID);
             intent.PutExtra(EXTRA_POSITION, position);
             intent.PutExtra(EXTRA_NOTIFICATION_TYPE, "contact");
@@ -260,5 +275,6 @@ namespace AlertApp.Android
 
             notificationManager.Notify(notificationID, notificationBuilder.Build());
         }
+        
     }
 }

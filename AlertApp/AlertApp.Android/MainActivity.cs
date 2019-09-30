@@ -25,8 +25,8 @@ using ImageCircle.Forms.Plugin.Droid;
 
 namespace AlertApp.Droid
 {
-    [Activity(Label = "AlertApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
- 
+    [Activity(Label = "AlertApp", ShowForAllUsers = true, Icon = "@mipmap/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, ICrossFirebase
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -65,6 +65,14 @@ namespace AlertApp.Droid
         {
             base.OnResume();
 
+        }
+
+        public override void OnAttachedToWindow()
+        {
+            Window.AddFlags(WindowManagerFlags.ShowWhenLocked |
+                            WindowManagerFlags.KeepScreenOn |
+                            WindowManagerFlags.DismissKeyguard |
+                            WindowManagerFlags.TurnScreenOn);
         }
 
         private void handleIntentActions(string action, string fileKey, string profiledata, int notificationId, string position, int alertType, string cellphone, string notification, ActivityFlags flags)

@@ -29,7 +29,7 @@ namespace AlertApp.Droid
         private LocationRequest locationRequest;
         private FusedLocationProviderCallback locationCallback;
         NotificationCompat.Builder builder;
-
+        private ApplicationAccelerometer accelerometer;
 
         string ChannelId = "alert_247_channel";
         Thread t;
@@ -49,17 +49,10 @@ namespace AlertApp.Droid
         {
 
             this.StartForeground(67236723, GetNotification());
-            new AccelerometerTest().ToggleAccelerometer();
+            accelerometer = new ApplicationAccelerometer(this);
+            accelerometer.ToggleAccelerometer();
             StartLocationUpdates();
-            //t = new Thread(() =>
-            //{
-            //    while (true)
-            //    {
-            //        bool isLocationEnabled = Utils.isLocationEnabled(this);
-            //        Thread.Sleep(1000);
-            //    }
-            //});
-            //t.Start();
+
 
             return StartCommandResult.Sticky;
         }
@@ -68,17 +61,16 @@ namespace AlertApp.Droid
         {
             base.OnDestroy();
             StopLocationUpdates();
+            if (accelerometer != null)
+            {
+                accelerometer.Stop();
+            }
             //t.Stop();
         }
 
         Notification GetNotification()
         {
             Intent intent = new Intent();
-
-            //var text = Utils.GetLocationText(Location);
-
-            //// Extra to help us figure out if we arrived in onStartCommand via the notification or not.
-            //intent.PutExtra(ExtraStartedFromNotification, true);
 
             // The PendingIntent that leads to a call to onStartCommand() in this service.
             var servicePendingIntent = PendingIntent.GetService(this, 0, intent, PendingIntentFlags.UpdateCurrent);
@@ -141,13 +133,14 @@ namespace AlertApp.Droid
     }
 
 
-    public class AccelerometerTest
+    public class ApplicationAccelerometer
     {
         // Set speed delay for monitoring changes.
         SensorSpeed speed = SensorSpeed.UI;
-
-        public AccelerometerTest()
+        Context Context;
+        public ApplicationAccelerometer(Context context)
         {
+            Context = context;
             // Register for reading changes, be sure to unsubscribe when finished
             Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
         }
@@ -159,6 +152,11 @@ namespace AlertApp.Droid
             // Process Acceleration X, Y, and Z
         }
 
+        public void Stop()
+        {
+            Accelerometer.Stop();
+        }
+
         public void ToggleAccelerometer()
         {
             try
@@ -166,7 +164,11 @@ namespace AlertApp.Droid
                 if (Accelerometer.IsMonitoring)
                     Accelerometer.Stop();
                 else
+                {
                     Accelerometer.Start(speed);
+                    Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
+                }
+
             }
             catch (FeatureNotSupportedException fnsEx)
             {
@@ -176,6 +178,11 @@ namespace AlertApp.Droid
             {
                 // Other error has occurred.
             }
+        }
+
+        private void Accelerometer_ShakeDetected(object sender, EventArgs e)
+        {
+            Context.StartActivity(new Intent(Context, typeof(MainActivity)));
         }
     }
 
@@ -213,13 +220,13 @@ namespace AlertApp.Droid
             {
                 Task.Run(async () =>
                 {
-                    var location = result.LastLocation;                   
+                    var location = result.LastLocation;
                     var token = await SecureStorage.GetAsync(AlertApp.Utils.Settings.AuthToken);
                     var firebaseToken = CrossFirebasePushNotification.Current.Token;
                     if (!string.IsNullOrWhiteSpace(firebaseToken))
-                    {                        
+                    {
                         await UserProfileService.Ping(token, location.Latitude, location.Longitude, firebaseToken);
-                    }                    
+                    }
                 });
                 //  Toast.MakeText(context, "New location", ToastLength.Short).Show();
             }
