@@ -21,5 +21,6 @@ namespace AlertApp.Droid.DependencyService
         {
             return Utils.isLocationEnabled(context);
         }
+
     }
 }

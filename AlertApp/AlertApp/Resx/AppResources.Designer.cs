@@ -439,6 +439,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Location services are off. Please open it in order to keep you safe..
+        /// </summary>
+        internal static string LocationServicesOffMessage {
+            get {
+                return ResourceManager.GetString("LocationServicesOffMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Location Tracking.
         /// </summary>
         internal static string LocationTracking {

@@ -22,5 +22,10 @@ namespace AlertApp.Droid.DependencyService
             NotificationManager notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);            
             notificationManager.Cancel(id);
         }
+
+        public void ToastNotification(string text)
+        {
+            Toast.MakeText(context, text, ToastLength.Long).Show();
+        }
     }
 }

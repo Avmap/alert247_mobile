@@ -370,4 +370,7 @@
   <data name="NoItems" xml:space="preserve">
     <value>Δεν βρέθηκαν επαφές</value>
   </data>
+  <data name="LocationServicesOffMessage" xml:space="preserve">
+    <value>Οι υπηρεσία τοποθεσίες είναι κλειστή.</value>
+  </data>
 </root>

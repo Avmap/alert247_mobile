@@ -32,10 +32,7 @@ namespace AlertApp.Droid.DependencyService
         public void StopGuardianService()
         {
             Intent i = new Intent(context, typeof(Guardian));
-            context.StopService(i);
-            //Intent intent = new Intent(Activity.this, MyBackgroundService.class);
-            //stopService(intent);
-            //  Detector.initiate(context);
+            context.StopService(i);            
         }
     }
 

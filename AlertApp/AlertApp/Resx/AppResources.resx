@@ -364,4 +364,7 @@
   <data name="NoItems" xml:space="preserve">
     <value>No contacts found</value>
   </data>
+  <data name="LocationServicesOffMessage" xml:space="preserve">
+    <value>Location services are off. Please open it in order to keep you safe.</value>
+  </data>
 </root>

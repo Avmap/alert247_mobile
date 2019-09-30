@@ -24,6 +24,7 @@ using Xamarin.Forms.Xaml;
 using System.Diagnostics;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using AlertApp.Resx;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace AlertApp
@@ -81,7 +82,8 @@ namespace AlertApp
         }
 
         protected override void OnStart()
-        {          
+        {
+            RequestPermissions();
             // Handle when your app starts
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
@@ -149,6 +151,42 @@ namespace AlertApp
         {
             // Handle when your app resumes
             // Subscribe();
+            RequestPermissions();
+        }
+        private async void RequestPermissions()
+        {
+            try
+            {
+                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
+                if (locationPermissionStatus != PermissionStatus.Granted || contactPermissionStatus != PermissionStatus.Granted)
+                {
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location, Permission.Contacts });
+                }
+
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Handle not supported on device exception
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                // Handle not enabled on device exception
+            }
+            catch (PermissionException pEx)
+            {
+                // Handle permission exception
+            }
+            catch (Exception ex)
+            {
+                // Unable to get location
+            }
+            var locationSettingsService = DependencyService.Get<ILocationSettings>();
+            var notificationService = DependencyService.Get<INotificationManager>();
+            if (!locationSettingsService.IsLocationEnabled())
+            {
+                notificationService.ToastNotification(AppResources.LocationServicesOffMessage);
+            }
         }
 
 

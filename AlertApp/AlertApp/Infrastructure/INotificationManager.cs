@@ -7,5 +7,7 @@ namespace AlertApp.Infrastructure
     public interface INotificationManager
     {
         void CloseNotification(int id);
+
+        void ToastNotification(string text);
     }
 }
