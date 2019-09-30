@@ -147,6 +147,8 @@ namespace AlertApp.Infrastructure
             Application.Current.MainPage.DisplayAlert(title, message, "OK");
         }
 
+
+  
         protected async Task<bool> showAlertMessage(string title, string message, string accept, string cancel)
         {
             var result = await Application.Current.MainPage.DisplayAlert(title, message, accept, cancel);

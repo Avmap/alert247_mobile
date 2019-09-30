@@ -367,4 +367,16 @@
   <data name="LocationServicesOffMessage" xml:space="preserve">
     <value>Location services are off. Please open it in order to keep you safe.</value>
   </data>
+  <data name="SuccessSendAlert" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="SuccessSendAlertMessage" xml:space="preserve">
+    <value>send successfully to </value>
+  </data>
+  <data name="SuccessSendAlertMessageContacts" xml:space="preserve">
+    <value>contacts.</value>
+  </data>
+  <data name="TheAlert" xml:space="preserve">
+    <value />
+  </data>
 </root>

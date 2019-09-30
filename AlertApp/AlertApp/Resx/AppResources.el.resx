@@ -373,4 +373,16 @@
   <data name="LocationServicesOffMessage" xml:space="preserve">
     <value>Οι υπηρεσία τοποθεσίες είναι κλειστή.</value>
   </data>
+  <data name="SuccessSendAlert" xml:space="preserve">
+    <value>Επιτυχής αποστολή</value>
+  </data>
+  <data name="SuccessSendAlertMessage" xml:space="preserve">
+    <value>στάλθηκε επιτυχώς σε</value>
+  </data>
+  <data name="SuccessSendAlertMessageContacts" xml:space="preserve">
+    <value>επαφές.</value>
+  </data>
+  <data name="TheAlert" xml:space="preserve">
+    <value>To</value>
+  </data>
 </root>

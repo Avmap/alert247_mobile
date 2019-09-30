@@ -27,9 +27,9 @@ namespace AlertApp.Services.Alert
         }
 
 
-        public async Task<Response> SendAlert(string token, double? lat, double? lng, int type)
+        public async Task<Response<SendAlertResponse>> SendAlert(string token, double? lat, double? lng, int type)
         {
-            var res = new Response();
+            var res = new Response<SendAlertResponse>();
             var body = new SendAlertPostBody();
             body.Token = token;
             body.Lat = lat;
@@ -42,14 +42,18 @@ namespace AlertApp.Services.Alert
                 if (decryptedUserProfileData != null)
                 {
                     var contacts = await _contactsService.GetContacts(token);
-                    foreach (var contact in contacts.Result.Contacts.Community)
+                    if (contacts != null && contacts.Result != null)
                     {
-                        var recipient = await _cryptographyService.GetAlertRecipient(decryptedUserProfileData, contact);
-                        if (recipient != null)
+                        foreach (var contact in contacts.Result.Contacts.Community)
                         {
-                            body.Recipients.Add(recipient);
+                            var recipient = await _cryptographyService.GetAlertRecipient(decryptedUserProfileData, contact);
+                            if (recipient != null)
+                            {
+                                body.Recipients.Add(recipient);
+                            }
                         }
                     }
+                   
                 }
 
                 var json = JsonConvert.SerializeObject(body);
@@ -60,11 +64,9 @@ namespace AlertApp.Services.Alert
                     var apiResponse = await response.Content.ReadAsStringAsync();
                     if (apiResponse != null)
                     {
-                        return JsonConvert.DeserializeObject<Response>(apiResponse);
+                        return JsonConvert.DeserializeObject<Response<SendAlertResponse>>(apiResponse);
                     }
                 }
-
-                return Response.FailResponse;
             }
             catch (Exception ex)
             {

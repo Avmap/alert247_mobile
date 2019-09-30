@@ -700,6 +700,33 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Success.
+        /// </summary>
+        internal static string SuccessSendAlert {
+            get {
+                return ResourceManager.GetString("SuccessSendAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to send successfully to .
+        /// </summary>
+        internal static string SuccessSendAlertMessage {
+            get {
+                return ResourceManager.GetString("SuccessSendAlertMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to contacts..
+        /// </summary>
+        internal static string SuccessSendAlertMessageContacts {
+            get {
+                return ResourceManager.GetString("SuccessSendAlertMessageContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dependands.
         /// </summary>
         internal static string TabDependands {
@@ -723,6 +750,15 @@ namespace AlertApp.Resx {
         internal static string TabSuggestions {
             get {
                 return ResourceManager.GetString("TabSuggestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string TheAlert {
+            get {
+                return ResourceManager.GetString("TheAlert", resourceCulture);
             }
         }
         
