@@ -52,7 +52,7 @@ namespace AlertApp
             }
             else
             {
-                MainPage = new NavigationPage(new MainTabbedPage());
+                MainPage = new NavigationPage(new MainPage());
             }
 
 #if DEBUG            

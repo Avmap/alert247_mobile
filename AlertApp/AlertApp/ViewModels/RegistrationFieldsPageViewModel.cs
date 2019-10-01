@@ -39,7 +39,7 @@ namespace AlertApp.ViewModels
                 if (storedProfile.IsOk)
                 {
                     //await NavigationService.PushAsync(new MainPage(), true);                    
-                    App.Current.MainPage = new NavigationPage(new MainTabbedPage());
+                    App.Current.MainPage = new NavigationPage(new MainPage());
 
                 }
                 else if (!storedProfile.IsOnline)

@@ -4,11 +4,14 @@ using AlertApp.Resx;
 using AlertApp.Services.Profile;
 using AlertApp.Services.Settings;
 using Plugin.FirebasePushNotification;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AlertApp.ViewModels
@@ -41,6 +44,18 @@ namespace AlertApp.ViewModels
             get
             {
                 return _CancelCommand ?? (_CancelCommand = new Command(CancelSendAlert, () =>
+                {
+                    return !Busy;
+                }));
+            }
+        }
+
+        private ICommand _OpenContactsScreen;
+        public ICommand OpenContactsScreen
+        {
+            get
+            {
+                return _OpenContactsScreen ?? (_OpenContactsScreen = new Command(NavigateToContactScreen, () =>
                 {
                     return !Busy;
                 }));
@@ -113,6 +128,53 @@ namespace AlertApp.ViewModels
                 }
                 _localSettingsService.SaveAppHasRunSetting(true);
             }
+            PingServer();
+        }
+
+        private async void PingServer()
+        {
+            var userToken = await _localSettingsService.GetAuthToken();
+            var firebaseToken = CrossFirebasePushNotification.Current.Token;
+            Location location = null;
+            try
+            {
+                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                if (locationPermissionStatus == PermissionStatus.Granted)
+                {
+                    location = await Geolocation.GetLastKnownLocationAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            await _userProfileService.Ping(userToken, location != null ? location.Latitude : (double?)null, location != null ? location.Longitude : (double?)null, firebaseToken);
+
+            //var locales = await TextToSpeech.GetLocalesAsync();
+
+            //// Grab the first locale
+            //var locale = locales.LastOrDefault();
+            //var settings = new SpeechOptions()
+            //{
+            //    Volume = 1f,
+            //    Pitch = 1.0f,
+            //    Locale = locale
+            //};
+            //await TextToSpeech.SpeakAsync("Hello from Barcelona", settings);
+
+        }
+
+        private async void NavigateToContactScreen()
+        {
+
+            //if (Busy)
+            //    return;
+            
+            SetBusy(true);
+            await NavigationService.PushAsync(new ManageContactsPage(), true);
+            SetBusy(false);
+
+
         }
 
         private async void OpenSendAlertScreen()
@@ -158,7 +220,10 @@ namespace AlertApp.ViewModels
 
         public override void SetBusy(bool isBusy)
         {
+
             this.Busy = isBusy;
+            ((Command)OpenContactsScreen).ChangeCanExecute();
+
         }
 
         #endregion        

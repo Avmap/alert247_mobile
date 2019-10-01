@@ -379,4 +379,16 @@
   <data name="TheAlert" xml:space="preserve">
     <value />
   </data>
+  <data name="Accident" xml:space="preserve">
+    <value>Accident</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="Fire" xml:space="preserve">
+    <value>Fire</value>
+  </data>
+  <data name="Threat" xml:space="preserve">
+    <value>Threat</value>
+  </data>
 </root>

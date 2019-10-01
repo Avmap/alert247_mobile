@@ -88,6 +88,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accident.
+        /// </summary>
+        internal static string Accident {
+            get {
+                return ResourceManager.GetString("Accident", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Contacts.
         /// </summary>
         internal static string AddContactsPage {
@@ -241,6 +250,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contacts.
+        /// </summary>
+        internal static string Contacts {
+            get {
+                return ResourceManager.GetString("Contacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue.
         /// </summary>
         internal static string Continue {
@@ -363,6 +381,15 @@ namespace AlertApp.Resx {
         internal static string FinishRegistration {
             get {
                 return ResourceManager.GetString("FinishRegistration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fire.
+        /// </summary>
+        internal static string Fire {
+            get {
+                return ResourceManager.GetString("Fire", resourceCulture);
             }
         }
         
@@ -759,6 +786,15 @@ namespace AlertApp.Resx {
         internal static string TheAlert {
             get {
                 return ResourceManager.GetString("TheAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Threat.
+        /// </summary>
+        internal static string Threat {
+            get {
+                return ResourceManager.GetString("Threat", resourceCulture);
             }
         }
         

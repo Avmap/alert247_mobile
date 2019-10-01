@@ -8,6 +8,7 @@ using AlertApp.ViewModels;
 using Android.App;
 using Android.Content;
 using Android.Gms.Location;
+using Android.Graphics;
 using Android.OS;
 using Android.Preferences;
 using Android.Runtime;
@@ -38,6 +39,13 @@ namespace AlertApp.Droid
             base.OnCreate();
             builder = new NotificationCompat.Builder(this);
             ConfigLocationUpdates();
+
+
+
+         
+
+
+
         }
         public override IBinder OnBind(Intent intent)
         {
@@ -56,6 +64,7 @@ namespace AlertApp.Droid
 
             return StartCommandResult.Sticky;
         }
+        
 
         public override void OnDestroy()
         {
