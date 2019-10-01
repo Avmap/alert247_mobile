@@ -13,20 +13,20 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Grid Margin="0,16,0,0" Grid.Row="0"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid Margin="0,28,0,0" Grid.Row="0"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="175"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0" Source="alert_logo.png"></Image>
-                <Image Grid.Row="1" Source="sos_button.png" HeightRequest="160" IsVisible="{Binding ShowSosButton,Mode=TwoWay}" >
+                <Image Grid.Row="1" Source="sos_button.png" HeightRequest="160"  Margin="16,0,16,0" IsVisible="{Binding ShowSosButton,Mode=TwoWay}" >
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SosCommand}"></TapGestureRecognizer>
                     </Image.GestureRecognizers>
                 </Image>
-                <Button Grid.Row="1"  HeightRequest="160" BackgroundColor="{StaticResource PrimaryColor}"  IsVisible="{Binding ShowCancelButton,Mode=TwoWay}" BorderColor="#000000" BorderWidth="1" Text="{Binding CancelButtonText,Mode=TwoWay}" Style="{StaticResource SosButton}" Command="{Binding CancelCommand}"></Button>
-                <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8"  HeightRequest="110" VerticalOptions="StartAndExpand">
+                <Button Grid.Row="1" Margin="16,0,16,0" HeightRequest="160" BackgroundColor="{StaticResource PrimaryColor}"  IsVisible="{Binding ShowCancelButton,Mode=TwoWay}" BorderColor="#000000" BorderWidth="1" Text="{Binding CancelButtonText,Mode=TwoWay}" Style="{StaticResource SosButton}" Command="{Binding CancelCommand}"></Button>
+                <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="8" HeightRequest="110" Margin="0,0,0,40" VerticalOptions="EndAndExpand">
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <Image Source="alert_police.png" HeightRequest="80" WidthRequest="80"></Image>
                         <Label Text="{infrastructure:Translate Threat}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
@@ -40,7 +40,10 @@
                         <Label Text="{infrastructure:Translate Accident}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                 </StackLayout>
-                <Image Grid.Row="2"  Source="call_center.png" HeightRequest="320" Aspect="AspectFill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></Image>
+                
+                    <!--<Image Grid.Row="2"  Source="call_center.png" HeightRequest="320" BackgroundColor="Chocolate" VerticalOptions="EndAndExpand"></Image>-->
+                <Image Grid.Row="2"  Source="call_center.png"  HeightRequest="110" VerticalOptions="EndAndExpand" Aspect="AspectFill" HorizontalOptions="FillAndExpand"></Image>
+               
             </Grid>
             <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">

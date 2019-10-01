@@ -35,7 +35,8 @@ namespace AlertApp.Model.Api
 
         
          public string StatusAlertMe => Accepted ? AppResources.AcceptedFromMe : AppResources.Pending;
-        public Color BackgroundStatusColor => Accepted ? Color.Green : Color.Orange;
+        public Color BackgroundStatusColor => Accepted ? Color.FromHex("#800000") : Color.FromHex("#DCDDDE");
+        public Color ΤextStatusColor => Accepted ? Color.FromHex("#800000") : Color.White;
         public string Status => Accepted ? AppResources.Accepted : AppResources.Pending;
         public string FullName => String.Format("{0} {1}", FirstName, LastName);
         public string Title => !string.IsNullOrWhiteSpace(FullName) ? FullName : Cellphone;

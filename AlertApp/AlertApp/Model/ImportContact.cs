@@ -63,24 +63,7 @@ namespace AlertApp.Model
         {
             get
             {
-                string clearedNumber = Number.Trim().Replace("-", "").Replace(" ", "");
-
-                if (clearedNumber.StartsWith("+"))
-                {
-                    return clearedNumber;
-                }
-
-                if (clearedNumber.StartsWith("00"))
-                {
-                    return clearedNumber.Replace("00", "+");
-                }
-
-                if (clearedNumber.Length == 10)
-                {
-                    return "+30" + clearedNumber;
-                }
-
-                return clearedNumber;
+                return GetFormattedNumber(Number);
             }
         }
 

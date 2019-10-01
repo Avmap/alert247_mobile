@@ -76,6 +76,18 @@ namespace AlertApp.ViewModels
             }
         }
 
+        private ICommand _BackCommand;
+        public ICommand BackCommand
+        {
+            get
+            {
+                return _BackCommand ?? (_BackCommand = new Command(Back, () =>
+                {
+                    return true;
+                }));
+            }
+        }
+
         #endregion
 
         public MyCommunityPageViewModel(IContactsService contactsService, ILocalSettingsService localSettingsService)
@@ -85,7 +97,10 @@ namespace AlertApp.ViewModels
             _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
             SetBusy(true);
         }
-
+        private async void Back()
+        {
+            await NavigationService.PopAsync();
+        }
         private void GetCommunity()
         {
             SetBusy(true);
