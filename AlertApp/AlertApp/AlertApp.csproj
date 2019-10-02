@@ -21,6 +21,7 @@
     <PackageReference Include="CommonServiceLocator" Version="2.0.4" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="PCLCrypto" Version="2.0.147" />
+    <PackageReference Include="Plugin.Badge" Version="2.2.1" />
     <PackageReference Include="Plugin.FirebasePushNotification" Version="2.3.5" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Unity" Version="5.10.3" />

@@ -39,6 +39,18 @@ namespace AlertApp.ViewModels
                 OnPropertyChanged("HasContacts");
             }
         }
+        
+        private int _NotificationCount;
+
+        public int NotificationCount
+        {
+            get { return _NotificationCount; }
+            set
+            {
+                _NotificationCount = value;
+                OnPropertyChanged("NotificationCount");
+            }
+        }
 
         public bool HasContacts => AlertMeContacts == null || AlertMeContacts.Count == 0;
 
@@ -82,7 +94,7 @@ namespace AlertApp.ViewModels
         public async void NavigateToAcceptCommunityReqeustScreen(Contact contact)
         {
             SetBusy(true);
-           
+
             var modal = new CommunityRequestPage(contact);
             modal.Disappearing += (sender2, e2) =>
             {
@@ -113,6 +125,7 @@ namespace AlertApp.ViewModels
                 var community = response.Result.Contacts.AlertMe;
                 if (community != null && community.Count > 0)
                 {
+                    NotificationCount = response.Result.Contacts.AlertMe.Where(c => c.Accepted == false).Count();
                     //search in addressBook for contacts
                     if (addressBook != null)
                     {
