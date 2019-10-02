@@ -18,7 +18,7 @@ namespace AlertApp.Pages
 		{
 			InitializeComponent ();
             Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("contact", contact);
+            parameters.Add("contact", contact);            
             this.BindingContext = ViewModelLocator.Instance.Resolve<CommunityRequestPageViewModel>(parameters);
         }
 

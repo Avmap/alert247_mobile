@@ -33,8 +33,8 @@ namespace AlertApp.Model.Api
 
         #region Computed
 
-        
-         public string StatusAlertMe => Accepted ? AppResources.AcceptedFromMe : AppResources.Pending;
+        public int NotificationId { get; set; }
+        public string StatusAlertMe => Accepted ? AppResources.AcceptedFromMe : AppResources.Pending;
         public Color BackgroundStatusColor => Accepted ? Color.FromHex("#800000") : Color.FromHex("#DCDDDE");
         public Color ΤextStatusColor => Accepted ? Color.FromHex("#800000") : Color.White;
         public string Status => Accepted ? AppResources.Accepted : AppResources.Pending;

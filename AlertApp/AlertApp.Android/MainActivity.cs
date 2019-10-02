@@ -89,7 +89,7 @@ namespace AlertApp.Droid
             }
             else if (action != null && notification == "contact" && !flags.HasFlag(ActivityFlags.LaunchedFromHistory))
             {
-                var contact = new AlertApp.Model.Api.Contact { Cellphone = cellphone };
+                var contact = new AlertApp.Model.Api.Contact { Cellphone = cellphone, NotificationId = notificationId };
                 Xamarin.Forms.Application.Current.MainPage.Navigation.PushModalAsync(new CommunityRequestPage(contact));
                 Intent = null;
             }

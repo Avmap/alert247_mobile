@@ -26,6 +26,7 @@
                     </Image.GestureRecognizers>
                 </Image>
                 <Button Grid.Row="1" Margin="16,0,16,0" HeightRequest="160" BackgroundColor="{StaticResource PrimaryColor}"  IsVisible="{Binding ShowCancelButton,Mode=TwoWay}" BorderColor="#000000" BorderWidth="1" Text="{Binding CancelButtonText,Mode=TwoWay}" Style="{StaticResource SosButton}" Command="{Binding CancelCommand}"></Button>
+                <Image Grid.Row="2"  Source="call_center.png"  HeightRequest="110" VerticalOptions="EndAndExpand" Aspect="AspectFill" HorizontalOptions="FillAndExpand"></Image>
                 <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="8" HeightRequest="110" Margin="0,0,0,40" VerticalOptions="EndAndExpand">
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <Image Source="alert_police.png" HeightRequest="80" WidthRequest="80"></Image>
@@ -42,7 +43,7 @@
                 </StackLayout>
                 
                     <!--<Image Grid.Row="2"  Source="call_center.png" HeightRequest="320" BackgroundColor="Chocolate" VerticalOptions="EndAndExpand"></Image>-->
-                <Image Grid.Row="2"  Source="call_center.png"  HeightRequest="110" VerticalOptions="EndAndExpand" Aspect="AspectFill" HorizontalOptions="FillAndExpand"></Image>
+              
                
             </Grid>
             <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">

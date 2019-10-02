@@ -46,6 +46,16 @@ namespace AlertApp.ViewModels
                 OnPropertyChanged("ContactName");
             }
         }
+        private string _ContactPhone;
+        public string ContactPhone
+        {
+            get { return _ContactPhone; }
+            set
+            {
+                _ContactPhone = value;
+                OnPropertyChanged("ContactPhone");
+            }
+        }
 
 
         private string _AlertTextTitle;
@@ -141,19 +151,45 @@ namespace AlertApp.ViewModels
                 }
                 else if (profileData == null)
                 {
-
-                    await Task.Delay(TimeSpan.FromSeconds(1));
-                    _notificationManager.CloseNotification(_notificationAction.NotificationId);
-                    await App.Current.MainPage.Navigation.PopModalAsync();
+                    if (!string.IsNullOrWhiteSpace(data.Cellphone))
+                    {
+                        SetContactFromMobile(data.Cellphone);
+                    }
+                    else
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(1));
+                        _notificationManager.CloseNotification(_notificationAction.NotificationId);
+                        await App.Current.MainPage.Navigation.PopModalAsync();
+                    }                   
                 }
             }
             else
             {
                 //here get contact from addressbook
+                SetContactFromMobile(data.Cellphone);
             }
 
+        }
 
-
+        private void SetContactFromMobile(string cellphone)
+        {
+            //here get contact from addressbook
+            var contactService = DependencyService.Get<IContacts>();
+            var addressBookContact = contactService.GetContactDetails(cellphone);
+            if (addressBookContact != null)
+            {
+                ContactName = addressBookContact.FirstName;
+                if (!string.IsNullOrWhiteSpace(addressBookContact.ProfileImageUri))
+                {
+                    var image = _contactProfileImageProvider.GetProfileImage(addressBookContact.ProfileImageUri);
+                    ProfileImage = image;
+                }
+                else
+                {
+                    ProfileImage = ImageSource.FromFile("account_circle.png");
+                }
+                ContactPhone = cellphone;
+            }
         }
 
         private async void Accept()

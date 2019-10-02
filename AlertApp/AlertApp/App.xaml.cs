@@ -25,6 +25,7 @@ using System.Diagnostics;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using AlertApp.Resx;
+using AlertApp.Model;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace AlertApp
@@ -53,11 +54,12 @@ namespace AlertApp
             else
             {
                 MainPage = new NavigationPage(new MainPage());
+                //   MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { Position= "37.984980,23.762060", Cellphone = "+306983836637"} }));
             }
 
-#if DEBUG            
-          //  var contactService = DependencyService.Get<IContacts>();
-           // var addressBookContact = contactService.GetContacts();
+#if DEBUG
+            //  var contactService = DependencyService.Get<IContacts>();
+            // var addressBookContact = contactService.GetContacts();
 #endif
         }
 
@@ -99,7 +101,7 @@ namespace AlertApp
                         {
                             Task.Run(async () =>
                             {
-                                Debug.WriteLine("Firebase", "New Token: " + p.Token);                                
+                                Debug.WriteLine("Firebase", "New Token: " + p.Token);
                                 localSettings.SaveFirebaseToken(p.Token);
                                 Location location = null;
                                 try
@@ -109,14 +111,14 @@ namespace AlertApp
                                     {
                                         location = await Geolocation.GetLastKnownLocationAsync();
                                     }
-                                  
+
                                 }
                                 catch (Exception ex)
                                 {
 
                                 }
-                           
-                              var authToken = await localSettings.GetAuthToken();
+
+                                var authToken = await localSettings.GetAuthToken();
                                 if (!string.IsNullOrWhiteSpace(authToken))
                                 {
                                     await userProfileService.Ping(authToken, location != null ? location.Latitude : (double?)null, location != null ? location.Longitude : (double?)null, p.Token);

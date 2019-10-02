@@ -35,5 +35,7 @@ namespace AlertApp.Services.Settings
 
         void SaveAppHasRunSetting(bool firstRun);
         bool GetAppHasRunSetting();
+
+        int GetCellPhoneNotificationId(string cellphone);
     }
 }

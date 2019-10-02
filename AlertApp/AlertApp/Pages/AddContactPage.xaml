@@ -4,6 +4,7 @@
              xmlns:converters="clr-namespace:AlertApp.Converters;assembly=AlertApp"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlertApp.Pages.AddContactPage"
+              xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              Navigation="{Binding NavigationService}" 
              Title="{infrastructure:Translate AddContactsPage}">
   
@@ -49,9 +50,18 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <ContentView Margin="3" WidthRequest="54" Grid.Column="0">
-                                        <Image HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50" HeightRequest="50" Source="{Binding ProfileImage}"/>
-                                    </ContentView>
+                                    <circle:CircleImage Source="{Binding ProfileImage}" Aspect="AspectFill">
+                                        <circle:CircleImage.WidthRequest>
+                                            <OnPlatform x:TypeArguments="x:Double">
+                                                <On Platform="Android, iOS">55</On>
+                                            </OnPlatform>
+                                        </circle:CircleImage.WidthRequest>
+                                        <circle:CircleImage.HeightRequest>
+                                            <OnPlatform x:TypeArguments="x:Double">
+                                                <On Platform="Android, iOS">55</On>
+                                            </OnPlatform>
+                                        </circle:CircleImage.HeightRequest>
+                                    </circle:CircleImage>
                                     <StackLayout Grid.Column="1" >
                                         <Label TextColor="{Binding Selected,Converter={StaticResource SelectedContactTextColorConverter},Mode=TwoWay}" Text="{Binding Name}" VerticalOptions="CenterAndExpand"  LineBreakMode="WordWrap" FontFamily="{StaticResource Regular}"/>
                                     </StackLayout>

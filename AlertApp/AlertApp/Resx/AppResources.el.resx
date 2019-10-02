@@ -317,10 +317,10 @@
     <value>SOS</value>
   </data>
   <data name="IgnoreHelp" xml:space="preserve">
-    <value>ΑΓΝΟΗΣΗ</value>
+    <value>Αγνόησε</value>
   </data>
   <data name="IWillHelp" xml:space="preserve">
-    <value>ΘΑ ΒΟΗΘΗΣΩ</value>
+    <value>Θα βοηθήσω!</value>
   </data>
   <data name="HomeTab" xml:space="preserve">
     <value>Αρχική</value>
@@ -400,6 +400,9 @@
   <data name="EnterPinFor" xml:space="preserve">
     <value>ΕΙΣΑΓΕΤΕ PIN ΓΙΑ</value>
   </data>
+  <data name="NewAlertTitle" xml:space="preserve">
+    <value>ΝΕΑ ΕΙΔΟΠΟΙΗΣΗ</value>
+  </data>
   <data name="PressedAlert" xml:space="preserve">
     <value>Πατήσατε το κουμπί</value>
   </data>
@@ -408,5 +411,26 @@
   </data>
   <data name="SendingAlertToSelectedContacts" xml:space="preserve">
     <value>Αποστολή ειδοποίησης στις επιλεγμένες επαφές σε...</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Ηλικία:</value>
+  </data>
+  <data name="Allergies" xml:space="preserve">
+    <value>Αλεργίες:</value>
+  </data>
+  <data name="EmergencyAlertText" xml:space="preserve">
+    <value>Μια επαφή σας χρησιμοποίησε την κλήση έκτακτης ανάγκης SOS</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Ύψος:</value>
+  </data>
+  <data name="Medecine" xml:space="preserve">
+    <value>Φάρμακα:</value>
+  </data>
+  <data name="UserIsInPosition" xml:space="preserve">
+    <value>Αυτή τη στιγμή βρίσκεται:</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Βάρος</value>
   </data>
 </root>

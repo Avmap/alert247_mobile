@@ -31,7 +31,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Margin="8,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <StackLayout  Margin="8,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                     <circle:CircleImage Source="{Binding ProfileImage}" Aspect="AspectFill">
                                         <circle:CircleImage.WidthRequest>
                                             <OnPlatform x:TypeArguments="x:Double">
@@ -47,21 +47,18 @@
                                     <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
                                         <Label Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource Headline6}"/>
                                         <StackLayout  Orientation="Horizontal" Spacing="8"  HorizontalOptions="FillAndExpand">
-                                            <StackLayout Orientation="Vertical">
-                                                <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="hand_help.png"/>
-                                                <Label Text="{Binding Stats.Helped}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="help.png"/>
+                                                <Label Text="{Binding Stats.Helped}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource Headline6}"/>
                                             </StackLayout>
-                                            <StackLayout Orientation="Vertical">
-                                                <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="hand_help.png"/>
-                                                <Label Text="{Binding Stats.Ignored}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="ignore.png"/>
+                                                <Label Text="{Binding Stats.Ignored}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource Headline6}"/>
                                             </StackLayout>
-                                            <StackLayout Orientation="Vertical">
-                                                <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="hand_help.png"/>
-                                                <Label Text="{Binding Stats.Asked}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="asked.png"/>
+                                                <Label Text="{Binding Stats.Asked}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource Headline6}"/>
                                             </StackLayout>
-                                            <!--<Frame HorizontalOptions="EndAndExpand" BackgroundColor="{Binding BackgroundStatusColor}" VerticalOptions="End" Padding="4" Margin="0,0,4,0">
-                                                <Label Text="{Binding Status}" TextColor="White" Style="{StaticResource Subtitle1}"/>
-                                            </Frame>-->
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>

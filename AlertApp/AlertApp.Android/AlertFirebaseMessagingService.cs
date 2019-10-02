@@ -12,6 +12,7 @@ using Android.Content;
 using Android.Graphics;
 using Android.Media;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
@@ -51,7 +52,7 @@ namespace AlertApp.Android
 
             try
             {
-               // Handler h = new Handler(Looper.MainLooper);
+                //Handler h = new Handler(Looper.MainLooper);
                 //h.Post(() => showAlert());
 
                 if (message.Data != null)
@@ -220,11 +221,18 @@ namespace AlertApp.Android
             }
 
             notificationManager.Notify(notificationID /* ID of notification */, notificationBuilder.Build());
+
+            StartActivity(intent);
         }
 
         void SendContactRequestNotification(string title, string messageBody, string position, string cellphone)
         {
+
             int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
+
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+            prefs.Edit().PutInt(cellphone + "_", notificationID).Commit();
+            
             //create wake lock
             PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
             PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, WakeLock);
@@ -275,6 +283,6 @@ namespace AlertApp.Android
 
             notificationManager.Notify(notificationID, notificationBuilder.Build());
         }
-        
+
     }
 }

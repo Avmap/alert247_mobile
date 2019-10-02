@@ -272,6 +272,11 @@ namespace AlertApp.Services.Settings
             return Preferences.Get(utils.Settings.AppHasRun, false);
         }
 
+        public int GetCellPhoneNotificationId(string cellphone)
+        {
+            return Preferences.Get(cellphone + "_", 0);
+        }
+
         public LocalSettingsService()
         {
 

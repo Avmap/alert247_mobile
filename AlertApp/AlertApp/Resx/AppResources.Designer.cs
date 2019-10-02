@@ -106,6 +106,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Age.
+        /// </summary>
+        internal static string Age {
+            get {
+                return ResourceManager.GetString("Age", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to send request to selected contacts?.
         /// </summary>
         internal static string AlertAddContactsMessage {
@@ -129,6 +138,15 @@ namespace AlertApp.Resx {
         internal static string AlertSosTitle {
             get {
                 return ResourceManager.GetString("AlertSosTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allergies.
+        /// </summary>
+        internal static string Allergies {
+            get {
+                return ResourceManager.GetString("Allergies", resourceCulture);
             }
         }
         
@@ -286,6 +304,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One of your contacts used emergency alert call SOS.
+        /// </summary>
+        internal static string EmergencyAlertText {
+            get {
+                return ResourceManager.GetString("EmergencyAlertText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter pin.
         /// </summary>
         internal static string EnterApplicationPinTitle {
@@ -412,6 +439,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Height.
+        /// </summary>
+        internal static string Height {
+            get {
+                return ResourceManager.GetString("Height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         internal static string HomeTab {
@@ -498,6 +534,24 @@ namespace AlertApp.Resx {
         internal static string ManageContacts {
             get {
                 return ResourceManager.GetString("ManageContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medecine.
+        /// </summary>
+        internal static string Medecine {
+            get {
+                return ResourceManager.GetString("Medecine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NEW ALERT.
+        /// </summary>
+        internal static string NewAlertTitle {
+            get {
+                return ResourceManager.GetString("NewAlertTitle", resourceCulture);
             }
         }
         
@@ -844,6 +898,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Now he is on:.
+        /// </summary>
+        internal static string UserIsInPosition {
+            get {
+                return ResourceManager.GetString("UserIsInPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verification.
         /// </summary>
         internal static string Verification {
@@ -894,6 +957,15 @@ namespace AlertApp.Resx {
         internal static string WarningFillPin {
             get {
                 return ResourceManager.GetString("WarningFillPin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weight.
+        /// </summary>
+        internal static string Weight {
+            get {
+                return ResourceManager.GetString("Weight", resourceCulture);
             }
         }
         

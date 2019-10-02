@@ -54,9 +54,11 @@ namespace AlertApp.ViewModels
         readonly IContactsService _contactsService;
         readonly ILocalSettingsService _localSettingsService;
         readonly IContactProfileImageProvider _contactProfileImageProvider;
+        readonly INotificationManager _notificationManager;
         #endregion
 
         #region Properties        
+        private int _notificationId;
         private Contact _contact;
 
         public Contact Contact
@@ -77,8 +79,10 @@ namespace AlertApp.ViewModels
         {
             _contactsService = contactsService;
             _localSettingsService = localSettingsService;
+            _notificationManager = DependencyService.Get<INotificationManager>();
+            
             _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
-
+            _notificationId = contact.NotificationId;
             var contactService = DependencyService.Get<IContacts>();
             var addressBookContact = contactService.GetContactDetails(contact.Cellphone);
             Contact = contact;
@@ -87,6 +91,11 @@ namespace AlertApp.ViewModels
                 var image = _contactProfileImageProvider.GetProfileImage(addressBookContact.ProfileImageUri);
                 Contact.ProfileImage = image;
                 Contact.FirstName = addressBookContact.FirstName;
+            }
+
+            if (_notificationId == 0)
+            {
+                _notificationId = _localSettingsService.GetCellPhoneNotificationId(contact.Cellphone);     
             }
         }
 
@@ -99,6 +108,8 @@ namespace AlertApp.ViewModels
                 HasChange = true;
             }
             SetBusy(false);
+            if (_notificationId != 0)
+                _notificationManager.CloseNotification(_notificationId);
             await NavigationService.PopModalAsync();
         }
 
@@ -111,6 +122,8 @@ namespace AlertApp.ViewModels
                 HasChange = true;
             }
             SetBusy(false);
+            if (_notificationId != 0)
+                _notificationManager.CloseNotification(_notificationId);
             await NavigationService.PopModalAsync();
         }
 
@@ -123,6 +136,8 @@ namespace AlertApp.ViewModels
                 HasChange = true;
             }
             SetBusy(false);
+            if (_notificationId != 0)
+                _notificationManager.CloseNotification(_notificationId);
             await NavigationService.PopModalAsync();
         }
         #region BaseViewModel

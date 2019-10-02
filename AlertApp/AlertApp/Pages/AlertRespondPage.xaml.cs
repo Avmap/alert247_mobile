@@ -57,7 +57,8 @@ namespace AlertApp.Pages
                             Label = "SOS"
                         };
                         map.Pins.Add(pin);
-                        map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(Double.Parse(latlng[0]), Double.Parse(latlng[1])), Distance.FromMiles(10)));
+
+                        map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(Double.Parse(latlng[0]), Double.Parse(latlng[1])), Distance.FromMeters(150)));
                     }
                 }
                 else
