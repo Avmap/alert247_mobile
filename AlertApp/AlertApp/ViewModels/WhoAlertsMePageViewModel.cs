@@ -52,6 +52,18 @@ namespace AlertApp.ViewModels
             }
         }
 
+        private Color _NotificationBackColor;
+
+        public Color NotificationBackColor
+        {
+            get { return _NotificationBackColor; }
+            set
+            {
+                _NotificationBackColor = value;
+                OnPropertyChanged("NotificationBackColor");
+            }
+        }
+        
         public bool HasContacts => AlertMeContacts == null || AlertMeContacts.Count == 0;
 
         #endregion
@@ -125,6 +137,7 @@ namespace AlertApp.ViewModels
                 var community = response.Result.Contacts.AlertMe;
                 if (community != null && community.Count > 0)
                 {
+                    NotificationBackColor = Color.FromHex("#800000");
                     NotificationCount = response.Result.Contacts.AlertMe.Where(c => c.Accepted == false).Count();
                     //search in addressBook for contacts
                     if (addressBook != null)
@@ -158,6 +171,7 @@ namespace AlertApp.ViewModels
                 else
                 {
                     NotificationCount = 0;
+                    NotificationBackColor = Color.White;
                     AlertMeContacts.Clear();
                     SetBusy(false);
                 }

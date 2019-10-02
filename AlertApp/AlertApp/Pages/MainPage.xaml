@@ -30,15 +30,15 @@
                 <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="8" HeightRequest="110" Margin="0,0,0,40" VerticalOptions="EndAndExpand">
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <Image Source="alert_police.png" HeightRequest="80" WidthRequest="80"></Image>
-                        <Label Text="{infrastructure:Translate Threat}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="{infrastructure:Translate Threat}"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <Image Source="alert_fire.png" HeightRequest="80" WidthRequest="80"></Image>
-                        <Label Text="{infrastructure:Translate Fire}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="{infrastructure:Translate Fire}"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <Image Source="alert_ambulande.png" HeightRequest="80" WidthRequest="80" ></Image>
-                        <Label Text="{infrastructure:Translate Accident}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="{infrastructure:Translate Accident}"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                 </StackLayout>
                 
@@ -46,25 +46,25 @@
               
                
             </Grid>
-            <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+            <StackLayout Margin="30,0,30,11" Grid.Row="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                     <Image    Source="homepage.png"/>
-                    <Label Text="{infrastructure:Translate HomeTab}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Text="{infrastructure:Translate HomeTab}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </StackLayout>
                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding OpenContactsScreen}"></TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>
                     <Image    Source="contacts.png"/>
-                    <Label Text="{infrastructure:Translate Contacts}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Text="{infrastructure:Translate Contacts}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </StackLayout>
                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                     <Image    Source="info.png"/>
-                    <Label Text="{infrastructure:Translate InfoTab}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Text="{infrastructure:Translate InfoTab}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </StackLayout>
                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                     <Image    Source="settings.png"/>
-                    <Label Text="{infrastructure:Translate SettingsTab}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Text="{infrastructure:Translate SettingsTab}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </StackLayout>
             </StackLayout>
         </Grid>

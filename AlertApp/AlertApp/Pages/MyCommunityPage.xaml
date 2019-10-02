@@ -69,28 +69,28 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                <StackLayout Margin="30,0,30,11" Grid.Row="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding BackCommand}"></TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>
                         <Image    Source="homepage.png"/>
-                        <Label Text="{infrastructure:Translate HomeTab}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="{infrastructure:Translate HomeTab}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenContactsScreenCommand}"></TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>
                         <Image    Source="add_contact.png"/>
-                        <Label Text="{infrastructure:Translate Contacts}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="{infrastructure:Translate Contacts}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <Image    Source="info.png"/>
-                        <Label Text="{infrastructure:Translate InfoTab}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="{infrastructure:Translate InfoTab}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <Image    Source="settings.png"/>
-                        <Label Text="{infrastructure:Translate SettingsTab}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="{infrastructure:Translate SettingsTab}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                 </StackLayout>
                 <!--<Button  BackgroundColor="{StaticResource AccentColor}"  Margin="0,0,16,16" HorizontalOptions="End"  Style="{StaticResource CircleButton}" Image="baseline_person_add_white_24.png" Command="{Binding OpenContactsScreenCommand}"/>-->

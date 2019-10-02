@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AlertApp.Droid;
 using AlertApp.Infrastructure;
 using AlertApp.Model;
+using AlertApp.Utils;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -23,6 +24,7 @@ using Firebase.Messaging;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
+using static AlertApp.Model.Language;
 using static Android.App.KeyguardManager;
 using AppCompatAlertDialog = Android.Support.V7.App.AlertDialog;
 namespace AlertApp.Android
@@ -88,7 +90,26 @@ namespace AlertApp.Android
 
                     if (!string.IsNullOrWhiteSpace(messageType) && messageType.Equals("contact") && !string.IsNullOrWhiteSpace(cellphone))
                     {
-                        SendContactRequestNotification("Community Request", "You have a new community request", position, cellphone);
+                        string titleNotification = "";
+                        string messageNotification = "";
+                        var preferenceLanguage = Xamarin.Essentials.Preferences.Get(Settings.SelectedLanguage, "en");
+                        switch (preferenceLanguage)
+                        {
+                            case Codes.Greek:
+                                titleNotification = "Νέο αίτημα";
+                                messageNotification = "Έχετε αίτημα για κοινότητα";
+                                break;
+                            case Codes.English:
+                                titleNotification = "Community Request";
+                                messageNotification = "You have a new community request";
+                                break;
+                            default:
+                                titleNotification = "Community Request";
+                                messageNotification = "You have a new community request";
+                                break;
+
+                        }
+                        SendContactRequestNotification(titleNotification, messageNotification, position, cellphone);
                     }
 
                 }
@@ -232,7 +253,7 @@ namespace AlertApp.Android
 
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
             prefs.Edit().PutInt(cellphone + "_", notificationID).Commit();
-            
+
             //create wake lock
             PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
             PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, WakeLock);

@@ -10,7 +10,7 @@
 
     <pages:MyCommunityPage   />
     <pages:DependandsPage/>
-    <pages:WhoAlertsMePage badgeplugin:TabBadge.BadgeText="{Binding NotificationCount}"/>
+    <pages:WhoAlertsMePage badgeplugin:TabBadge.BadgeText="{Binding NotificationCount}" badgeplugin:TabBadge.BadgeColor="{Binding NotificationBackColor}"/>
     <pages:BlockedUsersPage/>
        
 </TabbedPage>
