@@ -62,7 +62,6 @@
                                                 <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="asked.png"/>
                                                 <Label Text="{Binding Stats.Asked}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource Headline6}"/>
                                             </StackLayout>
-                                            
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>

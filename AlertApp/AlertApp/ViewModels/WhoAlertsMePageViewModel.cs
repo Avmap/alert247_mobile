@@ -157,6 +157,7 @@ namespace AlertApp.ViewModels
                 }
                 else
                 {
+                    NotificationCount = 0;
                     AlertMeContacts.Clear();
                     SetBusy(false);
                 }
