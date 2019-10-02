@@ -157,7 +157,7 @@
     <value>Εισάγετε pin εφαρμογής</value>
   </data>
   <data name="EnterPinToCancel" xml:space="preserve">
-    <value>ΕΙΣΑΓΕΤΕ PIN ΓΙΑ ΑΚΥΡΩΣΗ</value>
+    <value>ΑΚΥΡΩΣΗ ΑΠΟΣΤΟΛΗΣ</value>
   </data>
   <data name="EnterVerificationCodeTitle" xml:space="preserve">
     <value>Επιβεβαίωση</value>
@@ -396,5 +396,17 @@
   </data>
   <data name="Threat" xml:space="preserve">
     <value>Απειλή</value>
+  </data>
+  <data name="EnterPinFor" xml:space="preserve">
+    <value>ΕΙΣΑΓΕΤΕ PIN ΓΙΑ</value>
+  </data>
+  <data name="PressedAlert" xml:space="preserve">
+    <value>Πατήσατε το κουμπί</value>
+  </data>
+  <data name="SendAlertTitle" xml:space="preserve">
+    <value>Αποστολή Ειδοποίησης SOS</value>
+  </data>
+  <data name="SendingAlertToSelectedContacts" xml:space="preserve">
+    <value>Αποστολή ειδοποίησης στις επιλεγμένες επαφές σε...</value>
   </data>
 </root>

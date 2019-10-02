@@ -349,7 +349,16 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ENTER PIN TO CANCEL.
+        ///   Looks up a localized string similar to ENTER PIN IN ORDER.
+        /// </summary>
+        internal static string EnterPinFor {
+            get {
+                return ResourceManager.GetString("EnterPinFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CANCEL ALERT.
         /// </summary>
         internal static string EnterPinToCancel {
             get {
@@ -565,6 +574,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You pressed.
+        /// </summary>
+        internal static string PressedAlert {
+            get {
+                return ResourceManager.GetString("PressedAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registration.
         /// </summary>
         internal static string Register {
@@ -664,6 +682,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send Alert SOS.
+        /// </summary>
+        internal static string SendAlertTitle {
+            get {
+                return ResourceManager.GetString("SendAlertTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sending alert.
         /// </summary>
         internal static string SendingAlert {
@@ -678,6 +705,15 @@ namespace AlertApp.Resx {
         internal static string SendingAlertIn {
             get {
                 return ResourceManager.GetString("SendingAlertIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sending alert to selected contacts in....
+        /// </summary>
+        internal static string SendingAlertToSelectedContacts {
+            get {
+                return ResourceManager.GetString("SendingAlertToSelectedContacts", resourceCulture);
             }
         }
         

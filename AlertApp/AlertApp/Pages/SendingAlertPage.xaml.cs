@@ -20,8 +20,7 @@ namespace AlertApp.Pages
         volatile int seconds = 10;
         volatile bool stop = false;
         Timer timer = null;
-        string applicationPin;
-        string sendingAlert;
+        string applicationPin;        
         public SendingAlertPage(AlertType alertType)
         {
 
@@ -29,10 +28,20 @@ namespace AlertApp.Pages
             NavigationPage.SetHasBackButton(this, false);
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("alertType", AlertType.UserAlert);
-            this.BindingContext = ViewModelLocator.Instance.Resolve<SendingAlertPageViewModel>(parameters);
-            sendingAlert = AppResources.SendingAlertIn + " ";           
+            this.BindingContext = ViewModelLocator.Instance.Resolve<SendingAlertPageViewModel>(parameters);               
             StartTimer();
-            SetApplicationPin();            
+            SetApplicationPin();
+           
+        }
+
+        protected override void OnAppearing()
+        {
+           
+            base.OnAppearing();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                Pin1.Focus();
+            });
         }
 
         protected override bool OnBackButtonPressed()
@@ -54,7 +63,7 @@ namespace AlertApp.Pages
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        alertLabel.Text = AppResources.SendingAlertIn + "\n" + (seconds - i);
+                        alertLabel.Text = (seconds - i).ToString() ;//AppResources.SendingAlertIn + "\n" + (seconds - i);
                     });
                     await Task.Delay(TimeSpan.FromSeconds(1));                    
                 }
@@ -66,7 +75,7 @@ namespace AlertApp.Pages
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    alertLabel.Text = AppResources.SendingAlert;
+                    alertLabel.Text = "";//AppResources.SendingAlert;
                 });
                 ((ISendAlert)this.BindingContext).SendUserAlert();
             }

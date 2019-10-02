@@ -157,7 +157,7 @@
     <value>Enter application pin</value>
   </data>
   <data name="EnterPinToCancel" xml:space="preserve">
-    <value>ENTER PIN TO CANCEL</value>
+    <value>CANCEL ALERT</value>
   </data>
   <data name="EnterVerificationCodeTitle" xml:space="preserve">
     <value>Verification</value>
@@ -390,5 +390,17 @@
   </data>
   <data name="Threat" xml:space="preserve">
     <value>Threat</value>
+  </data>
+  <data name="EnterPinFor" xml:space="preserve">
+    <value>ENTER PIN IN ORDER</value>
+  </data>
+  <data name="PressedAlert" xml:space="preserve">
+    <value>You pressed</value>
+  </data>
+  <data name="SendAlertTitle" xml:space="preserve">
+    <value>Send Alert SOS</value>
+  </data>
+  <data name="SendingAlertToSelectedContacts" xml:space="preserve">
+    <value>Sending alert to selected contacts in...</value>
   </data>
 </root>
