@@ -11,7 +11,7 @@ namespace AlertApp.Infrastructure
 {
     public class ContactsHelp
     {
-        public static async Task<List<ImportContact>> GetAddressbook(IContactProfileImageProvider contactProfileImageProvider)
+        public static async Task<List<ImportContact>> GetAddressbook(IContacts contactsService, IContactProfileImageProvider contactProfileImageProvider)
         {
             var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
             if (contactPermissionStatus != PermissionStatus.Granted)
@@ -24,12 +24,12 @@ namespace AlertApp.Infrastructure
             {
                 return null;
             }
-
-            var contacts = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
+            var contacts = contactsService.GetContacts();
+            //var contacts = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
             if (contacts != null)
             {
                 var result = new List<ImportContact>();
-                foreach (var item in contacts.Where(c => c.Number != null).OrderBy(c => c.Name))
+                foreach (var item in contacts.Where(c => c.Cellphone != null).OrderBy(c => c.FirstName))
                 {
                     result.Add(new ImportContact(item, contactProfileImageProvider));
                 }

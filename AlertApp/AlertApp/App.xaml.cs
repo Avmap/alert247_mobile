@@ -56,7 +56,8 @@ namespace AlertApp
             }
 
 #if DEBUG            
-            //generatePclCryptoKeys();
+          //  var contactService = DependencyService.Get<IContacts>();
+           // var addressBookContact = contactService.GetContacts();
 #endif
         }
 

@@ -11,10 +11,17 @@ namespace AlertApp.Model
     public class ImportContact : Contact, INotifyPropertyChanged
     {
         IContactProfileImageProvider _profileImageProvider;
-
+        public ImportContact(Api.Contact contact, IContactProfileImageProvider profileImageProvider)
+        {
+            _profileImageProvider = profileImageProvider;
+            this.Name = contact.FirstName;
+            this.Number = contact.Cellphone;           
+            this.PhotoUri = contact.ProfileImageUri;
+            this.PhotoUriThumbnail = contact.ProfileImageUri;
+        }
         public ImportContact(Contact contact, IContactProfileImageProvider profileImageProvider)
         {
-            _profileImageProvider = DependencyService.Get<IContactProfileImageProvider>(); //DependencyService.Get<IContactProfileImageProvider>();
+            _profileImageProvider = profileImageProvider; //DependencyService.Get<IContactProfileImageProvider>();
             this.Name = contact.Name;
             this.Number = contact.Number;
             this.Numbers = contact.Numbers;

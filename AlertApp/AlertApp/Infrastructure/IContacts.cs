@@ -8,5 +8,7 @@ namespace AlertApp.Infrastructure
     public interface IContacts
     {
         Contact GetContactDetails(string cellphone);
+
+        List<Contact> GetContacts();
     }
 }

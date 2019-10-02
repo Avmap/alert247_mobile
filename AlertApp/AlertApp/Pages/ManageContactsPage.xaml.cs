@@ -20,10 +20,12 @@ namespace AlertApp.Pages
         int tabsAdded = 0;
         int tabsCount = 4;
         readonly IContactProfileImageProvider _contactProfileImageProvider;
+        readonly IContacts _contacts;
         public int MyProperty { get; set; }
         public ManageContactsPage()
         {
             _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
+            _contacts = DependencyService.Get<IContacts>();            
             this.BindingContext = ViewModelLocator.Instance.Resolve<ManageContactsPageViewModel>();
             InitializeComponent();
         }
@@ -72,7 +74,7 @@ namespace AlertApp.Pages
                 //IF WE ADD NEW TAB WE MUST CHANGE tabsCount PROPERTY !!!!!!OnChildAdded!!!!!!!!!
                 var vm = this.BindingContext as ManageContactsPageViewModel;
                 var response = await vm.GetContacts();
-                var addressBook = await ContactsHelp.GetAddressbook(_contactProfileImageProvider);
+                var addressBook = await ContactsHelp.GetAddressbook(_contacts,_contactProfileImageProvider);                               
                 if (response != null)
                 {
                     foreach (var item in this.Children)

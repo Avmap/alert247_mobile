@@ -57,5 +57,40 @@ namespace AlertApp.Droid.DependencyService
 
             return contact;
         }
+
+        public List<Contact> GetContacts()
+        {
+            string[] projection = { ContactsContract.Contacts.InterfaceConsts.Id,
+                                 ContactsContract.Contacts.InterfaceConsts.DisplayName,
+                                 ContactsContract.CommonDataKinds.Phone.Number,
+                                ContactsContract.Contacts.InterfaceConsts.PhotoThumbnailUri };
+
+            ContentResolver contentResolver = context.ContentResolver;
+            ICursor contactCursor = contentResolver.Query(ContactsContract.CommonDataKinds.Phone.ContentUri, projection, null, null, null);
+            var result = new List<Contact>();
+            try
+            {
+                if (contactCursor != null && contactCursor.MoveToFirst())
+                {
+                    do
+                    {
+
+                        string name = contactCursor.GetString(contactCursor.GetColumnIndex(projection[1]));
+                        string phoneNumber = contactCursor.GetString(contactCursor.GetColumnIndex(projection[2]));
+                        string profilePicture = contactCursor.GetString(contactCursor.GetColumnIndex(projection[3]));
+                        result.Add(new Contact { Cellphone = phoneNumber, FirstName = name, ProfileImageUri = profilePicture });
+                    } while (contactCursor.MoveToNext());
+                }
+            }
+            finally
+            {
+                if (contactCursor != null)
+                {
+                    contactCursor.Close();
+                }
+            }
+
+            return result;
+        }
     }
 }
