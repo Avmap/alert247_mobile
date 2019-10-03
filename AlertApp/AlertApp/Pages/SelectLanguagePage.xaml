@@ -10,7 +10,7 @@
         <ScrollView>
             <StackLayout  Margin="{StaticResource RegistrationMargin}" Orientation="Vertical" Spacing="20">
                 <StackLayout Orientation="Vertical" Margin="0,70,0,0" VerticalOptions="StartAndExpand">
-                    <Image  HorizontalOptions="Center"  VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="200">
+                    <Image IsVisible="False" HorizontalOptions="Center"  VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="200">
                         <Image.Source>
                             <OnPlatform x:TypeArguments="ImageSource" iOS="select_language.png" Android="select_language.png" />
                         </Image.Source>

@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Frame>
-                <Label HorizontalOptions="Center" VerticalOptions="Center"  Style="{StaticResource Headline5Bold}" Text="{infrastructure:Translate NewCommunityRequestTitlePage}"></Label>
+                <Label HorizontalOptions="Center" VerticalOptions="Center"  Style="{StaticResource Headline6Bold}" Text="{infrastructure:Translate NewCommunityRequestTitlePage}"></Label>
             </Frame>
             <ScrollView  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout Margin="{StaticResource PageMargin}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Orientation="Vertical" Spacing="20">
@@ -19,7 +19,7 @@
                             <Label   Text="{Binding Contact.NewRequestMessage}" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1Bold}"></Label>
                             <Label   Text="{Binding Contact.NewRequestMessage2}" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1}"></Label>
                             <infrastructure:LoadingIndicator x:Name="loadingIndicator" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-                            <Button  Margin="0,64,0,0" Style="{StaticResource RegistrationButtonStyle}" BackgroundColor="{StaticResource AcceptButton}" Text="{infrastructure:Translate AcceptRequest}" Command="{Binding AcceptRequestCommand}" ></Button>
+                            <Button  Margin="0,24,0,0" Style="{StaticResource RegistrationButtonStyle}" BackgroundColor="{StaticResource AcceptButton}" Text="{infrastructure:Translate AcceptRequest}" Command="{Binding AcceptRequestCommand}" ></Button>
                             <Button  Margin="0,24,0,0" Style="{StaticResource RegistrationButtonStyle}" Text="{infrastructure:Translate IgnoreRequest}" Command="{Binding IgnoreRequestCommand}" ></Button>
                             <Button  Style="{StaticResource RegistrationButtonStyle}" Text="{infrastructure:Translate BlockRequest}" Command="{Binding BlockRequestCommand}" ></Button>
                         </StackLayout>

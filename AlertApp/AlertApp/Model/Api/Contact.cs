@@ -10,6 +10,7 @@ namespace AlertApp.Model.Api
     [DataContract]
     public class Contact
     {
+
         [DataMember]
         public string ID { get; set; }
         [DataMember]
@@ -28,15 +29,16 @@ namespace AlertApp.Model.Api
         public Stats Stats { get; set; }
 
         public ImageSource ProfileImage { get; set; }
-
+        public ImageSource ProfileImageDefault => ImageSource.FromFile("account_circle.png");
         public string ProfileImageUri { get; set; }
 
         #region Computed
-
+        public bool HasProfileImage => !string.IsNullOrWhiteSpace(ProfileImageUri);
+        public bool NoProfileImage => string.IsNullOrWhiteSpace(ProfileImageUri);
         public int NotificationId { get; set; }
         public string StatusAlertMe => Accepted ? AppResources.AcceptedFromMe : AppResources.Pending;
         public Color BackgroundStatusColor => Accepted ? Color.FromHex("#800000") : Color.FromHex("#DCDDDE");
-        public Color ΤextStatusColor => Accepted ? Color.FromHex("#800000") : Color.White;
+        public Color ΤextStatusColor => Accepted ? Color.White : Color.FromHex("#800000");
         public string Status => Accepted ? AppResources.Accepted : AppResources.Pending;
         public string FullName => String.Format("{0} {1}", FirstName, LastName);
         public string Title => !string.IsNullOrWhiteSpace(FullName) ? FullName : Cellphone;

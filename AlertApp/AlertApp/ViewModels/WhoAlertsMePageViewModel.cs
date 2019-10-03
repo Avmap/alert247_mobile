@@ -94,6 +94,7 @@ namespace AlertApp.ViewModels
             _contactsService = contactsService;
             _localSettingsService = localSettingsService;
             _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
+            NotificationBackColor = Color.White;
             SetBusy(true);
         }
 
@@ -139,6 +140,10 @@ namespace AlertApp.ViewModels
                 {
                     NotificationBackColor = Color.FromHex("#800000");
                     NotificationCount = response.Result.Contacts.AlertMe.Where(c => c.Accepted == false).Count();
+                    if (NotificationCount == 0)
+                    {
+                        RemoveBadgeNotification();
+                    }
                     //search in addressBook for contacts
                     if (addressBook != null)
                     {
@@ -170,8 +175,7 @@ namespace AlertApp.ViewModels
                 }
                 else
                 {
-                    NotificationCount = 0;
-                    NotificationBackColor = Color.White;
+                    RemoveBadgeNotification();
                     AlertMeContacts.Clear();
                     SetBusy(false);
                 }
@@ -179,10 +183,17 @@ namespace AlertApp.ViewModels
             }
             else
             {
+                RemoveBadgeNotification();
                 SetBusy(false);
             }
             OnPropertyChanged("HasContacts");
 
+        }
+
+        private void RemoveBadgeNotification()
+        {
+            NotificationCount = 0;
+            NotificationBackColor = Color.White;
         }
 
         private async Task<List<ImportContact>> GetAddressbook()

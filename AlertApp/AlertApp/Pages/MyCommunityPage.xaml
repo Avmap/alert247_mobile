@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              x:Class="AlertApp.Pages.MyCommunityPage"
-             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"             
              Navigation="{Binding NavigationService}"
              Title="{infrastructure:Translate TabMyCommunity}" >
     <ContentPage.Content>
@@ -14,8 +14,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <ListView
-                        Grid.Row="0"
-                    Margin="0,16,0,0"
+                        Grid.Row="0"                    
                         AbsoluteLayout.LayoutFlags="All"
                         AbsoluteLayout.LayoutBounds="0,1,1,1"
          SeparatorVisibility="None"
@@ -31,38 +30,36 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout  Margin="8,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <circle:CircleImage Source="{Binding ProfileImage}" Aspect="AspectFill">
-                                        <circle:CircleImage.WidthRequest>
-                                            <OnPlatform x:TypeArguments="x:Double">
-                                                <On Platform="Android, iOS">55</On>
-                                            </OnPlatform>
-                                        </circle:CircleImage.WidthRequest>
-                                        <circle:CircleImage.HeightRequest>
-                                            <OnPlatform x:TypeArguments="x:Double">
-                                                <On Platform="Android, iOS">55</On>
-                                            </OnPlatform>
-                                        </circle:CircleImage.HeightRequest>
-                                    </circle:CircleImage>
-                                    <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-                                        <Label Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource Headline6}"/>
-                                        <StackLayout  Orientation="Horizontal" Spacing="8"  HorizontalOptions="FillAndExpand">
-                                            <Frame HorizontalOptions="StartAndExpand" CornerRadius="8" BackgroundColor="{Binding BackgroundStatusColor}" Padding="4" Margin="0,0,4,0">
-                                                <Label Text="{Binding Status}" TextColor="{Binding ΤextStatusColor}" Style="{StaticResource Subtitle1}"/>
+                                <StackLayout  Margin="0,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Image IsVisible="{Binding NoProfileImage}" Margin="16,13,11,8" WidthRequest="60" HeightRequest="55" Source="{Binding ProfileImageDefault}"></Image>
+                                    <circle:CircleImage IsVisible="{Binding HasProfileImage}"  Margin="16,13,11,8" WidthRequest="60" HeightRequest="55" Source="{Binding ProfileImage}" Aspect="AspectFill"/>
+                                    <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="Center"  HorizontalOptions="FillAndExpand">
+                                        <Label Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource Subtitle11Βold}"/>
+                                        <Grid  HorizontalOptions="FillAndExpand" Margin="0,0,20,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Frame CornerRadius="8" HeightRequest="17" BackgroundColor="{Binding BackgroundStatusColor}" Padding="4,2,4,2">
+                                                <Label Text="{Binding Status}" FontSize="9" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="{Binding ΤextStatusColor}" Style="{StaticResource Subtitle1}"/>
                                             </Frame>
-                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                                <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="help.png"/>
-                                                <Label Text="{Binding Stats.Helped}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource Headline6}"/>
+                                            
+                                            <StackLayout IsVisible="{Binding Accepted}" Grid.Column="1" Orientation="Horizontal" Spacing="16"  HorizontalOptions="EndAndExpand">
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                                                    <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="help.png"/>
+                                                    <Label Text="{Binding Stats.Helped}" FontSize="11" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource Headline6}"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                                                    <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="ignore.png"/>
+                                                    <Label Text="{Binding Stats.Ignored}" FontSize="11" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource Headline6}"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                                                    <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="asked.png"/>
+                                                    <Label Text="{Binding Stats.Asked}" FontSize="11" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource Headline6}"/>
+                                                </StackLayout>
                                             </StackLayout>
-                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                                <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="ignore.png"/>
-                                                <Label Text="{Binding Stats.Ignored}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource Headline6}"/>
-                                            </StackLayout>
-                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                                <Image WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Source="asked.png"/>
-                                                <Label Text="{Binding Stats.Asked}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource Headline6}"/>
-                                            </StackLayout>
-                                        </StackLayout>
+                                        </Grid>
+
                                     </StackLayout>
                                 </StackLayout>
                             </ViewCell>
@@ -74,22 +71,26 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding BackCommand}"></TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>
-                        <Image    Source="homepage.png"/>
+                        <Image WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"   Source="homepage.png"/>
                         <Label Text="{infrastructure:Translate HomeTab}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenContactsScreenCommand}"></TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>
-                        <Image    Source="add_contact.png"/>
+                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="add_contact.png"/>
                         <Label Text="{infrastructure:Translate Contacts}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image    Source="info.png"/>
+                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="info.png"/>
                         <Label Text="{infrastructure:Translate InfoTab}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image    Source="settings.png"/>
+                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="settings.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenSettingsCommand}"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
                         <Label Text="{infrastructure:Translate SettingsTab}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                 </StackLayout>

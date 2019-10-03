@@ -28,6 +28,9 @@ namespace AlertApp.ViewModels
         #endregion
 
         #region Properties
+
+        private List<Contact> Blocked;
+
         private ObservableCollection<Contact> _Community;
         public ObservableCollection<Contact> Community
         {
@@ -52,6 +55,20 @@ namespace AlertApp.ViewModels
         #endregion
 
         #region Commands
+
+
+        private ICommand _OpenSettingsCommand;
+        public ICommand OpenSettingsCommand
+        {
+            get
+            {
+                return _OpenSettingsCommand ?? (_OpenSettingsCommand = new Command(OpenSettingsScreen, () =>
+                {
+                    return !Busy;
+                }));
+            }
+        }
+
         private ICommand _OpenContactsScreenCommand;
         public ICommand OpenContactsScreenCommand
         {
@@ -107,11 +124,24 @@ namespace AlertApp.ViewModels
             MessagingCenter.Send((BaseViewModel)this, RefreshContactsEvent.Event, new RefreshContactsEvent { });
         }
 
+        private async void OpenSettingsScreen()
+        {
+            SetBusy(true);
+            await NavigationService.PushAsync(new SettingsPage(), true);
+            SetBusy(false);
+        }
+
+
         private async void SetCommunity(Response<GetContactsResponse> response, List<ImportContact> addressBook)
         {
+            //for (int i = 0; i < 15; i++)
+            //{
+            //    Community.Add(new Contact { Accepted = true, Cellphone = "+306983836637jkhasjkashd kasjdhasjkdhasjk dashjkd", ProfileImage = ImageSource.FromFile("account_circle.png") });
+            //}
             if (response != null && response.IsOk)
             {
                 var community = response.Result.Contacts.Community;
+                Blocked = response.Result.Contacts.Blocked;
                 if (community != null && community.Count > 0)
                 {
                     //search in addressBook for contacts
@@ -123,7 +153,7 @@ namespace AlertApp.ViewModels
                             var addressBookItem = addressBook.Where(c => c.FormattedNumber == item.Cellphone).FirstOrDefault();
                             if (addressBookItem != null)
                             {
-                                Community.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage });
+                                Community.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage,ProfileImageUri = addressBookItem.PhotoUriThumbnail });
                             }
                             else
                             {
@@ -158,7 +188,14 @@ namespace AlertApp.ViewModels
         }
         private async void OpenAddContactsPage()
         {
-            var contactsPage = new AddContactPage(Community.Select(c => c.Cellphone).ToList());
+            var communityBlocked = Community.Select(c => c.Cellphone).ToList();
+            if (Blocked != null && Blocked.Count > 0)
+            {
+                communityBlocked.AddRange(Blocked.Select(c => c.Cellphone));
+            }
+
+            var contactsPage = new AddContactPage(communityBlocked);
+
             contactsPage.Disappearing += (sender2, e2) =>
             {
                 SetBusy(false);

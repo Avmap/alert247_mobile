@@ -151,7 +151,6 @@ namespace AlertApp.ViewModels
         private async void GetContacts(List<string> community)
         {
 
-
             var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
             if (contactPermissionStatus != PermissionStatus.Granted)
             {
@@ -180,11 +179,20 @@ namespace AlertApp.ViewModels
                 //call service to find which number is app user
                 var serverContacts = await _contactsService.CheckContacts(await _localSettingsService.GetAuthToken(), this.OriginalContacts.Select(c => c.FormattedNumber).ToArray());
 
-                //get contacts where not app user
-                var serverContactsNeedInvitation = serverContacts.Result.Contacts.Where(x => x.Value == false).Select(x => x.Key).ToList();
+                if (serverContacts != null && serverContacts.IsOk)
+                {
+                    //get contacts where not app user
+                    var serverContactsNeedInvitation = serverContacts.Result.Contacts.Where(x => x.Value == false).Select(x => x.Key).ToList();
 
-                var needInvitationContacts = this.OriginalContacts.Where(c => serverContactsNeedInvitation.Contains(c.FormattedNumber)).ToList();
-                needInvitationContacts.ForEach(c => c.NeedsInvitation = true);
+                    var needInvitationContacts = this.OriginalContacts.Where(c => serverContactsNeedInvitation.Contains(c.FormattedNumber)).ToList();
+                    needInvitationContacts.ForEach(c => c.NeedsInvitation = true);
+                }
+                else if (!serverContacts.IsOnline)
+                {
+                    this.OriginalContacts.Clear();
+                    this.Contacts.Clear();
+                    showOKMessage(AppResources.Error, AppResources.NoInternetConnection);
+                }
 
             }
             SetBusy(false);
@@ -243,6 +251,10 @@ namespace AlertApp.ViewModels
                     {
                         HasChange = true;
                         await NavigationService.PopAsync();
+                    }
+                    else if (addContactsResults.IsOnline)
+                    {
+                        showOKMessage(AppResources.Error, AppResources.NoInternetConnection);
                     }
                     SetBusy(false);
                 }

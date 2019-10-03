@@ -25,6 +25,18 @@ namespace AlertApp.ViewModels
 
         #region Commands
 
+        private ICommand _OpenSettingsCommand;
+        public ICommand OpenSettingsCommand
+        {
+            get
+            {
+                return _OpenSettingsCommand ?? (_OpenSettingsCommand = new Command(OpenSettingsScreen, () =>
+                {
+                    return !Busy;
+                }));
+            }
+        }
+
         private ICommand _SosCommand;
         public ICommand SosCommand
         {
@@ -188,6 +200,13 @@ namespace AlertApp.ViewModels
             stop = true;
         }
 
+        private async void OpenSettingsScreen()
+        {        
+            SetBusy(true);
+            await NavigationService.PushAsync(new SettingsPage(), true);
+            SetBusy(false);
+        }
+        
         private async void StartTimer()
         {
             for (int i = 0; i < seconds; i++)
