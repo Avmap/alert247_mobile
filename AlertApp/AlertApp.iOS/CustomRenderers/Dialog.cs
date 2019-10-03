@@ -59,5 +59,15 @@ namespace AlertApp.iOS.CustomRenderers
 
             return await tcs.Task;
         }
+
+        public Task<object> showInputDialog(string title, string message, string ok, string cancel, DialogType inputTupe)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<object> showInputDialog(string title, string message, object text, string ok, string cancel, DialogType inputTupe)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

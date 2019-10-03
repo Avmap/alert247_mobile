@@ -53,8 +53,8 @@ namespace AlertApp
             }
             else
             {
-                MainPage = new NavigationPage(new MainPage());
-                //   MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { Position= "37.984980,23.762060", Cellphone = "+306983836637"} }));
+               MainPage = new NavigationPage(new MainPage());
+               // MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { Position= "37.9849,23.7620", Cellphone = "+306983836637"} }));
             }
 
 #if DEBUG
@@ -100,7 +100,7 @@ namespace AlertApp
                         if (userProfileService != null)
                         {
                             Task.Run(async () =>
-                            {
+                            {                                
                                 Debug.WriteLine("Firebase", "New Token: " + p.Token);
                                 localSettings.SaveFirebaseToken(p.Token);
                                 Location location = null;

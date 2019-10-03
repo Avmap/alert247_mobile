@@ -17,5 +17,10 @@ namespace AlertApp.iOS.DependencyService
         {
             throw new NotImplementedException();
         }
+
+        public List<Contact> GetContacts()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

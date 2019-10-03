@@ -25,7 +25,7 @@ using ImageCircle.Forms.Plugin.Droid;
 
 namespace AlertApp.Droid
 {
-    [Activity(Label = "AlertApp", ShowForAllUsers = true, Icon = "@mipmap/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "AlertApp", ShowForAllUsers = true, Icon = "@mipmap/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
 
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, ICrossFirebase
     {

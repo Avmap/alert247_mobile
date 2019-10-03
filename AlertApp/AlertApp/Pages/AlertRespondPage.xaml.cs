@@ -49,7 +49,9 @@ namespace AlertApp.Pages
                     string[] latlng = data.Position.Split(',');
                     if (latlng.Length == 2)
                     {
-                        var position = new Position(Double.Parse(latlng[0]), Double.Parse(latlng[1]));
+                        var lat = Double.Parse(latlng[0].Replace(".", ","));
+                        var lng = Double.Parse(latlng[1].Replace(".", ","));
+                        var position = new Position(lat, lng);
                         var pin = new Pin
                         {
                             Type = PinType.Place,
@@ -58,7 +60,7 @@ namespace AlertApp.Pages
                         };
                         map.Pins.Add(pin);
 
-                        map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(Double.Parse(latlng[0]), Double.Parse(latlng[1])), Distance.FromMeters(150)));
+                        map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(lat, lng), Distance.FromMeters(200)));
                     }
                 }
                 else
