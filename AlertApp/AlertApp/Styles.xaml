@@ -58,6 +58,8 @@
     
     <Style x:Key="RegistrationLabelStyle" TargetType="{x:Type Label}">
         <Setter Property="TextColor" Value="{StaticResource RegistrationLabelTextColor}" />
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="FontFamily" Value="{StaticResource Bold}" />
        
     </Style>
     <Style x:Key="RegistrationPickerStyle" TargetType="{x:Type Picker}">

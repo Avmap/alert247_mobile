@@ -85,6 +85,7 @@ namespace AlertApp.ViewModels
             {
                 Code[0] = value;
                 VerificationCode = String.Concat(Code);
+                OnPropertyChanged("CanContinue");
             }
         }
 
@@ -95,6 +96,7 @@ namespace AlertApp.ViewModels
             {
                 Code[1] = value;
                 VerificationCode = String.Concat(Code);
+                OnPropertyChanged("CanContinue");
             }
         }
 
@@ -105,6 +107,7 @@ namespace AlertApp.ViewModels
             {
                 Code[2] = value;
                 VerificationCode = String.Concat(Code);
+                OnPropertyChanged("CanContinue");
             }
         }
 
@@ -115,6 +118,7 @@ namespace AlertApp.ViewModels
             {
                 Code[3] = value;
                 VerificationCode = String.Concat(Code);
+                OnPropertyChanged("CanContinue");
             }
         }
         public string VerificationCode4
@@ -124,6 +128,7 @@ namespace AlertApp.ViewModels
             {
                 Code[4] = value;
                 VerificationCode = String.Concat(Code);
+                OnPropertyChanged("CanContinue");
             }
         }
         public string VerificationCode5
@@ -133,8 +138,11 @@ namespace AlertApp.ViewModels
             {
                 Code[5] = value;
                 VerificationCode = String.Concat(Code);
+                OnPropertyChanged("CanContinue");
             }
         }
+
+        public bool CanContinue => !string.IsNullOrWhiteSpace(VerificationCode) && VerificationCode.Length == 6;
         #endregion
 
         public bool CanEditCode => !Busy;
@@ -147,10 +155,15 @@ namespace AlertApp.ViewModels
             set
             {
                 _CanResendCode = value;
+                OnPropertyChanged("RefreshImageSource");
                 OnPropertyChanged("CanResendCode");
+                OnPropertyChanged("CanContinue");
                 ((Command)ResendCodeCommand).ChangeCanExecute();
             }
         }
+
+        public ImageSource RefreshImageSource => _CanResendCode ? ImageSource.FromFile("refresh.png") : ImageSource.FromFile("refresh_grey.png");
+        public Color EnabledDisabledColor => _CanResendCode ? Color.Black : Color.Gray;
 
         private Timer _smsTimer;
 
@@ -195,9 +208,9 @@ namespace AlertApp.ViewModels
             _smsTimer = new System.Timers.Timer();
             _smsTimer.Interval = 1000;
             _smsTimer.Elapsed += OnTimedEvent;
-            //#if Release
+//#if Release
             RequestVerificationCode();
-            //#endif
+//#endif
 
         }
 
@@ -272,7 +285,7 @@ namespace AlertApp.ViewModels
                 showOKMessage(AppResources.Error, GetErrorDescription(response.ErrorDescription.Labels));
 
                 _smsTimer.Stop();
-                CanResendCode = true;               
+                CanResendCode = true;
             }
             else if (!response.IsOk && !response.IsOnline)
             {
@@ -284,6 +297,7 @@ namespace AlertApp.ViewModels
 
         private async void Continue()
         {
+            OnPropertyChanged("CanContinue");
             SetBusy(true);
             var response = await _registrationService.ConfirmRegistration(_MobileNumber, VerificationCode);
             if (response != null && response.Result != null && !string.IsNullOrWhiteSpace(response.Status))

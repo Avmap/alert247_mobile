@@ -42,9 +42,7 @@
                     </StackLayout>
                 </StackLayout>
                 
-                    <!--<Image Grid.Row="2"  Source="call_center.png" HeightRequest="320" BackgroundColor="Chocolate" VerticalOptions="EndAndExpand"></Image>-->
-              
-               
+                    <!--<Image Grid.Row="2"  Source="call_center.png" HeightRequest="320" BackgroundColor="Chocolate" VerticalOptions="EndAndExpand"></Image>-->                             
             </Grid>
             <StackLayout Margin="30,0,30,11" Grid.Row="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">

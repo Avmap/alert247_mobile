@@ -385,7 +385,7 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter application pin.
+        ///   Looks up a localized string similar to CREATE PIN.
         /// </summary>
         internal static string EnterPin {
             get {
@@ -426,6 +426,15 @@ namespace AlertApp.Resx {
         internal static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish.
+        /// </summary>
+        internal static string Finish {
+            get {
+                return ResourceManager.GetString("Finish", resourceCulture);
             }
         }
         
@@ -552,6 +561,15 @@ namespace AlertApp.Resx {
         internal static string LocationTracking {
             get {
                 return ResourceManager.GetString("LocationTracking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your location is used in order to locate your device and send its location to your contacts in case of emergency. You can disable this setting later through settings..
+        /// </summary>
+        internal static string LocationTrackingExplanation {
+            get {
+                return ResourceManager.GetString("LocationTrackingExplanation", resourceCulture);
             }
         }
         
@@ -687,6 +705,24 @@ namespace AlertApp.Resx {
         internal static string RegisterMessage {
             get {
                 return ResourceManager.GetString("RegisterMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter your personal details. In case of emergency will be sent to the contacts that you choose..
+        /// </summary>
+        internal static string RegistrationEnterFieldsPromt {
+            get {
+                return ResourceManager.GetString("RegistrationEnterFieldsPromt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the following and press &quot;Next&quot; in order to continue.
+        /// </summary>
+        internal static string RegistrationEnterPinPromt {
+            get {
+                return ResourceManager.GetString("RegistrationEnterPinPromt", resourceCulture);
             }
         }
         
@@ -835,6 +871,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to START SETTINGS.
+        /// </summary>
+        internal static string StartSettings {
+            get {
+                return ResourceManager.GetString("StartSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact added successfully..
         /// </summary>
         internal static string SuccessAddContactMessage {
@@ -934,6 +979,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to USER DETAILS.
+        /// </summary>
+        internal static string UserDetails {
+            get {
+                return ResourceManager.GetString("UserDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Now he is on:.
         /// </summary>
         internal static string UserIsInPosition {
@@ -948,6 +1002,15 @@ namespace AlertApp.Resx {
         internal static string Verification {
             get {
                 return ResourceManager.GetString("Verification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VERIFICATION CODE.
+        /// </summary>
+        internal static string VerificationCodePageTitle {
+            get {
+                return ResourceManager.GetString("VerificationCodePageTitle", resourceCulture);
             }
         }
         

@@ -145,16 +145,16 @@
     <value>Εισαγωγή PIN</value>
   </data>
   <data name="EnterMobileMessage" xml:space="preserve">
-    <value>Παρακαλώ εισάγετε τον αριθμό τηλεφώνου σας ώστε να παραλάβετε τον κωδικό επιβεβαίωσης με SMS</value>
+    <value>Πληκτρολογήστε τον αριθμό τηλεφώνου σας και πατήστε "Επόμενο" για να λάβετε τον κωδικό επιβεβαίωσης με SMS.</value>
   </data>
   <data name="EnterMobileNumberTitle" xml:space="preserve">
-    <value>Εισαγωγή τηλεφώνου</value>
+    <value>ΕΙΣΑΓΩΓΗ ΤΗΛΕΦΩΝΙΚΟΥ ΑΡΙΘΜΟΥ</value>
   </data>
   <data name="EnterMobilePrompt" xml:space="preserve">
     <value>Επιβεβαίωση τηλεφώνου</value>
   </data>
   <data name="EnterPin" xml:space="preserve">
-    <value>Εισάγετε pin εφαρμογής</value>
+    <value>ΔΗΜΙΟΥΡΓΙΑ PIN</value>
   </data>
   <data name="EnterPinToCancel" xml:space="preserve">
     <value>ΑΚΥΡΩΣΗ ΑΠΟΣΤΟΛΗΣ</value>
@@ -173,7 +173,7 @@
     <comment>this is a comment from developer</comment>
   </data>
   <data name="LocationTracking" xml:space="preserve">
-    <value>Αποστολή Τοποθεσίας</value>
+    <value>ΑΠΟΣΤΟΛΗ ΤΟΠΟΘΕΣΙΑΣ</value>
   </data>
   <data name="ManageContacts" xml:space="preserve">
     <value>Διαχείριση Επαφών</value>
@@ -224,7 +224,7 @@
     <value>Επιβεβαίωση</value>
   </data>
   <data name="WaitForSMS" xml:space="preserve">
-    <value>Παρακαλώ περιμένετε το SMS με τον κωδικό επιβεβαίωσης.</value>
+    <value>0 6ψήφιος κωδικός επιβεβαίωσης έχει σταλεί. Παρακαλώ εισάγετε παρακάτω ή πατήστε "Επανάληψη Αποστολής" αν δεν τον παραλάβατε.</value>
   </data>
   <data name="WaitForSmsMessage" xml:space="preserve">
     <value>Παρακαλώ περιμένετε για το SMS επιβεβαίωσης...</value>
@@ -444,5 +444,26 @@
   </data>
   <data name="NewContactRequestTitle" xml:space="preserve">
     <value>ΠΡΟΣΘΗΚΗ ΕΠΑΦΗΣ</value>
+  </data>
+  <data name="StartSettings" xml:space="preserve">
+    <value>ΑΡΧΙΚΕΣ ΡΥΘΜΙΣΕΙΣ</value>
+  </data>
+  <data name="VerificationCodePageTitle" xml:space="preserve">
+    <value>ΚΩΔΙΚΟΣ ΕΠΙΒΕΒΑΙΩΣΗΣ</value>
+  </data>
+  <data name="LocationTrackingExplanation" xml:space="preserve">
+    <value>Η τοποθεσία χρησιμοποιείται για τον εντοπισμό της θέσης της συσκευής και την αποστολή του στις επαφές σας, σε περίπτωση έκτακτης ανάγκης. Μπορείτε να απενεργοποιήσετε τη λειτουργία αυτή όποτε επιθυμείτε, πηγαίνοντας στις ρυθμίσεις.</value>
+  </data>
+  <data name="RegistrationEnterPinPromt" xml:space="preserve">
+    <value>Εισάγετε παρακάτω και πατήστε "Επόμενο" για συνέχεια των ρυθμίσεων</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>ΣΤΟΙΧΕΙΑ ΧΡΗΣΤΗ</value>
+  </data>
+  <data name="RegistrationEnterFieldsPromt" xml:space="preserve">
+    <value>Εισάγετε παρακάτω τα προσωπικά σας στοιχεία. Σε περίπτωση έκτατκης ανάγκης θα σταλούν στις επαφές που έχετε επιλέξει ή στο κέντρο λήψης σημάτων αν έχετε συνδρομή.</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Ολοκλήρωση</value>
   </data>
 </root>

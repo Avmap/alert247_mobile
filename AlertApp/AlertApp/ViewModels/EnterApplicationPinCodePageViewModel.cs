@@ -26,10 +26,55 @@ namespace AlertApp.ViewModels
         #endregion
 
         #region Properties
-        public string Pin1 { get; set; }
-        public string Pin2 { get; set; }
-        public string Pin3 { get; set; }
-        public string Pin4 { get; set; }
+
+
+        private string _Pin1;
+
+        public string Pin1
+        {
+            get { return _Pin1; }
+            set
+            {
+                _Pin1 = value;
+                OnPropertyChanged("CanContinue");
+            }
+        }
+        private string _Pin2;
+
+        public string Pin2
+        {
+            get { return _Pin2; }
+            set
+            {
+                _Pin2 = value;
+                OnPropertyChanged("CanContinue");
+            }
+        }
+        private string _Pin4;
+
+        public string Pin3
+        {
+            get { return _Pin3; }
+            set
+            {
+                _Pin3 = value;
+                OnPropertyChanged("CanContinue");
+            }
+        }
+
+        private string _Pin3;
+
+        public string Pin4
+        {
+            get { return _Pin4; }
+            set
+            {
+                _Pin4 = value;
+                OnPropertyChanged("CanContinue");
+            }
+        }
+
+
         private bool _LocationTracking;
 
         public bool LocationTracking
@@ -42,6 +87,8 @@ namespace AlertApp.ViewModels
             }
         }
 
+
+        public bool CanContinue => !string.IsNullOrWhiteSpace(Pin1) && !string.IsNullOrWhiteSpace(Pin2) && !string.IsNullOrWhiteSpace(Pin3) && !string.IsNullOrWhiteSpace(Pin4);
         #endregion
 
         #region Commands
@@ -84,7 +131,7 @@ namespace AlertApp.ViewModels
                 }
                 _localSettingsService.SaveSendLocationSetting(LocationTracking);
                 SetBusy(true);
-                await Task.Run(() => _cryptohraphyService.GenerateKeys(String.Format("{0}{1}{2}{3}",Pin1,Pin2,Pin3,Pin4)));
+                await Task.Run(() => _cryptohraphyService.GenerateKeys(String.Format("{0}{1}{2}{3}", Pin1, Pin2, Pin3, Pin4)));
                 SetBusy(false);
                 //we keep TempRegistrationFields in static field in App.xaml.cs.
                 await NavigationService.PushAsync(new RegistrationFieldsPage(App.TempRegistrationFields), true);

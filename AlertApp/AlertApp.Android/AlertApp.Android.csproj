@@ -231,9 +231,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\de_DE.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\en_GB.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\en_US.png" />
   </ItemGroup>
   <ItemGroup>
@@ -327,8 +324,12 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ignore.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\asked.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\sos_button.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\accept_button.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ignore_button.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\next.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\refresh.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\refresh_grey.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\accept_button.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\sos_blank.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

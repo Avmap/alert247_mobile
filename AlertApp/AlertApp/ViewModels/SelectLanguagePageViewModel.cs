@@ -81,15 +81,43 @@ namespace AlertApp.ViewModels
         }
         #endregion
 
+        #region Commands
+        private ICommand _SelectLanguageCommand;
+        public ICommand SelectLanguageCommand
+        {
+            get
+            {
+                return _SelectLanguageCommand ?? (_SelectLanguageCommand = new Command<string>(SetSelectedLanguage, (lang) =>
+                {
+                    return true;
+                }));
+            }
+        }
+        #endregion
+
+
         public SelectLanguagePageViewModel(ILocalSettingsService localSettingsService)
         {
             _localSettingsService = localSettingsService;
-            SetSelectedLanguage();
+            //SetSelectedLanguage();
 
-            MessagingCenter.Subscribe<DialogSelectLanguageViewModel, SelectLanguage>(this, SelectLanguage.Event, (sender, arg) =>
-            {
-                SetSelectedLanguage();
-            });
+            // MessagingCenter.Subscribe<DialogSelectLanguageViewModel, SelectLanguage>(this, SelectLanguage.Event, (sender, arg) =>
+            // {
+            //      SetSelectedLanguage();
+            //   });
+        }
+
+        private async void SetSelectedLanguage(string language)
+        {
+            _localSettingsService.SaveSelectedLanguage(language);
+
+            await RequestPermissions();
+
+            CultureInfo ci = new CultureInfo(language);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            Resx.AppResources.Culture = ci;
+            await NavigationService.PushAsync(new EnterMobileNumberPage(), false);
         }
 
         private void SetSelectedLanguage()
@@ -102,7 +130,7 @@ namespace AlertApp.ViewModels
             else
             {
                 var languageService = DependencyService.Get<ILocalize>();
-                if(languageService != null)
+                if (languageService != null)
                 {
                     var systemlanguage = languageService.GetCurrentCultureInfo();
                     if (systemlanguage != null)
@@ -116,7 +144,7 @@ namespace AlertApp.ViewModels
         public async void Continue()
         {
             await RequestPermissions();
-            _localSettingsService.SaveSelectedLanguage(Language.SupportedLanguages[LanguageSelectedIndex].NetLanguageName);            
+            _localSettingsService.SaveSelectedLanguage(Language.SupportedLanguages[LanguageSelectedIndex].NetLanguageName);
             CultureInfo ci = new CultureInfo(Language.SupportedLanguages[LanguageSelectedIndex].NetLanguageName);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
@@ -132,10 +160,10 @@ namespace AlertApp.ViewModels
                 var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
                 if (locationPermissionStatus != PermissionStatus.Granted || contactPermissionStatus != PermissionStatus.Granted)
                 {
-                    var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location,Permission.Contacts });                    
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location, Permission.Contacts });
                 }
 
-                        
+
             }
             catch (FeatureNotSupportedException fnsEx)
             {

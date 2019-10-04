@@ -58,8 +58,11 @@ namespace AlertApp.ViewModels
 
         public override void SetBusy(bool isBusy)
         {
-            this.Busy = isBusy;
-            OnPropertyChanged("ShowFinishButton");
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                this.Busy = isBusy;
+                OnPropertyChanged("ShowFinishButton");
+            });         
         }
         #endregion
     }

@@ -40,9 +40,9 @@ namespace AlertApp.Pages
                 CultureInfo culture = new CultureInfo(lang);
                 Resx.AppResources.Culture = culture;
             }
-            lblSelectLanguage.Text = AppResources.SelectLanguage;
-            lblSelectLanguageMessage.Text = AppResources.SelectLanguageMessage;
-            btnContinue.Text = AppResources.Continue;
+            //lblSelectLanguage.Text = AppResources.SelectLanguage;
+         //   lblSelectLanguageMessage.Text = AppResources.SelectLanguageMessage;
+           // btnContinue.Text = AppResources.Continue;
         }
 
     }

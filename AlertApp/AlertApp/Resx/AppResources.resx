@@ -154,7 +154,7 @@
     <value>Verify Your Number</value>
   </data>
   <data name="EnterPin" xml:space="preserve">
-    <value>Enter application pin</value>
+    <value>CREATE PIN</value>
   </data>
   <data name="EnterPinToCancel" xml:space="preserve">
     <value>CANCEL ALERT</value>
@@ -438,5 +438,26 @@
   </data>
   <data name="NewContactRequestTitle" xml:space="preserve">
     <value>CONTACT REQUEST</value>
+  </data>
+  <data name="StartSettings" xml:space="preserve">
+    <value>START SETTINGS</value>
+  </data>
+  <data name="VerificationCodePageTitle" xml:space="preserve">
+    <value>VERIFICATION CODE</value>
+  </data>
+  <data name="LocationTrackingExplanation" xml:space="preserve">
+    <value>Your location is used in order to locate your device and send its location to your contacts in case of emergency. You can disable this setting later through settings.</value>
+  </data>
+  <data name="RegistrationEnterPinPromt" xml:space="preserve">
+    <value>Enter the following and press "Next" in order to continue</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>USER DETAILS</value>
+  </data>
+  <data name="RegistrationEnterFieldsPromt" xml:space="preserve">
+    <value>Please enter your personal details. In case of emergency will be sent to the contacts that you choose.</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Finish</value>
   </data>
 </root>
