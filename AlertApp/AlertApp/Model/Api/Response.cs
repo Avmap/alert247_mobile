@@ -36,7 +36,7 @@ namespace AlertApp.Model.Api
 
         public static Response FailResponse => new Response { Status = "error" };
 
-        public bool IsOnline { get; set; }
+        public bool IsOnline { get; set; } = true;
     }
 
 }

@@ -65,11 +65,17 @@ namespace AlertApp.ViewModels
             }
             else
             {
-                if (!alertResponse.IsOnline)
+
+                if (!string.IsNullOrWhiteSpace(alertResponse.ErrorCode) && alertResponse.ErrorCode == "ALERT_MESSAGE_MISSINGRECIPIENTS")
                 {
-                    showOKMessage(AppResources.Error, AppResources.NoInternetConnection);
-                    await NavigationService.PopAsync();
+                    showOKMessage(AppResources.Error, AppResources.NoAlertRecipients);                   
                 }
+                else if (!alertResponse.IsOnline)
+                {
+                    showOKMessage(AppResources.Error, AppResources.NoInternetConnection);                    
+                }
+
+                await NavigationService.PopAsync();
             }
             SetBusy(false);
         }

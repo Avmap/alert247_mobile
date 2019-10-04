@@ -70,9 +70,18 @@ namespace AlertApp.Services.Alert
             }
             catch (Exception ex)
             {
-                res.ErrorCode = ex.Message;
-                res.Status = "error";
-                res.IsOnline = false;
+                if (ex is System.Net.Http.HttpRequestException)
+                {
+                    res.ErrorCode = ex.Message;
+                    res.Status = "error";
+                    res.IsOnline = false;
+                }
+                else
+                {
+                    res.ErrorCode = ex.Message;
+                    res.Status = "error";
+                }
+               
             }
             return res;
         }

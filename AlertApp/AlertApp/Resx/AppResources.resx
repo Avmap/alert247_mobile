@@ -460,4 +460,7 @@
   <data name="Finish" xml:space="preserve">
     <value>Finish</value>
   </data>
+  <data name="NoAlertRecipients" xml:space="preserve">
+    <value>No alert recepients</value>
+  </data>
 </root>

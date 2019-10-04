@@ -466,4 +466,7 @@
   <data name="Finish" xml:space="preserve">
     <value>Ολοκλήρωση</value>
   </data>
+  <data name="NoAlertRecipients" xml:space="preserve">
+    <value>Δεν βρέθηκαν επαφές για αποστολή alert.</value>
+  </data>
 </root>

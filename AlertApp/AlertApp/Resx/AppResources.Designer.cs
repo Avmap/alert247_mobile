@@ -637,6 +637,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No alert recepients.
+        /// </summary>
+        internal static string NoAlertRecipients {
+            get {
+                return ResourceManager.GetString("NoAlertRecipients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please check your internet connection..
         /// </summary>
         internal static string NoInternetConnection {
