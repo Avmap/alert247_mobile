@@ -61,6 +61,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accept.
+        /// </summary>
+        internal static string AcceptContactRequest {
+            get {
+                return ResourceManager.GetString("AcceptContactRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accepted.
         /// </summary>
         internal static string Accepted {
@@ -268,6 +277,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The following contact wants to add you to the ALERT 24/7 app..
+        /// </summary>
+        internal static string ContactRequestText {
+            get {
+                return ResourceManager.GetString("ContactRequestText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contacts.
         /// </summary>
         internal static string Contacts {
@@ -457,6 +475,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ignore.
+        /// </summary>
+        internal static string IgnoreContactRequest {
+            get {
+                return ResourceManager.GetString("IgnoreContactRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ignored.
         /// </summary>
         internal static string Ignored {
@@ -570,6 +597,15 @@ namespace AlertApp.Resx {
         internal static string NewCommunityRequestWantParticipateMessage {
             get {
                 return ResourceManager.GetString("NewCommunityRequestWantParticipateMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CONTACT REQUEST.
+        /// </summary>
+        internal static string NewContactRequestTitle {
+            get {
+                return ResourceManager.GetString("NewContactRequestTitle", resourceCulture);
             }
         }
         

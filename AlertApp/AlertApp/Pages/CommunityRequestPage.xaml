@@ -4,28 +4,60 @@
              x:Class="AlertApp.Pages.CommunityRequestPage"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"                    
              NavigationPage.HasNavigationBar="false"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              Navigation="{Binding NavigationService}" >
     <ContentPage.Content>
-        <StackLayout>
-            <Frame>
-                <Label HorizontalOptions="Center" VerticalOptions="Center"  Style="{StaticResource Headline6Bold}" Text="{infrastructure:Translate NewCommunityRequestTitlePage}"></Label>
-            </Frame>
-            <ScrollView  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <StackLayout Margin="{StaticResource PageMargin}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Orientation="Vertical" Spacing="20">
-                    <StackLayout Orientation="Vertical" Margin="0,8,0,0" VerticalOptions="StartAndExpand">
-                        <Image   HorizontalOptions="FillAndExpand" HeightRequest="100" WidthRequest="100" VerticalOptions="FillAndExpand" Source="{Binding Contact.ProfileImage}" />
-                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Spacing="8" Margin="0,10,0,0">
-                            <Label   Text="{Binding Contact.Title}" HorizontalTextAlignment="Center" Style="{StaticResource Headline5Bold}"></Label>
-                            <Label   Text="{Binding Contact.NewRequestMessage}" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1Bold}"></Label>
-                            <Label   Text="{Binding Contact.NewRequestMessage2}" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1}"></Label>
-                            <infrastructure:LoadingIndicator x:Name="loadingIndicator" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-                            <Button  Margin="0,24,0,0" Style="{StaticResource RegistrationButtonStyle}" BackgroundColor="{StaticResource AcceptButton}" Text="{infrastructure:Translate AcceptRequest}" Command="{Binding AcceptRequestCommand}" ></Button>
-                            <Button  Margin="0,24,0,0" Style="{StaticResource RegistrationButtonStyle}" Text="{infrastructure:Translate IgnoreRequest}" Command="{Binding IgnoreRequestCommand}" ></Button>
-                            <Button  Style="{StaticResource RegistrationButtonStyle}" Text="{infrastructure:Translate BlockRequest}" Command="{Binding BlockRequestCommand}" ></Button>
-                        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Frame Grid.Row="0">
+                <StackLayout Orientation="Horizontal" Margin="18,14,44,0">
+                    <Image Source="logo.png" WidthRequest="100"></Image>
+                    <StackLayout  Orientation="Vertical"  HorizontalOptions="EndAndExpand">
+                        <Label Style="{StaticResource Headline6}" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Black" Text="{infrastructure:Translate NewAlertTitle}"></Label>
+                        <Label Style="{StaticResource Headline6}" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{StaticResource PrimaryColor}"  Text="{infrastructure:Translate NewContactRequestTitle}"></Label>
+                        <!--<Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{StaticResource PrimaryColor}"  Text="{infrastructure:Translate SendAlertTitle}"></Label>-->
                     </StackLayout>
                 </StackLayout>
-            </ScrollView>
-        </StackLayout>
+            </Frame>
+            
+            <Label Grid.Row="1" Margin ="46,10,46,0" HorizontalOptions="FillAndExpand" FontSize="10" Style="{StaticResource Subtitle1Bold}" TextColor="Black" HorizontalTextAlignment="Center"  Text="{infrastructure:Translate ContactRequestText}"></Label>
+
+            <StackLayout Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center">
+                <Frame Padding="0,0,0,0" Margin="5,5,5,0" HasShadow="False" WidthRequest="100" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BorderColor="#B8B8B8" CornerRadius="16">
+                    <StackLayout Margin="0,6,0,0"  Spacing="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+                        <!--<circle:CircleImage Margin="0,4,0,0" WidthRequest="60" HeightRequest="55" Source="{Binding Contact.ProfileImage}" Aspect="AspectFill"></circle:CircleImage>-->
+                        <Image IsVisible="{Binding Contact.NoProfileImage}" Margin="16,13,11,8" WidthRequest="60" HeightRequest="55" Source="{Binding Contact.ProfileImageDefault}"></Image>
+                        <circle:CircleImage IsVisible="{Binding Contact.HasProfileImage}"  Margin="16,13,11,8" WidthRequest="60" HeightRequest="55" Source="{Binding Contact.ProfileImage}" Aspect="AspectFill"/>
+                        <StackLayout Margin="5,10,5,10" Spacing="0" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <Label TextColor="{StaticResource PrimaryColor}" MaxLines="2" FontSize="10" HorizontalOptions="FillAndExpand" LineBreakMode="TailTruncation"  HorizontalTextAlignment="Center" Text="{Binding Contact.FirstName}"></Label>
+                            <Label TextColor="#B8B8B8" HorizontalTextAlignment="Center"  FontSize="10"  HorizontalOptions="FillAndExpand" Text="{Binding Contact.Cellphone}"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Grid.Row="3" Margin="64,8,64,14" Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AcceptRequestCommand}"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                    <Image HeightRequest="56" WidthRequest="56" Source="accept_button.png"/>
+                    <Label Text="{infrastructure:Translate AcceptContactRequest}" TextColor="{StaticResource PrimaryColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding IgnoreRequestCommand}"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                    <Image  HeightRequest="56" WidthRequest="56"  Source="ignore_button.png"/>
+                    <Label Text="{infrastructure:Translate IgnoreContactRequest}" HorizontalTextAlignment="Center" TextColor="#5B5B5B" VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

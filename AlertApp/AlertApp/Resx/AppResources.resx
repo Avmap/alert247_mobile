@@ -427,4 +427,16 @@
   <data name="Weight" xml:space="preserve">
     <value>Weight</value>
   </data>
+  <data name="AcceptContactRequest" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="ContactRequestText" xml:space="preserve">
+    <value>The following contact wants to add you to the ALERT 24/7 app.</value>
+  </data>
+  <data name="IgnoreContactRequest" xml:space="preserve">
+    <value>Ignore</value>
+  </data>
+  <data name="NewContactRequestTitle" xml:space="preserve">
+    <value>CONTACT REQUEST</value>
+  </data>
 </root>
