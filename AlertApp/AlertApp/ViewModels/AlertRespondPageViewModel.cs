@@ -160,7 +160,7 @@ namespace AlertApp.ViewModels
                         await Task.Delay(TimeSpan.FromSeconds(1));
                         _notificationManager.CloseNotification(_notificationAction.NotificationId);
                         await App.Current.MainPage.Navigation.PopModalAsync();
-                    }                   
+                    }
                 }
             }
             else
@@ -171,24 +171,34 @@ namespace AlertApp.ViewModels
 
         }
 
-        private void SetContactFromMobile(string cellphone)
+        private async void SetContactFromMobile(string cellphone)
         {
-            //here get contact from addressbook
-            var contactService = DependencyService.Get<IContacts>();
-            var addressBookContact = contactService.GetContactDetails(cellphone);
-            if (addressBookContact != null)
+            var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
+            if (contactPermissionStatus == PermissionStatus.Granted)
             {
-                ContactName = addressBookContact.FirstName;
-                if (!string.IsNullOrWhiteSpace(addressBookContact.ProfileImageUri))
+
+                //here get contact from addressbook
+                var contactService = DependencyService.Get<IContacts>();
+                var addressBookContact = contactService.GetContactDetails(cellphone);
+                if (addressBookContact != null)
                 {
-                    var image = _contactProfileImageProvider.GetProfileImage(addressBookContact.ProfileImageUri);
-                    ProfileImage = image;
+                    ContactName = addressBookContact.FirstName;
+                    if (!string.IsNullOrWhiteSpace(addressBookContact.ProfileImageUri))
+                    {
+                        var image = _contactProfileImageProvider.GetProfileImage(addressBookContact.ProfileImageUri);
+                        ProfileImage = image;
+                    }
+                    else
+                    {
+                        ProfileImage = ImageSource.FromFile("account_circle.png");
+                    }
+                    ContactPhone = cellphone;
                 }
-                else
-                {
-                    ProfileImage = ImageSource.FromFile("account_circle.png");
-                }
+            }
+            else
+            {
                 ContactPhone = cellphone;
+                ProfileImage = ImageSource.FromFile("account_circle.png");
             }
         }
 

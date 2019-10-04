@@ -3,6 +3,7 @@ using AlertApp.Model;
 using AlertApp.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,8 +50,8 @@ namespace AlertApp.Pages
                     string[] latlng = data.Position.Split(',');
                     if (latlng.Length == 2)
                     {
-                        var lat = Double.Parse(latlng[0].Replace(".", ","));
-                        var lng = Double.Parse(latlng[1].Replace(".", ","));
+                        var lat = Double.Parse(latlng[0], CultureInfo.InvariantCulture);
+                        var lng = Double.Parse(latlng[1], CultureInfo.InvariantCulture);
                         var position = new Position(lat, lng);
                         var pin = new Pin
                         {
