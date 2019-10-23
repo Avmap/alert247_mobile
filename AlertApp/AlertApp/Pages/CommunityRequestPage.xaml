@@ -25,7 +25,7 @@
                 </StackLayout>
             </Frame>
 
-            <Label Grid.Row="1" Margin ="46,10,46,0" HorizontalOptions="FillAndExpand" Style="{StaticResource AlertPagesText}" TextColor="Black" HorizontalTextAlignment="Center"  Text="{infrastructure:Translate ContactRequestText}"></Label>
+            <Label Grid.Row="1" Margin ="46,10,46,0" HorizontalOptions="FillAndExpand" Style="{StaticResource AlertPagesText}"  HorizontalTextAlignment="Center"  Text="{infrastructure:Translate ContactRequestText}"></Label>
 
             <StackLayout Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center">
                 <Frame Padding="0,0,0,0" Margin="5,5,5,0" HasShadow="False" HorizontalOptions="Center" VerticalOptions="Center" BorderColor="#B8B8B8" CornerRadius="16">

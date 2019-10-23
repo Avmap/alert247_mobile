@@ -55,8 +55,8 @@ namespace AlertApp
             }
             else
             {
-                MainPage = new NavigationPage(new MainPage());                             
-                // MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { Position= "37.9849,23.7620", Cellphone = "+306983836637"} }));
+              //  MainPage = new NavigationPage(new MainPage());                             
+                 MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { Position= "37.9849,23.7620", Cellphone = "+306983836637"} }));
             }
 
 #if DEBUG
