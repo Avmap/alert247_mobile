@@ -25,4 +25,5 @@
 
     <x:Double x:Key="ContactImageHeight">65</x:Double>
     <x:Double x:Key="ContactImageWidth">70</x:Double>
+    <x:Double x:Key="ContactIconsStatusSize">16</x:Double>
 </ResourceDictionary>
