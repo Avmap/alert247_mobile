@@ -49,9 +49,10 @@ namespace AlertApp
                         Preferences.Set(Settings.SelectedLanguage, systemlanguage.Name);
                     }
                 }
-                 MainPage = new NavigationPage(new SelectLanguagePage());
-                // MainPage = new NavigationPage(new EnterActivationCodePage("+306983836637")); 
-               //  MainPage = new NavigationPage(new RegistrationFieldsPage(new RegistrationField[] { })); 
+                //MainPage = new NavigationPage(new SelectLanguagePage());
+             //   MainPage = new NavigationPage(new EnterApplicationPinCodePage());
+                MainPage = new NavigationPage(new RegistrationFieldsPage(new RegistrationField[0])); 
+
             }
             else
             {
@@ -89,6 +90,7 @@ namespace AlertApp
         protected override void OnStart()
         {
             RequestPermissions();
+            VersionTracking.Track();
             // Handle when your app starts
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {

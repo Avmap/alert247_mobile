@@ -65,6 +65,8 @@ namespace AlertApp.ViewModels
 
         public List<Language> Languages => Language.SupportedLanguages;
 
+        public string Version => String.Format("{0} {1}", "Version", VersionTracking.CurrentVersion);
+
         #endregion
 
         #region Commands

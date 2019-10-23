@@ -37,6 +37,8 @@ namespace AlertApp.ViewModels
             {
                 _Pin1 = value;
                 OnPropertyChanged("CanContinue");
+                OnPropertyChanged("CodeCompleted");
+                OnPropertyChanged("PromtText");
             }
         }
         private string _Pin2;
@@ -48,6 +50,8 @@ namespace AlertApp.ViewModels
             {
                 _Pin2 = value;
                 OnPropertyChanged("CanContinue");
+                OnPropertyChanged("CodeCompleted");
+                OnPropertyChanged("PromtText");
             }
         }
         private string _Pin4;
@@ -59,6 +63,8 @@ namespace AlertApp.ViewModels
             {
                 _Pin3 = value;
                 OnPropertyChanged("CanContinue");
+                OnPropertyChanged("CodeCompleted");
+                OnPropertyChanged("PromtText");
             }
         }
 
@@ -71,6 +77,8 @@ namespace AlertApp.ViewModels
             {
                 _Pin4 = value;
                 OnPropertyChanged("CanContinue");
+                OnPropertyChanged("CodeCompleted");
+                OnPropertyChanged("PromtText");
             }
         }
 
@@ -89,6 +97,13 @@ namespace AlertApp.ViewModels
 
 
         public bool CanContinue => !string.IsNullOrWhiteSpace(Pin1) && !string.IsNullOrWhiteSpace(Pin2) && !string.IsNullOrWhiteSpace(Pin3) && !string.IsNullOrWhiteSpace(Pin4);
+
+        public bool CodeCompleted => !CanContinue;
+
+        public string PromtText => CodeCompleted ? AppResources.RegistrationCreatePinPromt : AppResources.RegistrationEnterPinPromt;
+
+
+
         #endregion
 
         #region Commands

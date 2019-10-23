@@ -9,24 +9,25 @@
         <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Image Source="call_center.png"  AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" VerticalOptions="EndAndExpand" Aspect="AspectFill" HeightRequest="110" HorizontalOptions="FillAndExpand"></Image>
             <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Orientation="Vertical" >
-                <Frame Grid.Row="0" HasShadow="True">
-                    <StackLayout  Orientation="Vertical" Spacing="7" HorizontalOptions="FillAndExpand">
-                        <Label Style="{StaticResource Headline6}" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black" Text="{infrastructure:Translate StartSettings}"></Label>
-                        <Label Style="{StaticResource Headline6}" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{StaticResource PrimaryColor}"  Text="{infrastructure:Translate UserDetails}"></Label>
+                <Frame Padding="0,8,0,8" HasShadow="True">
+                    <StackLayout  Orientation="Vertical" Spacing="2" HorizontalOptions="FillAndExpand">
+                        <Label Style="{StaticResource HeaderToolbar}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="{infrastructure:Translate StartSettings}"></Label>
+                        <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource SubtitleToolbar}" Text="{infrastructure:Translate UserDetails}"></Label>
                     </StackLayout>
                 </Frame>
-
-                <Label Margin="16,0,16,0" TextColor="Black" Text="{infrastructure:Translate RegistrationEnterFieldsPromt}" FontSize="11" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1}"></Label>
-
-                <Frame  Padding="5,5,5,5" HasShadow="False" Margin="20,8,20,0" BorderColor="{StaticResource PrimaryColor}" CornerRadius="16" VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand">
+                <Label Margin="16,0,16,0" x:Name="labelPrompt"  Text="{infrastructure:Translate RegistrationEnterFieldsPromt}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
+                <StackLayout Margin="0,8,0,8" x:Name="topNextButton" IsVisible="False" Orientation="Vertical"  HorizontalOptions="Center">
+                    <Image x:Name="topNextImage" HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
+                    <Label Text="{infrastructure:Translate Finish}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
+                </StackLayout>
+                <Frame  Padding="5,5,5,5" HasShadow="False" Margin="20,8,20,16" BorderColor="{StaticResource PrimaryColor}" CornerRadius="16" VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand">
                     <ScrollView Margin="16,0,16,0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <StackLayout x:Name="registrationContainer" Grid.Row="1" Orientation="Vertical"></StackLayout>
                     </ScrollView>
                 </Frame>
-
-                <StackLayout Orientation="Vertical" Margin="0,6,0,15" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,6,0,15" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
                     <Image x:Name="nextImage" HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
-                    <Label Text="{infrastructure:Translate Finish}" HorizontalTextAlignment="Center" TextColor="#5B5B5B" VerticalTextAlignment="Center"/>
+                    <Label Text="{infrastructure:Translate Finish}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
                 </StackLayout>
             </StackLayout>
             <infrastructure:LoadingIndicator AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>

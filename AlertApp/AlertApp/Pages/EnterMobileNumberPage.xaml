@@ -16,28 +16,32 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Frame Grid.Row="0" HasShadow="True">
-                <StackLayout  Orientation="Vertical" Spacing="7" HorizontalOptions="FillAndExpand">
-                    <Label Style="{StaticResource Headline6}" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black" Text="{infrastructure:Translate StartSettings}"></Label>
-                    <Label Style="{StaticResource Headline6}" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{StaticResource PrimaryColor}"  Text="{infrastructure:Translate EnterMobileNumberTitle}"></Label>
+            <Frame Grid.Row="0" Padding="0,8,0,8" HasShadow="True">
+                <StackLayout  Orientation="Vertical" Spacing="2" HorizontalOptions="FillAndExpand">
+                    <Label Style="{StaticResource HeaderToolbar}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="{infrastructure:Translate StartSettings}"></Label>
+                    <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource SubtitleToolbar}" Text="{infrastructure:Translate EnterMobileNumberTitle}"></Label>
                 </StackLayout>
             </Frame>
             <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="Center" Spacing="0">
-                <Image WidthRequest="60" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding SelectedLanguage.Flag}"/>
-                <Label Text="{Binding SelectedLanguage.Name}"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Image WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}" HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding SelectedLanguage.Flag}"/>
+                <Label Text="{Binding SelectedLanguage.Name}" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
             </StackLayout>
             <StackLayout Grid.Row="2" HorizontalOptions="FillAndExpand" Spacing="10" Margin="16,4,16,0">
-                <Label Text="{infrastructure:Translate EnterMobileMessage}" HorizontalTextAlignment="Center" TextColor="Black" FontSize="12"></Label>
-                <StackLayout Orientation="Horizontal" Spacing="2" HorizontalOptions="FillAndExpand">
-                    <Entry Keyboard="Telephone"  Margin="2,0,0,0" MaxLength="5" Text="{Binding CountryPrefix}" HorizontalTextAlignment="Center" WidthRequest="90" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                    <Entry Keyboard="Telephone" Text="{Binding Mobile}" MaxLength="12" Margin="2,0,0,0" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                <Label Text="{infrastructure:Translate EnterMobileMessage}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource RegistrationText}"></Label>
+                <StackLayout Orientation="Horizontal" Spacing="8" HorizontalOptions="FillAndExpand">
+                    <Frame BackgroundColor="#E6E7E8" CornerRadius="16" Padding="2,2,2,2" HasShadow="False">
+                        <infrastructure:NoUnderlineEntry Keyboard="Telephone"  Margin="8,0,0,0" MaxLength="5" Text="{Binding CountryPrefix}" HorizontalTextAlignment="Start" WidthRequest="90" Style="{StaticResource RegistrationEntry}"></infrastructure:NoUnderlineEntry>
+                    </Frame>
+                    <Frame BackgroundColor="#E6E7E8" CornerRadius="16" Padding="2,2,2,2" HasShadow="False" HorizontalOptions="FillAndExpand">
+                        <infrastructure:NoUnderlineEntry Keyboard="Telephone" Text="{Binding Mobile}" MaxLength="12" Margin="8,0,0,0" HorizontalOptions="FillAndExpand" Style="{StaticResource RegistrationEntry}"></infrastructure:NoUnderlineEntry>
+                    </Frame>
                 </StackLayout>
                 <StackLayout Orientation="Vertical" Margin="0,6,0,0" HorizontalOptions="FillAndExpand">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer  Command="{Binding ContinueCommand}"></TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>
                     <Image HeightRequest="56" WidthRequest="56"  Source="next.png"/>
-                    <Label Text="{infrastructure:Translate Continue}" HorizontalTextAlignment="Center" TextColor="#5B5B5B" VerticalTextAlignment="Center"/>
+                    <Label Text="{infrastructure:Translate Continue}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
                 </StackLayout>
             </StackLayout>
         </Grid>

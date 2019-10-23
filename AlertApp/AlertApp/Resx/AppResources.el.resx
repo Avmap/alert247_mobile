@@ -136,7 +136,7 @@
     <value>Πατήστε για ακύρωση</value>
   </data>
   <data name="Continue" xml:space="preserve">
-    <value>Συνέχεια</value>
+    <value>Επόμενο</value>
   </data>
   <data name="ContinueDialogButton" xml:space="preserve">
     <value>Συνέχεια</value>
@@ -468,5 +468,8 @@
   </data>
   <data name="NoAlertRecipients" xml:space="preserve">
     <value>Δεν βρέθηκαν επαφές για αποστολή alert.</value>
+  </data>
+  <data name="RegistrationCreatePinPromt" xml:space="preserve">
+    <value>Δημιουργήστε τον προσωπικό σας 4ψήφιο κωδικό (PIN). Εισάγετε παρακάτω.</value>
   </data>
 </root>

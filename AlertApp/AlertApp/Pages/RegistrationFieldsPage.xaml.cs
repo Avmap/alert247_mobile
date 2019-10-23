@@ -44,6 +44,7 @@ namespace AlertApp.Pages
             };
 
             nextImage.GestureRecognizers.Add(profileTapRecognizer);
+            topNextImage.GestureRecognizers.Add(profileTapRecognizer);
 
         }
 
@@ -51,14 +52,14 @@ namespace AlertApp.Pages
         private void AddRegistrationFields(RegistrationField[] registrationField)
         {
 #if DEBUG
-            //var list = new List<RegistrationField>();
-            //list.Add(new RegistrationField { DataType = RegistrationField.Type.Date, FieldName = "birthdate", Labels = new Dictionary<string, string>() });
-            //list.Add(new RegistrationField { DataType = RegistrationField.Type.String, FieldName = "area", Labels = new Dictionary<string, string>() });
-            //list.Add(new RegistrationField { DataType = RegistrationField.Type.String, FieldName = "firstname", Labels = new Dictionary<string, string>() });
-            //list.Add(new RegistrationField { DataType = RegistrationField.Type.String, FieldName = "firstname2", Labels = new Dictionary<string, string>() });
-            //list.Add(new RegistrationField { DataType = RegistrationField.Type.Boolean, FieldName = "epilispi", Labels = new Dictionary<string, string>() });
-            //list.Add(new RegistrationField { DataType = RegistrationField.Type.Area, FieldName = "other", Labels = new Dictionary<string, string>() });
-            //registrationField = list.ToArray();
+            var list = new List<RegistrationField>();
+            list.Add(new RegistrationField { DataType = RegistrationField.Type.Date, FieldName = "birthdate", Labels = new Dictionary<string, string>() });
+            list.Add(new RegistrationField { DataType = RegistrationField.Type.String, FieldName = "area", Labels = new Dictionary<string, string>() });
+            list.Add(new RegistrationField { DataType = RegistrationField.Type.String, FieldName = "firstname", Labels = new Dictionary<string, string>() });
+            list.Add(new RegistrationField { DataType = RegistrationField.Type.String, FieldName = "firstname2", Labels = new Dictionary<string, string>() });
+            list.Add(new RegistrationField { DataType = RegistrationField.Type.Boolean, FieldName = "epilispi", Labels = new Dictionary<string, string>() });
+            list.Add(new RegistrationField { DataType = RegistrationField.Type.Area, FieldName = "other", Labels = new Dictionary<string, string>() });
+            registrationField = list.ToArray();
 #endif            
             var language = _localSettingsService.GetSelectedLanguage();
             foreach (var item in registrationField)
@@ -69,18 +70,20 @@ namespace AlertApp.Pages
                 {
                     string label = "";
                     item.Labels.TryGetValue(language, out label);
-                    //#if DEBUG
-                    //                    stack.Children.Add(new Xamarin.Forms.Label { VerticalOptions = LayoutOptions.Center, WidthRequest = 100, Text = "Registration field", Style = (Style)Application.Current.Resources["RegistrationLabelStyle"] });
-                    //#else
+#if DEBUG
+                    stack.Children.Add(new Xamarin.Forms.Label { VerticalOptions = LayoutOptions.Center, WidthRequest = 100, Text = "Registration field", Style = (Style)Application.Current.Resources["RegistrationLabelStyle"] });
+#else
                     stack.Children.Add(new Xamarin.Forms.Label { Text = label, VerticalOptions = LayoutOptions.Center, WidthRequest = 100, Style = (Style)Application.Current.Resources["RegistrationLabelStyle"] });
-                    //#endif
+#endif
 
                 }
                 stack.FieldName = item.FieldName;
                 switch (item.DataType)
                 {
                     case RegistrationField.Type.String:
-                        stack.Children.Add(new Entry { VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.FillAndExpand, ReturnType = ReturnType.Next, Style = (Style)Application.Current.Resources["RegistrationEntryStyle"] });
+                        var entry = new Entry { VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.FillAndExpand, ReturnType = ReturnType.Next, Style = (Style)Application.Current.Resources["RegistrationEntryStyle"] };
+                        entry.TextChanged += Entry_TextChanged;                        
+                        stack.Children.Add(entry);
                         registrationContainer.Children.Add(stack);
                         break;
                     case RegistrationField.Type.Date:
@@ -99,7 +102,7 @@ namespace AlertApp.Pages
                         registrationContainer.Children.Add(stack);
                         break;
                     case RegistrationField.Type.Area:
-                        stack.Children.Add(new Editor { VerticalOptions = LayoutOptions.Center, Text = "asdasdasdasds", AutoSize = EditorAutoSizeOption.TextChanges });
+                        stack.Children.Add(new Editor { VerticalOptions = LayoutOptions.Center, AutoSize = EditorAutoSizeOption.TextChanges });
                         registrationContainer.Children.Add(stack);
                         break;
                 }
@@ -107,6 +110,55 @@ namespace AlertApp.Pages
             vm.SetBusy(false);
         }
 
+        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (HasValue())
+            {
+                labelPrompt.IsVisible = false;
+                topNextButton.IsVisible = true;
+                bottomNextButton.IsVisible = false;
+            }
+            else
+            {
+                labelPrompt.IsVisible = true;
+                topNextButton.IsVisible = false;
+                bottomNextButton.IsVisible = true;
+            }
+        }
+       
+        private bool HasValue()
+        {
+            var registrationValues = new Dictionary<string, string>();
+            foreach (var registrationView in registrationContainer.Children)
+            {
+                var registrationStackLayout = registrationView as RegistrationStackLayout;
+                if (registrationStackLayout != null)
+                {
+                    foreach (var field in registrationStackLayout.Children)
+                    {
+                        if (field is Entry)
+                        {
+                            if (!string.IsNullOrWhiteSpace(((Entry)field).Text))
+                                return true;
+                        }
+                        else if (field is DatePicker)
+                        {
+                            registrationValues.Add(registrationStackLayout.FieldName, ((DatePicker)field).Date.Date.ToString());
+                        }
+                        else if (field is Editor)
+                        {
+                            if (!string.IsNullOrWhiteSpace(((Editor)field).Text))
+                                return true;
+                        }
+                        else if (field is Switch)
+                        {
+                            registrationValues.Add(registrationStackLayout.FieldName, ((Switch)field).IsToggled.ToString().ToLower());
+                        }
+                    }
+                }
+            }
+            return false;
+        }
         private async void SubmitRegistrationButton_Clicked()
         {
             var registrationValues = new Dictionary<string, string>();
@@ -138,6 +190,7 @@ namespace AlertApp.Pages
             }
             vm.SendUserProfile(registrationValues);
         }
+
 
         protected override bool OnBackButtonPressed()
         {

@@ -135,6 +135,7 @@
     <Compile Include="Boot.cs" />
     <Compile Include="ContactProfileImageProvider.cs" />
     <Compile Include="CustomRenderers\Dialog.cs" />
+    <Compile Include="CustomRenderers\NoUnderlineEntry.cs" />
     <Compile Include="CustomRenderers\OtpEntryRenderer.cs" />
     <Compile Include="DependencyService\ContactsService.cs" />
     <Compile Include="DependencyService\CryptographyService.cs" />

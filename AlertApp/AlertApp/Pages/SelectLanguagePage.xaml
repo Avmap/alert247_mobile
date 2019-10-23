@@ -9,89 +9,94 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="130"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="110"/>
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Margin="0,35,0,0" HorizontalOptions="Center" Source="alert_logo.png" />
+            <Image Grid.Row="0" Margin="0,16,0,16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Source="alert_logo.png" />
 
-            <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <StackLayout Grid.Row="1" Spacing="16" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="22" >
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="16" >
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image Source="gr_GR.png" WidthRequest="60" HeightRequest="55">
+                        <Image Source="gr_GR.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectLanguageCommand}" CommandParameter="el-GR"></TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
-                        <Label Text="Ελληνικά"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="Ελληνικά"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image Source="en_US.png" WidthRequest="60" HeightRequest="55">
+                        <Image Source="en_US.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectLanguageCommand}" CommandParameter="en-US"></TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
-                        <Label Text="English"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="English"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image Source="fr_FR.png" WidthRequest="60" HeightRequest="55" >
+                        <Image Source="fr_FR.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}" >
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectLanguageCommand}" CommandParameter="fr-FR"></TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
-                        <Label Text="Français"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="Français"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image Source="it_IT.png" WidthRequest="60" HeightRequest="55" >
+                        <Image Source="it_IT.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}" >
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectLanguageCommand}" CommandParameter="it-IT"></TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
-                        <Label Text="Italian"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="Italian"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                 </StackLayout>
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="22">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="16">
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image Source="de_DE.png" WidthRequest="60" HeightRequest="55">
+                        <Image Source="de_DE.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectLanguageCommand}" CommandParameter="de-DE"></TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
-                        <Label Text="Deutsch"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="Deutsch"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image Source="bg_BG.png" WidthRequest="60" HeightRequest="55">
+                        <Image Source="bg_BG.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectLanguageCommand}" CommandParameter="bg-BG"></TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
-                        <Label Text="Bulgare"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="Bulgare"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image Source="ru_RU.png" WidthRequest="60" HeightRequest="55" >
+                        <Image Source="ru_RU.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}" >
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectLanguageCommand}" CommandParameter="ru-RU"></TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
-                        <Label Text="Russian"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="Russian"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image Source="zh_CN.png" WidthRequest="60" HeightRequest="55" >
+                        <Image Source="zh_CN.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectLanguageCommand}" CommandParameter="zh-CN"></TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
-                        <Label Text="Chinese"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="Chinese"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                 </StackLayout>
+                
             </StackLayout>
 
 
             <Image Grid.Row="2"  Source="call_center.png" VerticalOptions="EndAndExpand" Aspect="AspectFill" HorizontalOptions="FillAndExpand"></Image>
-            <Image Grid.Row="2" Source="logo.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100"></Image>
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical" Grid.Row="2">
+                <Image Source="logo.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100"></Image>
+                <Label Text="{Binding Version}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+          
         </Grid>
     </ContentPage.Content>
 </ContentPage>

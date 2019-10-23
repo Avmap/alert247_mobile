@@ -718,6 +718,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create your personal 4digit code (PIN). Enter below..
+        /// </summary>
+        internal static string RegistrationCreatePinPromt {
+            get {
+                return ResourceManager.GetString("RegistrationCreatePinPromt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter your personal details. In case of emergency will be sent to the contacts that you choose..
         /// </summary>
         internal static string RegistrationEnterFieldsPromt {

@@ -16,29 +16,31 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Frame Grid.Row="0" HasShadow="True">
-                    <StackLayout  Orientation="Vertical" Spacing="7" HorizontalOptions="FillAndExpand">
-                        <Label Style="{StaticResource Headline6}" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black" Text="{infrastructure:Translate StartSettings}"></Label>
-                        <Label Style="{StaticResource Headline6}" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{StaticResource PrimaryColor}"  Text="{infrastructure:Translate VerificationCodePageTitle}"></Label>
+                <Frame Grid.Row="0" Padding="0,8,0,8" HasShadow="True">
+                    <StackLayout  Orientation="Vertical" Spacing="2" HorizontalOptions="FillAndExpand">
+                        <Label Style="{StaticResource HeaderToolbar}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="{infrastructure:Translate StartSettings}"></Label>
+                        <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource SubtitleToolbar}" Text="{infrastructure:Translate VerificationCodePageTitle}"></Label>
                     </StackLayout>
                 </Frame>
                 <StackLayout  Grid.Row="1" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                    <Label TextColor="Black" FontSize="17" Text="{Binding TimerText,Mode=TwoWay}" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1}"></Label>
-                    <Label TextColor="Black" Text="{infrastructure:Translate WaitForSMS}" FontSize="11" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1}"></Label>
+                    <Label Style="{StaticResource RegistrationText}" FontSize="18" Text="{Binding TimerText,Mode=TwoWay}" HorizontalTextAlignment="Center"></Label>
+                    <Label Text="{infrastructure:Translate WaitForSMS}"  HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
                     <StackLayout HorizontalOptions="FillAndExpand" Spacing="8" Margin="65,24,65,0">
                         <OnPlatform x:TypeArguments="View">
                             <On Platform="iOS">
                                 <infrastructure:OtpEntry Keyboard="Telephone" MaxLength="6" HorizontalTextAlignment="Center" Text="{Binding VerificationCode,Mode=TwoWay}" Style="{StaticResource Headline5BoldEntry}"></infrastructure:OtpEntry>
                             </On>
                             <On Platform="Android">
-                                <StackLayout Orientation="Horizontal" Spacing="2" HorizontalOptions="FillAndExpand">
-                                    <Entry IsEnabled="{Binding NotBusy}" x:Name="Verification1" TextChanged="Verification1_TextChanged"  Keyboard="Telephone" Text="{Binding VerificationCode0,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                                    <Entry IsEnabled="{Binding NotBusy}" x:Name="Verification2" TextChanged="Verification2_TextChanged"  Keyboard="Telephone" Text="{Binding VerificationCode1,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                                    <Entry IsEnabled="{Binding NotBusy}" x:Name="Verification3" TextChanged="Verification3_TextChanged" Keyboard="Telephone" Text="{Binding VerificationCode2,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                                    <Entry IsEnabled="{Binding NotBusy}" x:Name="Verification4" TextChanged="Verification4_TextChanged" Keyboard="Telephone" Text="{Binding VerificationCode3,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                                    <Entry IsEnabled="{Binding NotBusy}" x:Name="Verification5" TextChanged="Verification5_TextChanged" Keyboard="Telephone" Text="{Binding VerificationCode4,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                                    <Entry IsEnabled="{Binding NotBusy}" x:Name="Verification6" TextChanged="Verification6_TextChanged" Keyboard="Telephone" Text="{Binding VerificationCode5,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                                </StackLayout>
+                                <Frame BackgroundColor="#E6E7E8" CornerRadius="16" Padding="2,2,2,2" HasShadow="False">
+                                    <StackLayout Orientation="Horizontal" Spacing="2" HorizontalOptions="FillAndExpand">
+                                        <Entry IsEnabled="{Binding NotBusy}" x:Name="Verification1" TextChanged="Verification1_TextChanged"  Keyboard="Telephone" Text="{Binding VerificationCode0,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                                        <Entry IsEnabled="{Binding NotBusy}" x:Name="Verification2" TextChanged="Verification2_TextChanged"  Keyboard="Telephone" Text="{Binding VerificationCode1,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                                        <Entry IsEnabled="{Binding NotBusy}" x:Name="Verification3" TextChanged="Verification3_TextChanged" Keyboard="Telephone" Text="{Binding VerificationCode2,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                                        <Entry IsEnabled="{Binding NotBusy}" x:Name="Verification4" TextChanged="Verification4_TextChanged" Keyboard="Telephone" Text="{Binding VerificationCode3,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                                        <Entry IsEnabled="{Binding NotBusy}" x:Name="Verification5" TextChanged="Verification5_TextChanged" Keyboard="Telephone" Text="{Binding VerificationCode4,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                                        <Entry IsEnabled="{Binding NotBusy}" x:Name="Verification6" TextChanged="Verification6_TextChanged" Keyboard="Telephone" Text="{Binding VerificationCode5,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                                    </StackLayout>
+                                </Frame>
                             </On>
                         </OnPlatform>
                         <StackLayout IsVisible="{Binding CanContinue}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
@@ -55,7 +57,7 @@
                                     <TapGestureRecognizer  Command="{Binding ResendCodeCommand}"></TapGestureRecognizer>
                                 </Image.GestureRecognizers>
                             </Image>
-                            <Label Text="{infrastructure:Translate ResendCodeButton}"  TextColor="{Binding EnabledDisabledColor}" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Label Text="{infrastructure:Translate ResendCodeButton}"  TextColor="{Binding EnabledDisabledColor}" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>

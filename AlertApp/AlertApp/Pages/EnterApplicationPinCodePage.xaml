@@ -11,28 +11,31 @@
             <Grid AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Frame Grid.Row="0" HasShadow="True">
-                    <StackLayout  Orientation="Vertical" Spacing="7" HorizontalOptions="FillAndExpand">
-                        <Label Style="{StaticResource Headline6}" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Black" Text="{infrastructure:Translate StartSettings}"></Label>
-                        <Label Style="{StaticResource Headline6}" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{StaticResource PrimaryColor}"  Text="{infrastructure:Translate EnterPin}"></Label>
+                <Frame Grid.Row="0" Padding="0,8,0,8" HasShadow="True">
+                    <StackLayout  Orientation="Vertical" Spacing="2" HorizontalOptions="FillAndExpand">
+                        <Label Style="{StaticResource HeaderToolbar}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="{infrastructure:Translate StartSettings}"></Label>
+                        <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource SubtitleToolbar}" Text="{infrastructure:Translate EnterPin}"></Label>
                     </StackLayout>
                 </Frame>
-                <StackLayout  Grid.Row="1" Orientation="Vertical" >
-                    <Label Margin="16,0,16,0" TextColor="Black" Text="{infrastructure:Translate RegistrationEnterPinPromt}" FontSize="11" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1}"></Label>
-                    
-                    <StackLayout Margin="90,0,90,0" Orientation="Horizontal"  Spacing="2" HorizontalOptions="FillAndExpand">
-                        <Entry x:Name="Pin1" TextChanged="Pin1_TextChanged"  Keyboard="Telephone" Text="{Binding Pin1,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                        <Entry x:Name="Pin2" TextChanged="Pin2_TextChanged"  Keyboard="Telephone" Text="{Binding Pin2,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                        <Entry x:Name="Pin3" TextChanged="Pin3_TextChanged" Keyboard="Telephone" Text="{Binding Pin3,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                        <Entry x:Name="Pin4" TextChanged="Pin4_TextChanged" Keyboard="Telephone" Text="{Binding Pin4,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                    </StackLayout>
+                <Label Grid.Row="1" Margin="16,0,16,0"  Text="{Binding PromtText}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
+                
+                <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="Center">
+                    <Frame HorizontalOptions="Center" BackgroundColor="#E6E7E8" CornerRadius="16" Padding="8,2,8,2" HasShadow="False">
+                        <StackLayout  Orientation="Horizontal"  Spacing="8" HorizontalOptions="Center">
+                            <Entry x:Name="Pin1" WidthRequest="35" TextChanged="Pin1_TextChanged"  Keyboard="Telephone" Text="{Binding Pin1,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                            <Entry x:Name="Pin2" WidthRequest="35" TextChanged="Pin2_TextChanged"  Keyboard="Telephone" Text="{Binding Pin2,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                            <Entry x:Name="Pin3" WidthRequest="35" TextChanged="Pin3_TextChanged" Keyboard="Telephone" Text="{Binding Pin3,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                            <Entry x:Name="Pin4" WidthRequest="35" TextChanged="Pin4_TextChanged" Keyboard="Telephone" Text="{Binding Pin4,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                        </StackLayout>
+                    </Frame>
 
-                    <StackLayout Margin="0,28,0,0"  Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start">
-                        <Label TextColor="Black" FontSize="10" Text="{infrastructure:Translate LocationTracking}" VerticalOptions="Center" Style="{StaticResource Subtitle1Bold}"></Label>
+                    <StackLayout Margin="0,8,0,0"  Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start">
+                        <Label Text="{infrastructure:Translate LocationTracking}" VerticalOptions="Center" Style="{StaticResource HeaderToolbar}"></Label>
                         <Switch  VerticalOptions="Center" IsToggled="{Binding LocationTracking,Mode=TwoWay}"></Switch>
                     </StackLayout>
                     <StackLayout IsVisible="{Binding CanContinue}" Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="Center">
@@ -41,50 +44,15 @@
                                 <TapGestureRecognizer  Command="{Binding ContinueCommand}"></TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
-                        <Label Text="{infrastructure:Translate NextRegistration}"  TextColor="{Binding EnabledDisabledColor}" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="{infrastructure:Translate NextRegistration}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
-                    <Label Margin="16,8,16,0" TextColor="Black" FontSize="11" Text="{infrastructure:Translate LocationTrackingExplanation}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"  Style="{StaticResource Subtitle1}"></Label>
+                    <Label IsVisible="{Binding CodeCompleted}" Margin="16,8,16,0" Text="{infrastructure:Translate LocationTrackingExplanation}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
                 </StackLayout>
 
-                <Image Grid.Row="2"  Source="call_center.png" VerticalOptions="EndAndExpand" Aspect="AspectFill" HeightRequest="110" HorizontalOptions="FillAndExpand"></Image>
-                <Image Grid.Row="2" Source="alert_logo.png" Margin="0,0,0,65" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="130"></Image>
+                <Image Grid.Row="3"  Source="call_center.png" VerticalOptions="EndAndExpand" Aspect="AspectFill" HeightRequest="110" HorizontalOptions="FillAndExpand"></Image>
+                <Image Grid.Row="3" Source="alert_logo.png" Margin="0,0,0,65" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="130"></Image>
             </Grid>
             <infrastructure:LoadingIndicator  AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         </AbsoluteLayout>
-        <!--<ScrollView>
-            <AbsoluteLayout BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <StackLayout  Margin="{StaticResource RegistrationMargin}" Orientation="Vertical" Spacing="20" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
-                    <StackLayout Orientation="Vertical" Margin="0,70,0,0" VerticalOptions="StartAndExpand">
-                        <Image  IsVisible="False" HorizontalOptions="Center"  VerticalOptions="CenterAndExpand" WidthRequest="200" HeightRequest="200">
-                            <Image.Source>
-                                <OnPlatform x:TypeArguments="ImageSource" iOS="select_language.png" Android="select_language.png" />
-                            </Image.Source>
-                        </Image>
-                        <StackLayout HorizontalOptions="FillAndExpand" Spacing="20" Margin="0,10,0,0">
-                            <Label Margin="2,0,0,0" Text="{infrastructure:Translate EnterPin}" HorizontalTextAlignment="Center" Style="{StaticResource Subtitle1}"></Label>
-                            <Label Margin="2,0,0,0" Text="{infrastructure:Translate DontUseOtpAsPinMessage}" HorizontalTextAlignment="Center" Style="{StaticResource Headline5Bold}"></Label>
-                            -->
-        <!--<Entry Keyboard="Telephone" HorizontalTextAlignment="Center" MaxLength="4" Text="{Binding Pin}" Style="{StaticResource Headline5BoldEntry}"></Entry>-->
-        <!--
-
-                            <StackLayout Orientation="Horizontal"  Spacing="2" HorizontalOptions="FillAndExpand">
-                                <Entry x:Name="Pin1" TextChanged="Pin1_TextChanged"  Keyboard="Telephone" Text="{Binding Pin1,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                                <Entry x:Name="Pin2" TextChanged="Pin2_TextChanged"  Keyboard="Telephone" Text="{Binding Pin2,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                                <Entry x:Name="Pin3" TextChanged="Pin3_TextChanged" Keyboard="Telephone" Text="{Binding Pin3,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                                <Entry x:Name="Pin4" TextChanged="Pin4_TextChanged" Keyboard="Telephone" Text="{Binding Pin4,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                            </StackLayout>
-
-
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
-                                <Label  Text="{infrastructure:Translate LocationTracking}" Style="{StaticResource Subtitle1}"></Label>
-                                <Switch IsToggled="{Binding LocationTracking,Mode=TwoWay}"></Switch>
-                            </StackLayout>
-                            <Button Margin="0,40,0,0" Style="{StaticResource RegistrationButtonStyle}" Text="{infrastructure:Translate Continue}" Command="{Binding ContinueCommand}"></Button>
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
-                <infrastructure:LoadingIndicator x:Name="loadingIndicator" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
-            </AbsoluteLayout>
-        </ScrollView>-->
     </ContentPage.Content>
 </ContentPage>

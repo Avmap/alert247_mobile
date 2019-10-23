@@ -463,4 +463,7 @@
   <data name="NoAlertRecipients" xml:space="preserve">
     <value>No alert recepients</value>
   </data>
+  <data name="RegistrationCreatePinPromt" xml:space="preserve">
+    <value>Create your personal 4digit code (PIN). Enter below.</value>
+  </data>
 </root>
