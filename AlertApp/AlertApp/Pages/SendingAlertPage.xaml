@@ -14,26 +14,26 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Frame Grid.Row="0" >
-                <Label Style="{StaticResource Headline6}" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{StaticResource PrimaryColor}"  Text="{infrastructure:Translate SendAlertTitle}"></Label>
+                <Label  FontSize="20" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{StaticResource PrimaryColor}"  Text="{infrastructure:Translate SendAlertTitle}"></Label>
             </Frame>
             <Frame Margin="60,13,60,0" BorderColor="Black" CornerRadius="16" HorizontalOptions="FillAndExpand" Grid.Row="1" BackgroundColor="{StaticResource PrimaryColor}">
                 <StackLayout Orientation="Vertical">
-                    <Label FontSize="12" Text="{infrastructure:Translate PressedAlert}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" ></Label>
-                    <Label FontSize="15" Style="{StaticResource Headline5Bold}" Text="SOS" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" ></Label>
-                    <Label  FontSize="12" Text="{infrastructure:Translate SendingAlertToSelectedContacts}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" ></Label>
-                    <Label FontSize="20" x:Name="alertLabel" Style="{StaticResource Headline5Bold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" ></Label>
+                    <Label Style="{StaticResource SosSendText}"  Text="{infrastructure:Translate PressedAlert}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" ></Label>
+                    <Label FontSize="18" Style="{StaticResource Headline5Bold}" Text="SOS" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" ></Label>
+                    <Label  Style="{StaticResource SosSendText}" Text="{infrastructure:Translate SendingAlertToSelectedContacts}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" ></Label>
+                    <Label FontSize="22" x:Name="alertLabel" Style="{StaticResource Headline5Bold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" ></Label>
                 </StackLayout>
             </Frame>
             <infrastructure:LoadingIndicator  Grid.Row="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-            <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <StackLayout Grid.Row="2" Orientation="Vertical" Spacing="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                 <StackLayout Orientation="Horizontal"  Spacing="2" HorizontalOptions="FillAndExpand">
-                    <Entry IsEnabled="{Binding NotBusy}" x:Name="Pin1" TextChanged="Pin1_TextChanged"  Keyboard="Telephone" Text="{Binding Pin1,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                    <Entry IsEnabled="{Binding NotBusy}" x:Name="Pin2" TextChanged="Pin2_TextChanged"  Keyboard="Telephone" Text="{Binding Pin2,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                    <Entry IsEnabled="{Binding NotBusy}" x:Name="Pin3" TextChanged="Pin3_TextChanged" Keyboard="Telephone" Text="{Binding Pin3,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
-                    <Entry IsEnabled="{Binding NotBusy}" x:Name="Pin4" TextChanged="Pin4_TextChanged" Keyboard="Telephone" Text="{Binding Pin4,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                    <Entry IsEnabled="{Binding NotBusy}" x:Name="Pin1" TextChanged="Pin1_TextChanged"  Keyboard="Telephone" Text="{Binding Pin1,Mode=TwoWay}" WidthRequest="35" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                    <Entry IsEnabled="{Binding NotBusy}" x:Name="Pin2" TextChanged="Pin2_TextChanged"  Keyboard="Telephone" Text="{Binding Pin2,Mode=TwoWay}" WidthRequest="35"  Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                    <Entry IsEnabled="{Binding NotBusy}" x:Name="Pin3" TextChanged="Pin3_TextChanged" Keyboard="Telephone" Text="{Binding Pin3,Mode=TwoWay}" WidthRequest="35"  Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
+                    <Entry IsEnabled="{Binding NotBusy}" x:Name="Pin4" TextChanged="Pin4_TextChanged" Keyboard="Telephone" Text="{Binding Pin4,Mode=TwoWay}" WidthRequest="35"  Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></Entry>
                 </StackLayout>
-                <Label FontSize="12" Text="{infrastructure:Translate EnterPinFor}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource Subtitle1}"></Label>
-                <Label FontSize="12" Text="{infrastructure:Translate EnterPinToCancel}" TextColor="{StaticResource PrimaryColor}" HorizontalTextAlignment="Center"  HorizontalOptions="FillAndExpand" Style="{StaticResource Headline6}"></Label>
+                <Label FontSize="16" Text="{infrastructure:Translate EnterPinFor}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontAttributes="Bold"></Label>
+                <Label FontSize="16" Text="{infrastructure:Translate EnterPinToCancel}" TextColor="{StaticResource PrimaryColor}" HorizontalTextAlignment="Center"  HorizontalOptions="FillAndExpand" FontAttributes="Bold"></Label>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

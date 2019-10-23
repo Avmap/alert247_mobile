@@ -49,8 +49,8 @@ namespace AlertApp
                         Preferences.Set(Settings.SelectedLanguage, systemlanguage.Name);
                     }
                 }
-                //  MainPage = new NavigationPage(new SelectLanguagePage());
-                MainPage = new NavigationPage(new MainPage());
+                MainPage = new NavigationPage(new SelectLanguagePage());
+                //MainPage = new NavigationPage(new SendingAlertPage(AlertType.UserAlert));
 
             }
             else
