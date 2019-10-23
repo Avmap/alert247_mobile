@@ -466,4 +466,7 @@
   <data name="RegistrationCreatePinPromt" xml:space="preserve">
     <value>Create your personal 4digit code (PIN). Enter below.</value>
   </data>
+  <data name="MainPressToCancel" xml:space="preserve">
+    <value>Press again to cancel</value>
+  </data>
 </root>

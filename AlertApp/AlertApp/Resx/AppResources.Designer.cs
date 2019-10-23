@@ -574,6 +574,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Press again to cancel.
+        /// </summary>
+        internal static string MainPressToCancel {
+            get {
+                return ResourceManager.GetString("MainPressToCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage Contacts.
         /// </summary>
         internal static string ManageContacts {

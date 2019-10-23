@@ -472,4 +472,7 @@
   <data name="RegistrationCreatePinPromt" xml:space="preserve">
     <value>Δημιουργήστε τον προσωπικό σας 4ψήφιο κωδικό (PIN). Εισάγετε παρακάτω.</value>
   </data>
+  <data name="MainPressToCancel" xml:space="preserve">
+    <value>Πατήστε ξανά για ακύρωση</value>
+  </data>
 </root>

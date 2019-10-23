@@ -7,68 +7,103 @@
              Navigation="{Binding NavigationService}" 
              >
     <ContentPage.Content>
-        <Grid>
+        <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid Margin="0,28,0,0" Grid.Row="0"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid  Grid.Row="0"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="130"/>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="alert_logo.png"></Image>
-                <Image Grid.Row="1" Source="sos_button.png"  Margin="16,0,16,0" IsVisible="{Binding ShowSosButton,Mode=TwoWay}" >
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding SosCommand}"></TapGestureRecognizer>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Button Grid.Row="1" Margin="16,0,16,0" BackgroundColor="{StaticResource PrimaryColor}"  IsVisible="{Binding ShowCancelButton,Mode=TwoWay}" BorderColor="#000000" BorderWidth="1" Text="{Binding CancelButtonText,Mode=TwoWay}" Style="{StaticResource SosButton}" Command="{Binding CancelCommand}"></Button>
-                <Image Grid.Row="2"  Source="call_center.png"  HeightRequest="110" VerticalOptions="EndAndExpand" Aspect="AspectFill" HorizontalOptions="FillAndExpand"></Image>
-                <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="8" HeightRequest="110" Margin="0,0,0,23" VerticalOptions="EndAndExpand">
-                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image Source="alert_police.png" WidthRequest="60" HeightRequest="55"></Image>
-                        <Label Text="{infrastructure:Translate Threat}"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image Source="alert_fire.png" WidthRequest="60" HeightRequest="55"></Image>
-                        <Label Text="{infrastructure:Translate Fire}"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image Source="alert_ambulande.png" WidthRequest="60" HeightRequest="55" ></Image>
-                        <Label Text="{infrastructure:Translate Accident}"  TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    </StackLayout>
-                </StackLayout>
+                <Image Grid.Row="0" Margin="0,16,0,0" VerticalOptions="FillAndExpand" Source="alert_logo.png"></Image>
                 
-                    <!--<Image Grid.Row="2"  Source="call_center.png" HeightRequest="320" BackgroundColor="Chocolate" VerticalOptions="EndAndExpand"></Image>-->                             
-            </Grid>
-            <StackLayout Margin="30,0,30,11" Grid.Row="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                    <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="homepage.png"/>
-                    <Label Text="{infrastructure:Translate HomeTab}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                </StackLayout>
-                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OpenContactsScreen}"></TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
-                    <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="contacts.png"/>
-                    <Label Text="{infrastructure:Translate Contacts}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                </StackLayout>
-                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                    <Image   WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="info.png"/>
-                    <Label Text="{infrastructure:Translate InfoTab}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                </StackLayout>
-                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                    <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="settings.png">
+                <Label Grid.Row="1" Margin="16,0,16,0" TextColor="{Binding ColorPressToCancel}" Text="{infrastructure:Translate MainPressToCancel}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
+
+                <Grid  Grid.Row="2" IsVisible="{Binding ShowSosButton,Mode=TwoWay}" Margin="16,0,16,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="sos_blank.png" >
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenSettingsCommand}"></TapGestureRecognizer>
+                            <TapGestureRecognizer Command="{Binding SosCommand}"></TapGestureRecognizer>
                         </Image.GestureRecognizers>
-                    </Image>                              
-                    <Label Text="{infrastructure:Translate SettingsTab}" TextColor="Black" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </Image>
+                    <Label Margin="0,0,0,12" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" FontSize="28" VerticalOptions="Center" Grid.Row="0" Text="SOS" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SosCommand}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+     
+                <Grid  Grid.Row="2" IsVisible="{Binding ShowCancelButton,Mode=TwoWay}" Margin="16,0,16,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="sos_blank.png" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CancelCommand}"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Margin="0,0,0,12" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" FontSize="28" VerticalOptions="Center" Grid.Row="0" Text="{Binding CancelButtonText,Mode=TwoWay}" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CancelCommand}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </Grid>
+            <StackLayout Spacing="0" Orientation="Vertical" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0"  Source="call_center.png"  HeightRequest="120" VerticalOptions="EndAndExpand" Aspect="AspectFill" HorizontalOptions="FillAndExpand"></Image>
+                    <StackLayout  Margin="16,0,16,35" Grid.Row="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="8" HeightRequest="110"  VerticalOptions="EndAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <Image Source="alert_police.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}"></Image>
+                            <Label Text="{infrastructure:Translate Threat}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <Image Source="alert_fire.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}"></Image>
+                            <Label Text="{infrastructure:Translate Fire}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <Image Source="alert_ambulande.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}" ></Image>
+                            <Label Text="{infrastructure:Translate Accident}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <StackLayout Margin="8,0,8,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="homepage.png"/>
+                        <Label Text="{infrastructure:Translate HomeTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenContactsScreen}"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="contacts.png"/>
+                        <Label Text="{infrastructure:Translate Contacts}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Image   WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="info.png"/>
+                        <Label Text="{infrastructure:Translate InfoTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="settings.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenSettingsCommand}"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="{infrastructure:Translate SettingsTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
+            
         </Grid>
+     
     </ContentPage.Content>
 </ContentPage>

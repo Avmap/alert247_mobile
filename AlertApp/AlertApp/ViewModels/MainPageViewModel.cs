@@ -117,11 +117,14 @@ namespace AlertApp.ViewModels
                 _ShowCancelButton = value;
                 OnPropertyChanged("ShowCancelButton");
                 OnPropertyChanged("ShowSosButton");
+                OnPropertyChanged("ColorPressToCancel");
             }
         }
 
         volatile bool stop = false;
         volatile int seconds = 5;
+
+        public Color ColorPressToCancel => ShowCancelButton ? Color.Black : Color.Transparent;
         #endregion
 
         public MainPageViewModel(IUserProfileService userProfileService, ILocalSettingsService localSettingsService)
@@ -215,7 +218,7 @@ namespace AlertApp.ViewModels
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        CancelButtonText = AppResources.CancelSendAlert + "\n" + (seconds - i);
+                        CancelButtonText = (seconds - i).ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
                     });
                     await Task.Delay(TimeSpan.FromSeconds(1));
                 }
