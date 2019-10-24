@@ -10,6 +10,7 @@
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
+
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -55,6 +56,7 @@
                     </Label>
                 </Grid>
             </Grid>
+            
             <StackLayout Spacing="0" Orientation="Vertical" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -76,31 +78,36 @@
                         </StackLayout>
                     </StackLayout>
                 </Grid>
-                <StackLayout Margin="8,0,8,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="homepage.png"/>
-                        <Label Text="{infrastructure:Translate HomeTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenContactsScreen}"></TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="contacts.png"/>
-                        <Label Text="{infrastructure:Translate Contacts}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image   WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="info.png"/>
-                        <Label Text="{infrastructure:Translate InfoTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="settings.png">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenSettingsCommand}"></TapGestureRecognizer>
-                            </Image.GestureRecognizers>
-                        </Image>
-                        <Label Text="{infrastructure:Translate SettingsTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+                <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" Spacing="4">
+                    <StackLayout HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
+                    <StackLayout Margin="8,0,8,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="homepage.png"/>
+                            <Label Text="{infrastructure:Translate HomeTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenContactsScreen}"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                            <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="contacts.png"/>
+                            <Label Text="{infrastructure:Translate Contacts}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <Image   WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="info.png"/>
+                            <Label Text="{infrastructure:Translate InfoTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="settings.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenSettingsCommand}"></TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label Text="{infrastructure:Translate SettingsTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </StackLayout>
                     </StackLayout>
                 </StackLayout>
+        
             </StackLayout>
             
         </Grid>

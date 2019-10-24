@@ -30,7 +30,7 @@
                                SearchCommandParameter="{Binding Text,Mode=TwoWay, Source={x:Reference searchh}}"
                                SearchCommand="{Binding FilterContactsCommand}">
         </SearchBar>
-        <Label Grid.Row="1" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource NormalText14}" Text="{infrastructure:Translate SelectContact}"></Label>
+        <Label Grid.Row="1" Margin="0,8,0,8" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource NormalText14}" Text="{infrastructure:Translate SelectContact}"></Label>
         <AbsoluteLayout Grid.Row="2" BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical" Spacing="20" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
                 <CollectionView
@@ -38,7 +38,7 @@
                         x:Name="contactList"                        
                         AbsoluteLayout.LayoutFlags="All"
                         AbsoluteLayout.LayoutBounds="0,1,1,1"  
-                        SelectionMode="Multiple"
+                        SelectionMode="Multiple"                    
                         SelectionChanged="ContactList_SelectionChanged"
                         ItemsSource="{Binding Contacts}"                             
                         BackgroundColor="White">

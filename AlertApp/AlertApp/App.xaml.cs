@@ -49,12 +49,12 @@ namespace AlertApp
                         Preferences.Set(Settings.SelectedLanguage, systemlanguage.Name);
                     }
                 }
-                MainPage = new NavigationPage(new SelectLanguagePage());                
+                MainPage = new NavigationPage(new SelectLanguagePage());
             }
             else
             {
-               // MainPage = new NavigationPage(new MainPage());
-                MainPage = new NavigationPage(new ManageContactsPage());
+                MainPage = new NavigationPage(new MainPage());
+                //  MainPage = new NavigationPage(new ManageContactsPage());
                 //   MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { Position= "37.9849,23.7620", Cellphone = "+306983836637"} }));
             }
 

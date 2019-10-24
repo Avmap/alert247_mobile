@@ -18,7 +18,8 @@
     <item name="android:colorPressedHighlight">#FF96BCE3</item>
     <item name="android:colorLongPressedHighlight">#FFE39696</item>
     <item name="android:colorFocusedHighlight">#FF96BCE3</item>
-    <item name="android:colorActivatedHighlight">#FF96BCE3</item>
+    <item name="android:colorActivatedHighlight">@android:color/transparent</item>
+    
   </style>
 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
