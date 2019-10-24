@@ -140,9 +140,9 @@ namespace AlertApp.ViewModels
             if (!string.IsNullOrWhiteSpace(data.ProfileData))
             {
                 var profileData = await _cryptographyService.GetAlertSenderProfileData(data.ProfileData, data.FileKey);
-                if (profileData != null && profileData.ContainsKey(RegistrationField.Name.FullName))
+                if (profileData != null && profileData.ContainsKey(RegistrationField.Names.Name))
                 {
-                    ContactName = profileData[RegistrationField.Name.FullName];
+                    ContactName = String.Format("{0} {1}", profileData[RegistrationField.Names.Surname] , profileData[RegistrationField.Names.Name]);
                     var addressBookContact = await GetContact(data.Cellphone);
                     if (addressBookContact != null)
                     {

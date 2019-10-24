@@ -16,10 +16,10 @@ namespace AlertApp.Model.Api
             public const string Boolean = "boolean";
             public const string Area = "area";
         }
-        public static class Name
+        public static class Names
         {
             public const string FullName = "fullname";
-            public const string FirstName = "firstname";
+            public const string Name = "name";
             public const string Surname = "surname";
             public const string Area = "area";
             public const string BirthDate = "birthdate";            

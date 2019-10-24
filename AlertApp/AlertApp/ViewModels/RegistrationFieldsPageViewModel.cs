@@ -6,6 +6,7 @@ using AlertApp.Services.Settings;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -38,8 +39,11 @@ namespace AlertApp.ViewModels
                 var storedProfile = await _userProfileService.StoreProfile(registrationValues, await _localSettingsService.GetAuthToken(), await _localSettingsService.GetPublicKey());
                 if (storedProfile.IsOk)
                 {
-                    //await NavigationService.PushAsync(new MainPage(), true);                    
-                    App.Current.MainPage = new NavigationPage(new MainPage());
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        NavigationService.InsertPageBefore(new MainPage(), NavigationService.NavigationStack.First());
+                        NavigationService.PopToRootAsync();
+                    });
 
                 }
                 else if (!storedProfile.IsOnline)
@@ -62,7 +66,7 @@ namespace AlertApp.ViewModels
             {
                 this.Busy = isBusy;
                 OnPropertyChanged("ShowFinishButton");
-            });         
+            });
         }
         #endregion
     }

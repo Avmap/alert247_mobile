@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.00.50" package="gr.avmap.alert247" android:installLocation="internalOnly" android:versionCode="000050">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.00.51" package="gr.avmap.alert247" android:installLocation="internalOnly" android:versionCode="000051">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
 	<uses-library android:name="org.apache.http.legacy" android:required="false" />
 	<uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
