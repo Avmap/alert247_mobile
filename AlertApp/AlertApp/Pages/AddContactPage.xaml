@@ -4,83 +4,93 @@
              xmlns:converters="clr-namespace:AlertApp.Converters;assembly=AlertApp"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlertApp.Pages.AddContactPage"
+             BackgroundColor="White"
               xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              Navigation="{Binding NavigationService}" 
              Title="{infrastructure:Translate AddContactsPage}">
-  
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <infrastructure:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
             <converters:SelectedListItemColorConverter x:Key="SelectedListItemColorConverter" />
             <converters:SelectedContactTextColorConverter x:Key="SelectedContactTextColorConverter" />
+            <converters:SelectedContactPrimaryTextColorConverter x:Key="SelectedContactPrimaryTextColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout Orientation="Vertical">
-        <SearchBar x:Name="searchh"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <SearchBar Grid.Row="0" x:Name="searchh"
                                Text="{Binding SearchText}"
                                Placeholder="{infrastructure:Translate SearchBarPlaceHolder}" 
                                SearchCommandParameter="{Binding Text,Mode=TwoWay, Source={x:Reference searchh}}"
                                SearchCommand="{Binding FilterContactsCommand}">
         </SearchBar>
-        <AbsoluteLayout BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Label Grid.Row="1" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource NormalText14}" Text="{infrastructure:Translate SelectContact}"></Label>
+        <AbsoluteLayout Grid.Row="2" BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical" Spacing="20" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
-                <ListView
-                        x:Name="contactList"
-                        Grid.Row="0"
+                <CollectionView
+                    Margin="8,0,8,0"
+                        x:Name="contactList"                        
                         AbsoluteLayout.LayoutFlags="All"
-                        AbsoluteLayout.LayoutBounds="0,1,1,1"
-                        SeparatorVisibility="None"                    
-                        ItemsSource="{Binding Contacts}"
-                        CachingStrategy="RecycleElement"
-                        RowHeight="-1"                    
-                        HasUnevenRows="True"                        
+                        AbsoluteLayout.LayoutBounds="0,1,1,1"  
+                        SelectionMode="Multiple"
+                        SelectionChanged="ContactList_SelectionChanged"
+                        ItemsSource="{Binding Contacts}"                             
                         BackgroundColor="White">
-                    <ListView.Footer>
-                        <StackLayout HeightRequest="76"></StackLayout>
-                    </ListView.Footer>
-                    <ListView.Behaviors>
-                        <infrastructure:EventToCommandBehavior EventName="ItemTapped" Command="{Binding SelectContactCommand}" EventArgsConverter="{StaticResource ItemTappedConverter}" />
-                    </ListView.Behaviors>
-                    <ListView.ItemTemplate>
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="4" HorizontalItemSpacing="8"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell >
-                                <Grid BackgroundColor="{Binding Selected,Converter={StaticResource SelectedListItemColorConverter},Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition  Width="52"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <circle:CircleImage Source="{Binding ProfileImage}" Aspect="AspectFill">
-                                        <circle:CircleImage.WidthRequest>
-                                            <OnPlatform x:TypeArguments="x:Double">
-                                                <On Platform="Android, iOS">55</On>
-                                            </OnPlatform>
-                                        </circle:CircleImage.WidthRequest>
-                                        <circle:CircleImage.HeightRequest>
-                                            <OnPlatform x:TypeArguments="x:Double">
-                                                <On Platform="Android, iOS">55</On>
-                                            </OnPlatform>
-                                        </circle:CircleImage.HeightRequest>
-                                    </circle:CircleImage>
-                                    <StackLayout Grid.Column="1" >
-                                        <Label TextColor="{Binding Selected,Converter={StaticResource SelectedContactTextColorConverter},Mode=TwoWay}" Text="{Binding Name}" VerticalOptions="CenterAndExpand"  LineBreakMode="WordWrap" FontFamily="{StaticResource Regular}"/>
-                                    </StackLayout>
-                                    <Frame Grid.Column="2" CornerRadius="15" Padding="0" BackgroundColor="AntiqueWhite" Margin="15,10,15,10" HasShadow="False" IsVisible="{Binding NeedsInvitation}">
-                                        <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding BindingContext.InviteCommand, Source={x:Reference contactList}}" CommandParameter="{Binding .}"  NumberOfTapsRequired="1" />
-                                        </Frame.GestureRecognizers>
-                                        <Label Margin="5" HorizontalOptions="Center" BackgroundColor="Transparent" Text="{infrastructure:Translate Invite}" FontFamily="{StaticResource Bold}" />
-                                    </Frame>
+                           
+                            <Frame Padding="2,2,2,2" WidthRequest="150" HasShadow="False" HorizontalOptions="FillAndExpand" BackgroundColor="{Binding Selected,Converter={StaticResource SelectedListItemColorConverter},Mode=TwoWay}"   BorderColor="Transparent" CornerRadius="16">
+                                <Grid RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Image IsVisible="{Binding NoProfileImage}" Grid.Row="0"  Margin="0,0,0,0" WidthRequest="45" HeightRequest="45" Source="{Binding ProfileImageDefault}"></Image>
+                                    <circle:CircleImage  IsVisible="{Binding HasProfileImage}" Margin="0,0,0,0" Grid.Row="0" WidthRequest="45" HeightRequest="45" Source="{Binding ProfileImage}" Aspect="AspectFill"></circle:CircleImage>
+                                    <Label Grid.Row="1"  VerticalOptions="End" TextColor="{Binding Selected,Converter={StaticResource SelectedContactPrimaryTextColorConverter},Mode=TwoWay}" LineBreakMode="TailTruncation" FontSize="12" MaxLines="2" HorizontalTextAlignment="Center" Text="{Binding Name}"></Label>
+                                    <Label Grid.Row="2" VerticalOptions="Start" TextColor="{Binding Selected,Converter={StaticResource SelectedContactTextColorConverter},Mode=TwoWay}"  HorizontalTextAlignment="Center"  FontSize="12"  HorizontalOptions="FillAndExpand" Text="{Binding FormattedNumber}"></Label>
                                 </Grid>
-                            </ViewCell>
+                                <!--<StackLayout Margin="0,6,0,0"  Spacing="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+                                    <circle:CircleImage WidthRequest="45" HeightRequest="45" Source="{Binding ProfileImage}" Aspect="AspectFill"></circle:CircleImage>
+                                    <StackLayout Margin="5,5,5,0" Spacing="0" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                        <Label TextColor="{Binding Selected,Converter={StaticResource SelectedContactPrimaryTextColorConverter},Mode=TwoWay}" LineBreakMode="TailTruncation" FontSize="10" MaxLines="2" HorizontalTextAlignment="Center" Text="{Binding Name}"></Label>
+                                        <Label TextColor="{Binding Selected,Converter={StaticResource SelectedContactTextColorConverter},Mode=TwoWay}"  HorizontalTextAlignment="Center"  FontSize="10"  HorizontalOptions="FillAndExpand" Text="{Binding FormattedNumber}"></Label>
+                                    </StackLayout>
+                                </StackLayout>-->
+                            </Frame>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </StackLayout>
             <infrastructure:LoadingIndicator x:Name="loadingIndicator" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
             <StackLayout AbsoluteLayout.LayoutBounds="1, 1" AbsoluteLayout.LayoutFlags="XProportional,YProportional">
-                <Button x:Name="fab" IsVisible="{Binding FabVisibile}" Clicked="Fab_Clicked" BackgroundColor="{StaticResource AccentColor}"  Margin="0,0,16,16" Style="{StaticResource CircleButton}" Image="baseline_done_white_24.png" />
+                <Image IsVisible="{Binding FabVisibile}" HorizontalOptions="Center" WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}" Source="ok.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddContactsCommand}"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
             </StackLayout>
         </AbsoluteLayout>
-    </StackLayout>
+        <StackLayout Spacing="2" Padding="8,16,8,16" BackgroundColor="#F1F2F2" Grid.Row="3">
+            <Image HorizontalOptions="Center" WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}" Source="invite_friends.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding InviteCommand}"></TapGestureRecognizer>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label TextColor="{StaticResource PrimaryColor}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource NormalText14}" FontAttributes="Bold" Text="{infrastructure:Translate InviteFriendsTitle}"></Label>
+            <Label  HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource Caption}" Text="{infrastructure:Translate InviteFriendsSubtitle}"></Label>
+        </StackLayout>
+    </Grid>
 </ContentPage>

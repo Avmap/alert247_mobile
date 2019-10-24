@@ -469,4 +469,13 @@
   <data name="MainPressToCancel" xml:space="preserve">
     <value>Press again to cancel</value>
   </data>
+  <data name="InviteFriendsSubtitle" xml:space="preserve">
+    <value>Your friends haven't yet discover Alert 24/7. Invite them to download the app.</value>
+  </data>
+  <data name="InviteFriendsTitle" xml:space="preserve">
+    <value>Invite your friends!</value>
+  </data>
+  <data name="SelectContact" xml:space="preserve">
+    <value>Select contact to add</value>
+  </data>
 </root>

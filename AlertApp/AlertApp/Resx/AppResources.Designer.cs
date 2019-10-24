@@ -538,6 +538,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your friends haven&apos;t yet discover Alert 24/7. Invite them to download the app..
+        /// </summary>
+        internal static string InviteFriendsSubtitle {
+            get {
+                return ResourceManager.GetString("InviteFriendsSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invite your friends!.
+        /// </summary>
+        internal static string InviteFriendsTitle {
+            get {
+                return ResourceManager.GetString("InviteFriendsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I WILL HELP.
         /// </summary>
         internal static string IWillHelp {
@@ -804,6 +822,15 @@ namespace AlertApp.Resx {
         internal static string SearchBarPlaceHolder {
             get {
                 return ResourceManager.GetString("SearchBarPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select contact to add.
+        /// </summary>
+        internal static string SelectContact {
+            get {
+                return ResourceManager.GetString("SelectContact", resourceCulture);
             }
         }
         

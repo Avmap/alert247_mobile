@@ -245,7 +245,7 @@
     <value>Με ειδοποιούν</value>
   </data>
   <data name="AddContactsPage" xml:space="preserve">
-    <value>Επιλέξτε επαφές</value>
+    <value>Προσθήκη επαφής</value>
   </data>
   <data name="OtherText" xml:space="preserve">
     <value>Άλλο</value>
@@ -474,5 +474,14 @@
   </data>
   <data name="MainPressToCancel" xml:space="preserve">
     <value>Πατήστε ξανά για ακύρωση</value>
+  </data>
+  <data name="InviteFriendsSubtitle" xml:space="preserve">
+    <value>Οι φίλοι σου δεν έχουν ανακλύψει ακόμα το Alert 24/7. Προσκάλεσε τους να κατεβάσουν την εφαρμογή και να σε προσθέσουν ως επαφή έκτακτης ανάγκης!</value>
+  </data>
+  <data name="InviteFriendsTitle" xml:space="preserve">
+    <value>Προσκάλεσε τους φίλους σου!</value>
+  </data>
+  <data name="SelectContact" xml:space="preserve">
+    <value>Επέλεξε επαφή για προσθήκη</value>
   </data>
 </root>

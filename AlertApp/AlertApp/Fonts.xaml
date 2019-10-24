@@ -165,11 +165,21 @@
 
     <Style x:Key="ContactNameCardText" TargetType="Label">
         <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
-        
         <Setter Property="FontSize" Value="16" />
     </Style>
+    
     <Style x:Key="ContactMobileCardText" TargetType="Label">
         <Setter Property="TextColor" Value="#000000" />
         <Setter Property="FontSize" Value="16" />
+    </Style>
+
+    <Style x:Key="NormalText16" TargetType="Label">
+        <Setter Property="TextColor" Value="#000000" />
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+
+    <Style x:Key="NormalText14" TargetType="Label">
+        <Setter Property="TextColor" Value="#000000" />
+        <Setter Property="FontSize" Value="14" />
     </Style>
 </ResourceDictionary>

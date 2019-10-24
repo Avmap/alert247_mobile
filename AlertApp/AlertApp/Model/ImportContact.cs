@@ -28,6 +28,11 @@ namespace AlertApp.Model
             this.PhotoUri = contact.PhotoUri;
             this.PhotoUriThumbnail = contact.PhotoUriThumbnail;
         }
+
+        public bool HasProfileImage => !string.IsNullOrWhiteSpace(PhotoUriThumbnail);
+        public bool NoProfileImage => string.IsNullOrWhiteSpace(PhotoUriThumbnail);
+
+        public ImageSource ProfileImageDefault => ImageSource.FromFile("account_circle.png");
         public ImageSource ProfileImageUri => ImageSource.FromUri(new Uri(PhotoUriThumbnail));
 
         public ImageSource ProfileImage

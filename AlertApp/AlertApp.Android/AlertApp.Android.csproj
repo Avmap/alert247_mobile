@@ -80,14 +80,32 @@
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle">
       <Version>3.0.0.5</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Annotations">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Compat">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Core.UI">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Core.Utils">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design">
       <Version>28.0.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Fragment">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Media.Compat">
+      <Version>28.0.0.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat">
       <Version>28.0.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.CardView">
-      <Version>28.0.0.1</Version>
+      <Version>28.0.0.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.2.0</Version>
@@ -106,13 +124,13 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Forms">
-      <Version>4.1.0.618606</Version>
+      <Version>4.3.0.908675</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Contacts">
       <Version>1.0.5</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Maps">
-      <Version>4.1.0.618606</Version>
+      <Version>4.3.0.908675</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Auth.Api.Phone">
       <Version>60.1142.1</Version>
@@ -331,6 +349,8 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\refresh_grey.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\accept_button.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\sos_blank.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ok.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\invite_friends.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

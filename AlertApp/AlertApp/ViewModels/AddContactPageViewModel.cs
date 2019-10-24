@@ -39,6 +39,7 @@ namespace AlertApp.ViewModels
             }
         }
 
+
         private ObservableCollection<ImportContact> _Contacts;
         public ObservableCollection<ImportContact> Contacts
         {
@@ -74,7 +75,7 @@ namespace AlertApp.ViewModels
         {
             get
             {
-                return _InviteCommand ?? (_InviteCommand = new Command<ImportContact>(InviteUser, (contact) =>
+                return _InviteCommand ?? (_InviteCommand = new Command(InviteUser, () =>
                 {
                     return !Busy;
                 }));
@@ -168,24 +169,28 @@ namespace AlertApp.ViewModels
             var contacts = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
             if (contacts != null)
             {
-                Contacts = new ObservableCollection<ImportContact>();
+                var tempList = new List<ImportContact>();
                 foreach (var item in contacts.Where(c => c.Number != null).OrderBy(c => c.Name))
                 {
                     if (!community.Contains(ImportContact.GetFormattedNumber(item.Number)))
-                        Contacts.Add(new ImportContact(item, _contactProfileImageProvider));
+                        tempList.Add(new ImportContact(item, _contactProfileImageProvider));
                 }
+                this.Contacts = new ObservableCollection<ImportContact>();
                 this.OriginalContacts = new ObservableCollection<ImportContact>(this.Contacts);
 
                 //call service to find which number is app user
-                var serverContacts = await _contactsService.CheckContacts(await _localSettingsService.GetAuthToken(), this.OriginalContacts.Select(c => c.FormattedNumber).ToArray());
+                var serverContacts = await _contactsService.CheckContacts(await _localSettingsService.GetAuthToken(), tempList.Select(c => c.FormattedNumber).ToArray());
 
                 if (serverContacts != null && serverContacts.IsOk)
                 {
                     //get contacts where not app user
-                    var serverContactsNeedInvitation = serverContacts.Result.Contacts.Where(x => x.Value == false).Select(x => x.Key).ToList();
+                    var serverContactsWithApp = serverContacts.Result.Contacts.Where(x => x.Value == true).Select(x => x.Key).ToList();
 
-                    var needInvitationContacts = this.OriginalContacts.Where(c => serverContactsNeedInvitation.Contains(c.FormattedNumber)).ToList();
-                    needInvitationContacts.ForEach(c => c.NeedsInvitation = true);
+                    var userContactsWithApp = tempList.Where(c => serverContactsWithApp.Contains(c.FormattedNumber)).ToList();
+                    userContactsWithApp.ForEach(c => c.NeedsInvitation = false);
+
+                    this.Contacts = new ObservableCollection<ImportContact>(userContactsWithApp);
+                    this.OriginalContacts = new ObservableCollection<ImportContact>(this.Contacts);
                 }
                 else if (!serverContacts.IsOnline)
                 {
@@ -198,36 +203,36 @@ namespace AlertApp.ViewModels
             SetBusy(false);
         }
 
-        private async void InviteUser(ImportContact contact)
+        private async void InviteUser()
         {
             string messageText = String.Format("Download Alert247 {0}", "https://play.google.com/store/apps/details?id=gr.avmap.alert247");
-            string action = await DisplayActionSheet(AppResources.ShareVia, new string[] { "SMS", AppResources.OtherText }, AppResources.Cancel);
-            if (action == "SMS")
-            {
-                try
-                {
-                    var message = new SmsMessage(messageText, new[] { contact.Number });
-                    await Sms.ComposeAsync(message);
-                }
-                catch (FeatureNotSupportedException ex)
-                {
-                    // Sms is not supported on this device.
-                }
-                catch (Exception ex)
-                {
-                    // Other error has occurred.
-                }
-            }
-            else if (action == AppResources.OtherText)
-            {
+            //string action = await DisplayActionSheet(AppResources.ShareVia, new string[] { "SMS", AppResources.OtherText }, AppResources.Cancel);
+            //if (action == "SMS")
+            //{
+            //    try
+            //    {
+            //        var message = new SmsMessage(messageText, new[] { contact.Number });
+            //        await Sms.ComposeAsync(message);
+            //    }
+            //    catch (FeatureNotSupportedException ex)
+            //    {
+            //        // Sms is not supported on this device.
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        // Other error has occurred.
+            //    }
+            //}
+         //   else if (action == AppResources.OtherText)
+         //   {
                 await Share.RequestAsync(new ShareTextRequest
                 {
-                    Text = "https://play.google.com/store/apps/details?id=gr.avmap.alert247",
+                    Text = messageText,
                     Title = "Get Alert 24/7 app",
                 });
-            }
+           // }
         }
-        private void SelectContact(ImportContact contact)
+        public void SelectContact(ImportContact contact)
         {
             if (!contact.NeedsInvitation)
             {
