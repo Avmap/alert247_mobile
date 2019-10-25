@@ -22,7 +22,7 @@
                         <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource SubtitleToolbar}" Text="{infrastructure:Translate VerificationCodePageTitle}"></Label>
                     </StackLayout>
                 </Frame>
-                <StackLayout  Grid.Row="1" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                <StackLayout  Margin="16,0,16,0" Grid.Row="1" Orientation="Vertical" HorizontalOptions="FillAndExpand">
                     <Label Style="{StaticResource RegistrationText}" FontSize="18" Text="{Binding TimerText,Mode=TwoWay}" HorizontalTextAlignment="Center"></Label>
                     <Label Text="{infrastructure:Translate WaitForSMS}"  HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
                     <StackLayout HorizontalOptions="FillAndExpand" Spacing="8" Margin="65,24,65,0">

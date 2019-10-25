@@ -23,7 +23,11 @@
                 </StackLayout>
             </Frame>
             <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="Center" Spacing="0">
-                <Image WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}" HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding SelectedLanguage.Flag}"/>
+                <Image WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}" HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding SelectedLanguage.Flag}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
                 <Label Text="{Binding SelectedLanguage.Name}" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
             </StackLayout>
             <StackLayout Grid.Row="2" HorizontalOptions="FillAndExpand" Spacing="10" Margin="16,4,16,0">

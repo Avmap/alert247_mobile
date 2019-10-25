@@ -41,5 +41,14 @@ namespace AlertApp.Pages
                 await DisplayAlert(AppResources.Warning, AppResources.WarningFillNumber, "OK");                
             }
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+           // Task.Run(async () =>
+           // {
+                 Navigation.PopAsync(false);
+           // });
+           
+        }
     }
 }

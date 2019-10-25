@@ -20,9 +20,9 @@
                     <Image x:Name="topNextImage" HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
                     <Label Text="{infrastructure:Translate Finish}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
                 </StackLayout>
-                <Frame  Padding="5,5,5,5" HasShadow="False" Margin="20,8,20,16" BorderColor="{StaticResource PrimaryColor}" CornerRadius="16" VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand">
+                <Frame  Padding="5,5,5,5" HasShadow="False" Margin="20,8,20,8" BorderColor="{StaticResource PrimaryColor}" CornerRadius="16"  HorizontalOptions="FillAndExpand">
                     <ScrollView Margin="16,0,16,0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <StackLayout x:Name="registrationContainer" Grid.Row="1" Orientation="Vertical"></StackLayout>
+                        <StackLayout Margin="0,12,0,12" x:Name="registrationContainer" Grid.Row="1" Orientation="Vertical"></StackLayout>
                     </ScrollView>
                 </Frame>
                 <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,6,0,15" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">

@@ -186,7 +186,7 @@ namespace AlertApp.ViewModels
             //    return;
             
             SetBusy(true);
-            await NavigationService.PushAsync(new ManageContactsPage(), true);
+            await NavigationService.PushAsync(new ManageContactsPage(), false);
             SetBusy(false);
 
 

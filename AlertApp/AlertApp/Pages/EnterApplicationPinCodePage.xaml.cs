@@ -85,6 +85,7 @@ namespace AlertApp.Pages
         protected override bool OnBackButtonPressed()
         {
             return true;
-        }        
+        }
+       
     }
 }
