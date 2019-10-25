@@ -106,6 +106,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string AddContactMenu {
+            get {
+                return ResourceManager.GetString("AddContactMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Contacts.
         /// </summary>
         internal static string AddContactsPage {

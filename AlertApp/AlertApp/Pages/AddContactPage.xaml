@@ -84,7 +84,7 @@
             </StackLayout>
         </AbsoluteLayout>
         <StackLayout Spacing="2" Padding="8,16,8,16" BackgroundColor="#F1F2F2" Grid.Row="3">
-            <Image HorizontalOptions="Center" WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}" Source="invite_friends.png">
+            <Image HorizontalOptions="Center"  WidthRequest="65" HeightRequest="65" Source="invite_friends.png">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding InviteCommand}"></TapGestureRecognizer>
                 </Image.GestureRecognizers>

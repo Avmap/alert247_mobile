@@ -58,12 +58,12 @@
             </Grid>
             
             <StackLayout Spacing="0" Orientation="Vertical" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Grid>
+                <Grid RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0"  Source="call_center.png"  HeightRequest="120" VerticalOptions="EndAndExpand" Aspect="AspectFill" HorizontalOptions="FillAndExpand"></Image>
-                    <StackLayout  Margin="16,0,16,35" Grid.Row="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="8" HeightRequest="110"  VerticalOptions="EndAndExpand">
+                    <Image Grid.Row="0"  Source="call_center.png" Margin="0,34,0,0"  VerticalOptions="EndAndExpand" Aspect="Fill" HorizontalOptions="FillAndExpand"></Image>
+                    <StackLayout  Margin="16,0,16,35" Grid.Row="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="8" HeightRequest="110"  VerticalOptions="Start">
                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                             <Image Source="alert_police.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}"></Image>
                             <Label Text="{infrastructure:Translate Threat}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
@@ -80,7 +80,7 @@
                 </Grid>
 
                 <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" Spacing="4">
-                    <StackLayout HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
+                    <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
                     <StackLayout Margin="8,0,8,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                             <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="homepage.png"/>

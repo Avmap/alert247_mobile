@@ -487,4 +487,7 @@
   <data name="other" xml:space="preserve">
     <value>Other</value>
   </data>
+  <data name="AddContactMenu" xml:space="preserve">
+    <value>Add</value>
+  </data>
 </root>

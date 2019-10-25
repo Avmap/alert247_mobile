@@ -201,7 +201,7 @@ namespace AlertApp.ViewModels
         private async void OpenSettingsScreen()
         {        
             SetBusy(true);
-            await NavigationService.PushAsync(new SettingsPage(), true);
+            await NavigationService.PushAsync(new SettingsPage(), false);
             SetBusy(false);
         }
         
@@ -227,7 +227,7 @@ namespace AlertApp.ViewModels
 
             if (!stop)
             {
-                await NavigationService.PushAsync(new SendingAlertPage(Model.AlertType.UserAlert), true);
+                await NavigationService.PushAsync(new SendingAlertPage(Model.AlertType.UserAlert), false);
             }
 
             ShowCancelButton = false;

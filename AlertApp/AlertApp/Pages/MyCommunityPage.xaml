@@ -84,7 +84,7 @@
                             <TapGestureRecognizer Command="{Binding OpenContactsScreenCommand}"></TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>
                         <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="add_contact.png"/>
-                        <Label Text="{infrastructure:Translate Contacts}" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="{infrastructure:Translate AddContactMenu}" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="info.png"/>

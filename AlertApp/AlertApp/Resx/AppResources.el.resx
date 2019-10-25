@@ -493,4 +493,7 @@
   <data name="other" xml:space="preserve">
     <value>Άλλο</value>
   </data>
+  <data name="AddContactMenu" xml:space="preserve">
+    <value>Προσθήκη</value>
+  </data>
 </root>
