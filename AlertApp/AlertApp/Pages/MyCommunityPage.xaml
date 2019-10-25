@@ -14,28 +14,25 @@
                     <RowDefinition Height="2"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <ListView
+                <RefreshView   Grid.Row="0" 
+                    IsRefreshing="{Binding Busy}"
+                    Command="{Binding GetCommunityCommand}">
+                    <CollectionView
                         Grid.Row="0"                    
                         AbsoluteLayout.LayoutFlags="All"
-                        AbsoluteLayout.LayoutBounds="0,1,1,1"
-         SeparatorVisibility="None"
-         ItemsSource="{Binding Community}"
-         CachingStrategy="RecycleElement"
-         RowHeight="-1"
-         HasUnevenRows="True"
-         ItemTapped="ListView_ItemTapped"
-         IsPullToRefreshEnabled="True"
-         RefreshCommand="{Binding GetCommunityCommand}"       
-                    IsRefreshing="{Binding Busy}"
-         BackgroundColor="White">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
+                        AbsoluteLayout.LayoutBounds="0,1,1,1"        
+                        ItemsSource="{Binding Community}"        
+                        BackgroundColor="White">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+
                                 <StackLayout  Margin="0,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                   
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
                                     <Image IsVisible="{Binding NoProfileImage}" Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImageDefault}"></Image>
                                     <circle:CircleImage IsVisible="{Binding HasProfileImage}"  Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImage}" Aspect="AspectFill"/>
-                                    
+
                                     <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="Center"  HorizontalOptions="FillAndExpand">
                                         <Label Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource ContactBold}"/>
                                         <Grid  HorizontalOptions="FillAndExpand" Margin="0,0,20,0">
@@ -46,7 +43,7 @@
                                             <Frame CornerRadius="8" HeightRequest="21" BackgroundColor="{Binding BackgroundStatusColor}" Padding="5,2,5,2">
                                                 <Label Text="{Binding Status}" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="{Binding ΤextStatusColor}" Style="{StaticResource Subtitle1}"/>
                                             </Frame>
-                                            
+
                                             <StackLayout IsVisible="{Binding Accepted}" Grid.Column="1" Orientation="Horizontal" Spacing="16"  HorizontalOptions="EndAndExpand">
                                                 <StackLayout Orientation="Horizontal" HorizontalOptions="End">
                                                     <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="help.png"/>
@@ -64,12 +61,13 @@
                                         </Grid>
 
                                     </StackLayout>
-                               
+
                                 </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
+
                 <StackLayout Grid.Row="1" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
                 <StackLayout Margin="8,0,8,10" Grid.Row="2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">

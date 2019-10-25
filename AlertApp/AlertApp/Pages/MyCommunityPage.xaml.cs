@@ -25,15 +25,6 @@ namespace AlertApp.Pages
             this.BindingContext = ViewModelLocator.Instance.Resolve<MyCommunityPageViewModel>();
         }
 
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            var vm = this.BindingContext as MyCommunityPageViewModel;
-            if (!vm.Busy)
-            {
-                ClickedContact = e.Item as Contact;
-                ShowBottomSheet();
-            }            
-        }
 
         private async void ShowBottomSheet()
         {
@@ -59,7 +50,7 @@ namespace AlertApp.Pages
             ShowBottomSheet();
         }
         private void OnRemoveUserClick(object sender, EventArgs e)
-        {            
+        {
             var vm = this.BindingContext as MyCommunityPageViewModel;
             Task.Run(async () =>
             {
@@ -68,7 +59,7 @@ namespace AlertApp.Pages
             ShowBottomSheet();
         }
         private void OnBlockUserClick(object sender, EventArgs e)
-        {            
+        {
             var vm = this.BindingContext as MyCommunityPageViewModel;
             Task.Run(async () =>
             {
@@ -88,5 +79,19 @@ namespace AlertApp.Pages
             return base.OnBackButtonPressed();
         }
 
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            var args = e as Xamarin.Forms.TappedEventArgs;
+            if (args != null)
+            {
+                var vm = this.BindingContext as MyCommunityPageViewModel;
+                if (!vm.Busy)
+                {
+                    ClickedContact = args.Parameter as Contact;
+                    ShowBottomSheet();
+                }
+            }
+
+        }
     }
 }

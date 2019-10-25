@@ -147,35 +147,37 @@ namespace AlertApp.ViewModels
                     //search in addressBook for contacts
                     if (addressBook != null)
                     {
-                        Community.Clear();
+                        var tempContacts = new List<Contact>();
                         foreach (var item in community)
                         {
                             var addressBookItem = addressBook.Where(c => c.FormattedNumber == item.Cellphone).FirstOrDefault();
                             if (addressBookItem != null)
                             {
-                                Community.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage,ProfileImageUri = addressBookItem.PhotoUriThumbnail });
+                                tempContacts.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage,ProfileImageUri = addressBookItem.PhotoUriThumbnail });
                             }
                             else
                             {
-                                Community.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, Stats = item.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") });
+                                tempContacts.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, Stats = item.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") });
                             }
                         }
+                        Community = new ObservableCollection<Contact>(tempContacts);
                         SetBusy(false);
                     }
                     else
                     {
                         var contacts = community.Select(c => new Contact { Accepted = c.Accepted, Cellphone = c.Cellphone, Stats = c.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") }).ToList();
-                        Community.Clear();
+                        var tempContacts = new List<Contact>();
                         foreach (var item in contacts)
                         {
-                            Community.Add(item);
+                            tempContacts.Add(item);
                         }
+                        Community = new ObservableCollection<Contact>(tempContacts);
                         SetBusy(false);
                     }
                 }
                 else
                 {
-                    Community.Clear();
+                    Community = new ObservableCollection<Contact>();
                     SetBusy(false);
                 }
             }
