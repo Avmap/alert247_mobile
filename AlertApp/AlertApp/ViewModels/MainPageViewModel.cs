@@ -181,15 +181,10 @@ namespace AlertApp.ViewModels
 
         private async void NavigateToContactScreen()
         {
-
-            //if (Busy)
-            //    return;
             
             SetBusy(true);
             await NavigationService.PushAsync(new ManageContactsPage(), false);
             SetBusy(false);
-
-
         }
 
         private async void OpenSendAlertScreen()
