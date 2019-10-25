@@ -42,7 +42,7 @@ namespace AlertApp.ViewModels
         {
             get
             {
-                return _SosCommand ?? (_SosCommand = new Command(OpenSendAlertScreen, () =>
+                return _SosCommand ?? (_SosCommand = new Command<string>(OpenSendAlertScreen, (alertType) =>
                 {
                     return !Busy;
                 }));
@@ -57,7 +57,7 @@ namespace AlertApp.ViewModels
             {
                 return _CancelCommand ?? (_CancelCommand = new Command(CancelSendAlert, () =>
                 {
-                    return !Busy;
+                    return true;
                 }));
             }
         }
@@ -121,8 +121,9 @@ namespace AlertApp.ViewModels
             }
         }
 
-        volatile bool stop = false;
-        volatile int seconds = 5;
+        bool stop = false;
+        int seconds = 5;
+        Model.AlertType alertType;
 
         public Color ColorPressToCancel => ShowCancelButton ? Color.Black : Color.Transparent;
         #endregion
@@ -187,14 +188,31 @@ namespace AlertApp.ViewModels
             SetBusy(false);
         }
 
-        private async void OpenSendAlertScreen()
+        private async void OpenSendAlertScreen(string alertType)
         {
+            switch (alertType)
+            {
+                case "manual":
+                    this.alertType = Model.AlertType.UserAlert;
+                    break;
+                case "fire":
+                    this.alertType = Model.AlertType.Fire;
+                    break;
+                case "police":
+                    this.alertType = Model.AlertType.Police;
+                    break;
+                case "health":
+                    this.alertType = Model.AlertType.Health;
+                    break;
+            }
+            SetBusy(true);
             ShowCancelButton = true;
             stop = false;            
             StartTimer();
         }
         private async void CancelSendAlert()
         {
+            SetBusy(false);
             stop = true;
             ShowCancelButton = false;
         }
@@ -208,12 +226,18 @@ namespace AlertApp.ViewModels
 
         private async void StartTimer()
         {
+
+
             for (int i = 0; i < seconds; i++)
             {
                 if (stop)
                 {
-                    i = seconds;
                     ShowCancelButton = false;
+                    i = seconds;
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        CancelButtonText = seconds.ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
+                    });
                     break;
                 }
 
@@ -230,7 +254,8 @@ namespace AlertApp.ViewModels
 
             if (!stop)
             {
-                await NavigationService.PushAsync(new SendingAlertPage(Model.AlertType.UserAlert), false);
+                await NavigationService.PushAsync(new SendingAlertPage(alertType), false);
+                SetBusy(false);
             }
 
             ShowCancelButton = false;
@@ -243,6 +268,7 @@ namespace AlertApp.ViewModels
 
             this.Busy = isBusy;
             ((Command)OpenContactsScreen).ChangeCanExecute();
+            ((Command)SosCommand).ChangeCanExecute();
 
         }
 

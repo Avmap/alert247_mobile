@@ -30,12 +30,12 @@
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0" Source="sos_blank.png" >
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SosCommand}"></TapGestureRecognizer>
+                            <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="manual"></TapGestureRecognizer>
                         </Image.GestureRecognizers>
                     </Image>
                     <Label Margin="0,0,0,12" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" FontSize="28" VerticalOptions="Center" Grid.Row="0" Text="SOS" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SosCommand}"></TapGestureRecognizer>
+                            <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="manual"></TapGestureRecognizer>
                         </Label.GestureRecognizers>
                     </Label>
                 </Grid>
@@ -65,15 +65,27 @@
                     <Image Grid.Row="0"  Source="call_center.png" Margin="0,34,0,0"  VerticalOptions="EndAndExpand" Aspect="Fill" HorizontalOptions="FillAndExpand"></Image>
                     <StackLayout  Margin="16,0,16,35" Grid.Row="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="8" HeightRequest="110"  VerticalOptions="Start">
                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                            <Image Source="alert_police.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}"></Image>
+                            <Image Source="alert_police.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="police"></TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
                             <Label Text="{infrastructure:Translate Threat}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </StackLayout>
                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                            <Image Source="alert_fire.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}"></Image>
+                            <Image Source="alert_fire.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="fire"></TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
                             <Label Text="{infrastructure:Translate Fire}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </StackLayout>
                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                            <Image Source="alert_ambulande.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}" ></Image>
+                            <Image Source="alert_ambulande.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}" >
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="health"></TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
                             <Label Text="{infrastructure:Translate Accident}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </StackLayout>
                     </StackLayout>

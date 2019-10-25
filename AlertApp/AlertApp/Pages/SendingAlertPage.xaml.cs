@@ -27,7 +27,7 @@ namespace AlertApp.Pages
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
             Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("alertType", AlertType.UserAlert);
+            parameters.Add("alertType", alertType);
             this.BindingContext = ViewModelLocator.Instance.Resolve<SendingAlertPageViewModel>(parameters);               
             StartTimer();
             SetApplicationPin();
