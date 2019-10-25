@@ -122,7 +122,8 @@ namespace AlertApp.ViewModels
         }
 
         bool stop = false;
-        int seconds = 5;
+        int maxSeconds = 5;
+        int currentSecond = 0;
         Model.AlertType alertType;
 
         public Color ColorPressToCancel => ShowCancelButton ? Color.Black : Color.Transparent;
@@ -212,6 +213,11 @@ namespace AlertApp.ViewModels
         }
         private async void CancelSendAlert()
         {
+            currentSecond = 0;
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                CancelButtonText = maxSeconds.ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
+            });
             SetBusy(false);
             stop = true;
             ShowCancelButton = false;
@@ -226,17 +232,15 @@ namespace AlertApp.ViewModels
 
         private async void StartTimer()
         {
-
-
-            for (int i = 0; i < seconds; i++)
+            for (int i = currentSecond; i < maxSeconds; i++)
             {
                 if (stop)
                 {
                     ShowCancelButton = false;
-                    i = seconds;
+                    i = maxSeconds;
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        CancelButtonText = seconds.ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
+                        CancelButtonText = maxSeconds.ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
                     });
                     break;
                 }
@@ -245,7 +249,7 @@ namespace AlertApp.ViewModels
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        CancelButtonText = (seconds - i).ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
+                        CancelButtonText = (maxSeconds - i).ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
                     });
                     await Task.Delay(TimeSpan.FromSeconds(1));
                 }
