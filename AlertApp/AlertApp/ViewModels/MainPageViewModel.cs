@@ -181,7 +181,7 @@ namespace AlertApp.ViewModels
 
         private async void NavigateToContactScreen()
         {
-            
+
             SetBusy(true);
             await NavigationService.PushAsync(new ManageContactsPage(), false);
             SetBusy(false);
@@ -190,25 +190,33 @@ namespace AlertApp.ViewModels
         private async void OpenSendAlertScreen()
         {
             ShowCancelButton = true;
-            stop = false;
+            stop = false;            
             StartTimer();
         }
         private async void CancelSendAlert()
         {
             stop = true;
+            ShowCancelButton = false;
         }
 
         private async void OpenSettingsScreen()
-        {        
+        {
             SetBusy(true);
             await NavigationService.PushAsync(new SettingsPage(), false);
             SetBusy(false);
         }
-        
+
         private async void StartTimer()
         {
             for (int i = 0; i < seconds; i++)
             {
+                if (stop)
+                {
+                    i = seconds;
+                    ShowCancelButton = false;
+                    break;
+                }
+
                 if (!stop)
                 {
                     Device.BeginInvokeOnMainThread(() =>
@@ -216,11 +224,6 @@ namespace AlertApp.ViewModels
                         CancelButtonText = (seconds - i).ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
                     });
                     await Task.Delay(TimeSpan.FromSeconds(1));
-                }
-                if (stop)
-                {
-                    ShowCancelButton = false;
-                    break;
                 }
 
             }
