@@ -484,4 +484,13 @@
   <data name="SelectContact" xml:space="preserve">
     <value>Επέλεξε επαφή για προσθήκη</value>
   </data>
+  <data name="area" xml:space="preserve">
+    <value>Περιοχή</value>
+  </data>
+  <data name="medicine" xml:space="preserve">
+    <value>Φάρμακα</value>
+  </data>
+  <data name="other" xml:space="preserve">
+    <value>Άλλο</value>
+  </data>
 </root>
