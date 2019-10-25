@@ -115,8 +115,10 @@ namespace AlertApp.Pages
                         break;
                     case RegistrationField.Type.Area:
 
-                        var cardViewEditor = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
-                        cardViewEditor.Content = new Editor { VerticalOptions = LayoutOptions.Center, AutoSize = EditorAutoSizeOption.TextChanges };
+                        var cardViewEditor = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand,VerticalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
+                        var editor = new NoUnderlineEditor { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, HeightRequest = 150 };
+                        editor.TextChanged += Entry_TextChanged;
+                        cardViewEditor.Content = editor;                       
                         stack.Children.Add(cardViewEditor);
                         registrationContainer.Children.Add(stack);
                         break;
