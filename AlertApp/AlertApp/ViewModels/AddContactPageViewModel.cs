@@ -273,12 +273,14 @@ namespace AlertApp.ViewModels
         private void FilterContacts(string searchText)
         {
             string searchtext = !string.IsNullOrWhiteSpace(searchText) ? searchText.ToLower() : null;
+
+            searchtext = Language.RemoveDiacritics(searchtext);
             if (this.OriginalContacts != null && searchtext != null)
             {
 
                 var filtered = this.OriginalContacts.
                     Where(
-                    (sc => sc.Name != null && sc.Name.ToLower().Contains(searchtext)
+                    (sc => sc.Name != null && sc.NormalizedName.ToLower().Contains(searchtext)
                     || sc.Number != null && sc.Number.ToLower().Contains(searchText)));
                 this.Contacts = new ObservableCollection<ImportContact>(filtered);
             }

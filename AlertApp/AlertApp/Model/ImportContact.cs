@@ -101,6 +101,8 @@ namespace AlertApp.Model
             return clearedNumber;
         }
 
+        public string NormalizedName => !string.IsNullOrWhiteSpace(Name) ? Language.RemoveDiacritics(Name) : "";
+
         #region INotifyPropertyChanged
         protected void OnPropertyChanged(string name)
         {
