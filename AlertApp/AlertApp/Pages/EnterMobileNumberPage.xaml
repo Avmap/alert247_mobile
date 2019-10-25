@@ -34,10 +34,18 @@
                 <Label Text="{infrastructure:Translate EnterMobileMessage}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource RegistrationText}"></Label>
                 <StackLayout Orientation="Horizontal" Spacing="8" HorizontalOptions="FillAndExpand">
                     <Frame BackgroundColor="#E6E7E8" CornerRadius="16" Padding="2,2,2,2" HasShadow="False">
-                        <infrastructure:NoUnderlineEntry Keyboard="Telephone"  Margin="8,0,0,0" MaxLength="5" Text="{Binding CountryPrefix}" HorizontalTextAlignment="Start" WidthRequest="90" Style="{StaticResource RegistrationEntry}"></infrastructure:NoUnderlineEntry>
+                        <infrastructure:NoUnderlineEntry Keyboard="Telephone"  Margin="8,0,0,0" MaxLength="5" Text="{Binding CountryPrefix}" HorizontalTextAlignment="Start" WidthRequest="90" Style="{StaticResource RegistrationEntry}">
+                            <infrastructure:NoUnderlineEntry.Behaviors>
+                                <infrastructure:NumberPrefixValidationBehavior />
+                            </infrastructure:NoUnderlineEntry.Behaviors>
+                        </infrastructure:NoUnderlineEntry>
                     </Frame>
                     <Frame BackgroundColor="#E6E7E8" CornerRadius="16" Padding="2,2,2,2" HasShadow="False" HorizontalOptions="FillAndExpand">
-                        <infrastructure:NoUnderlineEntry Keyboard="Telephone" Text="{Binding Mobile}" MaxLength="12" Margin="8,0,0,0" HorizontalOptions="FillAndExpand" Style="{StaticResource RegistrationEntry}"></infrastructure:NoUnderlineEntry>
+                        <infrastructure:NoUnderlineEntry x:Name="txtPhone" Keyboard="Telephone" Text="{Binding Mobile}" MaxLength="12" Margin="8,0,0,0" HorizontalOptions="FillAndExpand" Style="{StaticResource RegistrationEntry}">
+                            <infrastructure:NoUnderlineEntry.Behaviors>
+                                <infrastructure:NumberValidationBehavior />
+                            </infrastructure:NoUnderlineEntry.Behaviors>
+                        </infrastructure:NoUnderlineEntry>
                     </Frame>
                 </StackLayout>
                 <StackLayout Orientation="Vertical" Margin="0,6,0,0" HorizontalOptions="FillAndExpand">
