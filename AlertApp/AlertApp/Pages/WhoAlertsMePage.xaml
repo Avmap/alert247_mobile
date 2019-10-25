@@ -13,59 +13,56 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <ListView
+                <RefreshView   Grid.Row="0" 
+                    IsRefreshing="{Binding Busy}"
+                    Command="{Binding GetAlertMeCommand}">
+                    <CollectionView
                         Grid.Row="0"                        
                         AbsoluteLayout.LayoutFlags="All"
-                        AbsoluteLayout.LayoutBounds="0,1,1,1"
-         SeparatorVisibility="None"
-         ItemsSource="{Binding AlertMeContacts}"
-         CachingStrategy="RecycleElement"
-         RowHeight="-1"
-         HasUnevenRows="True"
-         ItemTapped="ListView_ItemTapped"
-         IsPullToRefreshEnabled="True"
-         RefreshCommand="{Binding GetAlertMeCommand}"       
-                    IsRefreshing="{Binding Busy}"
+                        AbsoluteLayout.LayoutBounds="0,1,1,1"                        
+                        ItemsSource="{Binding AlertMeContacts}"        
                     BackgroundColor="White">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout  Margin="0,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <Image IsVisible="{Binding NoProfileImage}" Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImageDefault}"></Image>
-                                    <circle:CircleImage IsVisible="{Binding HasProfileImage}" Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImage}" Aspect="AspectFill"/>
-                                    <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="Center"  HorizontalOptions="FillAndExpand">
-                                        <Label Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource ContactBold}"/>
-                                        <Grid  HorizontalOptions="FillAndExpand" Margin="0,0,20,0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Frame CornerRadius="8" HeightRequest="21" BackgroundColor="{Binding BackgroundStatusColor}" Padding="5,2,5,2">
-                                                <Label Text="{Binding StatusAlertMe}" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="{Binding ΤextStatusColor}" Style="{StaticResource Subtitle1}"/>
-                                            </Frame>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                
+                                    <StackLayout  Margin="0,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Image IsVisible="{Binding NoProfileImage}" Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImageDefault}"></Image>
+                                        <circle:CircleImage IsVisible="{Binding HasProfileImage}" Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImage}" Aspect="AspectFill"/>
+                                        <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="Center"  HorizontalOptions="FillAndExpand">
+                                            <Label Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource ContactBold}"/>
+                                            <Grid  HorizontalOptions="FillAndExpand" Margin="0,0,20,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Frame CornerRadius="8" HeightRequest="21" BackgroundColor="{Binding BackgroundStatusColor}" Padding="5,2,5,2">
+                                                    <Label Text="{Binding StatusAlertMe}" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="{Binding ΤextStatusColor}" Style="{StaticResource Subtitle1}"/>
+                                                </Frame>
 
-                                            <StackLayout IsVisible="{Binding Accepted}" Grid.Column="1" Orientation="Horizontal" Spacing="16"  HorizontalOptions="EndAndExpand">
-                                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                                                    <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="help.png"/>
-                                                    <Label Text="{Binding Stats.Helped}"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource ContactBold}"/>
+                                                <StackLayout IsVisible="{Binding Accepted}" Grid.Column="1" Orientation="Horizontal" Spacing="16"  HorizontalOptions="EndAndExpand">
+                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                                                        <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="help.png"/>
+                                                        <Label Text="{Binding Stats.Helped}"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource ContactBold}"/>
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                                                        <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="ignore.png"/>
+                                                        <Label Text="{Binding Stats.Ignored}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource ContactBold}"/>
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                                                        <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="asked.png"/>
+                                                        <Label Text="{Binding Stats.Asked}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource ContactBold}"/>
+                                                    </StackLayout>
                                                 </StackLayout>
-                                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                                                    <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="ignore.png"/>
-                                                    <Label Text="{Binding Stats.Ignored}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource ContactBold}"/>
-                                                </StackLayout>
-                                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                                                    <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="asked.png"/>
-                                                    <Label Text="{Binding Stats.Asked}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource ContactBold}"/>
-                                                </StackLayout>
-                                            </StackLayout>
-                                        </Grid>
+                                            </Grid>
 
+                                        </StackLayout>
                                     </StackLayout>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
+
                 <Button Grid.Row="1" IsVisible="False" BackgroundColor="{StaticResource AccentColor}"  Margin="0,0,16,16" HorizontalOptions="End"  Style="{StaticResource CircleButton}" Image="baseline_person_add_white_24.png" Command="{Binding OpenContactsScreenCommand}"/>
             </Grid>
             <StackLayout x:Name="shadow" IsVisible="False" BackgroundColor="#c0c0c0" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Opacity="0.5" AbsoluteLayout.LayoutFlags="All">

@@ -76,7 +76,7 @@ namespace AlertApp.ViewModels
         {
             _communityService = communityService;
             _localSettingsService = localSettingsService;
-            SetBusy(true);
+           // SetBusy(true);
             SetRadiusSettingList();
         }
 

@@ -13,23 +13,16 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <ListView
-                        Grid.Row="0"                        
+                <RefreshView   Grid.Row="0" 
+                    IsRefreshing="{Binding Busy}"
+                    Command="{Binding GetBlockedContactsCommand}">
+                    <CollectionView                                               
                         AbsoluteLayout.LayoutFlags="All"
-                        AbsoluteLayout.LayoutBounds="0,1,1,1"
-                        SeparatorVisibility="None"
-                        ItemsSource="{Binding BlockedContacts}"
-                        CachingStrategy="RecycleElement"
-                        RowHeight="-1"
-                        HasUnevenRows="True"
-                        ItemTapped="ListView_ItemTapped"
-                        IsPullToRefreshEnabled="True"
-                        RefreshCommand="{Binding GetBlockedContactsCommand}"       
-                        IsRefreshing="{Binding Busy}"
+                        AbsoluteLayout.LayoutBounds="0,1,1,1"                        
+                        ItemsSource="{Binding BlockedContacts}"                                                
                         BackgroundColor="White">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
                                 <StackLayout  Margin="0,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                     <Image IsVisible="{Binding NoProfileImage}" Margin="16,13,11,8" WidthRequest="60" HeightRequest="55" Source="{Binding ProfileImageDefault}"></Image>
                                     <circle:CircleImage IsVisible="{Binding HasProfileImage}"  Margin="16,13,11,8" WidthRequest="60" HeightRequest="55" Source="{Binding ProfileImage}" Aspect="AspectFill"/>
@@ -40,7 +33,7 @@
                                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                             </Grid.ColumnDefinitions>
-                                          
+
                                             <StackLayout IsVisible="{Binding Accepted}" Grid.Column="1" Orientation="Horizontal" Spacing="16"  HorizontalOptions="EndAndExpand">
                                                 <StackLayout Orientation="Horizontal" HorizontalOptions="End">
                                                     <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="help.png"/>
@@ -59,10 +52,11 @@
 
                                     </StackLayout>
                                 </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
+
                 <Button Grid.Row="1" IsVisible="False" BackgroundColor="{StaticResource AccentColor}"  Margin="0,0,16,16" HorizontalOptions="End"  Style="{StaticResource CircleButton}" Image="baseline_person_add_white_24.png" Command="{Binding OpenContactsScreenCommand}"/>
             </Grid>
             <!--<StackLayout x:Name="shadow" IsVisible="False" BackgroundColor="#c0c0c0" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Opacity="0.5" AbsoluteLayout.LayoutFlags="All">
@@ -72,13 +66,16 @@
             </StackLayout>-->
             <Label HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasContacts}" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" Text="{infrastructure:Translate NoItems}" FontFamily="{StaticResource Regular}" />
             <!--<infrastructure:LoadingIndicator x:Name="loadingIndicator" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All"/>-->
-            <!--Bottom Sheet--><!--
+            <!--Bottom Sheet-->
+            <!--
             <ContentView x:Name="bottomSheet" IsVisible="True" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0, 1, 1,200" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional">
                 <StackLayout Orientation="Vertical">
                     <StackLayout Orientation="Horizontal" Margin="16,0,0,0">
-                        --><!--<StackLayout.GestureRecognizers>
+                        -->
+            <!--<StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnRemoveUserClick"/>
-                        </StackLayout.GestureRecognizers>--><!--
+                        </StackLayout.GestureRecognizers>-->
+            <!--
                         <Image WidthRequest="24" HeightRequest="24" HorizontalOptions="Center" VerticalOptions="Center" Source="delete.png"/>
                         <StackLayout  Margin="16,8,0,0" Orientation="Vertical" MinimumHeightRequest="200" >
                             <Label HorizontalOptions="Start" Style="{StaticResource Subtitle1Bold}" Text="Remove this user" ></Label>
@@ -86,9 +83,11 @@
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" Margin="16,0,0,0">
-                        --><!--<StackLayout.GestureRecognizers>
+                        -->
+            <!--<StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnBlockUserClick" />
-                        </StackLayout.GestureRecognizers>--><!--
+                        </StackLayout.GestureRecognizers>-->
+            <!--
                         <Image WidthRequest="24" HeightRequest="24" HorizontalOptions="Center" VerticalOptions="Center" Source="delete.png"/>
                         <StackLayout  Margin="16,8,0,0" Orientation="Vertical" MinimumHeightRequest="200" >
                             <Label HorizontalOptions="Start" Style="{StaticResource Subtitle1Bold}" Text="Block this user"></Label>
@@ -97,7 +96,8 @@
                     </StackLayout>
                 </StackLayout>
             </ContentView>
-            --><!--Bottom Sheet-->
+            -->
+            <!--Bottom Sheet-->
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

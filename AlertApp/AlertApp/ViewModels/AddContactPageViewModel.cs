@@ -194,8 +194,12 @@ namespace AlertApp.ViewModels
                 }
                 else if (!serverContacts.IsOnline)
                 {
-                    this.OriginalContacts.Clear();
-                    this.Contacts.Clear();
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        this.OriginalContacts = new ObservableCollection<ImportContact>();
+                        this.Contacts = new ObservableCollection<ImportContact>(this.Contacts); ;
+                    });
+                  
                     showOKMessage(AppResources.Error, AppResources.NoInternetConnection);
                 }
 

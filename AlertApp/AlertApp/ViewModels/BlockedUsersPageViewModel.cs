@@ -83,39 +83,41 @@ namespace AlertApp.ViewModels
             {
                 var blocked = response.Result.Contacts.Blocked;
                 if (blocked != null && blocked.Count > 0)
-                {                    
+                {
                     //search in addressBook for contacts
                     if (addressBook != null)
                     {
-                        BlockedContacts.Clear();
+                        var temp = new List<Contact>();
                         foreach (var item in blocked)
                         {
                             var addressBookItem = addressBook.Where(c => c.FormattedNumber == item.Cellphone).FirstOrDefault();
                             if (addressBookItem != null)
                             {
-                                BlockedContacts.Add(new Contact { ProfileImageUri = addressBookItem.PhotoUri, Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage });
+                                temp.Add(new Contact { ProfileImageUri = addressBookItem.PhotoUri, Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage });
                             }
                             else
                             {
-                                BlockedContacts.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, Stats = item.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") });
+                                temp.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, Stats = item.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") });
                             }
                         }
+                        BlockedContacts = new ObservableCollection<Contact>(temp);
                         SetBusy(false);
                     }
                     else
                     {
                         var contacts = blocked.Select(c => new Contact { Accepted = c.Accepted, Cellphone = c.Cellphone, Stats = c.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") }).ToList();
-                        BlockedContacts.Clear();
+                        var temp = new List<Contact>();
                         foreach (var item in contacts)
                         {
-                            BlockedContacts.Add(item);
+                            temp.Add(item);
                         }
+                        BlockedContacts = new ObservableCollection<Contact>(temp);
                         SetBusy(false);
                     }
                 }
                 else
                 {
-                    BlockedContacts.Clear();
+                    BlockedContacts = new ObservableCollection<Contact>();
                     SetBusy(false);
                 }
 
@@ -134,7 +136,7 @@ namespace AlertApp.ViewModels
             Device.BeginInvokeOnMainThread(() =>
             {
                 this.Busy = isBusy;
-              //  ((Command)_GetBlockedContactsCommand).ChangeCanExecute();
+                ((Command)_GetBlockedContactsCommand).ChangeCanExecute();
             });
         }
         #endregion

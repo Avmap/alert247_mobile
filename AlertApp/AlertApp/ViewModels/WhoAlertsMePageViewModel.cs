@@ -39,7 +39,7 @@ namespace AlertApp.ViewModels
                 OnPropertyChanged("HasContacts");
             }
         }
-        
+
         private int _NotificationCount;
 
         public int NotificationCount
@@ -63,7 +63,7 @@ namespace AlertApp.ViewModels
                 OnPropertyChanged("NotificationBackColor");
             }
         }
-        
+
         public bool HasContacts => AlertMeContacts == null || AlertMeContacts.Count == 0;
 
         #endregion
@@ -147,36 +147,39 @@ namespace AlertApp.ViewModels
                     //search in addressBook for contacts
                     if (addressBook != null)
                     {
-                        AlertMeContacts.Clear();
+                        var tempContacts = new List<Contact>();
                         foreach (var item in community)
                         {
                             var addressBookItem = addressBook.Where(c => c.FormattedNumber == item.Cellphone).FirstOrDefault();
+                           
                             if (addressBookItem != null)
                             {
-                                AlertMeContacts.Add(new Contact { ProfileImageUri = addressBookItem.PhotoUri, Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage });
+                                tempContacts.Add(new Contact { ProfileImageUri = addressBookItem.PhotoUri, Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage });
                             }
                             else
                             {
-                                AlertMeContacts.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, Stats = item.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") });
+                                tempContacts.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, Stats = item.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") });
                             }
                         }
+                        AlertMeContacts = new ObservableCollection<Contact>(tempContacts);
                         SetBusy(false);
                     }
                     else
                     {
                         var contacts = community.Select(c => new Contact { Accepted = c.Accepted, Cellphone = c.Cellphone, Stats = c.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") }).ToList();
-                        AlertMeContacts.Clear();
+                        var tempContacts = new List<Contact>();                      
                         foreach (var item in contacts)
                         {
-                            AlertMeContacts.Add(item);
+                            tempContacts.Add(item);
                         }
+                        AlertMeContacts = new ObservableCollection<Contact>(tempContacts);
                         SetBusy(false);
                     }
                 }
                 else
                 {
                     RemoveBadgeNotification();
-                    AlertMeContacts.Clear();
+                    AlertMeContacts = new ObservableCollection<Contact>();
                     SetBusy(false);
                 }
 
@@ -233,7 +236,7 @@ namespace AlertApp.ViewModels
             Device.BeginInvokeOnMainThread(() =>
             {
                 this.Busy = isBusy;
-                //((Command)GetAlertMeCommand).ChangeCanExecute();
+                ((Command)GetAlertMeCommand).ChangeCanExecute();
             });
         }
         #endregion
