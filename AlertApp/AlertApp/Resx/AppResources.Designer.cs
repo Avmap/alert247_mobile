@@ -943,6 +943,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download Alert24/7  &quot;https://play.google.com/store/apps/details?id=gr.avmap.alert247.
+        /// </summary>
+        internal static string ShareMessage {
+            get {
+                return ResourceManager.GetString("ShareMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Alert 24/7 app.
+        /// </summary>
+        internal static string ShareMessageTitle {
+            get {
+                return ResourceManager.GetString("ShareMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Share via.
         /// </summary>
         internal static string ShareVia {

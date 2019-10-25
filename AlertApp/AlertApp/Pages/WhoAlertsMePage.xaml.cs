@@ -23,25 +23,6 @@ namespace AlertApp.Pages
             this.BindingContext = ViewModelLocator.Instance.Resolve<WhoAlertsMePageViewModel>();
         }
 
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            var vm = this.BindingContext as WhoAlertsMePageViewModel;
-            if (!vm.Busy)
-            {
-                ClickedContact = e.Item as Contact;
-                
-                if (ClickedContact.Accepted)
-                {
-                    //vm.NavigateToAcceptCommunityReqeustScreen(ClickedContact);
-                //    ShowBottomSheet();
-                }
-                else
-                {
-                    vm.NavigateToAcceptCommunityReqeustScreen(ClickedContact);
-                }
-            }
-        }
-
         private void ShadowClicked(object sender, EventArgs e)
         {
             ShowBottomSheet();
@@ -76,5 +57,50 @@ namespace AlertApp.Pages
 
             return base.OnBackButtonPressed();
         }
+
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            var args = e as Xamarin.Forms.TappedEventArgs;
+            if (args != null)
+            {
+                var vm = this.BindingContext as WhoAlertsMePageViewModel;
+                if (!vm.Busy)
+                {
+                    ClickedContact = args.Parameter as Contact;
+
+                    if (ClickedContact.Accepted)
+                    {
+                        //vm.NavigateToAcceptCommunityReqeustScreen(ClickedContact);
+                        ShowBottomSheet();
+                    }
+                    else
+                    {
+                        vm.NavigateToAcceptCommunityReqeustScreen(ClickedContact);
+                    }
+
+                }
+            }
+        }
+
+        private void OnRemoveUserClick(object sender, EventArgs e)
+        {
+            var vm = this.BindingContext as WhoAlertsMePageViewModel;
+            Task.Run(async () =>
+            {
+                await vm.RemoveUser(ClickedContact);
+            });
+            ShowBottomSheet();
+        }
+        private void OnBlockUserClick(object sender, EventArgs e)
+        {
+            var vm = this.BindingContext as WhoAlertsMePageViewModel;
+            Task.Run(async () =>
+            {
+                await vm.BlockUser(ClickedContact);
+            });
+            ShowBottomSheet();
+        }
+
     }
 }

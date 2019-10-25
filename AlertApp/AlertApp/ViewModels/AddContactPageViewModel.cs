@@ -209,7 +209,7 @@ namespace AlertApp.ViewModels
 
         private async void InviteUser()
         {
-            string messageText = String.Format("Download Alert247 {0}", "https://play.google.com/store/apps/details?id=gr.avmap.alert247");
+            string messageText = AppResources.ShareMessage;
             //string action = await DisplayActionSheet(AppResources.ShareVia, new string[] { "SMS", AppResources.OtherText }, AppResources.Cancel);
             //if (action == "SMS")
             //{
@@ -231,8 +231,8 @@ namespace AlertApp.ViewModels
          //   {
                 await Share.RequestAsync(new ShareTextRequest
                 {
-                    Text = messageText,
-                    Title = "Get Alert 24/7 app",
+                    Text = AppResources.ShareMessage,
+                    Title = AppResources.ShareMessageTitle
                 });
            // }
         }

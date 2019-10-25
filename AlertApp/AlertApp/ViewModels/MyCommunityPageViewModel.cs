@@ -116,7 +116,7 @@ namespace AlertApp.ViewModels
         }
         private async void Back()
         {
-            await NavigationService.PopAsync();
+            await NavigationService.PopAsync(false);
         }
         private void GetCommunity()
         {

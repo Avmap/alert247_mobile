@@ -14,7 +14,7 @@ namespace AlertApp.Model.Api
             public const string Date = "date";
             public const string Integer = "integer";            
             public const string Boolean = "boolean";
-            public const string Area = "area";
+            public const string Area = "textarea";
         }
         public static class Names
         {

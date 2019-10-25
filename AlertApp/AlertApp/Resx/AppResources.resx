@@ -490,4 +490,10 @@
   <data name="AddContactMenu" xml:space="preserve">
     <value>Add</value>
   </data>
+  <data name="ShareMessage" xml:space="preserve">
+    <value>Download Alert24/7  "https://play.google.com/store/apps/details?id=gr.avmap.alert247</value>
+  </data>
+  <data name="ShareMessageTitle" xml:space="preserve">
+    <value>Get Alert 24/7 app</value>
+  </data>
 </root>
