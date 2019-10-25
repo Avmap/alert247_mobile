@@ -40,8 +40,8 @@
                                 <StackLayout Margin="0,6,0,0"  Spacing="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
                                     <circle:CircleImage WidthRequest="54" HeightRequest="54" Source="{Binding ProfileImage}" Aspect="AspectFill"></circle:CircleImage>
                                     <StackLayout Margin="5,5,5,0" Spacing="0" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                                        <Label TextColor="{StaticResource PrimaryColor}" MaxLines="2" FontSize="10" HorizontalOptions="FillAndExpand" LineBreakMode="TailTruncation"  HorizontalTextAlignment="Center" Text="{Binding ContactName}"></Label>
-                                        <Label TextColor="#B8B8B8" HorizontalTextAlignment="Center"  FontSize="10"  HorizontalOptions="FillAndExpand" Text="{Binding ContactPhone}"></Label>
+                                        <Label TextColor="{StaticResource PrimaryColor}" MaxLines="2" FontSize="11" HorizontalOptions="FillAndExpand" LineBreakMode="TailTruncation"  HorizontalTextAlignment="Center" Text="{Binding ContactName}"></Label>
+                                        <Label TextColor="#B8B8B8" HorizontalTextAlignment="Center"  FontSize="11"  HorizontalOptions="FillAndExpand" Text="{Binding ContactPhone}"></Label>
                                     </StackLayout>
                                 </StackLayout>
 

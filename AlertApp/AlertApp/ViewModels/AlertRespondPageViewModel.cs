@@ -140,14 +140,27 @@ namespace AlertApp.ViewModels
             if (!string.IsNullOrWhiteSpace(data.ProfileData))
             {
                 var profileData = await _cryptographyService.GetAlertSenderProfileData(data.ProfileData, data.FileKey);
-                if (profileData != null && profileData.ContainsKey(RegistrationField.Names.Name))
+                var name = profileData[RegistrationField.Names.Name];
+                var surname = profileData[RegistrationField.Names.Surname];
+                if (profileData != null)
                 {
-                    ContactName = String.Format("{0} {1}", profileData[RegistrationField.Names.Surname] , profileData[RegistrationField.Names.Name]);
+                    ContactPhone = data.Cellphone;
                     var addressBookContact = await GetContact(data.Cellphone);
                     if (addressBookContact != null)
                     {
                         ProfileImage = addressBookContact.ProfileImage;
                     }
+
+                    if (!string.IsNullOrWhiteSpace(name) && !string.IsNullOrWhiteSpace(surname))
+                        ContactName = String.Format("{0} {1}", profileData[RegistrationField.Names.Surname], profileData[RegistrationField.Names.Name]);
+                    else
+                    {
+                        if (addressBookContact != null)
+                        {
+                            ContactName = addressBookContact.Name;
+                        }
+                    }
+
                 }
                 else if (profileData == null)
                 {
@@ -202,6 +215,8 @@ namespace AlertApp.ViewModels
             }
         }
 
+
+
         private async void Accept()
         {
             _notificationManager.CloseNotification(_notificationAction.NotificationId);
@@ -217,16 +232,13 @@ namespace AlertApp.ViewModels
         {
             var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
             if (contactPermissionStatus == PermissionStatus.Granted)
-            {
-                var contacts = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
-                if (contacts != null)
+            {               
+                //here get contact from addressbook
+                var contactService = DependencyService.Get<IContacts>();
+                var addressBookContact = contactService.GetContactDetails(cellPhone);
+                if (addressBookContact != null)
                 {
-                    var result = new List<ImportContact>();
-                    var contact = contacts.Where(c => c.Number == cellPhone).FirstOrDefault();
-                    if (contact != null)
-                    {
-                        return new ImportContact(contact, _contactProfileImageProvider);
-                    }
+                    return new ImportContact(addressBookContact, _contactProfileImageProvider);
                 }
             }
 
