@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -19,9 +20,26 @@ namespace AlertApp.ViewModels
         readonly IGuardian _guardian;
         readonly ILocalSettingsService _localSettingsService;
         #endregion
+        
         #region Properties
 
         public bool AllwaysOn { get; set; }
+        #endregion
+
+        #region Commands
+
+        private ICommand _OpenHomeScreen;
+        public ICommand OpenHomeScreen
+        {
+            get
+            {
+                return _OpenHomeScreen ?? (_OpenHomeScreen = new Command(Back, () =>
+                {
+                    return !Busy;
+                }));
+            }
+        }
+        
         #endregion
 
         public SettingsPageViewModel(ILocalSettingsService localSettingsService)
@@ -97,6 +115,11 @@ namespace AlertApp.ViewModels
             AllwaysOn = false;
         }
 
+
+        private async void Back()
+        {
+            await NavigationService.PopAsync(false);
+        }
 
         #region BaseViewModel
 

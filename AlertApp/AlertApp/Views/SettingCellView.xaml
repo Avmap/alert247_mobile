@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlertApp.Views.SettingCellView"
+             x:Name="this">
+    <ContentView.Content>
+        <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
+            <Label Text="{Binding Source={x:Reference this}, Path=Title}" FontSize="14" TextColor="Black" Padding="32,4,4,4" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+            <Image HorizontalOptions="End" Margin="0,0,16,0" HeightRequest="24" WidthRequest="24" Source="baseline_keyboard_arrow_right_black_48.png"></Image>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

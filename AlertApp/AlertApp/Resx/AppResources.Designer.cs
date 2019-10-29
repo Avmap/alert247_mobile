@@ -295,6 +295,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirmation.
+        /// </summary>
+        internal static string Confirmation {
+            get {
+                return ResourceManager.GetString("Confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To save enter 4pin code and press &quot;Finish&quot;.
+        /// </summary>
+        internal static string ConfirmPinToSaveSettings {
+            get {
+                return ResourceManager.GetString("ConfirmPinToSaveSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The following contact wants to add you to the ALERT 24/7 app..
         /// </summary>
         internal static string ContactRequestText {
@@ -934,11 +952,128 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to App buttons.
+        /// </summary>
+        internal static string SettingButtonsSubTitle {
+            get {
+                return ResourceManager.GetString("SettingButtonsSubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings - UI.
+        /// </summary>
+        internal static string SettingButtonsTitle {
+            get {
+                return ResourceManager.GetString("SettingButtonsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change PIN.
+        /// </summary>
+        internal static string SettingChangePin {
+            get {
+                return ResourceManager.GetString("SettingChangePin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contacts.
+        /// </summary>
+        internal static string SettingContacts {
+            get {
+                return ResourceManager.GetString("SettingContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enviroment.
+        /// </summary>
+        internal static string SettingEnviroment {
+            get {
+                return ResourceManager.GetString("SettingEnviroment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string SettingLanguage {
+            get {
+                return ResourceManager.GetString("SettingLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose language.
+        /// </summary>
+        internal static string SettingLanguageSubTitle {
+            get {
+                return ResourceManager.GetString("SettingLanguageSubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings - Language.
+        /// </summary>
+        internal static string SettingLanguageTitle {
+            get {
+                return ResourceManager.GetString("SettingLanguageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        internal static string SettingLocation {
+            get {
+                return ResourceManager.GetString("SettingLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account.
+        /// </summary>
+        internal static string SettingsAccount {
+            get {
+                return ResourceManager.GetString("SettingsAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable or disable buttons you want to show in app and press &quot;Confirm&quot;.
+        /// </summary>
+        internal static string SettingsButtonsViewMessage {
+            get {
+                return ResourceManager.GetString("SettingsButtonsViewMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permissions.
+        /// </summary>
+        internal static string SettingsPermissions {
+            get {
+                return ResourceManager.GetString("SettingsPermissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string SettingsTab {
             get {
                 return ResourceManager.GetString("SettingsTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        internal static string SettingsView {
+            get {
+                return ResourceManager.GetString("SettingsView", resourceCulture);
             }
         }
         
@@ -1029,6 +1164,51 @@ namespace AlertApp.Resx {
         internal static string SuccessSendAlertMessageContacts {
             get {
                 return ResourceManager.GetString("SuccessSendAlertMessageContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SwitchAccident.
+        /// </summary>
+        internal static string SwitchAccident {
+            get {
+                return ResourceManager.GetString("SwitchAccident", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CONTACTS.
+        /// </summary>
+        internal static string SwitchContacts {
+            get {
+                return ResourceManager.GetString("SwitchContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FIRE.
+        /// </summary>
+        internal static string SwitchFire {
+            get {
+                return ResourceManager.GetString("SwitchFire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INFORMATION.
+        /// </summary>
+        internal static string SwitchInformation {
+            get {
+                return ResourceManager.GetString("SwitchInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to THREAT.
+        /// </summary>
+        internal static string SwitchTreat {
+            get {
+                return ResourceManager.GetString("SwitchTreat", resourceCulture);
             }
         }
         

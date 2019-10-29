@@ -1,10 +1,14 @@
-﻿using AlertApp.ViewModels;
+﻿using AlertApp.Resx;
+using AlertApp.Utils;
+using AlertApp.ViewModels;
+using AlertApp.Views;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,7 +22,7 @@ namespace AlertApp.Pages
         {
             InitializeComponent();
             this.BindingContext = ViewModelLocator.Instance.Resolve<SettingsPageViewModel>();
-            guardianSwitch.On = ((SettingsPageViewModel)this.BindingContext).AllwaysOn;
+            //guardianSwitch.On = ((SettingsPageViewModel)this.BindingContext).AllwaysOn;
         }
 
         private void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
@@ -43,13 +47,13 @@ namespace AlertApp.Pages
                     if (!result.Ok)
                     {
                         codeTrigger = true;
-                        guardianSwitch.On = false;
+                       // guardianSwitch.On = false;
                         codeTrigger = false;
                     }
                     else if (result.Ok && fromCell)
                     {
                         codeTrigger = true;
-                        guardianSwitch.On = true;
+                       // guardianSwitch.On = true;
                         codeTrigger = false;
                     }
                 }
@@ -59,12 +63,21 @@ namespace AlertApp.Pages
                     if (fromCell)
                     {
                         codeTrigger = true;
-                        guardianSwitch.On = false;
+                      //  guardianSwitch.On = false;
                         codeTrigger = false;
                     }
                 }
             }
 
+        }
+
+        private void Language_Tap(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingLanguageTitle, AppResources.SettingLanguageSubTitle, new SelectLanguageView()), false);
+        }
+        private void ButtonsView_Tap(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingButtonsTitle, AppResources.SettingButtonsSubTitle, new SettingsButtonsView()), false);
         }
     }
 }

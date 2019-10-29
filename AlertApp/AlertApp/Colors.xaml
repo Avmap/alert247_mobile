@@ -36,5 +36,6 @@
     <Color x:Key="GreyCircleButton">#CCCCCC</Color>
     <Color x:Key="AcceptButton">#228C22</Color>
     <Color x:Key="IgnoreButton">#228C22</Color>
-
+    <Color x:Key="SettingsSection">#E6E7E8</Color>
+    
 </ResourceDictionary>

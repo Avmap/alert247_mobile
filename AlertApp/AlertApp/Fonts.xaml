@@ -182,4 +182,11 @@
         <Setter Property="TextColor" Value="#000000" />
         <Setter Property="FontSize" Value="14" />
     </Style>
+
+    <Style x:Key="SwitchText" TargetType="Label">
+        <Setter Property="TextColor" Value="#000000" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+
 </ResourceDictionary>

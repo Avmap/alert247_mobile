@@ -2,23 +2,71 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
+             xmlns:views="clr-namespace:AlertApp.Views"
              Navigation="{Binding NavigationService}" 
              Title="{infrastructure:Translate SettingsTab}"
+             NavigationPage.HasNavigationBar="False"
              x:Class="AlertApp.Pages.SettingsPage">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <TableView Grid.Row="0" Intent="Settings">
-                <TableRoot>
-                    <TableSection x:Name="table" Title="{infrastructure:Translate Application}">
-                        <SwitchCell Tapped="GuardianSwitch_Tapped" x:Name="guardianSwitch"  OnChanged="SwitchCell_OnChanged" Text="{infrastructure:Translate AllwaysOn}" >
-                            
-                        </SwitchCell>
-                    </TableSection>
-                </TableRoot>
-            </TableView>
+
+            <Frame Grid.Row="0" HasShadow="False">
+                <Label  FontSize="22" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{StaticResource PrimaryColor}"  Text="{infrastructure:Translate SettingsTab}"></Label>
+            </Frame>
+            <StackLayout Grid.Row="1" Orientation="Vertical">
+                <views:SettingsHeader Title="{infrastructure:Translate SettingsView}"/>
+                <views:SettingCellView Title="{infrastructure:Translate SettingLanguage}">
+                    <views:SettingCellView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Language_Tap"></TapGestureRecognizer>
+                    </views:SettingCellView.GestureRecognizers>
+                </views:SettingCellView>
+                <views:SettingCellView Title="{infrastructure:Translate SettingEnviroment}">
+                    <views:SettingCellView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ButtonsView_Tap"></TapGestureRecognizer>
+                    </views:SettingCellView.GestureRecognizers>
+                </views:SettingCellView>
+                <views:SettingsHeader Title="{infrastructure:Translate SettingsPermissions}"></views:SettingsHeader>
+                <views:SettingCellView Title="{infrastructure:Translate SettingLocation}"></views:SettingCellView>
+                <views:SettingCellView Title="{infrastructure:Translate SettingContacts}"></views:SettingCellView>
+                <views:SettingsHeader Title="{infrastructure:Translate SettingsAccount}"></views:SettingsHeader>
+                <views:SettingCellView Title="{infrastructure:Translate SettingChangePin}"></views:SettingCellView>
+            </StackLayout>
+            <StackLayout Grid.Row="2" Orientation="Vertical" VerticalOptions="EndAndExpand" Spacing="4">
+                <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
+                <StackLayout Margin="8,0,8,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenHomeScreen}"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="homepage.png"/>
+                        <Label Text="{infrastructure:Translate HomeTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenContactsScreen}"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="contacts.png"/>
+                        <Label Text="{infrastructure:Translate Contacts}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Image   WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="info.png"/>
+                        <Label Text="{infrastructure:Translate InfoTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="settings.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenSettingsCommand}"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="{infrastructure:Translate SettingsTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

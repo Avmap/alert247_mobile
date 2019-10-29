@@ -19,6 +19,15 @@ namespace AlertApp.Utils
         public static string AlwaysOn = "PreferenceAlwaysOn";
         public static string SendLocation = "SendLocation";
         public static string AppHasRun = "AppHasRun";
-        
+
+
+
+        public static string SOS_BUTTON_VISIBLE = "SOS_BUTTON_VISIBLE";
+        public static string THREAT_BUTTON_VISIBLE = "THREAT_BUTTON_VISIBLE";
+        public static string FIRE_BUTTON_VISIBLE = "FIRE_BUTTON_VISIBLE";
+        public static string ACCIDENT_BUTTON_VISIBLE = "ACCIDENT_BUTTON_VISIBLE";
+        public static string CONTACTS_BUTTON_VISIBLE = "CONTACTS_BUTTON_VISIBLE";
+        public static string INFORMATION_BUTTON_VISIBLE = "INFORMATION_BUTTON_VISIBLE";
+       
     }
 }

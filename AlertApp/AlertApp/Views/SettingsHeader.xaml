@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="this"
+             x:Class="AlertApp.Views.SettingsHeader">
+  <ContentView.Content>
+        <StackLayout BackgroundColor="{StaticResource SettingsSection}" Spacing="0" HorizontalOptions="FillAndExpand">
+            <Label FontAttributes="Bold" Text="{Binding Source={x:Reference this}, Path=Title}" FontSize="16" TextColor="Black" Padding="32,4,4,4" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

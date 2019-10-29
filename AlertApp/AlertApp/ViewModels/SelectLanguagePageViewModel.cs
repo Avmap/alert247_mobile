@@ -95,6 +95,18 @@ namespace AlertApp.ViewModels
                 }));
             }
         }
+
+        private ICommand _SelectLanguageCommandAndBack;
+        public ICommand SelectLanguageCommandAndBack
+        {
+            get
+            {
+                return _SelectLanguageCommandAndBack ?? (_SelectLanguageCommandAndBack = new Command<string>(SetSelectedLanguageAndBack, (lang) =>
+                {
+                    return true;
+                }));
+            }
+        }
         #endregion
 
 
@@ -120,6 +132,19 @@ namespace AlertApp.ViewModels
             Thread.CurrentThread.CurrentUICulture = ci;
             Resx.AppResources.Culture = ci;
             await NavigationService.PushAsync(new EnterMobileNumberPage(), false);
+        }
+
+        private async void SetSelectedLanguageAndBack(string language)
+        {
+            _localSettingsService.SaveSelectedLanguage(language);
+
+            await RequestPermissions();
+
+            CultureInfo ci = new CultureInfo(language);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            Resx.AppResources.Culture = ci;
+            App.Current.MainPage = new NavigationPage(new MainPage());
         }
 
         private void SetSelectedLanguage()

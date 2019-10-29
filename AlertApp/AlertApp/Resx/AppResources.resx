@@ -496,4 +496,64 @@
   <data name="ShareMessageTitle" xml:space="preserve">
     <value>Get Alert 24/7 app</value>
   </data>
+  <data name="SettingChangePin" xml:space="preserve">
+    <value>Change PIN</value>
+  </data>
+  <data name="SettingContacts" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="SettingEnviroment" xml:space="preserve">
+    <value>Enviroment</value>
+  </data>
+  <data name="SettingLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SettingLanguageSubTitle" xml:space="preserve">
+    <value>Choose language</value>
+  </data>
+  <data name="SettingLanguageTitle" xml:space="preserve">
+    <value>Settings - Language</value>
+  </data>
+  <data name="SettingLocation" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="SettingsAccount" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="SettingsPermissions" xml:space="preserve">
+    <value>Permissions</value>
+  </data>
+  <data name="SettingsView" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="SettingButtonsSubTitle" xml:space="preserve">
+    <value>App buttons</value>
+  </data>
+  <data name="SettingButtonsTitle" xml:space="preserve">
+    <value>Settings - UI</value>
+  </data>
+  <data name="SettingsButtonsViewMessage" xml:space="preserve">
+    <value>Enable or disable buttons you want to show in app and press "Confirm"</value>
+  </data>
+  <data name="SwitchAccident" xml:space="preserve">
+    <value>SwitchAccident</value>
+  </data>
+  <data name="SwitchFire" xml:space="preserve">
+    <value>FIRE</value>
+  </data>
+  <data name="SwitchTreat" xml:space="preserve">
+    <value>THREAT</value>
+  </data>
+  <data name="SwitchContacts" xml:space="preserve">
+    <value>CONTACTS</value>
+  </data>
+  <data name="SwitchInformation" xml:space="preserve">
+    <value>INFORMATION</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="ConfirmPinToSaveSettings" xml:space="preserve">
+    <value>To save enter 4pin code and press "Finish"</value>
+  </data>
 </root>
