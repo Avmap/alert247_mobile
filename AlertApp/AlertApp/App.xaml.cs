@@ -89,6 +89,22 @@ namespace AlertApp
         {
             RequestPermissions();
             VersionTracking.Track();
+
+            // First time launching current version
+            var firstLaunchCurrent = VersionTracking.IsFirstLaunchForCurrentVersion;
+            if (firstLaunchCurrent)
+            {
+                var currentVersion = VersionTracking.CurrentVersion;
+                if (currentVersion == "0.00.62")
+                {
+                    Preferences.Set(Settings.SOS_BUTTON_VISIBLE, true);
+                    Preferences.Set(Settings.THREAT_BUTTON_VISIBLE, true);
+                    Preferences.Set(Settings.FIRE_BUTTON_VISIBLE, true);
+                    Preferences.Set(Settings.ACCIDENT_BUTTON_VISIBLE, true);
+                    Preferences.Set(Settings.CONTACTS_BUTTON_VISIBLE, true);
+                    Preferences.Set(Settings.INFORMATION_BUTTON_VISIBLE, true);
+                }
+            }
             // Handle when your app starts
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {

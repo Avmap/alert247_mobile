@@ -17,6 +17,13 @@ namespace AlertApp.Pages
             NavigationPage.SetHasBackButton(this, false);
             this.BindingContext = ViewModelLocator.Instance.Resolve<MainPageViewModel>();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ((MainPageViewModel)this.BindingContext).HideShowButtons();
+        }
+
         //protected override bool OnBackButtonPressed()
         //{
         //    return true;

@@ -20,8 +20,13 @@ namespace AlertApp.Views
         {
             InitializeComponent();
             _localSettingsService = ViewModelLocator.Instance.Resolve<ILocalSettingsService>();
-        }
 
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                Pin1.Focus();
+            });
+        }
+        
         private void Pin1_TextChanged(object sender, TextChangedEventArgs e)
         {
             try

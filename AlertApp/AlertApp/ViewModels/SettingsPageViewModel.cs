@@ -1,5 +1,6 @@
 ﻿using AlertApp.Infrastructure;
 using AlertApp.Model;
+using AlertApp.Pages;
 using AlertApp.Resx;
 using AlertApp.Services.Settings;
 using Plugin.Permissions;
@@ -39,7 +40,18 @@ namespace AlertApp.ViewModels
                 }));
             }
         }
-        
+
+        private ICommand _OpenContactsScreen;
+        public ICommand OpenContactsScreen
+        {
+            get
+            {
+                return _OpenContactsScreen ?? (_OpenContactsScreen = new Command(NavigateToContactScreen, () =>
+                {
+                    return !Busy;
+                }));
+            }
+        }
         #endregion
 
         public SettingsPageViewModel(ILocalSettingsService localSettingsService)
@@ -119,6 +131,20 @@ namespace AlertApp.ViewModels
         private async void Back()
         {
             await NavigationService.PopAsync(false);
+        }
+
+        public void HideShowButtons()
+        {
+            OnPropertyChanged("ShowContactsMenuButton");
+            OnPropertyChanged("ShowInfoMenuButton");
+        }
+
+        private async void NavigateToContactScreen()
+        {
+
+            SetBusy(true);
+            await NavigationService.PushAsync(new ManageContactsPage(), false);
+            SetBusy(false);
         }
 
         #region BaseViewModel

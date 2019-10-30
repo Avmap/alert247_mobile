@@ -84,5 +84,11 @@ namespace AlertApp.Pages
         {
             Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.SettingPermissionLocationSubTitle, new SettingsLocationView()), false);
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ((SettingsPageViewModel)this.BindingContext).HideShowButtons();
+        }
     }
 }

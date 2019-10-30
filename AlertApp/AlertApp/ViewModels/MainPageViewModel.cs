@@ -3,6 +3,7 @@ using AlertApp.Pages;
 using AlertApp.Resx;
 using AlertApp.Services.Profile;
 using AlertApp.Services.Settings;
+using AlertApp.Utils;
 using Plugin.FirebasePushNotification;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
@@ -105,7 +106,7 @@ namespace AlertApp.ViewModels
 
         public bool ShowSosButton
         {
-            get { return !ShowCancelButton; }
+            get { return !ShowCancelButton && Preferences.Get(Settings.SOS_BUTTON_VISIBLE, true); }
         }
 
         private bool _ShowCancelButton;
@@ -127,6 +128,10 @@ namespace AlertApp.ViewModels
         Model.AlertType alertType;
 
         public Color ColorPressToCancel => ShowCancelButton ? Color.Black : Color.Transparent;
+
+        public bool ShowThreatButton => Preferences.Get(Settings.THREAT_BUTTON_VISIBLE, true);
+        public bool ShowFireButton => Preferences.Get(Settings.FIRE_BUTTON_VISIBLE, true);
+        public bool ShowAccidentButton => Preferences.Get(Settings.ACCIDENT_BUTTON_VISIBLE, true);
         #endregion
 
         public MainPageViewModel(IUserProfileService userProfileService, ILocalSettingsService localSettingsService)
@@ -208,7 +213,7 @@ namespace AlertApp.ViewModels
             }
             SetBusy(true);
             ShowCancelButton = true;
-            stop = false;            
+            stop = false;
             StartTimer();
         }
         private async void CancelSendAlert()
@@ -263,6 +268,16 @@ namespace AlertApp.ViewModels
             }
 
             ShowCancelButton = false;
+        }
+
+        public void HideShowButtons()
+        {
+            OnPropertyChanged("ShowSosButton");
+            OnPropertyChanged("ShowThreatButton");
+            OnPropertyChanged("ShowFireButton");
+            OnPropertyChanged("ShowAccidentButton");
+            OnPropertyChanged("ShowContactsMenuButton");
+            OnPropertyChanged("ShowInfoMenuButton");
         }
 
         #region BaseViewModel

@@ -13,6 +13,9 @@ namespace AlertApp.Infrastructure
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+        public bool ShowContactsMenuButton => Preferences.Get(Settings.CONTACTS_BUTTON_VISIBLE, true);
+        public bool ShowInfoMenuButton => Preferences.Get(Settings.INFORMATION_BUTTON_VISIBLE, true);
+
         public bool? IsVisible { get; set; }
 
         public bool NotBusy { get { return !Busy; } }
