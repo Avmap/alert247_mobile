@@ -25,11 +25,11 @@ namespace AlertApp.Pages
             //guardianSwitch.On = ((SettingsPageViewModel)this.BindingContext).AllwaysOn;
         }
 
-        private void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
+      
+        private void Switch_Toggled(object sender, ToggledEventArgs e)
         {
             ToggleGuardianSwitch(e.Value, false);
         }
-
         private void GuardianSwitch_Tapped(object sender, EventArgs e)
         {
             var switchCell = sender as SwitchCell;
@@ -78,6 +78,11 @@ namespace AlertApp.Pages
         private void ButtonsView_Tap(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SettingContainerPage(AppResources.SettingButtonsTitle, AppResources.SettingButtonsSubTitle, new SettingsButtonsView()), false);
+        }
+
+        private void Location_Tap(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.SettingPermissionLocationSubTitle, new SettingsLocationView()), false);
         }
     }
 }

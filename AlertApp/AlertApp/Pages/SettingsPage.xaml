@@ -31,7 +31,11 @@
                     </views:SettingCellView.GestureRecognizers>
                 </views:SettingCellView>
                 <views:SettingsHeader Title="{infrastructure:Translate SettingsPermissions}"></views:SettingsHeader>
-                <views:SettingCellView Title="{infrastructure:Translate SettingLocation}"></views:SettingCellView>
+                <views:SettingCellView Title="{infrastructure:Translate SettingLocation}">
+                    <views:SettingCellView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Location_Tap"></TapGestureRecognizer>
+                    </views:SettingCellView.GestureRecognizers>
+                </views:SettingCellView>
                 <views:SettingCellView Title="{infrastructure:Translate SettingContacts}"></views:SettingCellView>
                 <views:SettingsHeader Title="{infrastructure:Translate SettingsAccount}"></views:SettingsHeader>
                 <views:SettingCellView Title="{infrastructure:Translate SettingChangePin}"></views:SettingCellView>

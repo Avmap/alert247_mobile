@@ -1033,6 +1033,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        internal static string SettingPermissionLocationSubTitle {
+            get {
+                return ResourceManager.GetString("SettingPermissionLocationSubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings - Permissions.
+        /// </summary>
+        internal static string SettingPermissionTitle {
+            get {
+                return ResourceManager.GetString("SettingPermissionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account.
         /// </summary>
         internal static string SettingsAccount {
@@ -1047,6 +1065,24 @@ namespace AlertApp.Resx {
         internal static string SettingsButtonsViewMessage {
             get {
                 return ResourceManager.GetString("SettingsButtonsViewMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable or disable location tracking.
+        /// </summary>
+        internal static string SettingsLocationMessage {
+            get {
+                return ResourceManager.GetString("SettingsLocationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location is used in case of emergency.
+        /// </summary>
+        internal static string SettingsLocationSubtitle {
+            get {
+                return ResourceManager.GetString("SettingsLocationSubtitle", resourceCulture);
             }
         }
         

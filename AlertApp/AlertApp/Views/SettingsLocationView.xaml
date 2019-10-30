@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" 
+             x:Class="AlertApp.Views.SettingsLocationView">
+  <ContentView.Content>
+      <StackLayout>
+            <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsLocationMessage}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
+
+            <StackLayout Orientation="Horizontal" Margin="0,16,0,0" Spacing="0" HorizontalOptions="FillAndExpand">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="LOCATION"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Label Text="{infrastructure:Translate LocationTracking}"  Padding="16,4,16,4" Style="{StaticResource SwitchText}" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                <Switch x:Name="LOCATION" Toggled="Switch_Toggled"   HorizontalOptions="End" Margin="0,0,16,0" />
+            </StackLayout>
+
+            <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsLocationSubtitle}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
+            
+          <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,16,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ConfirmSettingsClick"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Image HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
+                <Label Text="{infrastructure:Translate Confirmation}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
+            </StackLayout>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

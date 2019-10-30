@@ -556,4 +556,16 @@
   <data name="ConfirmPinToSaveSettings" xml:space="preserve">
     <value>To save enter 4pin code and press "Finish"</value>
   </data>
+  <data name="SettingPermissionLocationSubTitle" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="SettingPermissionTitle" xml:space="preserve">
+    <value>Settings - Permissions</value>
+  </data>
+  <data name="SettingsLocationMessage" xml:space="preserve">
+    <value>Enable or disable location tracking</value>
+  </data>
+  <data name="SettingsLocationSubtitle" xml:space="preserve">
+    <value>Location is used in case of emergency</value>
+  </data>
 </root>

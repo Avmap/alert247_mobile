@@ -85,21 +85,7 @@ namespace AlertApp.Views
             var confirmView = new ConfirmChangeView();            
             var page = new SettingContainerPage(AppResources.SettingButtonsTitle, AppResources.Confirmation, confirmView);
             page.Disappearing += (sender2, e2) =>
-            {
-
-                //var vm = contactsPage.BindingContext as AddContactPageViewModel;
-                //if (vm.HasChange)
-                //{
-                //    foreach (var page in NavigationService.NavigationStack)
-                //    {
-                //        if (page is ManageContactsPage)
-                //        {
-                //            SetBusy(true);
-                //            ((ManageContactsPage)page).RefreshContacts();
-                //            break;
-                //        }
-                //    }
-                //}
+            {               
                 if (confirmView.Confirmed){
                     SaveChanges();
                 }

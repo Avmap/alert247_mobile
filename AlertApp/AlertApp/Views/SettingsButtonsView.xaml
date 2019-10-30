@@ -4,7 +4,7 @@
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"    
              x:Class="AlertApp.Views.SettingsButtonsView">
     <ContentView.Content>
-        <StackLayout x:Name="rootLayout" VerticalOptions="Start">
+        <StackLayout VerticalOptions="Start">
             <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsButtonsViewMessage}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
             <StackLayout Margin="0,16,0,0" Orientation="Vertical" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
 
@@ -63,7 +63,7 @@
                     <TapGestureRecognizer Tapped="ConfirmSettingsClick"></TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
                 <Image HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
-                <Label Text="{infrastructure:Translate Finish}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
+                <Label Text="{infrastructure:Translate Confirmation}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
             </StackLayout>
         </StackLayout>
     </ContentView.Content>

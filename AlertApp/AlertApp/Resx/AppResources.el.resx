@@ -562,4 +562,16 @@
   <data name="ConfirmPinToSaveSettings" xml:space="preserve">
     <value>Για αποθήκευση εισάγετε τον προσωπικό σας 4ψήφιο κωδικό (PIN) και πατήστε "Ολοκλήρωση"</value>
   </data>
+  <data name="SettingPermissionLocationSubTitle" xml:space="preserve">
+    <value>Τοποθεσία</value>
+  </data>
+  <data name="SettingPermissionTitle" xml:space="preserve">
+    <value>Ρυθμίσεις - Δικαιώματα</value>
+  </data>
+  <data name="SettingsLocationMessage" xml:space="preserve">
+    <value>Ενεργοποιήστε ή απενεργοποιήστε τον εντοπισμό και την αποστολή τοποθεσίας σας και πατήστε "Επιβεβαίωση"</value>
+  </data>
+  <data name="SettingsLocationSubtitle" xml:space="preserve">
+    <value>Η τοποθεσία χρησιμοποιείται για τον εντοπισμό της θέσης της συσκευής και την αποστολή του στις επαφές σας, σε περίπτωση έκτακτης ανάγκης.</value>
+  </data>
 </root>
