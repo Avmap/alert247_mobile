@@ -32,21 +32,31 @@ namespace AlertApp.Services.Cryptography
             _localSettingsService.SaveApplicationPin(userPin);
             var asymmAlgorithm = AsymmetricKeyAlgorithmProvider.OpenAlgorithm(PCLCrypto.AsymmetricAlgorithm.RsaPkcs1);
 
-            ICryptographicKey key = asymmAlgorithm.CreateKeyPair(4096);
+            try
+            {
+                ICryptographicKey key = asymmAlgorithm.CreateKeyPair(4096);
 
-            var privateKeyBytes = key.Export(CryptographicPrivateKeyBlobType.Pkcs1RsaPrivateKey);
-            var publicKeyBytes = key.ExportPublicKey(CryptographicPublicKeyBlobType.Pkcs1RsaPublicKey);
+                var privateKeyBytes = key.Export(CryptographicPrivateKeyBlobType.Pkcs1RsaPrivateKey);
+                var publicKeyBytes = key.ExportPublicKey(CryptographicPublicKeyBlobType.Pkcs1RsaPublicKey);
 
-            var privateKeyBase64 = Convert.ToBase64String(privateKeyBytes);
-            var publicKeyBase64 = Convert.ToBase64String(publicKeyBytes);
+                var privateKeyBase64 = Convert.ToBase64String(privateKeyBytes);
+                var publicKeyBase64 = Convert.ToBase64String(publicKeyBytes);
 
-            //save public key
-            _localSettingsService.SavePublicKey(publicKeyBase64);
+                //save public key
+                _localSettingsService.SavePublicKey(publicKeyBase64);
 
-            var encryptedPrivateKey = AesEncrypt(privateKeyBase64, userPin);
+                var encryptedPrivateKey = AesEncrypt(privateKeyBase64, userPin);
 
-            //save private key
-            _localSettingsService.SavePrivateKey(encryptedPrivateKey);
+                //save private key
+                _localSettingsService.SavePrivateKey(encryptedPrivateKey);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+
 
             //too slow method with RSACryptoServiceProvider
             //using (var rsa = new RSACryptoServiceProvider(4096))
@@ -323,10 +333,10 @@ namespace AlertApp.Services.Cryptography
 
                 var fileKeyString = Convert.FromBase64String(fileKey);
 
-                byte[] plaintextFileKey = WinRTCrypto.CryptographicEngine.Decrypt(privateKeyDecryptor, fileKeyString);                
+                byte[] plaintextFileKey = WinRTCrypto.CryptographicEngine.Decrypt(privateKeyDecryptor, fileKeyString);
 
-                string descryptedProfileData= AesDecrypt(encryptedProfileData, Encoding.UTF8.GetString(plaintextFileKey));
-                
+                string descryptedProfileData = AesDecrypt(encryptedProfileData, Encoding.UTF8.GetString(plaintextFileKey));
+
                 return JsonConvert.DeserializeObject<Dictionary<string, string>>(descryptedProfileData);
 
             }

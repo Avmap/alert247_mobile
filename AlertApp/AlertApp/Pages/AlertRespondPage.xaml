@@ -1,11 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             ios:Page.UseSafeArea="true"
+             xmlns:views="clr-namespace:AlertApp.Views"
              x:Class="AlertApp.Pages.AlertRespondPage"
              Navigation="{Binding NavigationService}" 
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"   
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-                xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              NavigationPage.HasNavigationBar="false"
              >
     <ContentPage.Content>
@@ -15,15 +18,20 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <Frame Grid.Row="0">
+            <views:ToolBarFrame Grid.Row="0">
                 <StackLayout Orientation="Horizontal" Margin="8,14,16,0">
                     <Image Source="logo.png" WidthRequest="100"></Image>
                     <StackLayout  Orientation="Vertical"  HorizontalOptions="EndAndExpand">
                         <Label Style="{StaticResource HeaderNotificationText}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" VerticalOptions="Center"  Text="{infrastructure:Translate NewAlertTitle}"></Label>
                         <Label Style="{StaticResource SubtitleNotificationText}"  HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="SOS"></Label>
+                        <OnPlatform x:TypeArguments="View">
+                            <On Platform="iOS">
+                                <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
+                            </On>
+                        </OnPlatform>
                     </StackLayout>
                 </StackLayout>
-            </Frame>
+            </views:ToolBarFrame>
             
             <StackLayout Grid.Row="1">
 

@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" 
- 
+             ios:Page.UseSafeArea="true"
+             xmlns:views="clr-namespace:AlertApp.Views"
              Navigation="{Binding NavigationService}" 
              BackgroundColor="{StaticResource RegistrationBackgrounColor}"             
              x:Class="AlertApp.Pages.EnterApplicationPinCodePage">
@@ -16,14 +18,15 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Frame Grid.Row="0" Padding="0,8,0,8" HasShadow="True">
+                <views:ToolBarFrame Grid.Row="0" Padding="0,8,0,8">
                     <StackLayout  Orientation="Vertical" Spacing="2" HorizontalOptions="FillAndExpand">
                         <Label Style="{StaticResource HeaderToolbar}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="{infrastructure:Translate StartSettings}"></Label>
                         <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource SubtitleToolbar}" Text="{infrastructure:Translate EnterPin}"></Label>
+                        <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
                     </StackLayout>
-                </Frame>
+                </views:ToolBarFrame>
                 <Label Grid.Row="1" Margin="16,0,16,0"  Text="{Binding PromtText}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
-                
+
                 <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="Center">
                     <Frame HorizontalOptions="Center" BackgroundColor="#E6E7E8" CornerRadius="16" Padding="8,2,8,2" HasShadow="False">
                         <StackLayout  Orientation="Horizontal"  Spacing="8" HorizontalOptions="Center">

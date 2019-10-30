@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              xmlns:views="clr-namespace:AlertApp.Views"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              BackgroundColor="{StaticResource RegistrationBackgrounColor}"         
              Navigation="{Binding NavigationService}"              
-               NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasNavigationBar="False"
+             ios:Page.UseSafeArea="true"
              Title="{infrastructure:Translate EnterMobileNumberTitle}"             
              x:Class="AlertApp.Pages.EnterMobileNumberPage">
     <ContentPage.Content>
@@ -16,12 +18,13 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Frame Grid.Row="0" Padding="0,8,0,8" HasShadow="True">
+            <views:ToolBarFrame Grid.Row="0" Padding="0,8,0,8">
                 <StackLayout  Orientation="Vertical" Spacing="2" HorizontalOptions="FillAndExpand">
                     <Label Style="{StaticResource HeaderToolbar}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="{infrastructure:Translate StartSettings}"></Label>
                     <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource SubtitleToolbar}" Text="{infrastructure:Translate EnterMobileNumberTitle}"></Label>
+                    <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
                 </StackLayout>
-            </Frame>
+            </views:ToolBarFrame>
             <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="Center" Spacing="0">
                 <Image WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}" HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding SelectedLanguage.Flag}">
                     <Image.GestureRecognizers>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlertApp.Views.ToolBarFrame">
+    <ContentView.Content>
+        <Frame Padding="0,8,0,8">
+            <Frame.HasShadow>
+                <OnPlatform x:TypeArguments="x:Boolean">
+                    <On Platform="iOS">False</On>
+                    <On Platform="Android">False</On>
+                </OnPlatform>
+            </Frame.HasShadow>       
+        </Frame>
+    </ContentView.Content>
+</ContentView>

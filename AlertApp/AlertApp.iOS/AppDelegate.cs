@@ -28,8 +28,9 @@ namespace AlertApp.iOS
             global::Xamarin.Forms.Forms.Init();
             CarouselViewRenderer.Init();
             LoadApplication(new App());
-            Firebase.Core.App.Configure();
+            //Firebase.Core.App.Configure();
             ImageCircleRenderer.Init();
+            Xamarin.FormsMaps.Init();
             return base.FinishedLaunching(app, options);
         }
     }

@@ -50,15 +50,19 @@ namespace AlertApp
                     }
                 }
                 MainPage = new NavigationPage(new SelectLanguagePage());
+              //  MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { Position = "37.9849,23.7620", Cellphone = "+306983836637" } }));
             }
             else
             {
+               // MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { Position = "37.9849,23.7620", Cellphone = "+306983836637" } }));
                 MainPage = new NavigationPage(new MainPage());
                 //  MainPage = new NavigationPage(new ManageContactsPage());
                 //   MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { Position= "37.9849,23.7620", Cellphone = "+306983836637"} }));
             }
 
 #if DEBUG
+         //   var crypto =  ViewModelLocator.Instance.Resolve<ICryptographyService>();
+          //  crypto.GenerateKeys("1770");
             //  var contactService = DependencyService.Get<IContacts>();
             // var addressBookContact = contactService.GetContacts();
 #endif
@@ -89,7 +93,12 @@ namespace AlertApp
         {
             RequestPermissions();
             VersionTracking.Track();
-
+            // First time launching app
+            var firstLaunchEver = VersionTracking.IsFirstLaunchEver;
+            if (firstLaunchEver)
+            {
+                SetSettings();
+            }
             // First time launching current version
             var firstLaunchCurrent = VersionTracking.IsFirstLaunchForCurrentVersion;
             if (firstLaunchCurrent)
@@ -97,12 +106,7 @@ namespace AlertApp
                 var currentVersion = VersionTracking.CurrentVersion;
                 if (currentVersion == "0.00.62")
                 {
-                    Preferences.Set(Settings.SOS_BUTTON_VISIBLE, true);
-                    Preferences.Set(Settings.THREAT_BUTTON_VISIBLE, true);
-                    Preferences.Set(Settings.FIRE_BUTTON_VISIBLE, true);
-                    Preferences.Set(Settings.ACCIDENT_BUTTON_VISIBLE, true);
-                    Preferences.Set(Settings.CONTACTS_BUTTON_VISIBLE, true);
-                    Preferences.Set(Settings.INFORMATION_BUTTON_VISIBLE, true);
+                    SetSettings();
                 }
             }
             // Handle when your app starts
@@ -223,6 +227,16 @@ namespace AlertApp
                 }
             });
 
+        }
+
+        private void SetSettings()
+        {
+            Preferences.Set(Settings.SOS_BUTTON_VISIBLE, true);
+            Preferences.Set(Settings.THREAT_BUTTON_VISIBLE, true);
+            Preferences.Set(Settings.FIRE_BUTTON_VISIBLE, true);
+            Preferences.Set(Settings.ACCIDENT_BUTTON_VISIBLE, true);
+            Preferences.Set(Settings.CONTACTS_BUTTON_VISIBLE, true);
+            Preferences.Set(Settings.INFORMATION_BUTTON_VISIBLE, true);
         }
 
     }

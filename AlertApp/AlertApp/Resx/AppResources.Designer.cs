@@ -1386,9 +1386,9 @@ namespace AlertApp.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Weight.
         /// </summary>
-        internal static string weight {
+        internal static string Weight {
             get {
-                return ResourceManager.GetString("weight", resourceCulture);
+                return ResourceManager.GetString("Weight", resourceCulture);
             }
         }
         

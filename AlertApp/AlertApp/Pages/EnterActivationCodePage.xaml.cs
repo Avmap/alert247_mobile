@@ -144,5 +144,24 @@ namespace AlertApp.Pages
                 vm.UnRegisterForSmsEvent();
             }
         }
+
+        private void OtpEntry_IOS_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (e.NewTextValue != null && e.NewTextValue.Length == 6)
+                {
+                    var vm = this.BindingContext as EnterActivationCodePageViewModel;
+                    if (vm != null)
+                    {
+                        vm.ContinueCommand.Execute(null);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
     }
 }

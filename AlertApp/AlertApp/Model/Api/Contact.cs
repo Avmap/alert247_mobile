@@ -46,6 +46,9 @@ namespace AlertApp.Model.Api
         public string NewRequestMessage => String.Format("{0} {1}", Title, AppResources.NewCommunityRequestWantParticipateMessage);
 
         public string NewRequestMessage2 => String.Format("{0},{1} {2}", AppResources.ByAccepting, Title, AppResources.ByAcceptingWillAbleToHelpYou);
+
+
+        public string FormmattedNumber => ImportContact.GetFormattedNumber(Cellphone);
         #endregion
 
     }

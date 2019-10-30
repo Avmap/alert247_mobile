@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:views="clr-namespace:AlertApp.Views"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Navigation="{Binding NavigationService}" 
              BackgroundColor="{StaticResource RegistrationBackgrounColor}"             
@@ -9,12 +11,13 @@
         <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Image Source="call_center.png"  AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" VerticalOptions="EndAndExpand" Aspect="AspectFill" HeightRequest="110" HorizontalOptions="FillAndExpand"></Image>
             <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Orientation="Vertical" >
-                <Frame Padding="0,8,0,8" HasShadow="True">
+                <views:ToolBarFrame Padding="0,8,0,8">
                     <StackLayout  Orientation="Vertical" Spacing="2" HorizontalOptions="FillAndExpand">
                         <Label Style="{StaticResource HeaderToolbar}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="{infrastructure:Translate StartSettings}"></Label>
                         <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource SubtitleToolbar}" Text="{infrastructure:Translate UserDetails}"></Label>
+                        <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
                     </StackLayout>
-                </Frame>
+                </views:ToolBarFrame>
                 <Label Margin="16,0,16,0" x:Name="labelPrompt"  Text="{infrastructure:Translate RegistrationEnterFieldsPromt}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
                 <StackLayout Margin="0,8,0,8" x:Name="topNextButton" IsVisible="False" Orientation="Vertical"  HorizontalOptions="Center">
                     <Image x:Name="topNextImage" HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>

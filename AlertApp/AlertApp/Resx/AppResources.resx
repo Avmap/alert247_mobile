@@ -424,7 +424,7 @@
   <data name="UserIsInPosition" xml:space="preserve">
     <value>Now he is on:</value>
   </data>
-  <data name="weight" xml:space="preserve">
+  <data name="Weight" xml:space="preserve">
     <value>Weight</value>
   </data>
   <data name="AcceptContactRequest" xml:space="preserve">

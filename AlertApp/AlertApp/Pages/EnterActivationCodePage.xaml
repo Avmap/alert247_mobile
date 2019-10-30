@@ -1,11 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
              Navigation="{Binding NavigationService}"   
+             xmlns:views="clr-namespace:AlertApp.Views"
              NavigationPage.HasNavigationBar="False"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              BackgroundColor="{StaticResource RegistrationBackgrounColor}"
-             Title="{infrastructure:Translate EnterVerificationCodeTitle}"              
+             Title="{infrastructure:Translate EnterVerificationCodeTitle}" 
+             ios:Page.UseSafeArea="true"
              x:Class="AlertApp.Pages.EnterActivationCodePage">
     <ContentPage.Content>
         <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -16,19 +19,20 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Frame Grid.Row="0" Padding="0,8,0,8" HasShadow="True">
+                <views:ToolBarFrame Grid.Row="0" Padding="0,8,0,8">
                     <StackLayout  Orientation="Vertical" Spacing="2" HorizontalOptions="FillAndExpand">
                         <Label Style="{StaticResource HeaderToolbar}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="{infrastructure:Translate StartSettings}"></Label>
                         <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource SubtitleToolbar}" Text="{infrastructure:Translate VerificationCodePageTitle}"></Label>
+                        <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
                     </StackLayout>
-                </Frame>
+                </views:ToolBarFrame>
                 <StackLayout  Margin="16,0,16,0" Grid.Row="1" Orientation="Vertical" HorizontalOptions="FillAndExpand">
                     <Label Style="{StaticResource RegistrationText}" FontSize="18" Text="{Binding TimerText,Mode=TwoWay}" HorizontalTextAlignment="Center"></Label>
                     <Label Text="{infrastructure:Translate WaitForSMS}"  HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
                     <StackLayout HorizontalOptions="FillAndExpand" Spacing="8" Margin="65,24,65,0">
                         <OnPlatform x:TypeArguments="View">
                             <On Platform="iOS">
-                                <infrastructure:OtpEntry Keyboard="Telephone" MaxLength="6" HorizontalTextAlignment="Center" Text="{Binding VerificationCode,Mode=TwoWay}" Style="{StaticResource Headline5BoldEntry}"></infrastructure:OtpEntry>
+                                <infrastructure:OtpEntry Keyboard="Telephone" TextChanged="OtpEntry_IOS_TextChanged" MaxLength="6" HorizontalTextAlignment="Center" Text="{Binding VerificationCode,Mode=TwoWay}" Style="{StaticResource Headline5BoldEntry}"></infrastructure:OtpEntry>
                             </On>
                             <On Platform="Android">
                                 <Frame BackgroundColor="#E6E7E8" CornerRadius="16" Padding="2,2,2,2" HasShadow="False">
