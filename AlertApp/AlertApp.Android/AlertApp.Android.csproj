@@ -358,6 +358,7 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\invite_friends.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_keyboard_arrow_right_black_48.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\next_copy.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_back.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

@@ -42,7 +42,7 @@
                         <Switch  VerticalOptions="Center" IsToggled="{Binding LocationTracking,Mode=TwoWay}"></Switch>
                     </StackLayout>
                     <StackLayout IsVisible="{Binding CanContinue}" Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="Center">
-                        <Image Source="next_copy.png">
+                        <Image HeightRequest="56" WidthRequest="56" Source="next_copy.png">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer  Command="{Binding ContinueCommand}"></TapGestureRecognizer>
                             </Image.GestureRecognizers>

@@ -14,10 +14,13 @@
                 <RowDefinition Height="110"/>
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Margin="0,16,0,16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Source="alert_logo.png" />
+            <Image Grid.Row="0"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Source="alert_logo.png" >
+                <Image.Margin>
+                    <OnPlatform x:TypeArguments="Thickness" iOS="0,32,0,0" Android="0,16,0,16" />
+                </Image.Margin>
+            </Image>
 
             <StackLayout Grid.Row="1" Spacing="16" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="16" >
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <Image Source="gr_GR.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}">
