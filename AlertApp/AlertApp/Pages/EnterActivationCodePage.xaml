@@ -18,14 +18,7 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-
-                <views:ToolBarFrame Grid.Row="0" Padding="0,8,0,8">
-                    <StackLayout  Orientation="Vertical" Spacing="2" HorizontalOptions="FillAndExpand">
-                        <Label Style="{StaticResource HeaderToolbar}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="{infrastructure:Translate StartSettings}"></Label>
-                        <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource SubtitleToolbar}" Text="{infrastructure:Translate VerificationCodePageTitle}"></Label>
-                        <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
-                    </StackLayout>
-                </views:ToolBarFrame>
+                <views:Toolbar BackCommand="{Binding BaseBackCommand}" HasBackButton="True" Title="{infrastructure:Translate StartSettings}" SubTitle="{infrastructure:Translate VerificationCodePageTitle}" Grid.Row="0" ></views:Toolbar>
                 <StackLayout  Margin="16,0,16,0" Grid.Row="1" Orientation="Vertical" HorizontalOptions="FillAndExpand">
                     <Label Style="{StaticResource RegistrationText}" FontSize="18" Text="{Binding TimerText,Mode=TwoWay}" HorizontalTextAlignment="Center"></Label>
                     <Label Text="{infrastructure:Translate WaitForSMS}"  HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>

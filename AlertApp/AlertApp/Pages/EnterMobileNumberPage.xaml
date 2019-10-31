@@ -17,7 +17,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <views:Toolbar BackCommand="{Binding BackCommand}" HasBackButton="True" Title="{infrastructure:Translate StartSettings}" SubTitle="{infrastructure:Translate EnterMobileNumberTitle}" Grid.Row="0" ></views:Toolbar>
+            <views:Toolbar BackCommand="{Binding BaseBackCommand}" HasBackButton="True" Title="{infrastructure:Translate StartSettings}" SubTitle="{infrastructure:Translate EnterMobileNumberTitle}" Grid.Row="0" ></views:Toolbar>
             <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="Center" Spacing="0">
                 <Image WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}" HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding SelectedLanguage.Flag}">
                     <Image.GestureRecognizers>

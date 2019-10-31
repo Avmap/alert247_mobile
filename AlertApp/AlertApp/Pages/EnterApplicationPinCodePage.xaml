@@ -17,14 +17,8 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-
-                <views:ToolBarFrame Grid.Row="0" Padding="0,8,0,8">
-                    <StackLayout  Orientation="Vertical" Spacing="2" HorizontalOptions="FillAndExpand">
-                        <Label Style="{StaticResource HeaderToolbar}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="{infrastructure:Translate StartSettings}"></Label>
-                        <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource SubtitleToolbar}" Text="{infrastructure:Translate EnterPin}"></Label>
-                        <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
-                    </StackLayout>
-                </views:ToolBarFrame>
+                <views:Toolbar  HasBackButton="False" Title="{infrastructure:Translate StartSettings}" SubTitle="{infrastructure:Translate EnterPin}" Grid.Row="0" ></views:Toolbar>
+               
                 <Label Grid.Row="1" Margin="16,0,16,0"  Text="{Binding PromtText}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
 
                 <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="Center">

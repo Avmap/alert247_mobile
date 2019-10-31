@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -13,6 +14,23 @@ namespace AlertApp.Infrastructure
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+        private ICommand _BaseBackCommand;
+        public ICommand BaseBackCommand
+        {
+            get
+            {
+                return _BaseBackCommand ?? (_BaseBackCommand = new Command(Back, () =>
+                {
+                    return !Busy;
+                }));
+            }
+        }
+
+        private async void Back()
+        {
+            await NavigationService.PopAsync(false);
+        }
+
         public bool ShowContactsMenuButton => Preferences.Get(Settings.CONTACTS_BUTTON_VISIBLE, true);
         public bool ShowInfoMenuButton => Preferences.Get(Settings.INFORMATION_BUTTON_VISIBLE, true);
 

@@ -28,19 +28,7 @@ namespace AlertApp.ViewModels
                 }));
             }
         }
-
-        private ICommand _BackCommand;
-        public ICommand BackCommand
-        {
-            get
-            {
-                return _BackCommand ?? (_BackCommand = new Command(Back, () =>
-                {
-                    return !Busy;
-                }));
-            }
-        }
-
+      
 
         #endregion
 
@@ -87,13 +75,7 @@ namespace AlertApp.ViewModels
             {
                 showOKMessage(AppResources.Warning, AppResources.WarningFillNumber);
             }
-        }
-
-
-        private async void Back()
-        {
-            await NavigationService.PopAsync(false);
-        }
+        }  
 
         #region BaseViewModel
 
