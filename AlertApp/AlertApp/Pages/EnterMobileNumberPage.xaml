@@ -17,18 +17,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-
-            <views:ToolBarFrame Grid.Row="0" Padding="0,8,0,8">
-                
-                    <!--<Image Margin="16,0,0,0" HeightRequest="48" WidthRequest="48" Source="ic_back.png"></Image>-->
-                    <StackLayout  Orientation="Vertical" Spacing="2" HorizontalOptions="FillAndExpand">
-                        <Label Style="{StaticResource HeaderToolbar}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="{infrastructure:Translate StartSettings}"></Label>
-                        <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource SubtitleToolbar}" Text="{infrastructure:Translate EnterMobileNumberTitle}"></Label>
-                        <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
-                    </StackLayout>
-                
-
-            </views:ToolBarFrame>
+            <views:Toolbar BackCommand="{Binding BackCommand}" HasBackButton="True" Title="{infrastructure:Translate StartSettings}" SubTitle="{infrastructure:Translate EnterMobileNumberTitle}" Grid.Row="0" ></views:Toolbar>
             <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="Center" Spacing="0">
                 <Image WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}" HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding SelectedLanguage.Flag}">
                     <Image.GestureRecognizers>
