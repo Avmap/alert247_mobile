@@ -69,7 +69,8 @@ namespace AlertApp.ViewModels
             _unityContainer.RegisterType<WhoAlertsMePageViewModel>();
             _unityContainer.RegisterType<AlertRespondPageViewModel>();
             _unityContainer.RegisterType<BlockedUsersPageViewModel>();
-
+            _unityContainer.RegisterType<SettingContainerPageViewModel>();
+            
         }
 
         public T Resolve<T>()

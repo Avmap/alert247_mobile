@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AlertApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,8 +15,11 @@ namespace AlertApp.Pages
 	{
 		public SettingContainerPage (string title,string subtitle,ContentView child)
 		{
-			InitializeComponent ();
-            this.title.Text = title;
+			InitializeComponent ();            
+            var vm = ViewModelLocator.Instance.Resolve<SettingContainerPageViewModel>();
+            vm.Title = title;
+            this.BindingContext = vm;
+
             this.subtitle.Text = subtitle;
 
             this.container.Children.Add(child);

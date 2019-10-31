@@ -21,7 +21,11 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Margin="0,16,0,0" VerticalOptions="FillAndExpand" Source="alert_logo.png"></Image>
+                <Image Grid.Row="0"  VerticalOptions="FillAndExpand" Source="alert_logo.png">
+                    <Image.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" iOS="0,32,0,0" Android="0,16,0,16" />
+                    </Image.Margin>
+                </Image>
                 
                 <Label Grid.Row="1" Margin="16,0,16,0" TextColor="{Binding ColorPressToCancel}" Text="{infrastructure:Translate MainPressToCancel}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
 

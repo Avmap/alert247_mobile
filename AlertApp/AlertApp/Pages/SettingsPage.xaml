@@ -16,10 +16,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-
-            <Frame Grid.Row="0" HasShadow="False">
-                <Label  FontSize="22" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{StaticResource PrimaryColor}"  Text="{infrastructure:Translate SettingsTab}"></Label>
-            </Frame>
+            <views:SingleTitleToolbar BackCommand="{Binding BaseBackCommand}" Grid.Row="0" HasBackButton="True" Title="{infrastructure:Translate SettingsTab}" ></views:SingleTitleToolbar>       
             <StackLayout Grid.Row="1" Orientation="Vertical">
                 <views:SettingsHeader Title="{infrastructure:Translate SettingsView}"/>
                 <views:SettingCellView Title="{infrastructure:Translate SettingLanguage}">
