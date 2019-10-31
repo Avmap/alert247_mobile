@@ -118,8 +118,6 @@ Global
 		{10420DF5-D1C4-4924-9789-107B154D354D}.Release|ARM64.Build.0 = Release|Any CPU
 		{10420DF5-D1C4-4924-9789-107B154D354D}.Release|ARM64.Deploy.0 = Release|Any CPU
 		{10420DF5-D1C4-4924-9789-107B154D354D}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{10420DF5-D1C4-4924-9789-107B154D354D}.Release|iPhone.Build.0 = Release|Any CPU
-		{10420DF5-D1C4-4924-9789-107B154D354D}.Release|iPhone.Deploy.0 = Release|Any CPU
 		{10420DF5-D1C4-4924-9789-107B154D354D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{10420DF5-D1C4-4924-9789-107B154D354D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{10420DF5-D1C4-4924-9789-107B154D354D}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU

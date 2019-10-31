@@ -36,7 +36,7 @@ namespace AlertApp
         public App()
         {
             InitializeComponent();
-            var isUserRegistered = IsRegister().Result;
+            var isUserRegistered = IsRegister();
             if (!isUserRegistered)
             {
                 Preferences.Set(Settings.AlwaysOn, true);
@@ -49,44 +49,41 @@ namespace AlertApp
                         Preferences.Set(Settings.SelectedLanguage, systemlanguage.Name);
                     }
                 }
-                MainPage = new NavigationPage(new SelectLanguagePage());
-              //  MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { Position = "37.9849,23.7620", Cellphone = "+306983836637" } }));
+                MainPage = new NavigationPage(new SelectLanguagePage());                
             }
             else
             {
-               // MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { Position = "37.9849,23.7620", Cellphone = "+306983836637" } }));
-                MainPage = new NavigationPage(new MainPage());
-                //  MainPage = new NavigationPage(new ManageContactsPage());
-                //   MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { Position= "37.9849,23.7620", Cellphone = "+306983836637"} }));
+                MainPage = new NavigationPage(new MainPage());                
             }
 
 #if DEBUG
-         //   var crypto =  ViewModelLocator.Instance.Resolve<ICryptographyService>();
-          //  crypto.GenerateKeys("1770");
+            //   var crypto =  ViewModelLocator.Instance.Resolve<ICryptographyService>();
+            //  crypto.GenerateKeys("1770");
             //  var contactService = DependencyService.Get<IContacts>();
             // var addressBookContact = contactService.GetContacts();
 #endif
         }
 
-        private async Task<bool> IsRegister()
+        private bool IsRegister()
         {
-            string userID = null;
-            string token = null;
-            try
-            {
-                userID = await SecureStorage.GetAsync(Settings.UserId);
-                token = await SecureStorage.GetAsync(Settings.AuthToken);
-            }
-            catch (Exception ex)
-            {
-                // Possible that device doesn't support secure storage on device.
-                userID = Preferences.Get(Settings.UserId, "");
-                token = Preferences.Get(Settings.AuthToken, "");
-            }
-            if (!string.IsNullOrWhiteSpace(userID))
-                return true;
+            return Preferences.Get(Settings.HasFinishRegistration, false);
+            //string userID = null;
+            //string token = null;
+            //try
+            //{
+            //    userID = await SecureStorage.GetAsync(Settings.UserId);
+            //    token = await SecureStorage.GetAsync(Settings.AuthToken);
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Possible that device doesn't support secure storage on device.
+            //    userID = Preferences.Get(Settings.UserId, "");
+            //    token = Preferences.Get(Settings.AuthToken, "");
+            //}
+            //if (!string.IsNullOrWhiteSpace(userID))
+            //    return true;
 
-            return false;
+            //return false;
         }
 
         protected override void OnStart()
@@ -97,6 +94,7 @@ namespace AlertApp
             var firstLaunchEver = VersionTracking.IsFirstLaunchEver;
             if (firstLaunchEver)
             {
+                Preferences.Set(Settings.HasFinishRegistration, false);
                 SetSettings();
             }
             // First time launching current version

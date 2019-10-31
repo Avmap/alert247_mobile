@@ -55,7 +55,7 @@
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer  Command="{Binding ContinueCommand}"></TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>
-                    <Image HeightRequest="56" WidthRequest="56"  Source="next.png"/>
+                    <Image HeightRequest="56" WidthRequest="56"  Source="next_copy.png"/>
                     <Label Text="{infrastructure:Translate Continue}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
                 </StackLayout>
             </StackLayout>

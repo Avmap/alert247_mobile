@@ -3,12 +3,14 @@ using AlertApp.Pages;
 using AlertApp.Resx;
 using AlertApp.Services.Profile;
 using AlertApp.Services.Settings;
+using AlertApp.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AlertApp.ViewModels
@@ -39,6 +41,7 @@ namespace AlertApp.ViewModels
                 var storedProfile = await _userProfileService.StoreProfile(registrationValues, await _localSettingsService.GetAuthToken(), await _localSettingsService.GetPublicKey());
                 if (storedProfile.IsOk)
                 {
+                    Preferences.Set(Settings.HasFinishRegistration, true);
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         NavigationService.InsertPageBefore(new MainPage(), NavigationService.NavigationStack.First());

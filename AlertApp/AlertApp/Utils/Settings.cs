@@ -28,6 +28,8 @@ namespace AlertApp.Utils
         public static string ACCIDENT_BUTTON_VISIBLE = "ACCIDENT_BUTTON_VISIBLE";
         public static string CONTACTS_BUTTON_VISIBLE = "CONTACTS_BUTTON_VISIBLE";
         public static string INFORMATION_BUTTON_VISIBLE = "INFORMATION_BUTTON_VISIBLE";
-       
+
+        public static string HasFinishRegistration = "HasFinishRegistration";
+
     }
 }

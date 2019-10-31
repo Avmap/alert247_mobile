@@ -7,7 +7,9 @@
 	<key>NSContactsUsageDescription</key>
 	<string>This app requires contacts access to function properly.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Fill in a reason why your app needs access to location.</string>
+	<string>Alert 24/7 needs location in order to protect you.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Alert 24/7 needs location in order to protect you.</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -40,7 +42,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>gr.avmap.alert247</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.10</string>
+	<string>0.0.03</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
