@@ -97,7 +97,7 @@ namespace AlertApp
             var firstLaunchEver = VersionTracking.IsFirstLaunchEver;
             if (firstLaunchEver)
             {
-                Preferences.Set(Settings.HasFinishRegistration, false);
+               // Preferences.Set(Settings.HasFinishRegistration, false);
                 SetSettings();
             }
             // First time launching current version
