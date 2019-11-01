@@ -349,6 +349,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ACTIVE.
+        /// </summary>
+        internal static string ContactsPermissionActive {
+            get {
+                return ResourceManager.GetString("ContactsPermissionActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PRESS TO ENABLE.
+        /// </summary>
+        internal static string ContactsPermissionInActive {
+            get {
+                return ResourceManager.GetString("ContactsPermissionInActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue.
         /// </summary>
         internal static string Continue {

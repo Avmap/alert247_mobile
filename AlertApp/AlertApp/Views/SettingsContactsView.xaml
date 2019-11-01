@@ -3,26 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" 
              x:Class="AlertApp.Views.SettingsContactsView">
-  <ContentView.Content>
+    <ContentView.Content>
         <StackLayout>
-           
-            <StackLayout Orientation="Horizontal" Margin="0,16,0,0" Spacing="0" HorizontalOptions="FillAndExpand">
+
+            <!--<StackLayout Orientation="Horizontal" Margin="0,16,0,0" Spacing="0" HorizontalOptions="FillAndExpand">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="LOCATION"></TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
                 <Label Text="{infrastructure:Translate ContactPermissionSetting}"  Padding="16,4,16,4" Style="{StaticResource SwitchText}" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
                 <Switch x:Name="CONTACTS" Toggled="Switch_Toggled"   HorizontalOptions="End" Margin="0,0,16,0" />
-            </StackLayout>
-
+            </StackLayout>-->
+            <Frame x:Name="activeLayout" Margin="0,16,0,0" HasShadow="True" Padding="8,4,8,4" HorizontalOptions="Center" BackgroundColor="Green">
+                <Label Margin="16,8,16,8" Text="{infrastructure:Translate ContactsPermissionActive}" TextColor="White" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
+            </Frame>
+            <Frame x:Name="inactiveLayout" IsVisible="False" Margin="0,16,0,0" HasShadow="True" Padding="8,4,8,4" HorizontalOptions="Center" BackgroundColor="Red">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+                <Label Margin="16,8,16,8" Text="{infrastructure:Translate ContactsPermissionInActive}" TextColor="White" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
+            </Frame>
             <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsContactsPermissionSubtitle}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
 
-            <StackLayout IsVisible="False" x:Name="bottomNextButton" Orientation="Vertical" Margin="0,16,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                <!--<StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ConfirmSettingsClick"></TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>-->
-                <Image HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
-                <Label Text="{infrastructure:Translate Confirmation}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
-            </StackLayout>
+
         </StackLayout>
     </ContentView.Content>
 </ContentView>

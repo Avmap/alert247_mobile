@@ -595,6 +595,12 @@
   <data name="ReEnterNewPin" xml:space="preserve">
     <value>ΕΠΙΒΕΒΑΙΩΣΗ PIN</value>
   </data>
+  <data name="ContactsPermissionActive" xml:space="preserve">
+    <value>ΕΝΕΡΓΗ</value>
+  </data>
+  <data name="ContactsPermissionInActive" xml:space="preserve">
+    <value>ΠΑΤΗΣΤΕ ΓΙΑ ΕΝΕΡΓΟΠΟΙΗΣΗ</value>
+  </data>
   <data name="Succcess" xml:space="preserve">
     <value>Επιτυχία</value>
   </data>

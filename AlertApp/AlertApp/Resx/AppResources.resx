@@ -589,6 +589,12 @@
   <data name="ReEnterNewPin" xml:space="preserve">
     <value>ENTER AGAIN</value>
   </data>
+  <data name="ContactsPermissionActive" xml:space="preserve">
+    <value>ACTIVE</value>
+  </data>
+  <data name="ContactsPermissionInActive" xml:space="preserve">
+    <value>PRESS TO ENABLE</value>
+  </data>
   <data name="Succcess" xml:space="preserve">
     <value>Succcess</value>
   </data>

@@ -17,7 +17,7 @@ namespace AlertApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsContactsView : ContentView
     {
-        public bool fromCode { get; set; }
+
         public SettingsContactsView()
         {
             InitializeComponent();
@@ -26,11 +26,20 @@ namespace AlertApp.Views
                 var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
                 if (contactPermissionStatus == PermissionStatus.Granted)
                 {
-                    CONTACTS.IsToggled = true;
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        activeLayout.IsVisible = true;
+                        inactiveLayout.IsVisible = false;
+                    });
+
                 }
                 else
                 {
-                    CONTACTS.IsToggled = false;
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        activeLayout.IsVisible = false;
+                        inactiveLayout.IsVisible = true;
+                    });
                 }
             });
 
@@ -41,71 +50,28 @@ namespace AlertApp.Views
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             var args = e as Xamarin.Forms.TappedEventArgs;
-            CONTACTS.IsToggled = !CONTACTS.IsToggled;
-        }
-
-        private void Switch_Toggled(object sender, ToggledEventArgs e)
-        {
-            var switchView = sender as Switch;
-            if (!fromCode)
-            {
-                toggleSetting(switchView.Id.ToString(), true);
-            }
-        
-        }
-
-        private void toggleSetting(string setting, bool fromCode)
-        {
             Task.Run(async () =>
             {
                 var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Contacts });
                 var contactPermissionStatus = results[Permission.Contacts];
-                fromCode = true;
                 if (contactPermissionStatus == PermissionStatus.Granted)
                 {
-                    CONTACTS.IsToggled = true;
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        activeLayout.IsVisible = true;
+                        inactiveLayout.IsVisible = false;
+                    });
                 }
                 else
                 {
-                    CONTACTS.IsToggled = false;
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        activeLayout.IsVisible = false;
+                        inactiveLayout.IsVisible = true;
+                    });
                 }
-                fromCode = true;
             });
         }
-        private void toggle(string setting, Switch switchView)
-        {
-            var newValue = !switchView.IsToggled;
-            switchView.IsToggled = !switchView.IsToggled;
-        }
 
-        //private void ConfirmSettingsClick(object sender, EventArgs e)
-        //{
-        //    var confirmView = new ConfirmChangeView();
-        //    var page = new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.Confirmation, confirmView);
-        //    page.Disappearing += (sender2, e2) =>
-        //    {
-        //        if (confirmView.Confirmed)
-        //        {
-        //            SaveChanges();
-        //        }
-        //    };
-
-        //    Navigation.PushModalAsync(page);
-        //}
-
-        //private async void SaveChanges()
-        //{
-        //    var vm = this.BindingContext as SettingsPageViewModel;
-        //    if (CONTACTS.IsToggled)
-        //    {
-
-
-        //    }
-        //    else
-        //    {
-        //     //   vm.DisableGuardian();
-        //    }
-
-        //}
     }
 }
