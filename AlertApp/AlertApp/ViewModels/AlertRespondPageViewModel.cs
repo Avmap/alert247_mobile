@@ -4,10 +4,12 @@ using AlertApp.Model.Api;
 using AlertApp.Resx;
 using AlertApp.Services.Cryptography;
 using AlertApp.Services.Registration;
+using AlertApp.Services.Settings;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +22,8 @@ namespace AlertApp.ViewModels
     public class AlertRespondPageViewModel : BaseViewModel
     {
         #region Properties
+
+        public ObservableCollection<Field> Fields { get; set; } = new ObservableCollection<Field>();
 
         private ImageSource _ProfileImage;
 
@@ -117,12 +121,15 @@ namespace AlertApp.ViewModels
         private readonly ICryptographyService _cryptographyService;
         private readonly INotificationManager _notificationManager;
         private readonly IRegistrationService _registrationService;
+        private readonly ILocalSettingsService _localSettingsService;
         IContactProfileImageProvider _contactProfileImageProvider;
         #endregion
 
-        public AlertRespondPageViewModel(ICryptographyService cryptographyService, NotificationAction notificationAction)
+        public AlertRespondPageViewModel(ICryptographyService cryptographyService, IRegistrationService registrationService, ILocalSettingsService localSettingsService, NotificationAction notificationAction)
         {
             _cryptographyService = cryptographyService;
+            _registrationService = registrationService;
+            _localSettingsService = localSettingsService;
             _notificationAction = notificationAction;
             _notificationManager = DependencyService.Get<INotificationManager>();
             _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
@@ -131,8 +138,33 @@ namespace AlertApp.ViewModels
 
         public async void SetProfileData()
         {
+            //Fields.Add(new Field { Label = "Onoma", Value = "Thanos" });
+            //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });
+            //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });
+            //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });
+            //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });
+            //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });
+            //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });
+            //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });            
             var data = _notificationAction.Data as AlertNotificationData;
 
+            var token = await _localSettingsService.GetAuthToken();
+            var registrationFiedsResult = await _registrationService.GetRegistrationFields(token);
+            var tempFields = new List<Field>();
+            if (registrationFiedsResult.IsOk)
+            {
+
+                var language = _localSettingsService.GetSelectedLanguage();
+                foreach (var item in registrationFiedsResult.Result)
+                {
+                    if (item.Labels != null)
+                    {
+                        string label = "";
+                        item.Labels.TryGetValue(language, out label);
+                        tempFields.Add(new Field { Key = item.FieldName, Label = label });
+                    }
+                }
+            }
 
             if (data.AlertType == (int)AlertType.UserAlert)
             {
@@ -163,6 +195,18 @@ namespace AlertApp.ViewModels
                         }
                     }
 
+                    foreach (var item in profileData)
+                    {
+                        if (item.Key != RegistrationField.Names.Surname && item.Key != RegistrationField.Names.Name && !string.IsNullOrWhiteSpace(item.Value))
+                        {
+                            var registrationField = tempFields.Where(tf => tf.Key == item.Key).FirstOrDefault();
+                            if (registrationField != null)
+                            {
+                                Fields.Add(new Field { Label = registrationField.Label, Value = item.Value });
+                            }
+
+                        }
+                    }
                 }
                 else if (profileData == null)
                 {
@@ -234,7 +278,7 @@ namespace AlertApp.ViewModels
         {
             var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
             if (contactPermissionStatus == PermissionStatus.Granted)
-            {               
+            {
                 //here get contact from addressbook
                 var contactService = DependencyService.Get<IContacts>();
                 var addressBookContact = contactService.GetContactDetails(cellPhone);
@@ -257,5 +301,12 @@ namespace AlertApp.ViewModels
         }
 
         #endregion 
+
+        public class Field
+        {
+            public string Key { get; set; }
+            public string Label { get; set; }
+            public string Value { get; set; }
+        }
     }
 }

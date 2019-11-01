@@ -14,6 +14,6 @@ namespace AlertApp.Services.Registration
         Task<Response<ConfirmRegistrationResponse>> ConfirmRegistration(string cellphone, string otpVerifcationCode);     
         Task<Response> OtpRequest(string cellphone);
 
-        Task<Response<ConfirmRegistrationResponse>> GetRegistrationFields(string token);
+        Task<Response<RegistrationField[]>> GetRegistrationFields(string token);
     }
 }

@@ -102,9 +102,9 @@ namespace AlertApp.Services.Registration
             return res;
         }
 
-        public async Task<Response<ConfirmRegistrationResponse>> GetRegistrationFields(string token)
+        public async Task<Response<RegistrationField[]>> GetRegistrationFields(string token)
         {
-            var res = new Response<ConfirmRegistrationResponse>();
+            var res = new Response<RegistrationField[]>();
             try
             {
                 var json = JsonConvert.SerializeObject(new GetRegistrationFieldsBody { Token = token });
@@ -115,7 +115,7 @@ namespace AlertApp.Services.Registration
                     var apiResponse = await response.Content.ReadAsStringAsync();
                     if (apiResponse != null)
                     {
-                        return JsonConvert.DeserializeObject<Response<ConfirmRegistrationResponse>>(apiResponse);
+                        return JsonConvert.DeserializeObject<Response<RegistrationField[]>>(apiResponse);
                     }
                 }
             }
