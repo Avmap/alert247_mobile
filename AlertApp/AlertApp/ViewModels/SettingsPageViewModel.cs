@@ -25,6 +25,8 @@ namespace AlertApp.ViewModels
         #region Properties
 
         public bool AllwaysOn { get; set; }
+
+        public string Version => String.Format("{0} {1}", "Version", VersionTracking.CurrentVersion);
         #endregion
 
         #region Commands
@@ -52,6 +54,20 @@ namespace AlertApp.ViewModels
                 }));
             }
         }
+
+        private ICommand _LinkCommand;
+        public ICommand LinkCommand
+        {
+            get
+            {
+                return _LinkCommand ?? (_LinkCommand = new Command<string>(OpenLink, (url) =>
+                {
+                    return !Busy;
+                }));
+            }
+        }
+
+       
         #endregion
 
         public SettingsPageViewModel(ILocalSettingsService localSettingsService)
@@ -145,6 +161,11 @@ namespace AlertApp.ViewModels
             SetBusy(true);
             await NavigationService.PushAsync(new ManageContactsPage(), false);
             SetBusy(false);
+        }
+
+        private void OpenLink(string link)
+        {
+            Launcher.OpenAsync(new System.Uri(link));
         }
 
         #region BaseViewModel

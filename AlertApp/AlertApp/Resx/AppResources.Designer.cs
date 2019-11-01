@@ -385,6 +385,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Developed by.
+        /// </summary>
+        internal static string DevelopedBy {
+            get {
+                return ResourceManager.GetString("DevelopedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to for.
+        /// </summary>
+        internal static string DevelopedFor {
+            get {
+                return ResourceManager.GetString("DevelopedFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attention : Don&apos;t use OTP code as pin.
         /// </summary>
         internal static string DontUseOtpAsPinMessage {
@@ -822,6 +840,15 @@ namespace AlertApp.Resx {
         internal static string PressedAlert {
             get {
                 return ResourceManager.GetString("PressedAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terms &amp; Conditions.
+        /// </summary>
+        internal static string PrivacyTerms {
+            get {
+                return ResourceManager.GetString("PrivacyTerms", resourceCulture);
             }
         }
         

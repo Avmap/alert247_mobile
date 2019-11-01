@@ -607,4 +607,13 @@
   <data name="SucccessChangePinMessage" xml:space="preserve">
     <value>Το pin άλλαξε επιτυχώς.</value>
   </data>
+  <data name="DevelopedBy" xml:space="preserve">
+    <value>Δημιουργήθηκε απο την </value>
+  </data>
+  <data name="DevelopedFor" xml:space="preserve">
+    <value> για λογαριασμό της </value>
+  </data>
+  <data name="PrivacyTerms" xml:space="preserve">
+    <value>Πολιτική Προστασίας</value>
+  </data>
 </root>

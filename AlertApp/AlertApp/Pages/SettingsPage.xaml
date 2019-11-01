@@ -15,6 +15,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <views:SingleTitleToolbar BackCommand="{Binding BaseBackCommand}" Grid.Row="0" HasBackButton="True" Title="{infrastructure:Translate SettingsTab}" ></views:SingleTitleToolbar>
             <StackLayout Grid.Row="1" Orientation="Vertical">
@@ -47,7 +48,58 @@
                     </views:SettingCellView.GestureRecognizers>
                 </views:SettingCellView>
             </StackLayout>
-            <StackLayout Grid.Row="2" Orientation="Vertical" VerticalOptions="EndAndExpand" Spacing="4">
+            <StackLayout Margin="0,0,0,0" Grid.Row="2" Orientation="Vertical">
+                <StackLayout  Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
+                <Frame Padding="8,4,8,4" CornerRadius="16" HasShadow="False" HorizontalOptions="Center" BorderColor="#C3C3C3">
+                <Grid HorizontalOptions="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical">
+                        <Image Source="logo.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50"></Image>
+                            <Label Text="{Binding Version}" FontSize="10" Style="{StaticResource Caption}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                            <Label TextColor="Blue" TextDecorations="Underline" Text="https://alert247.gr" FontSize="10" Style="{StaticResource Caption}" HorizontalTextAlignment="Center" VerticalTextAlignment="Start">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LinkCommand}" CommandParameter="https://alert247.gr"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label TextColor="Blue" TextDecorations="Underline" Text="{infrastructure:Translate PrivacyTerms}" FontSize="10" Style="{StaticResource Caption}" HorizontalTextAlignment="Center" VerticalTextAlignment="Start">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LinkCommand}" CommandParameter="https://alert247.gr"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                </Grid>
+                </Frame>
+                <Label FontSize="10" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{infrastructure:Translate DevelopedBy}" />
+                            <Span Text="QUBITEQ"
+                            TextColor="Blue"
+                            TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LinkCommand}"
+                                          CommandParameter="https://qubiteq.gr" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <Span Text="{infrastructure:Translate DevelopedFor}" />
+                            <Span Text="AVMap GIS ΑΕ"
+                            TextColor="Blue"
+                            TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LinkCommand}"
+                                          CommandParameter="https://www.avmap.gr/" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+            <StackLayout Grid.Row="3" Orientation="Vertical" VerticalOptions="EndAndExpand" Spacing="4">
                 <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
                 <StackLayout Margin="8,0,8,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
