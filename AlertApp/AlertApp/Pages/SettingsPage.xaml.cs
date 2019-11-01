@@ -84,7 +84,16 @@ namespace AlertApp.Pages
         {
             Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.SettingPermissionLocationSubTitle, new SettingsLocationView()), false);
         }
-
+        private void Contacts_Tap(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.ContactPermissionSettingTitle, new SettingsContactsView()), false);
+        }
+        private void ChangePin_Tap(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingAccountTitle, AppResources.SettingChangePin, new SettingsChangePinView()), false);
+        }
+        
+        
         protected override void OnAppearing()
         {
             base.OnAppearing();

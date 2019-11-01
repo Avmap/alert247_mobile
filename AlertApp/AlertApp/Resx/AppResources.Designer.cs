@@ -313,6 +313,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CONTACTS PERMISSION.
+        /// </summary>
+        internal static string ContactPermissionSetting {
+            get {
+                return ResourceManager.GetString("ContactPermissionSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact access.
+        /// </summary>
+        internal static string ContactPermissionSettingTitle {
+            get {
+                return ResourceManager.GetString("ContactPermissionSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The following contact wants to add you to the ALERT 24/7 app..
         /// </summary>
         internal static string ContactRequestText {
@@ -417,6 +435,15 @@ namespace AlertApp.Resx {
         internal static string EnterMobilePrompt {
             get {
                 return ResourceManager.GetString("EnterMobilePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NEW PIN.
+        /// </summary>
+        internal static string EnterNewPin {
+            get {
+                return ResourceManager.GetString("EnterNewPin", resourceCulture);
             }
         }
         
@@ -781,6 +808,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ENTER AGAIN.
+        /// </summary>
+        internal static string ReEnterNewPin {
+            get {
+                return ResourceManager.GetString("ReEnterNewPin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registration.
         /// </summary>
         internal static string Register {
@@ -952,6 +988,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings - Account.
+        /// </summary>
+        internal static string SettingAccountTitle {
+            get {
+                return ResourceManager.GetString("SettingAccountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to App buttons.
         /// </summary>
         internal static string SettingButtonsSubTitle {
@@ -1065,6 +1110,24 @@ namespace AlertApp.Resx {
         internal static string SettingsButtonsViewMessage {
             get {
                 return ResourceManager.GetString("SettingsButtonsViewMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter current PIN.
+        /// </summary>
+        internal static string SettingsChangePinMessage {
+            get {
+                return ResourceManager.GetString("SettingsChangePinMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permission need in order to protect you.
+        /// </summary>
+        internal static string SettingsContactsPermissionSubtitle {
+            get {
+                return ResourceManager.GetString("SettingsContactsPermissionSubtitle", resourceCulture);
             }
         }
         

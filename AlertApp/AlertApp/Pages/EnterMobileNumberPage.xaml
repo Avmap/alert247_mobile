@@ -44,7 +44,7 @@
                         </infrastructure:NoUnderlineEntry>
                     </Frame>
                 </StackLayout>
-                <StackLayout Orientation="Vertical" Margin="0,6,0,0" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical" Margin="0,6,0,0" HorizontalOptions="Center">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer  Command="{Binding ContinueCommand}"></TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>

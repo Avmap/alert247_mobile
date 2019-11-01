@@ -49,11 +49,9 @@ namespace AlertApp
                         Preferences.Set(Settings.SelectedLanguage, systemlanguage.Name);
                     }
                 }
-#if DEBUG
-                MainPage = new NavigationPage(new MainPage());
-#else
+
                 MainPage = new NavigationPage(new SelectLanguagePage());
-#endif
+
 
             }
             else

@@ -16,7 +16,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <views:SingleTitleToolbar BackCommand="{Binding BaseBackCommand}" Grid.Row="0" HasBackButton="True" Title="{infrastructure:Translate SettingsTab}" ></views:SingleTitleToolbar>       
+            <views:SingleTitleToolbar BackCommand="{Binding BaseBackCommand}" Grid.Row="0" HasBackButton="True" Title="{infrastructure:Translate SettingsTab}" ></views:SingleTitleToolbar>
             <StackLayout Grid.Row="1" Orientation="Vertical">
                 <views:SettingsHeader Title="{infrastructure:Translate SettingsView}"/>
                 <views:SettingCellView Title="{infrastructure:Translate SettingLanguage}">
@@ -35,9 +35,17 @@
                         <TapGestureRecognizer Tapped="Location_Tap"></TapGestureRecognizer>
                     </views:SettingCellView.GestureRecognizers>
                 </views:SettingCellView>
-                <views:SettingCellView Title="{infrastructure:Translate SettingContacts}"></views:SettingCellView>
+                <views:SettingCellView Title="{infrastructure:Translate SettingContacts}">
+                    <views:SettingCellView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Contacts_Tap"></TapGestureRecognizer>
+                    </views:SettingCellView.GestureRecognizers>
+                </views:SettingCellView>
                 <views:SettingsHeader Title="{infrastructure:Translate SettingsAccount}"></views:SettingsHeader>
-                <views:SettingCellView Title="{infrastructure:Translate SettingChangePin}"></views:SettingCellView>
+                <views:SettingCellView Title="{infrastructure:Translate SettingChangePin}">
+                    <views:SettingCellView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ChangePin_Tap"></TapGestureRecognizer>
+                    </views:SettingCellView.GestureRecognizers>
+                </views:SettingCellView>
             </StackLayout>
             <StackLayout Grid.Row="2" Orientation="Vertical" VerticalOptions="EndAndExpand" Spacing="4">
                 <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>

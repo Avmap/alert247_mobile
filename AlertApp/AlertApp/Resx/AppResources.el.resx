@@ -233,7 +233,7 @@
     <value>Προσοχή</value>
   </data>
   <data name="WarningFillNumber" xml:space="preserve">
-    <value>Παρακαλω συμπληρώστε αριθμό τηλεφώνου</value>
+    <value>Παρακαλώ συμπληρώστε αριθμό τηλεφώνου</value>
   </data>
   <data name="WarningFillPin" xml:space="preserve">
     <value>Παρακαλώ συμπληρώστε το PIN της εφαρμογής</value>
@@ -573,5 +573,26 @@
   </data>
   <data name="SettingsLocationSubtitle" xml:space="preserve">
     <value>Η τοποθεσία χρησιμοποιείται για τον εντοπισμό της θέσης της συσκευής και την αποστολή του στις επαφές σας, σε περίπτωση έκτακτης ανάγκης.</value>
+  </data>
+  <data name="ContactPermissionSetting" xml:space="preserve">
+    <value>ΠΡΟΣΒΑΣΗ ΣΤΙΣ ΕΠΑΦΕΣ</value>
+  </data>
+  <data name="ContactPermissionSettingTitle" xml:space="preserve">
+    <value>Πρόσβαση στις Επαφές</value>
+  </data>
+  <data name="SettingsContactsPermissionSubtitle" xml:space="preserve">
+    <value>Η πρόσβαση στις επαφές του τηλεφώνου απαιτείται προκειμένου να μπορείτε να προστέσετε νέες επαφές. Εάν ακυρώσετε το δικαίωμα πρόσβασης, θα σας ζητηθεί ξανά κατά την επόμενη εκκίνηση της εφαρμογής.</value>
+  </data>
+  <data name="SettingAccountTitle" xml:space="preserve">
+    <value>Ρυθμίσεις - Λογαριασμός</value>
+  </data>
+  <data name="SettingsChangePinMessage" xml:space="preserve">
+    <value>Πληκτρολογήστε το υπάρχον PIN :</value>
+  </data>
+  <data name="EnterNewPin" xml:space="preserve">
+    <value>ΝΕΟ PIN</value>
+  </data>
+  <data name="ReEnterNewPin" xml:space="preserve">
+    <value>ΕΠΙΒΕΒΑΙΩΣΗ PIN</value>
   </data>
 </root>

@@ -568,4 +568,25 @@
   <data name="SettingsLocationSubtitle" xml:space="preserve">
     <value>Location is used in case of emergency</value>
   </data>
+  <data name="ContactPermissionSetting" xml:space="preserve">
+    <value>CONTACTS PERMISSION</value>
+  </data>
+  <data name="ContactPermissionSettingTitle" xml:space="preserve">
+    <value>Contact access</value>
+  </data>
+  <data name="SettingsContactsPermissionSubtitle" xml:space="preserve">
+    <value>Permission need in order to protect you</value>
+  </data>
+  <data name="SettingAccountTitle" xml:space="preserve">
+    <value>Settings - Account</value>
+  </data>
+  <data name="SettingsChangePinMessage" xml:space="preserve">
+    <value>Enter current PIN</value>
+  </data>
+  <data name="EnterNewPin" xml:space="preserve">
+    <value>NEW PIN</value>
+  </data>
+  <data name="ReEnterNewPin" xml:space="preserve">
+    <value>ENTER AGAIN</value>
+  </data>
 </root>

@@ -40,14 +40,14 @@
                                 </Frame>
                             </On>
                         </OnPlatform>
-                        <StackLayout IsVisible="{Binding CanContinue}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <StackLayout IsVisible="{Binding CanContinue}" Orientation="Vertical" HorizontalOptions="Center">
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer  Command="{Binding ResendCodeCommand}"></TapGestureRecognizer>
                             </StackLayout.GestureRecognizers>
                             <Image HeightRequest="56" WidthRequest="56" Source="next_copy.png"/>
                             <Label Text="{infrastructure:Translate NextRegistration}"  TextColor="{Binding EnabledDisabledColor}" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </StackLayout>
-                        <StackLayout IsVisible="{Binding CanResendCode}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <StackLayout IsVisible="{Binding CanResendCode}" Orientation="Vertical" HorizontalOptions="Center">
                             <Image Source="{Binding RefreshImageSource}">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer  Command="{Binding ResendCodeCommand}"></TapGestureRecognizer>

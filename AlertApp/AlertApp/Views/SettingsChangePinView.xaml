@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
+             x:Class="AlertApp.Views.SettingsChangePinView">
+    <ContentView.Content>
+        <StackLayout>
+            <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsChangePinMessage}" IsVisible="{Binding CurrentPinLayoutVisible}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
+
+            <Frame x:Name="pinLayout" IsVisible="{Binding CurrentPinLayoutVisible}" HorizontalOptions="Center" BackgroundColor="#E6E7E8" CornerRadius="16" Padding="8,2,8,2" HasShadow="False">
+                <StackLayout  Orientation="Horizontal"  Spacing="8" HorizontalOptions="Center">
+                    <infrastructure:EntryCentered x:Name="Pin1" WidthRequest="35" TextChanged="Pin1_TextChanged"  Keyboard="Telephone" Text="{Binding Pin1,Mode=TwoWay}" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCentered>
+                    <infrastructure:EntryCentered x:Name="Pin2" WidthRequest="35" TextChanged="Pin2_TextChanged"  Keyboard="Telephone" Text="{Binding Pin2,Mode=TwoWay}"  HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCentered>
+                    <infrastructure:EntryCentered x:Name="Pin3" WidthRequest="35" TextChanged="Pin3_TextChanged" Keyboard="Telephone" Text="{Binding Pin3,Mode=TwoWay}"  HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCentered>
+                    <infrastructure:EntryCentered x:Name="Pin4" WidthRequest="35" TextChanged="Pin4_TextChanged" Keyboard="Telephone" Text="{Binding Pin4,Mode=TwoWay}"  HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCentered>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout IsVisible="{Binding NewPinLayoutVisible}" x:Name="pinVerificationLayout" Orientation="Vertical">
+
+                <Frame Margin="16,16,16,16"  HorizontalOptions="FillAndExpand" BackgroundColor="#6E6E6E" CornerRadius="16" Padding="8,2,8,2" HasShadow="False">
+
+                    <StackLayout Orientation="Vertical" Padding="0,16,0,16">
+
+                        <Frame HorizontalOptions="Center" BackgroundColor="#E6E7E8" CornerRadius="16" Padding="8,2,8,2" HasShadow="False">
+                            <StackLayout Orientation="Vertical" Spacing="0">
+                                <Label Text="{infrastructure:Translate EnterNewPin}" HorizontalTextAlignment="Center" HorizontalOptions="Center" Style="{StaticResource NormalText14}"></Label>
+                                <StackLayout  Orientation="Horizontal" Spacing="8" HorizontalOptions="Center">
+                                    <infrastructure:EntryCentered  x:Name="NewPin1" WidthRequest="35" TextChanged="PinTextChanged"  Keyboard="Telephone" Text="{Binding NewPin1,Mode=TwoWay}" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCentered>
+                                    <infrastructure:EntryCentered  x:Name="NewPin2" WidthRequest="35" TextChanged="PinTextChanged"  Keyboard="Telephone" Text="{Binding NewPin2,Mode=TwoWay}"  HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCentered>
+                                    <infrastructure:EntryCentered  x:Name="NewPin3" WidthRequest="35" TextChanged="PinTextChanged" Keyboard="Telephone" Text="{Binding NewPin3,Mode=TwoWay}"  HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCentered>
+                                    <infrastructure:EntryCentered  x:Name="NewPin4" WidthRequest="35" TextChanged="PinTextChanged" Keyboard="Telephone" Text="{Binding NewPin4,Mode=TwoWay}"  HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCentered>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </Frame>
+
+                        <Frame  HorizontalOptions="Center" BackgroundColor="#E6E7E8" CornerRadius="16" Padding="8,2,8,2" HasShadow="False">
+                            <StackLayout Orientation="Vertical" Spacing="0">
+                                <Label Text="{infrastructure:Translate ReEnterNewPin}" HorizontalTextAlignment="Center" HorizontalOptions="Center" Style="{StaticResource NormalText14}"></Label>
+                                <StackLayout  Orientation="Horizontal" Spacing="8" HorizontalOptions="Center">
+                                    <infrastructure:EntryCentered x:Name="VePin1" WidthRequest="35" TextChanged="PinTextChanged"  Keyboard="Telephone" Text="{Binding VePin1,Mode=TwoWay}" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCentered>
+                                    <infrastructure:EntryCentered x:Name="VePin2" WidthRequest="35" TextChanged="PinTextChanged"  Keyboard="Telephone" Text="{Binding VePin2,Mode=TwoWay}"  HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCentered>
+                                    <infrastructure:EntryCentered x:Name="VePin3" WidthRequest="35" TextChanged="PinTextChanged" Keyboard="Telephone" Text="{Binding  VePin3,Mode=TwoWay}"  HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCentered>
+                                    <infrastructure:EntryCentered x:Name="VePin4" WidthRequest="35" TextChanged="PinTextChanged" Keyboard="Telephone" Text="{Binding  VePin4,Mode=TwoWay}"  HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCentered>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                </Frame>
+
+                <StackLayout IsVisible="{Binding CanFinish}" Orientation="Vertical" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangePinCommand}"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Image HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
+                    <Label Text="{infrastructure:Translate Finish}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </StackLayout>
+
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

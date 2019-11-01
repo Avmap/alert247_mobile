@@ -208,9 +208,9 @@ namespace AlertApp.ViewModels
             _smsTimer = new System.Timers.Timer();
             _smsTimer.Interval = 1000;
             _smsTimer.Elapsed += OnTimedEvent;
-#if Release
+//#if Release
             RequestVerificationCode();
-#endif
+//#endif
 
         }
 
