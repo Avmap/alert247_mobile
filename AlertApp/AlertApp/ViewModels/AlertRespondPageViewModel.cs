@@ -3,6 +3,7 @@ using AlertApp.Model;
 using AlertApp.Model.Api;
 using AlertApp.Resx;
 using AlertApp.Services.Cryptography;
+using AlertApp.Services.Registration;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
@@ -115,6 +116,7 @@ namespace AlertApp.ViewModels
         #region Services
         private readonly ICryptographyService _cryptographyService;
         private readonly INotificationManager _notificationManager;
+        private readonly IRegistrationService _registrationService;
         IContactProfileImageProvider _contactProfileImageProvider;
         #endregion
 

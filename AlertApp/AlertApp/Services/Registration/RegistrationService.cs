@@ -101,5 +101,31 @@ namespace AlertApp.Services.Registration
             }
             return res;
         }
+
+        public async Task<Response<ConfirmRegistrationResponse>> GetRegistrationFields(string token)
+        {
+            var res = new Response<ConfirmRegistrationResponse>();
+            try
+            {
+                var json = JsonConvert.SerializeObject(new GetRegistrationFieldsBody { Token = token });
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("post/alert/getRegistrationFields", content);
+                if (response.Content != null)
+                {
+                    var apiResponse = await response.Content.ReadAsStringAsync();
+                    if (apiResponse != null)
+                    {
+                        return JsonConvert.DeserializeObject<Response<ConfirmRegistrationResponse>>(apiResponse);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                res.ErrorCode = ex.Message;
+                res.Status = "error";
+                res.IsOnline = false;
+            }
+            return res;
+        }
     }
 }
