@@ -1222,6 +1222,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Succcess.
+        /// </summary>
+        internal static string Succcess {
+            get {
+                return ResourceManager.GetString("Succcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pin changed successfully.
+        /// </summary>
+        internal static string SucccessChangePinMessage {
+            get {
+                return ResourceManager.GetString("SucccessChangePinMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact added successfully..
         /// </summary>
         internal static string SuccessAddContactMessage {

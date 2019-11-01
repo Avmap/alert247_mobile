@@ -595,4 +595,10 @@
   <data name="ReEnterNewPin" xml:space="preserve">
     <value>ΕΠΙΒΕΒΑΙΩΣΗ PIN</value>
   </data>
+  <data name="Succcess" xml:space="preserve">
+    <value>Επιτυχία</value>
+  </data>
+  <data name="SucccessChangePinMessage" xml:space="preserve">
+    <value>Το pin άλλαξε επιτυχώς.</value>
+  </data>
 </root>

@@ -589,4 +589,10 @@
   <data name="ReEnterNewPin" xml:space="preserve">
     <value>ENTER AGAIN</value>
   </data>
+  <data name="Succcess" xml:space="preserve">
+    <value>Succcess</value>
+  </data>
+  <data name="SucccessChangePinMessage" xml:space="preserve">
+    <value>Pin changed successfully</value>
+  </data>
 </root>

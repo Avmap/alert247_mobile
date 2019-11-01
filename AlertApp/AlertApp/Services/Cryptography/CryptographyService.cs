@@ -27,6 +27,8 @@ namespace AlertApp.Services.Cryptography
             _localSettingsService = localSettingsService;
         }
 
+
+
         public void GenerateKeys(string userPin)
         {
             _localSettingsService.SaveApplicationPin(userPin);
@@ -345,6 +347,29 @@ namespace AlertApp.Services.Cryptography
                 Debug.WriteLine(ex);
             }
             return null;
+        }
+
+        public async Task<bool> ChangePin(string newPin)
+        {
+            try
+            {
+                var oldPin = await _localSettingsService.GetApplicationPin();
+                var encryptedPrivateKey = await _localSettingsService.GetPrivateKey();
+                var decryptedPrivateKey = AesDecrypt(encryptedPrivateKey, oldPin);
+
+                var newEncryptedPrivateKey = AesEncrypt(decryptedPrivateKey, newPin);
+
+                
+                _localSettingsService.SavePrivateKey(newEncryptedPrivateKey);
+
+                _localSettingsService.SaveApplicationPin(newPin);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+            return true;
         }
         #endregion
     }

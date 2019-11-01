@@ -1,4 +1,6 @@
 ﻿using AlertApp.Infrastructure;
+using AlertApp.Resx;
+using AlertApp.Services.Cryptography;
 using AlertApp.Services.Settings;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ namespace AlertApp.ViewModels
     {
         #region Services        
         readonly ILocalSettingsService _localSettingsService;
+        readonly ICryptographyService _cryptographyService;
         #endregion
 
         #region Properties
@@ -41,6 +44,10 @@ namespace AlertApp.ViewModels
             }
         }
 
+        public string VePin1 { get; set; }
+        public string VePin2 { get; set; }
+        public string VePin3 { get; set; }
+        public string VePin4 { get; set; }
         #endregion
 
         #region Commands
@@ -63,9 +70,10 @@ namespace AlertApp.ViewModels
 
         public bool CurrentPinLayoutVisible => !NewPinLayoutVisible;
 
-        public SettingsChangePinViewModel(ILocalSettingsService localSettingsService)
+        public SettingsChangePinViewModel(ILocalSettingsService localSettingsService, ICryptographyService cryptographyService)
         {
             _localSettingsService = localSettingsService;
+            _cryptographyService = cryptographyService;
         }
 
         public Task<string> GetApplicationPin()
@@ -75,7 +83,13 @@ namespace AlertApp.ViewModels
 
         private async void ChangePin()
         {
-            
+            string newPin = String.Format("{0}{1}{2}{3}", VePin1, VePin2, VePin3, VePin4);
+            var changed = await _cryptographyService.ChangePin(newPin);
+            if (changed)
+            {
+                showOKMessage(AppResources.Succcess, AppResources.SucccessChangePinMessage);
+                await NavigationService.PopAsync(false);
+            }
         }
 
         public override void SetBusy(bool isBusy)

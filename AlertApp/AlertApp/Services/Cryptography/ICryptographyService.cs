@@ -18,5 +18,7 @@ namespace AlertApp.Services.Cryptography
         Task<AlertRecipient> GetAlertRecipient(string senderProfileData,Contact recipient);
 
         Task<Dictionary<string,string>> GetAlertSenderProfileData(string encryptedProfileData, string fileKey);
+
+        Task<bool> ChangePin(string newPin);
     }
 }
