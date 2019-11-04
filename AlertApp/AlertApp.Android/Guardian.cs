@@ -20,12 +20,16 @@ using Android.Widget;
 using Java.Lang;
 using Plugin.FirebasePushNotification;
 using Xamarin.Essentials;
+using Math = System.Math;
 
 namespace AlertApp.Droid
 {
     [Service(Label = "GuardianService", Enabled = true, Exported = true)]
     public class Guardian : Service
     {
+        private bool moIsMin = false;
+        private bool moIsMax = false;
+        private int i = 0;
         private FusedLocationProviderClient fusedLocationProviderClient;
         private LocationRequest locationRequest;
         private FusedLocationProviderCallback locationCallback;
@@ -42,7 +46,7 @@ namespace AlertApp.Droid
 
 
 
-         
+
 
 
 
@@ -64,7 +68,7 @@ namespace AlertApp.Droid
 
             return StartCommandResult.Sticky;
         }
-        
+
 
         public override void OnDestroy()
         {
@@ -144,6 +148,10 @@ namespace AlertApp.Droid
 
     public class ApplicationAccelerometer
     {
+        private bool moIsMin = false;
+        private bool moIsMax = false;
+        private int i = 0;
+
         // Set speed delay for monitoring changes.
         SensorSpeed speed = SensorSpeed.Fastest;
         Context Context;
@@ -157,15 +165,82 @@ namespace AlertApp.Droid
         void Accelerometer_ReadingChanged(object sender, AccelerometerChangedEventArgs e)
         {
             var data = e.Reading;
-            Console.WriteLine($"Reading: X: {data.Acceleration.X}, Y: {data.Acceleration.Y}, Z: {data.Acceleration.Z}");
+           Console.WriteLine($"Reading: X: {data.Acceleration.X}, Y: {data.Acceleration.Y}, Z: {data.Acceleration.Z}");
+            onSensorChanged(data.Acceleration.X, data.Acceleration.Y, data.Acceleration.Z);
             // Process Acceleration X, Y, and Z
+        }
+
+        public virtual void onSensorChanged(float loX, float loY, float loZ)
+        {
+
+            //xText.setText("X: " + event.values[0]);
+            //yText.setText("Y: " + event.values[1]);
+            //zText.setText("Z: " + event.values[2]);
+
+            //double loX = @event.values[0];
+            //double loY = @event.values[1];
+            //double loZ = @event.values[2];
+
+            double loAccelerationReader = System.Math.Sqrt(Math.Pow(loX, 2) + Math.Pow(loY, 2) + Math.Pow(loZ, 2));
+            long mlPreviousTime = DateTimeHelper.CurrentUnixTimeMillis();
+            //Log.i(TAG, "loX: " + loX + " loY: " + loY + " loZ: " + loZ);
+            if (loAccelerationReader <= 6.0)
+            {
+                moIsMin = true;
+                //Log.i(TAG, "min");
+            }
+
+            if (moIsMin)
+            {
+                i++;
+                //  Log.i(TAG, " loAcceleration: " + loAccelerationReader);
+                if (loAccelerationReader >= 30)
+                {
+                    long llCurrentTime = DateTimeHelper.CurrentUnixTimeMillis();
+                    long llTimeDiff = llCurrentTime - mlPreviousTime;
+                    //  Log.i(TAG, "loTime: " + llTimeDiff);
+                    if (llTimeDiff >= 10)
+                    {
+                        moIsMax = true;
+                        // Log.i(TAG, "max");
+                    }
+                }
+            }
+
+            if (moIsMin && moIsMax)
+            {
+                // Log.i(TAG, "loX: " + loX + " loY: " + loY + " loZ: " + loZ);
+                //  Log.i(TAG, "FALL DETECTED!!");
+                Console.WriteLine("FALL DETECTED!!");
+                
+                Toast.MakeText(Context, "FALL DETECTED!!", ToastLength.Long).Show();
+                i = 0;
+
+                moIsMin = false;
+                moIsMax = false;
+            }
+
+            if (i > 5)
+            {
+                i = 0;
+                moIsMin = false;
+                moIsMax = false;
+            }
+
         }
 
         public void Stop()
         {
             Accelerometer.Stop();
         }
-
+        internal static class DateTimeHelper
+        {
+            private static readonly System.DateTime Jan1st1970 = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+            public static long CurrentUnixTimeMillis()
+            {
+                return (long)(System.DateTime.UtcNow - Jan1st1970).TotalMilliseconds;
+            }
+        }
         public void ToggleAccelerometer()
         {
             try
