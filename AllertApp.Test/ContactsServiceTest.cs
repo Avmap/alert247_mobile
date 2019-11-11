@@ -1,4 +1,5 @@
-﻿using AlertApp.Services.Contacts;
+﻿using AlertApp.Infrastructure;
+using AlertApp.Services.Contacts;
 using AlertApp.ViewModels;
 using NUnit.Framework;
 using System;
@@ -44,6 +45,18 @@ namespace AllertApp.Test
         {
              string phoneRegex = @"^\+\d+$";
             bool IsValid = (Regex.IsMatch("+564+d", phoneRegex));
+
+        }
+        [Test]
+        public void testFall()
+        {
+            var detector = new FallDetector(null);
+            detector.Initiate();
+
+            detector.Protect(123123123123, 1, 1, 1);
+            detector.Protect(123123123156, 2, 2, 2);
+            detector.Protect(12312312316767, 3, 3, 4);
+            detector.Protect(1231231236767, 4, 3, 4);
 
         }
     }

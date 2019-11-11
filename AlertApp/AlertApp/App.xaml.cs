@@ -60,6 +60,12 @@ namespace AlertApp
             }
 
 #if DEBUG
+           // var guardian = DependencyService.Get<IGuardian>();
+           // if (guardian != null)
+           // {
+          //      guardian.StartGuardianService();
+          //  }
+          
             //   var crypto =  ViewModelLocator.Instance.Resolve<ICryptographyService>();
             //  crypto.GenerateKeys("1770");
             //  var contactService = DependencyService.Get<IContacts>();

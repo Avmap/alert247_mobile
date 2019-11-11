@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AlertApp.Infrastructure;
 using AlertApp.Services.Profile;
 using AlertApp.ViewModels;
 using Android.App;
 using Android.Content;
 using Android.Gms.Location;
 using Android.Graphics;
+using Android.Hardware;
+using Android.Media;
 using Android.OS;
 using Android.Preferences;
 using Android.Runtime;
@@ -18,38 +21,33 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Java.Lang;
+using Java.Text;
 using Plugin.FirebasePushNotification;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 using Math = System.Math;
 
 namespace AlertApp.Droid
 {
     [Service(Label = "GuardianService", Enabled = true, Exported = true)]
-    public class Guardian : Service
+    public class Guardian : Service, ISensorEventListener, FallDetector.IFallDetectionListener
     {
-        private bool moIsMin = false;
-        private bool moIsMax = false;
-        private int i = 0;
+
         private FusedLocationProviderClient fusedLocationProviderClient;
         private LocationRequest locationRequest;
         private FusedLocationProviderCallback locationCallback;
-        NotificationCompat.Builder builder;
+        private NotificationCompat.Builder builder;
         private ApplicationAccelerometer accelerometer;
-
+        private FallDetector fallDetector;
         string ChannelId = "alert_247_channel";
-        Thread t;
+        private static SoundPool pool = null;
+        private static int id = -1;
+        private SoundListener _SoundListener;
         public override void OnCreate()
         {
             base.OnCreate();
             builder = new NotificationCompat.Builder(this);
             ConfigLocationUpdates();
-
-
-
-
-
-
-
         }
         public override IBinder OnBind(Intent intent)
         {
@@ -59,21 +57,23 @@ namespace AlertApp.Droid
         [return: GeneratedEnum]
         public override StartCommandResult OnStartCommand(Intent intent, [GeneratedEnum] StartCommandFlags flags, int startId)
         {
-
+            fallDetector = new FallDetector(this);
+            fallDetector.Initiate();
             this.StartForeground(67236723, GetNotification());
-            accelerometer = new ApplicationAccelerometer(this);
+            accelerometer = new ApplicationAccelerometer(this, fallDetector);
             accelerometer.ToggleAccelerometer();
             StartLocationUpdates();
-
-
             return StartCommandResult.Sticky;
         }
-
 
         public override void OnDestroy()
         {
             base.OnDestroy();
             StopLocationUpdates();
+            if (fallDetector != null)
+            {
+                fallDetector = null;
+            }
             if (accelerometer != null)
             {
                 accelerometer.Stop();
@@ -143,122 +143,101 @@ namespace AlertApp.Droid
                 fusedLocationProviderClient.RemoveLocationUpdates(locationCallback);
         }
 
+        public void OnAccuracyChanged(Sensor sensor, [GeneratedEnum] SensorStatus accuracy)
+        {
+
+        }
+
+        public void OnSensorChanged(SensorEvent e)
+        {
+            fallDetector.Protect(e.Timestamp, e.Values[0], e.Values[1], e.Values[2]);
+        }
+
+        public void OnFallDetected()
+        {
+            //create wake lock
+            //PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
+            //PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, "WakeLock");
+            //wl.SetReferenceCounted(false);
+            //wl.Acquire(8000);
+            siren(this);
+            //System.Diagnostics.Debug.WriteLine($"Fall!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        }
+        void siren(Context context)
+        {
+            if (_SoundListener == null)
+            {
+                _SoundListener = new SoundListener();
+            }
+            if (null == pool)
+            {
+                AudioAttributes aa = new AudioAttributes.Builder().SetLegacyStreamType(Stream.Alarm).Build();
+                pool = new SoundPool.Builder().SetMaxStreams(5).SetAudioAttributes(aa).Build();
+                //pool.SetOnLoadCompleteListener(_SoundListener);      
+                id = pool.Load(context, Resource.Raw.alarmtest, 1);
+            }
+
+            pool.Play(id, 1.0f, 1.0f, 1, 3, 1.0f);
+        }
+
+
+        public static void loudest(Context context)
+        {
+            AudioManager manager = (AudioManager)context.GetSystemService(Context.AudioService);
+            int loudest = manager.GetStreamMaxVolume(Stream.Alarm);
+            manager.SetStreamVolume(Stream.Alarm, loudest, 0);
+        }
+    }
+
+    public class SoundListener : Java.Lang.Object, SoundPool.IOnLoadCompleteListener
+    {
+        public void OnLoadComplete(SoundPool soundPool, int sampleId, int status)
+        {
+            soundPool.Play(sampleId, 1.0f, 1.0f, 1, 3, 1.0f);
+        }
     }
 
 
     public class ApplicationAccelerometer
     {
-        private bool moIsMin = false;
-        private bool moIsMax = false;
-        private int i = 0;
-
-        // Set speed delay for monitoring changes.
-        SensorSpeed speed = SensorSpeed.Fastest;
-        Context Context;
-        public ApplicationAccelerometer(Context context)
+        private Sensor _Sensor;
+        private SensorManager _Sensormanager;
+        private FallDetector _FallDetector;
+        private Context _Context;
+        public ApplicationAccelerometer(Context context, FallDetector fallDetector)
         {
-            Context = context;
-            // Register for reading changes, be sure to unsubscribe when finished
-            Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
+            _Context = context;
+            _FallDetector = fallDetector;
+            _Sensormanager = (SensorManager)context.GetSystemService(Context.SensorService);
+            _Sensor = _Sensormanager.GetDefaultSensor(SensorType.Accelerometer);            
         }
-
-        void Accelerometer_ReadingChanged(object sender, AccelerometerChangedEventArgs e)
-        {
-            var data = e.Reading;
-           Console.WriteLine($"Reading: X: {data.Acceleration.X}, Y: {data.Acceleration.Y}, Z: {data.Acceleration.Z}");
-            onSensorChanged(data.Acceleration.X, data.Acceleration.Y, data.Acceleration.Z);
-            // Process Acceleration X, Y, and Z
-        }
-
-        public virtual void onSensorChanged(float loX, float loY, float loZ)
-        {
-
-            //xText.setText("X: " + event.values[0]);
-            //yText.setText("Y: " + event.values[1]);
-            //zText.setText("Z: " + event.values[2]);
-
-            //double loX = @event.values[0];
-            //double loY = @event.values[1];
-            //double loZ = @event.values[2];
-
-            double loAccelerationReader = System.Math.Sqrt(Math.Pow(loX, 2) + Math.Pow(loY, 2) + Math.Pow(loZ, 2));
-            long mlPreviousTime = DateTimeHelper.CurrentUnixTimeMillis();
-            //Log.i(TAG, "loX: " + loX + " loY: " + loY + " loZ: " + loZ);
-            if (loAccelerationReader <= 6.0)
-            {
-                moIsMin = true;
-                //Log.i(TAG, "min");
-            }
-
-            if (moIsMin)
-            {
-                i++;
-                //  Log.i(TAG, " loAcceleration: " + loAccelerationReader);
-                if (loAccelerationReader >= 30)
-                {
-                    long llCurrentTime = DateTimeHelper.CurrentUnixTimeMillis();
-                    long llTimeDiff = llCurrentTime - mlPreviousTime;
-                    //  Log.i(TAG, "loTime: " + llTimeDiff);
-                    if (llTimeDiff >= 10)
-                    {
-                        moIsMax = true;
-                        // Log.i(TAG, "max");
-                    }
-                }
-            }
-
-            if (moIsMin && moIsMax)
-            {
-                // Log.i(TAG, "loX: " + loX + " loY: " + loY + " loZ: " + loZ);
-                //  Log.i(TAG, "FALL DETECTED!!");
-                Console.WriteLine("FALL DETECTED!!");
-                
-                Toast.MakeText(Context, "FALL DETECTED!!", ToastLength.Long).Show();
-                i = 0;
-
-                moIsMin = false;
-                moIsMax = false;
-            }
-
-            if (i > 5)
-            {
-                i = 0;
-                moIsMin = false;
-                moIsMax = false;
-            }
-
-        }
-
         public void Stop()
         {
             Accelerometer.Stop();
+            _Sensormanager.Dispose();
+            _Sensor.Dispose();
         }
-        internal static class DateTimeHelper
-        {
-            private static readonly System.DateTime Jan1st1970 = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
-            public static long CurrentUnixTimeMillis()
-            {
-                return (long)(System.DateTime.UtcNow - Jan1st1970).TotalMilliseconds;
-            }
-        }
+
         public void ToggleAccelerometer()
         {
             try
             {
+                _Sensormanager.RegisterListener((ISensorEventListener)_Context, _Sensormanager.GetDefaultSensor(SensorType.Accelerometer), SensorDelay.Game);
+
                 if (Accelerometer.IsMonitoring)
                     Accelerometer.Stop();
                 else
                 {
-                    Accelerometer.Start(speed);
+                    Accelerometer.Start(SensorSpeed.Game);
                     Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
                 }
 
             }
-            catch (FeatureNotSupportedException fnsEx)
+            catch (FeatureNotSupportedException)
             {
                 // Feature not supported on device
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 // Other error has occurred.
             }
@@ -266,18 +245,9 @@ namespace AlertApp.Droid
 
         private void Accelerometer_ShakeDetected(object sender, EventArgs e)
         {
-            //if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
-            //{
-            //    Context.StartActivity(new Intent(Context, typeof(MainActivity)));
-            //}
-            //else
-            //{
-            var intent = new Intent(Context, typeof(MainActivity));
+            var intent = new Intent(_Context, typeof(MainActivity));
             intent.AddFlags(ActivityFlags.ReorderToFront);
-
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity.StartActivity(intent);
-            // }
-
         }
     }
 
@@ -323,7 +293,7 @@ namespace AlertApp.Droid
                         await UserProfileService.Ping(token, location.Latitude, location.Longitude, firebaseToken);
                     }
                 });
-                //  Toast.MakeText(context, "New location", ToastLength.Short).Show();
+               // Toast.MakeText(context, "New location", ToastLength.Short).Show();
             }
             else
             {

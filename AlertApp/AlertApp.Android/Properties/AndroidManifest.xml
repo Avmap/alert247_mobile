@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.00.66" package="gr.avmap.alert247" android:installLocation="internalOnly" android:versionCode="000066">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.00.67" package="gr.avmap.alert247" android:installLocation="internalOnly" android:versionCode="000067">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
 	<uses-library android:name="org.apache.http.legacy" android:required="false" />
+	<!-- Using speaker volume control -->
+	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 	<uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
 	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 	<uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
