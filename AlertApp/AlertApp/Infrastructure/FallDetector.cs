@@ -69,6 +69,8 @@ namespace AlertApp.Infrastructure
         private StateStructure State = new StateStructure();
         private IFallDetectionListener _FallDetectionListener;
 
+        private static int Position = 0;
+
         public interface IFallDetectionListener
         {
             void OnFallDetected();
@@ -77,6 +79,14 @@ namespace AlertApp.Infrastructure
         public FallDetector(IFallDetectionListener fallDetectionListener)
         {
             _FallDetectionListener = fallDetectionListener;
+        }
+
+        public static int GetPosition()
+        {
+            lock (_locker)
+            {
+                return Position;
+            }
         }
 
         private double SV(double X, double Y, double Z)
@@ -139,6 +149,7 @@ namespace AlertApp.Infrastructure
         {
             State.TimeoutImpact = -1;
             State.TimeoutFalling = -1;
+            Position = 0;
         }
 
         void InitiateSamples(StateStructure State)
@@ -231,11 +242,10 @@ namespace AlertApp.Infrastructure
         public void Protect(long timestamp, double x, double y, double z)
         {
             lock (_locker)
-            {
+            {                
                 Sampled(timestamp, x, y, z);
             }
         }
-
         void Sampled(long timestamp, double x, double y, double z)
         {
             long PostTime = timestamp / 1000000;
@@ -262,6 +272,7 @@ namespace AlertApp.Infrastructure
                 AddToQueue(State.Y, LINEAR(State.AnteTime, State.AnteY, PostTime, PostY, State.Regular));
                 AddToQueue(State.Z, LINEAR(State.AnteTime, State.AnteZ, PostTime, PostZ, State.Regular));
                 Process();
+                SetPosition();
                 State.Regular += INTERVAL_MS;
             }
         }
@@ -332,10 +343,10 @@ namespace AlertApp.Infrastructure
                 {
                     if (_FallDetectionListener != null)
                     {
-                        _FallDetectionListener.OnFallDetected();
+                        Device.BeginInvokeOnMainThread(() => _FallDetectionListener.OnFallDetected());
+                        //_FallDetectionListener.OnFallDetected();
                     }
-
-                    // Debug.WriteLine($"Fall!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                     Debug.WriteLine($"Fall!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     // State.Lying[State.Lying.Count - 1] = 1;
                 }
             }
@@ -343,7 +354,6 @@ namespace AlertApp.Infrastructure
 
         private void AddToQueue(Queue<Double> queue, double Value)
         {
-            //Debug.WriteLine(queue.Count);
             if (queue.Count >= SIZE_BUFFER)
             {
                 queue.Dequeue();
@@ -363,15 +373,6 @@ namespace AlertApp.Infrastructure
             }
             var beforeValues = Array.Skip(index);
             return beforeValues.Min();
-            //for (int I = 1; I < SPAN_MAXMIN; I++)
-            //{
-            //    double Value = beforeValues.ElementAt(I);// AT(Array, State->Position - I, N);
-            //    if (!isnan(Value) && Value < Min)
-            //    {
-            //        Min = Value;
-            //    }
-            //}
-            //return Min;
         }
 
         double Max(Queue<double> Array)
@@ -383,6 +384,21 @@ namespace AlertApp.Infrastructure
             }
             var beforeValues = Array.Skip(index);
             return beforeValues.Max();
+        }
+
+        private void SetPosition()
+        {
+            if (Position >= Int32.MaxValue)
+            {
+                Position = 0;
+            }
+            Position = (Position + 1) % N;
+        }
+
+        public class SignalData
+        {
+            public double[] Buffer { get; set; }
+            public int Position { get; set; }
         }
 
         public class StateStructure
@@ -427,8 +443,6 @@ namespace AlertApp.Infrastructure
             public double AnteZ { get; set; }
             public long AnteTime { get; set; }
             public long Regular { get; set; }
-
-
         }
     }
 }

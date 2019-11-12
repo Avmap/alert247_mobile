@@ -57,10 +57,12 @@ namespace AlertApp.Droid
         [return: GeneratedEnum]
         public override StartCommandResult OnStartCommand(Intent intent, [GeneratedEnum] StartCommandFlags flags, int startId)
         {
+
+            this.StartForeground(67236723, GetNotification());
             fallDetector = new FallDetector(this);
             fallDetector.Initiate();
-            this.StartForeground(67236723, GetNotification());
             accelerometer = new ApplicationAccelerometer(this, fallDetector);
+
             accelerometer.ToggleAccelerometer();
             StartLocationUpdates();
             return StartCommandResult.Sticky;
@@ -150,7 +152,12 @@ namespace AlertApp.Droid
 
         public void OnSensorChanged(SensorEvent e)
         {
-            fallDetector.Protect(e.Timestamp, e.Values[0], e.Values[1], e.Values[2]);
+            if (e.Sensor.Type == SensorType.Accelerometer)
+            {
+                //System.Diagnostics.Debug.WriteLine($"Start");
+                fallDetector.Protect(e.Timestamp, e.Values[0], e.Values[1], e.Values[2]);
+                //System.Diagnostics.Debug.WriteLine($"End");
+            }
         }
 
         public void OnFallDetected()
@@ -173,11 +180,15 @@ namespace AlertApp.Droid
             {
                 AudioAttributes aa = new AudioAttributes.Builder().SetLegacyStreamType(Stream.Alarm).Build();
                 pool = new SoundPool.Builder().SetMaxStreams(5).SetAudioAttributes(aa).Build();
-                //pool.SetOnLoadCompleteListener(_SoundListener);      
+                pool.SetOnLoadCompleteListener(_SoundListener);
                 id = pool.Load(context, Resource.Raw.alarmtest, 1);
             }
-
+            loudest(context);
             pool.Play(id, 1.0f, 1.0f, 1, 3, 1.0f);
+
+            var intent = new Intent(context, typeof(MainActivity));
+            intent.AddFlags(ActivityFlags.ReorderToFront);
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity.StartActivity(intent);
         }
 
 
@@ -187,7 +198,10 @@ namespace AlertApp.Droid
             int loudest = manager.GetStreamMaxVolume(Stream.Alarm);
             manager.SetStreamVolume(Stream.Alarm, loudest, 0);
         }
+
     }
+
+
 
     public class SoundListener : Java.Lang.Object, SoundPool.IOnLoadCompleteListener
     {
@@ -200,6 +214,8 @@ namespace AlertApp.Droid
 
     public class ApplicationAccelerometer
     {
+        private HandlerThread _HandlerThread;
+        private Handler _Handler;
         private Sensor _Sensor;
         private SensorManager _Sensormanager;
         private FallDetector _FallDetector;
@@ -209,7 +225,10 @@ namespace AlertApp.Droid
             _Context = context;
             _FallDetector = fallDetector;
             _Sensormanager = (SensorManager)context.GetSystemService(Context.SensorService);
-            _Sensor = _Sensormanager.GetDefaultSensor(SensorType.Accelerometer);            
+            _Sensor = _Sensormanager.GetDefaultSensor(SensorType.Accelerometer);
+            _HandlerThread = new HandlerThread("AccelerometerLogListener");
+            _HandlerThread.Start();
+            _Handler = new Handler(_HandlerThread.Looper);
         }
         public void Stop()
         {
@@ -222,7 +241,7 @@ namespace AlertApp.Droid
         {
             try
             {
-                _Sensormanager.RegisterListener((ISensorEventListener)_Context, _Sensormanager.GetDefaultSensor(SensorType.Accelerometer), SensorDelay.Game);
+                _Sensormanager.RegisterListener((ISensorEventListener)_Context, _Sensormanager.GetDefaultSensor(SensorType.Accelerometer), SensorDelay.Game, _Handler);
 
                 if (Accelerometer.IsMonitoring)
                     Accelerometer.Stop();
@@ -293,7 +312,7 @@ namespace AlertApp.Droid
                         await UserProfileService.Ping(token, location.Latitude, location.Longitude, firebaseToken);
                     }
                 });
-               // Toast.MakeText(context, "New location", ToastLength.Short).Show();
+                // Toast.MakeText(context, "New location", ToastLength.Short).Show();
             }
             else
             {

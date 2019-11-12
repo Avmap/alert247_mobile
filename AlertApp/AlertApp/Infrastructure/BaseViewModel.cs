@@ -28,7 +28,22 @@ namespace AlertApp.Infrastructure
 
         private async void Back()
         {
-            await NavigationService.PopAsync(false);
+            try
+            {
+                await NavigationService.PopAsync(false);
+            }
+            catch
+            {
+                try
+                {
+                    await NavigationService.PopModalAsync(false);
+                }
+                catch
+                {
+                 
+                }                
+            }
+          
         }
 
         public bool ShowContactsMenuButton => Preferences.Get(Settings.CONTACTS_BUTTON_VISIBLE, true);
