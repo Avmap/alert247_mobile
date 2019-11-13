@@ -1,9 +1,11 @@
 ﻿using AlertApp.Model;
+using AlertApp.Pages;
 using AlertApp.Resx;
 using AlertApp.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -25,6 +27,42 @@ namespace AlertApp.Infrastructure
                 }));
             }
         }
+        private ICommand _OpenHomeScreenCommand;
+        public ICommand OpenHomeScreenCommand
+        {
+            get
+            {
+                return _OpenHomeScreenCommand ?? (_OpenHomeScreenCommand = new Command(OpenHomeScreen, () =>
+                {
+                    return !Busy;
+                }));
+            }
+        }
+
+        private ICommand _OpenSettingsCommand;
+        public ICommand OpenSettingsCommand
+        {
+            get
+            {
+                return _OpenSettingsCommand ?? (_OpenSettingsCommand = new Command(OpenSettingsScreen, () =>
+                {
+                    return !Busy;
+                }));
+            }
+        }
+
+        private async void OpenSettingsScreen()
+        {
+
+            if (NavigationService.NavigationStack.LastOrDefault() is SettingsPage == false)
+            {
+                SetBusy(true);
+                await NavigationService.PushAsync(new SettingsPage(), false);
+                SetBusy(false);
+            }
+
+        }
+
 
         private async void Back()
         {
@@ -40,10 +78,10 @@ namespace AlertApp.Infrastructure
                 }
                 catch
                 {
-                 
-                }                
+
+                }
             }
-          
+
         }
 
         public bool ShowContactsMenuButton => Preferences.Get(Settings.CONTACTS_BUTTON_VISIBLE, true);
@@ -104,7 +142,7 @@ namespace AlertApp.Infrastructure
             set
             {
                 SetProperty(ref _Busy, value, BusyPropertyName);
-              OnPropertyChanged("NotBusy");
+                OnPropertyChanged("NotBusy");
             }
         }
 
@@ -166,7 +204,7 @@ namespace AlertApp.Infrastructure
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected Task<string> DisplayActionSheet(string title, string[] listItems,string buttonText)
+        protected Task<string> DisplayActionSheet(string title, string[] listItems, string buttonText)
         {
             var test = Application.Current.MainPage.DisplayActionSheet(title, buttonText, null, listItems);
             if (test != null)
@@ -184,7 +222,7 @@ namespace AlertApp.Infrastructure
         }
 
 
-  
+
         protected async Task<bool> showAlertMessage(string title, string message, string accept, string cancel)
         {
             var result = await Application.Current.MainPage.DisplayAlert(title, message, accept, cancel);
@@ -233,5 +271,15 @@ namespace AlertApp.Infrastructure
 
             return errorDescription;
         }
+
+        private void OpenHomeScreen()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                NavigationService.InsertPageBefore(new MainPage(), NavigationService.NavigationStack.First());
+                NavigationService.PopToRootAsync();
+            });
+        }
+
     }
 }

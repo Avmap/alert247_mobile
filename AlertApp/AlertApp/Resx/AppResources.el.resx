@@ -616,4 +616,7 @@
   <data name="PrivacyTerms" xml:space="preserve">
     <value>Πολιτική Προστασίας</value>
   </data>
+  <data name="WrongPin" xml:space="preserve">
+    <value>Λάθος PIN.</value>
+  </data>
 </root>

@@ -610,4 +610,7 @@
   <data name="PrivacyTerms" xml:space="preserve">
     <value>Terms &amp; Conditions</value>
   </data>
+  <data name="WrongPin" xml:space="preserve">
+    <value>You entered wrong pin.</value>
+  </data>
 </root>

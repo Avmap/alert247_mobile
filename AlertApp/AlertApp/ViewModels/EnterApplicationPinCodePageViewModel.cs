@@ -149,7 +149,7 @@ namespace AlertApp.ViewModels
                 await Task.Run(() => _cryptohraphyService.GenerateKeys(String.Format("{0}{1}{2}{3}", Pin1, Pin2, Pin3, Pin4)));
                 SetBusy(false);
                 //we keep TempRegistrationFields in static field in App.xaml.cs.
-                await NavigationService.PushAsync(new RegistrationFieldsPage(App.TempRegistrationFields), true);
+                await NavigationService.PushAsync(new RegistrationFieldsPage(App.TempRegistrationFields), false);
             }
         }
 

@@ -112,13 +112,7 @@ namespace AlertApp.ViewModels
 
         public SelectLanguagePageViewModel(ILocalSettingsService localSettingsService)
         {
-            _localSettingsService = localSettingsService;
-            //SetSelectedLanguage();
-
-            // MessagingCenter.Subscribe<DialogSelectLanguageViewModel, SelectLanguage>(this, SelectLanguage.Event, (sender, arg) =>
-            // {
-            //      SetSelectedLanguage();
-            //   });
+            _localSettingsService = localSettingsService;         
         }
 
         private async void SetSelectedLanguage(string language)
@@ -145,6 +139,7 @@ namespace AlertApp.ViewModels
             Thread.CurrentThread.CurrentUICulture = ci;
             Resx.AppResources.Culture = ci;
             App.Current.MainPage = new NavigationPage(new MainPage());
+            await App.Current.MainPage.Navigation.PushAsync(new SettingsPage(), false);       
         }
 
         private void SetSelectedLanguage()

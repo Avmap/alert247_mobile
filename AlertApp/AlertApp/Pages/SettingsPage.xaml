@@ -104,7 +104,7 @@
                 <StackLayout Margin="8,0,8,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenHomeScreen}"></TapGestureRecognizer>
+                            <TapGestureRecognizer Command="{Binding OpenHomeScreenCommand}"></TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>
                         <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="homepage.png"/>
                         <Label Text="{infrastructure:Translate HomeTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>

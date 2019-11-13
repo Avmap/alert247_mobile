@@ -30,19 +30,7 @@ namespace AlertApp.ViewModels
         #endregion
 
         #region Commands
-
-        private ICommand _OpenHomeScreen;
-        public ICommand OpenHomeScreen
-        {
-            get
-            {
-                return _OpenHomeScreen ?? (_OpenHomeScreen = new Command(Back, () =>
-                {
-                    return !Busy;
-                }));
-            }
-        }
-
+    
         private ICommand _OpenContactsScreen;
         public ICommand OpenContactsScreen
         {

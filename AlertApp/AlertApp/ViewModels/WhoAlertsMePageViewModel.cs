@@ -159,8 +159,9 @@ namespace AlertApp.ViewModels
                             else
                             {
                                 tempContacts.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, Stats = item.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") });
-                            }
+                            }                           
                         }
+    
                         AlertMeContacts = new ObservableCollection<Contact>(tempContacts);
                         SetBusy(false);
                     }

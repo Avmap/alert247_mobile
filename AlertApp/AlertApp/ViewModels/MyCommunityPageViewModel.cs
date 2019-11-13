@@ -57,17 +57,7 @@ namespace AlertApp.ViewModels
         #region Commands
 
 
-        private ICommand _OpenSettingsCommand;
-        public ICommand OpenSettingsCommand
-        {
-            get
-            {
-                return _OpenSettingsCommand ?? (_OpenSettingsCommand = new Command(OpenSettingsScreen, () =>
-                {
-                    return !Busy;
-                }));
-            }
-        }
+       
 
         private ICommand _OpenContactsScreenCommand;
         public ICommand OpenContactsScreenCommand
@@ -124,14 +114,6 @@ namespace AlertApp.ViewModels
             MessagingCenter.Send((BaseViewModel)this, RefreshContactsEvent.Event, new RefreshContactsEvent { });
         }
 
-        private async void OpenSettingsScreen()
-        {
-            SetBusy(true);
-            await NavigationService.PushAsync(new SettingsPage(), true);
-            SetBusy(false);
-        }
-
-
         private async void SetCommunity(Response<GetContactsResponse> response, List<ImportContact> addressBook)
         {
             //for (int i = 0; i < 15; i++)
@@ -153,7 +135,7 @@ namespace AlertApp.ViewModels
                             var addressBookItem = addressBook.Where(c => c.FormattedNumber == item.Cellphone).FirstOrDefault();
                             if (addressBookItem != null)
                             {
-                                tempContacts.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage,ProfileImageUri = addressBookItem.PhotoUriThumbnail });
+                                tempContacts.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage, ProfileImageUri = addressBookItem.PhotoUriThumbnail });
                             }
                             else
                             {
@@ -215,10 +197,8 @@ namespace AlertApp.ViewModels
                     }
                 }
             };
-            await NavigationService.PushAsync(contactsPage, true);
+            await NavigationService.PushAsync(contactsPage, false);
         }
-
-
 
         public async Task<bool> RemoveUser(Contact contact)
         {
@@ -251,6 +231,8 @@ namespace AlertApp.ViewModels
 
             return true;
         }
+
+
         #region BaseViewModel
         public override void SetBusy(bool isBusy)
         {

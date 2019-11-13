@@ -100,7 +100,7 @@ namespace AlertApp.ViewModels
 
         private async void OpenSendAlertScreen()
         {                        
-            await NavigationService.PushAsync(new SendingAlertPage(Model.AlertType.UserAlert), true);
+            await NavigationService.PushAsync(new SendingAlertPage(Model.AlertType.UserAlert), false);
         }
         #region BaseViewModel
 

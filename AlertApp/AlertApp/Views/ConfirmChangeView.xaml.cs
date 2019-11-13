@@ -1,4 +1,5 @@
-﻿using AlertApp.Services.Settings;
+﻿using AlertApp.Resx;
+using AlertApp.Services.Settings;
 using AlertApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace AlertApp.Views
                 Pin1.Focus();
             });
         }
-        
+
         private void Pin1_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
@@ -98,6 +99,17 @@ namespace AlertApp.Views
                 {
                     Confirmed = true;
                     await Navigation.PopModalAsync();
+                }
+                else
+                {
+                    if (!string.IsNullOrWhiteSpace(userInput))
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                                           {
+                                               Application.Current.MainPage.DisplayAlert(AppResources.Warning, AppResources.WrongPin, "OK");
+                                           });
+                    }
+
                 }
             });
 
