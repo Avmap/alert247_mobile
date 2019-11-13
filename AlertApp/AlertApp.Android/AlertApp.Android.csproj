@@ -174,6 +174,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="OtpVerificationBroadcastReceiver.cs" />
+    <Compile Include="PowerButtonReceiver.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashActivity.cs" />

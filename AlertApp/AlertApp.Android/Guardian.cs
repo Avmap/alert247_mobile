@@ -43,6 +43,7 @@ namespace AlertApp.Droid
         private static SoundPool pool = null;
         private static int id = -1;
         private SoundListener _SoundListener;
+        private PowerButtonReceiver _PowerButtonReceiver;
         public override void OnCreate()
         {
             base.OnCreate();
@@ -62,9 +63,15 @@ namespace AlertApp.Droid
             fallDetector = new FallDetector(this);
             fallDetector.Initiate();
             accelerometer = new ApplicationAccelerometer(this, fallDetector);
-
             accelerometer.ToggleAccelerometer();
             StartLocationUpdates();
+            _PowerButtonReceiver = new PowerButtonReceiver();
+
+            //register power button broadcast receiver
+            IntentFilter filter = new IntentFilter(Intent.ActionScreenOn);
+            filter.AddAction(Intent.ActionScreenOff);            
+            RegisterReceiver(_PowerButtonReceiver, filter);
+
             return StartCommandResult.Sticky;
         }
 
@@ -80,7 +87,13 @@ namespace AlertApp.Droid
             {
                 accelerometer.Stop();
             }
-            //t.Stop();
+            try
+            {
+                UnregisterReceiver(_PowerButtonReceiver);
+            }
+            catch (System.Exception)
+            {
+            }            
         }
 
         Notification GetNotification()
@@ -154,9 +167,13 @@ namespace AlertApp.Droid
         {
             if (e.Sensor.Type == SensorType.Accelerometer)
             {
-                //System.Diagnostics.Debug.WriteLine($"Start");
-                fallDetector.Protect(e.Timestamp, e.Values[0], e.Values[1], e.Values[2]);
-                //System.Diagnostics.Debug.WriteLine($"End");
+                if (fallDetector != null)
+                {
+                    //System.Diagnostics.Debug.WriteLine($"Start");
+                    fallDetector.Protect(e.Timestamp, e.Values[0], e.Values[1], e.Values[2]);
+                    //System.Diagnostics.Debug.WriteLine($"End");
+                }
+
             }
         }
 
@@ -248,7 +265,7 @@ namespace AlertApp.Droid
                 else
                 {
                     Accelerometer.Start(SensorSpeed.Game);
-                    Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
+                    //Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
                 }
 
             }
