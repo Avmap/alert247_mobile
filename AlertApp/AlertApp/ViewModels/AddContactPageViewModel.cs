@@ -199,7 +199,7 @@ namespace AlertApp.ViewModels
                         this.OriginalContacts = new ObservableCollection<ImportContact>();
                         this.Contacts = new ObservableCollection<ImportContact>(this.Contacts); ;
                     });
-                  
+
                     showOKMessage(AppResources.Error, AppResources.NoInternetConnection);
                 }
 
@@ -210,31 +210,11 @@ namespace AlertApp.ViewModels
         private async void InviteUser()
         {
             string messageText = AppResources.ShareMessage;
-            //string action = await DisplayActionSheet(AppResources.ShareVia, new string[] { "SMS", AppResources.OtherText }, AppResources.Cancel);
-            //if (action == "SMS")
-            //{
-            //    try
-            //    {
-            //        var message = new SmsMessage(messageText, new[] { contact.Number });
-            //        await Sms.ComposeAsync(message);
-            //    }
-            //    catch (FeatureNotSupportedException ex)
-            //    {
-            //        // Sms is not supported on this device.
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        // Other error has occurred.
-            //    }
-            //}
-         //   else if (action == AppResources.OtherText)
-         //   {
-                await Share.RequestAsync(new ShareTextRequest
-                {
-                    Text = AppResources.ShareMessage,
-                    Title = AppResources.ShareMessageTitle
-                });
-           // }
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = AppResources.ShareMessage,
+                Title = AppResources.ShareMessageTitle
+            });
         }
         public void SelectContact(ImportContact contact)
         {

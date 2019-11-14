@@ -198,7 +198,7 @@ namespace AlertApp.Droid
                 AudioAttributes aa = new AudioAttributes.Builder().SetLegacyStreamType(Stream.Alarm).Build();
                 pool = new SoundPool.Builder().SetMaxStreams(5).SetAudioAttributes(aa).Build();
                 pool.SetOnLoadCompleteListener(_SoundListener);
-                id = pool.Load(context, Resource.Raw.alarmtest, 1);
+                id = pool.Load(context, Resource.Raw.alarm, 1);
             }
             loudest(context);
             pool.Play(id, 1.0f, 1.0f, 1, 3, 1.0f);
