@@ -239,20 +239,20 @@ namespace AlertApp.Infrastructure
             }
         }
 
-        public void Protect(long timestamp, double x, double y, double z)
+        public async Task Protect(long timestamp, double x, double y, double z)
         {
-            lock (_locker)
-            {                
-                Sampled(timestamp, x, y, z);
-            }
+            //lock (_locker)
+           // {                
+                await Sampled(timestamp, x, y, z);
+           // }
         }
-        void Sampled(long timestamp, double x, double y, double z)
+        async Task Sampled(long timestamp, double x, double y, double z)
         {
             long PostTime = timestamp / 1000000;
             double PostX = x / ASENSOR_STANDARD_GRAVITY;
             double PostY = y / ASENSOR_STANDARD_GRAVITY;
             double PostZ = z / ASENSOR_STANDARD_GRAVITY;
-            Resample(PostTime, PostX, PostY, PostZ);
+            await Resample(PostTime, PostX, PostY, PostZ);
             State.AnteTime = PostTime;
             State.AnteX = PostX;
             State.AnteY = PostY;
@@ -260,7 +260,7 @@ namespace AlertApp.Infrastructure
         }
 
         // Android sampling is irregular, thus the signal is (linearly) resampled at 50 Hz
-        void Resample(long PostTime, double PostX, double PostY, double PostZ)
+        async Task Resample(long PostTime, double PostX, double PostY, double PostZ)
         {
             if (0 == State.AnteTime)
             {
@@ -271,13 +271,13 @@ namespace AlertApp.Infrastructure
                 AddToQueue(State.X, LINEAR(State.AnteTime, State.AnteX, PostTime, PostX, State.Regular));
                 AddToQueue(State.Y, LINEAR(State.AnteTime, State.AnteY, PostTime, PostY, State.Regular));
                 AddToQueue(State.Z, LINEAR(State.AnteTime, State.AnteZ, PostTime, PostZ, State.Regular));
-                Process();
+                await Process();
                 SetPosition();
                 State.Regular += INTERVAL_MS;
             }
         }
 
-        void Process()
+        async Task Process()
         {
             State.TimeoutFalling = EXPIRE(State.TimeoutFalling);
             State.TimeoutImpact = EXPIRE(State.TimeoutImpact);

@@ -163,15 +163,15 @@ namespace AlertApp.Droid
 
         }
 
-        public void OnSensorChanged(SensorEvent e)
+        public async void OnSensorChanged(SensorEvent e)
         {
             if (e.Sensor.Type == SensorType.Accelerometer)
             {
                 if (fallDetector != null)
                 {
-                    //System.Diagnostics.Debug.WriteLine($"Start");
-                    fallDetector.Protect(e.Timestamp, e.Values[0], e.Values[1], e.Values[2]);
-                    //System.Diagnostics.Debug.WriteLine($"End");
+                    System.Diagnostics.Debug.WriteLine($"Start");
+                    await fallDetector.Protect(e.Timestamp, e.Values[0], e.Values[1], e.Values[2]);
+                    System.Diagnostics.Debug.WriteLine($"End");
                 }
 
             }
