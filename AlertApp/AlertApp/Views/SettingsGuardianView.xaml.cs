@@ -14,12 +14,12 @@ using Xamarin.Forms.Xaml;
 namespace AlertApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SettingsLocationView : ContentView
+    public partial class SettingsGuardianView : ContentView
     {
-        public SettingsLocationView()
+        public SettingsGuardianView()
         {
             InitializeComponent();
-            LOCATION.IsToggled = Preferences.Get(Settings.SendLocation, true);
+            LOCATION.IsToggled = Preferences.Get(Settings.AlwaysOn, true);
             this.BindingContext = ViewModelLocator.Instance.Resolve<SettingsPageViewModel>();
         }
 
@@ -72,11 +72,11 @@ namespace AlertApp.Views
             if (LOCATION.IsToggled)
             {
 
-                await vm.RequestLocation();
+                await vm.EnableGuardian();
             }
             else
             {
-               vm.DisableSendLocation();
+                vm.DisableGuardian();
             }
 
         }

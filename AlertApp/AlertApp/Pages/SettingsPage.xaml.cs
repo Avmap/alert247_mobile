@@ -84,6 +84,11 @@ namespace AlertApp.Pages
         {
             Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.SettingPermissionLocationSubTitle, new SettingsLocationView()), false);
         }
+        private void Guardian_Tap(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.SettingPermissionGuardianSubTitle, new SettingsGuardianView()), false);
+        }
+        
         private void Contacts_Tap(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.ContactPermissionSettingTitle, new SettingsContactsView()), false);

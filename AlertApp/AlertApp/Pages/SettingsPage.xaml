@@ -36,6 +36,11 @@
                         <TapGestureRecognizer Tapped="Location_Tap"></TapGestureRecognizer>
                     </views:SettingCellView.GestureRecognizers>
                 </views:SettingCellView>
+                <views:SettingCellView Title="{infrastructure:Translate AllwaysOn}">
+                    <views:SettingCellView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Guardian_Tap"></TapGestureRecognizer>
+                    </views:SettingCellView.GestureRecognizers>
+                </views:SettingCellView>
                 <views:SettingCellView Title="{infrastructure:Translate SettingContacts}">
                     <views:SettingCellView.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Contacts_Tap"></TapGestureRecognizer>

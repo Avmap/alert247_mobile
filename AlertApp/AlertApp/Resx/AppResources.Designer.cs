@@ -178,6 +178,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ALWAYS ON.
+        /// </summary>
+        internal static string AlwaysOnCaps {
+            get {
+                return ResourceManager.GetString("AlwaysOnCaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application.
         /// </summary>
         internal static string Application {
@@ -1119,6 +1128,15 @@ namespace AlertApp.Resx {
         internal static string SettingLocation {
             get {
                 return ResourceManager.GetString("SettingLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Always On.
+        /// </summary>
+        internal static string SettingPermissionGuardianSubTitle {
+            get {
+                return ResourceManager.GetString("SettingPermissionGuardianSubTitle", resourceCulture);
             }
         }
         

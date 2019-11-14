@@ -124,6 +124,65 @@ namespace AlertApp.ViewModels
             return result;
         }
 
+
+
+        public async Task<LocationResult> RequestLocation()
+        {
+            var result = new LocationResult { Ok = true };
+            try
+            {
+                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                if (locationPermissionStatus != PermissionStatus.Granted)
+                {
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location });
+                    locationPermissionStatus = results[Permission.Location];
+                }
+
+                if (locationPermissionStatus != PermissionStatus.Granted)
+                {
+                    result = new LocationResult { Ok = false, ErroMessage = "Location permissions Denied. Unable to start guardian." };
+                }
+
+
+                var locationSettingsService = DependencyService.Get<ILocationSettings>();
+                if (!locationSettingsService.IsLocationEnabled())
+                {
+                    result = new LocationResult { Ok = false, ErroMessage = "To open guardian turn on device location." };
+                }
+
+
+                if (result.Ok)
+                {                    
+                  //  _guardian.StartGuardianService();
+                    _localSettingsService.SaveSendLocationSetting(true);
+                }
+                else
+                {
+                    showOKMessage(AppResources.Warning, result.ErroMessage);
+                }
+
+
+                return result;
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Handle not supported on device exception
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                // Handle not enabled on device exception
+            }
+            catch (PermissionException pEx)
+            {
+                // Handle permission exception
+            }
+            catch (Exception ex)
+            {
+                // Unable to get location
+            }
+            //SetBusy(false);   
+            return result;
+        }
         public void DisableGuardian()
         {
             _guardian.StopGuardianService();
@@ -131,7 +190,10 @@ namespace AlertApp.ViewModels
             AllwaysOn = false;
         }
 
-
+        public void DisableSendLocation()
+        {            
+            _localSettingsService.SaveSendLocationSetting(false);            
+        }
         private async void Back()
         {
             await NavigationService.PopAsync(false);

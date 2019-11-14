@@ -56,6 +56,12 @@ namespace AlertApp.Services.Profile
             var res = new Response();
             try
             {
+                var sendLocationSetting =  _localSettingsService.GetSendLocationSetting();
+                if (!sendLocationSetting)
+                {
+                    lat = null;
+                    lng = null;
+                }
                 var json = JsonConvert.SerializeObject(new PingUserBody { Token = token, Lat = lat, Lng = lng,FirebaseToken = firebaseToken });
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await _httpClient.PostAsync("post/alert/ping", content);

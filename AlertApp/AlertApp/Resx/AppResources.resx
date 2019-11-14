@@ -613,4 +613,10 @@
   <data name="WrongPin" xml:space="preserve">
     <value>You entered wrong pin.</value>
   </data>
+  <data name="AlwaysOnCaps" xml:space="preserve">
+    <value>ALWAYS ON</value>
+  </data>
+  <data name="SettingPermissionGuardianSubTitle" xml:space="preserve">
+    <value>Always On</value>
+  </data>
 </root>

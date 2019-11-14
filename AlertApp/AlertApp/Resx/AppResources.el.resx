@@ -619,4 +619,10 @@
   <data name="WrongPin" xml:space="preserve">
     <value>Λάθος PIN.</value>
   </data>
+  <data name="AlwaysOnCaps" xml:space="preserve">
+    <value>ΠΑΝΤΑ ΕΝΕΡΓΗ</value>
+  </data>
+  <data name="SettingPermissionGuardianSubTitle" xml:space="preserve">
+    <value>Πάντα Ενεργή</value>
+  </data>
 </root>
