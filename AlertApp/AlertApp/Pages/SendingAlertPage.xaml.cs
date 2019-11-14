@@ -78,9 +78,8 @@ namespace AlertApp.Pages
                 {
                     alertLabel.Text = "";//AppResources.SendingAlert;
                 });
-#if Release
-                 ((ISendAlert)this.BindingContext).SendUserAlert();
-#endif
+
+                ((ISendAlert)this.BindingContext).SendUserAlert();
 
             }
         }
