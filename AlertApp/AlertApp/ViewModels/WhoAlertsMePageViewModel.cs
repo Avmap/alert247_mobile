@@ -235,7 +235,7 @@ namespace AlertApp.ViewModels
             SetBusy(true);
             List<string> contacts = new List<string>();
             contacts.Add(contact.Cellphone);
-            var response = await _contactsService.RemoveContacts(await _localSettingsService.GetAuthToken(), contacts);
+            var response = await _contactsService.RemoveNotifiers(await _localSettingsService.GetAuthToken(), contacts);
             if (response.IsOk)
             {
                 GetAlertMe();
@@ -249,7 +249,7 @@ namespace AlertApp.ViewModels
         public async Task<bool> BlockUser(Contact contact)
         {
             SetBusy(true);
-            var response = await _contactsService.BlockAdd(await _localSettingsService.GetAuthToken(), contact.Cellphone);
+            var response = await _contactsService.BlockNotifier(await _localSettingsService.GetAuthToken(), contact.Cellphone);
             if (response.IsOk)
             {
                 GetAlertMe();

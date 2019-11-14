@@ -207,5 +207,58 @@ namespace AlertApp.Services.Contacts
             }
             return res;
         }
+
+        public async Task<Response<bool>> BlockNotifier(string token, string mobilephone)
+        {
+            var res = new Response<bool>();
+            try
+            {
+                var json = JsonConvert.SerializeObject(new AcceptAddBody { Token = token, MobileNumber = mobilephone });
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("post/alert/blockNotifier", content);
+                if (response.Content != null)
+                {
+                    var apiResponse = await response.Content.ReadAsStringAsync();
+                    if (apiResponse != null)
+                    {
+                        return JsonConvert.DeserializeObject<Response<bool>>(apiResponse);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                res.ErrorCode = ex.Message;
+                res.Status = "error";
+                res.IsOnline = false;
+            }
+            return res;
+        }
+
+        public async Task<Response<bool>> RemoveNotifiers(string token, List<string> mobilephones)
+        {
+            var res = new Response<bool>();
+            try
+            {
+                var json = JsonConvert.SerializeObject(new AddContactBody { Token = token, MobileNumbers = mobilephones.ToArray() });
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("post/alert/removeNotifiers", content);
+                if (response.Content != null)
+                {
+                    var apiResponse = await response.Content.ReadAsStringAsync();
+                    if (apiResponse != null)
+                    {
+                        return JsonConvert.DeserializeObject<Response<bool>>(apiResponse);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                res.ErrorCode = ex.Message;
+                res.Status = "error";
+                res.IsOnline = false;
+            }
+            return res;
+        }
+        
     }
 }
