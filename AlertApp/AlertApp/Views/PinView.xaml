@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
+             x:Class="AlertApp.Views.PinView">
+    <ContentView.Content>
+        <Frame HorizontalOptions="Center" BackgroundColor="#E6E7E8" CornerRadius="16" Padding="8,2,8,2" HasShadow="False">
+            <StackLayout  Orientation="Horizontal"  Spacing="8" HorizontalOptions="Center">
+                <infrastructure:EntryCentered x:Name="Pin1" WidthRequest="35" TextChanged="Pin1_TextChanged" Focused="Pin_Focused" Keyboard="Numeric" Text="{Binding Pin1,Mode=TwoWay}" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}">
+                    <infrastructure:EntryCentered.Behaviors>
+                        <infrastructure:NumberValidationBehavior />
+                    </infrastructure:EntryCentered.Behaviors>
+                </infrastructure:EntryCentered>
+                <infrastructure:EntryCentered x:Name="Pin2" WidthRequest="35" TextChanged="Pin2_TextChanged" Focused="Pin_Focused" Keyboard="Numeric" Text="{Binding Pin2,Mode=TwoWay}"  HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}">
+                    <infrastructure:EntryCentered.Behaviors>
+                        <infrastructure:NumberValidationBehavior />
+                    </infrastructure:EntryCentered.Behaviors>
+                </infrastructure:EntryCentered>
+                <infrastructure:EntryCentered x:Name="Pin3" WidthRequest="35" TextChanged="Pin3_TextChanged" Focused="Pin_Focused" Keyboard="Numeric" Text="{Binding Pin3,Mode=TwoWay}"  HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}">
+                    <infrastructure:EntryCentered.Behaviors>
+                        <infrastructure:NumberValidationBehavior />
+                    </infrastructure:EntryCentered.Behaviors>
+                </infrastructure:EntryCentered>
+                <infrastructure:EntryCentered x:Name="Pin4" WidthRequest="35" TextChanged="Pin4_TextChanged" Focused="Pin_Focused"  Keyboard="Numeric" Text="{Binding Pin4,Mode=TwoWay}"  HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}">
+                    <infrastructure:EntryCentered.Behaviors>
+                        <infrastructure:NumberValidationBehavior />
+                    </infrastructure:EntryCentered.Behaviors>
+                </infrastructure:EntryCentered>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

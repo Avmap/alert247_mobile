@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.00.67" package="gr.avmap.alert247" android:installLocation="internalOnly" android:versionCode="000067">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.00.70" package="gr.avmap.alert247" android:installLocation="internalOnly" android:versionCode="000070">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
-
 	<!-- Using speaker volume control -->
 	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 	<uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
@@ -17,7 +16,7 @@
 	<uses-feature android:name="android.hardware.location.gps" android:required="false" />
 	<uses-feature android:name="android.hardware.location.network" android:required="false" />
 	<application android:label="Alert 24/7" android:allowBackup="false">
-    <uses-library android:name="org.apache.http.legacy" android:required="false" />
+		<uses-library android:name="org.apache.http.legacy" android:required="false" />
 		<!--<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyD-QGABb7MdzQ_46ZGWgu5yCFwYHbypx0o" />-->
 		<meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@mipmap/launcher_foreground" />
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />

@@ -27,10 +27,26 @@
             <infrastructure:LoadingIndicator  Grid.Row="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
             <StackLayout Grid.Row="2" Orientation="Vertical" Spacing="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                 <StackLayout Orientation="Horizontal"  Spacing="2" HorizontalOptions="FillAndExpand">
-                    <infrastructure:EntryCentered IsEnabled="{Binding NotBusy}" x:Name="Pin1" TextChanged="Pin1_TextChanged"  Keyboard="Telephone" Text="{Binding Pin1,Mode=TwoWay}" WidthRequest="35" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"/>
-                    <infrastructure:EntryCentered IsEnabled="{Binding NotBusy}" x:Name="Pin2" TextChanged="Pin2_TextChanged"  Keyboard="Telephone" Text="{Binding Pin2,Mode=TwoWay}" WidthRequest="35"  Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"/>
-                    <infrastructure:EntryCentered IsEnabled="{Binding NotBusy}" x:Name="Pin3" TextChanged="Pin3_TextChanged" Keyboard="Telephone" Text="{Binding Pin3,Mode=TwoWay}" WidthRequest="35"  Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"/>
-                    <infrastructure:EntryCentered IsEnabled="{Binding NotBusy}" x:Name="Pin4" TextChanged="Pin4_TextChanged" Keyboard="Telephone" Text="{Binding Pin4,Mode=TwoWay}" WidthRequest="35"  Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"/>
+                    <infrastructure:EntryCentered IsEnabled="{Binding NotBusy}" x:Name="Pin1" TextChanged="Pin1_TextChanged" OnDeleteButton="Pin1_OnDeleteButton" Focused="Pin_Focused" OnNumberEntered="Pin1_OnNumberEntered" Keyboard="Numeric" Text="{Binding Pin1,Mode=TwoWay}" WidthRequest="35" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}">
+                        <infrastructure:EntryCentered.Behaviors>
+                            <infrastructure:NumberValidationBehavior />
+                        </infrastructure:EntryCentered.Behaviors>
+                    </infrastructure:EntryCentered>
+                    <infrastructure:EntryCentered IsEnabled="{Binding NotBusy}" x:Name="Pin2" TextChanged="Pin2_TextChanged" OnDeleteButton="Pin2_OnDeleteButton" Focused="Pin_Focused" OnNumberEntered="Pin2_OnNumberEntered"  Keyboard="Numeric" Text="{Binding Pin2,Mode=TwoWay}" WidthRequest="35"  Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}">
+                        <infrastructure:EntryCentered.Behaviors>
+                            <infrastructure:NumberValidationBehavior />
+                        </infrastructure:EntryCentered.Behaviors>
+                    </infrastructure:EntryCentered>
+                    <infrastructure:EntryCentered IsEnabled="{Binding NotBusy}" x:Name="Pin3" TextChanged="Pin3_TextChanged" OnDeleteButton="Pin3_OnDeleteButton" Focused="Pin_Focused" OnNumberEntered="Pin3_OnNumberEntered"  Keyboard="Numeric" Text="{Binding Pin3,Mode=TwoWay}" WidthRequest="35"  Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}">
+                        <infrastructure:EntryCentered.Behaviors>
+                            <infrastructure:NumberValidationBehavior />
+                        </infrastructure:EntryCentered.Behaviors>
+                    </infrastructure:EntryCentered>
+                    <infrastructure:EntryCentered IsEnabled="{Binding NotBusy}" x:Name="Pin4" TextChanged="Pin4_TextChanged" OnDeleteButton="Pin4_OnDeleteButton" Focused="Pin_Focused" OnNumberEntered="Pin4_OnNumberEntered"  Keyboard="Numeric" Text="{Binding Pin4,Mode=TwoWay}" WidthRequest="35"  Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}">
+                        <infrastructure:EntryCentered.Behaviors>
+                            <infrastructure:NumberValidationBehavior />
+                        </infrastructure:EntryCentered.Behaviors>
+                    </infrastructure:EntryCentered>
                 </StackLayout>
                 <Label FontSize="16" Text="{infrastructure:Translate EnterPinFor}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontAttributes="Bold"></Label>
                 <Label FontSize="16" Text="{infrastructure:Translate EnterPinToCancel}" TextColor="{StaticResource PrimaryColor}" HorizontalTextAlignment="Center"  HorizontalOptions="FillAndExpand" FontAttributes="Bold"></Label>

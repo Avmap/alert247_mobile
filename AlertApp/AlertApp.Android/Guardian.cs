@@ -139,8 +139,8 @@ namespace AlertApp.Droid
         private void ConfigLocationUpdates()
         {
             locationRequest = new LocationRequest();
-            locationRequest.SetInterval(5000);
-            locationRequest.SetFastestInterval(500);
+            locationRequest.SetInterval(10 * 60000);
+            locationRequest.SetFastestInterval((10 * 60000) / 2);
             locationRequest.SetPriority(LocationRequest.PriorityHighAccuracy);
             locationRequest.SetSmallestDisplacement(5);
             fusedLocationProviderClient = LocationServices.GetFusedLocationProviderClient(this);

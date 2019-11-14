@@ -21,77 +21,12 @@ namespace AlertApp.Views
         {
             InitializeComponent();
             _localSettingsService = ViewModelLocator.Instance.Resolve<ILocalSettingsService>();
-
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                Pin1.Focus();
-            });
-        }
-
-        private void Pin1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
-                {
-                    Pin2.Focus();
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
-        }
-        private void Pin2_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
-                {
-                    Pin3.Focus();
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
-        }
-        private void Pin3_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
-                {
-                    Pin4.Focus();
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
-        }
-        private void Pin4_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
-                {
-                    // Pin4.Focus();
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
-        }
+        }       
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            string userInput = String.Format("{0}{1}{2}{3}", Pin1.Text, Pin2.Text, Pin3.Text, Pin4.Text);
+            //var vm  = 
+            string userInput = String.Format("{0}{1}{2}{3}", pinLayout.Pin1Entry.Text, pinLayout.Pin2Entry.Text, pinLayout.Pin3Entry.Text, pinLayout.Pin4Entry.Text);
             Task.Run(async () =>
             {
                 var pin = await _localSettingsService.GetApplicationPin();
@@ -107,6 +42,7 @@ namespace AlertApp.Views
                         Device.BeginInvokeOnMainThread(() =>
                                            {
                                                Application.Current.MainPage.DisplayAlert(AppResources.Warning, AppResources.WrongPin, "OK");
+                                               pinLayout.Pin1Entry.Focus();
                                            });
                     }
 

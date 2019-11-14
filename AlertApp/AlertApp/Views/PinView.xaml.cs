@@ -1,93 +1,41 @@
 ﻿using AlertApp.Infrastructure;
-using AlertApp.Model;
-using AlertApp.Resx;
-using AlertApp.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace AlertApp.Pages
+namespace AlertApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SendingAlertPage : ContentPage
+    public partial class PinView : ContentView
     {
         private bool DeletePressed;
-        volatile int seconds = 10;
-        volatile bool stop = false;
-        Timer timer = null;
-        string applicationPin;
-        public SendingAlertPage(AlertType alertType)
-        {
 
+        public EntryCentered Pin1Entry => Pin1;
+        public EntryCentered Pin2Entry => Pin2;
+        public EntryCentered Pin3Entry => Pin3;
+        public EntryCentered Pin4Entry => Pin4;
+
+        public PinView()
+        {
             InitializeComponent();
-            NavigationPage.SetHasBackButton(this, false);
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("alertType", alertType);
-            this.BindingContext = ViewModelLocator.Instance.Resolve<SendingAlertPageViewModel>(parameters);
-            StartTimer();
-            SetApplicationPin();
 
+            Pin1.OnDeleteButton += Pin1_OnBackButton;
+            Pin2.OnDeleteButton += Pin2_OnBackButton;
+            Pin3.OnDeleteButton += Pin3_OnBackButton;
+            Pin4.OnDeleteButton += Pin4_OnBackButton;
+
+            Pin1.OnNumberEntered += Pin1_OnNumberEntered;
+            Pin2.OnNumberEntered += Pin2_OnNumberEntered;
+            Pin3.OnNumberEntered += Pin3_OnNumberEntered;
+            Pin4.OnNumberEntered += Pin4_OnNumberEntered;
+
+            GetFocus(Pin1);
         }
-
-        protected override void OnAppearing()
-        {
-
-            base.OnAppearing();
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                Pin1.Focus();
-            });
-        }
-
-        protected override bool OnBackButtonPressed()
-        {
-            return true;
-        }
-
-        private async void SetApplicationPin()
-        {
-            applicationPin = await ((ISendAlert)this.BindingContext).GetApplicationPin();
-        }
-
-        private async void StartTimer()
-        {
-            applicationPin = await ((ISendAlert)this.BindingContext).GetApplicationPin();
-            for (int i = 0; i < seconds; i++)
-            {
-                if (!stop)
-                {
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        alertLabel.Text = (seconds - i).ToString();//AppResources.SendingAlertIn + "\n" + (seconds - i);
-                    });
-                    await Task.Delay(TimeSpan.FromSeconds(1));
-                }
-                if (stop)
-                    i = 11;
-            }
-
-            if (!stop)
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    alertLabel.Text = "";//AppResources.SendingAlert;
-                });
-#if Release
-                 ((ISendAlert)this.BindingContext).SendUserAlert();
-#endif
-
-            }
-        }
-
-
-
-
         private void Pin1_OnNumberEntered(string text)
         {
             if (string.IsNullOrWhiteSpace(Pin1.Text))
@@ -100,8 +48,8 @@ namespace AlertApp.Pages
                 Pin2.Text = text;
                 Pin2.Focus();
             }
-        }
 
+        }
         private void Pin2_OnNumberEntered(string text)
         {
             if (string.IsNullOrWhiteSpace(Pin2.Text))
@@ -114,8 +62,8 @@ namespace AlertApp.Pages
                 Pin3.Text = text;
                 Pin3.Focus();
             }
-        }
 
+        }
         private void Pin3_OnNumberEntered(string text)
         {
             if (string.IsNullOrWhiteSpace(Pin3.Text))
@@ -128,24 +76,23 @@ namespace AlertApp.Pages
                 Pin4.Text = text;
                 Pin4.Focus();
             }
-        }
 
+        }
         private void Pin4_OnNumberEntered(string text)
         {
-
             if (string.IsNullOrWhiteSpace(Pin4.Text))
             {
                 Pin4.Text = text;
             }
         }
 
-        private void Pin1_OnDeleteButton(object sender, EventArgs e)
+        private void Pin1_OnBackButton(object sender, EventArgs e)
         {
             DeletePressed = true;
             Pin1.Text = "";
         }
 
-        private void Pin2_OnDeleteButton(object sender, EventArgs e)
+        private void Pin2_OnBackButton(object sender, EventArgs e)
         {
             DeletePressed = true;
             if (!string.IsNullOrWhiteSpace(Pin2.Text) && Pin2.Text.Length == 1)
@@ -159,7 +106,7 @@ namespace AlertApp.Pages
             }
         }
 
-        private void Pin3_OnDeleteButton(object sender, EventArgs e)
+        private void Pin3_OnBackButton(object sender, EventArgs e)
         {
             DeletePressed = true;
             if (!string.IsNullOrWhiteSpace(Pin3.Text) && Pin3.Text.Length == 1)
@@ -171,8 +118,7 @@ namespace AlertApp.Pages
                 Pin2.Focus();
             }
         }
-
-        private void Pin4_OnDeleteButton(object sender, EventArgs e)
+        private void Pin4_OnBackButton(object sender, EventArgs e)
         {
             DeletePressed = true;
             if (!string.IsNullOrWhiteSpace(Pin4.Text) && Pin4.Text.Length == 1)
@@ -185,6 +131,78 @@ namespace AlertApp.Pages
             }
         }
 
+        private void Pin1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    Pin2.Focus();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+        private void Pin2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    Pin3.Focus();
+                }
+                else
+                {
+                    Pin1.Focus();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+        private void Pin3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    Pin4.Focus();
+                }
+                else
+                {
+                    Pin2.Focus();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+        private void Pin4_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
+                {
+                    // Pin4.Focus();
+                }
+                else
+                {
+                    Pin3.Focus();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
         private void Pin_Focused(object sender, FocusEventArgs e)
         {
             try
@@ -293,86 +311,6 @@ namespace AlertApp.Pages
             }
             return false;
         }
-
-        private void Pin1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
-                {
-                    Pin2.Focus();
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
-        }
-        private void Pin2_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
-                {
-                    Pin3.Focus();
-                }
-                else
-                {
-                    Pin1.Focus();
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
-        }
-        private void Pin3_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
-                {
-                    Pin4.Focus();
-                }
-                else
-                {
-                    Pin2.Focus();
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
-        }
-
-        private async void Pin4_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
-                {
-                    string userInput = String.Format("{0}{1}{2}{3}", Pin1.Text, Pin2.Text, Pin3.Text, Pin4.Text);
-                    if (userInput.Equals(applicationPin))
-                    {
-                        stop = true;
-                        await this.Navigation.PopAsync();
-                    }
-                }
-                else
-                {
-                    Pin3.Focus();
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
-        }
-
         private void GetFocus(Entry entry)
         {
             Device.BeginInvokeOnMainThread(() =>
@@ -380,5 +318,6 @@ namespace AlertApp.Pages
                 entry.Focus();
             });
         }
+
     }
 }
