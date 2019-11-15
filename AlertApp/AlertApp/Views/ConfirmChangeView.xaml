@@ -7,10 +7,12 @@
     <ContentView.Content>
         <StackLayout Orientation="Vertical">
             
-            <views:PinView x:Name="pinLayout"></views:PinView>
-            
+            <Frame Margin="0,16,0,0" HorizontalOptions="Center" BackgroundColor="#E6E7E8" CornerRadius="16" Padding="8,2,8,2" HasShadow="False">
+                <views:PinView x:Name="pinLayout"/>
+            </Frame>
+
             <Label Margin="16,8,16,0" Text="{infrastructure:Translate ConfirmPinToSaveSettings}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
-            
+
             <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,16,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>

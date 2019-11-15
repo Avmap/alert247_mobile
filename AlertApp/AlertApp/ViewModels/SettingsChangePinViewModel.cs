@@ -44,10 +44,10 @@ namespace AlertApp.ViewModels
             }
         }
 
-        public string VePin1 { get; set; }
+        public string VePin1 { get; set; } 
         public string VePin2 { get; set; }
         public string VePin3 { get; set; }
-        public string VePin4 { get; set; }
+        public string VePin4 { get; set; } 
         #endregion
 
         #region Commands

@@ -14,64 +14,37 @@ namespace AlertApp.Views
     public partial class SettingsChangePinView : ContentView
     {
         public string _ApplicationPin { get; set; }
+        SettingsChangePinViewModel vm;
         public SettingsChangePinView()
         {
             InitializeComponent();
-            this.BindingContext = ViewModelLocator.Instance.Resolve<SettingsChangePinViewModel>();
+
+            vm = ViewModelLocator.Instance.Resolve<SettingsChangePinViewModel>();
+            this.BindingContext = vm;
             Task.Run(async () =>
+              {
+                  _ApplicationPin = await ((SettingsChangePinViewModel)this.BindingContext).GetApplicationPin();
+              });
+
+
+            pinLayout.Pin4Entry.TextChanged += Pin4_TextChanged;
+
+            Device.BeginInvokeOnMainThread(() =>
             {
-                _ApplicationPin = await ((SettingsChangePinViewModel)this.BindingContext).GetApplicationPin();
+                pinLayout.Pin1Entry.Focus();
             });
+
+
+            newPinLayout.Pin4Entry.TextChanged += PinTextChanged;
+            vePinLayout.Pin4Entry.TextChanged += PinTextChanged;
+
+            vePinLayout.Pin1Entry.SetBinding(Entry.TextProperty, nameof(vm.VePin1));
+            vePinLayout.Pin2Entry.SetBinding(Entry.TextProperty, nameof(vm.VePin2));
+            vePinLayout.Pin3Entry.SetBinding(Entry.TextProperty, nameof(vm.VePin3));
+            vePinLayout.Pin4Entry.SetBinding(Entry.TextProperty, nameof(vm.VePin4));
         }
 
-        private void Pin1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
-                {
-                    Pin2.Focus();
-                    CheckPin();
-                }
-            }
-            catch (Exception)
-            {
 
-            }
-
-        }
-        private void Pin2_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
-                {
-                    Pin3.Focus();
-                    CheckPin();
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
-        }
-        private void Pin3_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
-                {
-                    Pin4.Focus();
-                    CheckPin();
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
-        }
         private void Pin4_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
@@ -93,37 +66,6 @@ namespace AlertApp.Views
         {
             try
             {
-
-                if (e.NewTextValue != null && e.NewTextValue.Length == 1)
-                {
-                    var entry = sender as Entry;
-                    if (entry.Id == NewPin1.Id)
-                    {
-                        NewPin2.Focus();
-                    }
-                    if (entry.Id == NewPin2.Id)
-                    {
-                        NewPin3.Focus();
-                    }
-                    if (entry.Id == NewPin3.Id)
-                    {
-                        NewPin4.Focus();
-                    }
-
-                    if (entry.Id == VePin1.Id)
-                    {
-                        VePin2.Focus();
-                    }
-                    if (entry.Id == VePin2.Id)
-                    {
-                        VePin3.Focus();
-                    }
-                    if (entry.Id == VePin3.Id)
-                    {
-                        VePin4.Focus();
-                    }
-                }
-
                 CheckNewPin();
             }
             catch (Exception)
@@ -136,12 +78,12 @@ namespace AlertApp.Views
         private void CheckPin()
         {
             var vm = this.BindingContext as SettingsChangePinViewModel;
-            string userInput = String.Format("{0}{1}{2}{3}", Pin1.Text, Pin2.Text, Pin3.Text, Pin4.Text);
+            string userInput = String.Format("{0}{1}{2}{3}", pinLayout.Pin1Entry.Text, pinLayout.Pin2Entry.Text, pinLayout.Pin3Entry.Text, pinLayout.Pin4Entry.Text);
             if (!string.IsNullOrWhiteSpace(userInput) && userInput.Equals(_ApplicationPin))
             {
 
                 vm.NewPinLayoutVisible = true;
-                NewPin1.Focus();
+                newPinLayout.Pin1Entry.Focus();
             }
             else
             {
@@ -152,8 +94,8 @@ namespace AlertApp.Views
         private void CheckNewPin()
         {
             var vm = this.BindingContext as SettingsChangePinViewModel;
-            string newPin = String.Format("{0}{1}{2}{3}", NewPin1.Text, NewPin2.Text, NewPin3.Text, NewPin4.Text);
-            string newPinVerification = String.Format("{0}{1}{2}{3}", VePin1.Text, VePin2.Text, VePin3.Text, VePin4.Text);
+            string newPin = String.Format("{0}{1}{2}{3}", newPinLayout.Pin1Entry.Text, newPinLayout.Pin2Entry.Text, newPinLayout.Pin3Entry.Text, newPinLayout.Pin4Entry.Text);
+            string newPinVerification = String.Format("{0}{1}{2}{3}", vePinLayout.Pin1Entry.Text, vePinLayout.Pin2Entry.Text, vePinLayout.Pin3Entry.Text, vePinLayout.Pin4Entry.Text);
             if (!string.IsNullOrWhiteSpace(newPin) && !string.IsNullOrWhiteSpace(newPinVerification) && newPin.Equals(newPinVerification))
             {
 

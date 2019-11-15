@@ -22,7 +22,9 @@
                 <Label Grid.Row="1" Margin="16,0,16,0"  Text="{Binding PromtText}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
 
                 <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="Center">
-                    <views:PinView></views:PinView>
+                    <Frame HorizontalOptions="Center" BackgroundColor="#E6E7E8" CornerRadius="16" Padding="8,2,8,2" HasShadow="False">
+                        <views:PinView x:Name="pinLayout"></views:PinView>
+                    </Frame>
                     <StackLayout Margin="0,8,0,0"  Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start">
                         <Label Text="{infrastructure:Translate LocationTracking}" VerticalOptions="Center" Style="{StaticResource HeaderToolbar}"></Label>
                         <Switch  VerticalOptions="Center" IsToggled="{Binding LocationTracking,Mode=TwoWay}"></Switch>

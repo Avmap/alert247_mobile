@@ -13,6 +13,19 @@ namespace AlertApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PinView : ContentView
     {
+        #region HideFrame (Bindable boolean)
+        public static readonly BindableProperty HideFrameProperty = BindableProperty.Create(
+                                                                  "HideFrame", //Public name to use
+                                                                  typeof(bool), //this type
+                                                                  typeof(PinView), //parent type (tihs control)
+                                                                  false); //default value
+        public bool HideFrame
+        {
+            get { return (bool)GetValue(HideFrameProperty); }
+            set { SetValue(HideFrameProperty, value); }
+        }
+        #endregion HideFrame (Bindable boolean)
+
         private bool DeletePressed;
 
         public EntryCentered Pin1Entry => Pin1;

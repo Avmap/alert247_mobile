@@ -189,6 +189,10 @@ namespace AlertApp.Droid
         }
         void siren(Context context)
         {
+            var intent = new Intent(context, typeof(MainActivity));
+            intent.AddFlags(ActivityFlags.ReorderToFront);
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity.StartActivity(intent);
+
             if (_SoundListener == null)
             {
                 _SoundListener = new SoundListener();
@@ -203,9 +207,7 @@ namespace AlertApp.Droid
             loudest(context);
             pool.Play(id, 1.0f, 1.0f, 1, 3, 1.0f);
 
-            var intent = new Intent(context, typeof(MainActivity));
-            intent.AddFlags(ActivityFlags.ReorderToFront);
-            Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity.StartActivity(intent);
+           
         }
 
 
