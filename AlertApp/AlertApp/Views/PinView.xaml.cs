@@ -114,8 +114,8 @@ namespace AlertApp.Views
             }
             else if (string.IsNullOrEmpty(Pin2.Text))
             {
+                Pin1.Text = "";
                 Pin1.Focus();
-
             }
         }
 
@@ -128,6 +128,7 @@ namespace AlertApp.Views
             }
             else if (string.IsNullOrEmpty(Pin3.Text))
             {
+                Pin2.Text = "";
                 Pin2.Focus();
             }
         }
@@ -136,10 +137,12 @@ namespace AlertApp.Views
             DeletePressed = true;
             if (!string.IsNullOrWhiteSpace(Pin4.Text) && Pin4.Text.Length == 1)
             {
+                Pin4.Focus();
                 Pin4.Text = "";
             }
             else if (string.IsNullOrEmpty(Pin4.Text))
             {
+                Pin3.Text = "";
                 Pin3.Focus();
             }
         }
@@ -207,7 +210,11 @@ namespace AlertApp.Views
                 }
                 else
                 {
-                    Pin3.Focus();
+                    if (!string.IsNullOrEmpty(Pin3.Text))
+                    {
+
+                    }
+                    Pin4.Focus();
                 }
             }
             catch (Exception)
