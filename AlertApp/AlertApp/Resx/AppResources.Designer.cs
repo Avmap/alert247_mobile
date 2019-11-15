@@ -394,6 +394,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete account data.
+        /// </summary>
+        internal static string DeleteAccountHistory {
+            get {
+                return ResourceManager.GetString("DeleteAccountHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account data history will be deleted.
+        /// </summary>
+        internal static string DeleteAccountMessageAlert {
+            get {
+                return ResourceManager.GetString("DeleteAccountMessageAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Developed by.
         /// </summary>
         internal static string DevelopedBy {
@@ -417,6 +435,15 @@ namespace AlertApp.Resx {
         internal static string DontUseOtpAsPinMessage {
             get {
                 return ResourceManager.GetString("DontUseOtpAsPinMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download account data.
+        /// </summary>
+        internal static string DownloadAccountHistory {
+            get {
+                return ResourceManager.GetString("DownloadAccountHistory", resourceCulture);
             }
         }
         
@@ -534,6 +561,15 @@ namespace AlertApp.Resx {
         internal static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while deleting account data..
+        /// </summary>
+        internal static string ErrorDeleteHistory {
+            get {
+                return ResourceManager.GetString("ErrorDeleteHistory", resourceCulture);
             }
         }
         
@@ -844,6 +880,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Permissions Denied.
+        /// </summary>
+        internal static string PermissionsDenied {
+            get {
+                return ResourceManager.GetString("PermissionsDenied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cant download history file..
+        /// </summary>
+        internal static string PermissionsStorageDeniedMessage {
+            get {
+                return ResourceManager.GetString("PermissionsStorageDeniedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You pressed.
         /// </summary>
         internal static string PressedAlert {
@@ -1087,11 +1141,29 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete account.
+        /// </summary>
+        internal static string SettingDeleteAccount {
+            get {
+                return ResourceManager.GetString("SettingDeleteAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enviroment.
         /// </summary>
         internal static string SettingEnviroment {
             get {
                 return ResourceManager.GetString("SettingEnviroment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account history.
+        /// </summary>
+        internal static string SettingHistory {
+            get {
+                return ResourceManager.GetString("SettingHistory", resourceCulture);
             }
         }
         
@@ -1168,6 +1240,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download or delete your account history.
+        /// </summary>
+        internal static string SettingsAccountHistoryMessage {
+            get {
+                return ResourceManager.GetString("SettingsAccountHistoryMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable or disable buttons you want to show in app and press &quot;Confirm&quot;.
         /// </summary>
         internal static string SettingsButtonsViewMessage {
@@ -1191,6 +1272,24 @@ namespace AlertApp.Resx {
         internal static string SettingsContactsPermissionSubtitle {
             get {
                 return ResourceManager.GetString("SettingsContactsPermissionSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable or disable guardian.
+        /// </summary>
+        internal static string SettingsGuardianMessage {
+            get {
+                return ResourceManager.GetString("SettingsGuardianMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardian is used in case of emergency.
+        /// </summary>
+        internal static string SettingsGuardianSubtitle {
+            get {
+                return ResourceManager.GetString("SettingsGuardianSubtitle", resourceCulture);
             }
         }
         
@@ -1299,6 +1398,24 @@ namespace AlertApp.Resx {
         internal static string SucccessChangePinMessage {
             get {
                 return ResourceManager.GetString("SucccessChangePinMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account data deleted successfully.
+        /// </summary>
+        internal static string SucccessDeleteHistory {
+            get {
+                return ResourceManager.GetString("SucccessDeleteHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account file saved successfully.
+        /// </summary>
+        internal static string SucccessSaveAccountFile {
+            get {
+                return ResourceManager.GetString("SucccessSaveAccountFile", resourceCulture);
             }
         }
         

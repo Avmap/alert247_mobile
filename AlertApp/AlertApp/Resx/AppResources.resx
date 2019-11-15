@@ -619,4 +619,43 @@
   <data name="SettingPermissionGuardianSubTitle" xml:space="preserve">
     <value>Always On</value>
   </data>
+  <data name="DeleteAccountHistory" xml:space="preserve">
+    <value>Delete account data</value>
+  </data>
+  <data name="DownloadAccountHistory" xml:space="preserve">
+    <value>Download account data</value>
+  </data>
+  <data name="SettingDeleteAccount" xml:space="preserve">
+    <value>Delete account</value>
+  </data>
+  <data name="SettingHistory" xml:space="preserve">
+    <value>Account history</value>
+  </data>
+  <data name="SettingsAccountHistoryMessage" xml:space="preserve">
+    <value>Download or delete your account history</value>
+  </data>
+  <data name="DeleteAccountMessageAlert" xml:space="preserve">
+    <value>Your account data history will be deleted</value>
+  </data>
+  <data name="ErrorDeleteHistory" xml:space="preserve">
+    <value>Error while deleting account data.</value>
+  </data>
+  <data name="SucccessDeleteHistory" xml:space="preserve">
+    <value>Account data deleted successfully</value>
+  </data>
+  <data name="PermissionsDenied" xml:space="preserve">
+    <value>Permissions Denied</value>
+  </data>
+  <data name="PermissionsStorageDeniedMessage" xml:space="preserve">
+    <value>Cant download history file.</value>
+  </data>
+  <data name="SettingsGuardianMessage" xml:space="preserve">
+    <value>Enable or disable guardian</value>
+  </data>
+  <data name="SettingsGuardianSubtitle" xml:space="preserve">
+    <value>Guardian is used in case of emergency</value>
+  </data>
+  <data name="SucccessSaveAccountFile" xml:space="preserve">
+    <value>Account file saved successfully</value>
+  </data>
 </root>

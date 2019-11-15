@@ -18,41 +18,54 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <views:SingleTitleToolbar BackCommand="{Binding BaseBackCommand}" Grid.Row="0" HasBackButton="True" Title="{infrastructure:Translate SettingsTab}" ></views:SingleTitleToolbar>
-            <StackLayout Grid.Row="1" Orientation="Vertical">
-                <views:SettingsHeader Title="{infrastructure:Translate SettingsView}"/>
-                <views:SettingCellView Title="{infrastructure:Translate SettingLanguage}">
-                    <views:SettingCellView.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Language_Tap"></TapGestureRecognizer>
-                    </views:SettingCellView.GestureRecognizers>
-                </views:SettingCellView>
-                <views:SettingCellView Title="{infrastructure:Translate SettingEnviroment}">
-                    <views:SettingCellView.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="ButtonsView_Tap"></TapGestureRecognizer>
-                    </views:SettingCellView.GestureRecognizers>
-                </views:SettingCellView>
-                <views:SettingsHeader Title="{infrastructure:Translate SettingsPermissions}"></views:SettingsHeader>
-                <views:SettingCellView Title="{infrastructure:Translate SettingLocation}">
-                    <views:SettingCellView.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Location_Tap"></TapGestureRecognizer>
-                    </views:SettingCellView.GestureRecognizers>
-                </views:SettingCellView>
-                <views:SettingCellView Title="{infrastructure:Translate AllwaysOn}">
-                    <views:SettingCellView.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Guardian_Tap"></TapGestureRecognizer>
-                    </views:SettingCellView.GestureRecognizers>
-                </views:SettingCellView>
-                <views:SettingCellView Title="{infrastructure:Translate SettingContacts}">
-                    <views:SettingCellView.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Contacts_Tap"></TapGestureRecognizer>
-                    </views:SettingCellView.GestureRecognizers>
-                </views:SettingCellView>
-                <views:SettingsHeader Title="{infrastructure:Translate SettingsAccount}"></views:SettingsHeader>
-                <views:SettingCellView Title="{infrastructure:Translate SettingChangePin}">
-                    <views:SettingCellView.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="ChangePin_Tap"></TapGestureRecognizer>
-                    </views:SettingCellView.GestureRecognizers>
-                </views:SettingCellView>
-            </StackLayout>
+            <ScrollView Grid.Row="1">
+                <StackLayout Grid.Row="1" Orientation="Vertical">
+                    <views:SettingsHeader Title="{infrastructure:Translate SettingsView}"/>
+                    <views:SettingCellView Title="{infrastructure:Translate SettingLanguage}">
+                        <views:SettingCellView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Language_Tap"></TapGestureRecognizer>
+                        </views:SettingCellView.GestureRecognizers>
+                    </views:SettingCellView>
+                    <views:SettingCellView Title="{infrastructure:Translate SettingEnviroment}">
+                        <views:SettingCellView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ButtonsView_Tap"></TapGestureRecognizer>
+                        </views:SettingCellView.GestureRecognizers>
+                    </views:SettingCellView>
+                    <views:SettingsHeader Title="{infrastructure:Translate SettingsPermissions}"></views:SettingsHeader>
+                    <views:SettingCellView Title="{infrastructure:Translate SettingLocation}">
+                        <views:SettingCellView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Location_Tap"></TapGestureRecognizer>
+                        </views:SettingCellView.GestureRecognizers>
+                    </views:SettingCellView>
+                    <views:SettingCellView Title="{infrastructure:Translate AllwaysOn}">
+                        <views:SettingCellView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Guardian_Tap"></TapGestureRecognizer>
+                        </views:SettingCellView.GestureRecognizers>
+                    </views:SettingCellView>
+                    <views:SettingCellView Title="{infrastructure:Translate SettingContacts}">
+                        <views:SettingCellView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Contacts_Tap"></TapGestureRecognizer>
+                        </views:SettingCellView.GestureRecognizers>
+                    </views:SettingCellView>
+                    <views:SettingsHeader Title="{infrastructure:Translate SettingsAccount}"></views:SettingsHeader>
+                    <views:SettingCellView Title="{infrastructure:Translate SettingChangePin}">
+                        <views:SettingCellView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ChangePin_Tap"></TapGestureRecognizer>
+                        </views:SettingCellView.GestureRecognizers>
+                    </views:SettingCellView>
+                    <views:SettingCellView Title="{infrastructure:Translate SettingHistory}">
+                        <views:SettingCellView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="History_Tap"></TapGestureRecognizer>
+                        </views:SettingCellView.GestureRecognizers>
+                    </views:SettingCellView>
+                    <!--<views:SettingCellView Title="{infrastructure:Translate SettingDeleteAccount}">
+                        <views:SettingCellView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Delete_Tap"></TapGestureRecognizer>
+                        </views:SettingCellView.GestureRecognizers>
+                    </views:SettingCellView>-->
+                </StackLayout>
+            </ScrollView>
+            
             <StackLayout Margin="0,0,0,0" Grid.Row="2" Orientation="Vertical">
                 <StackLayout  Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
                 <Frame Padding="8,4,8,4" CornerRadius="16" HasShadow="False" HorizontalOptions="Center" BorderColor="#C3C3C3">

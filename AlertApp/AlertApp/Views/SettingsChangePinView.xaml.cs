@@ -1,4 +1,5 @@
-﻿using AlertApp.ViewModels;
+﻿using AlertApp.Resx;
+using AlertApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,7 +88,8 @@ namespace AlertApp.Views
             }
             else
             {
-                vm.NewPinLayoutVisible = false;
+                Application.Current.MainPage.DisplayAlert(AppResources.Warning, AppResources.WrongPin, "OK");
+                vm.NewPinLayoutVisible = false;             
             }
         }
 

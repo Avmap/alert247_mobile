@@ -71,6 +71,7 @@ namespace AlertApp.ViewModels
             _unityContainer.RegisterType<BlockedUsersPageViewModel>();
             _unityContainer.RegisterType<SettingContainerPageViewModel>();
             _unityContainer.RegisterType<SettingsChangePinViewModel>();            
+            _unityContainer.RegisterType<SettingsAccountHistoryViewModel>();
 
         }
 

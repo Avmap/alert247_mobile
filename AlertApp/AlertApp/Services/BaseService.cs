@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 
@@ -14,6 +15,14 @@ namespace AlertApp.Services
         public BaseService()
         {
             _httpClient.BaseAddress = new Uri(Url);
+        }
+        protected static byte[] StreamToByteArray(Stream input)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                input.CopyTo(ms);
+                return ms.ToArray();
+            }
         }
     }
 }

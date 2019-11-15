@@ -11,7 +11,8 @@ namespace AlertApp.Services.Profile
         Task<Response> StoreProfile(Dictionary<string, string> registrationValues, string token, string publicKey);
         Task<Response> Ping(string token, double? lat, double? lng,string firebaseToken);
         Task<Response<GetProfileResponse>> GetProfile(string token, string userid);
+        Task<Response> DeleteHistory(string token);
+        Task<Response<byte[]>> DownloadHistory(string token);
 
-        
     }
 }

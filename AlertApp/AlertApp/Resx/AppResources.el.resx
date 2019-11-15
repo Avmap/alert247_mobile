@@ -625,4 +625,43 @@
   <data name="SettingPermissionGuardianSubTitle" xml:space="preserve">
     <value>Πάντα Ενεργή</value>
   </data>
+  <data name="DeleteAccountHistory" xml:space="preserve">
+    <value>Διαγραφή ιστορικού</value>
+  </data>
+  <data name="DeleteAccountMessageAlert" xml:space="preserve">
+    <value>Τα δεδομένα του λογαριασμού σας θα διαγραφούν</value>
+  </data>
+  <data name="DownloadAccountHistory" xml:space="preserve">
+    <value>Κατέβασα ιστορικού</value>
+  </data>
+  <data name="SettingDeleteAccount" xml:space="preserve">
+    <value>Διαγραφή λογαριασμού</value>
+  </data>
+  <data name="SettingHistory" xml:space="preserve">
+    <value>Ιστορικό δραστηριότητας</value>
+  </data>
+  <data name="SettingsAccountHistoryMessage" xml:space="preserve">
+    <value>Κατεβάστε ή διαγράψτε το ιστορικό της δραστηριότητας σας</value>
+  </data>
+  <data name="ErrorDeleteHistory" xml:space="preserve">
+    <value>Σφάλμα κατα τη διαγραφή του ιστορικού.</value>
+  </data>
+  <data name="SucccessDeleteHistory" xml:space="preserve">
+    <value>Το ιστορικό διαγράφηκε επιτυχώς.</value>
+  </data>
+  <data name="PermissionsDenied" xml:space="preserve">
+    <value>Το δικαίωμα απορρίφθηκε.</value>
+  </data>
+  <data name="PermissionsStorageDeniedMessage" xml:space="preserve">
+    <value>Δεν μπορεί να αποθηκευτεί το αρχείο του λογαριασμού σας.</value>
+  </data>
+  <data name="SettingsGuardianMessage" xml:space="preserve">
+    <value>Ενεργοποιήστε ή απενεργοποιήστε τον Guardian  και πατήστε "Επιβεβαίωση"</value>
+  </data>
+  <data name="SettingsGuardianSubtitle" xml:space="preserve">
+    <value>Η τοποθεσία χρησιμοποιείται για τον εντοπισμό της θέσης της συσκευής και την αποστολή του στις επαφές σας, σε περίπτωση έκτακτης ανάγκης.</value>
+  </data>
+  <data name="SucccessSaveAccountFile" xml:space="preserve">
+    <value>Το αρχείο του λογαριασμού σας αποθηκεύτηκε επιτυχώς.</value>
+  </data>
 </root>

@@ -23,24 +23,22 @@ namespace AlertApp.Services.Profile
             _cryptographyService = cryptographyService;
         }
 
-        public async Task<Response<GetProfileResponse>> GetProfile(string token, string userid)
+        public async Task<Response> DeleteHistory(string token)
         {
-            var res = new Response<GetProfileResponse>();
+            var res = new Response();
             try
-            {                                    
-                var json = JsonConvert.SerializeObject(new GetProfileBody { UserId = userid, Token = token });
+            {
+                var json = JsonConvert.SerializeObject(new TokenBody { Token = token });
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await _httpClient.PostAsync("post/alert/getProfile", content);
-
+                var response = await _httpClient.PostAsync("post/alert/deleteHistory", content);
                 if (response.Content != null)
                 {
                     var apiResponse = await response.Content.ReadAsStringAsync();
                     if (apiResponse != null)
                     {
-                        res = JsonConvert.DeserializeObject<Response<GetProfileResponse>>(apiResponse);                       
-                        return res;
+                        return JsonConvert.DeserializeObject<Response>(apiResponse);
                     }
-                }                
+                }
             }
             catch (Exception ex)
             {
@@ -51,18 +49,76 @@ namespace AlertApp.Services.Profile
             return res;
         }
 
-        public async Task<Response> Ping(string token, double? lat, double? lng,string firebaseToken)
+        public async Task<Response<byte[]>> DownloadHistory(string token)
+        {
+            var res = new Response<byte[]>();
+            try
+            {
+                var json = JsonConvert.SerializeObject(new TokenBody { Token = token });
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("post/alert/getDataHistory", content);
+
+                if (response.Content != null)
+                {
+                    var apiResponse = await response.Content.ReadAsStreamAsync();
+                    if (apiResponse != null)
+                    {
+                        byte[] zipFile = StreamToByteArray(apiResponse);
+                        res.Result = zipFile;
+                        res.Status = "ok";
+                        return res;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                res.ErrorCode = ex.Message;
+                res.Status = "error";
+                res.IsOnline = false;
+            }
+            return res;
+        }
+
+        public async Task<Response<GetProfileResponse>> GetProfile(string token, string userid)
+        {
+            var res = new Response<GetProfileResponse>();
+            try
+            {
+                var json = JsonConvert.SerializeObject(new GetProfileBody { UserId = userid, Token = token });
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("post/alert/getProfile", content);
+
+                if (response.Content != null)
+                {
+                    var apiResponse = await response.Content.ReadAsStringAsync();
+                    if (apiResponse != null)
+                    {
+                        res = JsonConvert.DeserializeObject<Response<GetProfileResponse>>(apiResponse);
+                        return res;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                res.ErrorCode = ex.Message;
+                res.Status = "error";
+                res.IsOnline = false;
+            }
+            return res;
+        }
+
+        public async Task<Response> Ping(string token, double? lat, double? lng, string firebaseToken)
         {
             var res = new Response();
             try
             {
-                var sendLocationSetting =  _localSettingsService.GetSendLocationSetting();
+                var sendLocationSetting = _localSettingsService.GetSendLocationSetting();
                 if (!sendLocationSetting)
                 {
                     lat = null;
                     lng = null;
                 }
-                var json = JsonConvert.SerializeObject(new PingUserBody { Token = token, Lat = lat, Lng = lng,FirebaseToken = firebaseToken });
+                var json = JsonConvert.SerializeObject(new PingUserBody { Token = token, Lat = lat, Lng = lng, FirebaseToken = firebaseToken });
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await _httpClient.PostAsync("post/alert/ping", content);
                 if (response.Content != null)

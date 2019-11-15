@@ -8,7 +8,7 @@
              x:Class="AlertApp.Views.SettingsGuardianView">
   <ContentView.Content>
         <StackLayout>
-            <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsLocationMessage}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
+            <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsGuardianMessage}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
 
             <StackLayout Orientation="Horizontal" Margin="0,16,0,0" Spacing="0" HorizontalOptions="FillAndExpand">
                 <StackLayout.GestureRecognizers>
@@ -18,7 +18,7 @@
                 <Switch x:Name="LOCATION" Toggled="Switch_Toggled"   HorizontalOptions="End" Margin="0,0,16,0" />
             </StackLayout>
 
-            <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsLocationSubtitle}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
+            <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsGuardianSubtitle}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
 
             <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,16,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
                 <StackLayout.GestureRecognizers>

@@ -97,8 +97,16 @@ namespace AlertApp.Pages
         {
             Navigation.PushAsync(new SettingContainerPage(AppResources.SettingAccountTitle, AppResources.SettingChangePin, new SettingsChangePinView()), false);
         }
-        
-        
+
+        private void History_Tap(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingAccountTitle, AppResources.SettingHistory, new SettingsAccountHistoryView()), false);
+        }
+
+        private void Delete_Tap(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingAccountTitle, AppResources.SettingDeleteAccount, new SettingsChangePinView()), false);
+        }
         protected override void OnAppearing()
         {
             base.OnAppearing();
