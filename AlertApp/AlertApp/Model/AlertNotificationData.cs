@@ -11,5 +11,7 @@ namespace AlertApp.Model
         public string Cellphone { get; set; }
         public string Position { get; set; }
         public int AlertType { get; set; }
+        public int? AlertId{ get; set; }
+        public string AlertTime { get; set; }
     }
 }

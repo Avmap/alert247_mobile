@@ -57,14 +57,16 @@ namespace AlertApp
             else
             {
                 MainPage = new NavigationPage(new MainPage());
+                // MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { AlertTime = "2019-11-15T15:06:39Z", AlertId = 3233, Position = "37.9849,23.7620", Cellphone = "+306983836637" } }));
+                //2019-11-15T15:06:39Z
             }
 
 #if DEBUG
             //var guardian = DependencyService.Get<IGuardian>();
             //if (guardian != null)
-           // {
-         //       guardian.StartGuardianService();
-           // }
+            // {
+            //       guardian.StartGuardianService();
+            // }
 
             //   var crypto =  ViewModelLocator.Instance.Resolve<ICryptographyService>();
             //  crypto.GenerateKeys("1770");
@@ -103,7 +105,7 @@ namespace AlertApp
             var firstLaunchEver = VersionTracking.IsFirstLaunchEver;
             if (firstLaunchEver)
             {
-               // Preferences.Set(Settings.HasFinishRegistration, false);
+                // Preferences.Set(Settings.HasFinishRegistration, false);
                 SetSettings();
             }
             // First time launching current version

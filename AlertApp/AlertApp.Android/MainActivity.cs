@@ -35,7 +35,7 @@ namespace AlertApp.Droid
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
-            CrossCurrentActivity.Current.Init(this, savedInstanceState);            
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
@@ -57,6 +57,9 @@ namespace AlertApp.Droid
             Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TYPE, 0),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_CELLPHONE),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_TYPE),
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_ID),
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TIME)
+            ,
             Intent.Flags);
 
         }
@@ -75,14 +78,23 @@ namespace AlertApp.Droid
                             WindowManagerFlags.TurnScreenOn);
         }
 
-        private void handleIntentActions(string action, string fileKey, string profiledata, int notificationId, string position, int alertType, string cellphone, string notification, ActivityFlags flags)
+        private void handleIntentActions(string action, string fileKey, string profiledata, int notificationId, string position, int alertType, string cellphone, string notification, string alertId, string alertTime, ActivityFlags flags)
         {
             if (action != null && action.Contains(AlertFirebaseMessagingService.ACTION_OPEN_SOS) && !flags.HasFlag(ActivityFlags.LaunchedFromHistory))
             {
                 var notificationData = new NotificationAction();
                 notificationData.Type = NotificationAction.ActionType.Sos;
                 notificationData.NotificationId = notificationId;
-                notificationData.Data = new AlertNotificationData { FileKey = fileKey, ProfileData = profiledata, Position = position, AlertType = alertType, Cellphone = cellphone };
+                notificationData.Data = new AlertNotificationData
+                {
+                    FileKey = fileKey,
+                    ProfileData = profiledata,
+                    Position = position,
+                    AlertType = alertType,
+                    Cellphone = cellphone,
+                    AlertId = !string.IsNullOrWhiteSpace(alertId) ?  Int32.Parse(alertId) : (int?)null,
+                    AlertTime = alertTime
+                };
                 // MessagingCenter.Send<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString(), notificationData);
                 Xamarin.Forms.Application.Current.MainPage.Navigation.PushModalAsync(new AlertRespondPage(notificationData));
                 Intent = null;
@@ -110,6 +122,8 @@ namespace AlertApp.Droid
             Intent.GetIntExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TYPE, 0),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_CELLPHONE),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_TYPE),
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_ID),
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TIME),
             Intent.Flags);
 
         }

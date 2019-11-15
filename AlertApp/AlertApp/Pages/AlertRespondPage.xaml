@@ -25,6 +25,7 @@
                         <StackLayout  Orientation="Vertical"  HorizontalOptions="EndAndExpand">
                             <Label Style="{StaticResource HeaderNotificationText}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" VerticalOptions="Center"  Text="{infrastructure:Translate NewAlertTitle}"></Label>
                             <Label Style="{StaticResource SubtitleNotificationText}"  HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="SOS"></Label>
+                            <Label TextColor="Black"  Text="{Binding AlertTime}" FontSize="18" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" ></Label>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>

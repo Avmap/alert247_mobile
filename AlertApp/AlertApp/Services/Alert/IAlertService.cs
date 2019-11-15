@@ -8,6 +8,7 @@ namespace AlertApp.Services.Alert
 {
     public interface IAlertService
     {
-        Task<Response<SendAlertResponse>> SendAlert(string token,double? lat,double? lng,int type);        
+        Task<Response<SendAlertResponse>> SendAlert(string token,double? lat,double? lng,int type);
+        Task<Response> AckAlert(string token, double? lat, double? lng, int type,long alertId,string displayedTime);
     }
 }

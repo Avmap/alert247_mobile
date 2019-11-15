@@ -26,6 +26,64 @@ namespace AlertApp.Services.Alert
             _contactsService = contactsService;
         }
 
+        public async Task<Response> AckAlert(string token, double? lat, double? lng, int type, long alertId, string displayedTime)
+        {
+            var res = new Response();
+            var body = new AckAlertPostBody();
+            body.Token = token;
+            body.Lat = lat;
+            body.Lng = lng;
+            body.Type = type;
+            try
+            {
+                var encryptedUserProfileData = await _localSettingsService.GetEncryptedProfileData();
+                var decryptedUserProfileData = await _cryptographyService.DecryptProfileData(encryptedUserProfileData);
+                //if (decryptedUserProfileData != null)
+                //{
+                //    var contacts = await _contactsService.GetContacts(token);
+                //    if (contacts != null && contacts.Result != null)
+                //    {
+                //        foreach (var contact in contacts.Result.Contacts.Community)
+                //        {
+                //            var recipient = await _cryptographyService.GetAlertRecipient(decryptedUserProfileData, contact);
+                //            if (recipient != null)
+                //            {
+                //                body.Recipients.Add(recipient);
+                //            }
+                //        }
+                //    }
+
+                //}
+
+                var json = JsonConvert.SerializeObject(body);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("post/alert/ackAlert", content);
+                if (response.Content != null)
+                {
+                    var apiResponse = await response.Content.ReadAsStringAsync();
+                    if (apiResponse != null)
+                    {
+                        return JsonConvert.DeserializeObject<Response<SendAlertResponse>>(apiResponse);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex is System.Net.Http.HttpRequestException)
+                {
+                    res.ErrorCode = ex.Message;
+                    res.Status = "error";
+                    res.IsOnline = false;
+                }
+                else
+                {
+                    res.ErrorCode = ex.Message;
+                    res.Status = "error";
+                }
+
+            }
+            return res;
+        }
 
         public async Task<Response<SendAlertResponse>> SendAlert(string token, double? lat, double? lng, int type)
         {

@@ -2,6 +2,7 @@
 using AlertApp.Model;
 using AlertApp.Model.Api;
 using AlertApp.Resx;
+using AlertApp.Services.Alert;
 using AlertApp.Services.Cryptography;
 using AlertApp.Services.Registration;
 using AlertApp.Services.Settings;
@@ -14,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
@@ -87,6 +89,17 @@ namespace AlertApp.ViewModels
             }
         }
 
+        private string _AlertTime;
+
+        public string AlertTime
+        {
+            get { return _AlertTime; }
+            set
+            {
+                _AlertTime = value;
+                OnPropertyChanged("AlertTime");
+            }
+        }
 
         #endregion
 
@@ -122,14 +135,16 @@ namespace AlertApp.ViewModels
         private readonly INotificationManager _notificationManager;
         private readonly IRegistrationService _registrationService;
         private readonly ILocalSettingsService _localSettingsService;
+        private readonly IAlertService _alertService;
         IContactProfileImageProvider _contactProfileImageProvider;
         #endregion
 
-        public AlertRespondPageViewModel(ICryptographyService cryptographyService, IRegistrationService registrationService, ILocalSettingsService localSettingsService, NotificationAction notificationAction)
+        public AlertRespondPageViewModel(IAlertService alertService, ICryptographyService cryptographyService, IRegistrationService registrationService, ILocalSettingsService localSettingsService, NotificationAction notificationAction)
         {
             _cryptographyService = cryptographyService;
             _registrationService = registrationService;
             _localSettingsService = localSettingsService;
+            _alertService = alertService;
             _notificationAction = notificationAction;
             _notificationManager = DependencyService.Get<INotificationManager>();
             _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
@@ -147,6 +162,12 @@ namespace AlertApp.ViewModels
             //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });
             //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });            
             var data = _notificationAction.Data as AlertNotificationData;
+
+            if (!string.IsNullOrWhiteSpace(data.AlertTime))
+            {
+                var dateTime = DateTime.Parse(data.AlertTime);
+                AlertTime = dateTime.ToString("dd/MM/yyyy HH:mm");
+            }
 
             var token = await _localSettingsService.GetAuthToken();
             var registrationFiedsResult = await _registrationService.GetRegistrationFields(token);
@@ -265,11 +286,38 @@ namespace AlertApp.ViewModels
 
         private async void Accept()
         {
-            _notificationManager.CloseNotification(_notificationAction.NotificationId);
-            await App.Current.MainPage.Navigation.PopModalAsync();
+            RespondAlert(AckType.Positive);
         }
         private async void Ignore()
         {
+            RespondAlert(AckType.Negative);
+        }
+
+        private async void RespondAlert(AckType type)
+        {
+
+            SetBusy(true);
+            Location location = null;
+            try
+            {
+                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                if (locationPermissionStatus == PermissionStatus.Granted && _localSettingsService.GetSendLocationSetting())
+                {
+                    location = await Geolocation.GetLastKnownLocationAsync();
+                }
+            }
+            catch { }
+
+            var response = await _alertService.AckAlert(await _localSettingsService.GetAuthToken(), location != null ? location.Latitude : (double?)null, location != null ? location.Longitude : (double?)null, (int)type, 111, null);
+            if (response.IsOk)
+            {
+
+            }
+            else if (!response.IsOk && response.ErrorDescription != null && response.ErrorDescription.Labels != null)
+            {
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, GetErrorDescription(response.ErrorDescription.Labels), "OK");
+            }
+            SetBusy(false);
             _notificationManager.CloseNotification(_notificationAction.NotificationId);
             await App.Current.MainPage.Navigation.PopModalAsync();
         }

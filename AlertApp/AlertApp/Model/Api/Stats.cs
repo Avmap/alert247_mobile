@@ -9,10 +9,10 @@ namespace AlertApp.Model.Api
     public class Stats
     {
         [DataMember(Name = "Helped")]
-        public int Helped { get; set; }
+        public string Helped { get; set; }
         [DataMember(Name = "Ignored")]
-        public int Ignored { get; set; }
+        public string Ignored { get; set; }
         [DataMember(Name = "Asked")]
-        public int Asked { get; set; }
+        public string Asked { get; set; }
     }
 }
