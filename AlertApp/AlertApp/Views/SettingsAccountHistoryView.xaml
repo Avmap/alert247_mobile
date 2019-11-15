@@ -16,6 +16,20 @@
                 <StackLayout Margin="0,24,0,0" Orientation="Vertical" HorizontalOptions="Center">
                     <Label Text="{infrastructure:Translate DownloadAccountHistory}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     <Image Source="download_history.png" WidthRequest="{StaticResource SettingsAccountLogo}" HeightRequest="{StaticResource SettingsAccountLogo}">
+                        <!--<VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Focused">
+                                    <VisualState.Setters>
+                                        <Setter Property="Source" Value="delete_history.png" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Source" Value="download_history.png" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>-->
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding DownloadCommand}" ></TapGestureRecognizer>
                         </Image.GestureRecognizers>

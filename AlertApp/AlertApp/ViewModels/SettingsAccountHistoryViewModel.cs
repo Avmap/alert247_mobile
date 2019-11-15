@@ -95,7 +95,7 @@ namespace AlertApp.ViewModels
             //if (!confirm)
             //    return;
             var confirmView = new ConfirmChangeView();
-            var page = new SettingContainerPage(AppResources.SettingButtonsTitle, AppResources.Confirmation, confirmView);
+            var page = new SettingContainerPage(AppResources.SettingAccountTitle, AppResources.Confirmation, confirmView);
             page.Disappearing += (sender2, e2) =>
             {
                 if (confirmView.Confirmed)
