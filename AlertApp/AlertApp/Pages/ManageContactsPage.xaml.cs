@@ -183,5 +183,10 @@ namespace AlertApp.Pages
         {
 
         }
+
+        private void tabsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
