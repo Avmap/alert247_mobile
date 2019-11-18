@@ -157,6 +157,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlarmReceiver.cs" />
     <Compile Include="AppHashKeyHelper.cs" />
     <Compile Include="Boot.cs" />
     <Compile Include="ContactProfileImageProvider.cs" />

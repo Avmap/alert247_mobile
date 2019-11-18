@@ -19,21 +19,26 @@ namespace AlertApp.Services.Alert
         readonly IContactsService _contactsService;
         #endregion
 
-        public AlertService(ILocalSettingsService localSettingsService,ICryptographyService cryptographyService, IContactsService contactsService)
+        public AlertService(ILocalSettingsService localSettingsService, ICryptographyService cryptographyService, IContactsService contactsService)
         {
             _localSettingsService = localSettingsService;
             _cryptographyService = cryptographyService;
             _contactsService = contactsService;
         }
 
-        public async Task<Response> AckAlert(string token, double? lat, double? lng, int type, long alertId, string displayedTime)
+        public async Task<Response> AckAlert(string token, double? lat, double? lng, int type, int alertId, DateTime displayedTime)
         {
             var res = new Response();
-            var body = new AckAlertPostBody();
-            body.Token = token;
-            body.Lat = lat;
-            body.Lng = lng;
-            body.Type = type;
+            var body = new AckAlertPostBody
+            {
+                Token = token,
+                Lat = lat,
+                Lng = lng,
+                Type = type,
+                AlertId = alertId,
+                DisplayedTime = displayedTime.ToString("s")
+            };
+
             try
             {
                 var encryptedUserProfileData = await _localSettingsService.GetEncryptedProfileData();
@@ -111,7 +116,7 @@ namespace AlertApp.Services.Alert
                             }
                         }
                     }
-                   
+
                 }
 
                 var json = JsonConvert.SerializeObject(body);
@@ -139,7 +144,7 @@ namespace AlertApp.Services.Alert
                     res.ErrorCode = ex.Message;
                     res.Status = "error";
                 }
-               
+
             }
             return res;
         }

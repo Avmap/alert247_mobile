@@ -101,6 +101,10 @@ namespace AlertApp.ViewModels
             }
         }
 
+        private int _AlertId { get; set; }
+
+        private DateTime _DisplayedTime { get; set; }
+
         #endregion
 
         #region Commands
@@ -163,10 +167,25 @@ namespace AlertApp.ViewModels
             //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });            
             var data = _notificationAction.Data as AlertNotificationData;
 
+            if (data.AlertId.HasValue)
+                _AlertId = data.AlertId.Value;
+
             if (!string.IsNullOrWhiteSpace(data.AlertTime))
             {
                 var dateTime = DateTime.Parse(data.AlertTime);
                 AlertTime = dateTime.ToString("dd/MM/yyyy HH:mm");
+            }
+
+            var firstDisplayTime = Preferences.Get("AlertId_" + _AlertId, "");
+            if (!string.IsNullOrWhiteSpace(firstDisplayTime))
+            {
+                _DisplayedTime = DateTime.Parse(firstDisplayTime);
+            }
+            else
+            {
+                var now = DateTime.Now;
+                _DisplayedTime = now;
+                Preferences.Set("AlertId_" + _AlertId, now.ToString());
             }
 
             var token = await _localSettingsService.GetAuthToken();
@@ -284,11 +303,11 @@ namespace AlertApp.ViewModels
 
 
 
-        private async void Accept()
+        private void Accept()
         {
             RespondAlert(AckType.Positive);
         }
-        private async void Ignore()
+        private void Ignore()
         {
             RespondAlert(AckType.Negative);
         }
@@ -308,7 +327,7 @@ namespace AlertApp.ViewModels
             }
             catch { }
 
-            var response = await _alertService.AckAlert(await _localSettingsService.GetAuthToken(), location != null ? location.Latitude : (double?)null, location != null ? location.Longitude : (double?)null, (int)type, 111, null);
+            var response = await _alertService.AckAlert(await _localSettingsService.GetAuthToken(), location != null ? location.Latitude : (double?)null, location != null ? location.Longitude : (double?)null, (int)type, _AlertId, _DisplayedTime);
             if (response.IsOk)
             {
 
@@ -317,6 +336,7 @@ namespace AlertApp.ViewModels
             {
                 await Application.Current.MainPage.DisplayAlert(AppResources.Error, GetErrorDescription(response.ErrorDescription.Labels), "OK");
             }
+
             SetBusy(false);
             _notificationManager.CloseNotification(_notificationAction.NotificationId);
             await App.Current.MainPage.Navigation.PopModalAsync();

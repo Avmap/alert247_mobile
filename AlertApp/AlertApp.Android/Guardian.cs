@@ -32,7 +32,7 @@ namespace AlertApp.Droid
     [Service(Label = "GuardianService", Enabled = true, Exported = true)]
     public class Guardian : Service, ISensorEventListener, FallDetector.IFallDetectionListener
     {
-
+        public static int ALARM_CODE = 454541;
         private FusedLocationProviderClient fusedLocationProviderClient;
         private LocationRequest locationRequest;
         private FusedLocationProviderCallback locationCallback;
@@ -69,9 +69,15 @@ namespace AlertApp.Droid
 
             //register power button broadcast receiver
             IntentFilter filter = new IntentFilter(Intent.ActionScreenOn);
-            filter.AddAction(Intent.ActionScreenOff);            
+            filter.AddAction(Intent.ActionScreenOff);
             RegisterReceiver(_PowerButtonReceiver, filter);
 
+            //Alarm Manager
+            //AlarmManager alarmManager = (AlarmManager)GetSystemService(AlarmService);
+            //var alarmIntent = new Intent(this, typeof(AlarmReceiver));
+            //var pendingIntent = PendingIntent.GetActivity(this, ALARM_CODE, alarmIntent, PendingIntentFlags.UpdateCurrent);
+            //alarmManager.SetRepeating(AlarmType.ElapsedRealtimeWakeup, 0 , 2 * 1000, pendingIntent);
+            
             return StartCommandResult.Sticky;
         }
 
@@ -93,7 +99,7 @@ namespace AlertApp.Droid
             }
             catch (System.Exception)
             {
-            }            
+            }
         }
 
         Notification GetNotification()
@@ -169,9 +175,9 @@ namespace AlertApp.Droid
             {
                 if (fallDetector != null)
                 {
-                    System.Diagnostics.Debug.WriteLine($"Start");
+                  //  System.Diagnostics.Debug.WriteLine($"Start");
                     await fallDetector.Protect(e.Timestamp, e.Values[0], e.Values[1], e.Values[2]);
-                    System.Diagnostics.Debug.WriteLine($"End");
+                    //System.Diagnostics.Debug.WriteLine($"End");
                 }
 
             }
@@ -207,7 +213,7 @@ namespace AlertApp.Droid
             loudest(context);
             pool.Play(id, 1.0f, 1.0f, 1, 3, 1.0f);
 
-           
+
         }
 
 
