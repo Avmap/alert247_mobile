@@ -36,7 +36,7 @@ namespace AlertApp.Services.Alert
                 Lng = lng,
                 Type = type,
                 AlertId = alertId,
-                DisplayedTime = displayedTime.ToString("s")
+                DisplayedTime = displayedTime.ToString("yyyy-MM-dd HH:mm:ss")
             };
 
             try
