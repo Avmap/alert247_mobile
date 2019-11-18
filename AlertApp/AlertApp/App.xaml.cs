@@ -57,6 +57,7 @@ namespace AlertApp
             else
             {
                 MainPage = new NavigationPage(new MainPage());
+                MainPage.Navigation.PushAsync(new ManageContactsPage());
                 // MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { AlertTime = "2019-11-15T15:06:39Z", AlertId = 3233, Position = "37.9849,23.7620", Cellphone = "+306983836637" } }));
                 //2019-11-15T15:06:39Z
             }

@@ -24,15 +24,30 @@ namespace AlertApp.Pages
         public int MyProperty { get; set; }
         public ManageContactsPage()
         {
+            InitializeComponent();
             _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
             _contacts = DependencyService.Get<IContacts>();
             this.BindingContext = ViewModelLocator.Instance.Resolve<ManageContactsPageViewModel>();
-            InitializeComponent();
+           
+            this.container.ChildAdded += Container_ChildAdded;
 
             var communityPage = new MyCommunityPage();
             var dependantsPage = new DependandsPage();
             var whoalertMePage = new WhoAlertsMePage();
             var blockedUsersPage = new BlockedUsersPage();
+
+
+            AbsoluteLayout.SetLayoutBounds(communityPage, new Rectangle(0, 0, 1, 1));
+            AbsoluteLayout.SetLayoutFlags(communityPage, AbsoluteLayoutFlags.All);
+
+            AbsoluteLayout.SetLayoutBounds(dependantsPage, new Rectangle(0, 0, 1, 1));
+            AbsoluteLayout.SetLayoutFlags(dependantsPage, AbsoluteLayoutFlags.All);
+
+            AbsoluteLayout.SetLayoutBounds(whoalertMePage, new Rectangle(0, 0, 1, 1));
+            AbsoluteLayout.SetLayoutFlags(whoalertMePage, AbsoluteLayoutFlags.All);
+
+            AbsoluteLayout.SetLayoutBounds(blockedUsersPage, new Rectangle(0, 0, 1, 1));
+            AbsoluteLayout.SetLayoutFlags(blockedUsersPage, AbsoluteLayoutFlags.All);
 
             this.container.Children.Add(communityPage);
             this.container.Children.Add(dependantsPage);
@@ -42,6 +57,17 @@ namespace AlertApp.Pages
             dependantsPage.IsVisible = false;
             whoalertMePage.IsVisible = false;
             blockedUsersPage.IsVisible = false;
+
+            
+        }
+
+        private void Container_ChildAdded(object sender, ElementEventArgs e)
+        {
+            tabsAdded++;
+            if (tabsAdded == tabsCount)
+            {
+                RefreshContacts();
+            }
         }
 
         protected override void OnAppearing()
@@ -67,18 +93,6 @@ namespace AlertApp.Pages
         public void UnRegisterForRefreshContacts()
         {
             MessagingCenter.Unsubscribe<BaseViewModel, RefreshContactsEvent>(this, RefreshContactsEvent.Event);
-        }
-
-
-
-        protected override void OnChildAdded(Element child)
-        {
-            base.OnChildAdded(child);
-            tabsAdded++;
-            if (tabsAdded == tabsCount)
-            {
-                RefreshContacts();
-            }
         }
 
         public void RefreshContacts()
@@ -163,6 +177,11 @@ namespace AlertApp.Pages
                     item.IsVisible = false;
                 }
             }
+        }
+
+        private void contactList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

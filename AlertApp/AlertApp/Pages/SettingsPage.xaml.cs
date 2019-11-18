@@ -21,8 +21,7 @@ namespace AlertApp.Pages
         public SettingsPage()
         {
             InitializeComponent();
-            this.BindingContext = ViewModelLocator.Instance.Resolve<SettingsPageViewModel>();
-            //guardianSwitch.On = ((SettingsPageViewModel)this.BindingContext).AllwaysOn;
+            this.BindingContext = ViewModelLocator.Instance.Resolve<SettingsPageViewModel>();            
         }
 
       
