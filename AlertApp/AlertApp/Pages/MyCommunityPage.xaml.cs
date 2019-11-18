@@ -14,7 +14,7 @@ using Xamarin.Forms.Xaml;
 namespace AlertApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MyCommunityPage : ContentPage
+    public partial class MyCommunityPage : ContentView
     {
         private Contact ClickedContact { get; set; }
         public MyCommunityPage()
@@ -68,16 +68,16 @@ namespace AlertApp.Pages
             ShowBottomSheet();
         }
 
-        protected override bool OnBackButtonPressed()
-        {
-            if (bottomSheet.IsVisible)
-            {
-                ShowBottomSheet();
-                return true;
-            }
+        //protected override bool OnBackButtonPressed()
+        //{
+        //    if (bottomSheet.IsVisible)
+        //    {
+        //        ShowBottomSheet();
+        //        return true;
+        //    }
 
-            return base.OnBackButtonPressed();
-        }
+        //    return base.OnBackButtonPressed();
+        //}
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {

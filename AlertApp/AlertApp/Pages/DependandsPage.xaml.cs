@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace AlertApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DependandsPage : ContentPage
+    public partial class DependandsPage : ContentView
     {
         public DependandsPage()
         {
@@ -20,18 +20,18 @@ namespace AlertApp.Pages
             this.BindingContext = ViewModelLocator.Instance.Resolve<DependandsPageViewModel>();
         }
 
-        protected override bool OnBackButtonPressed()
-        {
-            if (popupDependandsSettings.IsVisible)
-            {
-                popupDependandsSettings.IsVisible = false;
-                return true;
-            }
-            else
-            {
-                return base.OnBackButtonPressed();
-            }
-        }
+        //protected override bool OnBackButtonPressed()
+        //{
+        //    if (popupDependandsSettings.IsVisible)
+        //    {
+        //        popupDependandsSettings.IsVisible = false;
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return base.OnBackButtonPressed();
+        //    }
+        //}
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

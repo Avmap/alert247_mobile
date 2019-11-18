@@ -11,8 +11,8 @@ using Xamarin.Forms.Xaml;
 namespace AlertApp.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class BlockedUsersPage : ContentPage
-	{
+	public partial class BlockedUsersPage : ContentView
+    {
 		public BlockedUsersPage ()
 		{
 			InitializeComponent ();

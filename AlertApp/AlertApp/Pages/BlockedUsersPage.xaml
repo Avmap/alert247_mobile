@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              x:Class="AlertApp.Pages.BlockedUsersPage"
              Navigation="{Binding NavigationService}"
               xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             Title="{infrastructure:Translate BlockedUsersPage}" >
-    <ContentPage.Content>
+             >
+    <!--Title="{infrastructure:Translate BlockedUsersPage}" >-->
+    <ContentView.Content>
         <AbsoluteLayout BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Grid x:Name="mainlayout" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
                 <Grid.RowDefinitions>
@@ -124,5 +125,5 @@
             -->
             <!--Bottom Sheet-->
         </AbsoluteLayout>
-    </ContentPage.Content>
-</ContentPage>
+    </ContentView.Content>
+</ContentView>

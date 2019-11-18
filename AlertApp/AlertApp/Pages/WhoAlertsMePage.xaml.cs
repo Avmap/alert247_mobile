@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace AlertApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WhoAlertsMePage : ContentPage
+    public partial class WhoAlertsMePage : ContentView
     {
         private Contact ClickedContact { get; set; }
         public WhoAlertsMePage()
@@ -47,16 +47,16 @@ namespace AlertApp.Pages
                 bottomSheet.IsVisible = false;
             }
         }
-        protected override bool OnBackButtonPressed()
-        {
-            if (bottomSheet.IsVisible)
-            {
-                ShowBottomSheet();
-                return true;
-            }
+        //protected override bool OnBackButtonPressed()
+        //{
+        //    if (bottomSheet.IsVisible)
+        //    {
+        //        ShowBottomSheet();
+        //        return true;
+        //    }
 
-            return base.OnBackButtonPressed();
-        }
+        //    return base.OnBackButtonPressed();
+        //}
 
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
