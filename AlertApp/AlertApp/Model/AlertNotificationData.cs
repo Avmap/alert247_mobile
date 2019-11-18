@@ -13,5 +13,6 @@ namespace AlertApp.Model
         public int AlertType { get; set; }
         public int? AlertId{ get; set; }
         public string AlertTime { get; set; }
+        public string PublicKey { get; set; }
     }
 }

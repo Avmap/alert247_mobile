@@ -58,7 +58,8 @@ namespace AlertApp.Droid
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_CELLPHONE),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_TYPE),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_ID),
-            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TIME)
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TIME),
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_SENDER_PUBLIC_KEY)
             ,
             Intent.Flags);
 
@@ -78,7 +79,7 @@ namespace AlertApp.Droid
                             WindowManagerFlags.TurnScreenOn);
         }
 
-        private void handleIntentActions(string action, string fileKey, string profiledata, int notificationId, string position, int alertType, string cellphone, string notification, string alertId, string alertTime, ActivityFlags flags)
+        private void handleIntentActions(string action, string fileKey, string profiledata, int notificationId, string position, int alertType, string cellphone, string notification, string alertId, string alertTime,string senderPublicKey, ActivityFlags flags)
         {
             if (action != null && action.Contains(AlertFirebaseMessagingService.ACTION_OPEN_SOS) && !flags.HasFlag(ActivityFlags.LaunchedFromHistory))
             {
@@ -93,7 +94,8 @@ namespace AlertApp.Droid
                     AlertType = alertType,
                     Cellphone = cellphone,
                     AlertId = !string.IsNullOrWhiteSpace(alertId) ?  Int32.Parse(alertId) : (int?)null,
-                    AlertTime = alertTime
+                    AlertTime = alertTime,
+                    PublicKey = senderPublicKey
                 };
                 // MessagingCenter.Send<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString(), notificationData);
                 Xamarin.Forms.Application.Current.MainPage.Navigation.PushModalAsync(new AlertRespondPage(notificationData));
@@ -123,7 +125,8 @@ namespace AlertApp.Droid
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_CELLPHONE),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_TYPE),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_ID),
-            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TIME),
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TIME), 
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_SENDER_PUBLIC_KEY),
             Intent.Flags);
 
         }

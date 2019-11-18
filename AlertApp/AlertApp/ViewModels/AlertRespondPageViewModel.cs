@@ -104,6 +104,7 @@ namespace AlertApp.ViewModels
         private int _AlertId { get; set; }
 
         private DateTime _DisplayedTime { get; set; }
+        private string _PublicKey { get; set; }
 
         #endregion
 
@@ -166,6 +167,8 @@ namespace AlertApp.ViewModels
             //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });
             //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });            
             var data = _notificationAction.Data as AlertNotificationData;
+
+            _PublicKey = data.PublicKey;
 
             if (data.AlertId.HasValue)
                 _AlertId = data.AlertId.Value;
@@ -327,12 +330,9 @@ namespace AlertApp.ViewModels
             }
             catch { }
 
-            var response = await _alertService.AckAlert(await _localSettingsService.GetAuthToken(), location != null ? location.Latitude : (double?)null, location != null ? location.Longitude : (double?)null, (int)type, _AlertId, _DisplayedTime);
-            if (response.IsOk)
-            {
-
-            }
-            else if (!response.IsOk && response.ErrorDescription != null && response.ErrorDescription.Labels != null)
+            var response = await _alertService.AckAlert(await _localSettingsService.GetAuthToken(), location != null ? location.Latitude : (double?)null, location != null ? location.Longitude : (double?)null, (int)type, _AlertId, _DisplayedTime, _PublicKey);
+            
+            if (!response.IsOk && response.ErrorDescription != null && response.ErrorDescription.Labels != null)
             {
                 await Application.Current.MainPage.DisplayAlert(AppResources.Error, GetErrorDescription(response.ErrorDescription.Labels), "OK");
             }

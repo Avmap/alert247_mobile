@@ -47,6 +47,7 @@ namespace AlertApp.Android
         public const string EXTRA_NOTIFICATION_TYPE = "EXTRA_NOTIFICATION_TYPE";
         public const string EXTRA_ALERT_ID = "EXTRA_ALERT_ID";
         public const string EXTRA_ALERT_TIME = "EXTRA_ALERT_TIME";
+        public const string EXTRA_SENDER_PUBLIC_KEY = "EXTRA_SENDER_PUBLIC_KEY";
 
 
         /**
@@ -93,9 +94,18 @@ namespace AlertApp.Android
                     string alertTime = "";
                     message.Data.TryGetValue("alertTime", out alertTime);
 
+                    string publicKey = "";
+                    message.Data.TryGetValue("pkey", out publicKey);
+
+                    //ack alert response
+                    if (message.Data.ContainsKey("ackType"))
+                    {
+                        return;
+                    }
+
                     //sos alert
                     if (!string.IsNullOrWhiteSpace(messageType) && messageType.Equals("alert") && !string.IsNullOrWhiteSpace(alertType) && alertType == "1")
-                        SendAlertNotification(msgT ?? "", msgB ?? "", profiledata ?? "", filekey ?? "", messageType, alertType, position, cellphone, alertID, alertTime);
+                        SendAlertNotification(msgT ?? "", msgB ?? "", profiledata ?? "", filekey ?? "", messageType, alertType, position, cellphone, alertID, alertTime, publicKey);
 
                     //contact request
                     if (!string.IsNullOrWhiteSpace(messageType) && messageType.Equals("contact") && !string.IsNullOrWhiteSpace(cellphone))
@@ -121,6 +131,8 @@ namespace AlertApp.Android
                         }
                         SendContactRequestNotification(titleNotification, messageNotification, position, cellphone);
                     }
+
+
 
                 }
 
@@ -197,7 +209,7 @@ namespace AlertApp.Android
                 | WindowManagerFlags.ShowWhenLocked | WindowManagerFlags.KeepScreenOn | WindowManagerFlags.DismissKeyguard);
         }
 
-        void SendAlertNotification(string title, string messageBody, string profiledata, string fileKey, string messageType, string alertType, string position, string cellphone, string alertid, string alertTime)
+        void SendAlertNotification(string title, string messageBody, string profiledata, string fileKey, string messageType, string alertType, string position, string cellphone, string alertid, string alertTime,string publicKey)
         {
             int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
             //create wake lock
@@ -221,6 +233,7 @@ namespace AlertApp.Android
             intent.PutExtra(EXTRA_NOTIFICATION_TYPE, "alert");
             intent.PutExtra(EXTRA_ALERT_ID, alertid);
             intent.PutExtra(EXTRA_ALERT_TIME, alertTime);
+            intent.PutExtra(EXTRA_SENDER_PUBLIC_KEY, publicKey);
 
             var pendingIntent = PendingIntent.GetActivity(this, 0 /* Request code */, intent, PendingIntentFlags.UpdateCurrent);
             int color = ContextCompat.GetColor(this, Resource.Color.notificationColor);

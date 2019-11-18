@@ -26,7 +26,7 @@ namespace AlertApp.Services.Alert
             _contactsService = contactsService;
         }
 
-        public async Task<Response> AckAlert(string token, double? lat, double? lng, int type, int alertId, DateTime displayedTime)
+        public async Task<Response> AckAlert(string token, double? lat, double? lng, int type, int alertId, DateTime displayedTime, string publicKey)
         {
             var res = new Response();
             var body = new AckAlertPostBody
@@ -43,22 +43,15 @@ namespace AlertApp.Services.Alert
             {
                 var encryptedUserProfileData = await _localSettingsService.GetEncryptedProfileData();
                 var decryptedUserProfileData = await _cryptographyService.DecryptProfileData(encryptedUserProfileData);
-                //if (decryptedUserProfileData != null)
-                //{
-                //    var contacts = await _contactsService.GetContacts(token);
-                //    if (contacts != null && contacts.Result != null)
-                //    {
-                //        foreach (var contact in contacts.Result.Contacts.Community)
-                //        {
-                //            var recipient = await _cryptographyService.GetAlertRecipient(decryptedUserProfileData, contact);
-                //            if (recipient != null)
-                //            {
-                //                body.Recipients.Add(recipient);
-                //            }
-                //        }
-                //    }
-
-                //}
+                if (decryptedUserProfileData != null)
+                {
+                    var recipient = await _cryptographyService.GetAlertRecipient(decryptedUserProfileData, new Contact { PublicKey = publicKey });
+                    if (recipient != null)
+                    {
+                        body.ProfileData = recipient.Profiledata;
+                        body.FileKey = recipient.Filekey;
+                    }
+                }
 
                 var json = JsonConvert.SerializeObject(body);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
