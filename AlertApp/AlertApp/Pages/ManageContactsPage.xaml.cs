@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static AlertApp.ViewModels.ManageContactsPageViewModel;
 
 namespace AlertApp.Pages
 {
@@ -28,7 +29,7 @@ namespace AlertApp.Pages
             _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
             _contacts = DependencyService.Get<IContacts>();
             this.BindingContext = ViewModelLocator.Instance.Resolve<ManageContactsPageViewModel>();
-           
+
             this.container.ChildAdded += Container_ChildAdded;
 
             var communityPage = new MyCommunityPage();
@@ -58,7 +59,7 @@ namespace AlertApp.Pages
             whoalertMePage.IsVisible = false;
             blockedUsersPage.IsVisible = false;
 
-            
+
         }
 
         private void Container_ChildAdded(object sender, ElementEventArgs e)
@@ -179,14 +180,93 @@ namespace AlertApp.Pages
             }
         }
 
-        private void contactList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
         private void tabsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var vm = this.BindingContext as ManageContactsPageViewModel;
+            if (e.PreviousSelection != null && e.PreviousSelection.Count > 0)
+            {
+                var previusTabItem = e.PreviousSelection.FirstOrDefault() as TabItem;
+                previusTabItem.Selected = false;
+            }
+            else
+            {
+                //only from first time click. At first time PreviousSelection has Count 0               
+                vm.Tabs[0].Selected = false;
+            }
 
+
+            var currentTabItem = e.CurrentSelection.FirstOrDefault() as TabItem;
+            currentTabItem.Selected = true;
+
+            switch (currentTabItem.Id)
+            {
+                case 1:
+                    this.container.Children[0].IsVisible = true;
+                    this.container.Children[1].IsVisible = false;
+                    this.container.Children[2].IsVisible = false;
+                    this.container.Children[3].IsVisible = false;
+                    addCommunityContact.IsVisible = true;
+                    contactsMenu.IsVisible = false;
+                    break;
+                case 2:
+                    this.container.Children[0].IsVisible = false;
+                    this.container.Children[1].IsVisible = true;
+                    this.container.Children[2].IsVisible = false;
+                    this.container.Children[3].IsVisible = false;
+                    addCommunityContact.IsVisible = false;
+                    contactsMenu.IsVisible = true;
+                    break;
+                case 3:
+                    this.container.Children[0].IsVisible = false;
+                    this.container.Children[1].IsVisible = false;
+                    this.container.Children[2].IsVisible = true;
+                    this.container.Children[3].IsVisible = false;
+                    addCommunityContact.IsVisible = false;
+                    contactsMenu.IsVisible = true;
+                    break;
+                case 4:
+                    this.container.Children[0].IsVisible = false;
+                    this.container.Children[1].IsVisible = false;
+                    this.container.Children[2].IsVisible = false;
+                    this.container.Children[3].IsVisible = true;
+                    addCommunityContact.IsVisible = false;
+                    contactsMenu.IsVisible = true;
+                    break;
+            }
+
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            var myCommunityPageViewModel = this.container.Children[0].BindingContext as MyCommunityPageViewModel;
+
+            var communityBlocked = myCommunityPageViewModel.Community.Select(c => c.Cellphone).ToList();
+            if (myCommunityPageViewModel.Blocked != null && myCommunityPageViewModel.Blocked.Count > 0)
+            {
+                communityBlocked.AddRange(myCommunityPageViewModel.Blocked.Select(c => c.Cellphone));
+            }
+
+            var contactsPage = new AddContactPage(communityBlocked);
+
+            contactsPage.Disappearing += (sender2, e2) =>
+            {
+                myCommunityPageViewModel.SetBusy(false);
+                var vm = contactsPage.BindingContext as AddContactPageViewModel;
+                if (vm.HasChange)
+                {
+                    foreach (var page in myCommunityPageViewModel.NavigationService.NavigationStack)
+                    {
+                        if (page is ManageContactsPage)
+                        {
+                            myCommunityPageViewModel.SetBusy(true);
+                            ((ManageContactsPage)page).RefreshContacts();
+                            break;
+                        }
+                    }
+                }
+            };
+            await myCommunityPageViewModel.NavigationService.PushAsync(contactsPage, false);
         }
     }
 }
