@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 using AlertApp.Droid;
 using AlertApp.Infrastructure;
 using AlertApp.Model;
+using AlertApp.Model.Api;
+using AlertApp.Services.Cryptography;
 using AlertApp.Utils;
+using AlertApp.ViewModels;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -98,8 +101,18 @@ namespace AlertApp.Android
                     message.Data.TryGetValue("pkey", out publicKey);
 
                     //ack alert response
-                    if (message.Data.ContainsKey("ackType"))
+                    if (messageType.Equals("ack"))
                     {
+                        string ackType = "";
+                        message.Data.TryGetValue("ackType", out ackType);
+
+                        string title = "";
+                        message.Data.TryGetValue("title", out title);
+
+                        string ackTime = "";
+                        message.Data.TryGetValue("ackTime", out ackTime);
+
+                        ShowAlertAckNotification(title, profiledata, filekey, ackType, ackTime);
                         return;
                     }
 
@@ -209,7 +222,7 @@ namespace AlertApp.Android
                 | WindowManagerFlags.ShowWhenLocked | WindowManagerFlags.KeepScreenOn | WindowManagerFlags.DismissKeyguard);
         }
 
-        void SendAlertNotification(string title, string messageBody, string profiledata, string fileKey, string messageType, string alertType, string position, string cellphone, string alertid, string alertTime,string publicKey)
+        void SendAlertNotification(string title, string messageBody, string profiledata, string fileKey, string messageType, string alertType, string position, string cellphone, string alertid, string alertTime, string publicKey)
         {
             int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
             //create wake lock
@@ -330,5 +343,73 @@ namespace AlertApp.Android
             notificationManager.Notify(notificationID, notificationBuilder.Build());
         }
 
+        async void ShowAlertAckNotification(string title, string profileData, string fileKey, string ackType, string ackTime)
+        {
+            // "15/11/19 10:16: Ο/Η ΧΧΧ θα βοηθήσει"
+            string messageBody = "";
+            int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
+            if (!string.IsNullOrWhiteSpace(profileData) && !string.IsNullOrWhiteSpace(fileKey))
+            {
+                var cryptographyService = ViewModelLocator.Instance.Resolve<ICryptographyService>();
+                if (cryptographyService != null)
+                {
+                    var data = await cryptographyService.GetAlertSenderProfileData(profileData, fileKey);
+
+                    if (data != null)
+                    {
+                        var name = data[RegistrationField.Names.Name];
+                        var surname = data[RegistrationField.Names.Surname];
+                        DateTime dateTime = DateTime.Parse(ackTime);
+                        messageBody = String.Format("{0} O/H {1} θα βοηθήσει", dateTime.ToString("yyyy/MM/dd HH:mm"), surname + " " + name);
+                    }
+                }
+
+            }
+
+
+            //create wake lock
+            PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
+            PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, WakeLock);
+            wl.SetReferenceCounted(false);
+            wl.Acquire(8000);
+
+            Bitmap bm = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.icon);
+
+
+
+
+            //  var pendingIntent = PendingIntent.GetActivity(this, 0 /* Request code */, intent, PendingIntentFlags.UpdateCurrent);
+
+            int color = ContextCompat.GetColor(this, Resource.Color.notificationColor);
+            var defaultSoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
+            var notificationBuilder = new NotificationCompat.Builder(this, Channelid)
+                .SetSmallIcon(Resource.Drawable.ic_stat_logo_icon_notification)
+                .SetContentTitle(title)
+                .SetColor(color)
+                .SetContentText(messageBody)
+                // .SetStyle(new NotificationCompat.BigTextStyle().BigText(messageBody))
+                //.SetOngoing(true)
+                .SetSound(defaultSoundUri);
+
+            if (bm != null)
+            {
+                //notificationBuilder.SetLargeIcon(bm);
+            }
+
+            var notificationManager = NotificationManager.FromContext(this);
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            {
+                NotificationChannel channel = new NotificationChannel(Channelid,
+                        "Alert 24/7",
+                        NotificationImportance.Max);
+                notificationManager.CreateNotificationChannel(channel);
+            }
+            else
+            {
+                notificationBuilder.SetPriority((int)NotificationPriority.Max);
+            }
+
+            notificationManager.Notify(notificationID, notificationBuilder.Build());
+        }
     }
 }
