@@ -115,6 +115,7 @@
     <Compile Include="CustomRenderers\NoUnderlineEntryRenderer.cs" />
     <Compile Include="CustomRenderers\OtpEntryRenderer.cs" />
     <Compile Include="DependencyService\AlertNotificationManager.cs" />
+    <Compile Include="DependencyService\ContactProfileImageProvider.cs" />
     <Compile Include="DependencyService\ContactsService.cs" />
     <Compile Include="DependencyService\FirebaseAnalyticsService.cs" />
     <Compile Include="DependencyService\Localize.cs" />

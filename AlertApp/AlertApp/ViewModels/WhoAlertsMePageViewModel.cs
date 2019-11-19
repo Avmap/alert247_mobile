@@ -151,7 +151,7 @@ namespace AlertApp.ViewModels
                         foreach (var item in community)
                         {
                             var addressBookItem = addressBook.Where(c => c.FormattedNumber == item.Cellphone).FirstOrDefault();
-                           
+
                             if (addressBookItem != null)
                             {
                                 tempContacts.Add(new Contact { ProfileImageUri = addressBookItem.PhotoUri, Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage });
@@ -159,16 +159,16 @@ namespace AlertApp.ViewModels
                             else
                             {
                                 tempContacts.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, Stats = item.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") });
-                            }                           
+                            }
                         }
-    
+
                         AlertMeContacts = new ObservableCollection<Contact>(tempContacts);
                         SetBusy(false);
                     }
                     else
                     {
                         var contacts = community.Select(c => new Contact { Accepted = c.Accepted, Cellphone = c.Cellphone, Stats = c.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") }).ToList();
-                        var tempContacts = new List<Contact>();                      
+                        var tempContacts = new List<Contact>();
                         foreach (var item in contacts)
                         {
                             tempContacts.Add(item);
@@ -200,36 +200,7 @@ namespace AlertApp.ViewModels
             NotificationBackColor = Color.White;
         }
 
-        private async Task<List<ImportContact>> GetAddressbook()
-        {
-            var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
-            if (contactPermissionStatus != PermissionStatus.Granted)
-            {
-                var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Contacts });
-                contactPermissionStatus = results[Permission.Contacts];
-            }
 
-            if (contactPermissionStatus != PermissionStatus.Granted)
-            {
-                showOKMessage("Permissions Denied", "Unable get contacts.");
-                return null;
-            }
-            SetBusy(true);
-
-            var contacts = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
-            if (contacts != null)
-            {
-                var result = new List<ImportContact>();
-                foreach (var item in contacts.Where(c => c.Number != null).OrderBy(c => c.Name))
-                {
-                    result.Add(new ImportContact(item, _contactProfileImageProvider));
-                }
-                return result;
-
-            }
-
-            return null;
-        }
         public async Task<bool> RemoveUser(Contact contact)
         {
             SetBusy(true);

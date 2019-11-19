@@ -362,7 +362,7 @@ namespace AlertApp.Android
                         DateTime dateTime = DateTime.Parse(ackTime);
                         if (Int32.Parse(ackType) == (int)AckType.Positive)
                         {
-                            messageBody = String.Format("{0} {1} {2} {3}", dateTime.ToString("yyyy/MM/dd HH:mm"), GlobalTranslates.AckSuffix, surname + " " + name,GlobalTranslates.AckWillHelp);
+                            messageBody = String.Format("{0} {1} {2} {3}", dateTime.ToString("yyyy/MM/dd HH:mm"), GlobalTranslates.AckSuffix, surname + " " + name, GlobalTranslates.AckWillHelp);
                         }
                         else
                         {
@@ -395,8 +395,7 @@ namespace AlertApp.Android
                 .SetContentTitle(title)
                 .SetColor(color)
                 .SetContentText(messageBody)
-                // .SetStyle(new NotificationCompat.BigTextStyle().BigText(messageBody))
-                //.SetOngoing(true)
+                .SetStyle(new NotificationCompat.BigTextStyle().BigText(messageBody))                
                 .SetSound(defaultSoundUri);
 
             if (bm != null)

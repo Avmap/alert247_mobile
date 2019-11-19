@@ -207,19 +207,19 @@ namespace AlertApp.Droid
             intent.AddFlags(ActivityFlags.ReorderToFront);
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity.StartActivity(intent);
 
-            if (_SoundListener == null)
-            {
-                _SoundListener = new SoundListener();
-            }
-            if (null == pool)
-            {
-                AudioAttributes aa = new AudioAttributes.Builder().SetLegacyStreamType(Stream.Alarm).Build();
-                pool = new SoundPool.Builder().SetMaxStreams(5).SetAudioAttributes(aa).Build();
-                pool.SetOnLoadCompleteListener(_SoundListener);
-                id = pool.Load(context, Resource.Raw.alarm, 1);
-            }
-            loudest(context);
-            pool.Play(id, 1.0f, 1.0f, 1, 3, 1.0f);
+            //if (_SoundListener == null)
+            //{
+            //    _SoundListener = new SoundListener();
+            //}
+            //if (null == pool)
+            //{
+            //    AudioAttributes aa = new AudioAttributes.Builder().SetLegacyStreamType(Stream.Alarm).Build();
+            //    pool = new SoundPool.Builder().SetMaxStreams(5).SetAudioAttributes(aa).Build();
+            //    pool.SetOnLoadCompleteListener(_SoundListener);
+            //    id = pool.Load(context, Resource.Raw.alarm, 1);
+            //}
+            //loudest(context);
+            //pool.Play(id, 1.0f, 1.0f, 1, 3, 1.0f);
 
 
         }
