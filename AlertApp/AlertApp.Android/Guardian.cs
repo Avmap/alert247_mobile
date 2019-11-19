@@ -77,7 +77,7 @@ namespace AlertApp.Droid
             //var alarmIntent = new Intent(this, typeof(AlarmReceiver));
             //var pendingIntent = PendingIntent.GetActivity(this, ALARM_CODE, alarmIntent, PendingIntentFlags.UpdateCurrent);
             //alarmManager.SetRepeating(AlarmType.ElapsedRealtimeWakeup, 0 , 2 * 1000, pendingIntent);
-            
+
             return StartCommandResult.Sticky;
         }
 
@@ -169,17 +169,25 @@ namespace AlertApp.Droid
 
         }
 
-        public async void OnSensorChanged(SensorEvent e)
+        public void OnSensorChanged(SensorEvent e)
         {
+
             if (e.Sensor.Type == SensorType.Accelerometer)
             {
                 if (fallDetector != null)
                 {
-                  //  System.Diagnostics.Debug.WriteLine($"Start");
-                    await fallDetector.Protect(e.Timestamp, e.Values[0], e.Values[1], e.Values[2]);
-                    //System.Diagnostics.Debug.WriteLine($"End");
-                }
+                    try
+                    {
+                        //System.Diagnostics.Debug.WriteLine($"Start");
+                        fallDetector.Protect(e.Timestamp, e.Values[0], e.Values[1], e.Values[2]);
+                        //  System.Diagnostics.Debug.WriteLine($"End");
+                    }
+                    catch (Java.Lang.Exception ex)
+                    {
 
+                    }
+
+                }
             }
         }
 

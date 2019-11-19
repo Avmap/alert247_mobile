@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using AlertApp.Utils;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -10,15 +10,17 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Java.Lang;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AlertApp.Droid
 {
     public class PowerButtonReceiver : BroadcastReceiver
     {
+        public static string WakeLockTag = "gr.avmap.alert247::CpuWakeLock";
         static bool fromWakeLock = false;
         static int Clicked = 0;
-
+        PowerManager.WakeLock cpuWakeLock;
         public override void OnReceive(Context context, Intent intent)
         {
             if (fromWakeLock)
@@ -33,8 +35,27 @@ namespace AlertApp.Droid
             {
                 OpenApp();
                 Clicked = 0;
-            }            
+            }
             new ClickClearTimer(1000, 500).Start();
+
+            PowerManager pm = (PowerManager)Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity.GetSystemService(Context.PowerService);
+            if (cpuWakeLock == null)
+            {
+                cpuWakeLock = pm.NewWakeLock(WakeLockFlags.Partial, WakeLockTag);
+                cpuWakeLock.SetReferenceCounted(false);
+            }
+
+            if (!cpuWakeLock.IsHeld)
+                cpuWakeLock.Acquire();
+
+            bool allwaysOn = Preferences.Get(Settings.AlwaysOn, false);
+            if (!allwaysOn && cpuWakeLock.IsHeld)
+            {
+                cpuWakeLock.Release();
+            }
+
+
+
         }
 
         private void OpenApp()
@@ -59,7 +80,7 @@ namespace AlertApp.Droid
             }
 
             public override void OnFinish()
-            {                
+            {
                 Clicked = 0;
             }
 
