@@ -63,7 +63,7 @@ namespace AlertApp.ViewModels
                 return;
             var storage = DependencyService.Get<IStorage>();
             string title = "";
-            string message= "";
+            string message = "";
             SetBusy(true);
             var response = await _profileService.DownloadHistory(await _localSettingsService.GetAuthToken());
             if (response.IsOk)
@@ -74,6 +74,7 @@ namespace AlertApp.ViewModels
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         showOKMessage(AppResources.Succcess, AppResources.SucccessSaveAccountFile);
+                        Device.BeginInvokeOnMainThread(() => NavigationService.PopAsync(false));
                     });
 
                 }
@@ -83,7 +84,7 @@ namespace AlertApp.ViewModels
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     showOKMessage(AppResources.Error, AppResources.NoInternetConnection);
-                });               
+                });
             }
 
             SetBusy(false);
@@ -128,9 +129,13 @@ namespace AlertApp.ViewModels
                         Device.BeginInvokeOnMainThread(() =>
                         {
                             showOKMessage(title, message);
+                            if (response.IsOk)
+                            {
+                                NavigationService.PopAsync(false);
+                            }
                         });
 
-                        
+
                     });
 
                 }

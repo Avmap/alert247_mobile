@@ -79,6 +79,7 @@ namespace AlertApp.Views
                vm.DisableSendLocation();
             }
 
+            Device.BeginInvokeOnMainThread(() => Navigation.PopAsync(false));           
         }
     }
 }
