@@ -664,4 +664,13 @@
   <data name="SucccessSaveAccountFile" xml:space="preserve">
     <value>Το αρχείο του λογαριασμού σας αποθηκεύτηκε επιτυχώς.</value>
   </data>
+  <data name="AckNotHelp" xml:space="preserve">
+    <value>δεν θα βοηθήσει</value>
+  </data>
+  <data name="AckSuffix" xml:space="preserve">
+    <value>Ο/Η</value>
+  </data>
+  <data name="AckWillHelp" xml:space="preserve">
+    <value>θα βοηθήσει</value>
+  </data>
 </root>

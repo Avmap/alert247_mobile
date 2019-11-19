@@ -360,8 +360,16 @@ namespace AlertApp.Android
                         var name = data[RegistrationField.Names.Name];
                         var surname = data[RegistrationField.Names.Surname];
                         DateTime dateTime = DateTime.Parse(ackTime);
-                        messageBody = String.Format("{0} O/H {1} θα βοηθήσει", dateTime.ToString("yyyy/MM/dd HH:mm"), surname + " " + name);
+                        if (Int32.Parse(ackType) == (int)AckType.Positive)
+                        {
+                            messageBody = String.Format("{0} {1} {2} {3}", dateTime.ToString("yyyy/MM/dd HH:mm"), GlobalTranslates.AckSuffix, surname + " " + name,GlobalTranslates.AckWillHelp);
+                        }
+                        else
+                        {
+                            messageBody = String.Format("{0} {1} {2} {3}", dateTime.ToString("yyyy/MM/dd HH:mm"), GlobalTranslates.AckSuffix, surname + " " + name, GlobalTranslates.AckIgnoreHelp);
+                        }
                     }
+                       
                 }
 
             }

@@ -658,4 +658,13 @@
   <data name="SucccessSaveAccountFile" xml:space="preserve">
     <value>Account file saved successfully</value>
   </data>
+  <data name="AckNotHelp" xml:space="preserve">
+    <value>will not help</value>
+  </data>
+  <data name="AckSuffix" xml:space="preserve">
+    <value>Mr/Mrs</value>
+  </data>
+  <data name="AckWillHelp" xml:space="preserve">
+    <value>will help</value>
+  </data>
 </root>

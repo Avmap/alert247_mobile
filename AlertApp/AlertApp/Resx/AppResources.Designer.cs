@@ -106,6 +106,33 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to will not help.
+        /// </summary>
+        internal static string AckNotHelp {
+            get {
+                return ResourceManager.GetString("AckNotHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mr/Mrs.
+        /// </summary>
+        internal static string AckSuffix {
+            get {
+                return ResourceManager.GetString("AckSuffix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to will help.
+        /// </summary>
+        internal static string AckWillHelp {
+            get {
+                return ResourceManager.GetString("AckWillHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string AddContactMenu {
