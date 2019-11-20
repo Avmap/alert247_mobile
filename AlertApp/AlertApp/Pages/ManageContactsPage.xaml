@@ -1,17 +1,109 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Navigation="{Binding NavigationService}"
+             xmlns:converters="clr-namespace:AlertApp.Converters;assembly=AlertApp"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
-             xmlns:pages="clr-namespace:AlertApp.Pages;assembly=AlertApp"
-               
+             xmlns:views="clr-namespace:AlertApp.Views"
+             NavigationPage.HasNavigationBar="False"                       
              xmlns:badgeplugin="clr-namespace:Plugin.Badge.Abstractions;assembly=Plugin.Badge.Abstractions"              
              x:Class="AlertApp.Pages.ManageContactsPage"              
              Title="{infrastructure:Translate ManageContacts}"
             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:SelectedTabTextColorConverter x:Key="SelectedTabTextColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-    <pages:MyCommunityPage   />
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="56"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition  Height="2"></RowDefinition>
+            <RowDefinition  Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <views:SingleTitleToolbar BackCommand="{Binding BaseBackCommand}" Grid.Row="0" HasBackButton="True" Title="{infrastructure:Translate ManageContacts}" ></views:SingleTitleToolbar>
+        <CollectionView
+                    Grid.Row="1"
+                        Margin="0,0,0,0"
+                        x:Name="tabsList"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        SelectionMode="Single"                    
+                        SelectionChanged="tabsList_SelectionChanged"
+                        ItemsSource="{Binding Tabs}"                             
+                        BackgroundColor="White">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="8,8,8,0" RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="2"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Spacing="0" Orientation="Horizontal">
+                            <Label Grid.Row="0" FontSize="16" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{Binding Selected,Converter={StaticResource SelectedTabTextColorConverter},Mode=TwoWay}" Text="{Binding Name}"></Label>
+                            <Frame IsVisible="{Binding HasBadge}" HeightRequest="20" Grid.Row="0" Grid.Column="1" HasShadow="False" WidthRequest="20" CornerRadius="10" HorizontalOptions="End" VerticalOptions="Start" Margin="0" Padding="0"  BackgroundColor="Maroon">
+                                <Label Text="{Binding NotificationCount}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </Frame>
+                          
+                        </StackLayout>
+
+                        <StackLayout Padding="0,0,0,0" Spacing="0"  IsVisible="{Binding Selected}" Grid.Row="1" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <AbsoluteLayout x:Name="container" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="2"/>
+
+        <StackLayout Grid.Row="3" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
+        <StackLayout Margin="8,8,8,10" Grid.Row="4" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenHomeScreenCommand}"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Image WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"   Source="homepage.png"/>
+                <Label Text="{infrastructure:Translate HomeTab}" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+            <StackLayout x:Name="addCommunityContact" IsVisible="{Binding ShowContactsMenuButton,Mode=TwoWay}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="add_contact.png"/>
+                <Label Text="{infrastructure:Translate AddContactMenu}" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+            <StackLayout x:Name="contactsMenu" IsVisible="False" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="contacts.png"/>
+                <Label Text="{infrastructure:Translate Contacts}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding ShowInfoMenuButton,Mode=TwoWay}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="info.png"/>
+                <Label Text="{infrastructure:Translate InfoTab}" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="settings.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenSettingsCommand}"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="{infrastructure:Translate SettingsTab}" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+
+    <!--<pages:MyCommunityPage   />
     <pages:DependandsPage/>
     <pages:WhoAlertsMePage badgeplugin:TabBadge.BadgeText="{Binding NotificationCount}" badgeplugin:TabBadge.BadgeColor="{Binding NotificationBackColor}"/>
-    <pages:BlockedUsersPage/>
-       
-</TabbedPage>
+    <pages:BlockedUsersPage/>-->
+
+</ContentPage>

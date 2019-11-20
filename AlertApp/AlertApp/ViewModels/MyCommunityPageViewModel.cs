@@ -29,7 +29,7 @@ namespace AlertApp.ViewModels
 
         #region Properties
 
-        private List<Contact> Blocked;
+        public List<Contact> Blocked;
 
         private ObservableCollection<Contact> _Community;
         public ObservableCollection<Contact> Community
