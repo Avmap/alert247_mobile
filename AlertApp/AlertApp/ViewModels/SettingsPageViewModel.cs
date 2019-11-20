@@ -89,17 +89,21 @@ namespace AlertApp.ViewModels
                     result = new LocationResult { Ok = false, ErroMessage = "To open guardian turn on device location." };
                 }
 
+                if (_guardian != null)
+                {
+                    if (result.Ok)
+                    {
+                        AllwaysOn = true;
+                        _guardian.StartGuardianService();
+                        _localSettingsService.SetAlwaysOn(true);
+                    }
+                    else
+                    {
+                        showOKMessage(AppResources.Warning, result.ErroMessage);
+                    }
+                }
 
-                if (result.Ok)
-                {
-                    AllwaysOn = true;
-                    _guardian.StartGuardianService();
-                    _localSettingsService.SetAlwaysOn(true);
-                }
-                else
-                {
-                    showOKMessage(AppResources.Warning, result.ErroMessage);
-                }
+               
                 
 
                 return result;
