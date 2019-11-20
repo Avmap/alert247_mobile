@@ -178,9 +178,9 @@ namespace AlertApp.Droid
                 {
                     try
                     {
-                        //System.Diagnostics.Debug.WriteLine($"Start");
+                        System.Diagnostics.Debug.WriteLine($"Start");
                         fallDetector.Protect(e.Timestamp, e.Values[0], e.Values[1], e.Values[2]);
-                        //  System.Diagnostics.Debug.WriteLine($"End");
+                        System.Diagnostics.Debug.WriteLine($"End");
                     }
                     catch (Java.Lang.Exception ex)
                     {
@@ -207,19 +207,19 @@ namespace AlertApp.Droid
             intent.AddFlags(ActivityFlags.ReorderToFront);
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity.StartActivity(intent);
 
-            //if (_SoundListener == null)
-            //{
-            //    _SoundListener = new SoundListener();
-            //}
-            //if (null == pool)
-            //{
-            //    AudioAttributes aa = new AudioAttributes.Builder().SetLegacyStreamType(Stream.Alarm).Build();
-            //    pool = new SoundPool.Builder().SetMaxStreams(5).SetAudioAttributes(aa).Build();
-            //    pool.SetOnLoadCompleteListener(_SoundListener);
-            //    id = pool.Load(context, Resource.Raw.alarm, 1);
-            //}
-            //loudest(context);
-            //pool.Play(id, 1.0f, 1.0f, 1, 3, 1.0f);
+            if (_SoundListener == null)
+            {
+                _SoundListener = new SoundListener();
+            }
+            if (null == pool)
+            {
+                AudioAttributes aa = new AudioAttributes.Builder().SetLegacyStreamType(Stream.Alarm).Build();
+                pool = new SoundPool.Builder().SetMaxStreams(5).SetAudioAttributes(aa).Build();
+                pool.SetOnLoadCompleteListener(_SoundListener);
+                id = pool.Load(context, Resource.Raw.alarmtest, 1);
+            }
+            loudest(context);
+            pool.Play(id, 1.0f, 1.0f, 1, 3, 1.0f);
 
 
         }

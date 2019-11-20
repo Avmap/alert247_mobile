@@ -154,9 +154,9 @@ namespace AlertApp.Infrastructure
 
         void InitiateSamples(StateStructure State)
         {
-            State.X = new Queue<double>();
-            State.Y = new Queue<double>();
-            State.Z = new Queue<double>();
+            State.X = new double[SIZE_BUFFER];
+            State.Y = new double[SIZE_BUFFER];
+            State.Z = new double[SIZE_BUFFER];
         }
 
         void InitiateResampling(StateStructure State)
@@ -169,11 +169,11 @@ namespace AlertApp.Infrastructure
         {
             //State.X_LPF = Double.NaN;
             // State.Y_LPF = Double.NaN;
-            State.Z_LPF = new Queue<double>();
+            State.Z_LPF = new double[SIZE_BUFFER];
 
-            State.X_HPF = new Queue<double>();
-            State.Y_HPF = new Queue<double>();
-            State.Z_HPF = new Queue<double>();
+            State.X_HPF = new double[SIZE_BUFFER];
+            State.Y_HPF = new double[SIZE_BUFFER];
+            State.Z_HPF = new double[SIZE_BUFFER];
 
             State.XLPFXV = new double[FILTER_NZEROS + 1];
             State.XLPFYV = new double[FILTER_NZEROS + 1];
@@ -205,17 +205,17 @@ namespace AlertApp.Infrastructure
 
         void InitiateDeltas(StateStructure State)
         {
-            State.X_MAXMIN = new Queue<double>();
-            State.Y_MAXMIN = new Queue<double>();
-            State.Z_MAXMIN = new Queue<double>();
+            State.X_MAXMIN = new double[SIZE_BUFFER];
+            State.Y_MAXMIN = new double[SIZE_BUFFER];
+            State.Z_MAXMIN = new double[SIZE_BUFFER];
         }
 
         void InitiateSV(StateStructure State)
         {
-            State.SV_TOT = new Queue<double>();
-            State.SV_D = new Queue<double>();
-            State.SV_MAXMIN = new Queue<double>();
-            State.Z_2 = new Queue<double>();
+            State.SV_TOT = new double[SIZE_BUFFER]; ;
+            State.SV_D = new double[SIZE_BUFFER];
+            State.SV_MAXMIN = new double[SIZE_BUFFER];
+            State.Z_2 = new double[SIZE_BUFFER];
         }
 
         void InitiateEvents(StateStructure State)
@@ -282,28 +282,27 @@ namespace AlertApp.Infrastructure
             State.TimeoutFalling = EXPIRE(State.TimeoutFalling);
             State.TimeoutImpact = EXPIRE(State.TimeoutImpact);
 
-            // State.X_LPF = LPF(State.X.LastOrDefault(), State.XLPFXV, State.XLPFYV);
-            //   State.Y_LPF = LPF(State.Y.LastOrDefault(), State.YLPFXV, State.YLPFYV);
-            AddToQueue(State.Z_LPF, LPF(State.Z.LastOrDefault(), State.ZLPFXV, State.ZLPFYV));
 
-            AddToQueue(State.X_HPF, HPF(State.X.LastOrDefault(), State.XHPFXV, State.XHPFYV));
-            AddToQueue(State.Y_HPF, HPF(State.Y.LastOrDefault(), State.YHPFXV, State.YHPFYV));
-            AddToQueue(State.Z_HPF, HPF(State.Z.LastOrDefault(), State.ZHPFXV, State.ZHPFYV));
+            AddToQueue(State.Z_LPF, LPF(State.Z[Position], State.ZLPFXV, State.ZLPFYV));
+
+            AddToQueue(State.X_HPF, HPF(State.X[Position], State.XHPFXV, State.XHPFYV));
+            AddToQueue(State.Y_HPF, HPF(State.Y[Position], State.YHPFXV, State.YHPFYV));
+            AddToQueue(State.Z_HPF, HPF(State.Z[Position], State.ZHPFXV, State.ZHPFYV));
 
             AddToQueue(State.X_MAXMIN, Max(State.X) - Min(State.X));
             AddToQueue(State.Y_MAXMIN, Max(State.Y) - Min(State.Y));
             AddToQueue(State.Z_MAXMIN, Max(State.Z) - Min(State.Z));
 
-            AddToQueue(State.SV_TOT, SV(State.X.LastOrDefault(), State.Y.LastOrDefault(), State.Z.LastOrDefault()));
-            double SV_TOT = State.SV_TOT.LastOrDefault();
+            AddToQueue(State.SV_TOT, SV(State.X[Position], State.Y[Position], State.Z[Position]));
+            double SV_TOT = State.SV_TOT[Position];
 
-            AddToQueue(State.SV_D, SV(State.X_HPF.LastOrDefault(), State.Y_HPF.LastOrDefault(), State.Z_HPF.LastOrDefault()));
-            double SV_D = State.SV_D.LastOrDefault();
+            AddToQueue(State.SV_D, SV(State.X_HPF[Position], State.Y_HPF[Position], State.Z_HPF[Position]));
+            double SV_D = State.SV_D[Position];
 
-            AddToQueue(State.SV_MAXMIN, SV(State.X_MAXMIN.LastOrDefault(), State.Y_MAXMIN.LastOrDefault(), State.Z_MAXMIN.LastOrDefault()));
+            AddToQueue(State.SV_MAXMIN, SV(State.X_MAXMIN[Position], State.Y_MAXMIN[Position], State.Z_MAXMIN[Position]));
             AddToQueue(State.Z_2, (SV_TOT * SV_TOT - SV_D * SV_D - G * G) / (2.0 * G));
 
-            double SV_TOT_BEFORE = State.SV_TOT.Count == 1 ? State.SV_TOT.FirstOrDefault() : State.SV_TOT.ElementAt(State.SV_TOT.Count - 2);
+            double SV_TOT_BEFORE = Position == 0 ? State.SV_TOT[0] : State.SV_TOT[(Position - 1)];
 
             //  State.Falling.Add(0);
             //Debug.WriteLine($"Before: X: {SV_TOT_BEFORE}, NOW: {SV_TOT}");
@@ -316,8 +315,8 @@ namespace AlertApp.Infrastructure
             //State.Impact.Add(0);
             if (-1 < State.TimeoutFalling)
             {
-                double SV_MAXMIN = State.SV_MAXMIN.LastOrDefault();
-                double Z_2 = State.Z_2.LastOrDefault();
+                double SV_MAXMIN = State.SV_MAXMIN[Position];
+                double Z_2 = State.Z_2[Position];
                 if (IMPACT_WAIST_SV_TOT <= SV_TOT || IMPACT_WAIST_SV_D <= SV_D ||
                     IMPACT_WAIST_SV_MAXMIN <= SV_MAXMIN || IMPACT_WAIST_Z_2 <= Z_2)
                 {
@@ -332,7 +331,7 @@ namespace AlertApp.Infrastructure
                 double Sum = 0, Count = 0;
                 for (I = 0; I < SPAN_AVERAGING; I++)
                 {
-                    double Value = State.Z_LPF.LastOrDefault();
+                    double Value = State.Z_LPF[Position];
                     if (!isnan(Value))
                     {
                         Sum += Value;
@@ -351,19 +350,22 @@ namespace AlertApp.Infrastructure
                 }
             }
         }
-
-        private void AddToQueue(Queue<Double> queue, double Value)
+        private void AddToQueue(double[] array, double Value)
         {
-            if (queue.Count >= SIZE_BUFFER)
-            {
-                queue.Dequeue();
-                queue.Enqueue(Value);
-            }
-            else
-            {
-                queue.Enqueue(Value);
-            }
+            array[Position] = Value;
         }
+        //private void AddToQueue(Queue<Double> queue, double Value)
+        //{
+        //    if (queue.Count >= SIZE_BUFFER)
+        //    {
+        //        queue.Dequeue();
+        //        queue.Enqueue(Value);
+        //    }
+        //    else
+        //    {
+        //        queue.Enqueue(Value);
+        //    }
+        //}
         double Min(Queue<double> Array)
         {
             var index = Array.Count() - SPAN_MAXMIN;
@@ -375,24 +377,71 @@ namespace AlertApp.Infrastructure
             return beforeValues.Min();
         }
 
-        double Max(Queue<double> Array)
+        double Min(double[] Array)
         {
-            var index = Array.Count() - SPAN_MAXMIN;
-            if (index < 0)
+            //var index = Array.Length - SPAN_MAXMIN;
+            //if (index < 0)
+            //{
+            //    index = 0;
+            //}
+            //var beforeValues = Array.Skip(index);
+            //return beforeValues.Min();
+            int I;
+            double Min = AT(Array, Position, N);
+            for (I = 1; I < SPAN_MAXMIN; I++)
             {
-                index = 0;
+                double Value = AT(Array, Position - I, N);
+                if (!isnan(Value) && Value < Min)
+                {
+                    Min = Value;
+                }
             }
-            var beforeValues = Array.Skip(index);
-            return beforeValues.Max();
+            return Min;
         }
 
-        private void SetPosition()
+        double AT(double[] Array, int Index, int Size)
         {
-            if (Position >= Int32.MaxValue)
+            return (Array[(Index + Size) % Size]);
+        }
+
+        double Max(double[] Array)
+        {
+            //var index = Array.Length - SPAN_MAXMIN;
+            //if (index < 0)
+            //{
+            //    index = 0;
+            //}
+            //var beforeValues = Array.Skip(index);
+            //return beforeValues.Max();
+
+            int I;
+            double Max = AT(Array, Position, N);
+            for (I = 1; I < SPAN_MAXMIN; I++)
             {
-                Position = 0;
+                double Value = AT(Array, Position - I, N);
+                if (!isnan(Value) && Max < Value)
+                {
+                    Max = Value;
+                }
             }
+            return Max;
+        }
+
+        //double Max(Queue<double> Array)
+        //{
+        //    var index = Array.Count() - SPAN_MAXMIN;
+        //    if (index < 0)
+        //    {
+        //        index = 0;
+        //    }
+        //    var beforeValues = Array.Skip(index);
+        //    return beforeValues.Max();
+        //}
+
+        private void SetPosition()
+        {           
             Position = (Position + 1) % N;
+            System.Diagnostics.Debug.WriteLine($"Position = " + Position.ToString());
         }
 
         public class SignalData
@@ -407,22 +456,22 @@ namespace AlertApp.Infrastructure
             public int TimeoutFalling { get; set; }
             public int TimeoutImpact { get; set; }
 
-            public Queue<Double> X;
-            public Queue<Double> Y;
-            public Queue<Double> Z;
+            public double[] X;
+            public double[] Y;
+            public double[] Z;
             //public double X_LPF;
             //  public double Y_LPF;
-            public Queue<Double> Z_LPF;
-            public Queue<Double> X_HPF;
-            public Queue<Double> Y_HPF;
-            public Queue<Double> Z_HPF;
-            public Queue<Double> X_MAXMIN;
-            public Queue<Double> Y_MAXMIN;
-            public Queue<Double> Z_MAXMIN;
-            public Queue<Double> SV_TOT;
-            public Queue<Double> SV_D;
-            public Queue<Double> SV_MAXMIN;
-            public Queue<Double> Z_2;
+            public double[] Z_LPF;
+            public double[] X_HPF;
+            public double[] Y_HPF;
+            public double[] Z_HPF;
+            public double[] X_MAXMIN;
+            public double[] Y_MAXMIN;
+            public double[] Z_MAXMIN;
+            public double[] SV_TOT;
+            public double[] SV_D;
+            public double[] SV_MAXMIN;
+            public double[] Z_2;
             //public List<Double> Falling;
             // public List<Double> Impact;
             //public List<Double> Lying;
