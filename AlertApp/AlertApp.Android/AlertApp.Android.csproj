@@ -161,6 +161,7 @@
     <Compile Include="AppHashKeyHelper.cs" />
     <Compile Include="Boot.cs" />
     <Compile Include="ContactProfileImageProvider.cs" />
+    <Compile Include="CustomRenderers\DatePicker.cs" />
     <Compile Include="CustomRenderers\Dialog.cs" />
     <Compile Include="CustomRenderers\EntryCenteredRenderer.cs" />
     <Compile Include="CustomRenderers\EntryCenterOnlyRenderer.cs" />
