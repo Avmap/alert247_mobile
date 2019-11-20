@@ -667,4 +667,10 @@
   <data name="AckWillHelp" xml:space="preserve">
     <value>will help</value>
   </data>
+  <data name="Crash" xml:space="preserve">
+    <value>Crash</value>
+  </data>
+  <data name="Fall" xml:space="preserve">
+    <value>Fall</value>
+  </data>
 </root>

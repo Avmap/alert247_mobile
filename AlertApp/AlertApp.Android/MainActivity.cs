@@ -83,8 +83,8 @@ namespace AlertApp.Droid
         {
             if (action != null && action.Contains(AlertFirebaseMessagingService.ACTION_OPEN_SOS) && !flags.HasFlag(ActivityFlags.LaunchedFromHistory))
             {
-                var notificationData = new NotificationAction();
-                notificationData.Type = NotificationAction.ActionType.Sos;
+                var notificationData = new NotificationAction();               
+                notificationData.Type = alertType;
                 notificationData.NotificationId = notificationId;
                 notificationData.Data = new AlertNotificationData
                 {

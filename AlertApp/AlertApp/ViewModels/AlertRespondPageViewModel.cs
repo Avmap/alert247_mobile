@@ -208,11 +208,30 @@ namespace AlertApp.ViewModels
                     }
                 }
             }
-
-            if (data.AlertType == (int)AlertType.UserAlert)
+            var alertTitleType = "";
+            switch (data.AlertType)
             {
-                AlertTextTitle = "ALERT: " + AppResources.AlertSosTitle;
+                case (int)AlertType.UserAlert:
+                    alertTitleType = "ALERT: " + AppResources.AlertSosTitle;
+                    break;
+                case (int)AlertType.Police:
+                    alertTitleType = "ALERT: " + AppResources.Threat;
+                    break;
+                case (int)AlertType.Health:
+                    alertTitleType = "ALERT: " + AppResources.Accident;
+                    break;
+                case (int)AlertType.Fire:
+                    alertTitleType = "ALERT: " + AppResources.Fire;
+                    break;
+                case (int)AlertType.Crash:
+                    alertTitleType = "ALERT: " + AppResources.Crash;
+                    break;
+                case (int)AlertType.Fall:
+                    alertTitleType = "ALERT: " + AppResources.Fall;
+                    break;
             }
+
+            AlertTextTitle = alertTitleType;
 
             if (!string.IsNullOrWhiteSpace(data.ProfileData))
             {
@@ -331,7 +350,7 @@ namespace AlertApp.ViewModels
             catch { }
 
             var response = await _alertService.AckAlert(await _localSettingsService.GetAuthToken(), location != null ? location.Latitude : (double?)null, location != null ? location.Longitude : (double?)null, (int)type, _AlertId, _DisplayedTime, _PublicKey);
-            
+
             if (!response.IsOk && response.ErrorDescription != null && response.ErrorDescription.Labels != null)
             {
                 await Application.Current.MainPage.DisplayAlert(AppResources.Error, GetErrorDescription(response.ErrorDescription.Labels), "OK");

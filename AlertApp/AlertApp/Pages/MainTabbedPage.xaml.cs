@@ -1,4 +1,5 @@
 ﻿using AlertApp.Infrastructure;
+using AlertApp.Model;
 using AlertApp.ViewModels;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
@@ -36,7 +37,7 @@ namespace AlertApp.Pages
             {
                 switch (notificationAction.Type)
                 {
-                    case (int)NotificationAction.ActionType.Sos:
+                    case (int)AlertType.UserAlert:
                     //    navigate(notificationAction);
                         break;
                 }

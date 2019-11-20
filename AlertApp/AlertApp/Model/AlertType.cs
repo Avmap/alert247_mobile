@@ -4,5 +4,6 @@ using System.Text;
 
 namespace AlertApp.Model
 {
-    public enum AlertType { UserAlert = 1 ,Fire = 6 ,Police = 5 ,Health = 7};
+    public enum AlertType { UserAlert = 1 ,Fire = 6 ,Police = 5 ,Health = 7, Fall = 2, Crash  = 3};
+    
 }

@@ -421,6 +421,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Crash.
+        /// </summary>
+        internal static string Crash {
+            get {
+                return ResourceManager.GetString("Crash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete account data.
         /// </summary>
         internal static string DeleteAccountHistory {
@@ -597,6 +606,15 @@ namespace AlertApp.Resx {
         internal static string ErrorDeleteHistory {
             get {
                 return ResourceManager.GetString("ErrorDeleteHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fall.
+        /// </summary>
+        internal static string Fall {
+            get {
+                return ResourceManager.GetString("Fall", resourceCulture);
             }
         }
         

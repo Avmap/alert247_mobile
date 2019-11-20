@@ -673,4 +673,10 @@
   <data name="AckWillHelp" xml:space="preserve">
     <value>θα βοηθήσει</value>
   </data>
+  <data name="Crash" xml:space="preserve">
+    <value>Τροχαίο</value>
+  </data>
+  <data name="Fall" xml:space="preserve">
+    <value>Πτώση</value>
+  </data>
 </root>
