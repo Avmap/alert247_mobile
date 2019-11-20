@@ -113,6 +113,7 @@
   <ItemGroup>
     <Compile Include="CustomRenderers\DatePicker.cs" />
     <Compile Include="CustomRenderers\Dialog.cs" />
+    <Compile Include="CustomRenderers\EntryCenteredRenderer.cs" />
     <Compile Include="CustomRenderers\NoUnderlineEntryRenderer.cs" />
     <Compile Include="CustomRenderers\OtpEntryRenderer.cs" />
     <Compile Include="DependencyService\AlertNotificationManager.cs" />

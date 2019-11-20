@@ -10,9 +10,11 @@ namespace AlertApp.Infrastructure
 
         public delegate void BackButtonPressEventHandler(object sender, EventArgs e);
         public delegate void NumberEnteredEventHandler(string text);
+        public delegate void iOSFocusEventHandler(object sender, Guid entryId);
 
         public event BackButtonPressEventHandler OnDeleteButton;
         public event NumberEnteredEventHandler OnNumberEntered;
+        public event iOSFocusEventHandler iOSFocused;
 
         public bool IsDeletePressed { get; set; }
         public EntryCentered() { }
@@ -27,11 +29,19 @@ namespace AlertApp.Infrastructure
             }
         }
 
-        public void OnNumberEnter(string test)
+        public void OnNumberEnter(string text)
         {
             if (OnNumberEntered != null)
             {
-                OnNumberEntered(test);
+                OnNumberEntered(text);
+            }
+        }
+
+        public void OniOsFocused(object sender, Guid entryId)
+        {
+            if (iOSFocused != null)
+            {
+                iOSFocused(sender,entryId);
             }
         }
     }

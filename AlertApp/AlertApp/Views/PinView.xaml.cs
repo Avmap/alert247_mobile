@@ -48,7 +48,22 @@ namespace AlertApp.Views
             Pin4.OnNumberEntered += Pin4_OnNumberEntered;
 
             GetFocus(Pin1);
+
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                Pin1.iOSFocused += Pin_iOSFocused;
+                Pin2.iOSFocused += Pin_iOSFocused;
+                Pin3.iOSFocused += Pin_iOSFocused;
+                Pin4.iOSFocused += Pin_iOSFocused;
+            }
+
         }
+
+        private void Pin_iOSFocused(object sender, Guid entryId)
+        {
+            Pin_Focused(sender, null);
+        }
+
         private void Pin1_OnNumberEntered(string text)
         {
             if (string.IsNullOrWhiteSpace(Pin1.Text))
