@@ -187,7 +187,7 @@ namespace AlertApp.ViewModels
                     }
                 }
 
-                this.Contacts = new ObservableCollection<ImportContact>(tempList);
+                this.Contacts = new ObservableCollection<ImportContact>();
                 this.OriginalContacts = new ObservableCollection<ImportContact>(this.Contacts);
 
                 //call service to find which number is app user
