@@ -77,7 +77,7 @@ namespace AlertApp.ViewModels
         {
             this.Busy = isBusy;
         }
-   
+
         public class TabItem : INotifyPropertyChanged
         {
 
@@ -104,6 +104,31 @@ namespace AlertApp.ViewModels
                     OnPropertyChanged("Selected");
                 }
             }
+
+            private bool _HasBadge;
+
+            public bool HasBadge
+            {
+                get { return _HasBadge; }
+                set
+                {
+                    _HasBadge = value;
+                    OnPropertyChanged("HasBadge");
+                }
+            }
+
+            private int _NotificationCount;
+
+            public int NotificationCount
+            {
+                get { return _NotificationCount; }
+                set
+                {
+                    _NotificationCount = value;
+                    OnPropertyChanged("NotificationCount");
+                }
+            }
+
 
             public int Id { get; set; }
 

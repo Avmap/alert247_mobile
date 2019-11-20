@@ -111,6 +111,19 @@ namespace AlertApp.Pages
                         if (item.BindingContext is IHaveContacts)
                         {
                             ((IHaveContacts)item.BindingContext).SetContacts(response, addressBook);
+                            if (item.BindingContext is WhoAlertsMePageViewModel)
+                            {
+                                if (((WhoAlertsMePageViewModel)item.BindingContext).NotificationCount > 0)
+                                {
+
+                                    vm.Tabs[2].HasBadge = true;
+                                    vm.Tabs[2].NotificationCount = ((WhoAlertsMePageViewModel)item.BindingContext).NotificationCount;
+                                }
+                                else
+                                {
+                                    vm.Tabs[2].HasBadge = false;
+                                }
+                            }
                         }
                     }
                 }

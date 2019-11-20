@@ -15,7 +15,7 @@
             <converters:SelectedTabTextColorConverter x:Key="SelectedTabTextColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-   
+
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -42,13 +42,21 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="8,8,8,0">
+                    <Grid Padding="8,8,8,0" RowSpacing="0" ColumnSpacing="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="2"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{Binding Selected,Converter={StaticResource SelectedTabTextColorConverter},Mode=TwoWay}" Text="{Binding Name}"></Label>
-                        <StackLayout Spacing="0" IsVisible="{Binding Selected}" Grid.Row="1" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
+
+                        <StackLayout Spacing="0" Orientation="Horizontal">
+                            <Label Grid.Row="0" FontSize="16" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{Binding Selected,Converter={StaticResource SelectedTabTextColorConverter},Mode=TwoWay}" Text="{Binding Name}"></Label>
+                            <Frame IsVisible="{Binding HasBadge}" HeightRequest="20" Grid.Row="0" Grid.Column="1" HasShadow="False" WidthRequest="20" CornerRadius="10" HorizontalOptions="End" VerticalOptions="Start" Margin="0" Padding="0"  BackgroundColor="Maroon">
+                                <Label Text="{Binding NotificationCount}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </Frame>
+                          
+                        </StackLayout>
+
+                        <StackLayout Padding="0,0,0,0" Spacing="0"  IsVisible="{Binding Selected}" Grid.Row="1" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
