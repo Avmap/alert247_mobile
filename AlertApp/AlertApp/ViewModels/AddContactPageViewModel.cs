@@ -175,7 +175,19 @@ namespace AlertApp.ViewModels
                     if (!community.Contains(ImportContact.GetFormattedNumber(item.Number)))
                         tempList.Add(new ImportContact(item, _contactProfileImageProvider));
                 }
-                this.Contacts = new ObservableCollection<ImportContact>();
+
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                    for (int i = 0; i < tempList.Count; i++)
+                    {
+                        if (tempList[i]?.Number == null) continue;
+                        var spl1 = tempList[i].Number.Split(':'); var spl2 = spl1[2].Split(',');
+                        var spl3 = spl2[0].Split('=');
+                        tempList[i].Number = spl3[1];
+                    }
+                }
+
+                this.Contacts = new ObservableCollection<ImportContact>(tempList);
                 this.OriginalContacts = new ObservableCollection<ImportContact>(this.Contacts);
 
                 //call service to find which number is app user
