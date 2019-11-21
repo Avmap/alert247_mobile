@@ -347,4 +347,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\delete_history.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ignore.png" />
+  </ItemGroup>
 </Project>
