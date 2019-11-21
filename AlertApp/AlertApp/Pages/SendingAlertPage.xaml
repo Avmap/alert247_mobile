@@ -19,8 +19,8 @@
             </Frame>
             <Frame Margin="60,13,60,0" BorderColor="Black" CornerRadius="16" HorizontalOptions="FillAndExpand" Grid.Row="1" BackgroundColor="{StaticResource PrimaryColor}">
                 <StackLayout Orientation="Vertical">
-                    <Label Style="{StaticResource SosSendText}"  Text="{infrastructure:Translate PressedAlert}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" ></Label>
-                    <Label FontSize="18" Style="{StaticResource Headline5Bold}" Text="SOS" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" ></Label>
+                    <Label IsVisible="{Binding IsManualSos}" Style="{StaticResource SosSendText}"  Text="{infrastructure:Translate PressedAlert}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" ></Label>
+                    <Label  FontSize="18" Style="{StaticResource Headline5Bold}" Text="{Binding SosTypeText}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" ></Label>
                     <Label  Style="{StaticResource SosSendText}" Text="{infrastructure:Translate SendingAlertToSelectedContacts}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" ></Label>
                     <Label FontSize="22" x:Name="alertLabel" Style="{StaticResource Headline5Bold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" ></Label>
                 </StackLayout>

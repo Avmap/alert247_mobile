@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AlertApp.Infrastructure;
 using AlertApp.MessageCenter;
+using AlertApp.Pages;
 using AlertApp.Services.Profile;
 using AlertApp.Utils;
 using AlertApp.ViewModels;
@@ -234,10 +235,11 @@ namespace AlertApp.Droid
         }
         void siren(Context context)
         {
-            var intent = new Intent(context, typeof(MainActivity));
-            intent.AddFlags(ActivityFlags.ReorderToFront);
+            var intent = new Intent(context, typeof(MainActivity));            
+            intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop | ActivityFlags.NewTask);
+            intent.SetAction(MainActivity.EXTRA_FALL_DETECTED + Java.Lang.JavaSystem.CurrentTimeMillis().ToString());
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity.StartActivity(intent);
-
+           
             if (_SoundListener == null)
             {
                 _SoundListener = new SoundListener();

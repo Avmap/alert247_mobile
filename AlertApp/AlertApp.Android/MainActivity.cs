@@ -29,6 +29,8 @@ namespace AlertApp.Droid
 
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, ICrossFirebase
     {
+        internal static readonly string EXTRA_FALL_DETECTED = "EXTRA_FALL_DETECTED";
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -79,11 +81,11 @@ namespace AlertApp.Droid
                             WindowManagerFlags.TurnScreenOn);
         }
 
-        private void handleIntentActions(string action, string fileKey, string profiledata, int notificationId, string position, int alertType, string cellphone, string notification, string alertId, string alertTime,string senderPublicKey, ActivityFlags flags)
+        private void handleIntentActions(string action, string fileKey, string profiledata, int notificationId, string position, int alertType, string cellphone, string notification, string alertId, string alertTime, string senderPublicKey, ActivityFlags flags)
         {
             if (action != null && action.Contains(AlertFirebaseMessagingService.ACTION_OPEN_SOS) && !flags.HasFlag(ActivityFlags.LaunchedFromHistory))
             {
-                var notificationData = new NotificationAction();               
+                var notificationData = new NotificationAction();
                 notificationData.Type = alertType;
                 notificationData.NotificationId = notificationId;
                 notificationData.Data = new AlertNotificationData
@@ -93,7 +95,7 @@ namespace AlertApp.Droid
                     Position = position,
                     AlertType = alertType,
                     Cellphone = cellphone,
-                    AlertId = !string.IsNullOrWhiteSpace(alertId) ?  Int32.Parse(alertId) : (int?)null,
+                    AlertId = !string.IsNullOrWhiteSpace(alertId) ? Int32.Parse(alertId) : (int?)null,
                     AlertTime = alertTime,
                     PublicKey = senderPublicKey
                 };
@@ -107,6 +109,11 @@ namespace AlertApp.Droid
                 Xamarin.Forms.Application.Current.MainPage.Navigation.PushModalAsync(new CommunityRequestPage(contact));
                 Intent = null;
             }
+            else if (action != null && action.Contains(EXTRA_FALL_DETECTED) && !flags.HasFlag(ActivityFlags.LaunchedFromHistory))
+            {
+                Xamarin.Forms.Application.Current.MainPage.Navigation.PushModalAsync(new SendingAlertPage(Model.AlertType.Fall), false);
+                Intent = null;
+            }            
         }
 
         protected override void OnNewIntent(Intent intent)
@@ -125,7 +132,7 @@ namespace AlertApp.Droid
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_CELLPHONE),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_TYPE),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_ID),
-            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TIME), 
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TIME),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_SENDER_PUBLIC_KEY),
             Intent.Flags);
 

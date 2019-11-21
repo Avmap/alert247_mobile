@@ -23,6 +23,7 @@ namespace AlertApp.iOS.CustomRenderers
         {
             UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.DarkContent, true);
             UIApplication.SharedApplication.SetStatusBarHidden(false, true);
+            UIApplication.SharedApplication.IdleTimerDisabled = true;
             SetNeedsStatusBarAppearanceUpdate();
         }
     }

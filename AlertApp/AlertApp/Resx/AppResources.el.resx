@@ -697,4 +697,7 @@
   <data name="StickNotificationGuardianMessage" xml:space="preserve">
     <value>H εφαρμογή σας προστατεύει</value>
   </data>
+  <data name="FallDetectedSosText" xml:space="preserve">
+    <value>ΠΤΩΣΗ</value>
+  </data>
 </root>

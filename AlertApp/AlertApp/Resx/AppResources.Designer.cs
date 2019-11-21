@@ -637,6 +637,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FALL DETECTED .
+        /// </summary>
+        internal static string FallDetectedSosText {
+            get {
+                return ResourceManager.GetString("FallDetectedSosText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FALL DETECTION.
         /// </summary>
         internal static string FallDetectionCaps {

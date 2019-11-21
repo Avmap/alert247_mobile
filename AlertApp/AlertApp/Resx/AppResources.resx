@@ -694,4 +694,7 @@
   <data name="StickNotificationGuardianMessage" xml:space="preserve">
     <value>You are protected</value>
   </data>
+  <data name="FallDetectedSosText" xml:space="preserve">
+    <value>FALL DETECTED </value>
+  </data>
 </root>

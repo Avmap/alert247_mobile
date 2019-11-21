@@ -56,6 +56,9 @@ namespace AlertApp.Pages
         private async void SetApplicationPin()
         {
             applicationPin = await ((ISendAlert)this.BindingContext).GetApplicationPin();
+
+            pinLayout.Pin1Entry.Focus();
+
         }
 
         private async void StartTimer()
@@ -98,7 +101,16 @@ namespace AlertApp.Pages
                     if (userInput.Equals(applicationPin))
                     {
                         stop = true;
-                        await this.Navigation.PopAsync();
+                        pinLayout.Pin4Entry.Unfocus();
+                        try
+                        {
+                            await this.Navigation.PopAsync(false);
+                        }
+                        catch
+                        {
+                            await this.Navigation.PopModalAsync(false);
+                        }
+
                     }
                 }
             }

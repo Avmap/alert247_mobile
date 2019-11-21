@@ -36,6 +36,31 @@ namespace AlertApp.ViewModels
 
         public AlertType alertType { get; set; }
 
+        private bool _IsManualSos;
+
+        public bool IsManualSos
+        {
+            get { return _IsManualSos; }
+            set
+            {
+                _IsManualSos = value;
+                OnPropertyChanged("IsManualSos");
+            }
+        }
+
+        private string _SosTypeText;
+
+        public string SosTypeText
+        {
+            get { return _SosTypeText; }
+            set
+            {
+                _SosTypeText = value;
+                OnPropertyChanged("SosTypeText");
+            }
+        }
+
+
         #endregion
 
         public SendingAlertPageViewModel(IAlertService alertService, ILocalSettingsService localSettingsService, AlertType alertType)
@@ -46,7 +71,13 @@ namespace AlertApp.ViewModels
             switch (alertType)
             {
                 case AlertType.UserAlert:
+                    IsManualSos = true;
+                    SosTypeText = "SOS";
                     AlertTypeLabel = "SOS PRESSED!";
+                    break;
+                case AlertType.Fall:
+                    SosTypeText = AppResources.FallDetectedSosText;
+                    IsManualSos = false;
                     break;
             }
         }
@@ -59,23 +90,36 @@ namespace AlertApp.ViewModels
             if (alertResponse != null && alertResponse.IsOk)
             {
                 var successSendContacts = alertResponse.Result.Recipients.Where(x => x.Value.StartsWith("NT")).Count();
-                string message = String.Format("{0} Alert {1} {2} {3}", AppResources.TheAlert, AppResources.SuccessSendAlertMessage, successSendContacts, AppResources.SuccessSendAlertMessageContacts);
+                string message = String.Format("{0} Alert {1} {2} {3}", AppResources.TheAlert, AppResources.SuccessSendAlertMessage, 3, AppResources.SuccessSendAlertMessageContacts);
                 showOKMessage(AppResources.SuccessSendAlert, message);
-                await NavigationService.PopAsync();
+                try
+                {
+                    await NavigationService.PopAsync(false);
+                }
+                catch
+                {
+                    await NavigationService.PopModalAsync(false);
+                }
             }
             else
             {
-
                 if (!string.IsNullOrWhiteSpace(alertResponse.ErrorCode) && alertResponse.ErrorCode == "ALERT_MESSAGE_MISSINGRECIPIENTS")
                 {
-                    showOKMessage(AppResources.Error, AppResources.NoAlertRecipients);                   
+                    showOKMessage(AppResources.Error, AppResources.NoAlertRecipients);
                 }
                 else if (!alertResponse.IsOnline)
                 {
-                    showOKMessage(AppResources.Error, AppResources.NoInternetConnection);                    
+                    showOKMessage(AppResources.Error, AppResources.NoInternetConnection);
                 }
 
-                await NavigationService.PopAsync();
+                try
+                {
+                    await NavigationService.PopAsync(false);
+                }
+                catch
+                {
+                    await NavigationService.PopModalAsync(false);
+                }
             }
             SetBusy(false);
         }
