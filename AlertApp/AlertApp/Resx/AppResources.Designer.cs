@@ -322,6 +322,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have a new community request.
+        /// </summary>
+        internal static string CommunityRequestNotificationMessage {
+            get {
+                return ResourceManager.GetString("CommunityRequestNotificationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Community Request.
+        /// </summary>
+        internal static string CommunityRequestNotificationTitle {
+            get {
+                return ResourceManager.GetString("CommunityRequestNotificationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Community Request.
         /// </summary>
         internal static string CommunityRequestPage {
@@ -1452,6 +1470,24 @@ namespace AlertApp.Resx {
         internal static string StartSettings {
             get {
                 return ResourceManager.GetString("StartSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open App.
+        /// </summary>
+        internal static string StickNotificationGuardianButtonOpenApp {
+            get {
+                return ResourceManager.GetString("StickNotificationGuardianButtonOpenApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are protected.
+        /// </summary>
+        internal static string StickNotificationGuardianMessage {
+            get {
+                return ResourceManager.GetString("StickNotificationGuardianMessage", resourceCulture);
             }
         }
         

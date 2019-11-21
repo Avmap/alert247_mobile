@@ -123,30 +123,10 @@ namespace AlertApp.Android
                     //contact request
                     if (!string.IsNullOrWhiteSpace(messageType) && messageType.Equals("contact") && !string.IsNullOrWhiteSpace(cellphone))
                     {
-                        string titleNotification = "";
-                        string messageNotification = "";
-                        var preferenceLanguage = Xamarin.Essentials.Preferences.Get(Settings.SelectedLanguage, "en");
-                        switch (preferenceLanguage)
-                        {
-                            case Codes.Greek:
-                                titleNotification = "Νέο αίτημα";
-                                messageNotification = "Έχετε αίτημα για κοινότητα";
-                                break;
-                            case Codes.English:
-                                titleNotification = "Community Request";
-                                messageNotification = "You have a new community request";
-                                break;
-                            default:
-                                titleNotification = "Community Request";
-                                messageNotification = "You have a new community request";
-                                break;
-
-                        }
+                        string titleNotification = GlobalTranslates.CommunityRequestNotificationTitle;
+                        string messageNotification = GlobalTranslates.CommunityRequestNotificationMessage;                                                
                         SendContactRequestNotification(titleNotification, messageNotification, position, cellphone);
                     }
-
-
-
                 }
 
             }
@@ -154,66 +134,6 @@ namespace AlertApp.Android
             {
 
             }
-        }
-
-        private void showAlert()
-        {
-
-            //create wake lock
-            //PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
-            //  PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, WakeLock);
-            // wl.SetReferenceCounted(false);
-            // wl.Acquire(8000);
-
-            //var builder = new AlertDialog.Builder(this);
-            //builder.SetTitle("Alert");
-            //builder.SetMessage("Content");
-            //builder.SetCancelable(false);
-            //builder.SetPositiveButton("Help", (senderAlert, args) => { AlertDialog t = senderAlert as AlertDialog; t.Dismiss(); });
-
-            //AlertDialog alert = builder.Create();
-            //if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
-            //{
-            //    alert.Window.SetType(WindowManagerTypes.ApplicationOverlay);
-            //}
-            //else
-            //{
-            //    alert.Window.SetType(WindowManagerTypes.Toast);
-            //}
-
-            //alert.Show();
-
-            IWindowManager windowManager = GetSystemService(WindowService).JavaCast<IWindowManager>();
-
-            //if (windowManager != null)
-            //{
-            //    ImageView overlayImage = new ImageView(this);
-            //    overlayImage.SetImageResource(Resource.Drawable.alert_fire);
-
-            //    var param = new WindowManagerLayoutParams(
-            //                    ViewGroup.LayoutParams.MatchParent,
-            //                    ViewGroup.LayoutParams.MatchParent,
-            //                    WindowManagerTypes.ApplicationOverlay,
-            //                    WindowManagerFlags.ShowWhenLocked
-            //                    | WindowManagerFlags.KeepScreenOn | WindowManagerFlags.TurnScreenOn | WindowManagerFlags.DismissKeyguard,
-            //                    Format.Rgba8888);
-
-            //    param.Gravity = GravityFlags.Top;
-
-            //    //  overlayImage.SetScaleType(ImageView.ScaleType.FitXy);
-
-            //    overlayImage.Click += (sender, e) =>
-            //    {
-            //        windowManager.RemoveView(overlayImage);
-            //    };
-
-            //    overlayImage.ViewAttachedToWindow += OverlayImage_ViewAttachedToWindow;
-
-            //    windowManager.AddView(overlayImage, param);
-
-            //}
-
-            StartActivity(new Intent(this, typeof(MainActivity)));
         }
 
         private void OverlayImage_ViewAttachedToWindow(object sender, global::Android.Views.View.ViewAttachedToWindowEventArgs e)
@@ -344,8 +264,7 @@ namespace AlertApp.Android
         }
 
         async void ShowAlertAckNotification(string title, string profileData, string fileKey, string ackType, string ackTime)
-        {
-            // "15/11/19 10:16: Ο/Η ΧΧΧ θα βοηθήσει"
+        {            
             string messageBody = "";
             int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
             if (!string.IsNullOrWhiteSpace(profileData) && !string.IsNullOrWhiteSpace(fileKey))
@@ -383,10 +302,6 @@ namespace AlertApp.Android
 
             Bitmap bm = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.icon);
 
-
-
-
-            //  var pendingIntent = PendingIntent.GetActivity(this, 0 /* Request code */, intent, PendingIntentFlags.UpdateCurrent);
 
             int color = ContextCompat.GetColor(this, Resource.Color.notificationColor);
             var defaultSoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);

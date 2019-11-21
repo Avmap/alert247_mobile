@@ -11,6 +11,12 @@ namespace AlertApp.Infrastructure
         public static string AckIgnoreHelp => AppResources.AckNotHelp;
         public static string AckSuffix => AppResources.AckSuffix;
 
-        
+        public static string CommunityRequestNotificationTitle => AppResources.CommunityRequestNotificationTitle;
+        public static string CommunityRequestNotificationMessage => AppResources.CommunityRequestNotificationMessage;
+
+        public static string StickNotificationGuardianMessage => AppResources.StickNotificationGuardianMessage;
+        public static string StickNotificationGuardianButtonOpenApp => AppResources.StickNotificationGuardianButtonOpenApp;
+
+
     }
 }

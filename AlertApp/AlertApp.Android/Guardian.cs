@@ -158,11 +158,11 @@ namespace AlertApp.Droid
             builder
                 //.AddAction(Resource.Mipmap.icon, "Open App",
                 //    activityPendingIntent)
-                .AddAction(0, "Open App",
+                .AddAction(0, GlobalTranslates.StickNotificationGuardianButtonOpenApp,
                     activityPendingIntent)
 
                 .SetContentText("Alert 24/7")
-                .SetContentTitle("You are protected")
+                .SetContentTitle(GlobalTranslates.StickNotificationGuardianMessage)
                 .SetOngoing(true)
                 .SetColor(color)
                 .SetPriority((int)NotificationPriority.High)

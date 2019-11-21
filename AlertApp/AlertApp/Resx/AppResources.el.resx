@@ -685,4 +685,16 @@
   <data name="SettingsFallDetectorSubtitle" xml:space="preserve">
     <value>Η τοποθεσία χρησιμοποιείται για τον εντοπισμό της θέσης της συσκευής και την αποστολή του στις επαφές σας, σε περίπτωση έκτακτης ανάγκης.</value>
   </data>
+  <data name="CommunityRequestNotificationMessage" xml:space="preserve">
+    <value>Έχετε αίτημα για κοινότητα</value>
+  </data>
+  <data name="CommunityRequestNotificationTitle" xml:space="preserve">
+    <value>Νέο αίτημα</value>
+  </data>
+  <data name="StickNotificationGuardianButtonOpenApp" xml:space="preserve">
+    <value>Άνοιγμα</value>
+  </data>
+  <data name="StickNotificationGuardianMessage" xml:space="preserve">
+    <value>H εφαρμογή σας προστατεύει</value>
+  </data>
 </root>

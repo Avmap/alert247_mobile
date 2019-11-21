@@ -682,4 +682,16 @@
   <data name="SettingsFallDetectorSubtitle" xml:space="preserve">
     <value>Guardian is used in case of emergency</value>
   </data>
+  <data name="CommunityRequestNotificationMessage" xml:space="preserve">
+    <value>You have a new community request</value>
+  </data>
+  <data name="CommunityRequestNotificationTitle" xml:space="preserve">
+    <value>Community Request</value>
+  </data>
+  <data name="StickNotificationGuardianButtonOpenApp" xml:space="preserve">
+    <value>Open App</value>
+  </data>
+  <data name="StickNotificationGuardianMessage" xml:space="preserve">
+    <value>You are protected</value>
+  </data>
 </root>
