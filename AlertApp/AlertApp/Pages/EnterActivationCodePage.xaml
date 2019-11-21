@@ -50,7 +50,7 @@
                             <Label Text="{infrastructure:Translate NextRegistration}"  TextColor="{Binding EnabledDisabledColor}" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </StackLayout>
                         <StackLayout IsVisible="{Binding CanResendCode}" Orientation="Vertical" HorizontalOptions="Center">
-                            <Image Source="{Binding RefreshImageSource}">
+                            <Image Source="{Binding RefreshImageSource}" HeightRequest="56" WidthRequest="56">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer  Command="{Binding ResendCodeCommand}"></TapGestureRecognizer>
                                 </Image.GestureRecognizers>
