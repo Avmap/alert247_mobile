@@ -25,7 +25,9 @@
                     <StackLayout HorizontalOptions="FillAndExpand" Spacing="8" Margin="65,24,65,0">
                         <OnPlatform x:TypeArguments="View">
                             <On Platform="iOS">
-                                <infrastructure:OtpEntry Keyboard="Telephone" TextChanged="OtpEntry_IOS_TextChanged" MaxLength="6" HorizontalTextAlignment="Center" Text="{Binding VerificationCode,Mode=TwoWay}" Style="{StaticResource Headline5BoldEntry}"></infrastructure:OtpEntry>
+                                <Frame BackgroundColor="Transparent" BorderColor="#CACCCD" CornerRadius="2" Padding="0,0,0,0" HasShadow="False">
+                                    <infrastructure:OtpEntry Keyboard="Telephone"  TextChanged="OtpEntry_IOS_TextChanged" MaxLength="6" HorizontalTextAlignment="Center" Text="{Binding VerificationCode,Mode=TwoWay}" BackgroundColor="#E6E7E8" Style="{StaticResource Headline5BoldEntry}"></infrastructure:OtpEntry>
+                                </Frame>
                             </On>
                             <On Platform="Android">
                                 <Frame BackgroundColor="#E6E7E8" CornerRadius="16" Padding="2,2,2,2" HasShadow="False">

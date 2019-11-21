@@ -50,9 +50,6 @@ namespace AlertApp
                     }
                 }
                 MainPage = new NavigationPage(new SelectLanguagePage());
-                //MainPage.Navigation.PushAsync(new ManageContactsPage());
-
-
             }
             else
             {
@@ -61,7 +58,8 @@ namespace AlertApp
                 // MainPage = new NavigationPage(new AlertRespondPage(new NotificationAction() { Data = new AlertNotificationData() { AlertTime = "2019-11-15T15:06:39Z", AlertId = 3233, Position = "37.9849,23.7620", Cellphone = "+306983836637" } }));
                 //2019-11-15T15:06:39Z
             }
-            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
+
+            if (Device.RuntimePlatform == Device.iOS)
             {
                 ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.Black;
             }
@@ -70,23 +68,6 @@ namespace AlertApp
         private bool IsRegister()
         {
             return Preferences.Get(Settings.HasFinishRegistration, false);
-            //string userID = null;
-            //string token = null;
-            //try
-            //{
-            //    userID = await SecureStorage.GetAsync(Settings.UserId);
-            //    token = await SecureStorage.GetAsync(Settings.AuthToken);
-            //}
-            //catch (Exception ex)
-            //{
-            //    // Possible that device doesn't support secure storage on device.
-            //    userID = Preferences.Get(Settings.UserId, "");
-            //    token = Preferences.Get(Settings.AuthToken, "");
-            //}
-            //if (!string.IsNullOrWhiteSpace(userID))
-            //    return true;
-
-            //return false;
         }
 
         protected override void OnStart()

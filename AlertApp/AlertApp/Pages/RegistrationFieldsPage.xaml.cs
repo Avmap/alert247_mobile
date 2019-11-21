@@ -51,16 +51,16 @@ namespace AlertApp.Pages
 
         private void AddRegistrationFields(RegistrationField[] registrationField)
         {
-//#if DEBUG
-//            var list = new List<RegistrationField>();
-//            list.Add(new RegistrationField { DataType = RegistrationField.Type.Date, FieldName = "birthdate", Labels = new Dictionary<string, string>() });
-//            list.Add(new RegistrationField { DataType = RegistrationField.Type.String, FieldName = "area", Labels = new Dictionary<string, string>() });
-//            list.Add(new RegistrationField { DataType = RegistrationField.Type.String, FieldName = "firstname", Labels = new Dictionary<string, string>() });
-//            list.Add(new RegistrationField { DataType = RegistrationField.Type.String, FieldName = "firstname2", Labels = new Dictionary<string, string>() });
-//            list.Add(new RegistrationField { DataType = RegistrationField.Type.Boolean, FieldName = "epilispi", Labels = new Dictionary<string, string>() });
-//            list.Add(new RegistrationField { DataType = RegistrationField.Type.Area, FieldName = "other", Labels = new Dictionary<string, string>() });
-//            registrationField = list.ToArray();
-//#endif            
+            //#if DEBUG
+            //            var list = new List<RegistrationField>();
+            //            list.Add(new RegistrationField { DataType = RegistrationField.Type.Date, FieldName = "birthdate", Labels = new Dictionary<string, string>() });
+            //            list.Add(new RegistrationField { DataType = RegistrationField.Type.String, FieldName = "area", Labels = new Dictionary<string, string>() });
+            //            list.Add(new RegistrationField { DataType = RegistrationField.Type.String, FieldName = "firstname", Labels = new Dictionary<string, string>() });
+            //            list.Add(new RegistrationField { DataType = RegistrationField.Type.String, FieldName = "firstname2", Labels = new Dictionary<string, string>() });
+            //            list.Add(new RegistrationField { DataType = RegistrationField.Type.Boolean, FieldName = "epilispi", Labels = new Dictionary<string, string>() });
+            //            list.Add(new RegistrationField { DataType = RegistrationField.Type.Area, FieldName = "other", Labels = new Dictionary<string, string>() });
+            //            registrationField = list.ToArray();
+            //#endif            
             var language = _localSettingsService.GetSelectedLanguage();
             foreach (var item in registrationField)
             {
@@ -70,11 +70,11 @@ namespace AlertApp.Pages
                 {
                     string label = "";
                     item.Labels.TryGetValue(language, out label);
-//#if DEBUG
-//                    stack.Children.Add(new Xamarin.Forms.Label { VerticalOptions = LayoutOptions.Center, WidthRequest = 100, Text = "Registration field", Style = (Style)Application.Current.Resources["RegistrationLabelStyle"] });
-//#else
+                    //#if DEBUG
+                    //                    stack.Children.Add(new Xamarin.Forms.Label { VerticalOptions = LayoutOptions.Center, WidthRequest = 100, Text = "Registration field", Style = (Style)Application.Current.Resources["RegistrationLabelStyle"] });
+                    //#else
                     stack.Children.Add(new Xamarin.Forms.Label { Text = label, VerticalOptions = LayoutOptions.Center, WidthRequest = 100, Style = (Style)Application.Current.Resources["RegistrationLabelStyle"] });
-//#endif
+                    //#endif
 
                 }
                 stack.FieldName = item.FieldName;
@@ -95,8 +95,11 @@ namespace AlertApp.Pages
                         horizontalstack.Orientation = StackOrientation.Horizontal;
                         horizontalstack.HorizontalOptions = LayoutOptions.FillAndExpand;
                         horizontalstack.Children.Add(new Image { Source = "calendar.png", WidthRequest = 30, HeightRequest = 30 });
-                        horizontalstack.Children.Add(new DatePicker { Style = (Style)Application.Current.Resources["RegistrationEntryStyle"], HorizontalOptions = LayoutOptions.FillAndExpand });
+                        var datePicker = new DatePicker { Style = (Style)Application.Current.Resources["RegistrationEntryStyle"], HorizontalOptions = LayoutOptions.FillAndExpand };
+                        if (Device.RuntimePlatform == Device.iOS)
+                            datePicker.BackgroundColor = Color.FromHex("#E6E7E8");
 
+                        horizontalstack.Children.Add(datePicker);
                         var cardViewDate = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
                         cardViewDate.Content = horizontalstack;
 
@@ -115,10 +118,12 @@ namespace AlertApp.Pages
                         break;
                     case RegistrationField.Type.Area:
 
-                        var cardViewEditor = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand,VerticalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
+                        var cardViewEditor = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
                         var editor = new NoUnderlineEditor { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, HeightRequest = 150 };
+                        if (Device.RuntimePlatform == Device.iOS)
+                            editor.BackgroundColor = Color.FromHex("#E6E7E8");
                         editor.TextChanged += Entry_TextChanged;
-                        cardViewEditor.Content = editor;                       
+                        cardViewEditor.Content = editor;
                         stack.Children.Add(cardViewEditor);
                         registrationContainer.Children.Add(stack);
                         break;
@@ -216,13 +221,13 @@ namespace AlertApp.Pages
                 {
                     registrationValues.Add(fieldName, ((Switch)field).IsToggled.ToString().ToLower());
                 }
-                else if (field is StackLayout )
+                else if (field is StackLayout)
                 {
                     var stack = field as StackLayout;
                     if (stack.Children[1] is DatePicker)
                     {
                         registrationValues.Add(fieldName, ((DatePicker)stack.Children[1]).Date.Date.ToString());
-                    }                   
+                    }
                 }
             }
 
