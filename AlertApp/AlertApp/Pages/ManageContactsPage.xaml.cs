@@ -134,66 +134,6 @@ namespace AlertApp.Pages
             });
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            //show my community
-            foreach (var item in this.container.Children)
-            {
-                if (item is MyCommunityPage == true)
-                {
-                    item.IsVisible = true;
-                }
-                else
-                {
-                    item.IsVisible = false;
-                }
-            }
-        }
-
-        private void Button_Clicked_1(object sender, EventArgs e)
-        {
-            foreach (var item in this.container.Children)
-            {
-                if (item is WhoAlertsMePage == true)
-                {
-                    item.IsVisible = true;
-                }
-                else
-                {
-                    item.IsVisible = false;
-                }
-            }
-        }
-        private void Button_Clicked_2(object sender, EventArgs e)
-        {
-            foreach (var item in this.container.Children)
-            {
-                if (item is DependandsPage == true)
-                {
-                    item.IsVisible = true;
-                }
-                else
-                {
-                    item.IsVisible = false;
-                }
-            }
-        }
-        private void Button_Clicked_3(object sender, EventArgs e)
-        {
-            foreach (var item in this.container.Children)
-            {
-                if (item is BlockedUsersPage == true)
-                {
-                    item.IsVisible = true;
-                }
-                else
-                {
-                    item.IsVisible = false;
-                }
-            }
-        }
-
-
         private void tabsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var vm = this.BindingContext as ManageContactsPageViewModel;
@@ -221,6 +161,7 @@ namespace AlertApp.Pages
                     this.container.Children[3].IsVisible = false;
                     addCommunityContact.IsVisible = true;
                     contactsMenu.IsVisible = false;
+                    tabsList.ScrollTo(0, position: ScrollToPosition.Start);
                     break;
                 case 2:
                     this.container.Children[0].IsVisible = false;
@@ -245,6 +186,7 @@ namespace AlertApp.Pages
                     this.container.Children[3].IsVisible = true;
                     addCommunityContact.IsVisible = false;
                     contactsMenu.IsVisible = true;
+                    tabsList.ScrollTo(3, position: ScrollToPosition.Start);
                     break;
             }
 
