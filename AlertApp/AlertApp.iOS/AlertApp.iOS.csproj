@@ -116,6 +116,7 @@
     <Compile Include="CustomRenderers\EntryCenteredRenderer.cs" />
     <Compile Include="CustomRenderers\NoUnderlineEntryRenderer.cs" />
     <Compile Include="CustomRenderers\OtpEntryRenderer.cs" />
+    <Compile Include="CustomRenderers\StatusBarRendrerer.cs" />
     <Compile Include="DependencyService\AlertNotificationManager.cs" />
     <Compile Include="DependencyService\ContactProfileImageProvider.cs" />
     <Compile Include="DependencyService\ContactsService.cs" />

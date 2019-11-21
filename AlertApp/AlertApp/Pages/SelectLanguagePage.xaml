@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:translate="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"      
-             Navigation="{Binding NavigationService}"              
+             Navigation="{Binding NavigationService}"           
+             ios:Page.UseSafeArea="true"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              BackgroundColor="{StaticResource RegistrationBackgrounColor}"
              Title="{translate:Translate SelectLanguage}"
              x:Class="AlertApp.Pages.SelectLanguagePage">

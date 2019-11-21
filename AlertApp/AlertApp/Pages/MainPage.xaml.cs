@@ -13,7 +13,11 @@ namespace AlertApp.Pages
     { 
         public MainPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+            //    ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.Black;
+            }
             NavigationPage.SetHasBackButton(this, false);
             this.BindingContext = ViewModelLocator.Instance.Resolve<MainPageViewModel>();
         }
