@@ -37,5 +37,9 @@ namespace AlertApp.Services.Settings
         bool GetAppHasRunSetting();
 
         int GetCellPhoneNotificationId(string cellphone);
+
+        bool GetFallDetecion();
+        void SetFallDetection(bool value);
+
     }
 }

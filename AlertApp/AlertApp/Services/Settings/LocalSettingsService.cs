@@ -277,6 +277,16 @@ namespace AlertApp.Services.Settings
             return Preferences.Get(cellphone + "_", 0);
         }
 
+        public bool GetFallDetecion()
+        {
+            return Preferences.Get(utils.Settings.FallDetecion, false);
+        }
+
+        public void SetFallDetection(bool value)
+        {
+            Preferences.Set(utils.Settings.FallDetecion, value);
+        }
+
         public LocalSettingsService()
         {
 

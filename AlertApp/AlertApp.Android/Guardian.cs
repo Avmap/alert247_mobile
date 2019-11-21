@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AlertApp.Infrastructure;
+using AlertApp.MessageCenter;
 using AlertApp.Services.Profile;
+using AlertApp.Utils;
 using AlertApp.ViewModels;
 using Android.App;
 using Android.Content;
@@ -60,10 +62,16 @@ namespace AlertApp.Droid
         {
 
             this.StartForeground(67236723, GetNotification());
+
             fallDetector = new FallDetector(this);
-            fallDetector.Initiate();
             accelerometer = new ApplicationAccelerometer(this, fallDetector);
-            accelerometer.ToggleAccelerometer();
+
+            if (Preferences.Get(Settings.FallDetecion, false))
+            {
+                fallDetector.Initiate();
+                accelerometer.ToggleAccelerometer();
+            }
+
             StartLocationUpdates();
             _PowerButtonReceiver = new PowerButtonReceiver();
 
@@ -72,11 +80,39 @@ namespace AlertApp.Droid
             filter.AddAction(Intent.ActionScreenOff);
             RegisterReceiver(_PowerButtonReceiver, filter);
 
-            //Alarm Manager
-            //AlarmManager alarmManager = (AlarmManager)GetSystemService(AlarmService);
-            //var alarmIntent = new Intent(this, typeof(AlarmReceiver));
-            //var pendingIntent = PendingIntent.GetActivity(this, ALARM_CODE, alarmIntent, PendingIntentFlags.UpdateCurrent);
-            //alarmManager.SetRepeating(AlarmType.ElapsedRealtimeWakeup, 0 , 2 * 1000, pendingIntent);
+
+            MessagingCenter.Subscribe<BaseViewModel, StartStopFallDetectionEvent>(this, StartStopFallDetectionEvent.Event, (sender, arg) =>
+            {
+                if (arg.Start)
+                {
+                    if (Preferences.Get(Settings.FallDetecion, false))
+                    {
+                        if (fallDetector == null)
+                            fallDetector = new FallDetector(this);
+
+
+                        if (accelerometer == null)
+                            accelerometer = new ApplicationAccelerometer(this, fallDetector);
+
+
+                        fallDetector.Initiate();
+                        accelerometer.ToggleAccelerometer();
+                    }
+                }
+                else if (arg.Stop)
+                {
+                    if (fallDetector != null)
+                    {
+                        fallDetector = null;
+                    }
+                    if (accelerometer != null)
+                    {
+                        accelerometer.Stop();
+                        accelerometer = null;
+                    }
+                }
+
+            });
 
             return StartCommandResult.Sticky;
         }
@@ -89,13 +125,16 @@ namespace AlertApp.Droid
             {
                 fallDetector = null;
             }
+
             if (accelerometer != null)
             {
                 accelerometer.Stop();
+                accelerometer = null;
             }
             try
             {
                 UnregisterReceiver(_PowerButtonReceiver);
+                MessagingCenter.Unsubscribe<BaseViewModel, StartStopFallDetectionEvent>(this, StartStopFallDetectionEvent.Event);
             }
             catch (System.Exception)
             {
@@ -171,7 +210,6 @@ namespace AlertApp.Droid
 
         public void OnSensorChanged(SensorEvent e)
         {
-
             if (e.Sensor.Type == SensorType.Accelerometer)
             {
                 if (fallDetector != null)
@@ -186,20 +224,13 @@ namespace AlertApp.Droid
                     {
 
                     }
-
                 }
             }
         }
 
         public void OnFallDetected()
         {
-            //create wake lock
-            //PowerManager pm = (PowerManager)GetSystemService(Context.PowerService);
-            //PowerManager.WakeLock wl = pm.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, "WakeLock");
-            //wl.SetReferenceCounted(false);
-            //wl.Acquire(8000);
             siren(this);
-            //System.Diagnostics.Debug.WriteLine($"Fall!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         }
         void siren(Context context)
         {
@@ -220,11 +251,7 @@ namespace AlertApp.Droid
             }
             loudest(context);
             pool.Play(id, 1.0f, 1.0f, 1, 3, 1.0f);
-
-
         }
-
-
         public static void loudest(Context context)
         {
             AudioManager manager = (AudioManager)context.GetSystemService(Context.AudioService);
@@ -233,8 +260,6 @@ namespace AlertApp.Droid
         }
 
     }
-
-
 
     public class SoundListener : Java.Lang.Object, SoundPool.IOnLoadCompleteListener
     {
@@ -269,7 +294,6 @@ namespace AlertApp.Droid
             _Sensormanager.Dispose();
             _Sensor.Dispose();
         }
-
         public void ToggleAccelerometer()
         {
             try
@@ -281,7 +305,6 @@ namespace AlertApp.Droid
                 else
                 {
                     Accelerometer.Start(SensorSpeed.Game);
-                    //Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
                 }
 
             }
@@ -293,13 +316,6 @@ namespace AlertApp.Droid
             {
                 // Other error has occurred.
             }
-        }
-
-        private void Accelerometer_ShakeDetected(object sender, EventArgs e)
-        {
-            var intent = new Intent(_Context, typeof(MainActivity));
-            intent.AddFlags(ActivityFlags.ReorderToFront);
-            Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity.StartActivity(intent);
         }
     }
 

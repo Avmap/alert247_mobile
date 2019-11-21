@@ -379,13 +379,6 @@ namespace AlertApp.Infrastructure
 
         double Min(double[] Array)
         {
-            //var index = Array.Length - SPAN_MAXMIN;
-            //if (index < 0)
-            //{
-            //    index = 0;
-            //}
-            //var beforeValues = Array.Skip(index);
-            //return beforeValues.Min();
             int I;
             double Min = AT(Array, Position, N);
             for (I = 1; I < SPAN_MAXMIN; I++)
@@ -406,14 +399,6 @@ namespace AlertApp.Infrastructure
 
         double Max(double[] Array)
         {
-            //var index = Array.Length - SPAN_MAXMIN;
-            //if (index < 0)
-            //{
-            //    index = 0;
-            //}
-            //var beforeValues = Array.Skip(index);
-            //return beforeValues.Max();
-
             int I;
             double Max = AT(Array, Position, N);
             for (I = 1; I < SPAN_MAXMIN; I++)
@@ -427,21 +412,10 @@ namespace AlertApp.Infrastructure
             return Max;
         }
 
-        //double Max(Queue<double> Array)
-        //{
-        //    var index = Array.Count() - SPAN_MAXMIN;
-        //    if (index < 0)
-        //    {
-        //        index = 0;
-        //    }
-        //    var beforeValues = Array.Skip(index);
-        //    return beforeValues.Max();
-        //}
-
         private void SetPosition()
-        {           
+        {
             Position = (Position + 1) % N;
-            System.Diagnostics.Debug.WriteLine($"Position = " + Position.ToString());
+            //System.Diagnostics.Debug.WriteLine($"Position = " + Position.ToString());
         }
 
         public class SignalData

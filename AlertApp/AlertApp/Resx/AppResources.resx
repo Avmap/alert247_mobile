@@ -616,9 +616,6 @@
   <data name="AlwaysOnCaps" xml:space="preserve">
     <value>ALWAYS ON</value>
   </data>
-  <data name="SettingPermissionGuardianSubTitle" xml:space="preserve">
-    <value>Always On</value>
-  </data>
   <data name="DeleteAccountHistory" xml:space="preserve">
     <value>Delete account data</value>
   </data>
@@ -649,10 +646,10 @@
   <data name="PermissionsStorageDeniedMessage" xml:space="preserve">
     <value>Cant download history file.</value>
   </data>
-  <data name="SettingsGuardianMessage" xml:space="preserve">
+  <data name="SettingsAlwaysOnMessage" xml:space="preserve">
     <value>Enable or disable guardian</value>
   </data>
-  <data name="SettingsGuardianSubtitle" xml:space="preserve">
+  <data name="SettingsAlwaysOnSubtitle" xml:space="preserve">
     <value>Guardian is used in case of emergency</value>
   </data>
   <data name="SucccessSaveAccountFile" xml:space="preserve">
@@ -672,5 +669,17 @@
   </data>
   <data name="Fall" xml:space="preserve">
     <value>Fall</value>
+  </data>
+  <data name="FallDetectionSetting" xml:space="preserve">
+    <value>Fall Detection</value>
+  </data>
+  <data name="FallDetectionCaps" xml:space="preserve">
+    <value>FALL DETECTION</value>
+  </data>
+  <data name="SettingsFallDetectorMessage" xml:space="preserve">
+    <value>Enable or disable fall detection</value>
+  </data>
+  <data name="SettingsFallDetectorSubtitle" xml:space="preserve">
+    <value>Guardian is used in case of emergency</value>
   </data>
 </root>

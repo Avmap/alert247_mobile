@@ -619,6 +619,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FALL DETECTION.
+        /// </summary>
+        internal static string FallDetectionCaps {
+            get {
+                return ResourceManager.GetString("FallDetectionCaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fall Detection.
+        /// </summary>
+        internal static string FallDetectionSetting {
+            get {
+                return ResourceManager.GetString("FallDetectionSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Finish.
         /// </summary>
         internal static string Finish {
@@ -1249,15 +1267,6 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Always On.
-        /// </summary>
-        internal static string SettingPermissionGuardianSubTitle {
-            get {
-                return ResourceManager.GetString("SettingPermissionGuardianSubTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Location.
         /// </summary>
         internal static string SettingPermissionLocationSubTitle {
@@ -1294,6 +1303,24 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable or disable guardian.
+        /// </summary>
+        internal static string SettingsAlwaysOnMessage {
+            get {
+                return ResourceManager.GetString("SettingsAlwaysOnMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardian is used in case of emergency.
+        /// </summary>
+        internal static string SettingsAlwaysOnSubtitle {
+            get {
+                return ResourceManager.GetString("SettingsAlwaysOnSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable or disable buttons you want to show in app and press &quot;Confirm&quot;.
         /// </summary>
         internal static string SettingsButtonsViewMessage {
@@ -1321,20 +1348,20 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable or disable guardian.
+        ///   Looks up a localized string similar to Enable or disable fall detection.
         /// </summary>
-        internal static string SettingsGuardianMessage {
+        internal static string SettingsFallDetectorMessage {
             get {
-                return ResourceManager.GetString("SettingsGuardianMessage", resourceCulture);
+                return ResourceManager.GetString("SettingsFallDetectorMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Guardian is used in case of emergency.
         /// </summary>
-        internal static string SettingsGuardianSubtitle {
+        internal static string SettingsFallDetectorSubtitle {
             get {
-                return ResourceManager.GetString("SettingsGuardianSubtitle", resourceCulture);
+                return ResourceManager.GetString("SettingsFallDetectorSubtitle", resourceCulture);
             }
         }
         

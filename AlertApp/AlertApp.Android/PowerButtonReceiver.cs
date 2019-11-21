@@ -48,14 +48,11 @@ namespace AlertApp.Droid
             if (!cpuWakeLock.IsHeld)
                 cpuWakeLock.Acquire();
 
-            bool allwaysOn = Preferences.Get(Settings.AlwaysOn, false);
-            if (!allwaysOn && cpuWakeLock.IsHeld)
+            bool fallDetectionOn = Preferences.Get(Settings.FallDetecion, false);
+            if (!fallDetectionOn && cpuWakeLock.IsHeld)
             {
                 cpuWakeLock.Release();
             }
-
-
-
         }
 
         private void OpenApp()

@@ -21,54 +21,10 @@ namespace AlertApp.Pages
         public SettingsPage()
         {
             InitializeComponent();
-            this.BindingContext = ViewModelLocator.Instance.Resolve<SettingsPageViewModel>();            
+            this.BindingContext = ViewModelLocator.Instance.Resolve<SettingsPageViewModel>();
         }
 
-      
-        private void Switch_Toggled(object sender, ToggledEventArgs e)
-        {
-            ToggleGuardianSwitch(e.Value, false);
-        }
-        private void GuardianSwitch_Tapped(object sender, EventArgs e)
-        {
-            var switchCell = sender as SwitchCell;
-            ToggleGuardianSwitch(!switchCell.On, true);
-        }
 
-        private async void ToggleGuardianSwitch(bool value, bool fromCell)
-        {
-            var vm = this.BindingContext as SettingsPageViewModel;
-            if (value != vm.AllwaysOn && !codeTrigger)
-            {
-                if (value)
-                {
-                    var result = await vm.EnableGuardian();
-                    if (!result.Ok)
-                    {
-                        codeTrigger = true;
-                       // guardianSwitch.On = false;
-                        codeTrigger = false;
-                    }
-                    else if (result.Ok && fromCell)
-                    {
-                        codeTrigger = true;
-                       // guardianSwitch.On = true;
-                        codeTrigger = false;
-                    }
-                }
-                else
-                {
-                    vm.DisableGuardian();
-                    if (fromCell)
-                    {
-                        codeTrigger = true;
-                      //  guardianSwitch.On = false;
-                        codeTrigger = false;
-                    }
-                }
-            }
-
-        }
 
         private void Language_Tap(object sender, EventArgs e)
         {
@@ -85,9 +41,14 @@ namespace AlertApp.Pages
         }
         private void Guardian_Tap(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.SettingPermissionGuardianSubTitle, new SettingsGuardianView()), false);
+            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.AllwaysOn, new SettingsAlwaysOnView()), false);
         }
-        
+
+        private void Fall_Detection_Tap(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.FallDetectionSetting, new SettingsGuardianView()), false); ; ; ;
+        }
+
         private void Contacts_Tap(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.ContactPermissionSettingTitle, new SettingsContactsView()), false);

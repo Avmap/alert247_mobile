@@ -5,20 +5,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" 
-             x:Class="AlertApp.Views.SettingsGuardianView">
-  <ContentView.Content>
+             x:Class="AlertApp.Views.SettingsAlwaysOnView">
+    <ContentView.Content>
         <StackLayout>
-            <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsFallDetectorMessage}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
+            <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsAlwaysOnMessage}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
 
             <StackLayout Orientation="Horizontal" Margin="0,16,0,0" Spacing="0" HorizontalOptions="FillAndExpand">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="LOCATION"></TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
-                <Label Text="{infrastructure:Translate FallDetectionCaps}"  Padding="16,4,16,4" Style="{StaticResource SwitchText}" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
-                <Switch x:Name="swFallDetection" Toggled="Switch_Toggled"   HorizontalOptions="End" Margin="0,0,16,0" />
+                <Label Text="{infrastructure:Translate AlwaysOnCaps}"  Padding="16,4,16,4" Style="{StaticResource SwitchText}" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                <Switch x:Name="swAlaysOn" Toggled="Switch_Toggled"   HorizontalOptions="End" Margin="0,0,16,0" />
             </StackLayout>
 
-            <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsFallDetectorSubtitle}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
+            <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsAlwaysOnSubtitle}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
 
             <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,16,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
                 <StackLayout.GestureRecognizers>

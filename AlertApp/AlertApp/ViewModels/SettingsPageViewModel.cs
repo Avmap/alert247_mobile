@@ -1,4 +1,5 @@
 ﻿using AlertApp.Infrastructure;
+using AlertApp.MessageCenter;
 using AlertApp.Model;
 using AlertApp.Pages;
 using AlertApp.Resx;
@@ -21,16 +22,14 @@ namespace AlertApp.ViewModels
         readonly IGuardian _guardian;
         readonly ILocalSettingsService _localSettingsService;
         #endregion
-        
-        #region Properties
 
-        public bool AllwaysOn { get; set; }
+        #region Properties
 
         public string Version => String.Format("{0} {1}", "Version", VersionTracking.CurrentVersion);
         #endregion
 
         #region Commands
-    
+
         private ICommand _OpenContactsScreen;
         public ICommand OpenContactsScreen
         {
@@ -55,21 +54,20 @@ namespace AlertApp.ViewModels
             }
         }
 
-       
+
         #endregion
 
         public SettingsPageViewModel(ILocalSettingsService localSettingsService)
         {
             _localSettingsService = localSettingsService;
             _guardian = DependencyService.Get<IGuardian>();
-            AllwaysOn = _localSettingsService.GetAlwaysOn();
         }
 
-        public async Task<LocationResult> EnableGuardian()
+        public async Task<LocationResult> EnableFallDetection()
         {
             var result = new LocationResult { Ok = true };
             try
-            {           
+            {
                 var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
                 if (locationPermissionStatus != PermissionStatus.Granted)
                 {
@@ -78,7 +76,7 @@ namespace AlertApp.ViewModels
                 }
 
                 if (locationPermissionStatus != PermissionStatus.Granted)
-                {                    
+                {
                     result = new LocationResult { Ok = false, ErroMessage = "Location permissions Denied. Unable to start guardian." };
                 }
 
@@ -93,9 +91,8 @@ namespace AlertApp.ViewModels
                 {
                     if (result.Ok)
                     {
-                        AllwaysOn = true;
-                        _guardian.StartGuardianService();
-                        _localSettingsService.SetAlwaysOn(true);
+                        _localSettingsService.SetFallDetection(true);
+                        MessagingCenter.Send((BaseViewModel)this, StartStopFallDetectionEvent.Event, new StartStopFallDetectionEvent { Start = true });
                     }
                     else
                     {
@@ -103,8 +100,8 @@ namespace AlertApp.ViewModels
                     }
                 }
 
-               
-                
+
+
 
                 return result;
             }
@@ -127,8 +124,79 @@ namespace AlertApp.ViewModels
             //SetBusy(false);   
             return result;
         }
+        public void DisableFallDetection()
+        {
+            MessagingCenter.Send((BaseViewModel)this, StartStopFallDetectionEvent.Event, new StartStopFallDetectionEvent { Stop = true });
+            _localSettingsService.SetFallDetection(false);
+        }
+
+        public async Task<LocationResult> EnableAllwaysOn()
+        {
+            var result = new LocationResult { Ok = true };
+            try
+            {
+                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                if (locationPermissionStatus != PermissionStatus.Granted)
+                {
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location });
+                    locationPermissionStatus = results[Permission.Location];
+                }
+
+                if (locationPermissionStatus != PermissionStatus.Granted)
+                {
+                    result = new LocationResult { Ok = false, ErroMessage = "Location permissions Denied. Unable to start guardian." };
+                }
 
 
+                var locationSettingsService = DependencyService.Get<ILocationSettings>();
+                if (!locationSettingsService.IsLocationEnabled())
+                {
+                    result = new LocationResult { Ok = false, ErroMessage = "To open guardian turn on device location." };
+                }
+
+                if (_guardian != null)
+                {
+                    if (result.Ok)
+                    {
+                        _guardian.StartGuardianService();
+                        _localSettingsService.SetAlwaysOn(true);
+                    }
+                    else
+                    {
+                        showOKMessage(AppResources.Warning, result.ErroMessage);
+                    }
+                }
+
+
+
+
+                return result;
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Handle not supported on device exception
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                // Handle not enabled on device exception
+            }
+            catch (PermissionException pEx)
+            {
+                // Handle permission exception
+            }
+            catch (Exception ex)
+            {
+                // Unable to get location
+            }
+            //SetBusy(false);   
+            return result;
+        }
+        public void DisableAllwaysOn()
+        {
+            DisableFallDetection();
+            _guardian.StopGuardianService();
+            _localSettingsService.SetAlwaysOn(false);
+        }
 
         public async Task<LocationResult> RequestLocation()
         {
@@ -156,8 +224,8 @@ namespace AlertApp.ViewModels
 
 
                 if (result.Ok)
-                {                    
-                  //  _guardian.StartGuardianService();
+                {
+                    //  _guardian.StartGuardianService();
                     _localSettingsService.SaveSendLocationSetting(true);
                 }
                 else
@@ -187,16 +255,11 @@ namespace AlertApp.ViewModels
             //SetBusy(false);   
             return result;
         }
-        public void DisableGuardian()
-        {
-            _guardian.StopGuardianService();
-            _localSettingsService.SetAlwaysOn(false);
-            AllwaysOn = false;
-        }
+
 
         public void DisableSendLocation()
-        {            
-            _localSettingsService.SaveSendLocationSetting(false);            
+        {
+            _localSettingsService.SaveSendLocationSetting(false);
         }
         private async void Back()
         {

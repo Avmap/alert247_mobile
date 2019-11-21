@@ -14,12 +14,12 @@ using Xamarin.Forms.Xaml;
 namespace AlertApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SettingsGuardianView : ContentView
+    public partial class SettingsAlwaysOnView : ContentView
     {
-        public SettingsGuardianView()
+        public SettingsAlwaysOnView()
         {
             InitializeComponent();
-            swFallDetection.IsToggled = Preferences.Get(Settings.FallDetecion, false);
+            swAlaysOn.IsToggled = Preferences.Get(Settings.AlwaysOn, true);
             this.BindingContext = ViewModelLocator.Instance.Resolve<SettingsPageViewModel>();
         }
 
@@ -39,8 +39,8 @@ namespace AlertApp.Views
         {
             switch (setting)
             {
-                case "swFallDetection":
-                    toggle(Settings.SOS_BUTTON_VISIBLE, swFallDetection);
+                case "swAlaysOn":
+                    toggle(Settings.SOS_BUTTON_VISIBLE, swAlaysOn);
                     break;
 
             }
@@ -69,17 +69,17 @@ namespace AlertApp.Views
         private async void SaveChanges()
         {
             var vm = this.BindingContext as SettingsPageViewModel;
-            if (swFallDetection.IsToggled)
+            if (swAlaysOn.IsToggled)
             {
 
-                await vm.EnableFallDetection();
+                await vm.EnableAllwaysOn();
             }
             else
             {
-                vm.DisableFallDetection();
+                vm.DisableAllwaysOn();                
             }
 
-            Device.BeginInvokeOnMainThread(() => Navigation.PopAsync(false));            
+            Device.BeginInvokeOnMainThread(() => Navigation.PopAsync(false));
         }
     }
 }
