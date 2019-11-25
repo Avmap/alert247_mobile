@@ -47,6 +47,11 @@
                             <TapGestureRecognizer Tapped="Fall_Detection_Tap"></TapGestureRecognizer>
                         </views:SettingCellView.GestureRecognizers>
                     </views:SettingCellView>
+                    <views:SettingCellView Title="{infrastructure:Translate FallDetectorSettings}">
+                        <views:SettingCellView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Fall_Detector_Settings_Tap"></TapGestureRecognizer>
+                        </views:SettingCellView.GestureRecognizers>
+                    </views:SettingCellView>
                     <views:SettingCellView Title="{infrastructure:Translate SettingContacts}">
                         <views:SettingCellView.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Contacts_Tap"></TapGestureRecognizer>

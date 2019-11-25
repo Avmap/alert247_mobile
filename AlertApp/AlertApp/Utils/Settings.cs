@@ -31,5 +31,18 @@ namespace AlertApp.Utils
 
         public static string HasFinishRegistration = "HasFinishRegistration";
 
+
+        public static string FALLING_WAIST_SV_TOT = "FALLING_WAIST_SV_TOT";
+        public static string IMPACT_WAIST_SV_TOT = "IMPACT_WAIST_SV_TOT";
+        public static string IMPACT_WAIST_SV_D = "IMPACT_WAIST_SV_D";
+        public static string IMPACT_WAIST_SV_MAXMIN = "IMPACT_WAIST_SV_MAXMIN";
+        public static string IMPACT_WAIST_Z_2 = "IMPACT_WAIST_Z_2";
+        public static string INTERVAL_MS = "INTERVAL_MS";
+        public static string FILTER_LPF_GAIN = "FILTER_LPF_GAIN";
+        public static string FILTER_HPF_GAIN = "FILTER_HPF_GAIN";
+        public static string FILTER_FACTOR_0 = "FILTER_FACTOR_0";
+        public static string FILTER_FACTOR_1 = "FILTER_FACTOR_1";
+        public static string LYING_AVERAGE_Z_LPF = "LYING_AVERAGE_Z_LPF";
+
     }
 }

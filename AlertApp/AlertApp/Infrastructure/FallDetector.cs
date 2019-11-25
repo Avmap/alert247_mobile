@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AlertApp.Infrastructure
@@ -13,52 +14,52 @@ namespace AlertApp.Infrastructure
         static readonly object _locker = new object();
         #region SETTINGS
 
-        public const double LYING_AVERAGE_Z_LPF = 0.5;
-        public const int INTERVAL_MS = 20;
-        public const int DURATION_S = 10;
-        public const int N = DURATION_S * 1000 / INTERVAL_MS;
-        public const int OFFSET_X = N * 0;
-        public const int OFFSET_Y = N * 1;
-        public const int OFFSET_Z = N * 2;
-        public const double G = 1.0;
+        public double LYING_AVERAGE_Z_LPF = 0.5;
+        public static int INTERVAL_MS = 20;
+        public static int DURATION_S = 10;
+        public static int N = DURATION_S * 1000 / INTERVAL_MS;
+        public int OFFSET_X = N * 0;
+        public int OFFSET_Y = N * 1;
+        public int OFFSET_Z = N * 2;
+        public double G = 1.0;
         #endregion
 
         public const double ASENSOR_STANDARD_GRAVITY = 9.80665;
-        public const int SIZE_BUFFER = N * 19;
+        public int SIZE_BUFFER = N * 19;
         public const int FILTER_NZEROS = 2;
         public const int FILTER_NPOLES = 2;
-        public const double FALLING_WAIST_SV_TOT = 0.6;
-        public const double IMPACT_WAIST_SV_TOT = 2.0;
-        public const double IMPACT_WAIST_SV_D = 1.7;
-        public const double IMPACT_WAIST_SV_MAXMIN = 2.0;
-        public const double IMPACT_WAIST_Z_2 = 1.5;
-        public const int OFFSET_X_LPF = N * 3;
-        public const int OFFSET_Y_LPF = N * 4;
-        public const int OFFSET_Z_LPF = N * 5;
-        public const int OFFSET_X_HPF = N * 6;
-        public const int OFFSET_Y_HPF = N * 7;
-        public const int OFFSET_Z_HPF = N * 8;
+        public double FALLING_WAIST_SV_TOT = 0.6;
+        public double IMPACT_WAIST_SV_TOT = 2.0;
+        public double IMPACT_WAIST_SV_D = 1.7;
+        public double IMPACT_WAIST_SV_MAXMIN = 2.0;
+        public double IMPACT_WAIST_Z_2 = 1.5;
+        public int OFFSET_X_LPF = N * 3;
+        public int OFFSET_Y_LPF = N * 4;
+        public int OFFSET_Z_LPF = N * 5;
+        public int OFFSET_X_HPF = N * 6;
+        public int OFFSET_Y_HPF = N * 7;
+        public int OFFSET_Z_HPF = N * 8;
 
-        public const int OFFSET_FALLING = N * 16;
-        public const int OFFSET_IMPACT = N * 17;
-        public const int OFFSET_LYING = N * 18;
+        public int OFFSET_FALLING = N * 16;
+        public int OFFSET_IMPACT = N * 17;
+        public int OFFSET_LYING = N * 18;
 
 
-        private const double FILTER_LPF_GAIN = 4.143204922e+03;
-        private const double FILTER_FACTOR_0 = -0.9565436765;
-        private const double FILTER_FACTOR_1 = +1.9555782403;
-        private const double FILTER_HPF_GAIN = 1.022463023e+00;
+        private double FILTER_LPF_GAIN = 4.143204922e+03;
+        private double FILTER_FACTOR_0 = -0.9565436765;
+        private double FILTER_FACTOR_1 = +1.9555782403;
+        private double FILTER_HPF_GAIN = 1.022463023e+00;
 
-        public const int OFFSET_SV_TOT = N * 12;
-        public const int OFFSET_SV_D = N * 13;
-        public const int OFFSET_SV_MAXMIN = N * 14;
-        public const int OFFSET_Z_2 = N * 15;
+        public int OFFSET_SV_TOT = N * 12;
+        public int OFFSET_SV_D = N * 13;
+        public int OFFSET_SV_MAXMIN = N * 14;
+        public int OFFSET_Z_2 = N * 15;
 
-        public const int OFFSET_X_D = N * 9;
-        public const int OFFSET_Y_D = N * 10;
-        public const int OFFSET_Z_D = N * 11;
+        public int OFFSET_X_D = N * 9;
+        public int OFFSET_Y_D = N * 10;
+        public int OFFSET_Z_D = N * 11;
 
-        private const int SPAN_MAXMIN = (100 / INTERVAL_MS);
+        private int SPAN_MAXMIN = (100 / INTERVAL_MS);
 
 
 
@@ -79,6 +80,37 @@ namespace AlertApp.Infrastructure
         public FallDetector(IFallDetectionListener fallDetectionListener)
         {
             _FallDetectionListener = fallDetectionListener;
+            UpdateValues();
+
+
+        }
+
+        public void UpdateValues()
+        {
+            FALLING_WAIST_SV_TOT = Preferences.Get("FALLING_WAIST_SV_TOT", 0.6);
+            IMPACT_WAIST_SV_TOT = Preferences.Get("IMPACT_WAIST_SV_TOT", 2.0);
+            IMPACT_WAIST_SV_D = Preferences.Get("IMPACT_WAIST_SV_D", 1.7);
+            IMPACT_WAIST_SV_MAXMIN = Preferences.Get("IMPACT_WAIST_SV_MAXMIN", 2.0);
+            IMPACT_WAIST_Z_2 = Preferences.Get("IMPACT_WAIST_Z_2", 1.5);
+            INTERVAL_MS = Preferences.Get("INTERVAL_MS", 20);
+            FILTER_LPF_GAIN = Preferences.Get("FILTER_LPF_GAIN", 4.143204922e+03);
+            FILTER_HPF_GAIN = Preferences.Get("FILTER_HPF_GAIN", 1.022463023e+00);
+            FILTER_FACTOR_0 = Preferences.Get("FILTER_FACTOR_0", -0.9565436765);
+            FILTER_FACTOR_1 = Preferences.Get("FILTER_FACTOR_1", +1.9555782403);
+            LYING_AVERAGE_Z_LPF = Preferences.Get("LYING_AVERAGE_Z_LPF", 0.5);
+#if DEBUG
+            System.Diagnostics.Debug.WriteLine($"FALLING_WAIST_SV_TOT" + FALLING_WAIST_SV_TOT);
+            System.Diagnostics.Debug.WriteLine($"IMPACT_WAIST_SV_TOT" + IMPACT_WAIST_SV_TOT);
+            System.Diagnostics.Debug.WriteLine($"IMPACT_WAIST_SV_D" + IMPACT_WAIST_SV_D);
+            System.Diagnostics.Debug.WriteLine($"IMPACT_WAIST_SV_MAXMIN" + IMPACT_WAIST_SV_MAXMIN);
+            System.Diagnostics.Debug.WriteLine($"IMPACT_WAIST_Z_2" + IMPACT_WAIST_Z_2);
+            System.Diagnostics.Debug.WriteLine($"INTERVAL_MS" + INTERVAL_MS);
+            System.Diagnostics.Debug.WriteLine($"FILTER_LPF_GAIN" + FILTER_LPF_GAIN);
+            System.Diagnostics.Debug.WriteLine($"FILTER_HPF_GAIN" + FILTER_HPF_GAIN);
+            System.Diagnostics.Debug.WriteLine($"FILTER_FACTOR_0" + FILTER_FACTOR_0);
+            System.Diagnostics.Debug.WriteLine($"FILTER_FACTOR_1" + FILTER_FACTOR_1);
+            System.Diagnostics.Debug.WriteLine($"LYING_AVERAGE_Z_LPF" + LYING_AVERAGE_Z_LPF);
+#endif
         }
 
         public static int GetPosition()

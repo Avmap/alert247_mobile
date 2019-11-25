@@ -664,6 +664,69 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detector Settings.
+        /// </summary>
+        internal static string FallDetectorSettings {
+            get {
+                return ResourceManager.GetString("FallDetectorSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FALLING_WAIST_SV_TOT.
+        /// </summary>
+        internal static string FALLING_WAIST_SV_TOT {
+            get {
+                return ResourceManager.GetString("FALLING_WAIST_SV_TOT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill all values.
+        /// </summary>
+        internal static string FillAllDetectorValues {
+            get {
+                return ResourceManager.GetString("FillAllDetectorValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FILTER_FACTOR_0.
+        /// </summary>
+        internal static string FILTER_FACTOR_0 {
+            get {
+                return ResourceManager.GetString("FILTER_FACTOR_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FILTER_FACTOR_1.
+        /// </summary>
+        internal static string FILTER_FACTOR_1 {
+            get {
+                return ResourceManager.GetString("FILTER_FACTOR_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FILTER_HPF_GAIN.
+        /// </summary>
+        internal static string FILTER_HPF_GAIN {
+            get {
+                return ResourceManager.GetString("FILTER_HPF_GAIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FILTER_LPF_GAIN.
+        /// </summary>
+        internal static string FILTER_LPF_GAIN {
+            get {
+                return ResourceManager.GetString("FILTER_LPF_GAIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Finish.
         /// </summary>
         internal static string Finish {
@@ -754,11 +817,56 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IMPACT_WAIST_SV_D.
+        /// </summary>
+        internal static string IMPACT_WAIST_SV_D {
+            get {
+                return ResourceManager.GetString("IMPACT_WAIST_SV_D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IMPACT_WAIST_SV_MAXMIN.
+        /// </summary>
+        internal static string IMPACT_WAIST_SV_MAXMIN {
+            get {
+                return ResourceManager.GetString("IMPACT_WAIST_SV_MAXMIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IMPACT_WAIST_SV_TOT.
+        /// </summary>
+        internal static string IMPACT_WAIST_SV_TOT {
+            get {
+                return ResourceManager.GetString("IMPACT_WAIST_SV_TOT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IMPACT_WAIST_Z_2.
+        /// </summary>
+        internal static string IMPACT_WAIST_Z_2 {
+            get {
+                return ResourceManager.GetString("IMPACT_WAIST_Z_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Info.
         /// </summary>
         internal static string InfoTab {
             get {
                 return ResourceManager.GetString("InfoTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INTERVAL_MS.
+        /// </summary>
+        internal static string INTERVAL_MS {
+            get {
+                return ResourceManager.GetString("INTERVAL_MS", resourceCulture);
             }
         }
         
@@ -822,6 +930,15 @@ namespace AlertApp.Resx {
         internal static string LocationTrackingExplanation {
             get {
                 return ResourceManager.GetString("LocationTrackingExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LYING_AVERAGE_Z_LPF.
+        /// </summary>
+        internal static string LYING_AVERAGE_Z_LPF {
+            get {
+                return ResourceManager.GetString("LYING_AVERAGE_Z_LPF", resourceCulture);
             }
         }
         

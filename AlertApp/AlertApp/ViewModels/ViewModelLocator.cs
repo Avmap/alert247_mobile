@@ -72,7 +72,8 @@ namespace AlertApp.ViewModels
             _unityContainer.RegisterType<SettingContainerPageViewModel>();
             _unityContainer.RegisterType<SettingsChangePinViewModel>();            
             _unityContainer.RegisterType<SettingsAccountHistoryViewModel>();
-
+            _unityContainer.RegisterType<SettingsFallDetectorViewModel>();
+            
         }
 
         public T Resolve<T>()

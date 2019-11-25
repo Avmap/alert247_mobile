@@ -117,7 +117,7 @@ namespace AlertApp.Android
                     }
 
                     //sos alert
-                    if (!string.IsNullOrWhiteSpace(messageType) && messageType.Equals("alert") && !string.IsNullOrWhiteSpace(alertType) && alertType == "1")
+                    if (!string.IsNullOrWhiteSpace(messageType) && messageType.Equals("alert") && !string.IsNullOrWhiteSpace(alertType))
                         SendAlertNotification(msgT ?? "", msgB ?? "", profiledata ?? "", filekey ?? "", messageType, alertType, position, cellphone, alertID, alertTime, publicKey);
 
                     //contact request

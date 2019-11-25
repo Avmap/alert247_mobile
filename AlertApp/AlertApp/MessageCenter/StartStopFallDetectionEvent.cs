@@ -9,5 +9,6 @@ namespace AlertApp.MessageCenter
         public static readonly string Event = "StartStopFallDetectionEvent";
         public bool Start { get; set; }
         public bool Stop { get; set; }
+        public bool Restart { get; set; }
     }
 }

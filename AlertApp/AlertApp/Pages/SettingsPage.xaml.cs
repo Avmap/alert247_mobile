@@ -46,7 +46,7 @@ namespace AlertApp.Pages
 
         private void Fall_Detection_Tap(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.FallDetectionSetting, new SettingsGuardianView()), false); ; ; ;
+            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.FallDetectionSetting, new SettingsGuardianView()), false);
         }
 
         private void Contacts_Tap(object sender, EventArgs e)
@@ -67,6 +67,11 @@ namespace AlertApp.Pages
         {
             Navigation.PushAsync(new SettingContainerPage(AppResources.SettingAccountTitle, AppResources.SettingDeleteAccount, new SettingsChangePinView()), false);
         }
+        private void Fall_Detector_Settings_Tap(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.FallDetectorSettings, new SettingsFallDetectorView()), false);
+        }
+        
         protected override void OnAppearing()
         {
             base.OnAppearing();

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:AlertApp.Converters;assembly=AlertApp"
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
+             mc:Ignorable="d"
+             x:Name="this"
+             x:Class="AlertApp.Views.PreferenceStringView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:StringToNullableIntConverter x:Key="cnvInvert"></converters:StringToNullableIntConverter>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid Padding="8,4,8,4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Text="{Binding Source={x:Reference this}, Path=Label}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
+            <Frame HasShadow="False" BackgroundColor="#E6E7E8" Grid.Column="1" CornerRadius="4" BorderColor="#CACCCD" Padding="2,0,2,0" HorizontalOptions="FillAndExpand">
+                <infrastructure:NoUnderlineEntry Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontSize="16"  HorizontalTextAlignment="Start"  HorizontalOptions="FillAndExpand" Text="{Binding Source={x:Reference this}, Path=Text,Converter={StaticResource cnvInvert}}"></infrastructure:NoUnderlineEntry>
+            </Frame>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
