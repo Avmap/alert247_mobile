@@ -47,6 +47,7 @@ namespace AlertApp.Droid
         private static int id = -1;
         private SoundListener _SoundListener;
         private PowerButtonReceiver _PowerButtonReceiver;
+        private PowerManager _powerManager;
         public override void OnCreate()
         {
             base.OnCreate();
@@ -63,6 +64,8 @@ namespace AlertApp.Droid
         {
 
             this.StartForeground(67236723, GetNotification());
+
+            _powerManager = (PowerManager)GetSystemService(Context.PowerService);
 
             fallDetector = new FallDetector(this);
             accelerometer = new ApplicationAccelerometer(this, fallDetector);
@@ -242,6 +245,13 @@ namespace AlertApp.Droid
         }
         void siren(Context context)
         {
+            if (_powerManager == null)
+                _powerManager = (PowerManager)GetSystemService(Context.PowerService);
+
+            var wl = _powerManager.NewWakeLock(WakeLockFlags.Full | WakeLockFlags.AcquireCausesWakeup, "gr.avmap.alert247:WakeLock");
+            wl.SetReferenceCounted(false);
+            wl.Acquire(8000);
+
             var intent = new Intent(context, typeof(MainActivity));
             intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop | ActivityFlags.NewTask);
             intent.SetAction(MainActivity.EXTRA_FALL_DETECTED + Java.Lang.JavaSystem.CurrentTimeMillis().ToString());
