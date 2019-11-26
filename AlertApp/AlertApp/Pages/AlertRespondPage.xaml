@@ -47,12 +47,12 @@
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <StackLayout Grid.Row="0" Orientation="Horizontal">
-                            <Frame Padding="0,0,0,0" Margin="5,5,5,0" HasShadow="False" WidthRequest="100" HorizontalOptions="Start" BorderColor="#B8B8B8" CornerRadius="16">
-                                <StackLayout Margin="0,6,0,0"  Spacing="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
-                                    <circle:CircleImage WidthRequest="54" HeightRequest="54" Source="{Binding ProfileImage}" Aspect="AspectFill"></circle:CircleImage>
+                            <Frame Padding="0,0,0,0" Margin="5,5,5,0" HasShadow="False" HorizontalOptions="Center" WidthRequest="120" BorderColor="#B8B8B8" CornerRadius="16">
+                                <StackLayout Margin="0,4,0,0"  Spacing="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                                    <circle:CircleImage WidthRequest="48" HeightRequest="48" Source="{Binding ProfileImage}" Aspect="AspectFill"></circle:CircleImage>
                                     <StackLayout Margin="5,5,5,0" Spacing="0" Orientation="Vertical" HorizontalOptions="FillAndExpand">
                                         <Label TextColor="{StaticResource PrimaryColor}" MaxLines="2" FontSize="11" HorizontalOptions="FillAndExpand" LineBreakMode="TailTruncation"  HorizontalTextAlignment="Center" Text="{Binding ContactName}"></Label>
-                                        <Label TextColor="#B8B8B8" HorizontalTextAlignment="Center"  FontSize="11"  HorizontalOptions="FillAndExpand" Text="{Binding ContactPhone}"></Label>
+                                        <Label TextColor="#B8B8B8" HorizontalTextAlignment="Center" MaxLines="1"  FontSize="11"  HorizontalOptions="FillAndExpand" Text="{Binding ContactPhone}"></Label>
                                     </StackLayout>
                                 </StackLayout>
 
