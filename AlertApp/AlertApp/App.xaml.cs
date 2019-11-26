@@ -50,7 +50,7 @@ namespace AlertApp
                         Preferences.Set(Settings.SelectedLanguage, systemlanguage.Name);
                     }
                 }
-                MainPage = new NavigationPage(new SettingContainerPage(AppResources.SettingAccountTitle, AppResources.SettingHistory, new SettingsAccountHistoryView()));
+                MainPage = new NavigationPage(new SelectLanguagePage());                
             }
             else
             {
