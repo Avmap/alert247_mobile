@@ -26,6 +26,7 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using AlertApp.Resx;
 using AlertApp.Model;
+using AlertApp.Views;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace AlertApp
@@ -49,7 +50,7 @@ namespace AlertApp
                         Preferences.Set(Settings.SelectedLanguage, systemlanguage.Name);
                     }
                 }
-                MainPage = new NavigationPage(new SelectLanguagePage());
+                MainPage = new NavigationPage(new SettingContainerPage(AppResources.SettingAccountTitle, AppResources.SettingHistory, new SettingsAccountHistoryView()));
             }
             else
             {

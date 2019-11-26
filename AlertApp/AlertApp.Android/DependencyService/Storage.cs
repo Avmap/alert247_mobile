@@ -24,13 +24,14 @@ namespace AlertApp.Droid.DependencyService
             return externalSdPath;
         }
 
-        public void SaveFile(string filename, byte[] data)
+        public string SaveFile(string filename, byte[] data)
         {
 
             var filePath = Path.Combine(GetApplicationFolder(), filename);
             if (!System.IO.Directory.Exists(GetApplicationFolder()))
                 System.IO.Directory.CreateDirectory(GetApplicationFolder());
             System.IO.File.WriteAllBytes(filePath, data);
+            return filePath;
 
         }
     }

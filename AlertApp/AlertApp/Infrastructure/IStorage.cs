@@ -6,6 +6,6 @@ namespace AlertApp.Infrastructure
 {
     public interface IStorage
     {
-        void SaveFile(string filename, byte[] data);
+        string SaveFile(string filename, byte[] data);
     }
 }

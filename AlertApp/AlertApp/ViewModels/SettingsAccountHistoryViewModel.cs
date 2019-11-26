@@ -64,13 +64,13 @@ namespace AlertApp.ViewModels
             var storage = DependencyService.Get<IStorage>();
             string title = "";
             string message = "";
-            SetBusy(true);
+            SetBusy(true);       
             var response = await _profileService.DownloadHistory(await _localSettingsService.GetAuthToken());
             if (response.IsOk)
             {
                 if (storage != null)
                 {
-                    storage.SaveFile("alertdata.zip", response.Result);
+                    var filePath = storage.SaveFile("Alert247ProfileData.zip", response.Result);
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         showOKMessage(AppResources.Succcess, AppResources.SucccessSaveAccountFile);
