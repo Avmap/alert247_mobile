@@ -98,8 +98,14 @@ namespace AlertApp.Pages
                         var datePicker = new DatePickerNullable { Style = (Style)Application.Current.Resources["RegistrationEntryStyle"], HorizontalOptions = LayoutOptions.FillAndExpand };
                         if (Device.RuntimePlatform == Device.iOS)
                             datePicker.BackgroundColor = Color.FromHex("#E6E7E8");
-                        datePicker.DateSelected += DatePicker_DateSelected;
+                        datePicker.DateSelected += DatePicker_DateSelected;                        
+                        datePicker.OnDialogUnFocused += DatePicker_OnDialogUnFocused;
                         horizontalstack.Children.Add(datePicker);
+                        var tapGestureRecognizer = new TapGestureRecognizer();
+                        tapGestureRecognizer.Tapped += (s, e) => OnLabelClicked(s, e);
+                        var clearTextLabel = new Xamarin.Forms.Label {IsVisible = false, Text = "X", WidthRequest = 20, HeightRequest = 20, VerticalOptions = LayoutOptions.Center };
+                        clearTextLabel.GestureRecognizers.Add(tapGestureRecognizer);
+                        horizontalstack.Children.Add(clearTextLabel);
                         var cardViewDate = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
                         cardViewDate.Content = horizontalstack;
 
@@ -130,6 +136,33 @@ namespace AlertApp.Pages
                 }
             }
             vm.SetBusy(false);
+        }
+
+        private void DatePicker_OnDialogUnFocused(object sender, EventArgs e)
+        {            
+            Entry_TextChanged(null, null);
+        }
+
+        private void OnLabelClicked(object s, EventArgs e)
+        {
+
+            var label = s as Xamarin.Forms.Label;
+            if (label != null)
+            {
+                var parentView = label.Parent as StackLayout;
+                if (parentView != null)
+                {
+                    foreach (var item in parentView.Children)
+                    {
+                        if (item is DatePickerNullable)
+                        {
+                            ((DatePickerNullable)item).CleanDate();
+                            ((DatePickerNullable)item).NullableDate = null;
+                            label.IsVisible = false;
+                        }
+                    }
+                }
+            }
         }
 
         private void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
@@ -166,10 +199,14 @@ namespace AlertApp.Pages
                     if (frame.Children.Count > 0 && frame.Children[0] is StackLayout)
                     {
                         var stackLayout = frame.Children[0] as StackLayout;
-                        if (stackLayout.Children.Count > 1 && stackLayout.Children[1] is DatePickerNullable)
+                        if (stackLayout.Children.Count > 2 && stackLayout.Children[1] is DatePickerNullable)
                         {
                             if (((DatePickerNullable)stackLayout.Children[1]).NullableDate.HasValue)
-                                return true;                            
+                            {
+                                stackLayout.Children[2].IsVisible = true;
+                                return true;
+                            }
+                                
                         }
                     }
                     foreach (var field in frame.Children)
@@ -181,7 +218,7 @@ namespace AlertApp.Pages
                         }
                         else if (field is DatePickerNullable)
                         {
-                            return (((DatePickerNullable)field).NullableDate.HasValue);                                                            
+                            return (((DatePickerNullable)field).NullableDate.HasValue);
                         }
                         else if (field is Editor)
                         {

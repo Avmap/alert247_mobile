@@ -16,6 +16,8 @@ namespace AlertApp.Infrastructure
 
         public static string StickNotificationGuardianMessage => AppResources.StickNotificationGuardianMessage;
         public static string StickNotificationGuardianButtonOpenApp => AppResources.StickNotificationGuardianButtonOpenApp;
+        public static string Cancel => AppResources.Cancel;
+        public static string OK => AppResources.OK;
 
 
     }
