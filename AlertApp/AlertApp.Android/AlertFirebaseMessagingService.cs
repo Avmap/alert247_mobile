@@ -124,7 +124,7 @@ namespace AlertApp.Android
                     if (!string.IsNullOrWhiteSpace(messageType) && messageType.Equals("contact") && !string.IsNullOrWhiteSpace(cellphone))
                     {
                         string titleNotification = GlobalTranslates.CommunityRequestNotificationTitle;
-                        string messageNotification = GlobalTranslates.CommunityRequestNotificationMessage;                                                
+                        string messageNotification = GlobalTranslates.CommunityRequestNotificationMessage;
                         SendContactRequestNotification(titleNotification, messageNotification, position, cellphone);
                     }
                 }
@@ -264,7 +264,7 @@ namespace AlertApp.Android
         }
 
         async void ShowAlertAckNotification(string title, string profileData, string fileKey, string ackType, string ackTime)
-        {            
+        {
             string messageBody = "";
             int notificationID = (int)(Java.Lang.JavaSystem.CurrentTimeMillis() / 1000L);
             if (!string.IsNullOrWhiteSpace(profileData) && !string.IsNullOrWhiteSpace(fileKey))
@@ -276,8 +276,18 @@ namespace AlertApp.Android
 
                     if (data != null)
                     {
-                        var name = data[RegistrationField.Names.Name];
-                        var surname = data[RegistrationField.Names.Surname];
+                        string name = "";
+                        string surname = "";
+                        if (data.ContainsKey(RegistrationField.Names.Name))
+                        {
+                            name = data[RegistrationField.Names.Name];
+                        }
+
+                        if (data.ContainsKey(RegistrationField.Names.Surname))
+                        {
+                            surname = data[RegistrationField.Names.Surname];
+                        }
+                        
                         DateTime dateTime = DateTime.Parse(ackTime);
                         if (Int32.Parse(ackType) == (int)AckType.Positive)
                         {
@@ -288,7 +298,7 @@ namespace AlertApp.Android
                             messageBody = String.Format("{0} {1} {2} {3}", dateTime.ToString("yyyy/MM/dd HH:mm"), GlobalTranslates.AckSuffix, surname + " " + name, GlobalTranslates.AckIgnoreHelp);
                         }
                     }
-                       
+
                 }
 
             }
@@ -310,7 +320,7 @@ namespace AlertApp.Android
                 .SetContentTitle(title)
                 .SetColor(color)
                 .SetContentText(messageBody)
-                .SetStyle(new NotificationCompat.BigTextStyle().BigText(messageBody))                
+                .SetStyle(new NotificationCompat.BigTextStyle().BigText(messageBody))
                 .SetSound(defaultSoundUri);
 
             if (bm != null)

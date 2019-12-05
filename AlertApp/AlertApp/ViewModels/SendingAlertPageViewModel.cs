@@ -90,7 +90,7 @@ namespace AlertApp.ViewModels
             if (alertResponse != null && alertResponse.IsOk)
             {
                 var successSendContacts = alertResponse.Result.Recipients.Where(x => x.Value.StartsWith("NT")).Count();
-                string message = String.Format("{0} Alert {1} {2} {3}", AppResources.TheAlert, AppResources.SuccessSendAlertMessage, 3, AppResources.SuccessSendAlertMessageContacts);
+                string message = String.Format("{0} Alert {1} {2} {3}", AppResources.TheAlert, AppResources.SuccessSendAlertMessage, successSendContacts, AppResources.SuccessSendAlertMessageContacts);
                 showOKMessage(AppResources.SuccessSendAlert, message);
                 try
                 {

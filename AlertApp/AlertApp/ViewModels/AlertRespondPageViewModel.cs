@@ -236,8 +236,18 @@ namespace AlertApp.ViewModels
             if (!string.IsNullOrWhiteSpace(data.ProfileData))
             {
                 var profileData = await _cryptographyService.GetAlertSenderProfileData(data.ProfileData, data.FileKey);
-                var name = profileData[RegistrationField.Names.Name];
-                var surname = profileData[RegistrationField.Names.Surname];
+                string name = "";
+                string surname = "";
+                if (profileData.ContainsKey(RegistrationField.Names.Name))
+                {
+                    name = profileData[RegistrationField.Names.Name];
+                }
+
+                if (profileData.ContainsKey(RegistrationField.Names.Surname))
+                {
+                    surname = profileData[RegistrationField.Names.Surname];
+                }
+                                
                 if (profileData != null)
                 {
                     ContactPhone = data.Cellphone;
