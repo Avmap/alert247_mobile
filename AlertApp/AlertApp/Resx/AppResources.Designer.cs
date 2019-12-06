@@ -1555,6 +1555,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit profile.
+        /// </summary>
+        internal static string SettingUpdateProfle {
+            get {
+                return ResourceManager.GetString("SettingUpdateProfle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download Alert24/7  &quot;https://play.google.com/store/apps/details?id=gr.avmap.alert247.
         /// </summary>
         internal static string ShareMessage {

@@ -71,6 +71,10 @@ namespace AlertApp.Pages
         {
             Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.FallDetectorSettings, new SettingsFallDetectorView()), false);
         }
+        private void UpdateProfile_Tap(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingAccountTitle, AppResources.SettingUpdateProfle, new UpdateProfileView()), false);
+        }
         
         protected override void OnAppearing()
         {

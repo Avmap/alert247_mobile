@@ -189,6 +189,7 @@ namespace AlertApp.Pages
 
         private bool HasValue()
         {
+            var hasValue = false;
             var registrationValues = new Dictionary<string, string>();
             foreach (var registrationView in registrationContainer.Children)
             {
@@ -204,7 +205,7 @@ namespace AlertApp.Pages
                             if (((DatePickerNullable)stackLayout.Children[1]).NullableDate.HasValue)
                             {
                                 stackLayout.Children[2].IsVisible = true;
-                                return true;
+                                hasValue = true;                                
                             }
                                 
                         }
@@ -214,16 +215,16 @@ namespace AlertApp.Pages
                         if (field is Entry)
                         {
                             if (!string.IsNullOrWhiteSpace(((Entry)field).Text))
-                                return true;
+                                hasValue = true;
                         }
                         else if (field is DatePickerNullable)
                         {
-                            return (((DatePickerNullable)field).NullableDate.HasValue);
+                            hasValue = (((DatePickerNullable)field).NullableDate.HasValue);                            
                         }
                         else if (field is Editor)
                         {
                             if (!string.IsNullOrWhiteSpace(((Editor)field).Text))
-                                return true;
+                                hasValue = true;
                         }
                         else if (field is Switch)
                         {
@@ -232,7 +233,7 @@ namespace AlertApp.Pages
                     }
                 }
             }
-            return false;
+            return hasValue;
         }
         private async void SubmitRegistrationButton_Clicked()
         {
@@ -264,7 +265,7 @@ namespace AlertApp.Pages
                 else if (field is DatePickerNullable)
                 {
                     if (((DatePickerNullable)field).NullableDate.HasValue)
-                        registrationValues.Add(fieldName, ((DatePickerNullable)field).NullableDate.Value.Date.ToString());
+                        registrationValues.Add(fieldName, ((DatePickerNullable)field).NullableDate.Value.Date.ToString("dd/MM/yyyy HH:mm"));
                 }
                 else if (field is Editor)
                 {
@@ -280,7 +281,7 @@ namespace AlertApp.Pages
                     if (stack.Children[1] is DatePickerNullable)
                     {
                         if (((DatePickerNullable)stack.Children[1]).NullableDate.HasValue)
-                            registrationValues.Add(fieldName, ((DatePickerNullable)stack.Children[1]).NullableDate.Value.Date.ToString());
+                            registrationValues.Add(fieldName, ((DatePickerNullable)stack.Children[1]).NullableDate.Value.Date.ToString("dd/MM/yyyy HH:mm"));
                     }
                 }
             }

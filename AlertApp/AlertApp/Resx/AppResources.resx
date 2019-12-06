@@ -736,4 +736,7 @@
   <data name="FillAllDetectorValues" xml:space="preserve">
     <value>Fill all values</value>
   </data>
+  <data name="SettingUpdateProfle" xml:space="preserve">
+    <value>Edit profile</value>
+  </data>
 </root>

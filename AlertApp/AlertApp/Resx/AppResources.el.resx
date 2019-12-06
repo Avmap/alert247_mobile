@@ -739,4 +739,7 @@
   <data name="LYING_AVERAGE_Z_LPF" xml:space="preserve">
     <value>LYING_AVERAGE_Z_LPF</value>
   </data>
+  <data name="SettingUpdateProfle" xml:space="preserve">
+    <value>Επεξεργασία προφίλ</value>
+  </data>
 </root>

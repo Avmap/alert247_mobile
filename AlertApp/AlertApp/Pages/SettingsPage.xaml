@@ -58,6 +58,11 @@
                         </views:SettingCellView.GestureRecognizers>
                     </views:SettingCellView>
                     <views:SettingsHeader Title="{infrastructure:Translate SettingsAccount}"></views:SettingsHeader>
+                    <views:SettingCellView Title="{infrastructure:Translate SettingUpdateProfle}">
+                        <views:SettingCellView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="UpdateProfile_Tap"></TapGestureRecognizer>
+                        </views:SettingCellView.GestureRecognizers>
+                    </views:SettingCellView>
                     <views:SettingCellView Title="{infrastructure:Translate SettingChangePin}">
                         <views:SettingCellView.GestureRecognizers>
                             <TapGestureRecognizer Tapped="ChangePin_Tap"></TapGestureRecognizer>
