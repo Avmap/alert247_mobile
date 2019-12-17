@@ -163,6 +163,7 @@
     <Compile Include="ContactProfileImageProvider.cs" />
     <Compile Include="CustomRenderers\CustomDatePickerRenderer.cs" />
     <Compile Include="CustomRenderers\DatePicker.cs" />
+    <Compile Include="CustomRenderers\DecimalEntryRenderer.cs" />
     <Compile Include="CustomRenderers\Dialog.cs" />
     <Compile Include="CustomRenderers\EntryCenteredRenderer.cs" />
     <Compile Include="CustomRenderers\EntryCenterOnlyRenderer.cs" />

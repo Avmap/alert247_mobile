@@ -21,6 +21,10 @@ namespace AlertApp.Droid.CustomRenderers
 {
     public class NoUnderlineEntryRenderer : EntryRenderer
     {
+        public NoUnderlineEntryRenderer(Context context) : base(context)
+        {
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);

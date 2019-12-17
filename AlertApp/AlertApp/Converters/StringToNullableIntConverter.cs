@@ -10,6 +10,16 @@ namespace AlertApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            //string nonDecimalSeparator = ".";
+            //var textValue = value as string;
+            //if (culture.NumberFormat.CurrencyDecimalSeparator == ",")
+            //{
+            //    value = textValue.Replace(".", culture.NumberFormat.CurrencyDecimalSeparator);
+            //}
+            //else
+            //{
+            //    value = textValue.Replace(",", culture.NumberFormat.CurrencyDecimalSeparator);
+            //}
             return value.ToString();
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
