@@ -7,11 +7,11 @@ using System.Text;
 namespace AlertApp.Services
 {
     public abstract class BaseService
-    {        
-        //protected string Url => "https://staging.alert247.gr/api/ ";
-        protected string Url => "https://alert247.gr/api/ ";
+    {
+        protected string Url => "https://staging.alert247.gr/api/ ";
+        // protected string Url => "https://alert247.gr/api/ ";
 
-        
+
         protected readonly HttpClient _httpClient = new HttpClient();
         public BaseService()
         {
