@@ -8,6 +8,11 @@ using Android.Widget;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using AlertApp.Droid;
+using Java.Util;
+using System.Globalization;
+using AlertApp.Utils;
+using Android.Content.Res;
+
 [assembly: ExportRenderer(typeof(AlertApp.Infrastructure.DatePickerNullable), typeof(AlertApp.Droid.CustomRenderers.NullableDatePickerRenderer))]
 namespace AlertApp.Droid.CustomRenderers
 {
@@ -85,6 +90,20 @@ namespace AlertApp.Droid.CustomRenderers
 
         void CreateDatePickerDialog(int year, int month, int day)
         {
+            var preferenceLanguage = Xamarin.Essentials.Preferences.Get(Settings.SelectedLanguage, "en");
+
+
+            var ci = new CultureInfo(preferenceLanguage);
+
+            var locales = Locale.GetAvailableLocales();
+            Locale.Default = new Locale(ci.TwoLetterISOLanguageName);
+
+            Locale locale = new Locale(ci.TwoLetterISOLanguageName);
+            Control.TextLocale = locale;
+            Resources.Configuration.SetLocale(locale);
+            var config = new Configuration { Locale = locale };
+            Forms.Context.Resources.UpdateConfiguration(config, Forms.Context.Resources.DisplayMetrics);
+
             AlertApp.Infrastructure.DatePickerNullable view = Element;
             _dialog = new DatePickerDialog(Context, (o, e) =>
             {
