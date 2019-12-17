@@ -108,7 +108,11 @@ namespace AlertApp.Pages
                         }
                         catch
                         {
-                            await this.Navigation.PopModalAsync(false);
+                            Device.BeginInvokeOnMainThread(() =>
+                            {                                
+                                this.Navigation.PopModalAsync(false);                                
+                            });
+
                         }
 
                     }

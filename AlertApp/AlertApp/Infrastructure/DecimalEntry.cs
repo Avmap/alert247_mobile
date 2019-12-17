@@ -24,7 +24,9 @@ namespace AlertApp.Infrastructure
             double resultDouble;
 
             var newText = entryControl.Text.Replace(nonDecimalSeparator, culture.NumberFormat.CurrencyDecimalSeparator);
-            if (double.TryParse(newText, out resultDouble) || string.IsNullOrWhiteSpace(e.NewTextValue) || newText == "-" || newText.StartsWith(".-") || newText.StartsWith("-."))
+            var commasLength = newText.Split(',').Length;
+            
+            if (commasLength < 3 && double.TryParse(newText, out resultDouble) || string.IsNullOrWhiteSpace(e.NewTextValue) || newText == "-" || newText.StartsWith(".-") || newText.StartsWith("-."))
             {
                 Text = newText;
             }

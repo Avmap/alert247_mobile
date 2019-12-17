@@ -268,8 +268,12 @@ namespace AlertApp.Droid
                 pool.SetOnLoadCompleteListener(_SoundListener);
                 id = pool.Load(context, Resource.Raw.alarmtest, 1);
             }
+            else
+            {
+               pool.Play(id, 1.0f, 1.0f, 1, 3, 1.0f);
+            }
             loudest(context);
-            pool.Play(id, 1.0f, 1.0f, 1, 3, 1.0f);
+         
         }
         public static void loudest(Context context)
         {
