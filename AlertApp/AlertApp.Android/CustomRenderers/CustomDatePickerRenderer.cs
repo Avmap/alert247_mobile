@@ -91,13 +91,8 @@ namespace AlertApp.Droid.CustomRenderers
         void CreateDatePickerDialog(int year, int month, int day)
         {
             var preferenceLanguage = Xamarin.Essentials.Preferences.Get(Settings.SelectedLanguage, "en");
-
-
-            var ci = new CultureInfo(preferenceLanguage);
-
-            var locales = Locale.GetAvailableLocales();
+            var ci = new CultureInfo(preferenceLanguage);            
             Locale.Default = new Locale(ci.TwoLetterISOLanguageName);
-
             Locale locale = new Locale(ci.TwoLetterISOLanguageName);
             Control.TextLocale = locale;
             Resources.Configuration.SetLocale(locale);

@@ -227,9 +227,9 @@ namespace AlertApp.Droid
                 {
                     try
                     {
-                        System.Diagnostics.Debug.WriteLine($"Start");
+                        //   System.Diagnostics.Debug.WriteLine($"Start");
                         fallDetector.Protect(e.Timestamp, e.Values[0], e.Values[1], e.Values[2]);
-                        System.Diagnostics.Debug.WriteLine($"End");
+                        //   System.Diagnostics.Debug.WriteLine($"End");
                     }
                     catch (Java.Lang.Exception ex)
                     {
@@ -241,7 +241,27 @@ namespace AlertApp.Droid
 
         public void OnFallDetected()
         {
-            siren(this);
+            bool isSendingAlert = false;
+           
+            if (Xamarin.Forms.Application.Current.MainPage.Navigation.NavigationStack != null && Xamarin.Forms.Application.Current.MainPage.Navigation.NavigationStack.Count > 0)
+            {
+                isSendingAlert = Xamarin.Forms.Application.Current.MainPage.Navigation.NavigationStack.LastOrDefault() is SendingAlertPage;
+            }
+
+            if (Xamarin.Forms.Application.Current.MainPage.Navigation.ModalStack != null && !isSendingAlert)
+            {
+                if (Xamarin.Forms.Application.Current.MainPage.Navigation.ModalStack.Count == 0)
+                    isSendingAlert = false;
+
+                if (Xamarin.Forms.Application.Current.MainPage.Navigation.ModalStack.Count > 0)
+                {
+                    isSendingAlert = Xamarin.Forms.Application.Current.MainPage.Navigation.ModalStack.LastOrDefault() is SendingAlertPage;
+                }
+            }
+
+            if (!isSendingAlert)
+                siren(this);
+
         }
         void siren(Context context)
         {
@@ -270,10 +290,10 @@ namespace AlertApp.Droid
             }
             else
             {
-               pool.Play(id, 1.0f, 1.0f, 1, 3, 1.0f);
+                pool.Play(id, 1.0f, 1.0f, 1, 3, 1.0f);
             }
             loudest(context);
-         
+
         }
         public static void loudest(Context context)
         {
