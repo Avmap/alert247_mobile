@@ -7,9 +7,28 @@ namespace AlertApp.Infrastructure
 {
     public class DecimalEntry : Entry
     {
+        #region SupportNegative (Bindable boolean)
+        public static readonly BindableProperty SupportNegativeProperty = BindableProperty.Create(
+                                                                  "SupportNegativeValues", //Public name to use
+                                                                  typeof(bool?), //this type
+                                                                  typeof(DecimalEntry), //parent type (tihs control)
+                                                                  false); //default value
+        public bool SupportNegativeValues
+        {
+            get { return (bool)GetValue(SupportNegativeProperty); }
+            set { SetValue(SupportNegativeProperty, value); }
+        }
+        #endregion SupportNegative (Bindable boolean)
+
         public DecimalEntry()
         {
             TextChanged += DecimalEntry_TextChanged;
+
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                BackgroundColor = Color.FromHex("#E6E7E8");
+                TextColor = Color.Black;
+            }
         }
 
         private void DecimalEntry_TextChanged(object sender, TextChangedEventArgs e)

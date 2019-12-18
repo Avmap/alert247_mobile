@@ -109,7 +109,7 @@
                     </Grid.ColumnDefinitions>
                     <Label Text="{infrastructure:Translate FILTER_FACTOR_0}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
                     <Frame HasShadow="False" BackgroundColor="#E6E7E8" Grid.Column="1" CornerRadius="4" BorderColor="#CACCCD" Padding="2,0,2,0" HorizontalOptions="FillAndExpand">
-                        <infrastructure:DecimalEntry Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" FontSize="16" Text="{Binding FILTER_FACTOR_0,Converter={StaticResource cnvInvert}}"></infrastructure:DecimalEntry>
+                        <infrastructure:DecimalEntry SupportNegativeValues="True" Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" FontSize="16" Text="{Binding FILTER_FACTOR_0,Converter={StaticResource cnvInvert}}"></infrastructure:DecimalEntry>
                     </Frame>
                 </Grid>
                 <Grid Padding="8,4,8,4">

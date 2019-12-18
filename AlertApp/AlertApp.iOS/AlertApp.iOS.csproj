@@ -112,6 +112,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CustomRenderers\DatePicker.cs" />
+    <Compile Include="CustomRenderers\DecimalEntry.cs" />
     <Compile Include="CustomRenderers\Dialog.cs" />
     <Compile Include="CustomRenderers\EntryCenteredRenderer.cs" />
     <Compile Include="CustomRenderers\NoUnderlineEntryRenderer.cs" />
