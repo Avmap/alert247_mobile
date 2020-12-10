@@ -54,7 +54,7 @@ namespace AlertApp.Services.Cryptography
             }
             catch (Exception ex)
             {
-
+                Debug.Fail("ERROR: " + ex.Message.ToString());
             }
 
 

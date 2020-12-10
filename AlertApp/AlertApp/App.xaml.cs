@@ -11,7 +11,6 @@ using AlertApp.Utils;
 using AlertApp.ViewModels;
 using CommonServiceLocator;
 using PCLCrypto;
-using Plugin.FirebasePushNotification;
 using System;
 using System.IO;
 using System.Security.Cryptography;
@@ -96,7 +95,7 @@ namespace AlertApp
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
                 var localSettings = ViewModelLocator.Instance.Resolve<ILocalSettingsService>();
-                CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
+                Plugin.FirebasePushNotification.CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
                 {
                     if (!string.IsNullOrWhiteSpace(p.Token))
                     {

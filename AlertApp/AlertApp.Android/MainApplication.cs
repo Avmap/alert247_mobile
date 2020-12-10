@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Plugin.CurrentActivity;
-using Plugin.FirebasePushNotification;
+
 
 namespace AlertApp.Droid
 {
@@ -34,22 +34,22 @@ namespace AlertApp.Droid
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
                 //Change for your default notification channel id here
-                FirebasePushNotificationManager.DefaultNotificationChannelId = "Alert247";
+                Plugin.FirebasePushNotification.FirebasePushNotificationManager.DefaultNotificationChannelId = "Alert247";
 
                 //Change for your default notification channel name here
-                FirebasePushNotificationManager.DefaultNotificationChannelName = "General";
+                Plugin.FirebasePushNotification.FirebasePushNotificationManager.DefaultNotificationChannelName = "General";
             }
 
 
             //If debug you should reset the token each time.
 #if DEBUG
-            FirebasePushNotificationManager.Initialize(this, true);
+            Plugin.FirebasePushNotification.FirebasePushNotificationManager.Initialize(this, true);
 #else
               FirebasePushNotificationManager.Initialize(this,false);
 #endif
 
             //Handle notification when app is closed here
-            CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+            Plugin.FirebasePushNotification.CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
             {
 
 

@@ -355,4 +355,388 @@
   <data name="BlockedUsersPage" xml:space="preserve">
     <value>阻止</value>
   </data>
+  <data name="AcceptedFromMe" xml:space="preserve">
+    <value>我接受</value>
+  </data>
+  <data name="DontUseOtpAsPinMessage" xml:space="preserve">
+    <value>注意：请勿使用OTP码作为密码</value>
+  </data>
+  <data name="NoItems" xml:space="preserve">
+    <value>找不到联络人</value>
+  </data>
+  <data name="LocationServicesOffMessage" xml:space="preserve">
+    <value>定位服务关闭。 请打开它以确保您的安全。</value>
+  </data>
+  <data name="SuccessSendAlert" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="SuccessSendAlertMessage" xml:space="preserve">
+    <value>成功发送给</value>
+  </data>
+  <data name="SuccessSendAlertMessageContacts" xml:space="preserve">
+    <value>联系人。</value>
+  </data>
+  <data name="Accident" xml:space="preserve">
+    <value>事故</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>联络人</value>
+  </data>
+  <data name="Fire" xml:space="preserve">
+    <value>火</value>
+  </data>
+  <data name="Threat" xml:space="preserve">
+    <value>威胁</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>年龄</value>
+  </data>
+  <data name="Allergies" xml:space="preserve">
+    <value>过敏症</value>
+  </data>
+  <data name="EmergencyAlertText" xml:space="preserve">
+    <value>您的一位联系人使用了紧急警报电话SOS</value>
+  </data>
+  <data name="EnterPinFor" xml:space="preserve">
+    <value>输入密码</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>高度</value>
+  </data>
+  <data name="Medecine" xml:space="preserve">
+    <value>药物</value>
+  </data>
+  <data name="NewAlertTitle" xml:space="preserve">
+    <value>新警报</value>
+  </data>
+  <data name="PressedAlert" xml:space="preserve">
+    <value>你按了</value>
+  </data>
+  <data name="SendAlertTitle" xml:space="preserve">
+    <value>发送警报SOS</value>
+  </data>
+  <data name="SendingAlertToSelectedContacts" xml:space="preserve">
+    <value>正在向...中的选定联系人发送警报</value>
+  </data>
+  <data name="UserIsInPosition" xml:space="preserve">
+    <value>现在他在：</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>重量</value>
+  </data>
+  <data name="AcceptContactRequest" xml:space="preserve">
+    <value>接受</value>
+  </data>
+  <data name="ContactRequestText" xml:space="preserve">
+    <value>以下联系人希望将您添加到ALERT 24/7应用程序。</value>
+  </data>
+  <data name="IgnoreContactRequest" xml:space="preserve">
+    <value>忽视</value>
+  </data>
+  <data name="NewContactRequestTitle" xml:space="preserve">
+    <value>联络请求</value>
+  </data>
+  <data name="StartSettings" xml:space="preserve">
+    <value>开始设置</value>
+  </data>
+  <data name="VerificationCodePageTitle" xml:space="preserve">
+    <value>验证码</value>
+  </data>
+  <data name="LocationTrackingExplanation" xml:space="preserve">
+    <value>您的位置用于找到设备并在紧急情况下将其位置发送给您的联系人。 您可以稍后通过设置禁用此设置。</value>
+  </data>
+  <data name="RegistrationEnterPinPromt" xml:space="preserve">
+    <value>输入以下内容，然后按“下一步”以继续</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>用户详细信息</value>
+  </data>
+  <data name="RegistrationEnterFieldsPromt" xml:space="preserve">
+    <value>请输入您的个人资料。 紧急情况下会发送到您选择的联系人。</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>完</value>
+  </data>
+  <data name="NoAlertRecipients" xml:space="preserve">
+    <value>没有警报收件人</value>
+  </data>
+  <data name="RegistrationCreatePinPromt" xml:space="preserve">
+    <value>创建您的个人4位数代码（PIN）。 在下面输入。</value>
+  </data>
+  <data name="MainPressToCancel" xml:space="preserve">
+    <value>再按一次取消</value>
+  </data>
+  <data name="InviteFriendsSubtitle" xml:space="preserve">
+    <value>您的朋友尚未发现Alert 24/7。 邀请他们下载该应用。</value>
+  </data>
+  <data name="InviteFriendsTitle" xml:space="preserve">
+    <value>邀请您的朋友！</value>
+  </data>
+  <data name="SelectContact" xml:space="preserve">
+    <value>选择要添加的联系人</value>
+  </data>
+  <data name="area" xml:space="preserve">
+    <value>区</value>
+  </data>
+  <data name="medicine" xml:space="preserve">
+    <value>药物</value>
+  </data>
+  <data name="other" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="AddContactMenu" xml:space="preserve">
+    <value>加</value>
+  </data>
+  <data name="ShareMessage" xml:space="preserve">
+    <value>下载Alert24/7“ https://play.google.com/store/apps/details?id=gr.avmap.alert247”</value>
+  </data>
+  <data name="ShareMessageTitle" xml:space="preserve">
+    <value>获取Alert24/7应用</value>
+  </data>
+  <data name="SettingChangePin" xml:space="preserve">
+    <value>更改密码</value>
+  </data>
+  <data name="SettingContacts" xml:space="preserve">
+    <value>联络人</value>
+  </data>
+  <data name="SettingEnviroment" xml:space="preserve">
+    <value>环境</value>
+  </data>
+  <data name="SettingLanguage" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="SettingLanguageSubTitle" xml:space="preserve">
+    <value>选择语言</value>
+  </data>
+  <data name="SettingLanguageTitle" xml:space="preserve">
+    <value>设置-语言</value>
+  </data>
+  <data name="SettingLocation" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="SettingsAccount" xml:space="preserve">
+    <value>帐户</value>
+  </data>
+  <data name="SettingsPermissions" xml:space="preserve">
+    <value>权限</value>
+  </data>
+  <data name="SettingsView" xml:space="preserve">
+    <value>视图</value>
+  </data>
+  <data name="SettingButtonsSubTitle" xml:space="preserve">
+    <value>应用程式按钮</value>
+  </data>
+  <data name="SettingButtonsTitle" xml:space="preserve">
+    <value>设置-用户界面</value>
+  </data>
+  <data name="SettingsButtonsViewMessage" xml:space="preserve">
+    <value>启用或禁用要在应用中显示的按钮，然后按“确认”</value>
+  </data>
+  <data name="SwitchAccident" xml:space="preserve">
+    <value>事故</value>
+  </data>
+  <data name="SwitchFire" xml:space="preserve">
+    <value>火</value>
+  </data>
+  <data name="SwitchTreat" xml:space="preserve">
+    <value>威胁</value>
+  </data>
+  <data name="SwitchContacts" xml:space="preserve">
+    <value>联系</value>
+  </data>
+  <data name="SwitchInformation" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>确认书</value>
+  </data>
+  <data name="ConfirmPinToSaveSettings" xml:space="preserve">
+    <value>要保存，请输入4pin码，然后按“完成”</value>
+  </data>
+  <data name="SettingPermissionLocationSubTitle" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="SettingPermissionTitle" xml:space="preserve">
+    <value>设置-权限</value>
+  </data>
+  <data name="SettingsLocationMessage" xml:space="preserve">
+    <value>启用或禁用位置跟踪</value>
+  </data>
+  <data name="SettingsLocationSubtitle" xml:space="preserve">
+    <value>在紧急情况下使用位置</value>
+  </data>
+  <data name="ContactPermissionSetting" xml:space="preserve">
+    <value>接触许可</value>
+  </data>
+  <data name="ContactPermissionSettingTitle" xml:space="preserve">
+    <value>联系人访问</value>
+  </data>
+  <data name="SettingsContactsPermissionSubtitle" xml:space="preserve">
+    <value>需要许可才能保护您</value>
+  </data>
+  <data name="SettingAccountTitle" xml:space="preserve">
+    <value>设置-帐户</value>
+  </data>
+  <data name="SettingsChangePinMessage" xml:space="preserve">
+    <value>输入当前的PIN码</value>
+  </data>
+  <data name="EnterNewPin" xml:space="preserve">
+    <value>新密码</value>
+  </data>
+  <data name="ReEnterNewPin" xml:space="preserve">
+    <value>再次输入</value>
+  </data>
+  <data name="ContactsPermissionActive" xml:space="preserve">
+    <value>活性</value>
+  </data>
+  <data name="ContactsPermissionInActive" xml:space="preserve">
+    <value>按启用</value>
+  </data>
+  <data name="Succcess" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="SucccessChangePinMessage" xml:space="preserve">
+    <value>密码更改成功</value>
+  </data>
+  <data name="DevelopedBy" xml:space="preserve">
+    <value>由开发</value>
+  </data>
+  <data name="DevelopedFor" xml:space="preserve">
+    <value>对于</value>
+  </data>
+  <data name="PrivacyTerms" xml:space="preserve">
+    <value>条款及细则</value>
+  </data>
+  <data name="WrongPin" xml:space="preserve">
+    <value>您输入了错误的密码。</value>
+  </data>
+  <data name="AlwaysOnCaps" xml:space="preserve">
+    <value>一直在线</value>
+  </data>
+  <data name="DeleteAccountHistory" xml:space="preserve">
+    <value>删除账户数据</value>
+  </data>
+  <data name="DownloadAccountHistory" xml:space="preserve">
+    <value>下载账户数据</value>
+  </data>
+  <data name="SettingDeleteAccount" xml:space="preserve">
+    <value>删除帐户</value>
+  </data>
+  <data name="SettingHistory" xml:space="preserve">
+    <value>账户历史</value>
+  </data>
+  <data name="SettingsAccountHistoryMessage" xml:space="preserve">
+    <value>下载或删除您的帐户历史记录</value>
+  </data>
+  <data name="DeleteAccountMessageAlert" xml:space="preserve">
+    <value>您的帐户数据历史记录将被删除</value>
+  </data>
+  <data name="ErrorDeleteHistory" xml:space="preserve">
+    <value>删除帐户数据时出错。</value>
+  </data>
+  <data name="SucccessDeleteHistory" xml:space="preserve">
+    <value>帐户数据已成功删除</value>
+  </data>
+  <data name="PermissionsDenied" xml:space="preserve">
+    <value>权限被拒绝</value>
+  </data>
+  <data name="PermissionsStorageDeniedMessage" xml:space="preserve">
+    <value>无法下载历史记录文件。</value>
+  </data>
+  <data name="SettingsAlwaysOnMessage" xml:space="preserve">
+    <value>启用或禁用监护人</value>
+  </data>
+  <data name="SettingsAlwaysOnSubtitle" xml:space="preserve">
+    <value>在紧急情况下使用监护人</value>
+  </data>
+  <data name="SucccessSaveAccountFile" xml:space="preserve">
+    <value>帐户文件已成功保存</value>
+  </data>
+  <data name="AckNotHelp" xml:space="preserve">
+    <value>不会帮助</value>
+  </data>
+  <data name="AckSuffix" xml:space="preserve">
+    <value>先生/夫人</value>
+  </data>
+  <data name="AckWillHelp" xml:space="preserve">
+    <value>会有所帮助</value>
+  </data>
+  <data name="Crash" xml:space="preserve">
+    <value>崩溃</value>
+  </data>
+  <data name="Fall" xml:space="preserve">
+    <value>秋季</value>
+  </data>
+  <data name="FallDetectionSetting" xml:space="preserve">
+    <value>跌倒检测</value>
+  </data>
+  <data name="FallDetectionCaps" xml:space="preserve">
+    <value>秋季检测</value>
+  </data>
+  <data name="SettingsFallDetectorMessage" xml:space="preserve">
+    <value>启用或禁用跌倒检测</value>
+  </data>
+  <data name="SettingsFallDetectorSubtitle" xml:space="preserve">
+    <value>在紧急情况下使用监护人</value>
+  </data>
+  <data name="CommunityRequestNotificationMessage" xml:space="preserve">
+    <value>您有新的社区要求</value>
+  </data>
+  <data name="CommunityRequestNotificationTitle" xml:space="preserve">
+    <value>社区要求</value>
+  </data>
+  <data name="StickNotificationGuardianButtonOpenApp" xml:space="preserve">
+    <value>开启应用程式</value>
+  </data>
+  <data name="StickNotificationGuardianMessage" xml:space="preserve">
+    <value>你已经被保护了</value>
+  </data>
+  <data name="FallDetectedSosText" xml:space="preserve">
+    <value>侦测到秋天</value>
+  </data>
+  <data name="FallDetectorSettings" xml:space="preserve">
+    <value>检测器设置</value>
+  </data>
+  <data name="FALLING_WAIST_SV_TOT" xml:space="preserve">
+    <value>FALLING_WAIST_SV_TOT</value>
+  </data>
+  <data name="FILTER_FACTOR_0" xml:space="preserve">
+    <value>FILTER_FACTOR_0</value>
+  </data>
+  <data name="FILTER_FACTOR_1" xml:space="preserve">
+    <value>FILTER_FACTOR_1</value>
+  </data>
+  <data name="FILTER_HPF_GAIN" xml:space="preserve">
+    <value>FILTER_HPF_GAIN</value>
+  </data>
+  <data name="FILTER_LPF_GAIN" xml:space="preserve">
+    <value>FILTER_LPF_GAIN</value>
+  </data>
+  <data name="IMPACT_WAIST_SV_D" xml:space="preserve">
+    <value>IMPACT_WAIST_SV_D</value>
+  </data>
+  <data name="IMPACT_WAIST_SV_MAXMIN" xml:space="preserve">
+    <value>IMPACT_WAIST_SV_MAXMIN</value>
+  </data>
+  <data name="IMPACT_WAIST_SV_TOT" xml:space="preserve">
+    <value>IMPACT_WAIST_SV_TOT</value>
+  </data>
+  <data name="IMPACT_WAIST_Z_2" xml:space="preserve">
+    <value>IMPACT_WAIST_Z_2</value>
+  </data>
+  <data name="INTERVAL_MS" xml:space="preserve">
+    <value>INTERVAL_MS</value>
+  </data>
+  <data name="LYING_AVERAGE_Z_LPF" xml:space="preserve">
+    <value>LYING_AVERAGE_Z_LPF</value>
+  </data>
+  <data name="FillAllDetectorValues" xml:space="preserve">
+    <value>填写所有值</value>
+  </data>
+  <data name="SettingUpdateProfle" xml:space="preserve">
+    <value>编辑个人资料</value>
+  </data>
+  <data name="RegistrationTitle" xml:space="preserve">
+    <value>注册</value>
+  </data>
 </root>

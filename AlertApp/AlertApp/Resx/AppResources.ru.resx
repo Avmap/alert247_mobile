@@ -355,4 +355,388 @@
   <data name="BlockedUsersPage" xml:space="preserve">
     <value>блокированный</value>
   </data>
+  <data name="AcceptedFromMe" xml:space="preserve">
+    <value>Я принял</value>
+  </data>
+  <data name="DontUseOtpAsPinMessage" xml:space="preserve">
+    <value>Внимание: не используйте код OTP в качестве пина.</value>
+  </data>
+  <data name="NoItems" xml:space="preserve">
+    <value>Контактов не найдено</value>
+  </data>
+  <data name="LocationServicesOffMessage" xml:space="preserve">
+    <value>Службы определения местоположения отключены. Пожалуйста, откройте его, чтобы обезопасить себя.</value>
+  </data>
+  <data name="SuccessSendAlert" xml:space="preserve">
+    <value>Успех</value>
+  </data>
+  <data name="SuccessSendAlertMessage" xml:space="preserve">
+    <value>успешно отправить</value>
+  </data>
+  <data name="SuccessSendAlertMessageContacts" xml:space="preserve">
+    <value>контакты.</value>
+  </data>
+  <data name="Accident" xml:space="preserve">
+    <value>Авария</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Контакты</value>
+  </data>
+  <data name="Fire" xml:space="preserve">
+    <value>Пожар</value>
+  </data>
+  <data name="Threat" xml:space="preserve">
+    <value>Угроза</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Возраст</value>
+  </data>
+  <data name="Allergies" xml:space="preserve">
+    <value>Аллергии</value>
+  </data>
+  <data name="EmergencyAlertText" xml:space="preserve">
+    <value>Один из ваших контактов использовал экстренный вызов SOS</value>
+  </data>
+  <data name="EnterPinFor" xml:space="preserve">
+    <value>ВВЕДИТЕ ПИН-код В ЗАКАЗ</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Высота</value>
+  </data>
+  <data name="Medecine" xml:space="preserve">
+    <value>Лекарство</value>
+  </data>
+  <data name="NewAlertTitle" xml:space="preserve">
+    <value>НОВОЕ ПРЕДУПРЕЖДЕНИЕ</value>
+  </data>
+  <data name="PressedAlert" xml:space="preserve">
+    <value>Вы нажали</value>
+  </data>
+  <data name="SendAlertTitle" xml:space="preserve">
+    <value>Отправить оповещение SOS</value>
+  </data>
+  <data name="SendingAlertToSelectedContacts" xml:space="preserve">
+    <value>Отправка оповещения выбранным контактам в ...</value>
+  </data>
+  <data name="UserIsInPosition" xml:space="preserve">
+    <value>Сейчас он на:</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Вес</value>
+  </data>
+  <data name="AcceptContactRequest" xml:space="preserve">
+    <value>Принять</value>
+  </data>
+  <data name="ContactRequestText" xml:space="preserve">
+    <value>Следующий контакт хочет добавить вас в приложение ALERT 24/7.</value>
+  </data>
+  <data name="IgnoreContactRequest" xml:space="preserve">
+    <value>Игнорировать</value>
+  </data>
+  <data name="NewContactRequestTitle" xml:space="preserve">
+    <value>КОНТАКТ ЗАПРОС</value>
+  </data>
+  <data name="StartSettings" xml:space="preserve">
+    <value>НАЧАТЬ НАСТРОЙКИ</value>
+  </data>
+  <data name="VerificationCodePageTitle" xml:space="preserve">
+    <value>ПРОВЕРЯЮЩИЙ КОД</value>
+  </data>
+  <data name="LocationTrackingExplanation" xml:space="preserve">
+    <value>Ваше местоположение используется для определения местоположения вашего устройства и отправки информации о нем вашим контактам в случае возникновения чрезвычайной ситуации. Вы можете отключить этот параметр позже через настройки.</value>
+  </data>
+  <data name="RegistrationEnterPinPromt" xml:space="preserve">
+    <value>Введите следующее и нажмите «Далее», чтобы продолжить</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>ДАННЫЕ ПОЛЬЗОВАТЕЛЯ</value>
+  </data>
+  <data name="RegistrationEnterFieldsPromt" xml:space="preserve">
+    <value>Пожалуйста, введите ваши личные данные. В экстренных случаях будут отправлены по выбранным вами контактам.</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Конец</value>
+  </data>
+  <data name="NoAlertRecipients" xml:space="preserve">
+    <value>Нет получателей оповещений</value>
+  </data>
+  <data name="RegistrationCreatePinPromt" xml:space="preserve">
+    <value>Придумайте свой личный 4-значный код (PIN). Введите ниже.</value>
+  </data>
+  <data name="MainPressToCancel" xml:space="preserve">
+    <value>Нажмите еще раз, чтобы отменить</value>
+  </data>
+  <data name="InviteFriendsSubtitle" xml:space="preserve">
+    <value>Ваши друзья еще не открыли для себя Alert 24/7. Предложите им скачать приложение.</value>
+  </data>
+  <data name="InviteFriendsTitle" xml:space="preserve">
+    <value>Пригласить друзей!</value>
+  </data>
+  <data name="SelectContact" xml:space="preserve">
+    <value>Выберите контакт для добавления</value>
+  </data>
+  <data name="area" xml:space="preserve">
+    <value>Площадь</value>
+  </data>
+  <data name="medicine" xml:space="preserve">
+    <value>Лекарство</value>
+  </data>
+  <data name="other" xml:space="preserve">
+    <value>Другой</value>
+  </data>
+  <data name="AddContactMenu" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="ShareMessage" xml:space="preserve">
+    <value>Загрузите Alert24/7 "https://play.google.com/store/apps/details?id=gr.avmap.alert247"</value>
+  </data>
+  <data name="ShareMessageTitle" xml:space="preserve">
+    <value>Получить приложение Alert24/7</value>
+  </data>
+  <data name="SettingChangePin" xml:space="preserve">
+    <value>Изменить PIN</value>
+  </data>
+  <data name="SettingContacts" xml:space="preserve">
+    <value>Контакты</value>
+  </data>
+  <data name="SettingEnviroment" xml:space="preserve">
+    <value>Среда</value>
+  </data>
+  <data name="SettingLanguage" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="SettingLanguageSubTitle" xml:space="preserve">
+    <value>Выберите язык</value>
+  </data>
+  <data name="SettingLanguageTitle" xml:space="preserve">
+    <value>Настройки - Язык</value>
+  </data>
+  <data name="SettingLocation" xml:space="preserve">
+    <value>Место расположения</value>
+  </data>
+  <data name="SettingsAccount" xml:space="preserve">
+    <value>учетная запись</value>
+  </data>
+  <data name="SettingsPermissions" xml:space="preserve">
+    <value>Разрешения</value>
+  </data>
+  <data name="SettingsView" xml:space="preserve">
+    <value>Посмотреть</value>
+  </data>
+  <data name="SettingButtonsSubTitle" xml:space="preserve">
+    <value>Кнопки приложений</value>
+  </data>
+  <data name="SettingButtonsTitle" xml:space="preserve">
+    <value>Настройки - UI</value>
+  </data>
+  <data name="SettingsButtonsViewMessage" xml:space="preserve">
+    <value>Включите или отключите кнопки, которые вы хотите отображать в приложении, и нажмите «Подтвердить».</value>
+  </data>
+  <data name="SwitchAccident" xml:space="preserve">
+    <value>АВАРИЯ</value>
+  </data>
+  <data name="SwitchFire" xml:space="preserve">
+    <value>ПОЖАР</value>
+  </data>
+  <data name="SwitchTreat" xml:space="preserve">
+    <value>УГРОЗА</value>
+  </data>
+  <data name="SwitchContacts" xml:space="preserve">
+    <value>КОНТАКТЫ</value>
+  </data>
+  <data name="SwitchInformation" xml:space="preserve">
+    <value>ИНФОРМАЦИЯ</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="ConfirmPinToSaveSettings" xml:space="preserve">
+    <value>Для сохранения введите 4pin код и нажмите «Готово».</value>
+  </data>
+  <data name="SettingPermissionLocationSubTitle" xml:space="preserve">
+    <value>Место расположения</value>
+  </data>
+  <data name="SettingPermissionTitle" xml:space="preserve">
+    <value>Настройки - Разрешения</value>
+  </data>
+  <data name="SettingsLocationMessage" xml:space="preserve">
+    <value>Включение или отключение отслеживания местоположения</value>
+  </data>
+  <data name="SettingsLocationSubtitle" xml:space="preserve">
+    <value>Местоположение используется в экстренных случаях</value>
+  </data>
+  <data name="ContactPermissionSetting" xml:space="preserve">
+    <value>РАЗРЕШЕНИЕ НА КОНТАКТЫ</value>
+  </data>
+  <data name="ContactPermissionSettingTitle" xml:space="preserve">
+    <value>Контактный доступ</value>
+  </data>
+  <data name="SettingsContactsPermissionSubtitle" xml:space="preserve">
+    <value>Разрешение необходимо для того, чтобы защитить вас</value>
+  </data>
+  <data name="SettingAccountTitle" xml:space="preserve">
+    <value>Настройки - Аккаунт</value>
+  </data>
+  <data name="SettingsChangePinMessage" xml:space="preserve">
+    <value>Введите текущий PIN-код</value>
+  </data>
+  <data name="EnterNewPin" xml:space="preserve">
+    <value>НОВЫЙ ПИН-код</value>
+  </data>
+  <data name="ReEnterNewPin" xml:space="preserve">
+    <value>ВОЙДИТЕ СНОВА</value>
+  </data>
+  <data name="ContactsPermissionActive" xml:space="preserve">
+    <value>АКТИВНЫЙ</value>
+  </data>
+  <data name="ContactsPermissionInActive" xml:space="preserve">
+    <value>НАЖМИТЕ ДЛЯ ВКЛЮЧЕНИЯ</value>
+  </data>
+  <data name="Succcess" xml:space="preserve">
+    <value>Успех</value>
+  </data>
+  <data name="SucccessChangePinMessage" xml:space="preserve">
+    <value>PIN-код успешно изменен</value>
+  </data>
+  <data name="DevelopedBy" xml:space="preserve">
+    <value>Разработано</value>
+  </data>
+  <data name="DevelopedFor" xml:space="preserve">
+    <value>за</value>
+  </data>
+  <data name="PrivacyTerms" xml:space="preserve">
+    <value>Условия и положения</value>
+  </data>
+  <data name="WrongPin" xml:space="preserve">
+    <value>Вы ввели неправильный PIN-код.</value>
+  </data>
+  <data name="AlwaysOnCaps" xml:space="preserve">
+    <value>ВСЕГДА ВКЛЮЧЕН</value>
+  </data>
+  <data name="DeleteAccountHistory" xml:space="preserve">
+    <value>Удалить данные аккаунта</value>
+  </data>
+  <data name="DownloadAccountHistory" xml:space="preserve">
+    <value>Скачать данные аккаунта</value>
+  </data>
+  <data name="SettingDeleteAccount" xml:space="preserve">
+    <value>Удалить аккаунт</value>
+  </data>
+  <data name="SettingHistory" xml:space="preserve">
+    <value>История аккаунта</value>
+  </data>
+  <data name="SettingsAccountHistoryMessage" xml:space="preserve">
+    <value>Загрузите или удалите историю своего аккаунта</value>
+  </data>
+  <data name="DeleteAccountMessageAlert" xml:space="preserve">
+    <value>История данных вашего аккаунта будет удалена</value>
+  </data>
+  <data name="ErrorDeleteHistory" xml:space="preserve">
+    <value>Ошибка при удалении данных аккаунта.</value>
+  </data>
+  <data name="SucccessDeleteHistory" xml:space="preserve">
+    <value>Данные учетной записи успешно удалены</value>
+  </data>
+  <data name="PermissionsDenied" xml:space="preserve">
+    <value>В разрешениях отказано</value>
+  </data>
+  <data name="PermissionsStorageDeniedMessage" xml:space="preserve">
+    <value>Не удается загрузить файл истории загрузки.</value>
+  </data>
+  <data name="SettingsAlwaysOnMessage" xml:space="preserve">
+    <value>Включить или отключить опекуна</value>
+  </data>
+  <data name="SettingsAlwaysOnSubtitle" xml:space="preserve">
+    <value>Guardian используется в экстренных случаях</value>
+  </data>
+  <data name="SucccessSaveAccountFile" xml:space="preserve">
+    <value>Файл учетной записи успешно сохранен</value>
+  </data>
+  <data name="AckNotHelp" xml:space="preserve">
+    <value>не поможет</value>
+  </data>
+  <data name="AckSuffix" xml:space="preserve">
+    <value>Г-н / г-жа</value>
+  </data>
+  <data name="AckWillHelp" xml:space="preserve">
+    <value>поможет</value>
+  </data>
+  <data name="Crash" xml:space="preserve">
+    <value>Сбой</value>
+  </data>
+  <data name="Fall" xml:space="preserve">
+    <value>Осень</value>
+  </data>
+  <data name="FallDetectionSetting" xml:space="preserve">
+    <value>Обнаружение падения</value>
+  </data>
+  <data name="FallDetectionCaps" xml:space="preserve">
+    <value>ОБНАРУЖЕНИЕ ПАДЕНИЯ</value>
+  </data>
+  <data name="SettingsFallDetectorMessage" xml:space="preserve">
+    <value>Включение или отключение обнаружения падения</value>
+  </data>
+  <data name="SettingsFallDetectorSubtitle" xml:space="preserve">
+    <value>Guardian используется в экстренных случаях</value>
+  </data>
+  <data name="CommunityRequestNotificationMessage" xml:space="preserve">
+    <value>У вас есть новый запрос сообщества</value>
+  </data>
+  <data name="CommunityRequestNotificationTitle" xml:space="preserve">
+    <value>Запрос сообщества</value>
+  </data>
+  <data name="StickNotificationGuardianButtonOpenApp" xml:space="preserve">
+    <value>Открыть приложение</value>
+  </data>
+  <data name="StickNotificationGuardianMessage" xml:space="preserve">
+    <value>Вы защищены</value>
+  </data>
+  <data name="FallDetectedSosText" xml:space="preserve">
+    <value>ОБНАРУЖЕН ПАДЕНИЕ</value>
+  </data>
+  <data name="FallDetectorSettings" xml:space="preserve">
+    <value>Настройки детектора</value>
+  </data>
+  <data name="FALLING_WAIST_SV_TOT" xml:space="preserve">
+    <value>FALLING_WAIST_SV_TOT</value>
+  </data>
+  <data name="FILTER_FACTOR_0" xml:space="preserve">
+    <value>FILTER_FACTOR_0</value>
+  </data>
+  <data name="FILTER_FACTOR_1" xml:space="preserve">
+    <value>FILTER_FACTOR_1</value>
+  </data>
+  <data name="FILTER_HPF_GAIN" xml:space="preserve">
+    <value>FILTER_HPF_GAIN</value>
+  </data>
+  <data name="FILTER_LPF_GAIN" xml:space="preserve">
+    <value>FILTER_LPF_GAIN</value>
+  </data>
+  <data name="IMPACT_WAIST_SV_D" xml:space="preserve">
+    <value>IMPACT_WAIST_SV_D</value>
+  </data>
+  <data name="IMPACT_WAIST_SV_MAXMIN" xml:space="preserve">
+    <value>IMPACT_WAIST_SV_MAXMIN</value>
+  </data>
+  <data name="IMPACT_WAIST_SV_TOT" xml:space="preserve">
+    <value>IMPACT_WAIST_SV_TOT</value>
+  </data>
+  <data name="IMPACT_WAIST_Z_2" xml:space="preserve">
+    <value>IMPACT_WAIST_Z_2</value>
+  </data>
+  <data name="INTERVAL_MS" xml:space="preserve">
+    <value>INTERVAL_MS</value>
+  </data>
+  <data name="LYING_AVERAGE_Z_LPF" xml:space="preserve">
+    <value>LYING_AVERAGE_Z_LPF</value>
+  </data>
+  <data name="FillAllDetectorValues" xml:space="preserve">
+    <value>Заполните все значения</value>
+  </data>
+  <data name="SettingUpdateProfle" xml:space="preserve">
+    <value>Редактировать профиль</value>
+  </data>
+  <data name="RegistrationTitle" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
 </root>

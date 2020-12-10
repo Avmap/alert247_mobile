@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AlertApp.Droid;
 using AlertApp.Infrastructure;
 using AlertApp.Model;
 using AlertApp.Model.Api;
 using AlertApp.Services.Cryptography;
-using AlertApp.Utils;
 using AlertApp.ViewModels;
 using Android.App;
 using Android.Content;
@@ -17,15 +11,12 @@ using Android.Graphics;
 using Android.Media;
 using Android.OS;
 using Android.Preferences;
-using Android.Runtime;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
-using Android.Util;
 using Android.Views;
-using Android.Widget;
 using Firebase.Messaging;
 using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
+
 using Xamarin.Forms;
 using static AlertApp.Model.Language;
 using static Android.App.KeyguardManager;
@@ -151,7 +142,7 @@ namespace AlertApp.Android
             wl.SetReferenceCounted(false);
             wl.Acquire(8000);
 
-            Bitmap bm = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.icon);
+            Bitmap bm = BitmapFactory.DecodeResource(Resources, AlertApp.Droid.Resource.Mipmap.icon);
             //create pending intent action
             var intent = new Intent(this, typeof(MainActivity));
             //here we can send custom actions depends on notification content and type.
@@ -169,10 +160,10 @@ namespace AlertApp.Android
             intent.PutExtra(EXTRA_SENDER_PUBLIC_KEY, publicKey);
 
             var pendingIntent = PendingIntent.GetActivity(this, 0 /* Request code */, intent, PendingIntentFlags.UpdateCurrent);
-            int color = ContextCompat.GetColor(this, Resource.Color.notificationColor);
+            int color = ContextCompat.GetColor(this, AlertApp.Droid.Resource.Color.notificationColor);
             var defaultSoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
             var notificationBuilder = new NotificationCompat.Builder(this, Channelid)
-                .SetSmallIcon(Resource.Drawable.ic_stat_logo_icon_notification)
+                .SetSmallIcon(AlertApp.Droid.Resource.Drawable.ic_stat_logo_icon_notification)
                 .SetContentTitle(title)
                 .SetColor(color)
                 .SetContentText(messageBody)
@@ -218,7 +209,7 @@ namespace AlertApp.Android
             wl.SetReferenceCounted(false);
             wl.Acquire(8000);
 
-            Bitmap bm = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.icon);
+            Bitmap bm = BitmapFactory.DecodeResource(Resources, AlertApp.Droid.Resource.Mipmap.icon);
             //create pending intent action
             var intent = new Intent(this, typeof(MainActivity));
             //here we can send custom actions depends on notification content and type.
@@ -230,10 +221,10 @@ namespace AlertApp.Android
             intent.PutExtra(EXTRA_CELLPHONE, cellphone);
 
             var pendingIntent = PendingIntent.GetActivity(this, 0 /* Request code */, intent, PendingIntentFlags.UpdateCurrent);
-            int color = ContextCompat.GetColor(this, Resource.Color.notificationColor);
+            int color = ContextCompat.GetColor(this, AlertApp.Droid.Resource.Color.notificationColor);
             var defaultSoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
             var notificationBuilder = new NotificationCompat.Builder(this, Channelid)
-                .SetSmallIcon(Resource.Drawable.ic_stat_logo_icon_notification)
+                .SetSmallIcon(AlertApp.Droid.Resource.Drawable.ic_stat_logo_icon_notification)
                 .SetContentTitle(title)
                 .SetColor(color)
                 .SetContentText(messageBody)
@@ -310,13 +301,13 @@ namespace AlertApp.Android
             wl.SetReferenceCounted(false);
             wl.Acquire(8000);
 
-            Bitmap bm = BitmapFactory.DecodeResource(Resources, Resource.Mipmap.icon);
+            Bitmap bm = BitmapFactory.DecodeResource(Resources, AlertApp.Droid.Resource.Mipmap.icon);
 
 
-            int color = ContextCompat.GetColor(this, Resource.Color.notificationColor);
+            int color = ContextCompat.GetColor(this, AlertApp.Droid.Resource.Color.notificationColor);
             var defaultSoundUri = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
             var notificationBuilder = new NotificationCompat.Builder(this, Channelid)
-                .SetSmallIcon(Resource.Drawable.ic_stat_logo_icon_notification)
+                .SetSmallIcon(AlertApp.Droid.Resource.Drawable.ic_stat_logo_icon_notification)
                 .SetContentTitle(title)
                 .SetColor(color)
                 .SetContentText(messageBody)

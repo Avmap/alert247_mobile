@@ -7,12 +7,11 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using CarouselView.FormsPlugin.Android;
-using Com.Google.Android.Gms.Auth.Api.Phone;
 using Java.Security;
 using Java.Nio.Charset;
 using Java.Util;
-using Plugin.FirebasePushNotification;
 using Android.Content;
+using Android.Gms.Auth.Api.Phone;
 using Plugin.CurrentActivity;
 using Firebase.Analytics;
 using Plugin.Permissions;
@@ -44,7 +43,7 @@ namespace AlertApp.Droid
             CarouselViewRenderer.Init();
             ImageCircleRenderer.Init();
             LoadApplication(new App());
-            FirebasePushNotificationManager.ProcessIntent(this, Intent);
+            Plugin.FirebasePushNotification.FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
 
             Window.SetFlags(WindowManagerFlags.KeepScreenOn, WindowManagerFlags.KeepScreenOn);

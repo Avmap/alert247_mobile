@@ -79,7 +79,7 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I have accept.
+        ///   Looks up a localized string similar to I accepted.
         /// </summary>
         internal static string AcceptedFromMe {
             get {
@@ -961,7 +961,7 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Medecine.
+        ///   Looks up a localized string similar to Medicine.
         /// </summary>
         internal static string Medecine {
             get {
@@ -970,7 +970,7 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Medecine.
+        ///   Looks up a localized string similar to Medicine.
         /// </summary>
         internal static string medicine {
             get {
@@ -1024,7 +1024,7 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No alert recepients.
+        ///   Looks up a localized string similar to No alert recipients.
         /// </summary>
         internal static string NoAlertRecipients {
             get {
@@ -1182,6 +1182,15 @@ namespace AlertApp.Resx {
         internal static string RegistrationPageTitle {
             get {
                 return ResourceManager.GetString("RegistrationPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration.
+        /// </summary>
+        internal static string RegistrationTitle {
+            get {
+                return ResourceManager.GetString("RegistrationTitle", resourceCulture);
             }
         }
         
@@ -1357,7 +1366,7 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enviroment.
+        ///   Looks up a localized string similar to Environment.
         /// </summary>
         internal static string SettingEnviroment {
             get {
@@ -1564,7 +1573,7 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download Alert24/7  &quot;https://play.google.com/store/apps/details?id=gr.avmap.alert247.
+        ///   Looks up a localized string similar to Download Alert24/7  &quot;https://play.google.com/store/apps/details?id=gr.avmap.alert247&quot;.
         /// </summary>
         internal static string ShareMessage {
             get {
@@ -1573,7 +1582,7 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get Alert 24/7 app.
+        ///   Looks up a localized string similar to Get Alert24/7 app.
         /// </summary>
         internal static string ShareMessageTitle {
             get {
@@ -1708,7 +1717,7 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SwitchAccident.
+        ///   Looks up a localized string similar to ACCIDENT.
         /// </summary>
         internal static string SwitchAccident {
             get {

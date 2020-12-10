@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using AlertApp.Infrastructure;
 using Android.Content;
 using Android.Gms.Tasks;
-using Com.Google.Android.Gms.Auth.Api.Phone;
+using Android.Gms.Auth.Api.Phone;
+
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(AlertApp.Droid.DependencyService.OtpVerification))]
@@ -45,7 +46,7 @@ namespace AlertApp.Droid.DependencyService
             }
         }
 
-        internal class FailureListener : Java.Lang.Throwable, IOnFailureListener
+        internal class FailureListener : Java.Lang.Object, IOnFailureListener
         {
             public void OnFailure(Java.Lang.Exception e)
             {

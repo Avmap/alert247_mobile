@@ -30,7 +30,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>x86_64</MtouchArch>
-    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <MtouchSdkVersion>12.1</MtouchSdkVersion>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
@@ -219,7 +219,7 @@
       <Version>2.2.1</Version>
     </PackageReference>
     <PackageReference Include="Plugin.FirebasePushNotification">
-      <Version>2.3.5</Version>
+      <Version>3.3.10</Version>
     </PackageReference>
     <PackageReference Include="Plugin.Permissions">
       <Version>3.0.0.12</Version>

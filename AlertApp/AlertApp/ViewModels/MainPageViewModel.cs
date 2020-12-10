@@ -4,7 +4,6 @@ using AlertApp.Resx;
 using AlertApp.Services.Profile;
 using AlertApp.Services.Settings;
 using AlertApp.Utils;
-using Plugin.FirebasePushNotification;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
@@ -156,7 +155,7 @@ namespace AlertApp.ViewModels
         private async void PingServer()
         {
             var userToken = await _localSettingsService.GetAuthToken();
-            var firebaseToken = CrossFirebasePushNotification.Current.Token;
+            var firebaseToken = Plugin.FirebasePushNotification.CrossFirebasePushNotification.Current.Token;
             Location location = null;
             try
             {

@@ -64,16 +64,20 @@ namespace AlertApp.Services.Settings
 
         public async Task<string> GetPrivateKey()
         {
-
+            string mykey="";
             try
             {
-                return await SecureStorage.GetAsync(utils.Settings.PrivateKey);
+                mykey = await SecureStorage.GetAsync(utils.Settings.PrivateKey);
+                if (String.IsNullOrEmpty(mykey))
+                    mykey = Preferences.Get(utils.Settings.PrivateKey, "");
+
             }
             catch (Exception ex)
             {
                 // Possible that device doesn't support secure storage on device.
-                return Preferences.Get(utils.Settings.PrivateKey, "");
+                mykey =  Preferences.Get(utils.Settings.PrivateKey, "");
             }
+            return mykey;
         }
 
         public async Task<string> GetPublicKey()

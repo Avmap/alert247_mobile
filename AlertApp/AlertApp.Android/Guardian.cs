@@ -25,7 +25,7 @@ using Android.Views;
 using Android.Widget;
 using Java.Lang;
 using Java.Text;
-using Plugin.FirebasePushNotification;
+
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Math = System.Math;
@@ -181,7 +181,7 @@ namespace AlertApp.Droid
                 .SetTicker("ticker")
                 .SetWhen(JavaSystem.CurrentTimeMillis());
 
-            if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
                 builder.SetChannelId(ChannelId);
                 NotificationManager notificationManager = (NotificationManager)GetSystemService(Context.NotificationService);
@@ -398,7 +398,7 @@ namespace AlertApp.Droid
                 {
                     var location = result.LastLocation;
                     var token = await SecureStorage.GetAsync(AlertApp.Utils.Settings.AuthToken);
-                    var firebaseToken = CrossFirebasePushNotification.Current.Token;
+                    var firebaseToken = Plugin.FirebasePushNotification.CrossFirebasePushNotification.Current.Token;
                     if (!string.IsNullOrWhiteSpace(firebaseToken))
                     {
                         await UserProfileService.Ping(token, location.Latitude, location.Longitude, firebaseToken);

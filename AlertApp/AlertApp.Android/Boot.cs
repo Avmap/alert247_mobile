@@ -28,7 +28,7 @@ namespace AlertApp.Droid
                     if (prefs.GetBoolean(Settings.AlwaysOn, false))
                     {
                         Intent i = new Intent(context, typeof(Guardian));
-                        if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
+                        if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
                         {
                             context.StartForegroundService(i);
                         }

@@ -4,7 +4,6 @@ using AlertApp.Model;
 using AlertApp.Pages;
 using AlertApp.Services.Settings;
 using AlertApp.Utils;
-using Plugin.FirebasePushNotification;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;

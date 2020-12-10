@@ -64,7 +64,7 @@ namespace AlertApp.Droid.DependencyService
                 IvParameterSpec ivSpec = new IvParameterSpec(IV);
 
                 //Initialize Cipher for ENCRYPT_MODE
-                cipher.Init(Cipher.EncryptMode, secret, ivSpec);
+                cipher.Init(CipherMode.EncryptMode, secret, ivSpec);
 
                 //Perform Encryption
                 byte[] cipherText = cipher.DoFinal(System.Text.Encoding.UTF8.GetBytes(data));
@@ -92,7 +92,7 @@ namespace AlertApp.Droid.DependencyService
                 SecretKeySpec secret = new SecretKeySpec(tmp.GetEncoded(), "AES");
 
                 Cipher cipher = Cipher.GetInstance("AES/CBC/PKCS5PADDING");
-                cipher.Init(Cipher.DecryptMode, secret, ivspec);
+                cipher.Init(CipherMode.DecryptMode, secret, ivspec);
                 byte[] cipherText = cipher.DoFinal(System.Text.Encoding.UTF8.GetBytes(strToDecrypt));
                 return System.Text.Encoding.UTF8.GetString(cipherText);
             }

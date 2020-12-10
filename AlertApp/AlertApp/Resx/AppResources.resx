@@ -356,7 +356,7 @@
     <value>Blocked</value>
   </data>
   <data name="AcceptedFromMe" xml:space="preserve">
-    <value>I have accept</value>
+    <value>I accepted</value>
   </data>
   <data name="DontUseOtpAsPinMessage" xml:space="preserve">
     <value>Attention : Don't use OTP code as pin</value>
@@ -407,7 +407,7 @@
     <value>Height</value>
   </data>
   <data name="Medecine" xml:space="preserve">
-    <value>Medecine</value>
+    <value>Medicine</value>
   </data>
   <data name="NewAlertTitle" xml:space="preserve">
     <value>NEW ALERT</value>
@@ -461,7 +461,7 @@
     <value>Finish</value>
   </data>
   <data name="NoAlertRecipients" xml:space="preserve">
-    <value>No alert recepients</value>
+    <value>No alert recipients</value>
   </data>
   <data name="RegistrationCreatePinPromt" xml:space="preserve">
     <value>Create your personal 4digit code (PIN). Enter below.</value>
@@ -482,7 +482,7 @@
     <value>Area</value>
   </data>
   <data name="medicine" xml:space="preserve">
-    <value>Medecine</value>
+    <value>Medicine</value>
   </data>
   <data name="other" xml:space="preserve">
     <value>Other</value>
@@ -491,10 +491,10 @@
     <value>Add</value>
   </data>
   <data name="ShareMessage" xml:space="preserve">
-    <value>Download Alert24/7  "https://play.google.com/store/apps/details?id=gr.avmap.alert247</value>
+    <value>Download Alert24/7  "https://play.google.com/store/apps/details?id=gr.avmap.alert247"</value>
   </data>
   <data name="ShareMessageTitle" xml:space="preserve">
-    <value>Get Alert 24/7 app</value>
+    <value>Get Alert24/7 app</value>
   </data>
   <data name="SettingChangePin" xml:space="preserve">
     <value>Change PIN</value>
@@ -503,7 +503,7 @@
     <value>Contacts</value>
   </data>
   <data name="SettingEnviroment" xml:space="preserve">
-    <value>Enviroment</value>
+    <value>Environment</value>
   </data>
   <data name="SettingLanguage" xml:space="preserve">
     <value>Language</value>
@@ -536,7 +536,7 @@
     <value>Enable or disable buttons you want to show in app and press "Confirm"</value>
   </data>
   <data name="SwitchAccident" xml:space="preserve">
-    <value>SwitchAccident</value>
+    <value>ACCIDENT</value>
   </data>
   <data name="SwitchFire" xml:space="preserve">
     <value>FIRE</value>
@@ -738,5 +738,8 @@
   </data>
   <data name="SettingUpdateProfle" xml:space="preserve">
     <value>Edit profile</value>
+  </data>
+  <data name="RegistrationTitle" xml:space="preserve">
+    <value>Registration</value>
   </data>
 </root>

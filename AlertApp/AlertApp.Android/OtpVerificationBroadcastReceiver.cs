@@ -11,7 +11,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Com.Google.Android.Gms.Auth.Api.Phone;
+using Android.Gms.Auth.Api.Phone;
 using Xamarin.Forms;
 
 namespace AlertApp.Droid

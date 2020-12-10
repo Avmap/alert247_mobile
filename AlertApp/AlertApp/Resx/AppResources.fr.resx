@@ -355,4 +355,388 @@
   <data name="BlockedUsersPage" xml:space="preserve">
     <value>Bloqué</value>
   </data>
+  <data name="AcceptedFromMe" xml:space="preserve">
+    <value>j'ai accepté</value>
+  </data>
+  <data name="DontUseOtpAsPinMessage" xml:space="preserve">
+    <value>Attention: n'utilisez pas le code OTP comme broche</value>
+  </data>
+  <data name="NoItems" xml:space="preserve">
+    <value>Aucun contact trouvé</value>
+  </data>
+  <data name="LocationServicesOffMessage" xml:space="preserve">
+    <value>Les services de localisation sont désactivés. Veuillez l'ouvrir pour assurer votre sécurité.</value>
+  </data>
+  <data name="SuccessSendAlert" xml:space="preserve">
+    <value>Succès</value>
+  </data>
+  <data name="SuccessSendAlertMessage" xml:space="preserve">
+    <value>envoyer avec succès à</value>
+  </data>
+  <data name="SuccessSendAlertMessageContacts" xml:space="preserve">
+    <value>Contacts.</value>
+  </data>
+  <data name="Accident" xml:space="preserve">
+    <value>Accident</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="Fire" xml:space="preserve">
+    <value>Feu</value>
+  </data>
+  <data name="Threat" xml:space="preserve">
+    <value>Menace</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Âge</value>
+  </data>
+  <data name="Allergies" xml:space="preserve">
+    <value>Les allergies</value>
+  </data>
+  <data name="EmergencyAlertText" xml:space="preserve">
+    <value>Un de vos contacts a utilisé l'appel d'alerte d'urgence SOS</value>
+  </data>
+  <data name="EnterPinFor" xml:space="preserve">
+    <value>ENTRER LE PIN DANS L'ORDRE</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>la taille</value>
+  </data>
+  <data name="Medecine" xml:space="preserve">
+    <value>Médicament</value>
+  </data>
+  <data name="NewAlertTitle" xml:space="preserve">
+    <value>NOUVELLE ALERTE</value>
+  </data>
+  <data name="PressedAlert" xml:space="preserve">
+    <value>Tu as pressé</value>
+  </data>
+  <data name="SendAlertTitle" xml:space="preserve">
+    <value>Envoyer une alerte SOS</value>
+  </data>
+  <data name="SendingAlertToSelectedContacts" xml:space="preserve">
+    <value>Envoi d'une alerte aux contacts sélectionnés dans ...</value>
+  </data>
+  <data name="UserIsInPosition" xml:space="preserve">
+    <value>Maintenant, il est sur:</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Poids</value>
+  </data>
+  <data name="AcceptContactRequest" xml:space="preserve">
+    <value>J'accepte</value>
+  </data>
+  <data name="ContactRequestText" xml:space="preserve">
+    <value>Le contact suivant souhaite vous ajouter à l'application ALERT 24/7.</value>
+  </data>
+  <data name="IgnoreContactRequest" xml:space="preserve">
+    <value>Ignorer</value>
+  </data>
+  <data name="NewContactRequestTitle" xml:space="preserve">
+    <value>DEMANDE DE CONTACT</value>
+  </data>
+  <data name="StartSettings" xml:space="preserve">
+    <value>DÉMARRER LES PARAMÈTRES</value>
+  </data>
+  <data name="VerificationCodePageTitle" xml:space="preserve">
+    <value>CODE DE VÉRIFICATION</value>
+  </data>
+  <data name="LocationTrackingExplanation" xml:space="preserve">
+    <value>Votre position est utilisée afin de localiser votre appareil et d'envoyer sa position à vos contacts en cas d'urgence. Vous pouvez désactiver ce paramètre ultérieurement via les paramètres.</value>
+  </data>
+  <data name="RegistrationEnterPinPromt" xml:space="preserve">
+    <value>Entrez ce qui suit et appuyez sur "Suivant" pour continuer</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>DÉTAILS DE L'UTILISATEUR</value>
+  </data>
+  <data name="RegistrationEnterFieldsPromt" xml:space="preserve">
+    <value>Veuillez saisir vos informations personnelles. En cas d'urgence sera envoyé aux contacts de votre choix.</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>terminer</value>
+  </data>
+  <data name="NoAlertRecipients" xml:space="preserve">
+    <value>Aucun destinataire d'alerte</value>
+  </data>
+  <data name="RegistrationCreatePinPromt" xml:space="preserve">
+    <value>Créez votre code personnel à 4 chiffres (PIN). Entrez ci-dessous.</value>
+  </data>
+  <data name="MainPressToCancel" xml:space="preserve">
+    <value>Appuyez à nouveau pour annuler</value>
+  </data>
+  <data name="InviteFriendsSubtitle" xml:space="preserve">
+    <value>Vos amis n'ont pas encore découvert Alert 24/7. Invitez-les à télécharger l'application.</value>
+  </data>
+  <data name="InviteFriendsTitle" xml:space="preserve">
+    <value>Invite tes amis!</value>
+  </data>
+  <data name="SelectContact" xml:space="preserve">
+    <value>Sélectionnez le contact à ajouter</value>
+  </data>
+  <data name="area" xml:space="preserve">
+    <value>Zone</value>
+  </data>
+  <data name="medicine" xml:space="preserve">
+    <value>Médicament</value>
+  </data>
+  <data name="other" xml:space="preserve">
+    <value>Autre</value>
+  </data>
+  <data name="AddContactMenu" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="ShareMessage" xml:space="preserve">
+    <value>Télécharger Alert24/7 "https://play.google.com/store/apps/details?id=gr.avmap.alert247"</value>
+  </data>
+  <data name="ShareMessageTitle" xml:space="preserve">
+    <value>Obtenez l'application Alert24/7</value>
+  </data>
+  <data name="SettingChangePin" xml:space="preserve">
+    <value>Changer le code PIN</value>
+  </data>
+  <data name="SettingContacts" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="SettingEnviroment" xml:space="preserve">
+    <value>Environnement</value>
+  </data>
+  <data name="SettingLanguage" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="SettingLanguageSubTitle" xml:space="preserve">
+    <value>Choisissez la langue</value>
+  </data>
+  <data name="SettingLanguageTitle" xml:space="preserve">
+    <value>Paramètres - Langue</value>
+  </data>
+  <data name="SettingLocation" xml:space="preserve">
+    <value>Localisation</value>
+  </data>
+  <data name="SettingsAccount" xml:space="preserve">
+    <value>Compte</value>
+  </data>
+  <data name="SettingsPermissions" xml:space="preserve">
+    <value>Autorisations</value>
+  </data>
+  <data name="SettingsView" xml:space="preserve">
+    <value>Vue</value>
+  </data>
+  <data name="SettingButtonsSubTitle" xml:space="preserve">
+    <value>Boutons d'application</value>
+  </data>
+  <data name="SettingButtonsTitle" xml:space="preserve">
+    <value>Paramètres - UI</value>
+  </data>
+  <data name="SettingsButtonsViewMessage" xml:space="preserve">
+    <value>Activez ou désactivez les boutons que vous souhaitez afficher dans l'application et appuyez sur «Confirmer»</value>
+  </data>
+  <data name="SwitchAccident" xml:space="preserve">
+    <value>ACCIDENT</value>
+  </data>
+  <data name="SwitchFire" xml:space="preserve">
+    <value>FEU</value>
+  </data>
+  <data name="SwitchTreat" xml:space="preserve">
+    <value>MENACE</value>
+  </data>
+  <data name="SwitchContacts" xml:space="preserve">
+    <value>CONTACTS</value>
+  </data>
+  <data name="SwitchInformation" xml:space="preserve">
+    <value>INFORMATION</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="ConfirmPinToSaveSettings" xml:space="preserve">
+    <value>Pour enregistrer, entrez le code à 4 broches et appuyez sur "Terminer"</value>
+  </data>
+  <data name="SettingPermissionLocationSubTitle" xml:space="preserve">
+    <value>Emplacement</value>
+  </data>
+  <data name="SettingPermissionTitle" xml:space="preserve">
+    <value>Paramètres - Autorisations</value>
+  </data>
+  <data name="SettingsLocationMessage" xml:space="preserve">
+    <value>Activer ou désactiver le suivi de l'emplacement</value>
+  </data>
+  <data name="SettingsLocationSubtitle" xml:space="preserve">
+    <value>L'emplacement est utilisé en cas d'urgence</value>
+  </data>
+  <data name="ContactPermissionSetting" xml:space="preserve">
+    <value>PERMISSION DE CONTACTS</value>
+  </data>
+  <data name="ContactPermissionSettingTitle" xml:space="preserve">
+    <value>Accès au contact</value>
+  </data>
+  <data name="SettingsContactsPermissionSubtitle" xml:space="preserve">
+    <value>Besoin d'une autorisation pour vous protéger</value>
+  </data>
+  <data name="SettingAccountTitle" xml:space="preserve">
+    <value>Paramètres - Compte</value>
+  </data>
+  <data name="SettingsChangePinMessage" xml:space="preserve">
+    <value>Entrez le code PIN actuel</value>
+  </data>
+  <data name="EnterNewPin" xml:space="preserve">
+    <value>NOUVELLE ÉPINGLE</value>
+  </data>
+  <data name="ReEnterNewPin" xml:space="preserve">
+    <value>ENTREZ ENCORE</value>
+  </data>
+  <data name="ContactsPermissionActive" xml:space="preserve">
+    <value>ACTIF</value>
+  </data>
+  <data name="ContactsPermissionInActive" xml:space="preserve">
+    <value>APPUYER POUR ACTIVER</value>
+  </data>
+  <data name="Succcess" xml:space="preserve">
+    <value>Succès</value>
+  </data>
+  <data name="SucccessChangePinMessage" xml:space="preserve">
+    <value>La broche a bien été modifiée</value>
+  </data>
+  <data name="DevelopedBy" xml:space="preserve">
+    <value>Développé par</value>
+  </data>
+  <data name="DevelopedFor" xml:space="preserve">
+    <value>pour</value>
+  </data>
+  <data name="PrivacyTerms" xml:space="preserve">
+    <value>termes et conditions</value>
+  </data>
+  <data name="WrongPin" xml:space="preserve">
+    <value>Vous avez entré une mauvaise broche.</value>
+  </data>
+  <data name="AlwaysOnCaps" xml:space="preserve">
+    <value>TOUJOURS ACTIVÉ</value>
+  </data>
+  <data name="DeleteAccountHistory" xml:space="preserve">
+    <value>Supprimer les données du compte</value>
+  </data>
+  <data name="DownloadAccountHistory" xml:space="preserve">
+    <value>Télécharger les données du compte</value>
+  </data>
+  <data name="SettingDeleteAccount" xml:space="preserve">
+    <value>Supprimer le compte</value>
+  </data>
+  <data name="SettingHistory" xml:space="preserve">
+    <value>Historique du compte</value>
+  </data>
+  <data name="SettingsAccountHistoryMessage" xml:space="preserve">
+    <value>Téléchargez ou supprimez l'historique de votre compte</value>
+  </data>
+  <data name="DeleteAccountMessageAlert" xml:space="preserve">
+    <value>L'historique des données de votre compte sera supprimé</value>
+  </data>
+  <data name="ErrorDeleteHistory" xml:space="preserve">
+    <value>Erreur lors de la suppression des données du compte.</value>
+  </data>
+  <data name="SucccessDeleteHistory" xml:space="preserve">
+    <value>Les données du compte ont bien été supprimées</value>
+  </data>
+  <data name="PermissionsDenied" xml:space="preserve">
+    <value>Autorisations refusées</value>
+  </data>
+  <data name="PermissionsStorageDeniedMessage" xml:space="preserve">
+    <value>Impossible de télécharger le fichier historique.</value>
+  </data>
+  <data name="SettingsAlwaysOnMessage" xml:space="preserve">
+    <value>Activer ou désactiver le tuteur</value>
+  </data>
+  <data name="SettingsAlwaysOnSubtitle" xml:space="preserve">
+    <value>Guardian est utilisé en cas d'urgence</value>
+  </data>
+  <data name="SucccessSaveAccountFile" xml:space="preserve">
+    <value>Fichier de compte enregistré avec succès</value>
+  </data>
+  <data name="AckNotHelp" xml:space="preserve">
+    <value>n'aidera pas</value>
+  </data>
+  <data name="AckSuffix" xml:space="preserve">
+    <value>M. / Mme</value>
+  </data>
+  <data name="AckWillHelp" xml:space="preserve">
+    <value>aidera</value>
+  </data>
+  <data name="Crash" xml:space="preserve">
+    <value>crash</value>
+  </data>
+  <data name="Fall" xml:space="preserve">
+    <value>Tomber</value>
+  </data>
+  <data name="FallDetectionSetting" xml:space="preserve">
+    <value>Détection de chute</value>
+  </data>
+  <data name="FallDetectionCaps" xml:space="preserve">
+    <value>DÉTECTION DE CHUTE</value>
+  </data>
+  <data name="SettingsFallDetectorMessage" xml:space="preserve">
+    <value>Activer ou désactiver la détection de chute</value>
+  </data>
+  <data name="SettingsFallDetectorSubtitle" xml:space="preserve">
+    <value>Guardian est utilisé en cas d'urgence</value>
+  </data>
+  <data name="CommunityRequestNotificationMessage" xml:space="preserve">
+    <value>Vous avez une nouvelle demande de communauté</value>
+  </data>
+  <data name="CommunityRequestNotificationTitle" xml:space="preserve">
+    <value>Demande de communauté</value>
+  </data>
+  <data name="StickNotificationGuardianButtonOpenApp" xml:space="preserve">
+    <value>Ouvrir application</value>
+  </data>
+  <data name="StickNotificationGuardianMessage" xml:space="preserve">
+    <value>Tu es protégé</value>
+  </data>
+  <data name="FallDetectedSosText" xml:space="preserve">
+    <value>AUTOMNE DÉTECTÉE</value>
+  </data>
+  <data name="FallDetectorSettings" xml:space="preserve">
+    <value>Paramètres du détecteur</value>
+  </data>
+  <data name="FALLING_WAIST_SV_TOT" xml:space="preserve">
+    <value>FALLING_WAIST_SV_TOT</value>
+  </data>
+  <data name="FILTER_FACTOR_0" xml:space="preserve">
+    <value>FILTER_FACTOR_0</value>
+  </data>
+  <data name="FILTER_FACTOR_1" xml:space="preserve">
+    <value>FILTER_FACTOR_1</value>
+  </data>
+  <data name="FILTER_HPF_GAIN" xml:space="preserve">
+    <value>FILTER_HPF_GAIN</value>
+  </data>
+  <data name="FILTER_LPF_GAIN" xml:space="preserve">
+    <value>FILTER_LPF_GAIN</value>
+  </data>
+  <data name="IMPACT_WAIST_SV_D" xml:space="preserve">
+    <value>IMPACT_WAIST_SV_D</value>
+  </data>
+  <data name="IMPACT_WAIST_SV_MAXMIN" xml:space="preserve">
+    <value>IMPACT_WAIST_SV_MAXMIN</value>
+  </data>
+  <data name="IMPACT_WAIST_SV_TOT" xml:space="preserve">
+    <value>IMPACT_WAIST_SV_TOT</value>
+  </data>
+  <data name="IMPACT_WAIST_Z_2" xml:space="preserve">
+    <value>IMPACT_WAIST_Z_2</value>
+  </data>
+  <data name="INTERVAL_MS" xml:space="preserve">
+    <value>INTERVAL_MS</value>
+  </data>
+  <data name="LYING_AVERAGE_Z_LPF" xml:space="preserve">
+    <value>LYING_AVERAGE_Z_LPF</value>
+  </data>
+  <data name="FillAllDetectorValues" xml:space="preserve">
+    <value>Remplissez toutes les valeurs</value>
+  </data>
+  <data name="SettingUpdateProfle" xml:space="preserve">
+    <value>Editer le profil</value>
+  </data>
+  <data name="RegistrationTitle" xml:space="preserve">
+    <value>enregistrement</value>
+  </data>
 </root>
