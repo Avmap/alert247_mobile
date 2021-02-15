@@ -17,7 +17,8 @@
         <Setter Property="BarBackgroundColor" Value="White"/>
         <Setter Property="BarTextColor" Value="{StaticResource PrimaryColor}"/>
     </Style>
-
+    
+    
     <Style x:Key="DefaultButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="White" />
         <Setter Property="FontSize" Value="Medium" />
@@ -27,6 +28,21 @@
                 Right="{StaticResource Default2Margin}" />
         </Setter>
         <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+    </Style>
+    <Style x:Key="AlertDefaultButton" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryButtonColor}" />
+        <Setter Property="TextColor" Value="{StaticResource PrimaryButtonTextColor}"/>
+        <Setter Property="CornerRadius" Value="10" />
+    </Style>
+    <Style x:Key="AlertSuccessButton" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource SuccessButtonColor}" />
+        <Setter Property="TextColor" Value="{StaticResource SuccessButtonTextColor}"/>
+        <Setter Property="CornerRadius" Value="10" />
+    </Style>
+    <Style x:Key="AlertDangerButton" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource DangerButtonColor}" />
+        <Setter Property="TextColor" Value="{StaticResource DangerButtonTextColor}"/>
+        <Setter Property="CornerRadius" Value="10" />
     </Style>
     <Style x:Key="AccentColorButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />

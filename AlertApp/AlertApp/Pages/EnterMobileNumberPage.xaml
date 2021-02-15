@@ -18,16 +18,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <views:Toolbar BackCommand="{Binding BaseBackCommand}" HasBackButton="True" Title="{infrastructure:Translate StartSettings}" SubTitle="{infrastructure:Translate EnterMobileNumberTitle}" Grid.Row="0" ></views:Toolbar>
-            <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="Center" Spacing="0">
-                <Image WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}" HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding SelectedLanguage.Flag}">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Label Text="{Binding SelectedLanguage.Name}" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-            </StackLayout>
             <StackLayout Grid.Row="2" HorizontalOptions="FillAndExpand" Spacing="10" Margin="16,4,16,0">
-                <Label Text="{infrastructure:Translate EnterMobileMessage}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource RegistrationText}"></Label>
                 <StackLayout Orientation="Horizontal" Spacing="8" HorizontalOptions="FillAndExpand">
                     <Frame BackgroundColor="#E6E7E8" CornerRadius="16" Padding="2,2,2,2" HasShadow="False">
                         <infrastructure:NoUnderlineEntry Keyboard="Telephone"  Margin="8,0,0,0" MaxLength="5" Text="{Binding CountryPrefix}" HorizontalTextAlignment="Start" WidthRequest="90" Style="{StaticResource RegistrationEntry}">
@@ -45,12 +36,19 @@
                     </Frame>
                 </StackLayout>
                 <StackLayout Orientation="Vertical" Margin="0,6,0,0" HorizontalOptions="Center">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer  Command="{Binding ContinueCommand}"></TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
-                    <Image HeightRequest="56" WidthRequest="56"  Source="next_copy.png"/>
-                    <Label Text="{infrastructure:Translate Continue}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
+                    <Button Text="{infrastructure:Translate Continue}"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center"
+                        Clicked="OnButtonNextClicked"
+                        Style="{StaticResource AlertDefaultButton}"  
+                            />
+                    <Label 
+                        Text="{infrastructure:Translate EnterMobileMessage}" 
+                        HorizontalTextAlignment="Center" 
+                        HorizontalOptions="FillAndExpand" 
+                        Style="{StaticResource RegistrationText}"></Label>
                 </StackLayout>
+                
             </StackLayout>
         </Grid>
     </ContentPage.Content>

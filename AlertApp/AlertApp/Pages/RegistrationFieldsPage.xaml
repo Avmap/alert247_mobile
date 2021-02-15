@@ -9,9 +9,8 @@
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              x:Class="AlertApp.Pages.RegistrationFieldsPage">
     <ContentPage.Content>
-        <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Image Source="call_center.png"  AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" VerticalOptions="EndAndExpand" Aspect="AspectFill" HeightRequest="110" HorizontalOptions="FillAndExpand"></Image>
 
+        <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Grid  AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -19,20 +18,26 @@
                 </Grid.RowDefinitions>
                 <views:Toolbar Grid.Row="0" HasBackButton="False" Title="{infrastructure:Translate StartSettings}" SubTitle="{infrastructure:Translate UserDetails}" ></views:Toolbar>
                 <StackLayout Grid.Row="1" Orientation="Vertical" >
-
-                    <Label Margin="16,0,16,0" x:Name="labelPrompt"  Text="{infrastructure:Translate RegistrationEnterFieldsPromt}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
                     <StackLayout Margin="0,8,0,8" x:Name="topNextButton" IsVisible="False" Orientation="Vertical"  HorizontalOptions="Center">
                         <Image x:Name="topNextImage" HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
                         <Label Text="{infrastructure:Translate Finish}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
                     </StackLayout>
-                    <Frame  Padding="5,5,5,5" HasShadow="False" Margin="20,8,20,8" BorderColor="{StaticResource PrimaryColor}" CornerRadius="16"  HorizontalOptions="FillAndExpand">
+                    <Frame  HasShadow="False" Margin="20,8,20,8" HorizontalOptions="FillAndExpand">
                         <ScrollView Margin="16,0,16,0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <StackLayout Margin="0,12,0,12" x:Name="registrationContainer" Grid.Row="1" Orientation="Vertical"></StackLayout>
+                            <StackLayout>
+                                <Label Margin="16,0,16,0" x:Name="labelPrompt"  Text="{infrastructure:Translate RegistrationEnterFieldsPromt}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
+                                <StackLayout Margin="0,12,0,12" x:Name="registrationContainer" Grid.Row="1" Orientation="Vertical"></StackLayout>
+                            </StackLayout>
                         </ScrollView>
                     </Frame>
                     <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,6,0,15" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
-                        <Image x:Name="nextImage" HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
-                        <Label Text="{infrastructure:Translate Finish}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
+                        <Button Text="{infrastructure:Translate Finish}"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center"
+                        Clicked="SubmitRegistrationButton"
+                        Style="{StaticResource AlertDefaultButton}"  
+                            />
+                        
                     </StackLayout>
                 </StackLayout>
             </Grid>

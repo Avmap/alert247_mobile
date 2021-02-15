@@ -15,12 +15,20 @@ namespace AlertApp.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EnterMobileNumberPage : ContentPage
     {
-		public EnterMobileNumberPage()
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            txtPhone.Focus();
+        }
+
+        public EnterMobileNumberPage()
 		{
 			InitializeComponent ();
             NavigationPage.SetHasNavigationBar(this, false);
             this.BindingContext = ViewModelLocator.Instance.Resolve<EnterMobileNumberPageViewModel>();
-		}
+           
+
+        }
 
         private async void OnButtonNextClicked(object sender, EventArgs e)
         {
@@ -49,6 +57,11 @@ namespace AlertApp.Pages
                  Navigation.PopAsync(false);
            // });
            
+        }
+
+        private void ContinueCommand(object sender, EventArgs e)
+        {
+
         }
     }
 }

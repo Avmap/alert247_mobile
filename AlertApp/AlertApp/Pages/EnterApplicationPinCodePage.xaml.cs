@@ -14,7 +14,11 @@ namespace AlertApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EnterApplicationPinCodePage : ContentPage
     {
-        
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            pinLayout.Focus();
+        }
         public EnterApplicationPinCodePage()
         {
             InitializeComponent();

@@ -179,7 +179,8 @@ namespace AlertApp.ViewModels
         {
             get
             {
-                return _ResendCodeCommand ?? (_ResendCodeCommand = new Command(RequestVerificationCode, () =>
+                return _ResendCodeCommand ?? (_
+                    = new Command(RequestVerificationCode, () =>
                 {
                     return CanResendCode;
                 }));

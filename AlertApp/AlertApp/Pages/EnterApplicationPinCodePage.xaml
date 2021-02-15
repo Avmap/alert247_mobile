@@ -30,18 +30,18 @@
                         <Switch  VerticalOptions="Center" IsToggled="{Binding LocationTracking,Mode=TwoWay}"></Switch>
                     </StackLayout>
                     <StackLayout IsVisible="{Binding CanContinue}" Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="Center">
-                        <Image HeightRequest="56" WidthRequest="56" Source="next_copy.png">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer  Command="{Binding ContinueCommand}"></TapGestureRecognizer>
-                            </Image.GestureRecognizers>
-                        </Image>
-                        <Label Text="{infrastructure:Translate NextRegistration}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Button Text="{infrastructure:Translate NextRegistration}"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="Center"
+                                CornerRadius="10"
+                                Command="{Binding ContinueCommand}"
+                                TextColor="{StaticResource PrimaryButtonTextColor}"
+                                BackgroundColor="{StaticResource PrimaryButtonColor}"
+                                BorderColor="{StaticResource PrimaryButtonColor}"    
+                            />
                     </StackLayout>
-                    <Label IsVisible="{Binding CodeCompleted}" Margin="16,8,16,0" Text="{infrastructure:Translate LocationTrackingExplanation}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
+                    <Label IsVisible="{Binding CodeCompleted}" Margin="16,8,16,0" Text="{infrastructure:Translate LocationTrackingExplanation}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Style="{StaticResource Caption}"></Label>
                 </StackLayout>
-
-                <Image Grid.Row="3"  Source="call_center.png" VerticalOptions="EndAndExpand" Aspect="AspectFill" HeightRequest="110" HorizontalOptions="FillAndExpand"></Image>
-                <Image Grid.Row="3" Source="alert_logo.png" Margin="0,0,0,65" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="130"></Image>
             </Grid>
             <infrastructure:LoadingIndicator  AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         </AbsoluteLayout>

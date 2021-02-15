@@ -42,26 +42,31 @@
                                 </Frame>
                             </On>
                         </OnPlatform>
-                        <StackLayout IsVisible="{Binding CanContinue}" Orientation="Vertical" HorizontalOptions="Center">
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer  Command="{Binding ResendCodeCommand}"></TapGestureRecognizer>
-                            </StackLayout.GestureRecognizers>
-                            <Image HeightRequest="56" WidthRequest="56" Source="next_copy.png"/>
-                            <Label Text="{infrastructure:Translate NextRegistration}"  TextColor="{Binding EnabledDisabledColor}" FontSize="{StaticResource MenuTextSize}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        </StackLayout>
-                        <StackLayout IsVisible="{Binding CanResendCode}" Orientation="Vertical" HorizontalOptions="Center">
-                            <Image Source="{Binding RefreshImageSource}" HeightRequest="56" WidthRequest="56">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer  Command="{Binding ResendCodeCommand}"></TapGestureRecognizer>
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Label Text="{infrastructure:Translate ResendCodeButton}"  TextColor="{Binding EnabledDisabledColor}" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding CanContinue}" Orientation="Horizontal" HorizontalOptions="Center" Margin="0,20,0,0">
+                        
+                        <Button IsVisible="{Binding CanResendCode}" Text="{infrastructure:Translate ResendCodeButton}"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="Center"
+                                CornerRadius="10"
+                                TextColor="{StaticResource DangerButtonTextColor}"
+                                BackgroundColor="{StaticResource DangerButtonColor}"
+                                BorderColor="{StaticResource DangerButtonColor}"    
+                                    />
+                        <Button Text="{infrastructure:Translate NextRegistration}"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="Center"
+                                CornerRadius="10"
+                                TextColor="{StaticResource PrimaryButtonTextColor}"
+                                BackgroundColor="{StaticResource PrimaryButtonColor}"
+                                BorderColor="{StaticResource PrimaryButtonColor}"    
+                                    />
                     </StackLayout>
                 </StackLayout>
+                
 
-                <Image Grid.Row="2"  Source="call_center.png" VerticalOptions="EndAndExpand" Aspect="AspectFill" HeightRequest="110" HorizontalOptions="FillAndExpand"></Image>
-                <Image Grid.Row="2" Source="alert_logo.png" Margin="0,0,0,65" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="130"></Image>
+                
+                <Image Grid.Row="2" Source="logo.png" Margin="0,0,0,65" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="130"></Image>
             </Grid>
             <infrastructure:LoadingIndicator  AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         </AbsoluteLayout>
