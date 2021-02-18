@@ -13,6 +13,8 @@ namespace AlertApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PinView : ContentView
     {
+        
+
         #region HideFrame (Bindable boolean)
         public static readonly BindableProperty HideFrameProperty = BindableProperty.Create(
                                                                   "HideFrame", //Public name to use
@@ -57,6 +59,11 @@ namespace AlertApp.Views
                 Pin4.iOSFocused += Pin_iOSFocused;
             }
 
+        }
+
+        public void focusControl()
+        {
+            GetFocus(Pin1); 
         }
 
         private void Pin_iOSFocused(object sender, Guid entryId)

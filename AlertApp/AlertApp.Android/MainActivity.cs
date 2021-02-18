@@ -42,7 +42,13 @@ namespace AlertApp.Droid
             Xamarin.FormsMaps.Init(this, savedInstanceState);
             CarouselViewRenderer.Init();
             ImageCircleRenderer.Init();
-            LoadApplication(new App());
+            //LoadApplication(new App());
+            LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(
+                this,
+                new UXDivers.Gorilla.Config("Good Gorilla")
+                  // Register Grial Shared assembly
+
+                ));
             Plugin.FirebasePushNotification.FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
 

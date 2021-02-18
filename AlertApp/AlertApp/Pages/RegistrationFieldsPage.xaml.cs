@@ -36,14 +36,14 @@ namespace AlertApp.Pages
                 {
                     Task.Run(async () =>
                     {
-                        SubmitRegistrationButton_Clicked();
+                        SubmitRegistrationButton_Clicked(null,null);
                     });
 
                 },
                 NumberOfTapsRequired = 1
             };
 
-            nextImage.GestureRecognizers.Add(profileTapRecognizer);
+            //nextImage.GestureRecognizers.Add(profileTapRecognizer); //todo PAUL
             topNextImage.GestureRecognizers.Add(profileTapRecognizer);
 
         }
@@ -235,7 +235,7 @@ namespace AlertApp.Pages
             }
             return hasValue;
         }
-        private async void SubmitRegistrationButton_Clicked()
+        private async void SubmitRegistrationButton_Clicked(object sender, EventArgs e)
         {
             var registrationValues = new Dictionary<string, string>();
             foreach (var registrationView in registrationContainer.Children)

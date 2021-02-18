@@ -17,7 +17,8 @@ namespace AlertApp.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            pinLayout.Focus();
+            //pinLayout.Focus();
+            pinLayout.focusControl();
         }
         public EnterApplicationPinCodePage()
         {
