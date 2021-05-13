@@ -1,11 +1,10 @@
 ﻿using AlertApp.Model;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace AlertApp.Infrastructure
 {
@@ -13,11 +12,11 @@ namespace AlertApp.Infrastructure
     {
         public static async Task<List<ImportContact>> GetAddressbook(IContacts contactsService, IContactProfileImageProvider contactProfileImageProvider)
         {
-            var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
+            var contactPermissionStatus = await Permissions.CheckStatusAsync<Permissions.ContactsRead>();
             if (contactPermissionStatus != PermissionStatus.Granted)
             {
-                var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Contacts });
-                contactPermissionStatus = results[Permission.Contacts];
+                var results = await Permissions.RequestAsync<Permissions.ContactsRead>();
+                contactPermissionStatus = results;
             }
 
             if (contactPermissionStatus != PermissionStatus.Granted)

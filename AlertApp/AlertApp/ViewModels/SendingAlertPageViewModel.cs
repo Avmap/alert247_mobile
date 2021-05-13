@@ -3,8 +3,6 @@ using AlertApp.Model;
 using AlertApp.Resx;
 using AlertApp.Services.Alert;
 using AlertApp.Services.Settings;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -127,7 +125,7 @@ namespace AlertApp.ViewModels
         {
             try
             {
-                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                var locationPermissionStatus = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
                 if (locationPermissionStatus != PermissionStatus.Granted)
                 {
                     return new LocationResult { Ok = false, ErroMessage = "Permissions Denied. Unable to get location." };

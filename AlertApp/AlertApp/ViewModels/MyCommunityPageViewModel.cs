@@ -6,8 +6,6 @@ using AlertApp.Pages;
 using AlertApp.Services.Community;
 using AlertApp.Services.Contacts;
 using AlertApp.Services.Settings;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

@@ -7,6 +7,7 @@
              NavigationPage.HasNavigationBar="false"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              Navigation="{Binding NavigationService}" 
+             Visual="Material"
              >
     <ContentPage.Content>
         <Grid RowSpacing="0">
@@ -33,16 +34,13 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="sos_blank.png" >
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="manual"></TapGestureRecognizer>
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Label Margin="0,0,0,12" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" FontSize="28" VerticalOptions="Center" Grid.Row="0" Text="SOS" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="manual"></TapGestureRecognizer>
-                        </Label.GestureRecognizers>
-                    </Label>
+                    <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" Spacing="10">
+                        <Button Text="{infrastructure:Translate MSG}" Visual="Material" Command="{Binding SosCommand}" CommandParameter="manual" />
+                        <Button Text="{infrastructure:Translate Threat}" Visual="Material" Command="{Binding SosCommand}" CommandParameter="police" />
+                        <Button Text="{infrastructure:Translate Fire}" Visual="Material" Command="{Binding SosCommand}" CommandParameter="fire" />
+                        <Button Text="{infrastructure:Translate Accident}" Visual="Material" Command="{Binding SosCommand}" CommandParameter="health" />
+                        <Button Text="&#xf002;" Style="{StaticResource SettingsButton}"></Button>
+                    </StackLayout>
                 </Grid>
      
                 <Grid  Grid.Row="2" IsVisible="{Binding ShowCancelButton,Mode=TwoWay}" Margin="16,0,16,0">
@@ -63,46 +61,11 @@
             </Grid>
             
             <StackLayout Spacing="0" Orientation="Vertical" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Grid RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Image Grid.Row="0"  Source="call_center.png" Margin="0,34,0,0"  VerticalOptions="EndAndExpand" Aspect="Fill" HorizontalOptions="FillAndExpand"></Image>
-                    <StackLayout  Margin="16,0,16,35" Grid.Row="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="8" HeightRequest="110"  VerticalOptions="Start">
-                        <StackLayout IsVisible="{Binding ShowThreatButton,Mode=TwoWay}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                            <Image Source="alert_police.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="police"></TapGestureRecognizer>
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Label Text="{infrastructure:Translate Threat}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        </StackLayout>
-                        <StackLayout IsVisible="{Binding ShowFireButton,Mode=TwoWay}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                            <Image Source="alert_fire.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="fire"></TapGestureRecognizer>
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Label Text="{infrastructure:Translate Fire}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        </StackLayout>
-                        <StackLayout IsVisible="{Binding ShowAccidentButton,Mode=TwoWay}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                            <Image Source="alert_ambulande.png" WidthRequest="{StaticResource FlagSize}" HeightRequest="{StaticResource FlagSize}" >
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="health"></TapGestureRecognizer>
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Label Text="{infrastructure:Translate Accident}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        </StackLayout>
-                    </StackLayout>
-                </Grid>
-
+               
                 <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" Spacing="4">
                     <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
                     <StackLayout Margin="8,0,8,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                            <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="homepage.png"/>
-                            <Label Text="{infrastructure:Translate HomeTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        </StackLayout>
+                        
                         <StackLayout IsVisible="{Binding ShowContactsMenuButton,Mode=TwoWay}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OpenContactsScreen}"></TapGestureRecognizer>

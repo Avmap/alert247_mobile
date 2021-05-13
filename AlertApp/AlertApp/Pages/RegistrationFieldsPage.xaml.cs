@@ -48,8 +48,72 @@ namespace AlertApp.Pages
 
         }
 
-
         private void AddRegistrationFields(RegistrationField[] registrationField)
+        {
+            var language = _localSettingsService.GetSelectedLanguage();
+            foreach (var item in registrationField)
+            {
+                string label = "";
+                if (item.Labels != null)
+                {
+                    item.Labels.TryGetValue(language, out label);
+                }
+                switch (item.DataType)
+                {
+                    case RegistrationField.Type.String:
+                        var entry = new NoUnderlineEntry { Placeholder = label, VerticalOptions = LayoutOptions.Center, FontSize = 16, HorizontalOptions = LayoutOptions.FillAndExpand, ReturnType = ReturnType.Next, Style = (Style)Application.Current.Resources["RegistrationEntryStyle"] };
+                        entry.TextChanged += Entry_TextChanged;
+                        registrationContainer.Children.Add(entry);
+                        break;
+                        //case RegistrationField.Type.Date:
+                        //    StackLayout horizontalstack = new StackLayout();
+                        //    horizontalstack.Orientation = StackOrientation.Horizontal;
+                        //    horizontalstack.HorizontalOptions = LayoutOptions.FillAndExpand;
+                        //    horizontalstack.Children.Add(new Image { Source = "calendar.png", WidthRequest = 30, HeightRequest = 30 });
+                        //    var datePicker = new DatePickerNullable { Style = (Style)Application.Current.Resources["RegistrationEntryStyle"], HorizontalOptions = LayoutOptions.FillAndExpand };
+                        //    if (Device.RuntimePlatform == Device.iOS)
+                        //        datePicker.BackgroundColor = Color.FromHex("#E6E7E8");
+                        //    datePicker.DateSelected += DatePicker_DateSelected;                        
+                        //    datePicker.OnDialogUnFocused += DatePicker_OnDialogUnFocused;
+                        //    horizontalstack.Children.Add(datePicker);
+                        //    var tapGestureRecognizer = new TapGestureRecognizer();
+                        //    tapGestureRecognizer.Tapped += (s, e) => OnLabelClicked(s, e);
+                        //    var clearTextLabel = new Xamarin.Forms.Label {IsVisible = false, Text = "X", WidthRequest = 20, HeightRequest = 20, VerticalOptions = LayoutOptions.Center };
+                        //    clearTextLabel.GestureRecognizers.Add(tapGestureRecognizer);
+                        //    horizontalstack.Children.Add(clearTextLabel);
+                        //    var cardViewDate = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
+                        //    cardViewDate.Content = horizontalstack;
+
+                        //    stack.Children.Add(cardViewDate);
+                        //    registrationContainer.Children.Add(stack);
+                        //    break;
+                        //case RegistrationField.Type.Boolean:
+                        //    var switchControl = new Switch { };
+                        //    switchControl.HorizontalOptions = LayoutOptions.Start;
+
+                        //    var cardViewBoolean = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
+                        //    cardViewBoolean.Content = switchControl;
+
+                        //    stack.Children.Add(cardViewBoolean);
+                        //    registrationContainer.Children.Add(stack);
+                        //    break;
+                        //case RegistrationField.Type.Area:
+
+                        //    var cardViewEditor = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
+                        //    var editor = new NoUnderlineEditor { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, HeightRequest = 150 };
+                        //    if (Device.RuntimePlatform == Device.iOS)
+                        //        editor.BackgroundColor = Color.FromHex("#E6E7E8");
+                        //    editor.TextChanged += Entry_TextChanged;
+                        //    cardViewEditor.Content = editor;
+                        //    stack.Children.Add(cardViewEditor);
+                        //    registrationContainer.Children.Add(stack);
+                        //    break;
+                }
+            }
+            vm.SetBusy(false);
+        }
+
+        private void AddRegistrationFields_old(RegistrationField[] registrationField)
         {
 //#if DEBUG
 //            var list = new List<RegistrationField>();
@@ -66,23 +130,19 @@ namespace AlertApp.Pages
             {
                 RegistrationStackLayout stack = new RegistrationStackLayout();
                 stack.Orientation = StackOrientation.Horizontal;
+                string label = "";
                 if (item.Labels != null)
                 {
-                    string label = "";
+                    
                     item.Labels.TryGetValue(language, out label);
-//#if DEBUG
-//                    stack.Children.Add(new Xamarin.Forms.Label { VerticalOptions = LayoutOptions.Center, WidthRequest = 100, Text = "Registration field", Style = (Style)Application.Current.Resources["RegistrationLabelStyle"] });
-//#else
-                    stack.Children.Add(new Xamarin.Forms.Label { Text = label, VerticalOptions = LayoutOptions.Center, WidthRequest = 100, Style = (Style)Application.Current.Resources["RegistrationLabelStyle"] });
-//#endif
-
+                    //stack.Children.Add(new Xamarin.Forms.Label { Text = label, VerticalOptions = LayoutOptions.Center, WidthRequest = 100, Style = (Style)Application.Current.Resources["RegistrationLabelStyle"] });
                 }
                 stack.FieldName = item.FieldName;
                 switch (item.DataType)
                 {
                     case RegistrationField.Type.String:
 
-                        var entry = new NoUnderlineEntry { VerticalOptions = LayoutOptions.Center, FontSize = 16, HorizontalOptions = LayoutOptions.FillAndExpand, ReturnType = ReturnType.Next, Style = (Style)Application.Current.Resources["RegistrationEntryStyle"] };
+                        var entry = new NoUnderlineEntry { Placeholder = label,  VerticalOptions = LayoutOptions.Center, FontSize = 16, HorizontalOptions = LayoutOptions.FillAndExpand, ReturnType = ReturnType.Next, Style = (Style)Application.Current.Resources["RegistrationEntryStyle"] };
                         entry.TextChanged += Entry_TextChanged;
                         var cardView = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
                         cardView.Content = entry;
@@ -90,49 +150,49 @@ namespace AlertApp.Pages
                         registrationContainer.Children.Add(stack);
 
                         break;
-                    case RegistrationField.Type.Date:
-                        StackLayout horizontalstack = new StackLayout();
-                        horizontalstack.Orientation = StackOrientation.Horizontal;
-                        horizontalstack.HorizontalOptions = LayoutOptions.FillAndExpand;
-                        horizontalstack.Children.Add(new Image { Source = "calendar.png", WidthRequest = 30, HeightRequest = 30 });
-                        var datePicker = new DatePickerNullable { Style = (Style)Application.Current.Resources["RegistrationEntryStyle"], HorizontalOptions = LayoutOptions.FillAndExpand };
-                        if (Device.RuntimePlatform == Device.iOS)
-                            datePicker.BackgroundColor = Color.FromHex("#E6E7E8");
-                        datePicker.DateSelected += DatePicker_DateSelected;                        
-                        datePicker.OnDialogUnFocused += DatePicker_OnDialogUnFocused;
-                        horizontalstack.Children.Add(datePicker);
-                        var tapGestureRecognizer = new TapGestureRecognizer();
-                        tapGestureRecognizer.Tapped += (s, e) => OnLabelClicked(s, e);
-                        var clearTextLabel = new Xamarin.Forms.Label {IsVisible = false, Text = "X", WidthRequest = 20, HeightRequest = 20, VerticalOptions = LayoutOptions.Center };
-                        clearTextLabel.GestureRecognizers.Add(tapGestureRecognizer);
-                        horizontalstack.Children.Add(clearTextLabel);
-                        var cardViewDate = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
-                        cardViewDate.Content = horizontalstack;
+                    //case RegistrationField.Type.Date:
+                    //    StackLayout horizontalstack = new StackLayout();
+                    //    horizontalstack.Orientation = StackOrientation.Horizontal;
+                    //    horizontalstack.HorizontalOptions = LayoutOptions.FillAndExpand;
+                    //    horizontalstack.Children.Add(new Image { Source = "calendar.png", WidthRequest = 30, HeightRequest = 30 });
+                    //    var datePicker = new DatePickerNullable { Style = (Style)Application.Current.Resources["RegistrationEntryStyle"], HorizontalOptions = LayoutOptions.FillAndExpand };
+                    //    if (Device.RuntimePlatform == Device.iOS)
+                    //        datePicker.BackgroundColor = Color.FromHex("#E6E7E8");
+                    //    datePicker.DateSelected += DatePicker_DateSelected;                        
+                    //    datePicker.OnDialogUnFocused += DatePicker_OnDialogUnFocused;
+                    //    horizontalstack.Children.Add(datePicker);
+                    //    var tapGestureRecognizer = new TapGestureRecognizer();
+                    //    tapGestureRecognizer.Tapped += (s, e) => OnLabelClicked(s, e);
+                    //    var clearTextLabel = new Xamarin.Forms.Label {IsVisible = false, Text = "X", WidthRequest = 20, HeightRequest = 20, VerticalOptions = LayoutOptions.Center };
+                    //    clearTextLabel.GestureRecognizers.Add(tapGestureRecognizer);
+                    //    horizontalstack.Children.Add(clearTextLabel);
+                    //    var cardViewDate = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
+                    //    cardViewDate.Content = horizontalstack;
 
-                        stack.Children.Add(cardViewDate);
-                        registrationContainer.Children.Add(stack);
-                        break;
-                    case RegistrationField.Type.Boolean:
-                        var switchControl = new Switch { };
-                        switchControl.HorizontalOptions = LayoutOptions.Start;
+                    //    stack.Children.Add(cardViewDate);
+                    //    registrationContainer.Children.Add(stack);
+                    //    break;
+                    //case RegistrationField.Type.Boolean:
+                    //    var switchControl = new Switch { };
+                    //    switchControl.HorizontalOptions = LayoutOptions.Start;
 
-                        var cardViewBoolean = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
-                        cardViewBoolean.Content = switchControl;
+                    //    var cardViewBoolean = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
+                    //    cardViewBoolean.Content = switchControl;
 
-                        stack.Children.Add(cardViewBoolean);
-                        registrationContainer.Children.Add(stack);
-                        break;
-                    case RegistrationField.Type.Area:
+                    //    stack.Children.Add(cardViewBoolean);
+                    //    registrationContainer.Children.Add(stack);
+                    //    break;
+                    //case RegistrationField.Type.Area:
 
-                        var cardViewEditor = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
-                        var editor = new NoUnderlineEditor { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, HeightRequest = 150 };
-                        if (Device.RuntimePlatform == Device.iOS)
-                            editor.BackgroundColor = Color.FromHex("#E6E7E8");
-                        editor.TextChanged += Entry_TextChanged;
-                        cardViewEditor.Content = editor;
-                        stack.Children.Add(cardViewEditor);
-                        registrationContainer.Children.Add(stack);
-                        break;
+                    //    var cardViewEditor = new Frame { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#E6E7E8"), CornerRadius = 4, BorderColor = Color.FromHex("#CACCCD"), Padding = new Thickness(2, 0, 2, 0) };
+                    //    var editor = new NoUnderlineEditor { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, HeightRequest = 150 };
+                    //    if (Device.RuntimePlatform == Device.iOS)
+                    //        editor.BackgroundColor = Color.FromHex("#E6E7E8");
+                    //    editor.TextChanged += Entry_TextChanged;
+                    //    cardViewEditor.Content = editor;
+                    //    stack.Children.Add(cardViewEditor);
+                    //    registrationContainer.Children.Add(stack);
+                    //    break;
                 }
             }
             vm.SetBusy(false);
@@ -196,7 +256,7 @@ namespace AlertApp.Pages
                 var registrationStackLayout = registrationView as RegistrationStackLayout;
                 if (registrationStackLayout != null)
                 {
-                    var frame = registrationStackLayout.Children[1] as Frame;
+                    var frame = registrationStackLayout.Children[registrationStackLayout.Children.Count-1] as Frame;
                     if (frame.Children.Count > 0 && frame.Children[0] is StackLayout)
                     {
                         var stackLayout = frame.Children[0] as StackLayout;

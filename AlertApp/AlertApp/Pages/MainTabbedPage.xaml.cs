@@ -1,8 +1,6 @@
 ﻿using AlertApp.Infrastructure;
 using AlertApp.Model;
 using AlertApp.ViewModels;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

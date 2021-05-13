@@ -4,14 +4,21 @@
   <style name="MainTheme" parent="MainTheme.Base">
   </style>
   <!-- Base theme applied no matter what API -->
-  <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">    
-    <item name="windowNoTitle">true</item>    
-    <item name="windowActionBar">false</item>>
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>  
+  <style name="MainTheme.Base" parent="Theme.MaterialComponents.Light">
+    <item name="android:windowContentTransitions">true</item>
+    <item name="android:windowAllowEnterTransitionOverlap">true</item>
+    <item name="android:windowAllowReturnTransitionOverlap">true</item>
+    <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
+    <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
     <item name="windowActionModeOverlay">true</item>
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+    <item name="windowNoTitle">true</item>    
+    <item name="windowActionBar">false</item>
+
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+
     <item name="buttonStyle">@style/NotAllCapsButton</item>
     <item name="android:listViewStyle">@style/ListViewStyle</item>
     <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
@@ -19,7 +26,7 @@
     <item name="android:colorLongPressedHighlight">#FFE39696</item>
     <item name="android:colorFocusedHighlight">#FF96BCE3</item>
     <item name="android:colorActivatedHighlight">@android:color/transparent</item>
-    
+
   </style>
 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">

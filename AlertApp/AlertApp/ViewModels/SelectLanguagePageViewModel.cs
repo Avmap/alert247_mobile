@@ -4,8 +4,6 @@ using AlertApp.Model;
 using AlertApp.Pages;
 using AlertApp.Services.Settings;
 using AlertApp.Utils;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -177,11 +175,14 @@ namespace AlertApp.ViewModels
         {
             try
             {
-                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
-                var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
-                if (locationPermissionStatus != PermissionStatus.Granted || contactPermissionStatus != PermissionStatus.Granted)
+                var locationPermissionStatus = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+                var contactPermissionStatus = await Permissions.CheckStatusAsync<Permissions.ContactsRead>();
+                if (locationPermissionStatus != PermissionStatus.Granted) {
+                    await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                }
+                if(contactPermissionStatus != PermissionStatus.Granted)
                 {
-                    var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location, Permission.Contacts });
+                    await Permissions.RequestAsync<Permissions.ContactsRead>();
                 }
 
 

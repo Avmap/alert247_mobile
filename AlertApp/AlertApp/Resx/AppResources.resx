@@ -742,4 +742,7 @@
   <data name="RegistrationTitle" xml:space="preserve">
     <value>Registration</value>
   </data>
+  <data name="MSG" xml:space="preserve">
+    <value>MESSAGE</value>
+  </data>
 </root>

@@ -21,13 +21,13 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Diagnostics;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
+
 using AlertApp.Resx;
 using AlertApp.Model;
 using AlertApp.Views;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+[assembly: ExportFont("materialdesignicons-webfont.ttf", Alias = "Material Design Icons")]
 namespace AlertApp
 {
     public partial class App : Application
@@ -49,7 +49,12 @@ namespace AlertApp
                         Preferences.Set(Settings.SelectedLanguage, systemlanguage.Name);
                     }
                 }
-                MainPage = new NavigationPage(new SelectLanguagePage());                
+                //#if DEBUG
+                //                debugRegister();
+                //#else
+                //                MainPage = new NavigationPage(new SelectLanguagePage());   
+                //#endif
+                MainPage = new NavigationPage(new SelectLanguagePage());
             }
             else
             {
@@ -63,6 +68,18 @@ namespace AlertApp
             {
                 ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.Black;
             }
+        }
+
+        private async void debugRegister()
+        {
+            RegistrationFieldsPageViewModel vm;
+            vm = ViewModelLocator.Instance.Resolve<RegistrationFieldsPageViewModel>();
+            vm.SetBusy(true);
+            var registrationFieldsResponse = await vm.GetRegistrationFieldsAsync();
+            App.TempRegistrationFields = registrationFieldsResponse.Result;
+             MainPage = new NavigationPage(new RegistrationFieldsPage(App.TempRegistrationFields));
+            vm.SetBusy(false);
+            
         }
 
         private bool IsRegister()
@@ -110,7 +127,7 @@ namespace AlertApp
                                 Location location = null;
                                 try
                                 {
-                                    var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                                    var locationPermissionStatus = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
                                     if (locationPermissionStatus == PermissionStatus.Granted)
                                     {
                                         location = await Geolocation.GetLastKnownLocationAsync();
@@ -160,34 +177,57 @@ namespace AlertApp
             // Subscribe();
             RequestPermissions();
         }
-        private async void RequestPermissions()
+
+        private async void RequestPermission(string PermissionName)
         {
+            PermissionStatus ps;
             try
             {
-                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
-                var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
-                if (locationPermissionStatus != PermissionStatus.Granted || contactPermissionStatus != PermissionStatus.Granted)
+                switch(PermissionName)
                 {
-                    var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location, Permission.Contacts });
+                    case "Location":
+                        ps = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+                        if (ps != PermissionStatus.Granted)
+                        {
+                            var results = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                        }
+                        break;
+                    case "Contacts":
+                        ps = await Permissions.CheckStatusAsync<Permissions.ContactsRead>();
+                        if (ps != PermissionStatus.Granted)
+                        {
+                            var results2 = await Permissions.RequestAsync<Permissions.ContactsRead>();
+                        }
+                        break;
                 }
-
             }
             catch (FeatureNotSupportedException fnsEx)
             {
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, PermissionName+" - Feature not supported: " + fnsEx.Message, "OK");
+
                 // Handle not supported on device exception
             }
             catch (FeatureNotEnabledException fneEx)
             {
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, PermissionName + " - Feature not enabled: " + fneEx.Message, "OK");
                 // Handle not enabled on device exception
             }
             catch (PermissionException pEx)
             {
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, PermissionName + " - Permission error: " + pEx.Message, "OK");
                 // Handle permission exception
             }
             catch (Exception ex)
             {
-                // Unable to get location
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, PermissionName + " - Other error: " + ex.Message, "OK");
             }
+        }
+
+        private void RequestPermissions()
+        {
+            RequestPermission("Location");
+            RequestPermission("Contacts");
+           
             var locationSettingsService = DependencyService.Get<ILocationSettings>();
             var notificationService = DependencyService.Get<INotificationManager>();
             if (!locationSettingsService.IsLocationEnabled())

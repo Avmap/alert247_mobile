@@ -4,14 +4,13 @@ using AlertApp.Resx;
 using AlertApp.Services.Profile;
 using AlertApp.Services.Settings;
 using AlertApp.Views;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace AlertApp.ViewModels
 {
@@ -149,11 +148,11 @@ namespace AlertApp.ViewModels
         private async Task<bool> HasStoragePermission()
         {
 
-            var storagePermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+            var storagePermissionStatus = await Permissions.CheckStatusAsync<Permissions.StorageWrite>();
             if (storagePermissionStatus != PermissionStatus.Granted)
             {
-                var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Storage });
-                storagePermissionStatus = results[Permission.Storage];
+                var results = await Permissions.RequestAsync<Permissions.StorageWrite>();
+                storagePermissionStatus = results;
             }
 
             if (storagePermissionStatus == PermissionStatus.Granted)

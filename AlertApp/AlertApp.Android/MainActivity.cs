@@ -6,7 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using CarouselView.FormsPlugin.Android;
+using CarouselView.FormsPlugin;
 using Java.Security;
 using Java.Nio.Charset;
 using Java.Util;
@@ -14,12 +14,12 @@ using Android.Content;
 using Android.Gms.Auth.Api.Phone;
 using Plugin.CurrentActivity;
 using Firebase.Analytics;
-using Plugin.Permissions;
 using AlertApp.Android;
 using Firebase.Messaging;
 using Xamarin.Forms;
 using AlertApp.Pages;
 using AlertApp.Model;
+using CarouselView.FormsPlugin.Droid;
 using ImageCircle.Forms.Plugin.Droid;
 
 namespace AlertApp.Droid
@@ -35,20 +35,23 @@ namespace AlertApp.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
+           
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
             CarouselViewRenderer.Init();
             ImageCircleRenderer.Init();
-            //LoadApplication(new App());
-            LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(
-                this,
-                new UXDivers.Gorilla.Config("Good Gorilla")
-                  // Register Grial Shared assembly
+            LoadApplication(new App());
+            //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(
+            //    this,
+            //    new UXDivers.Gorilla.Config("Good Gorilla")
+            //      // Register Grial Shared assembly
 
-                ));
+            //    ));
             Plugin.FirebasePushNotification.FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
 
@@ -145,8 +148,8 @@ namespace AlertApp.Droid
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] global::Android.Content.PM.Permission[] grantResults)
         {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

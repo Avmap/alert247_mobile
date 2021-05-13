@@ -17,7 +17,12 @@
         <Setter Property="BarBackgroundColor" Value="White"/>
         <Setter Property="BarTextColor" Value="{StaticResource PrimaryColor}"/>
     </Style>
-    
+    <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
+
+        <Setter Property="TextColor" Value="{StaticResource PrimaryColorText}" />
+    </Style>
+    <!--
     
     <Style x:Key="DefaultButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="White" />
@@ -69,6 +74,7 @@
     
     <Style x:Key="RegistrationEntryStyle" TargetType="{x:Type Entry}">
         <Setter Property="TextColor" Value="{StaticResource RegistrationEntryTextColor}" />
+        <Setter Property="BackgroundColor" Value="#E6E7E8"></Setter>
         
     </Style>
     
@@ -103,5 +109,5 @@
         <Setter Property="BorderWidth" Value="1" />
         <Setter Property="BorderColor" Value="Black" />
     </Style>
-
+-->
 </ResourceDictionary>

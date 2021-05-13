@@ -101,6 +101,19 @@
         <Setter Property="FontSize" Value="28" />
     </Style>
 
+    <OnPlatform x:Key="Material" x:TypeArguments="x:String">
+        <On Platform="iOS" Value="Material Design Icons" />
+        <On Platform="Android" Value="materialdesignicons-webfont.ttf#Material Design Icons" />
+    </OnPlatform>
+
+    <Style x:Key="SettingsButton" TargetType="Button">
+        <Setter Property="FontFamily" Value="{DynamicResource Material}"/>
+        <Setter Property="FontSize" Value="100"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryButtonTextColor}"/>
+        
+    </Style>
 
     <Style x:Key="SosButton" TargetType="Button">
         <Setter Property="TextColor" Value="White" />

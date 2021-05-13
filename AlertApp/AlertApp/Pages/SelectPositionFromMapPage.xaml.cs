@@ -1,6 +1,4 @@
 ﻿using AlertApp.Model;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
 
 namespace AlertApp.Pages
 {
@@ -41,11 +40,11 @@ namespace AlertApp.Pages
         {
             try
             {
-                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                var locationPermissionStatus = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
                 if (locationPermissionStatus != PermissionStatus.Granted)
                 {
-                    var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location });
-                    locationPermissionStatus = results[Permission.Location];
+                    var results = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+                    locationPermissionStatus = results;
                 }
 
                 if (locationPermissionStatus != PermissionStatus.Granted)

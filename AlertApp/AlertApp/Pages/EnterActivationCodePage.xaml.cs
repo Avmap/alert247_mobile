@@ -133,6 +133,7 @@ namespace AlertApp.Pages
                 vm.RegisterForSmsEvent();
 
             }
+            Verification1.Focus();
         }
 
         protected override void OnDisappearing()

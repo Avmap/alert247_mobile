@@ -6,8 +6,6 @@ using AlertApp.Services.Alert;
 using AlertApp.Services.Cryptography;
 using AlertApp.Services.Registration;
 using AlertApp.Services.Settings;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -304,7 +302,7 @@ namespace AlertApp.ViewModels
 
         private async void SetContactFromMobile(string cellphone)
         {
-            var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
+            var contactPermissionStatus = await Permissions.CheckStatusAsync<Permissions.ContactsRead>();
             if (contactPermissionStatus == PermissionStatus.Granted)
             {
 
@@ -351,7 +349,7 @@ namespace AlertApp.ViewModels
             Location location = null;
             try
             {
-                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                var locationPermissionStatus = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
                 if (locationPermissionStatus == PermissionStatus.Granted && _localSettingsService.GetSendLocationSetting())
                 {
                     location = await Geolocation.GetLastKnownLocationAsync();
@@ -373,7 +371,7 @@ namespace AlertApp.ViewModels
 
         private async Task<ImportContact> GetContact(string cellPhone)
         {
-            var contactPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Contacts);
+            var contactPermissionStatus = await Permissions.CheckStatusAsync<Permissions.ContactsRead>();
             if (contactPermissionStatus == PermissionStatus.Granted)
             {
                 //here get contact from addressbook

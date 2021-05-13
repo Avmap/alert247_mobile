@@ -4,8 +4,6 @@ using AlertApp.Resx;
 using AlertApp.Services.Profile;
 using AlertApp.Services.Settings;
 using AlertApp.Utils;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -159,7 +157,7 @@ namespace AlertApp.ViewModels
             Location location = null;
             try
             {
-                var locationPermissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                var locationPermissionStatus = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
                 if (locationPermissionStatus == PermissionStatus.Granted)
                 {
                     location = await Geolocation.GetLastKnownLocationAsync();

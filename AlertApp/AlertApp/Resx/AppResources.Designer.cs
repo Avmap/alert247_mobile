@@ -979,6 +979,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MESSAGE.
+        /// </summary>
+        internal static string MSG {
+            get {
+                return ResourceManager.GetString("MSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NEW ALERT.
         /// </summary>
         internal static string NewAlertTitle {

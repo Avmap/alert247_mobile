@@ -383,16 +383,16 @@
     <value>To</value>
   </data>
   <data name="Accident" xml:space="preserve">
-    <value>Ατύχημα</value>
+    <value>ΑΤΥΧΗΜΑ</value>
   </data>
   <data name="Contacts" xml:space="preserve">
     <value>Επαφές</value>
   </data>
   <data name="Fire" xml:space="preserve">
-    <value>Φωτιά</value>
+    <value>ΦΩΤΙΑ</value>
   </data>
   <data name="Threat" xml:space="preserve">
-    <value>Απειλή</value>
+    <value>ΑΠΕΙΛΗ</value>
   </data>
   <data name="EnterPinFor" xml:space="preserve">
     <value>ΕΙΣΑΓΕΤΕ PIN ΓΙΑ</value>
@@ -741,5 +741,8 @@
   </data>
   <data name="SettingUpdateProfle" xml:space="preserve">
     <value>Επεξεργασία προφίλ</value>
+  </data>
+  <data name="MSG" xml:space="preserve">
+    <value>ΜΗΝΥΜΑ</value>
   </data>
 </root>

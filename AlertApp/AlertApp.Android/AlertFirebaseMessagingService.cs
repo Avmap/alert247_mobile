@@ -15,7 +15,6 @@ using Android.Support.V4.App;
 using Android.Support.V4.Content;
 using Android.Views;
 using Firebase.Messaging;
-using Plugin.Permissions;
 
 using Xamarin.Forms;
 using static AlertApp.Model.Language;
