@@ -6,7 +6,6 @@
              x:Class="AlertApp.Pages.AddContactPage"
              BackgroundColor="White"
               xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             Navigation="{Binding NavigationService}" 
              Title="{infrastructure:Translate AddContactsPage}">
 
     <ContentPage.Resources>

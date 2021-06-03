@@ -26,10 +26,12 @@ namespace AlertApp.Pages
         public ManageContactsPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, true);
+            NavigationPage.SetHasBackButton(this, true);
             _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
             _contacts = DependencyService.Get<IContacts>();
             this.BindingContext = ViewModelLocator.Instance.Resolve<ManageContactsPageViewModel>();
-
+           
             this.container.ChildAdded += Container_ChildAdded;
 
             var communityPage = new MyCommunityPage();
@@ -75,6 +77,7 @@ namespace AlertApp.Pages
         {
             base.OnAppearing();
             RegisterForRefreshContacts();
+           
         }
 
         protected override void OnDisappearing()
@@ -160,7 +163,7 @@ namespace AlertApp.Pages
                     this.container.Children[2].IsVisible = false;
                     this.container.Children[3].IsVisible = false;
                     addCommunityContact.IsVisible = true;
-                    contactsMenu.IsVisible = false;
+                    //contactsMenu.IsVisible = false;
                     tabsList.ScrollTo(0, position: ScrollToPosition.Start);
                     break;
                 case 2:
@@ -169,7 +172,7 @@ namespace AlertApp.Pages
                     this.container.Children[2].IsVisible = false;
                     this.container.Children[3].IsVisible = false;
                     addCommunityContact.IsVisible = false;
-                    contactsMenu.IsVisible = true;
+                    //contactsMenu.IsVisible = true;
                     break;
                 case 3:
                     this.container.Children[0].IsVisible = false;
@@ -177,7 +180,7 @@ namespace AlertApp.Pages
                     this.container.Children[2].IsVisible = true;
                     this.container.Children[3].IsVisible = false;
                     addCommunityContact.IsVisible = false;
-                    contactsMenu.IsVisible = true;
+                    //contactsMenu.IsVisible = true;
                     break;
                 case 4:
                     this.container.Children[0].IsVisible = false;
@@ -185,7 +188,7 @@ namespace AlertApp.Pages
                     this.container.Children[2].IsVisible = false;
                     this.container.Children[3].IsVisible = true;
                     addCommunityContact.IsVisible = false;
-                    contactsMenu.IsVisible = true;
+                    //contactsMenu.IsVisible = true;
                     tabsList.ScrollTo(3, position: ScrollToPosition.Start);
                     break;
             }
@@ -210,7 +213,7 @@ namespace AlertApp.Pages
                 var vm = contactsPage.BindingContext as AddContactPageViewModel;
                 if (vm.HasChange)
                 {
-                    foreach (var page in myCommunityPageViewModel.NavigationService.NavigationStack)
+                    foreach (var page in Application.Current.MainPage.Navigation.NavigationStack)
                     {
                         if (page is ManageContactsPage)
                         {
@@ -221,7 +224,7 @@ namespace AlertApp.Pages
                     }
                 }
             };
-            await myCommunityPageViewModel.NavigationService.PushAsync(contactsPage, false);
+            await Application.Current.MainPage.Navigation.PushAsync(contactsPage, false);
         }
     }
 }

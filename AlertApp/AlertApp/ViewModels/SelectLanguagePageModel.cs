@@ -117,7 +117,7 @@ namespace AlertApp.ViewModels
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             Resx.AppResources.Culture = ci;
-            await NavigationService.PushAsync(new EnterMobileNumberPage(), false);
+            await Application.Current.MainPage.Navigation.PushAsync(new EnterMobileNumberPage(), false);
         }
 
         #region BaseViewModel

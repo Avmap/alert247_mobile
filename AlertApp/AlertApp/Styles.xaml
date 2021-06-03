@@ -3,6 +3,7 @@
   x:Class="AlertApp.Styles"
   xmlns="http://xamarin.com/schemas/2014/forms"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    
     xmlns:local="clr-namespace:AlertApp"
   xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
   xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core">
@@ -11,8 +12,9 @@
         <local:Sizes />
         <local:Colors />
         <local:Fonts />
+        
     </ResourceDictionary.MergedDictionaries>
-
+    
     <Style TargetType="NavigationPage">
         <Setter Property="BarBackgroundColor" Value="White"/>
         <Setter Property="BarTextColor" Value="{StaticResource PrimaryColor}"/>
@@ -22,8 +24,7 @@
 
         <Setter Property="TextColor" Value="{StaticResource PrimaryColorText}" />
     </Style>
-    <!--
-    
+   
     <Style x:Key="DefaultButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="White" />
         <Setter Property="FontSize" Value="Medium" />
@@ -109,5 +110,25 @@
         <Setter Property="BorderWidth" Value="1" />
         <Setter Property="BorderColor" Value="Black" />
     </Style>
--->
+
+    <Style x:Key="SubscriptionStatusOK" TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+        <Setter Property="TextColor" Value="{StaticResource SuccessButtonColor}"></Setter>
+    </Style>
+
+    <Style x:Key="SubscriptionStatusExpiring" TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+        <Setter Property="TextColor" Value="{StaticResource AccentColor}"></Setter>
+    </Style>
+
+    <Style x:Key="SubscriptionStatusExpired" TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+        <Setter Property="TextColor" Value="{StaticResource DangerButtonColor}"></Setter>
+    </Style>
+
+    <Style x:Key="SubscriptionStatusInactive" TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+        <Setter Property="TextColor" Value="{StaticResource AccentColor}"></Setter>
+    </Style>
+
 </ResourceDictionary>

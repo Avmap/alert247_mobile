@@ -206,9 +206,9 @@ namespace AlertApp.ViewModels
             _localSettingsService = localSettingsService;
             _MobileNumber = mobilenumber;
 
-            _smsTimer = new System.Timers.Timer();
-            _smsTimer.Interval = 1000;
-            _smsTimer.Elapsed += OnTimedEvent;
+            //_smsTimer = new System.Timers.Timer();
+            //_smsTimer.Interval = 1000;
+            //_smsTimer.Elapsed += OnTimedEvent;
 //#if Release
             RequestVerificationCode();
 //#endif
@@ -277,7 +277,7 @@ namespace AlertApp.ViewModels
 
             if (response.IsOk)
             {
-                _smsTimer.Start();
+                //_smsTimer.Start();
                 CanResendCode = false;
             }
 
@@ -285,13 +285,13 @@ namespace AlertApp.ViewModels
             {
                 showOKMessage(AppResources.Error, GetErrorDescription(response.ErrorDescription.Labels));
 
-                _smsTimer.Stop();
+                //_smsTimer.Stop();
                 CanResendCode = true;
             }
             else if (!response.IsOk && !response.IsOnline)
             {
                 showOKMessage(AppResources.Error, AppResources.NoInternetConnection);
-                ResetCounter();
+                //ResetCounter();
             }
             SetBusy(false);
         }
@@ -306,7 +306,7 @@ namespace AlertApp.ViewModels
                 _localSettingsService.SaveAuthToken(response.Result.Token);
                 _localSettingsService.SaveUserId(response.Result.UserID);
                 App.TempRegistrationFields = response.Result.Fields;
-                await NavigationService.PushAsync(new EnterApplicationPinCodePage(), false);
+                await Application.Current.MainPage.Navigation.PushAsync(new EnterApplicationPinCodePage(), false);
             }
             else
             {

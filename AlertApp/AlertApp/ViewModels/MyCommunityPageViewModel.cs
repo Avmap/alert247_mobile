@@ -104,7 +104,7 @@ namespace AlertApp.ViewModels
         }
         private async void Back()
         {
-            await NavigationService.PopAsync(false);
+            await Application.Current.MainPage.Navigation.PopAsync(false);
         }
         private void GetCommunity()
         {
@@ -184,7 +184,7 @@ namespace AlertApp.ViewModels
                 var vm = contactsPage.BindingContext as AddContactPageViewModel;
                 if (vm.HasChange)
                 {
-                    foreach (var page in NavigationService.NavigationStack)
+                    foreach (var page in Application.Current.MainPage.Navigation.NavigationStack)
                     {
                         if (page is ManageContactsPage)
                         {
@@ -195,7 +195,7 @@ namespace AlertApp.ViewModels
                     }
                 }
             };
-            await NavigationService.PushAsync(contactsPage, false);
+            await Application.Current.MainPage.Navigation.PushAsync(contactsPage, false);
         }
 
         public async Task<bool> RemoveUser(Contact contact)

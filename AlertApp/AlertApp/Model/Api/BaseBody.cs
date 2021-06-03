@@ -9,7 +9,12 @@ namespace AlertApp.Model.Api
     public class BaseBody
     {
         [DataMember(Name = "api_key")]
-        // public string api_key { get; set; } = "N0S16FDLV2LQ6KEYF3E6"; //production api key
-        public string api_key { get; set; } = "NDTSAM2DAWCYS5MPPNWQ"; //staging api key
+#if STAGINGAPI
+        public string api_key { get; set; } = AlertApp.CodeSettings.StagingAPIKey; //staging api key
+#else
+        public string api_key { get; set; } = AlertApp.CodeSettings.ProductionAPIKey; //production api key
+#endif
+
+
     }
 }

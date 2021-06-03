@@ -52,8 +52,8 @@ namespace AlertApp.ViewModels
                     Preferences.Set(Settings.HasFinishRegistration, true);
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        NavigationService.InsertPageBefore(new MainPage(), NavigationService.NavigationStack.First());
-                        NavigationService.PopToRootAsync();
+                        Application.Current.MainPage.Navigation.InsertPageBefore(new MainPage(), Application.Current.MainPage.Navigation.NavigationStack.First());
+                        Application.Current.MainPage.Navigation.PopToRootAsync();
                     });
 
                 }

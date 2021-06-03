@@ -5,77 +5,93 @@
              ios:Page.UseSafeArea="true"
              xmlns:views="clr-namespace:AlertApp.Views"
              x:Class="AlertApp.Pages.AlertRespondPage"
-             Navigation="{Binding NavigationService}" 
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"   
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              NavigationPage.HasNavigationBar="false"
              >
     <ContentPage.Content>
-        <Grid>
+        <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <views:ToolBarFrame Grid.Row="0">
-                <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Horizontal" Margin="8,14,16,0">
-                        <Image Source="logo.png" WidthRequest="100"></Image>
-                        <StackLayout  Orientation="Vertical"  HorizontalOptions="EndAndExpand">
-                            <Label Style="{StaticResource HeaderNotificationText}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" VerticalOptions="Center"  Text="{infrastructure:Translate NewAlertTitle}"></Label>
-                            <Label Style="{StaticResource SubtitleNotificationText}"  HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="SOS"></Label>
-                            <Label TextColor="Black"  Text="{Binding AlertTime}" FontSize="18" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" ></Label>
+            <views:ToolBarFrame Grid.Row="0" Margin="0,0,0,0" Padding="0" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical" Margin="0,0,0,0" Padding="0" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal" Margin="0,0,0,0" HorizontalOptions="FillAndExpand">
+                        <Image Source="logo.png" WidthRequest="100" Margin="8,8,0,0"></Image>
+                        <StackLayout  Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                            <Label TextColor="{StaticResource PrimaryColorText}" BackgroundColor="{StaticResource PrimaryColor}" FontSize="24" FontAttributes="Bold" Padding="10,20" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="{Binding AlertTextTitle}"></Label>
                         </StackLayout>
                     </StackLayout>
-                    <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
+                    <StackLayout Spacing="0" Margin="0,12,0,20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Horizontal">
+                        <Label TextColor="Black" FontAttributes="Bold" FontSize="14"    HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="{infrastructure:Translate CanYouHelp}"></Label>
+                        <StackLayout Margin="0,0,0,0" Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                            <Frame Style="{StaticResource MainPageAlertButtons}" Padding="10,0">
+                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding AcceptCommand}"></TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                    <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
+                                    <Label Text="&#x0F0DF0;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                                    <Label Style="{StaticResource IconText}" Visual="Material" Text="{infrastructure:Translate IWillHelp}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                                    <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
+                                </StackLayout>
+                            </Frame>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding IgnoreCommand}"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                                <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
+                                <Label Text="&#x0F0376;" Style="{StaticResource IconInverse}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                                <Label Style="{StaticResource IconTextInverse}" Visual="Material" Text="{infrastructure:Translate IgnoreHelp}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                                <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
+                                
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
                 </StackLayout>
 
             </views:ToolBarFrame>
-
-            <StackLayout Grid.Row="1">
-
-
-                <Label Margin ="46,10,46,0" HorizontalOptions="FillAndExpand" Style="{StaticResource AlertPagesText}"   HorizontalTextAlignment="Center"  Text="{infrastructure:Translate EmergencyAlertText}"></Label>
-                <Label Margin="0,12,0,0" HorizontalOptions="FillAndExpand" Style="{StaticResource AlertPagesText}"  HorizontalTextAlignment="Center" TextColor="{StaticResource PrimaryColor}" Text="ΣΤΟΙΧΕΙΑ ΕΠΑΦΗΣ"></Label>
-
-                <Frame Padding="0,0,0,0" HasShadow="False" Margin="20,8,20,0" BorderColor="{StaticResource PrimaryColor}" CornerRadius="16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout Grid.Row="1" Margin="0,0,0,0" Padding="0">
+                <Frame Padding="0,0,0,0" HasShadow="False" Margin="0,0,0,0" BorderColor="{StaticResource PrimaryColor}" CornerRadius="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <StackLayout Grid.Row="0" Orientation="Horizontal">
-                            <Frame Padding="0,0,0,0" Margin="5,5,5,0" HasShadow="False" HorizontalOptions="Center" WidthRequest="120" BorderColor="#B8B8B8" CornerRadius="16">
-                                <StackLayout Margin="0,4,0,0"  Spacing="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                                    <circle:CircleImage WidthRequest="48" HeightRequest="48" Source="{Binding ProfileImage}" Aspect="AspectFill"></circle:CircleImage>
-                                    <StackLayout Margin="5,5,5,0" Spacing="0" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                                        <Label TextColor="{StaticResource PrimaryColor}" MaxLines="2" FontSize="11" HorizontalOptions="FillAndExpand" LineBreakMode="TailTruncation"  HorizontalTextAlignment="Center" Text="{Binding ContactName}"></Label>
-                                        <Label TextColor="#B8B8B8" HorizontalTextAlignment="Center" MaxLines="1"  FontSize="11"  HorizontalOptions="FillAndExpand" Text="{Binding ContactPhone}"></Label>
-                                    </StackLayout>
+                        <StackLayout Grid.Row="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="0">
+                            <Frame Padding="1,1,1,1" Margin="00,0,0,0" HasShadow="False" HorizontalOptions="FillAndExpand" WidthRequest="180" BorderColor="{StaticResource PrimaryColor}" CornerRadius="0">
+                                <Image BackgroundColor="#ccc" Source="{Binding ProfileImage}" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>
+                                
+                            </Frame>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Label Padding="10,10,10,10" FontAttributes="Bold" TextColor="{StaticResource PrimaryColorText}" BackgroundColor="{StaticResource PrimaryColor}" MaxLines="1" FontSize="15" HorizontalOptions="FillAndExpand" LineBreakMode="TailTruncation"  HorizontalTextAlignment="Center" Text="{Binding ContactName}"></Label>
+                                <StackLayout Orientation="Horizontal" Padding="10,0,10,0" HorizontalOptions="Center">
+                                    <Label TextColor="Black"  Text="ΣΤΑΛΘΗΚΕ:" FontSize="13" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" ></Label>
+                                    <Label TextColor="Black"  Text="{Binding AlertTime}" FontSize="13" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" ></Label>
                                 </StackLayout>
 
-                            </Frame>
-                            <ScrollView VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                                <StackLayout BindableLayout.ItemsSource="{Binding Fields}" Spacing="2" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                                </Grid.ColumnDefinitions>
-                                                <Label TextColor="Black" Grid.Column="0" HorizontalOptions="StartAndExpand" Style="{StaticResource Subtitle1Bold}" Text="{Binding Label}"></Label>
-                                                <Label TextColor="Black" Grid.Column="1" HorizontalOptions="StartAndExpand" Style="{StaticResource Subtitle1Bold}" Text="{Binding Value}"></Label>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </BindableLayout.ItemTemplate>
-                                </StackLayout>
-                            </ScrollView>
+                                <ScrollView Padding="10,10,10,10" VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Fields}" Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <FlexLayout Direction="Row" AlignItems="Start" Wrap="Wrap">
+                                                    <Label Margin="0,0,2,0" FontAttributes="Bold" TextColor="Black" HorizontalOptions="StartAndExpand" Text="{Binding Label}"></Label>
+                                                    <Label FontAttributes="None" FontSize="14" TextColor="Black" HorizontalOptions="StartAndExpand" Text="{Binding Value}"></Label>
+                                                </FlexLayout>
+                                                
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </ScrollView>
+                            </StackLayout>
+                            
                          
                         </StackLayout>
-                        <StackLayout Grid.Row="1" BackgroundColor="{StaticResource PrimaryColor}" Margin="0,8,0,0" Padding="8,2,2,2" HorizontalOptions="FillAndExpand">
+                        <StackLayout Grid.Row="1" BackgroundColor="{StaticResource PrimaryColor}" Margin="0,0,0,0" Padding="8,2,2,2" HorizontalOptions="FillAndExpand">
                             <Label  FontSize="12" TextColor="White" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Text="{infrastructure:Translate UserIsInPosition}"></Label>
                         </StackLayout>
                         <maps:Map x:Name="map"     
@@ -97,22 +113,7 @@
                 </Frame>
             </StackLayout>
 
-            <StackLayout Grid.Row="2" Margin="64,8,64,14" Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
-                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding AcceptCommand}"></TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
-                    <Image HeightRequest="56" WidthRequest="56" Source="accept_button.png"/>
-                    <Label Text="{infrastructure:Translate IWillHelp}" TextColor="{StaticResource PrimaryColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                </StackLayout>
-                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding IgnoreCommand}"></TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
-                    <Image  HeightRequest="56" WidthRequest="56"  Source="ignore_button.png"/>
-                    <Label Text="{infrastructure:Translate IgnoreHelp}" HorizontalTextAlignment="Center" TextColor="#5B5B5B" VerticalTextAlignment="Center"/>
-                </StackLayout>
-            </StackLayout>
+            
         </Grid>
     </ContentPage.Content>
 </ContentPage>

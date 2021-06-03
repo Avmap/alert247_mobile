@@ -15,11 +15,8 @@ using Plugin.CurrentActivity;
 namespace AlertApp.Droid
 {
     [Application]
-#if DEBUG
-    [MetaData("com.google.android.maps.v2.API_KEY", Value = "AIzaSyD0tos4Y8_QAWxkEnYRuKT7ftEfMT_MZpU")]
-#else
-       [MetaData("com.google.android.maps.v2.API_KEY", Value = "AIzaSyD-QGABb7MdzQ_46ZGWgu5yCFwYHbypx0o")]
-#endif
+    [MetaData("com.google.android.maps.v2.API_KEY", Value = AlertApp.CodeSettings.AndroidMapsKey)]
+
     class MainApplication : Application
     {
         public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(handle, transer)
@@ -40,13 +37,8 @@ namespace AlertApp.Droid
                 Plugin.FirebasePushNotification.FirebasePushNotificationManager.DefaultNotificationChannelName = "General";
             }
 
+              Plugin.FirebasePushNotification.FirebasePushNotificationManager.Initialize(this,false);
 
-            //If debug you should reset the token each time.
-#if DEBUG
-            Plugin.FirebasePushNotification.FirebasePushNotificationManager.Initialize(this, true);
-#else
-              FirebasePushNotificationManager.Initialize(this,false);
-#endif
 
             //Handle notification when app is closed here
             Plugin.FirebasePushNotification.CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>

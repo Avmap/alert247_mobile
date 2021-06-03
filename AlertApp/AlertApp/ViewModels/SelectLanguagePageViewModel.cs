@@ -62,7 +62,15 @@ namespace AlertApp.ViewModels
 
         public List<Language> Languages => Language.SupportedLanguages;
 
-        public string Version => String.Format("{0} {1}", "Version", VersionTracking.CurrentVersion);
+        public string Version
+        {
+            get
+            {
+                var ts = new AlertApp.Infrastructure.TranslateExtension();
+                return String.Format("{0} {1}", ts.GetTranslatedValue("Version"), VersionTracking.CurrentVersion);
+            }
+        }
+        
 
         #endregion
 
@@ -122,7 +130,7 @@ namespace AlertApp.ViewModels
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             Resx.AppResources.Culture = ci;
-            await NavigationService.PushAsync(new EnterMobileNumberPage(), false);
+            await Application.Current.MainPage.Navigation.PushAsync(new EnterMobileNumberPage(), false);
         }
 
         private async void SetSelectedLanguageAndBack(string language)
@@ -168,7 +176,7 @@ namespace AlertApp.ViewModels
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             Resx.AppResources.Culture = ci;
-            await NavigationService.PushAsync(new EnterMobileNumberPage(), false);
+            await Application.Current.MainPage.Navigation.PushAsync(new EnterMobileNumberPage(), false);
         }
 
         private async Task<LocationResult> RequestPermissions()

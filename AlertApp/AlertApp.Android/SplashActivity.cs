@@ -26,8 +26,13 @@ namespace AlertApp.Droid
             SetContentView(Resource.Layout.splash_screen);
             TextView version = FindViewById<TextView>(Resource.Id.appversion);
             var appVersion = Application.Context.ApplicationContext.PackageManager.GetPackageInfo(Application.Context.ApplicationContext.PackageName, 0).VersionName;
-            version.Text = "Version " + appVersion;
 
+            version.Text = "Version " + appVersion;
+#if STAGINGAPI
+version.Text += " - STAGING";
+#else
+            version.Text += " - PRODUCTION";
+#endif
         }
 
         // Launches the startup task

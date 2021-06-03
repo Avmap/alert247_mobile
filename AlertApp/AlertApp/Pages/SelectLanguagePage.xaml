@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:translate="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"      
-             Navigation="{Binding NavigationService}"           
+             xmlns:views="clr-namespace:AlertApp.Views"          
              ios:Page.UseSafeArea="true"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              BackgroundColor="{StaticResource RegistrationBackgrounColor}"
@@ -11,14 +11,14 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="180"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="110"/>
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Source="logo.png" >
+            <Image Grid.Row="0"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Source="logo.png"  >
                 <Image.Margin>
-                    <OnPlatform x:TypeArguments="Thickness" iOS="0,32,0,0" Android="0,16,0,16" />
+                    <OnPlatform x:TypeArguments="Thickness" iOS="16,32,16,0" Android="32,16,32,32" />
                 </Image.Margin>
             </Image>
 
@@ -96,9 +96,12 @@
             </StackLayout>
 
 
-            
+
             <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical" Grid.Row="2">
                 <Label Text="{Binding Version}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <views:PoweredBy>
+                </views:PoweredBy>
+                
             </StackLayout>
           
         </Grid>

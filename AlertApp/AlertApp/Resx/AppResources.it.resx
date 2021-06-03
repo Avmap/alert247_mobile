@@ -389,7 +389,7 @@
     <value>Minaccia</value>
   </data>
   <data name="Age" xml:space="preserve">
-    <value>Età</value>
+    <value>Età:</value>
   </data>
   <data name="Allergies" xml:space="preserve">
     <value>Allergie</value>

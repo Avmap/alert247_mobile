@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlertApp.Views.SubInfo"
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
+             x:Name="x_this"
+             >
+  <ContentView.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{infrastructure:Translate SubscriptionFrame}"></Label>
+                <Label IsVisible="{Binding IsSubOK, Source={Reference x_this}}" Text="{infrastructure:Translate SubscriptionStatusOK}" Style="{StaticResource SubscriptionStatusOK}"></Label>
+                <Label IsVisible="{Binding IsSubExpiring, Source={Reference x_this}}" Text="{infrastructure:Translate SubscriptionStatusExpiring}" Style="{StaticResource SubscriptionStatusExpiring}"></Label>
+                <Label IsVisible="{Binding IsSubExpired, Source={Reference x_this}}" Text="{infrastructure:Translate SubscriptionStatusExpired}" Style="{StaticResource SubscriptionStatusExpired}"></Label>
+                <Label IsVisible="{Binding IsSubInactive, Source={Reference x_this}}" Text="{infrastructure:Translate SubscriptionStatusInactive}" Style="{StaticResource SubscriptionStatusInactive}"></Label>
+            </StackLayout>
+            
+            <Grid VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Start" Text="{infrastructure:Translate SubscriptionStart}"></Label>
+                <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Start" Text="{Binding SubscriptionStart, Source={Reference x_this}}"></Label>
+                <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Start" Text="{infrastructure:Translate SubscriptionEnd}"></Label>
+                <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Start" Text="{Binding SubscriptionEnd, Source={Reference x_this}}"></Label>
+                <Label Grid.Row="2" Grid.Column="0" VerticalOptions="Start" Text="{infrastructure:Translate SubscriptionPackage}"></Label>
+                <Label Grid.Row="2" Grid.Column="1" VerticalOptions="Start" Text="{Binding SubscriptionPackage, Source={Reference x_this}}"></Label>
+            </Grid>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

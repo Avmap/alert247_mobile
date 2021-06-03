@@ -88,7 +88,7 @@ namespace AlertApp.ViewModels
             if (changed)
             {
                 showOKMessage(AppResources.Succcess, AppResources.SucccessChangePinMessage);
-                await NavigationService.PopAsync(false);
+                await Application.Current.MainPage.Navigation.PopAsync(false);
             }
         }
 

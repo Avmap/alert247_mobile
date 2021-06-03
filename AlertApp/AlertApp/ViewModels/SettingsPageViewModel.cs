@@ -261,20 +261,20 @@ namespace AlertApp.ViewModels
         }
         private async void Back()
         {
-            await NavigationService.PopAsync(false);
+            await Application.Current.MainPage.Navigation.PopAsync(false);
         }
 
         public void HideShowButtons()
         {
-            OnPropertyChanged("ShowContactsMenuButton");
-            OnPropertyChanged("ShowInfoMenuButton");
+            //OnPropertyChanged("ShowContactsMenuButton");
+            //OnPropertyChanged("ShowInfoMenuButton");
         }
 
         private async void NavigateToContactScreen()
         {
 
             SetBusy(true);
-            await NavigationService.PushAsync(new ManageContactsPage(), false);
+            await Application.Current.MainPage.Navigation.PushAsync(new ManageContactsPage(), false);
             SetBusy(false);
         }
 

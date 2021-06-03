@@ -4,7 +4,7 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"       
              ios:Page.UseSafeArea="true"
-             Navigation="{Binding NavigationService}" 
+
              BackgroundColor="{StaticResource RegistrationBackgrounColor}"             
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              x:Class="AlertApp.Pages.RegistrationFieldsPage">
@@ -29,12 +29,12 @@
                             </StackLayout>
                         </ScrollView>
                     </Frame>
-                    <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,6,0,15" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,0,0,15" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
                         <Button Text="{infrastructure:Translate Finish}"
                         VerticalOptions="CenterAndExpand"
                         HorizontalOptions="Center"
                         Clicked="SubmitRegistrationButton_Clicked"
-                        Style="{StaticResource AlertDefaultButton}"  
+                        Visual="Material" Padding="10,0"
                             />
                         
                     </StackLayout>

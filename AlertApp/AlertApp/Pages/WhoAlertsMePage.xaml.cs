@@ -14,7 +14,7 @@ namespace AlertApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WhoAlertsMePage : ContentView
     {
-        private Contact ClickedContact { get; set; }
+        private AlertApp.Model.Api.Contact ClickedContact { get; set; }
         public WhoAlertsMePage()
         {
             InitializeComponent();
@@ -67,7 +67,7 @@ namespace AlertApp.Pages
                 var vm = this.BindingContext as WhoAlertsMePageViewModel;
                 if (!vm.Busy)
                 {
-                    ClickedContact = args.Parameter as Contact;
+                    ClickedContact = args.Parameter as AlertApp.Model.Api.Contact;
 
                     if (ClickedContact.Accepted)
                     {

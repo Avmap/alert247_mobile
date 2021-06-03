@@ -5,7 +5,6 @@
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" 
              ios:Page.UseSafeArea="true"
              xmlns:views="clr-namespace:AlertApp.Views"
-             Navigation="{Binding NavigationService}" 
              BackgroundColor="{StaticResource RegistrationBackgrounColor}"             
              x:Class="AlertApp.Pages.EnterApplicationPinCodePage">
     <ContentPage.Content>
@@ -35,9 +34,8 @@
                                 HorizontalOptions="Center"
                                 CornerRadius="10"
                                 Command="{Binding ContinueCommand}"
-                                TextColor="{StaticResource PrimaryButtonTextColor}"
-                                BackgroundColor="{StaticResource PrimaryButtonColor}"
-                                BorderColor="{StaticResource PrimaryButtonColor}"    
+                                Visual="Material"
+                                TextColor="{StaticResource PrimaryButtonTextColor}"  
                             />
                     </StackLayout>
                     <Label IsVisible="{Binding CodeCompleted}" Margin="16,8,16,0" Text="{infrastructure:Translate LocationTrackingExplanation}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Style="{StaticResource Caption}"></Label>

@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              xmlns:converters="clr-namespace:AlertApp.Converters;assembly=AlertApp"
              xmlns:view="clr-namespace:AlertApp.Views"
-             Navigation="{Binding NavigationService}" 
+             
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              x:Class="AlertApp.Views.SettingsFallDetectorView">
     <ContentView.Resources>

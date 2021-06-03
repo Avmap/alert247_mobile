@@ -113,7 +113,7 @@ namespace AlertApp.ViewModels
                 var vm = modal.BindingContext as CommunityRequestPageViewModel;
                 if (vm.HasChange)
                 {
-                    var parentPage = NavigationService.NavigationStack.LastOrDefault() as ManageContactsPage;
+                    var parentPage = Application.Current.MainPage.Navigation.NavigationStack.LastOrDefault() as ManageContactsPage;
                     if (parentPage != null)
                     {
                         SetBusy(true);
@@ -121,7 +121,7 @@ namespace AlertApp.ViewModels
                     }
                 }
             };
-            await NavigationService.PushModalAsync(modal);
+            await Application.Current.MainPage.Navigation.PushModalAsync(modal);
         }
 
         private void Modal_Disappearing(object sender, EventArgs e)

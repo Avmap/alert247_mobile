@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace AlertApp.ViewModels
 {
@@ -92,11 +93,11 @@ namespace AlertApp.ViewModels
                 showOKMessage(AppResources.SuccessSendAlert, message);
                 try
                 {
-                    await NavigationService.PopAsync(false);
+                    await Application.Current.MainPage.Navigation.PopAsync(false);
                 }
                 catch
                 {
-                    await NavigationService.PopModalAsync(false);
+                    await Application.Current.MainPage.Navigation.PopModalAsync(false);
                 }
             }
             else
@@ -112,11 +113,11 @@ namespace AlertApp.ViewModels
 
                 try
                 {
-                    await NavigationService.PopAsync(false);
+                    await Application.Current.MainPage.Navigation.PopAsync(false);
                 }
                 catch
                 {
-                    await NavigationService.PopModalAsync(false);
+                    await Application.Current.MainPage.Navigation.PopModalAsync(false);
                 }
             }
             SetBusy(false);

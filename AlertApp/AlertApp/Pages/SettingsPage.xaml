@@ -5,9 +5,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              xmlns:views="clr-namespace:AlertApp.Views"
-             Navigation="{Binding NavigationService}" 
              Title="{infrastructure:Translate SettingsTab}"
-             NavigationPage.HasNavigationBar="False"
+             
              x:Class="AlertApp.Pages.SettingsPage">
     <ContentPage.Content>
         <Grid>
@@ -15,9 +14,8 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <views:SingleTitleToolbar BackCommand="{Binding BaseBackCommand}" Grid.Row="0" HasBackButton="True" Title="{infrastructure:Translate SettingsTab}" ></views:SingleTitleToolbar>
+            
             <ScrollView Grid.Row="1">
                 <StackLayout Grid.Row="1" Orientation="Vertical">
                     <views:SettingsHeader Title="{infrastructure:Translate SettingsView}"/>
@@ -80,20 +78,20 @@
                     </views:SettingCellView>-->
                 </StackLayout>
             </ScrollView>
-            
+
             <StackLayout Margin="0,0,0,0" Grid.Row="2" Orientation="Vertical">
                 <StackLayout  Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
                 <Frame Padding="8,4,8,4" CornerRadius="16" HasShadow="False" HorizontalOptions="Center" BorderColor="#C3C3C3">
-                <Grid HorizontalOptions="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <Grid HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <StackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical">
-                        <Image Source="logo.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50"></Image>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical">
+                            <Image Source="logo.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50"></Image>
                             <Label Text="{Binding Version}" FontSize="10" Style="{StaticResource Caption}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    </StackLayout>
-                    <StackLayout Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical">
                             <Label TextColor="Blue" TextDecorations="Underline" Text="https://alert247.gr" FontSize="10" Style="{StaticResource Caption}" HorizontalTextAlignment="Center" VerticalTextAlignment="Start">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding LinkCommand}" CommandParameter="https://alert247.gr"></TapGestureRecognizer>
@@ -105,64 +103,11 @@
                                 </Label.GestureRecognizers>
                             </Label>
                         </StackLayout>
-                </Grid>
+                    </Grid>
                 </Frame>
-                <Label FontSize="10" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{infrastructure:Translate DevelopedBy}" />
-                            <Span Text="QUBITEQ"
-                            TextColor="Blue"
-                            TextDecorations="Underline">
-                                <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding LinkCommand}"
-                                          CommandParameter="https://qubiteq.gr" />
-                                </Span.GestureRecognizers>
-                            </Span>
-                            <Span Text="{infrastructure:Translate DevelopedFor}" />
-                            <Span Text="AVMap GIS ΑΕ"
-                            TextColor="Blue"
-                            TextDecorations="Underline">
-                                <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding LinkCommand}"
-                                          CommandParameter="https://www.avmap.gr/" />
-                                </Span.GestureRecognizers>
-                            </Span>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+                <views:PoweredBy></views:PoweredBy>
             </StackLayout>
-            <StackLayout Grid.Row="3" Orientation="Vertical" VerticalOptions="EndAndExpand" Spacing="4">
-                <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
-                <StackLayout Margin="8,0,8,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenHomeScreenCommand}"></TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="homepage.png"/>
-                        <Label Text="{infrastructure:Translate HomeTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    </StackLayout>
-                    <StackLayout IsVisible="{Binding ShowContactsMenuButton,Mode=TwoWay}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenContactsScreen}"></TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="contacts.png"/>
-                        <Label Text="{infrastructure:Translate Contacts}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    </StackLayout>
-                    <StackLayout IsVisible="{Binding ShowInfoMenuButton,Mode=TwoWay}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image   WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="info.png"/>
-                        <Label Text="{infrastructure:Translate InfoTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="settings.png">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenSettingsCommand}"></TapGestureRecognizer>
-                            </Image.GestureRecognizers>
-                        </Image>
-                        <Label Text="{infrastructure:Translate SettingsTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    </StackLayout>
-                </StackLayout>
-            </StackLayout>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

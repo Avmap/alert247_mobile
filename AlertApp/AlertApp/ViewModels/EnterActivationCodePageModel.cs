@@ -282,7 +282,7 @@ namespace AlertApp.ViewModels
                 _localSettingsService.SaveAuthToken(response.Result.Token);
                 _localSettingsService.SaveUserId(response.Result.UserID);
                 App.TempRegistrationFields = response.Result.Fields;
-                await NavigationService.PushAsync(new EnterApplicationPinCodePage(), false);
+                await Application.Current.MainPage.Navigation.PushAsync(new EnterApplicationPinCodePage(), false);
             }
             else
             {

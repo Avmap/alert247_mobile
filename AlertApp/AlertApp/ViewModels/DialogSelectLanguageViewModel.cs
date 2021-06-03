@@ -71,7 +71,7 @@ namespace AlertApp.ViewModels
         {
             _localSettingsService.SaveSelectedLanguage(language.NetLanguageName);
             MessagingCenter.Send(this, SelectLanguage.Event, new SelectLanguage { Language = language });
-            await NavigationService.PopModalAsync();
+            await Application.Current.MainPage.Navigation.PopModalAsync();
         }
 
         #region BaseViewModel

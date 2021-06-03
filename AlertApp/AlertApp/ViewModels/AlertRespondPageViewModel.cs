@@ -151,19 +151,11 @@ namespace AlertApp.ViewModels
             _notificationAction = notificationAction;
             _notificationManager = DependencyService.Get<INotificationManager>();
             _contactProfileImageProvider = DependencyService.Get<IContactProfileImageProvider>();
-            ProfileImage = ImageSource.FromFile("account_circle.png");
+            ProfileImage = ImageSource.FromFile("call_center.png");
         }
 
         public async void SetProfileData()
-        {
-            //Fields.Add(new Field { Label = "Onoma", Value = "Thanos" });
-            //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });
-            //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });
-            //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });
-            //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });
-            //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });
-            //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });
-            //Fields.Add(new Field { Label = "Eponimo", Value = "Argyrakis" });            
+        {           
             var data = _notificationAction.Data as AlertNotificationData;
 
             _PublicKey = data.PublicKey;
@@ -210,22 +202,22 @@ namespace AlertApp.ViewModels
             switch (data.AlertType)
             {
                 case (int)AlertType.UserAlert:
-                    alertTitleType = "ALERT: " + AppResources.AlertSosTitle;
+                    alertTitleType = AppResources.AlertSosTitle;    //todo: retrieve from alert data
                     break;
                 case (int)AlertType.Police:
-                    alertTitleType = "ALERT: " + AppResources.Threat;
+                    alertTitleType = AppResources.Threat;
                     break;
                 case (int)AlertType.Health:
-                    alertTitleType = "ALERT: " + AppResources.Accident;
+                    alertTitleType = AppResources.Accident;
                     break;
                 case (int)AlertType.Fire:
-                    alertTitleType = "ALERT: " + AppResources.Fire;
+                    alertTitleType = AppResources.Fire;
                     break;
                 case (int)AlertType.Crash:
-                    alertTitleType = "ALERT: " + AppResources.Crash;
+                    alertTitleType = AppResources.Crash;
                     break;
                 case (int)AlertType.Fall:
-                    alertTitleType = "ALERT: " + AppResources.Fall;
+                    alertTitleType = AppResources.Fall;
                     break;
             }
 
@@ -272,7 +264,7 @@ namespace AlertApp.ViewModels
                             var registrationField = tempFields.Where(tf => tf.Key == item.Key).FirstOrDefault();
                             if (registrationField != null)
                             {
-                                Fields.Add(new Field { Label = registrationField.Label, Value = item.Value });
+                                Fields.Add(new Field { Label = registrationField.Label+":", Value = item.Value });
                             }
 
                         }
@@ -319,7 +311,7 @@ namespace AlertApp.ViewModels
                     }
                     else
                     {
-                        ProfileImage = ImageSource.FromFile("account_circle.png");
+                        ProfileImage = ImageSource.FromFile("call_center.png");
                     }
                     ContactPhone = cellphone;
                 }
@@ -327,7 +319,7 @@ namespace AlertApp.ViewModels
             else
             {
                 ContactPhone = cellphone;
-                ProfileImage = ImageSource.FromFile("account_circle.png");
+                ProfileImage = ImageSource.FromFile("call_center.png");
             }
         }
 
@@ -336,6 +328,7 @@ namespace AlertApp.ViewModels
         private void Accept()
         {
             RespondAlert(AckType.Positive);
+             PhoneDialer.Open(ContactPhone);
         }
         private void Ignore()
         {

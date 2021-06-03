@@ -389,7 +389,7 @@
     <value>威胁</value>
   </data>
   <data name="Age" xml:space="preserve">
-    <value>年龄</value>
+    <value>年龄:</value>
   </data>
   <data name="Allergies" xml:space="preserve">
     <value>过敏症</value>

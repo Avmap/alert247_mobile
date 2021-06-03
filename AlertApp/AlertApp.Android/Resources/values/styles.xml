@@ -10,6 +10,7 @@
     <item name="android:windowAllowReturnTransitionOverlap">true</item>
     <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
     <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
+    <item name="android:textColorLink">#800000</item>
     <item name="windowActionModeOverlay">true</item>
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
     <item name="windowNoTitle">true</item>    
@@ -22,9 +23,9 @@
     <item name="buttonStyle">@style/NotAllCapsButton</item>
     <item name="android:listViewStyle">@style/ListViewStyle</item>
     <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-    <item name="android:colorPressedHighlight">#FF96BCE3</item>
-    <item name="android:colorLongPressedHighlight">#FFE39696</item>
-    <item name="android:colorFocusedHighlight">#FF96BCE3</item>
+    <item name="android:colorPressedHighlight">@color/colorPrimary</item>
+    <item name="android:colorLongPressedHighlight">@color/colorAccent</item>
+    <item name="android:colorFocusedHighlight">@color/colorPrimary</item>
     <item name="android:colorActivatedHighlight">@android:color/transparent</item>
 
   </style>

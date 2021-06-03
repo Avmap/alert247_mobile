@@ -11,14 +11,24 @@ namespace AlertApp.Model
     public class ImportContact : Contact, INotifyPropertyChanged
     {
         IContactProfileImageProvider _profileImageProvider;
-        public ImportContact(Api.Contact contact, IContactProfileImageProvider profileImageProvider)
+        public ImportContact(Xamarin.Essentials.Contact contact, String number, IContactProfileImageProvider profileImageProvider)
+        {
+            _profileImageProvider = profileImageProvider;
+            this.Name = contact.GivenName;
+            this.Number = number;
+            this.PhotoUri = ""; // contact.ProfileImageUri;
+            this.PhotoUriThumbnail = ""; //contact.ProfileImageUri;
+        }
+
+        public ImportContact(AlertApp.Model.Api.Contact contact, IContactProfileImageProvider profileImageProvider)
         {
             _profileImageProvider = profileImageProvider;
             this.Name = contact.FirstName;
-            this.Number = contact.Cellphone;           
+            this.Number = contact.Cellphone;
             this.PhotoUri = contact.ProfileImageUri;
             this.PhotoUriThumbnail = contact.ProfileImageUri;
         }
+
         public ImportContact(Contact contact, IContactProfileImageProvider profileImageProvider)
         {
             _profileImageProvider = profileImageProvider; //DependencyService.Get<IContactProfileImageProvider>();
@@ -81,7 +91,7 @@ namespace AlertApp.Model
 
         public static string GetFormattedNumber(string number)
         {
-            string clearedNumber = number.Trim().Replace("-", "").Replace(" ", "");
+            string clearedNumber = number.Trim().Replace("-", "").Replace(" ", "").Replace("(","").Replace(")", "");
 
             if (clearedNumber.StartsWith("+"))
             {

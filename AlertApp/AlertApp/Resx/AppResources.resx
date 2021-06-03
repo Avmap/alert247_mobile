@@ -377,7 +377,7 @@
     <value>contacts.</value>
   </data>
   <data name="TheAlert" xml:space="preserve">
-    <value />
+    <value>The</value>
   </data>
   <data name="Accident" xml:space="preserve">
     <value>Accident</value>
@@ -392,7 +392,7 @@
     <value>Threat</value>
   </data>
   <data name="Age" xml:space="preserve">
-    <value>Age</value>
+    <value>Age:</value>
   </data>
   <data name="Allergies" xml:space="preserve">
     <value>Allergies</value>
@@ -744,5 +744,50 @@
   </data>
   <data name="MSG" xml:space="preserve">
     <value>MESSAGE</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="TouristGuide" xml:space="preserve">
+    <value>Security facilities</value>
+  </data>
+  <data name="SubscriptionStatusOK" xml:space="preserve">
+    <value>ACTIVE</value>
+  </data>
+  <data name="SubscriptionStatusInactive" xml:space="preserve">
+    <value>INACTIVE</value>
+  </data>
+  <data name="SubscriptionStatusExpiring" xml:space="preserve">
+    <value>EXPIRING SOON</value>
+  </data>
+  <data name="SubscriptionStatusExpired" xml:space="preserve">
+    <value>EXPIRED</value>
+  </data>
+  <data name="SubscriptionStart" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="SubscriptionPackage" xml:space="preserve">
+    <value>Package</value>
+  </data>
+  <data name="SubscriptionFrame" xml:space="preserve">
+    <value>SUBSCRIPTION TO SIGNAL RECEIVING CENTER</value>
+  </data>
+  <data name="SubscriptionEnd" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="SingleContact" xml:space="preserve">
+    <value>Emergency Friend</value>
+  </data>
+  <data name="NoContactsNoSub" xml:space="preserve">
+    <value>To alert, add contacts or activate your subscription</value>
+  </data>
+  <data name="AddSub" xml:space="preserve">
+    <value>Activate subscription to SRC</value>
+  </data>
+  <data name="SubscriptionPage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CanYouHelp" xml:space="preserve">
+    <value>CAN YOU HELP?</value>
   </data>
 </root>

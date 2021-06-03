@@ -73,7 +73,7 @@ namespace AlertApp.ViewModels
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         showOKMessage(AppResources.Succcess, AppResources.SucccessSaveAccountFile);
-                        Device.BeginInvokeOnMainThread(() => NavigationService.PopAsync(false));
+                        Device.BeginInvokeOnMainThread(() => Application.Current.MainPage.Navigation.PopAsync(false));
                     });
 
                 }
@@ -130,7 +130,7 @@ namespace AlertApp.ViewModels
                             showOKMessage(title, message);
                             if (response.IsOk)
                             {
-                                NavigationService.PopAsync(false);
+                                Application.Current.MainPage.Navigation.PopAsync(false);
                             }
                         });
 
@@ -140,7 +140,7 @@ namespace AlertApp.ViewModels
                 }
             };
 
-            await NavigationService.PushModalAsync(page);
+            await Application.Current.MainPage.Navigation.PushModalAsync(page);
 
 
         }

@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <Configurations>Debug;Release;DebugProduction;ReleaseProduction</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +15,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
     <PackageReference Include="Unity" Version="5.10.3" />
     <PackageReference Include="Unity.Container" Version="5.10.3" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
 
   <ItemGroup>

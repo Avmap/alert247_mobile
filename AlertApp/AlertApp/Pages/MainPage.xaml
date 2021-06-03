@@ -3,94 +3,171 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              ios:Page.UseSafeArea="true"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AlertApp.Pages.MainPage"                                     
+             xmlns:views="clr-namespace:AlertApp.Views"
+             x:Class="AlertApp.Pages.MainPage"    
+             
              NavigationPage.HasNavigationBar="false"
-             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
-             Navigation="{Binding NavigationService}" 
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" xmlns:viewmodels="clr-namespace:AlertApp.ViewModels" 
              Visual="Material"
+             
              >
     <ContentPage.Content>
-        <Grid RowSpacing="0">
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>    
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>     
+                <RowDefinition Height="*" />   
             </Grid.RowDefinitions>
-
-            <Grid  Grid.Row="0"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="100"/>
-                </Grid.RowDefinitions>
-                <Image Grid.Row="0"  VerticalOptions="FillAndExpand" Source="alert_logo.png">
-                    <Image.Margin>
-                        <OnPlatform x:TypeArguments="Thickness" iOS="0,32,0,0" Android="0,16,0,16" />
-                    </Image.Margin>
-                </Image>
-                
-                <Label Grid.Row="1" Margin="16,0,16,0" TextColor="{Binding ColorPressToCancel}" Text="{infrastructure:Translate MainPressToCancel}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
-
-                <Grid  Grid.Row="2" IsVisible="{Binding ShowSosButton,Mode=TwoWay}" Margin="16,0,16,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" Spacing="10">
-                        <Button Text="{infrastructure:Translate MSG}" Visual="Material" Command="{Binding SosCommand}" CommandParameter="manual" />
-                        <Button Text="{infrastructure:Translate Threat}" Visual="Material" Command="{Binding SosCommand}" CommandParameter="police" />
-                        <Button Text="{infrastructure:Translate Fire}" Visual="Material" Command="{Binding SosCommand}" CommandParameter="fire" />
-                        <Button Text="{infrastructure:Translate Accident}" Visual="Material" Command="{Binding SosCommand}" CommandParameter="health" />
-                        <Button Text="&#xf002;" Style="{StaticResource SettingsButton}"></Button>
-                    </StackLayout>
-                </Grid>
-     
-                <Grid  Grid.Row="2" IsVisible="{Binding ShowCancelButton,Mode=TwoWay}" Margin="16,0,16,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="sos_blank.png" >
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CancelCommand}"></TapGestureRecognizer>
-                        </Image.GestureRecognizers>
+            <!--Header: -->
+            <StackLayout Grid.Row="0" Margin="16,0,16,5" Padding="0,10" >
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0"  VerticalOptions="FillAndExpand" Source="logo.png" HorizontalOptions="Start">
+                        <Image.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" iOS="0,32,0,0" Android="0,5,0,0" />
+                        </Image.Margin>
                     </Image>
-                    <Label Margin="0,0,0,12" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" FontSize="28" VerticalOptions="Center" Grid.Row="0" Text="{Binding CancelButtonText,Mode=TwoWay}" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CancelCommand}"></TapGestureRecognizer>
-                        </Label.GestureRecognizers>
-                    </Label>
+                    <Button IsVisible="{Binding showNonCritical}" Grid.Column="1" Text="&#xF0493;" Style="{StaticResource SettingsButton}" Command="{Binding OpenSettingsCommand}"></Button>
                 </Grid>
-            </Grid>
-            
-            <StackLayout Spacing="0" Orientation="Vertical" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-               
-                <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" Spacing="4">
-                    <StackLayout Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
-                    <StackLayout Margin="8,0,8,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-                        
-                        <StackLayout IsVisible="{Binding ShowContactsMenuButton,Mode=TwoWay}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenContactsScreen}"></TapGestureRecognizer>
-                            </StackLayout.GestureRecognizers>
-                            <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="contacts.png"/>
-                            <Label Text="{infrastructure:Translate Contacts}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        </StackLayout>
-                        <StackLayout IsVisible="{Binding ShowInfoMenuButton,Mode=TwoWay}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                            <Image   WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="info.png"/>
-                            <Label Text="{infrastructure:Translate InfoTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                            <Image  WidthRequest="{StaticResource MenuIconsSize}" HeightRequest="{StaticResource MenuIconsSize}"  Source="settings.png">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding OpenSettingsCommand}"></TapGestureRecognizer>
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Label Text="{infrastructure:Translate SettingsTab}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
-        
+                
             </StackLayout>
-            
+            <!--Messages: -->
+            <Label Grid.Row="1" Padding="16,10,16,10" IsVisible="{Binding ShowCancelButton}" Text="{infrastructure:Translate MainPressToCancel}" HorizontalTextAlignment="Center" Style="{StaticResource MainMessages}"></Label>
+
+            <!--Main -->
+            <StackLayout  Grid.Row="2" Margin="16,0,16,0" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+                <StackLayout IsVisible="{Binding CanSendAlert}" VerticalOptions="FillAndExpand">
+                    <Grid IsVisible="{Binding ShowSosButton,Mode=TwoWay}" HorizontalOptions="CenterAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" Spacing="10">
+                            <Frame Style="{StaticResource MainPageAlertButtons}">
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="manual" />
+                                    </StackLayout.GestureRecognizers>
+                                    <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
+                                    <Label Text="&#x0F01EE;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                                    <Label Style="{StaticResource IconText}" Visual="Material" Text="{infrastructure:Translate MSG}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                                    <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
+                                </StackLayout>
+                            </Frame>
+                            <Grid IsVisible="{Binding CanSendAlert}">
+                                <Frame Grid.Column="0" Style="{StaticResource MainPageAlertButtons}">
+                                    <StackLayout Orientation="Vertical" Spacing="10">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="police" />
+                                        </StackLayout.GestureRecognizers>
+                                        <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
+                                        <Label Text="&#x0F1168;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                                        <Label Style="{StaticResource IconText}" Visual="Material" Text="{infrastructure:Translate Threat}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                                        <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                                <Frame Grid.Column="1" Style="{StaticResource MainPageAlertButtons}">
+                                    <StackLayout Orientation="Vertical" Spacing="10">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="fire" />
+                                        </StackLayout.GestureRecognizers>
+                                        <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
+                                        <Label Text="&#x0F0238;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                                        <Label Style="{StaticResource IconText}" Visual="Material" Text="{infrastructure:Translate Fire}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                                        <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                                <Frame Grid.Column="2" Style="{StaticResource MainPageAlertButtons}">
+                                    <StackLayout Orientation="Vertical" Spacing="10">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="health" />
+                                        </StackLayout.GestureRecognizers>
+                                        <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
+                                        <Label Text="&#x0F08D0;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                                        <Label Style="{StaticResource IconText}" Visual="Material" Text="{infrastructure:Translate Accident}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                                        <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                            
+                        </StackLayout>
+                    </Grid>
+                    <Grid  IsVisible="{Binding ShowCancelButton,Mode=TwoWay}" HorizontalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Source="sos_blank.png" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CancelCommand}"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Margin="0,0,0,12" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" FontSize="28" VerticalOptions="Center" Grid.Row="0" Text="{Binding CancelButtonText,Mode=TwoWay}" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CancelCommand}"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout IsVisible="{Binding CanNotSendAlert}" Margin="0,0,0,20" >
+                    <Label Text="{infrastructure:Translate NoContactsNoSub}" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16"></Label>
+                </StackLayout>
+                <StackLayout IsVisible="{Binding showNonCritical}" Orientation="Vertical" Margin="0,20,0,0">
+                    <Frame IsVisible="{Binding HasContacts}" Style="{StaticResource NormalButton}">
+                        <StackLayout Orientation="Horizontal" Spacing="10" Padding="0,5,0,5" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenContactsScreen}" />
+                            </StackLayout.GestureRecognizers>
+                            <Label HorizontalOptions="Center" VerticalOptions="Center"  Visual="Material" Text="{Binding NumberOfContacts}" Style="{StaticResource IconText}"></Label>
+                            <Label IsVisible="{Binding SingleContact}" HorizontalOptions="Center" VerticalOptions="Center" Visual="Material" Text="{infrastructure:Translate SingleContact}" Style="{StaticResource IconText}"></Label>
+                            <Label IsVisible="{Binding MultipleContacts}" HorizontalOptions="Center" VerticalOptions="Center" Visual="Material" Text="{infrastructure:Translate Contacts}" Style="{StaticResource IconText}"></Label>
+                        </StackLayout>
+                    </Frame>
+                    <Frame IsVisible="{Binding DoesNotHaveContacts}" Style="{StaticResource NormalButton}">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenAddContactsCommand}" />
+                            </StackLayout.GestureRecognizers>
+                            <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
+                            <Label Text="&#x0F0010;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                            <Label Style="{StaticResource IconText}" Visual="Material" Text="{infrastructure:Translate AlertAddContactsTitle}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                            <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
+                        </StackLayout>
+                    </Frame>
+                    <Frame IsVisible="{Binding DoesNotHaveSub}" Style="{StaticResource NormalButton}">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenAddSubCommand}" />
+                            </StackLayout.GestureRecognizers>
+                            <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
+                            <Label Text="&#x0F06DB;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                            <Label Style="{StaticResource IconText}" Visual="Material" Text="{infrastructure:Translate AddSub}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                            <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
+                        </StackLayout>
+                    </Frame>
+                    <Frame Style="{StaticResource NormalButton}" Margin="0,0,0,20" >
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenTouristGuide}" />
+                            </StackLayout.GestureRecognizers>
+                            <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
+                            <Label Text="&#x0F09BC;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                            <Label Style="{StaticResource IconText}" Visual="Material" Text="{infrastructure:Translate TouristGuide}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                            <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
+                        </StackLayout>
+                    </Frame>
+                    <!--<views:SubInfo IsVisible="{Binding HasSub}" SubscriptionStart="{Binding SubscriptionStart}" SubscriptionEnd="{Binding SubscriptionEnd}" SubscriptionPackage="{Binding SubscriptionPackage}"></views:SubInfo>-->
+                </StackLayout>
+                
+            </StackLayout>
+            <!--Footer -->
+            <Frame IsVisible="{Binding showNonCritical}" Grid.Row="3" Padding="0" CornerRadius="0" VerticalOptions="FillAndExpand">
+                <views:NewsFeed NewsSource="{Binding MyNews}" RefreshCommand="{Binding RefreshNewsCommand}" IsRefreshing="{Binding IsRefreshingNews, Mode=TwoWay}"></views:NewsFeed>
+            </Frame>
         </Grid>
-     
+       
+            
     </ContentPage.Content>
 </ContentPage>

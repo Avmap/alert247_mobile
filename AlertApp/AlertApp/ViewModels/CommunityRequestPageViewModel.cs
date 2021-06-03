@@ -110,7 +110,7 @@ namespace AlertApp.ViewModels
             SetBusy(false);
             if (_notificationId != 0)
                 _notificationManager.CloseNotification(_notificationId);
-            await NavigationService.PopModalAsync();
+            await Application.Current.MainPage.Navigation.PopModalAsync();
         }
 
         private async void BlockRequest()
@@ -124,7 +124,7 @@ namespace AlertApp.ViewModels
             SetBusy(false);
             if (_notificationId != 0)
                 _notificationManager.CloseNotification(_notificationId);
-            await NavigationService.PopModalAsync();
+            await Application.Current.MainPage.Navigation.PopModalAsync();
         }
 
         private async void IgnoreRequest()
@@ -138,7 +138,7 @@ namespace AlertApp.ViewModels
             SetBusy(false);
             if (_notificationId != 0)
                 _notificationManager.CloseNotification(_notificationId);
-            await NavigationService.PopModalAsync();
+            await Application.Current.MainPage.Navigation.PopModalAsync();
         }
         #region BaseViewModel
         public override void SetBusy(bool isBusy)

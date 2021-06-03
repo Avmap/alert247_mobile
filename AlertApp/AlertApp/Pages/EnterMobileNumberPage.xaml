@@ -5,7 +5,7 @@
              xmlns:views="clr-namespace:AlertApp.Views"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              BackgroundColor="{StaticResource RegistrationBackgrounColor}"         
-             Navigation="{Binding NavigationService}"              
+             
              NavigationPage.HasNavigationBar="False"
              ios:Page.UseSafeArea="true"
              Title="{infrastructure:Translate EnterMobileNumberTitle}"             
@@ -40,7 +40,7 @@
                         VerticalOptions="CenterAndExpand"
                         HorizontalOptions="Center"
                         Clicked="OnButtonNextClicked"
-                        Style="{StaticResource AlertDefaultButton}"  
+                        Visual="Material"
                             />
                     <Label 
                         Text="{infrastructure:Translate EnterMobileMessage}" 

@@ -151,7 +151,16 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Age.
+        ///   Looks up a localized string similar to Activate subscription to SRC.
+        /// </summary>
+        internal static string AddSub {
+            get {
+                return ResourceManager.GetString("AddSub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Age:.
         /// </summary>
         internal static string Age {
             get {
@@ -318,6 +327,15 @@ namespace AlertApp.Resx {
         internal static string CancelSendAlert {
             get {
                 return ResourceManager.GetString("CancelSendAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CAN YOU HELP?.
+        /// </summary>
+        internal static string CanYouHelp {
+            get {
+                return ResourceManager.GetString("CanYouHelp", resourceCulture);
             }
         }
         
@@ -1042,6 +1060,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To alert, add contacts or activate your subscription.
+        /// </summary>
+        internal static string NoContactsNoSub {
+            get {
+                return ResourceManager.GetString("NoContactsNoSub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please check your internet connection..
         /// </summary>
         internal static string NoInternetConnection {
@@ -1609,6 +1636,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Emergency Friend.
+        /// </summary>
+        internal static string SingleContact {
+            get {
+                return ResourceManager.GetString("SingleContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verification code will be send to .
         /// </summary>
         internal static string SmsVerificationMessage {
@@ -1641,6 +1677,87 @@ namespace AlertApp.Resx {
         internal static string StickNotificationGuardianMessage {
             get {
                 return ResourceManager.GetString("StickNotificationGuardianMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End.
+        /// </summary>
+        internal static string SubscriptionEnd {
+            get {
+                return ResourceManager.GetString("SubscriptionEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SUBSCRIPTION TO SIGNAL RECEIVING CENTER.
+        /// </summary>
+        internal static string SubscriptionFrame {
+            get {
+                return ResourceManager.GetString("SubscriptionFrame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Package.
+        /// </summary>
+        internal static string SubscriptionPackage {
+            get {
+                return ResourceManager.GetString("SubscriptionPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string SubscriptionPage {
+            get {
+                return ResourceManager.GetString("SubscriptionPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        internal static string SubscriptionStart {
+            get {
+                return ResourceManager.GetString("SubscriptionStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXPIRED.
+        /// </summary>
+        internal static string SubscriptionStatusExpired {
+            get {
+                return ResourceManager.GetString("SubscriptionStatusExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXPIRING SOON.
+        /// </summary>
+        internal static string SubscriptionStatusExpiring {
+            get {
+                return ResourceManager.GetString("SubscriptionStatusExpiring", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INACTIVE.
+        /// </summary>
+        internal static string SubscriptionStatusInactive {
+            get {
+                return ResourceManager.GetString("SubscriptionStatusInactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ACTIVE.
+        /// </summary>
+        internal static string SubscriptionStatusOK {
+            get {
+                return ResourceManager.GetString("SubscriptionStatusOK", resourceCulture);
             }
         }
         
@@ -1798,7 +1915,7 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The.
         /// </summary>
         internal static string TheAlert {
             get {
@@ -1812,6 +1929,15 @@ namespace AlertApp.Resx {
         internal static string Threat {
             get {
                 return ResourceManager.GetString("Threat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security facilities.
+        /// </summary>
+        internal static string TouristGuide {
+            get {
+                return ResourceManager.GetString("TouristGuide", resourceCulture);
             }
         }
         
@@ -1857,6 +1983,15 @@ namespace AlertApp.Resx {
         internal static string VerificationCodePageTitle {
             get {
                 return ResourceManager.GetString("VerificationCodePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        internal static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
         

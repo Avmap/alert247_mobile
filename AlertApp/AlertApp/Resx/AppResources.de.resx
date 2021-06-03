@@ -389,7 +389,7 @@
     <value>Bedrohung</value>
   </data>
   <data name="Age" xml:space="preserve">
-    <value>Alter</value>
+    <value>Alter:</value>
   </data>
   <data name="Allergies" xml:space="preserve">
     <value>Allergien</value>

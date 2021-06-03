@@ -164,14 +164,20 @@ namespace AlertApp.ViewModels
             }
             SetBusy(true);
 
-            var contacts = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
+            //var contacts = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
+            var contacts = await Xamarin.Essentials.Contacts.GetAllAsync();
             if (contacts != null)
             {
                 var tempList = new List<ImportContact>();
-                foreach (var item in contacts.Where(c => c.Number != null).OrderBy(c => c.Name))
+                foreach (var item in contacts.Where(c => c.Phones.Count>0).OrderBy(c => c.FamilyName))
                 {
-                    if (!community.Contains(ImportContact.GetFormattedNumber(item.Number)))
-                        tempList.Add(new ImportContact(item, _contactProfileImageProvider));
+                    foreach (var number in item.Phones)
+                    {
+                        var num = ImportContact.GetFormattedNumber(number.PhoneNumber);
+                        if (!community.Contains(num))
+                            tempList.Add(new ImportContact(item, num, _contactProfileImageProvider));
+                    }
+                    
                 }
 
                 if (Device.RuntimePlatform == Device.iOS)
@@ -249,7 +255,7 @@ namespace AlertApp.ViewModels
                     if (addContactsResults.IsOk)
                     {
                         HasChange = true;
-                        await NavigationService.PopAsync();
+                        await Application.Current.MainPage.Navigation.PopAsync();
                     }
                     else if (addContactsResults.IsOnline)
                     {

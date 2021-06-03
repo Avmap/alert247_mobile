@@ -26,14 +26,14 @@ namespace AlertApp.ViewModels
 
         #region Properties
 
-        private ObservableCollection<Contact> _Dependands;
-        public ObservableCollection<Contact> Dependands
+        private ObservableCollection<AlertApp.Model.Api.Contact> _Dependands;
+        public ObservableCollection<AlertApp.Model.Api.Contact> Dependands
         {
             get
             {
                 if (_Dependands == null)
                 {
-                    _Dependands = new ObservableCollection<Contact>();
+                    _Dependands = new ObservableCollection<AlertApp.Model.Api.Contact>();
                 }
                 return _Dependands;
             }
@@ -93,7 +93,7 @@ namespace AlertApp.ViewModels
             RadiusFromSettingsList.Add(new RadiusSetting { Id = 3, Name = "Pick from map" });
         }
 
-        public async void ToggleSettings(RadiusSetting radiusSetting, Contact contact)
+        public async void ToggleSettings(RadiusSetting radiusSetting, AlertApp.Model.Api.Contact contact)
         {
             if (!radiusSetting.Checked)
             {
@@ -108,7 +108,7 @@ namespace AlertApp.ViewModels
 
                 if (radiusSetting.Id == 3)
                 {
-                    await NavigationService.PushAsync(new SelectPositionFromMapPage(), false);
+                    await Application.Current.MainPage.Navigation.PushAsync(new SelectPositionFromMapPage(), false);
                 }
 
                 radiusSetting.Checked = true;
@@ -190,18 +190,18 @@ namespace AlertApp.ViewModels
                             var addressBookItem = addressBook.Where(c => c.FormattedNumber == item.Cellphone).FirstOrDefault();
                             if (addressBookItem != null)
                             {
-                                Dependands.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage });
+                                Dependands.Add(new AlertApp.Model.Api.Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage });
                             }
                             else
                             {
-                                Dependands.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, Stats = item.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") });
+                                Dependands.Add(new AlertApp.Model.Api.Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, Stats = item.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") });
                             }
                         }
                         SetBusy(false);
                     }
                     else
                     {
-                        var contacts = dependants.Select(c => new Contact { Accepted = c.Accepted, Cellphone = c.Cellphone, Stats = c.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") }).ToList();
+                        var contacts = dependants.Select(c => new AlertApp.Model.Api.Contact { Accepted = c.Accepted, Cellphone = c.Cellphone, Stats = c.Stats, ProfileImage = ImageSource.FromFile("account_circle.png") }).ToList();
                         Dependands.Clear();
                         foreach (var item in contacts)
                         {

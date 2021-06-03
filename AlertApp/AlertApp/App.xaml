@@ -10,6 +10,7 @@
                 <local:Sizes />
                 <local:Styles />
                 <local:Fonts />
+                <local:Utilities />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

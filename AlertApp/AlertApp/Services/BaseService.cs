@@ -8,8 +8,13 @@ namespace AlertApp.Services
 {
     public abstract class BaseService
     {
-        protected string Url => "https://staging.alert247.gr/api/ ";
-        // protected string Url => "https://alert247.gr/api/ ";
+#if STAGINGAPI
+        protected string Url => AlertApp.CodeSettings.StagingAPI;
+#else
+        protected string Url => AlertApp.CodeSettings.ProductionAPI;
+#endif
+
+
 
 
         protected readonly HttpClient _httpClient = new HttpClient();

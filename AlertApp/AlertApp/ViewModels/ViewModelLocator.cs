@@ -5,6 +5,8 @@ using AlertApp.Services.Cryptography;
 using AlertApp.Services.Profile;
 using AlertApp.Services.Registration;
 using AlertApp.Services.Settings;
+using AlertApp.Services.News;
+using AlertApp.Services.Subscription;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,7 +33,6 @@ namespace AlertApp.ViewModels
         protected ViewModelLocator()
         {
             _unityContainer = new UnityContainer();
-
             // Providers
             //_unityContainer.RegisterType<IRequestProvider, RequestProvider>();
             //_unityContainer.RegisterType<ILocationProvider, LocationProvider>();
@@ -48,6 +49,8 @@ namespace AlertApp.ViewModels
             RegisterSingleton<ICommunityService, CommunityService>();                        
             RegisterSingleton<IAlertService, AlertService>();
             RegisterSingleton<IContactsService, ContactsService>();
+            RegisterSingleton<INewsService, NewsService>();
+            RegisterSingleton<ISubscriptionService, SubscriptionService>();
 
 
             // View models
@@ -78,7 +81,16 @@ namespace AlertApp.ViewModels
 
         public T Resolve<T>()
         {
-            return _unityContainer.Resolve<T>();
+            try
+            {
+                return _unityContainer.Resolve<T>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return default(T);
+            }
+            
         }
         public T Resolve<T>(Dictionary<string,object> param)
         {

@@ -30,7 +30,7 @@
     <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;STAGINGAPI</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
@@ -44,6 +44,7 @@
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -62,7 +63,7 @@
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>Z:\Backups\alert247.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>\\avserver\av users\kottas\Backups\alert247.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>2019@l3rt!@ </AndroidSigningStorePass>
     <AndroidSigningKeyAlias>alert247</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>2019@l3rt!@ </AndroidSigningKeyPass>
@@ -72,6 +73,34 @@
     <AndroidLinkTool>r8</AndroidLinkTool>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AndroidUseAapt2>true</AndroidUseAapt2>
+    <DefineConstants>STAGINGAPI</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugProduction|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugProduction\</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <DebugType>portable</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <LangVersion>8.0</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseProduction|AnyCPU'">
+    <OutputPath>bin\ReleaseProduction\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>portable</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <LangVersion>8.0</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -157,7 +186,7 @@
       <Version>0.10.0</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
-      <Version>1.5.3.2</Version>
+      <Version>1.6.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Firebase.Common">
       <Version>119.3.0</Version>
@@ -173,13 +202,13 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Forms">
-      <Version>4.8.0.1560</Version>
+      <Version>5.0.0.2012</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Contacts">
       <Version>1.0.5</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Maps">
-      <Version>4.8.0.1560</Version>
+      <Version>5.0.0.2012</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
       <Version>5.0.0.2012</Version>
@@ -217,6 +246,7 @@
     <Compile Include="CustomRenderers\Dialog.cs" />
     <Compile Include="CustomRenderers\EntryCenteredRenderer.cs" />
     <Compile Include="CustomRenderers\EntryCenterOnlyRenderer.cs" />
+    <Compile Include="CustomRenderers\GeoWebViewRenderer.cs" />
     <Compile Include="CustomRenderers\NoUnderlineEditorRenderer.cs" />
     <Compile Include="CustomRenderers\NoUnderlineEntry.cs" />
     <Compile Include="CustomRenderers\OtpEntryRenderer.cs" />

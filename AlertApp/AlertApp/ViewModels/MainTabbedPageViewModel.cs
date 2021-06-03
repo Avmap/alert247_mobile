@@ -49,7 +49,7 @@ namespace AlertApp.ViewModels
 
         private async void NavigateToContactScreen()
         {          
-            await NavigationService.PushAsync(new ManageContactsPage(), true);
+            await Application.Current.MainPage.Navigation.PushAsync(new ManageContactsPage(), true);
         }
 
         #endregion
@@ -97,7 +97,7 @@ namespace AlertApp.ViewModels
 
         private async void OpenSendAlertScreen()
         {                        
-            await NavigationService.PushAsync(new SendingAlertPage(Model.AlertType.UserAlert), false);
+            await Application.Current.MainPage.Navigation.PushAsync(new SendingAlertPage(Model.AlertType.UserAlert), false);
         }
         #region BaseViewModel
 

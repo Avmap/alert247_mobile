@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    x:Class="AlertApp.Utilities"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:local="clr-namespace:AlertApp"
+    xmlns:converters="clr-namespace:AlertApp.Converters;assembly=AlertApp"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <converters:SelectedTabTextColorConverter x:Key="SelectedTabTextColorConverter" />
+    <Style TargetType="Grid">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor"
+                                        Value="White" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -136,7 +136,7 @@
     <value>Πατήστε για ακύρωση</value>
   </data>
   <data name="Continue" xml:space="preserve">
-    <value>Επόμενο</value>
+    <value>ΕΠΟΜΕΝΟ</value>
   </data>
   <data name="ContinueDialogButton" xml:space="preserve">
     <value>Συνέχεια</value>
@@ -176,10 +176,10 @@
     <value>ΑΠΟΣΤΟΛΗ ΤΟΠΟΘΕΣΙΑΣ</value>
   </data>
   <data name="ManageContacts" xml:space="preserve">
-    <value>Διαχείριση Επαφών</value>
+    <value>Φίλοι άμεσης βοήθειας</value>
   </data>
   <data name="NextRegistration" xml:space="preserve">
-    <value>Επόμενο</value>
+    <value>ΕΠΟΜΕΝΟ</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
@@ -212,10 +212,10 @@
     <value>Ο κωδικός επιβεβαίωσης θα αποσταλεί στον αριθμό</value>
   </data>
   <data name="TabDependands" xml:space="preserve">
-    <value>Εξαρτηση</value>
+    <value>Εξάρτηση</value>
   </data>
   <data name="TabMyCommunity" xml:space="preserve">
-    <value>Κοινότητα</value>
+    <value>Ειδοποιώ</value>
   </data>
   <data name="TabSuggestions" xml:space="preserve">
     <value>Προτάσεις</value>
@@ -245,7 +245,7 @@
     <value>Με ειδοποιούν</value>
   </data>
   <data name="AddContactsPage" xml:space="preserve">
-    <value>Προσθήκη επαφής</value>
+    <value>Προσθήκη φίλου άμεσης βοήθειας</value>
   </data>
   <data name="OtherText" xml:space="preserve">
     <value>Άλλο</value>
@@ -257,7 +257,7 @@
     <value>Θέλετε να στείλετε αίτημα στις επιλεγμένες επαφές;</value>
   </data>
   <data name="AlertAddContactsTitle" xml:space="preserve">
-    <value>Προσθήκη επαφών</value>
+    <value>Προσθήκη φίλων άμεσης βοήθειας</value>
   </data>
   <data name="EnterMobileDialogMessage" xml:space="preserve">
     <value>Παρακαλώ εισάγετε τον αριθμό τηλεφώνου</value>
@@ -347,7 +347,7 @@
     <value>Αναζήτηση...</value>
   </data>
   <data name="SuccessAddContactMessage" xml:space="preserve">
-    <value>Η επαφή προστέθηκε επιτυχώς</value>
+    <value>Ο φίλος άμεσης βοήθειας προστέθηκε επιτυχώς</value>
   </data>
   <data name="SuccessAddContactTitle" xml:space="preserve">
     <value>Ειδοποίηση</value>
@@ -377,7 +377,7 @@
     <value>στάλθηκε επιτυχώς σε</value>
   </data>
   <data name="SuccessSendAlertMessageContacts" xml:space="preserve">
-    <value>επαφές.</value>
+    <value>φίλους άμεσης βοήθειας.</value>
   </data>
   <data name="TheAlert" xml:space="preserve">
     <value>To</value>
@@ -386,7 +386,7 @@
     <value>ΑΤΥΧΗΜΑ</value>
   </data>
   <data name="Contacts" xml:space="preserve">
-    <value>Επαφές</value>
+    <value>Φίλοι άμεσης βοήθειας</value>
   </data>
   <data name="Fire" xml:space="preserve">
     <value>ΦΩΤΙΑ</value>
@@ -407,7 +407,7 @@
     <value>Αποστολή Ειδοποίησης SOS</value>
   </data>
   <data name="SendingAlertToSelectedContacts" xml:space="preserve">
-    <value>Αποστολή ειδοποίησης στις επιλεγμένες επαφές σε...</value>
+    <value>Αποστολή ειδοποίησης στους φίλους άμεσης βοήθειας σε...</value>
   </data>
   <data name="Age" xml:space="preserve">
     <value>Ηλικία:</value>
@@ -440,7 +440,7 @@
     <value>Αγνόησε</value>
   </data>
   <data name="NewContactRequestTitle" xml:space="preserve">
-    <value>ΠΡΟΣΘΗΚΗ ΕΠΑΦΗΣ</value>
+    <value>ΠΡΟΣΘΗΚΗ ΦΙΛΟΥ ΑΜΕΣΗΣ ΒΟΗΘΕΙΑΣ</value>
   </data>
   <data name="StartSettings" xml:space="preserve">
     <value>ΑΡΧΙΚΕΣ ΡΥΘΜΙΣΕΙΣ</value>
@@ -464,7 +464,7 @@
     <value>Ολοκλήρωση</value>
   </data>
   <data name="NoAlertRecipients" xml:space="preserve">
-    <value>Δεν βρέθηκαν επαφές για αποστολή alert.</value>
+    <value>Δεν βρέθηκαν φίλοι άμεσης βοήθειας για αποστολή alert.</value>
   </data>
   <data name="RegistrationCreatePinPromt" xml:space="preserve">
     <value>Δημιουργήστε τον προσωπικό σας 4ψήφιο κωδικό (PIN). Εισάγετε παρακάτω.</value>
@@ -503,7 +503,7 @@
     <value>Αλλαγή PIN</value>
   </data>
   <data name="SettingContacts" xml:space="preserve">
-    <value>Επαφές</value>
+    <value>Φίλοι άμεσης βοήθειας</value>
   </data>
   <data name="SettingEnviroment" xml:space="preserve">
     <value>Περιβάλλον</value>
@@ -542,7 +542,7 @@
     <value>ΑΤΥΧΗΜΑ</value>
   </data>
   <data name="SwitchContacts" xml:space="preserve">
-    <value>ΕΠΑΦΕΣ</value>
+    <value>ΦΙΛΟΙ ΑΜΕΣΗΣ ΒΟΗΘΕΙΑΣ</value>
   </data>
   <data name="SwitchFire" xml:space="preserve">
     <value>ΦΩΤΙΑ</value>
@@ -611,7 +611,7 @@
     <value> για λογαριασμό της </value>
   </data>
   <data name="PrivacyTerms" xml:space="preserve">
-    <value>Πολιτική Προστασίας</value>
+    <value>Πολιτική Προστασίας Δεδομένων</value>
   </data>
   <data name="WrongPin" xml:space="preserve">
     <value>Λάθος PIN.</value>
@@ -744,5 +744,50 @@
   </data>
   <data name="MSG" xml:space="preserve">
     <value>ΜΗΝΥΜΑ</value>
+  </data>
+  <data name="AddSub" xml:space="preserve">
+    <value>Ενεργοποίηση συνδρομής Κ.Λ.Σ.</value>
+  </data>
+  <data name="NoContactsNoSub" xml:space="preserve">
+    <value>Για alert, προσθέστε επαφές ή ενεργοποιείστε συνδρομή ΚΛΣ</value>
+  </data>
+  <data name="TouristGuide" xml:space="preserve">
+    <value>Xάρτης υποδομών ασφαλείας</value>
+  </data>
+  <data name="SubscriptionEnd" xml:space="preserve">
+    <value>Λήξη</value>
+  </data>
+  <data name="SubscriptionFrame" xml:space="preserve">
+    <value>ΣΥΝΔΡΟΜΗ ΣΕ ΚΕΝΤΡΟ ΛΗΨΗΣ ΣΗΜΑΤΩΝ</value>
+  </data>
+  <data name="SubscriptionPackage" xml:space="preserve">
+    <value>Πακέτο συνδρομής</value>
+  </data>
+  <data name="SubscriptionStart" xml:space="preserve">
+    <value>Έναρξη</value>
+  </data>
+  <data name="SubscriptionStatusExpired" xml:space="preserve">
+    <value>ΕΧΕΙ ΛΗΞΕΙ</value>
+  </data>
+  <data name="SubscriptionStatusExpiring" xml:space="preserve">
+    <value>ΛΗΓΕΙ ΣΥΝΤΟΜΑ</value>
+  </data>
+  <data name="SubscriptionStatusInactive" xml:space="preserve">
+    <value>ΑΝΕΝΕΡΓΗ</value>
+  </data>
+  <data name="SubscriptionStatusOK" xml:space="preserve">
+    <value>ΕΝΕΡΓΗ</value>
+  </data>
+  <data name="SingleContact" xml:space="preserve">
+    <value>Φίλος άμεσης βοήθειας</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Έκδοση</value>
+  </data>
+  <data name="SubscriptionPage" xml:space="preserve">
+    <value>Ενεργοποίηση συνδρομής</value>
+  </data>
+  <data name="CanYouHelp" xml:space="preserve">
+    <value>ΜΠΟΡΕΙΤΕ ΝΑ ΒΟΗΘΗΣΕΤΕ;</value>
   </data>
 </root>

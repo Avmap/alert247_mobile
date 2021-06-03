@@ -14,8 +14,13 @@ using Xamarin.Forms;
 
 namespace AlertApp.Infrastructure
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : NavigationPage,INotifyPropertyChanged
     {
+        public BaseViewModel()
+        {
+            
+        }
+
         private ICommand _BaseBackCommand;
         public ICommand BaseBackCommand
         {
@@ -54,10 +59,10 @@ namespace AlertApp.Infrastructure
         private async void OpenSettingsScreen()
         {
 
-            if (NavigationService.NavigationStack.LastOrDefault() is SettingsPage == false)
+            if (Application.Current.MainPage.Navigation.NavigationStack.LastOrDefault() is SettingsPage == false)
             {
                 SetBusy(true);
-                await NavigationService.PushAsync(new SettingsPage(), false);
+                await Application.Current.MainPage.Navigation.PushAsync(new SettingsPage(), false);
                 SetBusy(false);
             }
 
@@ -68,13 +73,13 @@ namespace AlertApp.Infrastructure
         {
             try
             {
-                await NavigationService.PopAsync(false);
+                await Application.Current.MainPage.Navigation.PopAsync(false);
             }
             catch
             {
                 try
                 {
-                    await NavigationService.PopModalAsync(false);
+                    await Application.Current.MainPage.Navigation.PopModalAsync(false);
                 }
                 catch
                 {
@@ -90,14 +95,6 @@ namespace AlertApp.Infrastructure
         public bool? IsVisible { get; set; }
 
         public bool NotBusy { get { return !Busy; } }
-
-        private INavigation _NavigationService;
-        public INavigation NavigationService
-        {
-            get { return _NavigationService; }
-            set { _NavigationService = value; }
-        }
-
 
         private string title = string.Empty;
         /// <summary>
@@ -276,8 +273,8 @@ namespace AlertApp.Infrastructure
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                NavigationService.InsertPageBefore(new MainPage(), NavigationService.NavigationStack.First());
-                NavigationService.PopToRootAsync();
+                Application.Current.MainPage.Navigation.InsertPageBefore(new MainPage(), Application.Current.MainPage.Navigation.NavigationStack.First());
+                Application.Current.MainPage.Navigation.PopToRootAsync();
             });
         }
 
