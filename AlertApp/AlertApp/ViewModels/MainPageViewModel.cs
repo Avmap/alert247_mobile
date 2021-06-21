@@ -210,11 +210,15 @@ namespace AlertApp.ViewModels
                 OnPropertyChanged("MultipleContacts");
                 OnPropertyChanged("CanSendAlert");
                 OnPropertyChanged("CanNotSendAlert");
+                OnPropertyChanged("ShowContactsButton");
             }
         }
 
         public bool HasContacts { get { return _NumberOfContacts > 0; } }
-        public bool DoesNotHaveContacts { get { return !HasContacts; } }
+        public bool DoesNotHaveContacts { get { 
+                return ShowContactsButton && (_NumberOfContacts<1); 
+            } 
+        }
 
         public bool SingleContact { get { return _NumberOfContacts==1; } }
         public bool MultipleContacts { get { return _NumberOfContacts >1; } }
@@ -256,6 +260,24 @@ namespace AlertApp.ViewModels
         public bool ShowThreatButton => Preferences.Get(Settings.THREAT_BUTTON_VISIBLE, true);
         public bool ShowFireButton => Preferences.Get(Settings.FIRE_BUTTON_VISIBLE, true);
         public bool ShowAccidentButton => Preferences.Get(Settings.ACCIDENT_BUTTON_VISIBLE, true);
+
+        public bool ShowContactsButton
+        {
+            get
+            {
+                return HasContacts && Preferences.Get(Settings.CONTACTS_BUTTON_VISIBLE, true);
+            }
+        }
+
+        public bool ShowSubscriptionButton
+        {
+            get
+            {
+                return Preferences.Get(Settings.SUBSCRIPTION_BUTTON_VISIBLE, true) && DoesNotHaveSub;
+            }
+        }
+
+        public bool ShowMapButton => Preferences.Get(Settings.MAP_BUTTON_VISIBLE, true);
 
         private string _SubscriptionStart;
         public string SubscriptionStart
@@ -727,6 +749,11 @@ Response<NewsEntryResponse> r2 = await _newsService.GetNews(token);
             OnPropertyChanged("ShowAccidentButton");
             OnPropertyChanged("ShowContactsMenuButton");
             OnPropertyChanged("ShowInfoMenuButton");
+            OnPropertyChanged("HasContacts");
+            OnPropertyChanged("ShowContactsButton");
+            OnPropertyChanged("HasSub");
+            OnPropertyChanged("ShowSubscriptionButton");
+            OnPropertyChanged("ShowMapButton");
         }
 
 #region BaseViewModel

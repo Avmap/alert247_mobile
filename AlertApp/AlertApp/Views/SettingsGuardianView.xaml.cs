@@ -16,8 +16,14 @@ namespace AlertApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsGuardianView : ContentView
     {
-        public SettingsGuardianView()
+        private Xamarin.Forms.Page _nextPage;
+
+        public SettingsGuardianView(Xamarin.Forms.Page nextPage = null)
         {
+            if (nextPage!=null)
+            {
+                _nextPage = nextPage;
+            }
             InitializeComponent();
             swFallDetection.IsToggled = Preferences.Get(Settings.FallDetecion, false);
             this.BindingContext = ViewModelLocator.Instance.Resolve<SettingsPageViewModel>();
@@ -62,7 +68,6 @@ namespace AlertApp.Views
                     SaveChanges();
                 }
             };
-
             Navigation.PushModalAsync(page);
         }
 
@@ -78,8 +83,15 @@ namespace AlertApp.Views
             {
                 vm.DisableFallDetection();
             }
-
-            Device.BeginInvokeOnMainThread(() => Navigation.PopAsync(false));            
+            if (_nextPage != null)
+            {
+                Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(_nextPage,false));
+            }
+            else
+            {
+                Device.BeginInvokeOnMainThread(() => Navigation.PopAsync(false));
+            }
+                           
         }
     }
 }

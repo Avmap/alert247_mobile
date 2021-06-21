@@ -53,8 +53,14 @@ namespace AlertApp
             }
             else
             {
+                if (Preferences.Get(Settings.DoNotShowWhatsNew, false)) { 
                 MainPage = new NavigationPage(new MainPage());
-                
+                }
+                else
+                {
+                    MainPage = new NavigationPage(new WhatsNewPage(new MainPage()));
+                }
+
             }
 
             if (Device.RuntimePlatform == Device.iOS)

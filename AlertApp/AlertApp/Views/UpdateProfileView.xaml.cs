@@ -30,18 +30,6 @@ namespace AlertApp.Views
             AddRegistrationFields();
 
 
-            var updateTapGestureRecognizer = new TapGestureRecognizer
-            {
-                TappedCallback = (v, o) =>
-                {
-                    ConfirmSettingsClick();
-                },
-                NumberOfTapsRequired = 1
-            };
-
-            nextImage.GestureRecognizers.Add(updateTapGestureRecognizer);
-            topNextImage.GestureRecognizers.Add(updateTapGestureRecognizer);
-
         }
         private async void AddRegistrationFields()
         {
@@ -84,7 +72,7 @@ namespace AlertApp.Views
                     {
                         string label = "";
                         item.Labels.TryGetValue(language, out label);
-                        stack.Children.Add(new Xamarin.Forms.Label { Text = label, VerticalOptions = LayoutOptions.Center, WidthRequest = 100, Style = (Style)Application.Current.Resources["RegistrationLabelStyle"] });
+                        stack.Children.Add(new Xamarin.Forms.Label { Text = label, VerticalOptions = LayoutOptions.Start, WidthRequest = 100, Style = (Style)Application.Current.Resources["RegistrationLabelStyle"] });
                     }
                     stack.FieldName = item.FieldName;
                     switch (item.DataType)
@@ -92,7 +80,7 @@ namespace AlertApp.Views
                         case RegistrationField.Type.String:
 
                             var entry = new NoUnderlineEntry { VerticalOptions = LayoutOptions.Center, FontSize = 16, HorizontalOptions = LayoutOptions.FillAndExpand, ReturnType = ReturnType.Next, Style = (Style)Application.Current.Resources["RegistrationEntryStyle"] };
-                            entry.TextChanged += Entry_TextChanged;
+                            //entry.TextChanged += Entry_TextChanged;
                             if (decryptedUserProfile.ContainsKey(item.FieldName))
                             {
                                 entry.Text = decryptedUserProfile[item.FieldName];
@@ -150,7 +138,7 @@ namespace AlertApp.Views
                             var editor = new NoUnderlineEditor { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, HeightRequest = 150 };
                             if (Device.RuntimePlatform == Device.iOS)
                                 editor.BackgroundColor = Color.FromHex("#E6E7E8");
-                            editor.TextChanged += Entry_TextChanged;
+                           // editor.TextChanged += Entry_TextChanged;
 
                             if (decryptedUserProfile.ContainsKey(item.FieldName))
                             {
@@ -168,7 +156,7 @@ namespace AlertApp.Views
         }
         private void DatePicker_OnDialogUnFocused(object sender, EventArgs e)
         {
-            Entry_TextChanged(null, null);
+            //Entry_TextChanged(null, null);
         }
         private void OnLabelClicked(object s, EventArgs e)
         {
@@ -193,23 +181,9 @@ namespace AlertApp.Views
         }
         private void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
-            Entry_TextChanged(null, null);
+            //Entry_TextChanged(null, null);
         }
-        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (HasValue())
-            {
-                labelPrompt.IsVisible = false;
-                topNextButton.IsVisible = true;
-                bottomNextButton.IsVisible = false;
-            }
-            else
-            {
-                labelPrompt.IsVisible = true;
-                topNextButton.IsVisible = false;
-                bottomNextButton.IsVisible = true;
-            }
-        }
+        
         private bool HasValue()
         {
             var hasValue = false;
@@ -309,7 +283,7 @@ namespace AlertApp.Views
             }
 
         }
-        private void ConfirmSettingsClick()
+        private void ConfirmSettingsClick(object sender, EventArgs e)
         {
             if (!vm.Busy)
             {

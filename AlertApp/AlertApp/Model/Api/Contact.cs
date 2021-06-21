@@ -33,6 +33,8 @@ namespace AlertApp.Model.Api
         public string ProfileImageUri { get; set; }
 
         #region Computed
+        public bool IsPending => !Accepted;
+
         public bool HasProfileImage => !string.IsNullOrWhiteSpace(ProfileImageUri);
         public bool NoProfileImage => string.IsNullOrWhiteSpace(ProfileImageUri);
         public int NotificationId { get; set; }
@@ -40,7 +42,24 @@ namespace AlertApp.Model.Api
         public Color BackgroundStatusColor => Accepted ? Color.FromHex("#800000") : Color.FromHex("#DCDDDE");
         public Color ΤextStatusColor => Accepted ? Color.White : Color.FromHex("#800000");
         public string Status => Accepted ? AppResources.Accepted : AppResources.Pending;
-        public string FullName => String.Format("{0} {1}", FirstName, LastName);
+        public string FullName
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(FirstName))
+                {
+                    return String.Format("{0} {1}", FirstName, LastName);
+                }else if (!string.IsNullOrEmpty(LastName))
+                {
+                    return LastName;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+        
         public string Title => !string.IsNullOrWhiteSpace(FullName) ? FullName : Cellphone;
 
         public string NewRequestMessage => String.Format("{0} {1}", Title, AppResources.NewCommunityRequestWantParticipateMessage);

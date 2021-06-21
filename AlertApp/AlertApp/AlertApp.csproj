@@ -56,8 +56,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Pages\WhatsNewPage.xaml.cs">
+      <DependentUpon>WhatsNewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\MapPage.xaml.cs">
       <DependentUpon>MapPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\PendingRequestsPage.xaml.cs">
+      <DependentUpon>PendingRequestsPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Resx\AppResources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -78,6 +84,9 @@
     </Compile>
     <Compile Update="Views\NewsFeed.xaml.cs">
       <DependentUpon>NewsFeed.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ChangeMessageView.xaml.cs">
+      <DependentUpon>ChangeMessageView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 

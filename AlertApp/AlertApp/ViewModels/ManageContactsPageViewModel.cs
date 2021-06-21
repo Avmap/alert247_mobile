@@ -60,10 +60,11 @@ namespace AlertApp.ViewModels
 
             var tempTabs = new List<TabItem>();
 
-            tempTabs.Add(new TabItem { Name = AppResources.TabMyCommunity, Id = 1, Selected = true }); ;
-            tempTabs.Add(new TabItem { Name = AppResources.TabDependands, Id = 2 });
-            tempTabs.Add(new TabItem { Name = AppResources.WhoAlertMe, Id = 3 });
-            tempTabs.Add(new TabItem { Name = AppResources.BlockedUsersPage, Id = 4 });
+            tempTabs.Add(new TabItem { Name = AppResources.TabMyCommunity, Id = 1, Selected = true, NameIcon= "\U000F0B53" }); ;
+            //tempTabs.Add(new TabItem { Name = AppResources.TabDependands, Id = 2 });
+            tempTabs.Add(new TabItem { Name = AppResources.WhoAlertMe, Id = 3, NameIcon = "\U000F0B51" });
+            tempTabs.Add(new TabItem { Name = AppResources.BlockedUsersPage, Id = 4, NameIcon = "\U000F0012" });
+            tempTabs.Add(new TabItem { Name = AppResources.PendingRequestsPage, Id = 5, NameIcon = "\U000F009A" });
             Tabs = new ObservableCollection<TabItem>(tempTabs);
         }
 
@@ -129,7 +130,16 @@ namespace AlertApp.ViewModels
                 }
             }
 
+            private string _NameIcon;
 
+            public string NameIcon
+            {
+                get { return _NameIcon; }
+                set
+                {
+                    _NameIcon = value;
+                }
+            }
             public int Id { get; set; }
 
             #region INotifyPropertyChanged

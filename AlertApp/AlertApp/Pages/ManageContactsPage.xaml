@@ -14,7 +14,7 @@
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="56"></RowDefinition>
+            <RowDefinition Height="53"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition  Height="2"></RowDefinition>
             <RowDefinition  Height="Auto"></RowDefinition>
@@ -22,46 +22,44 @@
         <!--<views:SingleTitleToolbar BackCommand="{Binding BaseBackCommand}" Grid.Row="0" HasBackButton="True" Title="{infrastructure:Translate ManageContacts}" ></views:SingleTitleToolbar>-->
         <CollectionView
                     Grid.Row="1"
-                        Margin="0,0,0,0"
+                        Margin="0,0,0,0" 
+                        BackgroundColor="#fbfbfb"
                         x:Name="tabsList"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"
                         SelectionMode="Single"                    
                         SelectionChanged="tabsList_SelectionChanged"
                         ItemsSource="{Binding Tabs}"                             
-                        BackgroundColor="White">
+                        >
 
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Horizontal" />
+                <GridItemsLayout Orientation="Vertical" Span="4" VerticalItemSpacing="0" HorizontalItemSpacing="0" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="8,8,8,0" RowSpacing="0" ColumnSpacing="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="2"></RowDefinition>
-                        </Grid.RowDefinitions>
-
-                        <StackLayout Spacing="0" Orientation="Horizontal">
-                            <Label Grid.Row="0" FontSize="16" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{Binding Selected,Converter={StaticResource SelectedTabTextColorConverter},Mode=TwoWay}" Text="{Binding Name}"></Label>
-                            <Frame IsVisible="{Binding HasBadge}" HeightRequest="20" Grid.Row="0" Grid.Column="1" HasShadow="False" WidthRequest="20" CornerRadius="10" HorizontalOptions="End" VerticalOptions="Start" Margin="0" Padding="0"  BackgroundColor="Maroon">
-                                <Label Text="{Binding NotificationCount}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-                            </Frame>
-
+                    <StackLayout Spacing="0" Orientation="Horizontal" Margin="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical" Spacing="0" Margin="0" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" >
+                            <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Fill"></StackLayout>
+                            <Label FontSize="46" TextColor="{Binding Selected,Converter={StaticResource SelectedTabTextColorConverter},Mode=TwoWay}" Text="{Binding NameIcon}" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                            <Label IsVisible="False" Style="{StaticResource IconText}" Visual="Material" Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                            <StackLayout HorizontalOptions="EndAndExpand" ></StackLayout>
+                            <Label IsVisible="False" WidthRequest="90" LineBreakMode="WordWrap" FontSize="13" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{Binding Selected,Converter={StaticResource SelectedTabTextColorConverter},Mode=TwoWay}" Text="{Binding Name}"></Label>
+                            <StackLayout Padding="0,0,0,0" Spacing="0"  IsVisible="{Binding Selected}" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
                         </StackLayout>
-
-                        <StackLayout Padding="0,0,0,0" Spacing="0"  IsVisible="{Binding Selected}" Grid.Row="1" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
-                    </Grid>
+                        <Frame IsVisible="{Binding HasBadge}" HeightRequest="10" Grid.Row="0" HasShadow="False" WidthRequest="20" CornerRadius="10" HorizontalOptions="End" VerticalOptions="Start" Margin="0" Padding="0"  BackgroundColor="Maroon">
+                            <Label Text="{Binding NotificationCount}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                        </Frame>
+                    </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <AbsoluteLayout x:Name="container" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="2"/>
+        <AbsoluteLayout x:Name="container" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="2" />
 
-       
-        <StackLayout Margin="10,0,10,10" Grid.Row="4" Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="EndAndExpand">
+
+        <StackLayout x:Name="addCommunityContact" Margin="10,0,10,10" Grid.Row="4" Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="EndAndExpand">
             <Frame Style="{StaticResource MainPageAlertButtons}">
-                <StackLayout Padding="10,0" Spacing="0" x:Name="addCommunityContact" IsVisible="{Binding ShowContactsMenuButton,Mode=TwoWay}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                <StackLayout Padding="10,0" Spacing="0"  IsVisible="{Binding ShowContactsMenuButton,Mode=TwoWay}" Orientation="Vertical" HorizontalOptions="FillAndExpand">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>

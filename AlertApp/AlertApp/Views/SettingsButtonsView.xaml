@@ -4,67 +4,86 @@
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"    
              x:Class="AlertApp.Views.SettingsButtonsView">
     <ContentView.Content>
-        <StackLayout VerticalOptions="Start">
-            <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsButtonsViewMessage}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
-            <StackLayout Margin="0,16,0,0" Orientation="Vertical" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsButtonsViewMessage}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
+                <StackLayout Margin="0,16,0,0" Orientation="Vertical" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
 
-                <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="SOS"></TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
-                    <Label Text="SOS"  Padding="16,4,16,4" Style="{StaticResource SwitchText}" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
-                    <Switch x:Name="SOS" Toggled="Switch_Toggled" HorizontalOptions="End" Margin="0,0,16,0" />
-                </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="SOS"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="{infrastructure:Translate SwitchSOS}"  Padding="16,4,16,4" Style="{StaticResource SwitchText}" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                        <Switch x:Name="SOS" Toggled="Switch_Toggled" HorizontalOptions="End" Margin="0,0,16,0" />
+                    </StackLayout>
 
-                <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="THREAT"></TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
-                    <Label Text="{infrastructure:Translate SwitchTreat}" Style="{StaticResource SwitchText}" Padding="16,4,16,4" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
-                    <Switch x:Name="THREAT" Toggled="Switch_Toggled" HorizontalOptions="End" Margin="0,0,16,0" />
-                </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="THREAT"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="{infrastructure:Translate SwitchTreat}" Style="{StaticResource SwitchText}" Padding="16,4,16,4" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                        <Switch x:Name="THREAT" Toggled="Switch_Toggled" HorizontalOptions="End" Margin="0,0,16,0" />
+                    </StackLayout>
 
 
-                <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="FIRE"></TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
-                    <Label Text="{infrastructure:Translate SwitchFire}" Style="{StaticResource SwitchText}" Padding="16,4,16,4" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
-                    <Switch x:Name="FIRE" Toggled="Switch_Toggled" HorizontalOptions="End" Margin="0,0,16,0" />
-                </StackLayout>
-                
-                <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="ACCIDENT"></TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
-                    <Label Text="{infrastructure:Translate SwitchAccident}" Style="{StaticResource SwitchText}" Padding="16,4,16,4" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
-                    <Switch x:Name="ACCIDENT" Toggled="Switch_Toggled" HorizontalOptions="End" Margin="0,0,16,0" />
-                </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="FIRE"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="{infrastructure:Translate SwitchFire}" Style="{StaticResource SwitchText}" Padding="16,4,16,4" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                        <Switch x:Name="FIRE" Toggled="Switch_Toggled" HorizontalOptions="End" Margin="0,0,16,0" />
+                    </StackLayout>
 
-                <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="CONTACTS"></TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
-                    <Label Text="{infrastructure:Translate SwitchContacts}" Style="{StaticResource SwitchText}" Padding="16,4,16,4" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
-                    <Switch x:Name="CONTACTS" Toggled="Switch_Toggled" HorizontalOptions="End" Margin="0,0,16,0" />
+                    <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="ACCIDENT"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="{infrastructure:Translate SwitchAccident}" Style="{StaticResource SwitchText}" Padding="16,4,16,4" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                        <Switch x:Name="ACCIDENT" Toggled="Switch_Toggled" HorizontalOptions="End" Margin="0,0,16,0" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="CONTACTS"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="{infrastructure:Translate SwitchContacts}" Style="{StaticResource SwitchText}" Padding="16,4,16,4" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                        <Switch x:Name="CONTACTS" Toggled="Switch_Toggled" HorizontalOptions="End" Margin="0,0,16,0" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="SUBSCRIPTION"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="{infrastructure:Translate SwitchSubscription}" Style="{StaticResource SwitchText}" Padding="16,4,16,4" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                        <Switch x:Name="SUBSCRIPTION" Toggled="Switch_Toggled" HorizontalOptions="End" Margin="0,0,16,0" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="MAP"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="{infrastructure:Translate SwitchMap}" Style="{StaticResource SwitchText}" Padding="16,4,16,4" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                        <Switch x:Name="MAP" Toggled="Switch_Toggled" HorizontalOptions="End" Margin="0,0,16,0" />
+                    </StackLayout>
+
                 </StackLayout>
-               
-                <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="INFORMATION"></TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
-                    <Label Text="{infrastructure:Translate SwitchInformation}" Style="{StaticResource SwitchText}" Padding="16,4,16,4" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
-                    <Switch x:Name="INFORMATION" Toggled="Switch_Toggled" HorizontalOptions="End" Margin="0,0,16,0" />
-                </StackLayout>
-                
             </StackLayout>
-            <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,16,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ConfirmSettingsClick"></TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>
-                <Image HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
-                <Label Text="{infrastructure:Translate Confirmation}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
-            </StackLayout>
-        </StackLayout>
+            <Frame Grid.Row="2" Style="{StaticResource NormalButton}" CornerRadius="0" HorizontalOptions="FillAndExpand" Padding="10">
+                <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ConfirmSettingsClick" />
+                    </StackLayout.GestureRecognizers>
+                    <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
+                    <Label Text="&#x0F0E1E;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                    <Label Style="{StaticResource IconText}" Visual="Material" Text="{infrastructure:Translate Confirmation}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                    <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
+                </StackLayout>
+            </Frame>
+        </Grid>
     </ContentView.Content>
 </ContentView>

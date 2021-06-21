@@ -19,7 +19,7 @@ namespace AlertApp.Pages
     public partial class ManageContactsPage : ContentPage
     {
         int tabsAdded = 0;
-        int tabsCount = 4;
+        int tabsCount = 3;
         readonly IContactProfileImageProvider _contactProfileImageProvider;
         readonly IContacts _contacts;
         public int MyProperty { get; set; }
@@ -53,7 +53,7 @@ namespace AlertApp.Pages
             AbsoluteLayout.SetLayoutFlags(blockedUsersPage, AbsoluteLayoutFlags.All);
 
             this.container.Children.Add(communityPage);
-            this.container.Children.Add(dependantsPage);
+            //this.container.Children.Add(dependantsPage);  //todo: enable when ready
             this.container.Children.Add(whoalertMePage);
             this.container.Children.Add(blockedUsersPage);
 
@@ -107,6 +107,7 @@ namespace AlertApp.Pages
                 var vm = this.BindingContext as ManageContactsPageViewModel;
                 var response = await vm.GetContacts();
                 var addressBook = await ContactsHelp.GetAddressbook(_contacts, _contactProfileImageProvider);
+                TabItem whoAlertmeTab = vm.Tabs.ToList().Where(x => x.Name == AppResources.WhoAlertMe).First();
                 if (response != null)
                 {
                     foreach (var item in this.container.Children)
@@ -119,12 +120,12 @@ namespace AlertApp.Pages
                                 if (((WhoAlertsMePageViewModel)item.BindingContext).NotificationCount > 0)
                                 {
 
-                                    vm.Tabs[2].HasBadge = true;
-                                    vm.Tabs[2].NotificationCount = ((WhoAlertsMePageViewModel)item.BindingContext).NotificationCount;
+                                    whoAlertmeTab.HasBadge = true;
+                                    whoAlertmeTab.NotificationCount = ((WhoAlertsMePageViewModel)item.BindingContext).NotificationCount;
                                 }
                                 else
                                 {
-                                    vm.Tabs[2].HasBadge = false;
+                                    whoAlertmeTab.HasBadge = false;
                                 }
                             }
                         }
@@ -154,39 +155,64 @@ namespace AlertApp.Pages
 
             var currentTabItem = e.CurrentSelection.FirstOrDefault() as TabItem;
             currentTabItem.Selected = true;
+            //TabItem whoAlertmeTab = vm.Tabs.ToList().Where(x => x.Name == AppResources.WhoAlertMe).First();
+            for (var i = 0; i < this.container.Children.Count; i++)
+            {
+                this.container.Children[i].IsVisible = false;
+            }
+            
+            //switch (currentTabItem.Name){
+            //    case AppResources.TabMyCommunity:
 
+            //        break;
+            //    case AppResources.TabDependands:
+
+            //        break;
+            //    case AppResources.WhoAlertMe:
+
+            //        break;
+            //    case AppResources.BlockedUsersPage:
+
+            //        break;
+
+            //}
+            //this.container.Children[currentTabItem.Id - 1].IsVisible = true;
             switch (currentTabItem.Id)
             {
                 case 1:
-                    this.container.Children[0].IsVisible = true;
-                    this.container.Children[1].IsVisible = false;
-                    this.container.Children[2].IsVisible = false;
-                    this.container.Children[3].IsVisible = false;
+                    this.container.Children.Where(x => x.GetType() == typeof(MyCommunityPage)).First().IsVisible = true;
+                    //this.container.Children[0].IsVisible = true;
+                    //this.container.Children[1].IsVisible = false;
+                    //this.container.Children[2].IsVisible = false;
+                    //this.container.Children[3].IsVisible = false;
                     addCommunityContact.IsVisible = true;
                     //contactsMenu.IsVisible = false;
                     tabsList.ScrollTo(0, position: ScrollToPosition.Start);
                     break;
                 case 2:
-                    this.container.Children[0].IsVisible = false;
-                    this.container.Children[1].IsVisible = true;
-                    this.container.Children[2].IsVisible = false;
-                    this.container.Children[3].IsVisible = false;
+                    this.container.Children.Where(x => x.GetType() == typeof(DependandsPage)).First().IsVisible = true;
+                    //this.container.Children[0].IsVisible = false;
+                    //this.container.Children[1].IsVisible = true;
+                    //this.container.Children[2].IsVisible = false;
+                    //this.container.Children[3].IsVisible = false;
                     addCommunityContact.IsVisible = false;
                     //contactsMenu.IsVisible = true;
                     break;
                 case 3:
-                    this.container.Children[0].IsVisible = false;
-                    this.container.Children[1].IsVisible = false;
-                    this.container.Children[2].IsVisible = true;
-                    this.container.Children[3].IsVisible = false;
+                    this.container.Children.Where(x => x.GetType() == typeof(WhoAlertsMePage)).First().IsVisible = true;
+                    //this.container.Children[0].IsVisible = false;
+                    //this.container.Children[1].IsVisible = false;
+                    //this.container.Children[2].IsVisible = true;
+                    //this.container.Children[3].IsVisible = false;
                     addCommunityContact.IsVisible = false;
                     //contactsMenu.IsVisible = true;
                     break;
                 case 4:
-                    this.container.Children[0].IsVisible = false;
-                    this.container.Children[1].IsVisible = false;
-                    this.container.Children[2].IsVisible = false;
-                    this.container.Children[3].IsVisible = true;
+                    this.container.Children.Where(x => x.GetType() == typeof(BlockedUsersPage)).First().IsVisible = true;
+                    //this.container.Children[0].IsVisible = false;
+                    //this.container.Children[1].IsVisible = false;
+                    //this.container.Children[2].IsVisible = false;
+                    //this.container.Children[3].IsVisible = true;
                     addCommunityContact.IsVisible = false;
                     //contactsMenu.IsVisible = true;
                     tabsList.ScrollTo(3, position: ScrollToPosition.Start);

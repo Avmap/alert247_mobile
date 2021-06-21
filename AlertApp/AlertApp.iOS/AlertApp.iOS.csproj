@@ -163,6 +163,7 @@
     <Compile Include="DependencyService\Localize.cs" />
     <Compile Include="DependencyService\Location.cs" />
     <Compile Include="DependencyService\Storage.cs" />
+    <Compile Include="iOSKeyboardHelper.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist">

@@ -73,20 +73,27 @@ namespace AlertApp.Infrastructure
         {
             try
             {
-                await Application.Current.MainPage.Navigation.PopAsync(false);
+                DependencyService.Get<AlertApp.Services.IKeyboardHelper>().HideKeyboard();
+            }
+            catch { }
+            
+            try
+            {
+                await Application.Current.MainPage.Navigation.PopModalAsync(false);
+                
             }
             catch
             {
                 try
                 {
-                    await Application.Current.MainPage.Navigation.PopModalAsync(false);
+                    await Application.Current.MainPage.Navigation.PopAsync(false);
                 }
                 catch
                 {
 
                 }
             }
-
+            Application.Current.MainPage.Focus();
         }
 
         public bool ShowContactsMenuButton => Preferences.Get(Settings.CONTACTS_BUTTON_VISIBLE, true);

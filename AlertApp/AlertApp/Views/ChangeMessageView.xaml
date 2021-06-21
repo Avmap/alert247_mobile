@@ -1,26 +1,27 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:AlertApp.Views"
-             x:Class="AlertApp.Views.ConfirmChangeView">
+             mc:Ignorable="d"
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" 
+             x:Class="AlertApp.Views.ChangeMessageView">
     <ContentView.Content>
-        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" >
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <StackLayout Orientation="Vertical" Grid.Row="0">
-                <Frame Margin="0,16,0,0" HorizontalOptions="Center" BackgroundColor="#E6E7E8" CornerRadius="16" Padding="8,2,8,2" HasShadow="False">
-                    <views:PinView x:Name="pinLayout"/>
-                </Frame>
-                <Label Margin="16,8,16,0" Text="{infrastructure:Translate ConfirmPinToSaveSettings}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
+            <StackLayout Grid.Row="0" HorizontalOptions="FillAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+                <Label FontSize="16" Padding="10,0" Margin="0" VerticalOptions="Center" x:Name="labelPrompt" Text="{infrastructure:Translate SwitchSOSLbl}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
+                <infrastructure:NoUnderlineEntry VerticalOptions="Center" FontSize="16" Style="{x:StaticResource RegistrationEntryStyle}" HorizontalOptions="FillAndExpand" x:Name="input"></infrastructure:NoUnderlineEntry>
             </StackLayout>
             <Frame Grid.Row="2" Style="{StaticResource NormalButton}" CornerRadius="0" HorizontalOptions="FillAndExpand" Padding="10" VerticalOptions="FillAndExpand">
                 <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Center">
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        <TapGestureRecognizer Tapped="ConfirmSettingsClick" />
                     </StackLayout.GestureRecognizers>
                     <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
                     <Label Text="&#x0F0E1E;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
@@ -28,7 +29,6 @@
                     <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
                 </StackLayout>
             </Frame>
-            
         </Grid>
     </ContentView.Content>
 </ContentView>

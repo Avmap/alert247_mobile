@@ -6,6 +6,11 @@ using System.Text;
 
 namespace AlertApp.Services
 {
+    public interface IKeyboardHelper
+    {
+        void HideKeyboard();
+    }
+
     public abstract class BaseService
     {
 #if STAGINGAPI

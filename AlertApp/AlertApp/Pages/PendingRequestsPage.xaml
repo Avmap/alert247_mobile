@@ -1,50 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
-             x:Class="AlertApp.Pages.MyCommunityPage"
-             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin" xmlns:viewmodels="clr-namespace:AlertApp.ViewModels" 
+             x:Class="AlertApp.Pages.PendingRequestsPage"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              >
-    <!--Title="{infrastructure:Translate TabMyCommunity}" >-->
+    <!--Title="{infrastructure:Translate WhoAlertMe}" >-->
     <ContentView.Content>
-        <StackLayout Spacing="0" Orientation="Vertical" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Label Padding="0,0,0,5" Margin="0" Text="{infrastructure:Translate TabMyCommunity}" FontSize="16" FontAttributes="Bold" HorizontalOptions="Fill" HorizontalTextAlignment="Center" BackgroundColor="#fbfbfb" />
+        <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Label Padding="0,0,0,5" Text="{infrastructure:Translate WhoAlertMe}" FontSize="16" FontAttributes="Bold" HorizontalOptions="Fill" HorizontalTextAlignment="Center" BackgroundColor="#fbfbfb" />
             <Grid x:Name="mainlayout" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <RefreshView   Grid.Row="0" 
                     IsRefreshing="{Binding Busy}"
-                    Command="{Binding GetCommunityCommand}">
+                    Command="{Binding GetAlertMeCommand}">
                     <CollectionView
-                        Grid.Row="0"                    
-                               
-                        ItemsSource="{Binding Community}"        
-                        >
+                        Grid.Row="0"                                   
+                        SelectionMode="Single"                        
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0,1,1,1"                        
+                        ItemsSource="{Binding AlertMeContacts}"        
+                        BackgroundColor="White">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <StackLayout Margin="0,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <StackLayout  Margin="0,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}"></TapGestureRecognizer>
                                     </StackLayout.GestureRecognizers>
                                     <Image IsVisible="{Binding NoProfileImage}" Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImageDefault}"></Image>
-                                    <Image IsVisible="{Binding HasProfileImage}"  Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImage}" Aspect="AspectFill"/>
+                                    <Image IsVisible="{Binding HasProfileImage}" Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImage}" Aspect="AspectFill"/>
                                     <Grid HorizontalOptions="FillAndExpand" >
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"></ColumnDefinition>
                                             <ColumnDefinition Width="110"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Column="0" Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource ContactBold}"/>
-                                        <Frame IsVisible="{Binding IsPending}" Grid.Column="1" HorizontalOptions="FillAndExpand" CornerRadius="0" Margin="10,20,10,20" HeightRequest="21" BackgroundColor="{Binding BackgroundStatusColor}" Padding="5,2,5,2">
-                                            <Label Text="{Binding Status}" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="{Binding ΤextStatusColor}" Style="{StaticResource Subtitle1}"/>
+                                        <Frame Grid.Column="1" CornerRadius="0" Margin="10,20,10,20" HeightRequest="21" BackgroundColor="{Binding BackgroundStatusColor}" Padding="5,2,5,2">
+                                            <Label Text="{Binding StatusAlertMe}" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="{Binding ΤextStatusColor}" Style="{StaticResource Subtitle1}"/>
                                         </Frame>
                                     </Grid>
                                 </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                </RefreshView>
+                </RefreshView> 
             </Grid>
+            
             <Label HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasContacts}" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" Text="{infrastructure:Translate NoItems}" FontFamily="{StaticResource Regular}" />
         </StackLayout>
     </ContentView.Content>

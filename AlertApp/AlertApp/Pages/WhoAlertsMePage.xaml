@@ -7,8 +7,9 @@
              >
     <!--Title="{infrastructure:Translate WhoAlertMe}" >-->
     <ContentView.Content>
-        <AbsoluteLayout BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Grid x:Name="mainlayout" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+        <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Label Padding="0,0,0,5" Text="{infrastructure:Translate WhoAlertMe}" FontSize="16" FontAttributes="Bold" HorizontalOptions="Fill" HorizontalTextAlignment="Center" BackgroundColor="#fbfbfb" />
+            <Grid x:Name="mainlayout" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -29,74 +30,25 @@
                                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}"></TapGestureRecognizer>
                                     </StackLayout.GestureRecognizers>
                                     <Image IsVisible="{Binding NoProfileImage}" Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImageDefault}"></Image>
-                                    <circle:CircleImage IsVisible="{Binding HasProfileImage}" Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImage}" Aspect="AspectFill"/>
-                                    <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="Center"  HorizontalOptions="FillAndExpand">
-                                        <Label Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource ContactBold}"/>
-                                        <Grid  HorizontalOptions="FillAndExpand" Margin="0,0,20,0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Frame CornerRadius="8" HeightRequest="21" BackgroundColor="{Binding BackgroundStatusColor}" Padding="5,2,5,2">
-                                                <Label Text="{Binding StatusAlertMe}" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="{Binding ΤextStatusColor}" Style="{StaticResource Subtitle1}"/>
-                                            </Frame>
-
-                                            <StackLayout IsVisible="{Binding Accepted}" Grid.Column="1" Orientation="Horizontal" Spacing="16"  HorizontalOptions="EndAndExpand">
-                                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                                                    <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="help.png"/>
-                                                    <Label Text="{Binding Stats.Helped}"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource ContactBold}"/>
-                                                </StackLayout>
-                                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                                                    <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="ignore.png"/>
-                                                    <Label Text="{Binding Stats.Ignored}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource ContactBold}"/>
-                                                </StackLayout>
-                                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                                                    <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="asked.png"/>
-                                                    <Label Text="{Binding Stats.Asked}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource ContactBold}"/>
-                                                </StackLayout>
-                                            </StackLayout>
-                                        </Grid>
-
-                                    </StackLayout>
+                                    <Image IsVisible="{Binding HasProfileImage}" Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImage}" Aspect="AspectFill"/>
+                                    <Grid HorizontalOptions="FillAndExpand" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="110"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource ContactBold}"/>
+                                        <Frame Grid.Column="1" CornerRadius="0" Margin="10,20,10,20" HeightRequest="21" BackgroundColor="{Binding BackgroundStatusColor}" Padding="5,2,5,2">
+                                            <Label Text="{Binding StatusAlertMe}" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="{Binding ΤextStatusColor}" Style="{StaticResource Subtitle1}"/>
+                                        </Frame>
+                                    </Grid>
                                 </StackLayout>
-
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                </RefreshView>
+                </RefreshView> 
             </Grid>
-            <StackLayout x:Name="shadow" IsVisible="False" BackgroundColor="#c0c0c0" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Opacity="0.5" AbsoluteLayout.LayoutFlags="All">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ShadowClicked"/>
-                </StackLayout.GestureRecognizers>
-            </StackLayout>
+            
             <Label HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasContacts}" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" Text="{infrastructure:Translate NoItems}" FontFamily="{StaticResource Regular}" />
-            <!--Bottom Sheet-->
-            <ContentView x:Name="bottomSheet" IsVisible="True" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0, 1, 1,200" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional">
-                <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Horizontal" Margin="16,0,0,0">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnRemoveUserClick"/>
-                        </StackLayout.GestureRecognizers>
-                        <Image WidthRequest="24" HeightRequest="24" HorizontalOptions="Center" VerticalOptions="Center" Source="delete.png"/>
-                        <StackLayout  Margin="16,8,0,0" Orientation="Vertical" MinimumHeightRequest="200" >
-                            <Label HorizontalOptions="Start" Style="{StaticResource Subtitle1Bold}" Text="{infrastructure:Translate RemoveUser}" ></Label>
-                            <Label HorizontalOptions="Start" Style="{StaticResource Caption}" Text="{infrastructure:Translate RemoveUserSubtitle}"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal" Margin="16,0,0,0">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnBlockUserClick" />
-                        </StackLayout.GestureRecognizers>
-                        <Image WidthRequest="24" HeightRequest="24" HorizontalOptions="Center" VerticalOptions="Center" Source="delete.png"/>
-                        <StackLayout  Margin="16,8,0,0" Orientation="Vertical" MinimumHeightRequest="200" >
-                            <Label HorizontalOptions="Start" Style="{StaticResource Subtitle1Bold}" Text="{infrastructure:Translate BlockUser}"></Label>
-                            <Label HorizontalOptions="Start" Style="{StaticResource Caption}" Text="{infrastructure:Translate BlockUserSubtitle}"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
-            </ContentView>
-            <!--Bottom Sheet-->
-        </AbsoluteLayout>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>

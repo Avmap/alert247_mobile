@@ -4,26 +4,39 @@
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" 
              x:Class="AlertApp.Views.SettingsLocationView">
   <ContentView.Content>
-      <StackLayout>
-            <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsLocationMessage}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0">
+                <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsLocationMessage}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
 
-            <StackLayout Orientation="Horizontal" Margin="0,16,0,0" Spacing="0" HorizontalOptions="FillAndExpand">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="LOCATION"></TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>
-                <Label Text="{infrastructure:Translate LocationTracking}"  Padding="16,4,16,4" Style="{StaticResource SwitchText}" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
-                <Switch x:Name="LOCATION" Toggled="Switch_Toggled"   HorizontalOptions="End" Margin="0,0,16,0" />
+                <StackLayout Orientation="Horizontal" Margin="0,16,0,0" Spacing="0" HorizontalOptions="FillAndExpand">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="LOCATION"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="{infrastructure:Translate LocationTracking}"  Padding="16,4,16,4" Style="{StaticResource SwitchText}" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
+                    <Switch x:Name="LOCATION" Toggled="Switch_Toggled"   HorizontalOptions="End" Margin="0,0,16,0" />
+                </StackLayout>
+
+                <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsLocationSubtitle}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
+
             </StackLayout>
 
-            <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsLocationSubtitle}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
-            
-          <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,16,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ConfirmSettingsClick"></TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>
-                <Image HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
-                <Label Text="{infrastructure:Translate Confirmation}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
-            </StackLayout>
-        </StackLayout>
+            <Frame Grid.Row="2" Style="{StaticResource NormalButton}" CornerRadius="0" HorizontalOptions="FillAndExpand" Padding="10" VerticalOptions="FillAndExpand">
+                <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ConfirmSettingsClick" />
+                    </StackLayout.GestureRecognizers>
+                    <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
+                    <Label Text="&#x0F0E1E;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                    <Label Style="{StaticResource IconText}" Visual="Material" Text="{infrastructure:Translate Confirmation}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                    <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
+                </StackLayout>
+            </Frame>
+        </Grid>
+        
   </ContentView.Content>
 </ContentView>

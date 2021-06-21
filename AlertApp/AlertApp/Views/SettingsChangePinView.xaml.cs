@@ -43,7 +43,16 @@ namespace AlertApp.Views
             vePinLayout.Pin2Entry.SetBinding(Entry.TextProperty, nameof(vm.VePin2));
             vePinLayout.Pin3Entry.SetBinding(Entry.TextProperty, nameof(vm.VePin3));
             vePinLayout.Pin4Entry.SetBinding(Entry.TextProperty, nameof(vm.VePin4));
+
+            this.LayoutChanged += (s, e) =>
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    newPinLayout.Pin1Entry.Focus();
+                });
+            };
         }
+
 
 
         private void Pin4_TextChanged(object sender, TextChangedEventArgs e)

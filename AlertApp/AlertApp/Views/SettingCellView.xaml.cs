@@ -25,9 +25,25 @@ namespace AlertApp.Views
         }
         #endregion Title (Bindable string)
 
+        #region Icon (Bindable string)
+        public static readonly BindableProperty IconProperty = BindableProperty.Create(
+                                                                  "Icon", //Public name to use
+                                                                  typeof(string), //this type
+                                                                  typeof(SettingsHeader), //parent type (tihs control)
+                                                                  string.Empty); //default value
+
+        
+        public string Icon
+        {
+            get { return (string)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
+        #endregion Icon (Bindable string)
+        
         public SettingCellView ()
 		{
 			InitializeComponent ();
 		}
+
 	}
 }

@@ -41,12 +41,12 @@
             <!--Main -->
             <StackLayout  Grid.Row="2" Margin="16,0,16,0" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
                 <StackLayout IsVisible="{Binding CanSendAlert}" VerticalOptions="FillAndExpand">
-                    <Grid IsVisible="{Binding ShowSosButton,Mode=TwoWay}" HorizontalOptions="CenterAndExpand">
+                    <Grid  HorizontalOptions="CenterAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" Spacing="10">
-                            <Frame Style="{StaticResource MainPageAlertButtons}">
+                            <Frame IsVisible="{Binding ShowSosButton,Mode=TwoWay}" Style="{StaticResource MainPageAlertButtons}">
                                 <StackLayout Orientation="Horizontal" Spacing="10">
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="manual" />
@@ -57,8 +57,9 @@
                                     <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
                                 </StackLayout>
                             </Frame>
-                            <Grid IsVisible="{Binding CanSendAlert}">
-                                <Frame Grid.Column="0" Style="{StaticResource MainPageAlertButtons}">
+                            <FlexLayout Direction="Row" AlignItems="Center" AlignContent="SpaceBetween">
+                                
+                                <Frame Margin="5" FlexLayout.Grow="1" MinimumWidthRequest="250" IsVisible="{Binding ShowThreatButton, Mode=TwoWay}" Grid.Column="0" Style="{StaticResource MainPageAlertButtons}">
                                     <StackLayout Orientation="Vertical" Spacing="10">
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="police" />
@@ -69,7 +70,7 @@
                                         <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
                                     </StackLayout>
                                 </Frame>
-                                <Frame Grid.Column="1" Style="{StaticResource MainPageAlertButtons}">
+                                <Frame Margin="5" FlexLayout.Grow="1" MinimumWidthRequest="250" IsVisible="{Binding ShowFireButton, Mode=TwoWay}" Grid.Column="1" Style="{StaticResource MainPageAlertButtons}">
                                     <StackLayout Orientation="Vertical" Spacing="10">
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="fire" />
@@ -80,17 +81,20 @@
                                         <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
                                     </StackLayout>
                                 </Frame>
-                                <Frame Grid.Column="2" Style="{StaticResource MainPageAlertButtons}">
+                                <Frame Margin="5" FlexLayout.Grow="1" MinimumWidthRequest="250" IsVisible="{Binding ShowAccidentButton, Mode=TwoWay}" Grid.Column="2" Style="{StaticResource MainPageAlertButtons}">
                                     <StackLayout Orientation="Vertical" Spacing="10">
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding SosCommand}" CommandParameter="health" />
                                         </StackLayout.GestureRecognizers>
                                         <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
-                                        <Label Text="&#x0F08D0;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                                        <Label Text="&#x0F05F6;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
                                         <Label Style="{StaticResource IconText}" Visual="Material" Text="{infrastructure:Translate Accident}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
                                         <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
                                     </StackLayout>
                                 </Frame>
+                            </FlexLayout>
+                            <Grid IsVisible="{Binding CanSendAlert}">
+                                
                             </Grid>
                             
                         </StackLayout>
@@ -115,7 +119,7 @@
                     <Label Text="{infrastructure:Translate NoContactsNoSub}" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16"></Label>
                 </StackLayout>
                 <StackLayout IsVisible="{Binding showNonCritical}" Orientation="Vertical" Margin="0,20,0,0">
-                    <Frame IsVisible="{Binding HasContacts}" Style="{StaticResource NormalButton}">
+                    <Frame IsVisible="{Binding ShowContactsButton}" Style="{StaticResource NormalButton}">
                         <StackLayout Orientation="Horizontal" Spacing="10" Padding="0,5,0,5" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OpenContactsScreen}" />
@@ -136,8 +140,8 @@
                             <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
                         </StackLayout>
                     </Frame>
-                    <Frame IsVisible="{Binding DoesNotHaveSub}" Style="{StaticResource NormalButton}">
-                        <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Frame IsVisible="{Binding ShowSubscriptionButton}" Style="{StaticResource NormalButton}">
+                        <StackLayout  Orientation="Horizontal" Spacing="10">
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OpenAddSubCommand}" />
                             </StackLayout.GestureRecognizers>
@@ -147,8 +151,8 @@
                             <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
                         </StackLayout>
                     </Frame>
-                    <Frame Style="{StaticResource NormalButton}" Margin="0,0,0,20" >
-                        <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Frame IsVisible="{Binding ShowMapButton}" Style="{StaticResource NormalButton}" Margin="0,0,0,20" >
+                        <StackLayout  Orientation="Horizontal" Spacing="10">
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OpenTouristGuide}" />
                             </StackLayout.GestureRecognizers>

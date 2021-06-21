@@ -49,7 +49,7 @@ namespace AlertApp.Views
             Pin3.OnNumberEntered += Pin3_OnNumberEntered;
             Pin4.OnNumberEntered += Pin4_OnNumberEntered;
 
-            GetFocus(Pin1);
+            
 
             if (Device.RuntimePlatform == Device.iOS)
             {
@@ -58,12 +58,19 @@ namespace AlertApp.Views
                 Pin3.iOSFocused += Pin_iOSFocused;
                 Pin4.iOSFocused += Pin_iOSFocused;
             }
+            this.LayoutChanged += (s, e) =>
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    GetFocus(Pin1);
+                });
+            };
 
         }
 
         public void focusControl()
         {
-            GetFocus(Pin1); 
+             
         }
 
         private void Pin_iOSFocused(object sender, Guid entryId)

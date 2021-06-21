@@ -15,8 +15,15 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <ScrollView>
-            <StackLayout Orientation="Vertical">
+        
+            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0" >
+                <StackLayout Orientation="Vertical">
                 <!--<view:PreferenceStringView Text="{Binding FALLING_WAIST_SV_TOT}" Label="{infrastructure:Translate FALLING_WAIST_SV_TOT}"></view:PreferenceStringView>-->
                 <Grid Padding="8,4,8,4">
                     <Grid.ColumnDefinitions>
@@ -132,16 +139,20 @@
                         <infrastructure:DecimalEntry Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" FontSize="16" Text="{Binding LYING_AVERAGE_Z_LPF,Converter={StaticResource cnvInvert}}"></infrastructure:DecimalEntry>
                     </Frame>
                 </Grid>
-                <StackLayout Orientation="Vertical" Margin="0,16,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="ConfirmSettingsClick"></TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
-                    <Image HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
-                    <Label Text="{infrastructure:Translate Confirmation}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
-                </StackLayout>
-
             </StackLayout>
-        </ScrollView>
-
+            </ScrollView>
+            <Frame Grid.Row="2" Style="{StaticResource NormalButton}" CornerRadius="0" HorizontalOptions="FillAndExpand" Padding="10" VerticalOptions="FillAndExpand">
+                <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ConfirmSettingsClick" />
+                    </StackLayout.GestureRecognizers>
+                    <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
+                    <Label Text="&#x0F0E1E;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                    <Label Style="{StaticResource IconText}" Visual="Material" Text="{infrastructure:Translate Confirmation}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                    <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
+                </StackLayout>
+            </Frame>
+        </Grid>
+        
     </ContentView.Content>
 </ContentView> 

@@ -7,26 +7,34 @@
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" 
              x:Class="AlertApp.Views.UpdateProfileView">
     <ContentView.Content>
-        <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" >
-
-                <Label Margin="16,0,16,0" x:Name="labelPrompt"  Text="{infrastructure:Translate RegistrationEnterFieldsPromt}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
-                <StackLayout Margin="0,8,0,8" x:Name="topNextButton" IsVisible="False" Orientation="Vertical"  HorizontalOptions="Center">
-                    <Image x:Name="topNextImage" HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
-                    <Label Text="{infrastructure:Translate Finish}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0" HorizontalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand">
+                    <Label Margin="16,0,16,0" x:Name="labelPrompt"  Text="{infrastructure:Translate RegistrationEnterFieldsPromt}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
+                    <Frame IsVisible="{Binding NotBusy}" HasShadow="False" BorderColor="Transparent" CornerRadius="16"  HorizontalOptions="FillAndExpand">
+                        <ScrollView Margin="16,0,16,0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <StackLayout Margin="0,12,0,12" x:Name="registrationContainer" Grid.Row="1" Orientation="Vertical"></StackLayout>
+                        </ScrollView>
+                    </Frame>
                 </StackLayout>
-                <Frame IsVisible="{Binding NotBusy}"  Padding="5,5,5,5" HasShadow="False" Margin="20,8,20,8" BorderColor="{StaticResource PrimaryColor}" CornerRadius="16"  HorizontalOptions="FillAndExpand">
-                    <ScrollView Margin="16,0,16,0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <StackLayout Margin="0,12,0,12" x:Name="registrationContainer" Grid.Row="1" Orientation="Vertical"></StackLayout>
-                    </ScrollView>
-                </Frame>
-                <StackLayout IsVisible="{Binding NotBusy}" x:Name="bottomNextButton" Orientation="Vertical" Margin="0,6,0,15" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
-                    <Image x:Name="nextImage" HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
-                    <Label Text="{infrastructure:Translate Finish}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
+            </ScrollView>
+            <infrastructure:LoadingIndicator Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            <Frame Grid.Row="2" Style="{StaticResource NormalButton}" CornerRadius="0" HorizontalOptions="FillAndExpand" Padding="10" VerticalOptions="FillAndExpand">
+                <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ConfirmSettingsClick" />
+                    </StackLayout.GestureRecognizers>
+                    <StackLayout HorizontalOptions="StartAndExpand"></StackLayout>
+                    <Label Text="&#x0F0E1E;" Style="{StaticResource Icon}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                    <Label Style="{StaticResource IconText}" Visual="Material" Text="{infrastructure:Translate Finish}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+                    <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
                 </StackLayout>
-            </StackLayout>
-            <infrastructure:LoadingIndicator AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-        </AbsoluteLayout>
-
+            </Frame>
+        </Grid>
     </ContentView.Content>
 </ContentView>

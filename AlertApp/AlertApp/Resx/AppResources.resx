@@ -785,9 +785,39 @@
     <value>Activate subscription to SRC</value>
   </data>
   <data name="SubscriptionPage" xml:space="preserve">
-    <value></value>
+    <value>Activate subscription</value>
   </data>
   <data name="CanYouHelp" xml:space="preserve">
     <value>CAN YOU HELP?</value>
+  </data>
+  <data name="SwitchSOS" xml:space="preserve">
+    <value>MESSAGE</value>
+  </data>
+  <data name="SwitchSubscription" xml:space="preserve">
+    <value>SUBSCRIPTION</value>
+  </data>
+  <data name="SwitchMap" xml:space="preserve">
+    <value>MAP</value>
+  </data>
+  <data name="SettingChangeSOS" xml:space="preserve">
+    <value>Change message</value>
+  </data>
+  <data name="SwitchSOSLbl" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="RemoveUserAnalytical" xml:space="preserve">
+    <value>Remove user?</value>
+  </data>
+  <data name="PendingRequestsPage" xml:space="preserve">
+    <value>Requests</value>
+  </data>
+  <data name="DoNotShowSetting" xml:space="preserve">
+    <value>Do not show again</value>
+  </data>
+  <data name="WhatsNew" xml:space="preserve">
+    <value>Application Highlights</value>
+  </data>
+  <data name="OKButton" xml:space="preserve">
+    <value>OK</value>
   </data>
 </root>

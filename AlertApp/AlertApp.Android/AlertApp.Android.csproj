@@ -261,6 +261,7 @@
     <Compile Include="AlertFirebaseMessagingService.cs" />
     <Compile Include="DependencyService\Storage.cs" />
     <Compile Include="Detector.cs" />
+    <Compile Include="DroidKeyboardHelper.cs" />
     <Compile Include="Guardian.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />

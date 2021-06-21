@@ -28,6 +28,8 @@ namespace AlertApp.Utils
         public static string ACCIDENT_BUTTON_VISIBLE = "ACCIDENT_BUTTON_VISIBLE";
         public static string CONTACTS_BUTTON_VISIBLE = "CONTACTS_BUTTON_VISIBLE";
         public static string INFORMATION_BUTTON_VISIBLE = "INFORMATION_BUTTON_VISIBLE";
+        public static string SUBSCRIPTION_BUTTON_VISIBLE = "SUBSCRIPTION_BUTTON_VISIBLE";
+        public static string MAP_BUTTON_VISIBLE = "MAP_BUTTON_VISIBLE";
 
         public static string HasFinishRegistration = "HasFinishRegistration";
 
@@ -44,5 +46,8 @@ namespace AlertApp.Utils
         public static string FILTER_FACTOR_1 = "FILTER_FACTOR_1";
         public static string LYING_AVERAGE_Z_LPF = "LYING_AVERAGE_Z_LPF";
 
+        public static string SOS_MESSAGE = "SOS";
+
+        public static string DoNotShowWhatsNew = "DoNotShowWhatsNew";
     }
 }

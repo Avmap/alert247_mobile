@@ -176,7 +176,7 @@
     <value>ΑΠΟΣΤΟΛΗ ΤΟΠΟΘΕΣΙΑΣ</value>
   </data>
   <data name="ManageContacts" xml:space="preserve">
-    <value>Φίλοι άμεσης βοήθειας</value>
+    <value>Διαχείριση φίλων άμεσης βοήθειας</value>
   </data>
   <data name="NextRegistration" xml:space="preserve">
     <value>ΕΠΟΜΕΝΟ</value>
@@ -212,10 +212,10 @@
     <value>Ο κωδικός επιβεβαίωσης θα αποσταλεί στον αριθμό</value>
   </data>
   <data name="TabDependands" xml:space="preserve">
-    <value>Εξάρτηση</value>
+    <value>Ακτίνα επίβλεψης</value>
   </data>
   <data name="TabMyCommunity" xml:space="preserve">
-    <value>Ειδοποιώ</value>
+    <value>Φίλοι από τους οποίους δέχομαι άμεση βοήθεια</value>
   </data>
   <data name="TabSuggestions" xml:space="preserve">
     <value>Προτάσεις</value>
@@ -242,7 +242,7 @@
     <value>Καλωσήλθατε στο Alert247</value>
   </data>
   <data name="WhoAlertMe" xml:space="preserve">
-    <value>Με ειδοποιούν</value>
+    <value>Προσφέρω βοήθεια</value>
   </data>
   <data name="AddContactsPage" xml:space="preserve">
     <value>Προσθήκη φίλου άμεσης βοήθειας</value>
@@ -338,7 +338,7 @@
     <value>Πρόσκληση</value>
   </data>
   <data name="RemoveUser" xml:space="preserve">
-    <value>Διαγραφή του χρήστη</value>
+    <value>Αφαίρεση</value>
   </data>
   <data name="RemoveUserSubtitle" xml:space="preserve">
     <value>Ο χρήστης θα διαγραφεί αλλά ...</value>
@@ -356,7 +356,7 @@
     <value>Αποστολή Alert</value>
   </data>
   <data name="BlockedUsersPage" xml:space="preserve">
-    <value>Αποκλεισμένοι</value>
+    <value>Αγνοημένες επαφές</value>
   </data>
   <data name="AcceptedFromMe" xml:space="preserve">
     <value>Έχω αποδεχτεί</value>
@@ -789,5 +789,35 @@
   </data>
   <data name="CanYouHelp" xml:space="preserve">
     <value>ΜΠΟΡΕΙΤΕ ΝΑ ΒΟΗΘΗΣΕΤΕ;</value>
+  </data>
+  <data name="SwitchSOS" xml:space="preserve">
+    <value>ΜΗΝΥΜΑ</value>
+  </data>
+  <data name="SwitchSubscription" xml:space="preserve">
+    <value>ΣΥΝΔΡΟΜΗ</value>
+  </data>
+  <data name="SwitchMap" xml:space="preserve">
+    <value>ΧΑΡΤΗΣ</value>
+  </data>
+  <data name="SettingChangeSOS" xml:space="preserve">
+    <value>Αλλαγή μηνύματος</value>
+  </data>
+  <data name="SwitchSOSLbl" xml:space="preserve">
+    <value>Μήνυμα</value>
+  </data>
+  <data name="RemoveUserAnalytical" xml:space="preserve">
+    <value>Αφαίρεση του χρήστη από τα άτομα που ειδοποιείτε;</value>
+  </data>
+  <data name="PendingRequestsPage" xml:space="preserve">
+    <value>Αιτήματα</value>
+  </data>
+  <data name="DoNotShowSetting" xml:space="preserve">
+    <value>Μην το ξαναδείξεις</value>
+  </data>
+  <data name="WhatsNew" xml:space="preserve">
+    <value>Επισκόπηση εφαρμογής</value>
+  </data>
+  <data name="OKButton" xml:space="preserve">
+    <value>OK</value>
   </data>
 </root>

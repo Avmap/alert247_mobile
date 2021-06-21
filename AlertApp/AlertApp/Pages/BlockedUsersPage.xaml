@@ -7,8 +7,9 @@
              >
     <!--Title="{infrastructure:Translate BlockedUsersPage}" >-->
     <ContentView.Content>
-        <AbsoluteLayout BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Grid x:Name="mainlayout" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+        <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Label Padding="0,0,0,5" Text="{infrastructure:Translate BlockedUsersPage}" FontSize="16" FontAttributes="Bold" HorizontalOptions="Fill" HorizontalTextAlignment="Center" BackgroundColor="#fbfbfb" />
+            <Grid x:Name="mainlayout" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                    <RowDefinition Height="2"/>
@@ -26,76 +27,14 @@
                                 <StackLayout  Margin="0,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                     <Image IsVisible="{Binding NoProfileImage}" Margin="16,13,11,8" WidthRequest="60" HeightRequest="55" Source="{Binding ProfileImageDefault}"></Image>
                                     <circle:CircleImage IsVisible="{Binding HasProfileImage}"  Margin="16,13,11,8" WidthRequest="60" HeightRequest="55" Source="{Binding ProfileImage}" Aspect="AspectFill"/>
-                                    <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="Center"  HorizontalOptions="FillAndExpand">
-                                        <Label Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource Subtitle11Βold}"/>
-                                        <Grid  HorizontalOptions="FillAndExpand" Margin="0,0,20,0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-
-                                            <StackLayout IsVisible="{Binding Accepted}" Grid.Column="1" Orientation="Horizontal" Spacing="16"  HorizontalOptions="EndAndExpand">
-                                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                                                    <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="help.png"/>
-                                                    <Label Text="{Binding Stats.Helped}" FontSize="11" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource Headline6}"/>
-                                                </StackLayout>
-                                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                                                    <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="ignore.png"/>
-                                                    <Label Text="{Binding Stats.Ignored}" FontSize="11" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource Headline6}"/>
-                                                </StackLayout>
-                                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                                                    <Image WidthRequest="14" HeightRequest="14" HorizontalOptions="Center" VerticalOptions="Center" Source="asked.png"/>
-                                                    <Label Text="{Binding Stats.Asked}" FontSize="11" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource Headline6}"/>
-                                                </StackLayout>
-                                            </StackLayout>
-                                        </Grid>
-
-                                    </StackLayout>
+                                    
                                 </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                 </RefreshView>
             </Grid>
-            <!--<StackLayout x:Name="shadow" IsVisible="False" BackgroundColor="#c0c0c0" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Opacity="0.5" AbsoluteLayout.LayoutFlags="All">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ShadowClicked"/>
-                </StackLayout.GestureRecognizers>
-            </StackLayout>-->
             <Label HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasContacts}" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" Text="{infrastructure:Translate NoItems}" FontFamily="{StaticResource Regular}" />
-            <!--<infrastructure:LoadingIndicator x:Name="loadingIndicator" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All"/>-->
-            <!--Bottom Sheet-->
-            <!--
-            <ContentView x:Name="bottomSheet" IsVisible="True" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0, 1, 1,200" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional">
-                <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Horizontal" Margin="16,0,0,0">
-                        -->
-            <!--<StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnRemoveUserClick"/>
-                        </StackLayout.GestureRecognizers>-->
-            <!--
-                        <Image WidthRequest="24" HeightRequest="24" HorizontalOptions="Center" VerticalOptions="Center" Source="delete.png"/>
-                        <StackLayout  Margin="16,8,0,0" Orientation="Vertical" MinimumHeightRequest="200" >
-                            <Label HorizontalOptions="Start" Style="{StaticResource Subtitle1Bold}" Text="Remove this user" ></Label>
-                            <Label HorizontalOptions="Start" Style="{StaticResource Caption}" Text="This user will be removed, but you can still..."></Label>
-                        </StackLayout>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal" Margin="16,0,0,0">
-                        -->
-            <!--<StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnBlockUserClick" />
-                        </StackLayout.GestureRecognizers>-->
-            <!--
-                        <Image WidthRequest="24" HeightRequest="24" HorizontalOptions="Center" VerticalOptions="Center" Source="delete.png"/>
-                        <StackLayout  Margin="16,8,0,0" Orientation="Vertical" MinimumHeightRequest="200" >
-                            <Label HorizontalOptions="Start" Style="{StaticResource Subtitle1Bold}" Text="Block this user"></Label>
-                            <Label HorizontalOptions="Start" Style="{StaticResource Caption}" Text="This user will be no longer be able to contact you..."></Label>
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
-            </ContentView>
-            -->
-            <!--Bottom Sheet-->
-        </AbsoluteLayout>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>

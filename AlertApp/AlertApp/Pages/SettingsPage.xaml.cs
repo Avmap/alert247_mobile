@@ -75,7 +75,13 @@ namespace AlertApp.Pages
         {
             Navigation.PushAsync(new SettingContainerPage(AppResources.SettingAccountTitle, AppResources.SettingUpdateProfle, new UpdateProfileView()), false);
         }
-        
+
+        private void ChangeSOS_Tap(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingAccountTitle, AppResources.SettingChangeSOS, new ChangeMessageView()), false);
+        }
+
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

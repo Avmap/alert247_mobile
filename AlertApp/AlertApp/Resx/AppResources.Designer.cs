@@ -502,6 +502,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do not show again.
+        /// </summary>
+        internal static string DoNotShowSetting {
+            get {
+                return ResourceManager.GetString("DoNotShowSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attention : Don&apos;t use OTP code as pin.
         /// </summary>
         internal static string DontUseOtpAsPinMessage {
@@ -1096,6 +1105,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string OKButton {
+            get {
+                return ResourceManager.GetString("OKButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other.
         /// </summary>
         internal static string other {
@@ -1119,6 +1137,15 @@ namespace AlertApp.Resx {
         internal static string Pending {
             get {
                 return ResourceManager.GetString("Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Requests.
+        /// </summary>
+        internal static string PendingRequestsPage {
+            get {
+                return ResourceManager.GetString("PendingRequestsPage", resourceCulture);
             }
         }
         
@@ -1236,6 +1263,15 @@ namespace AlertApp.Resx {
         internal static string RemoveUser {
             get {
                 return ResourceManager.GetString("RemoveUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove user?.
+        /// </summary>
+        internal static string RemoveUserAnalytical {
+            get {
+                return ResourceManager.GetString("RemoveUserAnalytical", resourceCulture);
             }
         }
         
@@ -1380,6 +1416,15 @@ namespace AlertApp.Resx {
         internal static string SettingChangePin {
             get {
                 return ResourceManager.GetString("SettingChangePin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change message.
+        /// </summary>
+        internal static string SettingChangeSOS {
+            get {
+                return ResourceManager.GetString("SettingChangeSOS", resourceCulture);
             }
         }
         
@@ -1708,7 +1753,7 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Activate subscription.
         /// </summary>
         internal static string SubscriptionPage {
             get {
@@ -1875,6 +1920,42 @@ namespace AlertApp.Resx {
         internal static string SwitchInformation {
             get {
                 return ResourceManager.GetString("SwitchInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MAP.
+        /// </summary>
+        internal static string SwitchMap {
+            get {
+                return ResourceManager.GetString("SwitchMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MESSAGE.
+        /// </summary>
+        internal static string SwitchSOS {
+            get {
+                return ResourceManager.GetString("SwitchSOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        internal static string SwitchSOSLbl {
+            get {
+                return ResourceManager.GetString("SwitchSOSLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SUBSCRIPTION.
+        /// </summary>
+        internal static string SwitchSubscription {
+            get {
+                return ResourceManager.GetString("SwitchSubscription", resourceCulture);
             }
         }
         
@@ -2055,6 +2136,15 @@ namespace AlertApp.Resx {
         internal static string WelcomeMessage {
             get {
                 return ResourceManager.GetString("WelcomeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application Highlights.
+        /// </summary>
+        internal static string WhatsNew {
+            get {
+                return ResourceManager.GetString("WhatsNew", resourceCulture);
             }
         }
         

@@ -8,19 +8,17 @@
              ios:Page.UseSafeArea="true"
              x:Class="AlertApp.Pages.SettingContainerPage">
     <ContentPage.Content>
-        <Grid>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <views:SingleTitleToolbar BackCommand="{Binding BaseBackCommand}" Grid.Row="0" HasBackButton="True" Title="{Binding Title}" ></views:SingleTitleToolbar>
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" BackgroundColor="#E6E7E8" Grid.Row="1">
-                <Frame  Margin="32,8,32,8" BackgroundColor="White" Padding="8,8,8,8" CornerRadius="16" HasShadow="False">
-                    <Label x:Name="subtitle" FontSize="16" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="FillAndExpand" TextColor="Black" ></Label>
-                </Frame>
-            </StackLayout>
-            <StackLayout Grid.Row="2" x:Name="container" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
+            <Label Grid.Row="1" x:Name="subtitle" FontSize="16" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="FillAndExpand" TextColor="Black" ></Label>
+            <Frame Margin="0,10,0,0" Padding="0" BorderColor="Transparent"  CornerRadius="0" Grid.Row="2" x:Name="container" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                
+            </Frame>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

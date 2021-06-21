@@ -9,68 +9,69 @@
              
              x:Class="AlertApp.Pages.SettingsPage">
     <ContentPage.Content>
-        <Grid>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            
-            <ScrollView Grid.Row="1">
-                <StackLayout Grid.Row="1" Orientation="Vertical">
+            <ScrollView Grid.Row="0">
+                <StackLayout Grid.Row="1" Orientation="Vertical" >
                     <views:SettingsHeader Title="{infrastructure:Translate SettingsView}"/>
-                    <views:SettingCellView Title="{infrastructure:Translate SettingLanguage}">
+                    <views:SettingCellView Title="{infrastructure:Translate SettingLanguage}" Icon="&#x0F023D;" >
                         <views:SettingCellView.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Language_Tap"></TapGestureRecognizer>
                         </views:SettingCellView.GestureRecognizers>
                     </views:SettingCellView>
-                    <views:SettingCellView Title="{infrastructure:Translate SettingEnviroment}">
+                    <views:SettingCellView Title="{infrastructure:Translate SettingEnviroment}" Icon="&#x0F10AC;">
                         <views:SettingCellView.GestureRecognizers>
                             <TapGestureRecognizer Tapped="ButtonsView_Tap"></TapGestureRecognizer>
                         </views:SettingCellView.GestureRecognizers>
                     </views:SettingCellView>
                     <views:SettingsHeader Title="{infrastructure:Translate SettingsPermissions}"></views:SettingsHeader>
-                    <views:SettingCellView Title="{infrastructure:Translate SettingLocation}">
+                    <views:SettingCellView Title="{infrastructure:Translate SettingLocation}" Icon="&#x0F01A4;">
                         <views:SettingCellView.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Location_Tap"></TapGestureRecognizer>
                         </views:SettingCellView.GestureRecognizers>
                     </views:SettingCellView>
-                    <views:SettingCellView Title="{infrastructure:Translate AllwaysOn}">
+                    <views:SettingCellView Title="{infrastructure:Translate AllwaysOn}" Icon="&#x0F0471;">
                         <views:SettingCellView.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Guardian_Tap"></TapGestureRecognizer>
                         </views:SettingCellView.GestureRecognizers>
                     </views:SettingCellView>
-                    <views:SettingCellView Title="{infrastructure:Translate FallDetectionSetting}">
+                    <views:SettingCellView Title="{infrastructure:Translate FallDetectionSetting}" Icon="&#x0F0639;">
                         <views:SettingCellView.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Fall_Detection_Tap"></TapGestureRecognizer>
                         </views:SettingCellView.GestureRecognizers>
                     </views:SettingCellView>
-                    <views:SettingCellView Title="{infrastructure:Translate FallDetectorSettings}">
+                    <views:SettingCellView Title="{infrastructure:Translate FallDetectorSettings}" Icon="&#x0F0566;">
                         <views:SettingCellView.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Fall_Detector_Settings_Tap"></TapGestureRecognizer>
                         </views:SettingCellView.GestureRecognizers>
                     </views:SettingCellView>
-                    <views:SettingCellView Title="{infrastructure:Translate SettingContacts}">
-                        <views:SettingCellView.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Contacts_Tap"></TapGestureRecognizer>
-                        </views:SettingCellView.GestureRecognizers>
-                    </views:SettingCellView>
                     <views:SettingsHeader Title="{infrastructure:Translate SettingsAccount}"></views:SettingsHeader>
-                    <views:SettingCellView Title="{infrastructure:Translate SettingUpdateProfle}">
+                    <views:SettingCellView Title="{infrastructure:Translate SettingUpdateProfle}" Icon="&#x0F06BC;">
                         <views:SettingCellView.GestureRecognizers>
                             <TapGestureRecognizer Tapped="UpdateProfile_Tap"></TapGestureRecognizer>
                         </views:SettingCellView.GestureRecognizers>
                     </views:SettingCellView>
-                    <views:SettingCellView Title="{infrastructure:Translate SettingChangePin}">
+                    <views:SettingCellView Title="{infrastructure:Translate SettingChangePin}" Icon="&#x0F000B;">
                         <views:SettingCellView.GestureRecognizers>
                             <TapGestureRecognizer Tapped="ChangePin_Tap"></TapGestureRecognizer>
                         </views:SettingCellView.GestureRecognizers>
                     </views:SettingCellView>
+                    <views:SettingCellView Title="{infrastructure:Translate SettingChangeSOS}" Icon="&#x0F01D8;">
+                        <views:SettingCellView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ChangeSOS_Tap"></TapGestureRecognizer>
+                        </views:SettingCellView.GestureRecognizers>
+                    </views:SettingCellView>
+                    <!--
                     <views:SettingCellView Title="{infrastructure:Translate SettingHistory}">
                         <views:SettingCellView.GestureRecognizers>
                             <TapGestureRecognizer Tapped="History_Tap"></TapGestureRecognizer>
                         </views:SettingCellView.GestureRecognizers>
                     </views:SettingCellView>
+                    -->
                     <!--<views:SettingCellView Title="{infrastructure:Translate SettingDeleteAccount}">
                         <views:SettingCellView.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Delete_Tap"></TapGestureRecognizer>
@@ -78,36 +79,26 @@
                     </views:SettingCellView>-->
                 </StackLayout>
             </ScrollView>
+            <Grid Grid.Row="2"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="10,0,10,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical">
+                    <Image Source="logo.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="130"></Image>
 
-            <StackLayout Margin="0,0,0,0" Grid.Row="2" Orientation="Vertical">
-                <StackLayout  Spacing="0" Margin="0,0,0,0" HeightRequest="2" BackgroundColor="#F0F0F0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
-                <Frame Padding="8,4,8,4" CornerRadius="16" HasShadow="False" HorizontalOptions="Center" BorderColor="#C3C3C3">
-                    <Grid HorizontalOptions="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <StackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical">
-                            <Image Source="logo.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50"></Image>
-                            <Label Text="{Binding Version}" FontSize="10" Style="{StaticResource Caption}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        </StackLayout>
-                        <StackLayout Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical">
-                            <Label TextColor="Blue" TextDecorations="Underline" Text="https://alert247.gr" FontSize="10" Style="{StaticResource Caption}" HorizontalTextAlignment="Center" VerticalTextAlignment="Start">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding LinkCommand}" CommandParameter="https://alert247.gr"></TapGestureRecognizer>
-                                </Label.GestureRecognizers>
-                            </Label>
-                            <Label TextColor="Blue" TextDecorations="Underline" Text="{infrastructure:Translate PrivacyTerms}" FontSize="10" Style="{StaticResource Caption}" HorizontalTextAlignment="Center" VerticalTextAlignment="Start">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding LinkCommand}" CommandParameter="https://alert247.gr"></TapGestureRecognizer>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </StackLayout>
-                    </Grid>
-                </Frame>
-                <views:PoweredBy></views:PoweredBy>
-            </StackLayout>
-
+                </StackLayout>
+                <StackLayout Grid.Column="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                    <Label Text="{Binding Version}" FontSize="13" Style="{StaticResource Caption}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label TextColor="Blue" TextDecorations="Underline" Text="{infrastructure:Translate PrivacyTerms}" FontSize="13" Style="{StaticResource Caption}" HorizontalTextAlignment="Center" VerticalTextAlignment="Start">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LinkCommand}" CommandParameter="https://alert247.gr"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <views:PoweredBy></views:PoweredBy>
+                </StackLayout>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

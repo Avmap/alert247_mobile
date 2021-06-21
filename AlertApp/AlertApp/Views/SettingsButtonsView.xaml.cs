@@ -2,10 +2,6 @@
 using AlertApp.Resx;
 using AlertApp.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,7 +19,9 @@ namespace AlertApp.Views
             FIRE.IsToggled = Preferences.Get(Settings.FIRE_BUTTON_VISIBLE, true);
             ACCIDENT.IsToggled = Preferences.Get(Settings.ACCIDENT_BUTTON_VISIBLE, true);
             CONTACTS.IsToggled = Preferences.Get(Settings.CONTACTS_BUTTON_VISIBLE, true);
-            INFORMATION.IsToggled = Preferences.Get(Settings.INFORMATION_BUTTON_VISIBLE, true);
+            SUBSCRIPTION.IsToggled = Preferences.Get(Settings.SUBSCRIPTION_BUTTON_VISIBLE, true);
+            MAP.IsToggled = Preferences.Get(Settings.MAP_BUTTON_VISIBLE, true);
+            
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -57,10 +55,12 @@ namespace AlertApp.Views
                 case "CONTACTS":
                     toggle(Settings.CONTACTS_BUTTON_VISIBLE, CONTACTS);
                     break;
-                case "INFORMATION":
-                    toggle(Settings.INFORMATION_BUTTON_VISIBLE, INFORMATION);
+                case "SUBSCRIPTION":
+                    toggle(Settings.SUBSCRIPTION_BUTTON_VISIBLE, SUBSCRIPTION);
                     break;
-
+                case "MAP":
+                    toggle(Settings.MAP_BUTTON_VISIBLE, MAP);
+                    break;
             }
         }
 
@@ -77,7 +77,19 @@ namespace AlertApp.Views
             Preferences.Set(Settings.FIRE_BUTTON_VISIBLE, FIRE.IsToggled);
             Preferences.Set(Settings.ACCIDENT_BUTTON_VISIBLE, ACCIDENT.IsToggled);
             Preferences.Set(Settings.CONTACTS_BUTTON_VISIBLE, CONTACTS.IsToggled);
-            Preferences.Set(Settings.INFORMATION_BUTTON_VISIBLE, INFORMATION.IsToggled);
+            Preferences.Set(Settings.SUBSCRIPTION_BUTTON_VISIBLE, SUBSCRIPTION.IsToggled);
+            Preferences.Set(Settings.MAP_BUTTON_VISIBLE, MAP.IsToggled);
+
+            OnPropertyChanged("ShowThreatButton");
+            OnPropertyChanged("ShowFireButton");
+            OnPropertyChanged("ShowAccidentButton");
+            OnPropertyChanged("ShowSosButton");
+            OnPropertyChanged("HasContacts");
+            OnPropertyChanged("ShowContactsButton");
+            OnPropertyChanged("HasSub");
+            OnPropertyChanged("ShowSubscriptionButton");
+            OnPropertyChanged("ShowMapButton");
+
 
             Device.BeginInvokeOnMainThread(() => Navigation.PopAsync(false));
 

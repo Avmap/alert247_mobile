@@ -22,6 +22,9 @@ using AlertApp.Model;
 using CarouselView.FormsPlugin.Droid;
 using ImageCircle.Forms.Plugin.Droid;
 
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+
 namespace AlertApp.Droid
 {
     [Activity(Label = "AlertApp", ShowForAllUsers = true, Icon = "@mipmap/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
@@ -46,12 +49,17 @@ namespace AlertApp.Droid
             CarouselViewRenderer.Init();
             ImageCircleRenderer.Init();
             LoadApplication(new App());
-            //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(
-            //    this,
-            //    new UXDivers.Gorilla.Config("Good Gorilla")
-            //      // Register Grial Shared assembly
 
-            //    ));
+            Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+            {
+                Window.DecorView.SystemUiVisibility = 0;
+                var statusBarHeightInfo = typeof(Xamarin.Forms.Platform.Android.FormsAppCompatActivity).GetField("_statusBarHeight", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                if (statusBarHeightInfo != null) { 
+                    statusBarHeightInfo.SetValue(this, 0);
+                }
+                //Window.SetStatusBarColor(new Xamarin.Forms.Platform.Android.Graphics.Color(0, 0, 0, 255)); // Change color as required.
+            }
             Plugin.FirebasePushNotification.FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
 

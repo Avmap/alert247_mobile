@@ -10,6 +10,8 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using AlertApp.Resx;
+
 
 namespace AlertApp.Pages
 {
@@ -20,30 +22,42 @@ namespace AlertApp.Pages
         public MyCommunityPage()
         {
             InitializeComponent();
-            bottomSheet.IsVisible = false;
-            bottomSheet.TranslationY = DeviceDisplay.MainDisplayInfo.Height;
+            
             this.BindingContext = ViewModelLocator.Instance.Resolve<MyCommunityPageViewModel>();
         }
 
 
         private async void ShowBottomSheet()
         {
-            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
-            //if (popupLoginView.TranslationY == -mainDisplayInfo.Height)
-            if (bottomSheet.TranslationY == mainDisplayInfo.Height)
+            var p = this.Parent.Parent.Parent;
+            var x = (ContentPage)p;
+            var choice = await x.DisplayActionSheet(String.IsNullOrEmpty(ClickedContact.FullName)? ClickedContact.Cellphone : ClickedContact.FullName, AppResources.Cancel, AppResources.RemoveUser, AppResources.RemoveUserAnalytical);
+            switch (choice)
             {
-                shadow.IsVisible = true;
-                bottomSheet.IsVisible = true;
-                //  popupLoginView.TranslationY = 0;
-                await bottomSheet.TranslateTo(0, 0, 100);//, Easing.BounceIn
+                case nameof(AppResources.RemoveUser):
+                case nameof(AppResources.RemoveUserAnalytical):
+                    OnRemoveUserClick(null,null);
+                    break;
+                case nameof(AppResources.BlockUser):
+                    OnBlockUserClick(null, null);
+                    break;
             }
-            else
-            {
-                shadow.IsVisible = false;
-                await bottomSheet.TranslateTo(bottomSheet.TranslationX, mainDisplayInfo.Height, 100);
-                //popupLoginView.TranslationY = -mainDisplayInfo.Height;
-                bottomSheet.IsVisible = false;
-            }
+            //var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+            ////if (popupLoginView.TranslationY == -mainDisplayInfo.Height)
+            //if (bottomSheet.TranslationY == mainDisplayInfo.Height)
+            //{
+            //    shadow.IsVisible = true;
+            //    bottomSheet.IsVisible = true;
+            //    //  popupLoginView.TranslationY = 0;
+            //    await bottomSheet.TranslateTo(0, 0, 100);//, Easing.BounceIn
+            //}
+            //else
+            //{
+            //    shadow.IsVisible = false;
+            //    await bottomSheet.TranslateTo(bottomSheet.TranslationX, mainDisplayInfo.Height, 100);
+            //    //popupLoginView.TranslationY = -mainDisplayInfo.Height;
+            //    bottomSheet.IsVisible = false;
+            //}
         }
         private void ShadowClicked(object sender, EventArgs e)
         {

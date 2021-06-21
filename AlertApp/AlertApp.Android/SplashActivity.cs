@@ -50,11 +50,11 @@ version.Text += " - STAGING";
             var userID = await SecureStorage.GetAsync(Settings.UserId);
             if (!string.IsNullOrWhiteSpace(userID))
             {
-                await Task.Delay(500);
+                //await Task.Delay(500);
             }
             else
             {
-                await Task.Delay(2000);
+                //await Task.Delay(2000);
             }
 
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));

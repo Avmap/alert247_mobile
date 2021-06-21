@@ -21,8 +21,8 @@ namespace AlertApp.Pages
             this.BindingContext = vm;
 
             this.subtitle.Text = subtitle;
-
-            this.container.Children.Add(child);
+			this.container.Content = child;
+            //this.container.Children.Add(child);
 		}
 	}
 }

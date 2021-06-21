@@ -16,7 +16,7 @@ using Xamarin.Forms;
 
 namespace AlertApp.ViewModels
 {
-    public class WhoAlertsMePageViewModel : BaseViewModel, IHaveContacts
+    public class PendingRequestsPageViewModel : BaseViewModel, IHaveContacts
     {
         #region Properties
         private ObservableCollection<Contact> _AlertMeContacts;
@@ -87,7 +87,7 @@ namespace AlertApp.ViewModels
         }
         #endregion
 
-        public WhoAlertsMePageViewModel(IContactsService contactsService, ILocalSettingsService localSettingsService)
+        public PendingRequestsPageViewModel(IContactsService contactsService, ILocalSettingsService localSettingsService)
         {
             _contactsService = contactsService;
             _localSettingsService = localSettingsService;
@@ -133,11 +133,11 @@ namespace AlertApp.ViewModels
         {
             if (response != null && response.IsOk)
             {
-                var community = response.Result.Contacts.AlertMe.Where(c => c.Accepted == true).ToList();
+                var community = response.Result.Contacts.AlertMe.Where(c => c.Accepted == false).ToList();
                 if (community != null && community.Count > 0)
                 {
                     NotificationBackColor = Color.FromHex("#800000");
-                    NotificationCount = 0;  // response.Result.Contacts.AlertMe.Where(c => c.Accepted == false).Count();
+                    NotificationCount = response.Result.Contacts.AlertMe.Count();
                     if (NotificationCount == 0)
                     {
                         RemoveBadgeNotification();
