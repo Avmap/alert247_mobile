@@ -820,4 +820,7 @@
   <data name="OKButton" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="SuccessSendAlertMessageSrc" xml:space="preserve">
+    <value>Signal Receiving Center</value>
+  </data>
 </root>

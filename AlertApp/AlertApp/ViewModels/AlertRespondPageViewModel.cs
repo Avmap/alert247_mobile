@@ -228,18 +228,19 @@ namespace AlertApp.ViewModels
                 var profileData = await _cryptographyService.GetAlertSenderProfileData(data.ProfileData, data.FileKey);
                 string name = "";
                 string surname = "";
-                if (profileData.ContainsKey(RegistrationField.Names.Name))
-                {
-                    name = profileData[RegistrationField.Names.Name];
-                }
-
-                if (profileData.ContainsKey(RegistrationField.Names.Surname))
-                {
-                    surname = profileData[RegistrationField.Names.Surname];
-                }
+               
                                 
                 if (profileData != null)
                 {
+                    if (profileData.ContainsKey(RegistrationField.Names.Name))
+                    {
+                        name = profileData[RegistrationField.Names.Name];
+                    }
+
+                    if (profileData.ContainsKey(RegistrationField.Names.Surname))
+                    {
+                        surname = profileData[RegistrationField.Names.Surname];
+                    }
                     ContactPhone = data.Cellphone;
                     var addressBookContact = await GetContact(data.Cellphone);
                     if (addressBookContact != null)
@@ -328,7 +329,7 @@ namespace AlertApp.ViewModels
         private void Accept()
         {
             RespondAlert(AckType.Positive);
-             PhoneDialer.Open(ContactPhone);
+             
         }
         private void Ignore()
         {
@@ -360,6 +361,10 @@ namespace AlertApp.ViewModels
             SetBusy(false);
             _notificationManager.CloseNotification(_notificationAction.NotificationId);
             await App.Current.MainPage.Navigation.PopModalAsync();
+            if (type == AckType.Positive)
+            {
+                PhoneDialer.Open(ContactPhone);
+            }
         }
 
         private async Task<ImportContact> GetContact(string cellPhone)

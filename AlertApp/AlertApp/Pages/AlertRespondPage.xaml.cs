@@ -23,14 +23,24 @@ namespace AlertApp.Pages
             InitializeComponent();
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("notificationAction", notificationAction);
-            this.BindingContext = ViewModelLocator.Instance.Resolve<AlertRespondPageViewModel>(parameters);
+            //this.BindingContext = ViewModelLocator.Instance.Resolve<AlertRespondPageViewModel>(parameters);
+           
+
+            //this.BindingContext = new AlertRespondPageViewModel(al,crypto,reg,lss, notificationAction);
+            
             _notificationAction = notificationAction;
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            var vm = this.BindingContext as AlertRespondPageViewModel;
+            //var vm = this.BindingContext as AlertRespondPageViewModel;
+            var al = ViewModelLocator.Instance.Resolve<Services.Alert.IAlertService>();
+            var crypto = ViewModelLocator.Instance.Resolve<Services.Cryptography.ICryptographyService>();
+            var lss = ViewModelLocator.Instance.Resolve<Services.Settings.ILocalSettingsService>();
+            var reg = ViewModelLocator.Instance.Resolve<Services.Registration.IRegistrationService>();
+            var vm = new AlertRespondPageViewModel(al, crypto, reg, lss, _notificationAction);
+            this.BindingContext = vm;
             vm.SetProfileData();
             SetAlertPosition();
 

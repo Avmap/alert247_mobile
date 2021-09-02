@@ -90,17 +90,36 @@
     <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseProduction|AnyCPU'">
-    <OutputPath>bin\ReleaseProduction\</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <DebugType>portable</DebugType>
+    <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <OutputPath>bin\ReleaseProduction\</OutputPath>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <LangVersion>8.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+    <AndroidSupportedAbis>armeabi-v7a;arm64-v8a</AndroidSupportedAbis>
+    <MandroidI18n>
+    </MandroidI18n>
+    <AndroidLinkSkip>
+    </AndroidLinkSkip>
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
+    <AndroidLinkMode>Full</AndroidLinkMode>
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>\\avserver\av users\_PUBLIC\kottas\alert247.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>2019@l3rt!@</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>alert247</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>2019@l3rt!@</AndroidSigningKeyPass>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
+    <AndroidLinkTool>r8</AndroidLinkTool>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />

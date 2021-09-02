@@ -88,8 +88,20 @@ namespace AlertApp.ViewModels
             var alertResponse = await _alertService.SendAlert(await _localSettingsService.GetAuthToken(), (location != null && location.Ok) ? location.Location.Latitude : (double?)null, (location != null && location.Ok) ? location.Location.Longitude : (double?)null, (int)this.alertType);
             if (alertResponse != null && alertResponse.IsOk)
             {
-                var successSendContacts = alertResponse.Result.Recipients.Where(x => x.Value.StartsWith("NT")).Count();
-                string message = String.Format("{0} Alert {1} {2} {3}", AppResources.TheAlert, AppResources.SuccessSendAlertMessage, successSendContacts, AppResources.SuccessSendAlertMessageContacts);
+                string message = "";
+                var successSendContacts = 0;
+                if (!(alertResponse.Result.Recipients is null))
+                {
+                    successSendContacts = alertResponse.Result.Recipients.Where(x => x.Value.StartsWith("NT")).Count();
+                }
+                if (successSendContacts>0)
+                {
+                    message += String.Format("{0} Alert {1} {2} {3}", AppResources.TheAlert, AppResources.SuccessSendAlertMessage, successSendContacts, AppResources.SuccessSendAlertMessageContacts);
+                }
+                if (alertResponse.Result.src == 1)
+                {
+                    message += String.Format("{0} Alert {1} {2}", AppResources.TheAlert, AppResources.SuccessSendAlertMessage, AppResources.SuccessSendAlertMessageSrc);
+                }
                 showOKMessage(AppResources.SuccessSendAlert, message);
                 try
                 {

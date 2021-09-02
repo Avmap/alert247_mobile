@@ -1888,6 +1888,15 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Signal Receiving Center.
+        /// </summary>
+        internal static string SuccessSendAlertMessageSrc {
+            get {
+                return ResourceManager.GetString("SuccessSendAlertMessageSrc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ACCIDENT.
         /// </summary>
         internal static string SwitchAccident {

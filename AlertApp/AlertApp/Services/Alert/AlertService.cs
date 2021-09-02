@@ -120,7 +120,13 @@ namespace AlertApp.Services.Alert
                     var apiResponse = await response.Content.ReadAsStringAsync();
                     if (apiResponse != null)
                     {
-                        return JsonConvert.DeserializeObject<Response<SendAlertResponse>>(apiResponse);
+                        var settings = new JsonSerializerSettings
+                        {
+                            MissingMemberHandling = MissingMemberHandling.Ignore,
+                            NullValueHandling = NullValueHandling.Ignore,
+                            Converters = { new JsonSingleOrEmptyArrayConverter<IDictionary<string, string>>() },
+                        };
+                        return JsonConvert.DeserializeObject<Response<SendAlertResponse>>(apiResponse,settings);
                     }
                 }
             }

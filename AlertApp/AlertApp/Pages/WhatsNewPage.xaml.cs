@@ -46,7 +46,18 @@ namespace AlertApp.Pages
 
         private void NextCommand(object sender, EventArgs e)
         {
-            Navigation.InsertPageBefore(_next, Navigation.NavigationStack.First());
+            if(Navigation.NavigationStack.Count > 0){
+                Navigation.InsertPageBefore(_next, Navigation.NavigationStack.First());
+            }else
+            {
+                var existingPages = _next.Navigation.NavigationStack.ToList();
+                foreach (var page in existingPages)
+                {
+                    Navigation.RemovePage(page);
+                }
+                _next.Parent = null;
+                Navigation.PushAsync(_next);
+            }
             Navigation.PopToRootAsync();
         }
 

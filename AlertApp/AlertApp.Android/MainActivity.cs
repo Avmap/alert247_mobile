@@ -117,6 +117,7 @@ namespace AlertApp.Droid
                 };
                 // MessagingCenter.Send<ICrossFirebase, object>(this, typeof(ICrossFirebase).ToString(), notificationData);
                 Xamarin.Forms.Application.Current.MainPage.Navigation.PushModalAsync(new AlertRespondPage(notificationData));
+                //Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new AlertRespondPage(notificationData));
                 Intent = null;
             }
             else if (action != null && notification == "contact" && !flags.HasFlag(ActivityFlags.LaunchedFromHistory))

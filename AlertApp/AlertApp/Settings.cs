@@ -6,7 +6,7 @@ namespace AlertApp
 {
     public static class CodeSettings
     {
-        public const string SubscriptionURL = "https://www.alert247.gr";
+        public const string SubscriptionURL = "https://www.alert247.gr/subscriptions";
         public const string MapURL = "https://alert.mygis.gr/map.html?id=1";
         public const string WhatsNewURL = "https://www.alert247.gr/$LANG$/whatsnew";
         public const string StagingAPI = "https://staging.alert247.gr/api/";

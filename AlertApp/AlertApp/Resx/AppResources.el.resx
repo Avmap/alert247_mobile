@@ -430,9 +430,6 @@
   <data name="Weight" xml:space="preserve">
     <value>Βάρος</value>
   </data>
-  <data name="AcceptContactRequest" xml:space="preserve">
-    <value>Δέχομαι</value>
-  </data>
   <data name="ContactRequestText" xml:space="preserve">
     <value>Η παρακάτω επαφή θέλει να σας προσθέσει στην εφαρμογή ALERT 24/7</value>
   </data>
@@ -819,5 +816,8 @@
   </data>
   <data name="OKButton" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="SuccessSendAlertMessageSrc" xml:space="preserve">
+    <value>Κέντρο Λήψης Σημάτων</value>
   </data>
 </root>

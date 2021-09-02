@@ -174,6 +174,8 @@ namespace AlertApp.ViewModels
 
         #region Commands
 
+       
+
         private ICommand _ResendCodeCommand;
         public ICommand ResendCodeCommand
         {
@@ -259,6 +261,7 @@ namespace AlertApp.ViewModels
             });
         }
 
+       
         private async void RequestVerificationCode()
         {
             SetBusy(true);

@@ -149,7 +149,7 @@ namespace AlertApp
                     }
 
                 };
-                //   Subscribe();
+                   Subscribe();
 
             }
 
@@ -173,7 +173,7 @@ namespace AlertApp
         protected override void OnResume()
         {
             // Handle when your app resumes
-            // Subscribe();
+            Subscribe();
             RequestPermissions();
         }
 

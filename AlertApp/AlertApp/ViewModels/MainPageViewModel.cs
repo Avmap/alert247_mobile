@@ -216,7 +216,7 @@ namespace AlertApp.ViewModels
 
         public bool HasContacts { get { return _NumberOfContacts > 0; } }
         public bool DoesNotHaveContacts { get { 
-                return ShowContactsButton && (_NumberOfContacts<1); 
+                return (Preferences.Get(Settings.CONTACTS_BUTTON_VISIBLE, true) && (_NumberOfContacts<1)); 
             } 
         }
 
@@ -425,6 +425,7 @@ namespace AlertApp.ViewModels
                 _localSettingsService.SaveAppHasRunSetting(true);
             }
             PingServer();
+            RefreshSubInfo();
         }
 
         public async void RefreshSubInfo()

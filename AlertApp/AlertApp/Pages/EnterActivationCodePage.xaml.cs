@@ -20,9 +20,13 @@ namespace AlertApp.Pages
             NavigationPage.SetHasNavigationBar(this, false);
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("mobilenumber", mobilenumber);
-            this.BindingContext = ViewModelLocator.Instance.Resolve<EnterActivationCodePageViewModel>(parameters); 
+            this.BindingContext = ViewModelLocator.Instance.Resolve<EnterActivationCodePageViewModel>(parameters);
         }
 
+        public void FocusCMD(object sender, EventArgs args)
+        {
+            Verification1.Focus();
+        }
 
         private void Verification1_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -127,13 +131,14 @@ namespace AlertApp.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            Verification1.Focus();
             if (this.BindingContext != null && this.BindingContext is EnterActivationCodePageViewModel)
             {
                 var vm = this.BindingContext as EnterActivationCodePageViewModel;
                 vm.RegisterForSmsEvent();
 
             }
-            Verification1.Focus();
+            
         }
 
         protected override void OnDisappearing()

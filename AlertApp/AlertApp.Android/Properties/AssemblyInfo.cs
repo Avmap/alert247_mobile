@@ -35,3 +35,4 @@ using Xamarin.Forms;
 [assembly: UsesPermission(Android.Manifest.Permission.Internet)]
 [assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
 [assembly: ExportRenderer(typeof(TabbedPage), typeof(BadgedTabbedPageRenderer))]
+

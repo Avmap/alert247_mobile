@@ -5,10 +5,15 @@ using System.Text;
 
 namespace AlertApp.Model.Api
 {
+    
+
     [DataContract]
     public class SendAlertResponse 
     {
         [DataMember(Name = "recipients")]
-        public Dictionary<string, string> Recipients { get; set; }
+        public IDictionary<string, string> Recipients { get; set; }
+
+        [DataMember(Name = "src")]
+        public int src { get; set; }
     }
 }

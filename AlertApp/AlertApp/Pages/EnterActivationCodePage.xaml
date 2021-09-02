@@ -14,33 +14,29 @@
             <Grid AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <views:Toolbar BackCommand="{Binding BaseBackCommand}" HasBackButton="True" Title="{infrastructure:Translate StartSettings}" SubTitle="{infrastructure:Translate VerificationCodePageTitle}" Grid.Row="0" ></views:Toolbar>
                 <StackLayout Margin="16,-50,16,0" Grid.Row="1"  HorizontalOptions="FillAndExpand" Spacing="0" VerticalOptions="StartAndExpand" >
                     <Label Text="{infrastructure:Translate WaitForSMS}"  HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
-                    <OnPlatform x:TypeArguments="View">
-                        <On Platform="iOS">
-                            <Frame BackgroundColor="Transparent" BorderColor="#CACCCD" CornerRadius="2" Padding="0,0,0,0" HasShadow="False">
-                                <infrastructure:OtpEntry Keyboard="Telephone"  TextChanged="OtpEntry_IOS_TextChanged" MaxLength="6" HorizontalTextAlignment="Center" Text="{Binding VerificationCode,Mode=TwoWay}" BackgroundColor="#E6E7E8" Style="{StaticResource Headline5BoldEntry}"></infrastructure:OtpEntry>
-                            </Frame>
-                        </On>
-                        <On Platform="Android">
-                            <Frame BackgroundColor="#E6E7E8" CornerRadius="16" Padding="2,2,2,2" HasShadow="False">
-                                <StackLayout Orientation="Horizontal" Spacing="2" HorizontalOptions="FillAndExpand">
-                                    <infrastructure:EntryCenterOnly IsEnabled="True" x:Name="Verification1" TextChanged="Verification1_TextChanged"  Keyboard="Numeric" Text="{Binding VerificationCode0,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCenterOnly>
-                                    <infrastructure:EntryCenterOnly IsEnabled="True" x:Name="Verification2" TextChanged="Verification2_TextChanged"  Keyboard="Numeric" Text="{Binding VerificationCode1,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCenterOnly>
-                                    <infrastructure:EntryCenterOnly IsEnabled="True" x:Name="Verification3" TextChanged="Verification3_TextChanged" Keyboard="Numeric" Text="{Binding VerificationCode2,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCenterOnly>
-                                    <infrastructure:EntryCenterOnly IsEnabled="True" x:Name="Verification4" TextChanged="Verification4_TextChanged" Keyboard="Numeric" Text="{Binding VerificationCode3,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCenterOnly>
-                                    <infrastructure:EntryCenterOnly IsEnabled="True" x:Name="Verification5" TextChanged="Verification5_TextChanged" Keyboard="Numeric" Text="{Binding VerificationCode4,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCenterOnly>
-                                    <infrastructure:EntryCenterOnly IsEnabled="True" x:Name="Verification6" TextChanged="Verification6_TextChanged" Keyboard="Numeric" Text="{Binding VerificationCode5,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCenterOnly>
-                                </StackLayout>
-                            </Frame>
-                        </On>
-                    </OnPlatform>
                 </StackLayout>
-                <StackLayout Grid.Row="1"  Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                <StackLayout Margin="16,0,16,0" Grid.Row="2"  HorizontalOptions="FillAndExpand" Spacing="0" VerticalOptions="StartAndExpand" >
+                    <StackLayout Orientation="Horizontal" Spacing="2" HorizontalOptions="FillAndExpand" Background="#E6E7E8">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="FocusCMD"  />
+                        </StackLayout.GestureRecognizers>
+                        <infrastructure:EntryCenterOnly IsEnabled="True" x:Name="Verification1" TextChanged="Verification1_TextChanged"  Keyboard="Numeric" Text="{Binding VerificationCode0,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCenterOnly>
+                        <infrastructure:EntryCenterOnly IsEnabled="True" x:Name="Verification2" TextChanged="Verification2_TextChanged"  Keyboard="Numeric" Text="{Binding VerificationCode1,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCenterOnly>
+                        <infrastructure:EntryCenterOnly IsEnabled="True" x:Name="Verification3" TextChanged="Verification3_TextChanged" Keyboard="Numeric" Text="{Binding VerificationCode2,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCenterOnly>
+                        <infrastructure:EntryCenterOnly IsEnabled="True" x:Name="Verification4" TextChanged="Verification4_TextChanged" Keyboard="Numeric" Text="{Binding VerificationCode3,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCenterOnly>
+                        <infrastructure:EntryCenterOnly IsEnabled="True" x:Name="Verification5" TextChanged="Verification5_TextChanged" Keyboard="Numeric" Text="{Binding VerificationCode4,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCenterOnly>
+                        <infrastructure:EntryCenterOnly IsEnabled="True" x:Name="Verification6" TextChanged="Verification6_TextChanged" Keyboard="Numeric" Text="{Binding VerificationCode5,Mode=TwoWay}" Margin="2,0,0,0" HorizontalTextAlignment="Center" MaxLength="1" HorizontalOptions="FillAndExpand" Style="{StaticResource Headline5BoldEntry}"></infrastructure:EntryCenterOnly>
+                    </StackLayout>
+
+                </StackLayout>
+                <StackLayout Grid.Row="3"  Orientation="Vertical" HorizontalOptions="FillAndExpand">
                     <Button IsEnabled="{Binding CanResendCode}" Text="{Binding TimerText,Mode=TwoWay}"
                                 VerticalOptions="CenterAndExpand"
                                 HorizontalOptions="Center"
