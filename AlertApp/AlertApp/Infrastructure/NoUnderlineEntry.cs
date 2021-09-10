@@ -7,5 +7,6 @@ namespace AlertApp.Infrastructure
 {
     public class NoUnderlineEntry : Entry
     {
+        public string FieldName { get; set; }
     }
 }
