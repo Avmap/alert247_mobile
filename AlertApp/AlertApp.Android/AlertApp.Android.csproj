@@ -248,6 +248,9 @@
     <PackageReference Include="Xamarin.GooglePlayServices.Tasks">
       <Version>117.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.FirebasePushNotification">
+      <Version>3.3.10</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlarmReceiver.cs" />
