@@ -169,7 +169,8 @@ namespace AlertApp.ViewModels
             if (contacts != null)
             {
                 var tempList = new List<ImportContact>();
-                foreach (var item in contacts.Where(c => c.Phones.Count>0).OrderBy(c => c.FamilyName))
+                var filteredContacts = contacts.Where(c => c.Phones.Count > 0).OrderBy(c => c.FamilyName).ToList();
+                foreach (var item in filteredContacts)
                 {
                     foreach (var number in item.Phones)
                     {
@@ -180,16 +181,17 @@ namespace AlertApp.ViewModels
                     
                 }
 
-                if (Device.RuntimePlatform == Device.iOS)
-                {
-                    for (int i = 0; i < tempList.Count; i++)
-                    {
-                        if (tempList[i]?.Number == null) continue;
-                        var spl1 = tempList[i].Number.Split(':'); var spl2 = spl1[2].Split(',');
-                        var spl3 = spl2[0].Split('=');
-                        tempList[i].Number = spl3[1];
-                    }
-                }
+                //if (Device.RuntimePlatform == Device.iOS)
+                //{
+                //    for (int i = 0; i < tempList.Count; i++)
+                //    {
+                //        if (tempList[i]?.Number == null) continue;
+                //        var spl1 = tempList[i].Number.Split(':');
+                //        var spl2 = spl1[2].Split(',');
+                //        var spl3 = spl2[0].Split('=');
+                //        tempList[i].Number = spl3[1];
+                //    }
+                //}
 
                 this.Contacts = new ObservableCollection<ImportContact>();
                 this.OriginalContacts = new ObservableCollection<ImportContact>(this.Contacts);

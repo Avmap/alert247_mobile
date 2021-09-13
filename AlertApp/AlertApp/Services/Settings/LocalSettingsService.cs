@@ -14,12 +14,12 @@ namespace AlertApp.Services.Settings
         {
             try
             {
-                var res = await SecureStorage.GetAsync(utils.Settings.ApplicationPin);
-                if (string.IsNullOrWhiteSpace(res))
-                {
-                    res = Preferences.Get(utils.Settings.ApplicationPin, "");
-                }
-                return res;
+                return await SecureStorage.GetAsync(utils.Settings.ApplicationPin);
+                //if (string.IsNullOrWhiteSpace(res))
+                //{
+                //    res = Preferences.Get(utils.Settings.ApplicationPin, "");
+                //}
+                //return res;
             }
             catch (Exception ex)
             {

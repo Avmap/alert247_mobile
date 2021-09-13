@@ -144,37 +144,34 @@ namespace AlertApp.Services.Profile
         public async Task<Response> StoreProfile(Dictionary<string, string> registrationValues, string token, string publicKey)
         {
             var res = new Response();
-            res.Status = "ok";
-            res.IsOnline = true;
-            //todo: Check cryprography!
-            //try
-            //{
-            //    var profileDataJson = JsonConvert.SerializeObject(registrationValues);
-            //    var encryptedProfileData = await _cryptographyService.EncryptProfileData(profileDataJson);
-            //    var json = JsonConvert.SerializeObject(new UserProfileBody { Token = token, PublicKey = encryptedProfileData.PublicKey, ProfileData = encryptedProfileData.Data });
-            //    var content = new StringContent(json, Encoding.UTF8, "application/json");
-            //    var response = await _httpClient.PostAsync("post/alert/storeProfile", content);
+            try
+            {
+                var profileDataJson = JsonConvert.SerializeObject(registrationValues);
+                var encryptedProfileData = await _cryptographyService.EncryptProfileData(profileDataJson);
+                var json = JsonConvert.SerializeObject(new UserProfileBody { Token = token, PublicKey = encryptedProfileData.PublicKey, ProfileData = encryptedProfileData.Data });
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("post/alert/storeProfile", content);
 
-            //    if (response.Content != null)
-            //    {
-            //        var apiResponse = await response.Content.ReadAsStringAsync();
-            //        if (apiResponse != null)
-            //        {
-            //            res = JsonConvert.DeserializeObject<Response>(apiResponse);
-            //            if (res.IsOk)
-            //                _localSettingsService.SaveEncryptedProfileData(encryptedProfileData.Data);
-            //            return res;
-            //        }
-            //    }
+                if (response.Content != null)
+                {
+                    var apiResponse = await response.Content.ReadAsStringAsync();
+                    if (apiResponse != null)
+                    {
+                        res = JsonConvert.DeserializeObject<Response>(apiResponse);
+                        if (res.IsOk)
+                            _localSettingsService.SaveEncryptedProfileData(encryptedProfileData.Data);
+                        return res;
+                    }
+                }
 
-            //    return Response.FailResponse;
-            //}
-            //catch (Exception ex)
-            //{
-            //    res.ErrorCode = ex.Message;
-            //    res.Status = "error";
-            //    res.IsOnline = false;
-            //}
+                return Response.FailResponse;
+            }
+            catch (Exception ex)
+            {
+                res.ErrorCode = ex.Message;
+                res.Status = "error";
+                res.IsOnline = false;
+            }
             return res;
         }
     }

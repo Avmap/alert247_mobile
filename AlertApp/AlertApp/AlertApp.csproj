@@ -43,7 +43,7 @@
     <PackageReference Include="CommonServiceLocator" Version="2.0.4" />
     <PackageReference Include="LiveXAML" Version="2.1.73" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-    <PackageReference Include="Plugin.Badge" Version="2.2.1" />
+    <PackageReference Include="Plugin.Badge" Version="2.3.0" />
     <PackageReference Include="Plugin.FirebasePushNotification" Version="3.3.10" />
     <PackageReference Include="Unity" Version="5.10.3" />
     <PackageReference Include="Unity.Container" Version="5.10.3" />
@@ -53,7 +53,7 @@
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Forms.Contacts" Version="1.0.5" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2012" />
-    <PackageReference Include="PCLCrypto" Version="2.0.147" />
+    <PackageReference Include="PCLCrypto" Version="2.1.40-alpha" />
   </ItemGroup>
 
   <ItemGroup>
