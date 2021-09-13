@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.2.07" package="gr.avmap.alert247" android:installLocation="auto" android:versionCode="000207">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.2.08" package="gr.avmap.alert247" android:installLocation="auto" android:versionCode="000208">
 	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="30" />
 	<!-- Using speaker volume control -->
 	<!-- If you need to modify files in external storage, request

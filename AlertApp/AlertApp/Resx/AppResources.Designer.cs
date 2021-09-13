@@ -205,7 +205,7 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Allways On.
+        ///   Looks up a localized string similar to Always On.
         /// </summary>
         internal static string AllwaysOn {
             get {
@@ -1870,7 +1870,7 @@ namespace AlertApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to send successfully to .
+        ///   Looks up a localized string similar to sent successfully to .
         /// </summary>
         internal static string SuccessSendAlertMessage {
             get {

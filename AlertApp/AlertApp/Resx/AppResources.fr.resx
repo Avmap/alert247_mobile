@@ -739,4 +739,88 @@
   <data name="RegistrationTitle" xml:space="preserve">
     <value>enregistrement</value>
   </data>
+  <data name="OKButton" xml:space="preserve">
+    <value>d'accord</value>
+  </data>
+  <data name="TheAlert" xml:space="preserve">
+    <value>Le/La</value>
+  </data>
+  <data name="TouristGuide" xml:space="preserve">
+    <value>Installations de sécurité</value>
+  </data>
+  <data name="PendingRequestsPage" xml:space="preserve">
+    <value>Demandes</value>
+  </data>
+  <data name="SettingChangeSOS" xml:space="preserve">
+    <value>Changer de message</value>
+  </data>
+  <data name="SubscriptionStatusInactive" xml:space="preserve">
+    <value>INACTIF</value>
+  </data>
+  <data name="RemoveUserAnalytical" xml:space="preserve">
+    <value>Supprimer l'utilisateur ?</value>
+  </data>
+  <data name="NoContactsNoSub" xml:space="preserve">
+    <value>Pour alerter, ajouter des contacts ou activer votre abonnement</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="SubscriptionStart" xml:space="preserve">
+    <value>Début</value>
+  </data>
+  <data name="SubscriptionStatusOK" xml:space="preserve">
+    <value>ACTIF</value>
+  </data>
+  <data name="SubscriptionPage" xml:space="preserve">
+    <value>Activer l'abonnement</value>
+  </data>
+  <data name="AddSub" xml:space="preserve">
+    <value>Activer l'abonnement au Centre de réception de signaux</value>
+  </data>
+  <data name="WhatsNew" xml:space="preserve">
+    <value>Points forts de l'application</value>
+  </data>
+  <data name="SubscriptionStatusExpired" xml:space="preserve">
+    <value>EXPIRÉ</value>
+  </data>
+  <data name="SuccessSendAlertMessageSrc" xml:space="preserve">
+    <value>Centre de réception de signaux</value>
+  </data>
+  <data name="SubscriptionStatusExpiring" xml:space="preserve">
+    <value>EXPIRANT BIENTT</value>
+  </data>
+  <data name="SubscriptionEnd" xml:space="preserve">
+    <value>Finir</value>
+  </data>
+  <data name="DoNotShowSetting" xml:space="preserve">
+    <value>Ne pas montrer de nouveau</value>
+  </data>
+  <data name="MSG" xml:space="preserve">
+    <value>UN MESSAGE</value>
+  </data>
+  <data name="SwitchSOS" xml:space="preserve">
+    <value>UN MESSAGE</value>
+  </data>
+  <data name="SwitchSOSLbl" xml:space="preserve">
+    <value>Un message</value>
+  </data>
+  <data name="CanYouHelp" xml:space="preserve">
+    <value>POUVEZ-VOUS AIDER ?</value>
+  </data>
+  <data name="SubscriptionPackage" xml:space="preserve">
+    <value>Emballer</value>
+  </data>
+  <data name="SwitchSubscription" xml:space="preserve">
+    <value>ABONNEMENT</value>
+  </data>
+  <data name="SubscriptionFrame" xml:space="preserve">
+    <value>ABONNEMENT AU CENTRE DE RÉCEPTION DE SIGNAL</value>
+  </data>
+  <data name="SingleContact" xml:space="preserve">
+    <value>Ami d'urgence</value>
+  </data>
+  <data name="SwitchMap" xml:space="preserve">
+    <value>CARTE</value>
+  </data>
 </root>

@@ -470,7 +470,7 @@
     <value>Πατήστε ξανά για ακύρωση</value>
   </data>
   <data name="InviteFriendsSubtitle" xml:space="preserve">
-    <value>Οι φίλοι σου δεν έχουν ανακλύψει ακόμα το Alert 24/7. Προσκάλεσε τους να κατεβάσουν την εφαρμογή και να σε προσθέσουν ως επαφή έκτακτης ανάγκης!</value>
+    <value>Οι φίλοι σου δεν έχουν ανακαλύψει ακόμα το Alert 24/7. Προσκάλεσε τους να κατεβάσουν την εφαρμογή και να σε προσθέσουν ως επαφή έκτακτης ανάγκης!</value>
   </data>
   <data name="InviteFriendsTitle" xml:space="preserve">
     <value>Προσκάλεσε τους φίλους σου!</value>
@@ -491,7 +491,7 @@
     <value>Προσθήκη</value>
   </data>
   <data name="ShareMessage" xml:space="preserve">
-    <value>Κατέβασε το Alert24/7  "https://play.google.com/store/apps/details?id=gr.avmap.alert247"</value>
+    <value>Κατέβασε δωρεάν το Alert24/7 για να σε προσθέσω στο κοινωνικό δίκτυο ασφάλειας που δημιουργώ  "https://alert247.gr/"</value>
   </data>
   <data name="ShareMessageTitle" xml:space="preserve">
     <value>Κατέβασε το Alert24/7</value>
@@ -819,5 +819,8 @@
   </data>
   <data name="SuccessSendAlertMessageSrc" xml:space="preserve">
     <value>Κέντρο Λήψης Σημάτων</value>
+  </data>
+  <data name="AcceptContactRequest" xml:space="preserve">
+    <value>Αποδοχή</value>
   </data>
 </root>
