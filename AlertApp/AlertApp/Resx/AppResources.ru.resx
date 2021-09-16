@@ -739,4 +739,89 @@
   <data name="RegistrationTitle" xml:space="preserve">
     <value>Регистрация</value>
   </data>
+  <data name="SwitchMap" xml:space="preserve">
+    <value>КАРТА</value>
+  </data>
+  <data name="SingleContact" xml:space="preserve">
+    <value>Экстренный друг
+</value>
+  </data>
+  <data name="SubscriptionFrame" xml:space="preserve">
+    <value>ПОДПИСКА НА ЦЕНТР ПРИЕМА СИГНАЛОВ</value>
+  </data>
+  <data name="SwitchSubscription" xml:space="preserve">
+    <value>ПОДПИСКА</value>
+  </data>
+  <data name="SubscriptionPackage" xml:space="preserve">
+    <value>Упаковка</value>
+  </data>
+  <data name="CanYouHelp" xml:space="preserve">
+    <value>ВЫ МОЖЕТЕ ПОМОЧЬ?</value>
+  </data>
+  <data name="SwitchSOSLbl" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="SwitchSOS" xml:space="preserve">
+    <value>СООБЩЕНИЕ</value>
+  </data>
+  <data name="MSG" xml:space="preserve">
+    <value>СООБЩЕНИЕ</value>
+  </data>
+  <data name="DoNotShowSetting" xml:space="preserve">
+    <value>Не показывай снова</value>
+  </data>
+  <data name="SubscriptionEnd" xml:space="preserve">
+    <value>Конец</value>
+  </data>
+  <data name="SubscriptionStatusExpiring" xml:space="preserve">
+    <value>СКОРО ПРОДОЛЖАЕТСЯ</value>
+  </data>
+  <data name="SuccessSendAlertMessageSrc" xml:space="preserve">
+    <value>Центр приема сигналов</value>
+  </data>
+  <data name="SubscriptionStatusExpired" xml:space="preserve">
+    <value>ИСТЕКШИЙ</value>
+  </data>
+  <data name="WhatsNew" xml:space="preserve">
+    <value>Основные возможности приложения</value>
+  </data>
+  <data name="AddSub" xml:space="preserve">
+    <value>Активировать подписку на Центр приема сигналов</value>
+  </data>
+  <data name="SubscriptionPage" xml:space="preserve">
+    <value>Активировать подписку</value>
+  </data>
+  <data name="SubscriptionStatusOK" xml:space="preserve">
+    <value>АКТИВНЫЙ</value>
+  </data>
+  <data name="SubscriptionStart" xml:space="preserve">
+    <value>Начинать</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="NoContactsNoSub" xml:space="preserve">
+    <value>Чтобы предупредить, добавьте контакты или активируйте подписку</value>
+  </data>
+  <data name="RemoveUserAnalytical" xml:space="preserve">
+    <value>Удалить пользователя?</value>
+  </data>
+  <data name="SubscriptionStatusInactive" xml:space="preserve">
+    <value>НЕАКТИВНЫЙ</value>
+  </data>
+  <data name="SettingChangeSOS" xml:space="preserve">
+    <value>Изменить сообщение</value>
+  </data>
+  <data name="PendingRequestsPage" xml:space="preserve">
+    <value>Запросы</value>
+  </data>
+  <data name="TouristGuide" xml:space="preserve">
+    <value>Объекты безопасности</value>
+  </data>
+  <data name="TheAlert" xml:space="preserve">
+    <value>В</value>
+  </data>
+  <data name="OKButton" xml:space="preserve">
+    <value>Хорошо</value>
+  </data>
 </root>

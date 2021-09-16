@@ -314,7 +314,7 @@
     <value>我会帮助</value>
   </data>
   <data name="AlertSosTitle" xml:space="preserve">
-    <value>SOS</value>
+    <value>求救</value>
   </data>
   <data name="HomeTab" xml:space="preserve">
     <value>家</value>
@@ -371,7 +371,7 @@
     <value>成功</value>
   </data>
   <data name="SuccessSendAlertMessage" xml:space="preserve">
-    <value>成功发送给</value>
+    <value>成功发送至</value>
   </data>
   <data name="SuccessSendAlertMessageContacts" xml:space="preserve">
     <value>联系人。</value>
@@ -416,7 +416,7 @@
     <value>发送警报SOS</value>
   </data>
   <data name="SendingAlertToSelectedContacts" xml:space="preserve">
-    <value>正在向...中的选定联系人发送警报</value>
+    <value>正在向选定的联系人发送警报...</value>
   </data>
   <data name="UserIsInPosition" xml:space="preserve">
     <value>现在他在：</value>
@@ -692,7 +692,7 @@
     <value>你已经被保护了</value>
   </data>
   <data name="FallDetectedSosText" xml:space="preserve">
-    <value>侦测到秋天</value>
+    <value>跌倒检测</value>
   </data>
   <data name="FallDetectorSettings" xml:space="preserve">
     <value>检测器设置</value>
@@ -738,5 +738,89 @@
   </data>
   <data name="RegistrationTitle" xml:space="preserve">
     <value>注册</value>
+  </data>
+  <data name="OKButton" xml:space="preserve">
+    <value>好的</value>
+  </data>
+  <data name="TheAlert" xml:space="preserve">
+    <value>这</value>
+  </data>
+  <data name="TouristGuide" xml:space="preserve">
+    <value>保安设施</value>
+  </data>
+  <data name="PendingRequestsPage" xml:space="preserve">
+    <value>要求</value>
+  </data>
+  <data name="SettingChangeSOS" xml:space="preserve">
+    <value>更改消息</value>
+  </data>
+  <data name="SubscriptionStatusInactive" xml:space="preserve">
+    <value>不活动</value>
+  </data>
+  <data name="RemoveUserAnalytical" xml:space="preserve">
+    <value>移除用户？</value>
+  </data>
+  <data name="NoContactsNoSub" xml:space="preserve">
+    <value>要提醒、添加联系人或激活您的订阅</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="SubscriptionStart" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="SubscriptionStatusOK" xml:space="preserve">
+    <value>积极的</value>
+  </data>
+  <data name="SubscriptionPage" xml:space="preserve">
+    <value>激活订阅</value>
+  </data>
+  <data name="AddSub" xml:space="preserve">
+    <value>激活订阅信号接收中心</value>
+  </data>
+  <data name="WhatsNew" xml:space="preserve">
+    <value>应用亮点</value>
+  </data>
+  <data name="SubscriptionStatusExpired" xml:space="preserve">
+    <value>已到期</value>
+  </data>
+  <data name="SuccessSendAlertMessageSrc" xml:space="preserve">
+    <value>信号接收中心</value>
+  </data>
+  <data name="SubscriptionStatusExpiring" xml:space="preserve">
+    <value>即将到期</value>
+  </data>
+  <data name="SubscriptionEnd" xml:space="preserve">
+    <value>结尾</value>
+  </data>
+  <data name="DoNotShowSetting" xml:space="preserve">
+    <value>不再显示</value>
+  </data>
+  <data name="MSG" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="SwitchSOS" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="SwitchSOSLbl" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="CanYouHelp" xml:space="preserve">
+    <value>你能帮我吗？</value>
+  </data>
+  <data name="SubscriptionPackage" xml:space="preserve">
+    <value>包裹</value>
+  </data>
+  <data name="SwitchSubscription" xml:space="preserve">
+    <value>订阅</value>
+  </data>
+  <data name="SubscriptionFrame" xml:space="preserve">
+    <value>订阅信号接收中心</value>
+  </data>
+  <data name="SingleContact" xml:space="preserve">
+    <value>紧急的朋友</value>
+  </data>
+  <data name="SwitchMap" xml:space="preserve">
+    <value>地图</value>
   </data>
 </root>

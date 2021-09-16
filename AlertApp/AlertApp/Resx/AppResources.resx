@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllwaysOn" xml:space="preserve">
-    <value>Allways On</value>
+    <value>Always On</value>
   </data>
   <data name="Application" xml:space="preserve">
     <value>Application</value>
@@ -371,7 +371,7 @@
     <value>Success</value>
   </data>
   <data name="SuccessSendAlertMessage" xml:space="preserve">
-    <value>send successfully to </value>
+    <value>sent successfully to </value>
   </data>
   <data name="SuccessSendAlertMessageContacts" xml:space="preserve">
     <value>contacts.</value>
