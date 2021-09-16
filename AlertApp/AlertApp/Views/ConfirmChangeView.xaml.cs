@@ -33,7 +33,10 @@ namespace AlertApp.Views
                 if (userInput.Equals(pin))
                 {
                     Confirmed = true;
-                    await Navigation.PopModalAsync();
+                    await Device.InvokeOnMainThreadAsync(async () =>
+                    {
+                        await Navigation.PopModalAsync();
+                    });
                 }
                 else
                 {

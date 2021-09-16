@@ -66,7 +66,7 @@ namespace AlertApp.Pages
                 switch (item.DataType)
                 {
                     case RegistrationField.Type.String:
-                        var entry = new NoUnderlineEntry { Placeholder = label, VerticalOptions = LayoutOptions.Center, FontSize = 16, HorizontalOptions = LayoutOptions.FillAndExpand, ReturnType = ReturnType.Next, Style = (Style)Application.Current.Resources["RegistrationEntryStyle"] };
+                        var entry = new NoUnderlineEntry { FieldName = item.FieldName, Placeholder = label, VerticalOptions = LayoutOptions.Center, FontSize = 16, HorizontalOptions = LayoutOptions.FillAndExpand, ReturnType = ReturnType.Next, Style = (Style)Application.Current.Resources["RegistrationEntryStyle"] };
                         entry.TextChanged += Entry_TextChanged;
                         registrationContainer.Children.Add(entry);
                         break;
@@ -305,14 +305,15 @@ namespace AlertApp.Pages
             var registrationValues = new Dictionary<string, string>();
             foreach (var registrationView in registrationContainer.Children)
             {
-                var registrationStackLayout = registrationView as RegistrationStackLayout;
+                var registrationStackLayout = registrationView as NoUnderlineEntry;//RegistrationStackLayout;
                 if (registrationStackLayout != null)
                 {
-                    foreach (var field in registrationStackLayout.Children)
-                    {
-                        if (field is Frame)
-                            CollectValues(registrationValues, registrationStackLayout.FieldName, field as Frame);
-                    }
+                    registrationValues.Add(((NoUnderlineEntry)registrationStackLayout).FieldName, registrationStackLayout.Text);
+                    //foreach (var field in registrationStackLayout.Children)
+                    //{
+                    //    if (field is Frame)
+                    //        CollectValues(registrationValues, registrationStackLayout.FieldName, field as Frame);
+                    //}
                 }
             }
             vm.SendUserProfile(registrationValues);

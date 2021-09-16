@@ -30,12 +30,12 @@ namespace AlertApp.iOS
             global::Xamarin.Forms.FormsMaterial.Init();
 
             CarouselViewRenderer.Init();
+            FirebasePushNotificationManager.Initialize(options, true);
             LoadApplication(new App());
+            //FirebasePushNotificationManager.Initialize(options);
             ImageCircleRenderer.Init();
             Xamarin.FormsMaps.Init();
             //Firebase.Core.App.Configure();
-
-            FirebasePushNotificationManager.Initialize(options, true);
 
             if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
             {

@@ -19,7 +19,7 @@
 		<string>OpenSans-Regular.ttf</string>
 		<string>OpenSans-Light.ttf</string>
 		<string>OpenSans-Italic.ttf</string>
-    <string>materialdesignicons-webfont.ttf</string>
+		<string>materialdesignicons-webfont.ttf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
@@ -36,7 +36,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>gr.avmap.alert247</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.14</string>
+	<string>1.2.08</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -60,5 +60,15 @@
 	<true/>
 	<key>UIFileSharingEnabled</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>New Entry</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>New Entry</string>
+	<key>NSSiriUsageDescription</key>
+	<string>Need access to Siri</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Need access to Bluetooth</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.2.08</string>
 </dict>
 </plist>

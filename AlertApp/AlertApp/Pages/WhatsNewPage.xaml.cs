@@ -70,7 +70,10 @@ namespace AlertApp.Pages
         private void Switch_Toggled(object sender, ToggledEventArgs e)
         {
             var switchView = sender as Switch;
-            toggleSetting(switchView.Id.ToString(), true);
+            toggle(Settings.DoNotShowWhatsNew, switchView);
+
+            //Property Id is GUID here.
+            //toggleSetting(switchView.Id.ToString(), true);
         }
 
         private void toggleSetting(string setting, bool fromCode)
@@ -85,10 +88,11 @@ namespace AlertApp.Pages
 
         private void toggle(string setting, Switch switchView)
         {
-            var newValue = !switchView.IsToggled;
+            //var newValue = !switchView.IsToggled;
             //switchView.IsToggled = !switchView.IsToggled;
-            Preferences.Set(Settings.DoNotShowWhatsNew, newValue);
+            Preferences.Set(setting, switchView.IsToggled);
         }
+
         private void OnNavigated(object sender, WebNavigatedEventArgs e)
         {
             IsBusy = false;
