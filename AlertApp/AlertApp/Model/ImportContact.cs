@@ -14,7 +14,7 @@ namespace AlertApp.Model
         public ImportContact(Xamarin.Essentials.Contact contact, String number, IContactProfileImageProvider profileImageProvider)
         {
             _profileImageProvider = profileImageProvider;
-            this.Name = contact.GivenName;
+            this.Name = contact.DisplayName;
             this.Number = number;
             this.PhotoUri = ""; // contact.ProfileImageUri;
             this.PhotoUriThumbnail = ""; //contact.ProfileImageUri;
