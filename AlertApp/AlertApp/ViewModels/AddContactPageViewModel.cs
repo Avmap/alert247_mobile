@@ -234,6 +234,7 @@ namespace AlertApp.ViewModels
                 Title = AppResources.ShareMessageTitle
             });
         }
+
         public void SelectContact(ImportContact contact)
         {
             if (!contact.NeedsInvitation)
@@ -248,23 +249,30 @@ namespace AlertApp.ViewModels
         {
             if (this.Contacts.Where(c => c.Selected).Count() > 0)
             {
-                var ok = await showAlertMessage(AppResources.AlertAddContactsTitle, AppResources.AlertAddContactsMessage, AppResources.OK, AppResources.Cancel);
-                if (ok == true)
-                {
+                //var ok = await showAlertMessage(AppResources.AlertAddContactsTitle, AppResources.AlertAddContactsMessage, AppResources.OK, AppResources.Cancel);
+                //if (ok == true)
+                //{
                     SetBusy(true);
                     var userToken = await _localSettingsService.GetAuthToken();
-                    var addContactsResults = await _contactsService.AddContacts(userToken, this.Contacts.Where(c => c.Selected).Select(c => c.FormattedNumber).ToArray());
+                var selectedContects = this.Contacts.Where(c => c.Selected).Select(c => c.FormattedNumber);
+                    var addContactsResults = await _contactsService.AddContacts(userToken, selectedContects.ToArray());
                     if (addContactsResults.IsOk)
                     {
                         HasChange = true;
-                        await Application.Current.MainPage.Navigation.PopAsync();
+                    //await Application.Current.MainPage.Navigation.PopAsync();
+
+                    for (int i = selectedContects.ToList().Count - 1; i >= 0; i--)
+                    {
+                        var contact = Contacts.FirstOrDefault(p => p.FormattedNumber == selectedContects.ToArray()[i]);
+                        Contacts.Remove(contact);
                     }
+                }
                     else if (addContactsResults.IsOnline)
                     {
                         showOKMessage(AppResources.Error, AppResources.NoInternetConnection);
                     }
                     SetBusy(false);
-                }
+                //}
             }
         }
 
@@ -288,6 +296,7 @@ namespace AlertApp.ViewModels
                     this.Contacts = new ObservableCollection<ImportContact>(OriginalContacts);
             }
         }
+
         private async void EnterNumber()
         {
             var dialogs = DependencyService.Get<IDialog>();
