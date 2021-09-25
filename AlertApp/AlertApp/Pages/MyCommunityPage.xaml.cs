@@ -31,9 +31,9 @@ namespace AlertApp.Pages
         {
             var p = this.Parent.Parent.Parent;
             var x = (ContentPage)p;
-            var choice = await x.DisplayActionSheet(String.IsNullOrEmpty(ClickedContact.FullName)? ClickedContact.Cellphone : ClickedContact.FullName, AppResources.Cancel, AppResources.RemoveUser, AppResources.RemoveUserAnalytical);
+            var choice = await x.DisplayActionSheet(String.IsNullOrEmpty(ClickedContact.FullName)? ClickedContact.Cellphone : ClickedContact.FullName, AppResources.Cancel, null, AppResources.RemoveUser);
 
-            if (choice.Equals(AppResources.RemoveUser) || choice.Equals(AppResources.RemoveUserAnalytical))
+            if (choice.Equals(AppResources.RemoveUser))
             {
                 OnRemoveUserClick(null, null);
             }

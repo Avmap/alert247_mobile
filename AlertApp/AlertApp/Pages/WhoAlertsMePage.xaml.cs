@@ -32,15 +32,25 @@ namespace AlertApp.Pages
             var p = this.Parent.Parent.Parent;
             var x = (ContentPage)p;
             var choice = await x.DisplayActionSheet(String.IsNullOrEmpty(ClickedContact.FullName) ? ClickedContact.Cellphone : ClickedContact.FullName, AppResources.Cancel, null, AppResources.RemoveUser, AppResources.BlockUser);
-            switch (choice)
+
+            if (choice.Equals(AppResources.RemoveUser))
             {
-                case nameof(AppResources.RemoveUser):
-                    OnRemoveUserClick(null, null);
-                    break;
-                case nameof(AppResources.BlockUser):
-                    OnBlockUserClick(null, null);
-                    break;
+                OnRemoveUserClick(null, null);
             }
+            else if (choice.Equals(AppResources.RemoveUser))
+            {
+                OnBlockUserClick(null, null);
+            }
+
+            //switch (choice)
+            //{
+            //    case nameof(AppResources.RemoveUser):
+            //        OnRemoveUserClick(null, null);
+            //        break;
+            //    case nameof(AppResources.BlockUser):
+            //        OnBlockUserClick(null, null);
+            //        break;
+            //}
             /*
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
             //if (popupLoginView.TranslationY == -mainDisplayInfo.Height)
@@ -93,7 +103,7 @@ namespace AlertApp.Pages
             {
                 await vm.RemoveUser(ClickedContact);
             });
-            ShowBottomSheet();
+            //ShowBottomSheet();
         }
         private void OnBlockUserClick(object sender, EventArgs e)
         {
@@ -102,7 +112,7 @@ namespace AlertApp.Pages
             {
                 await vm.BlockUser(ClickedContact);
             });
-            ShowBottomSheet();
+            //ShowBottomSheet();
         }
 
     }
