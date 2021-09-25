@@ -32,16 +32,26 @@ namespace AlertApp.Pages
             var p = this.Parent.Parent.Parent;
             var x = (ContentPage)p;
             var choice = await x.DisplayActionSheet(String.IsNullOrEmpty(ClickedContact.FullName)? ClickedContact.Cellphone : ClickedContact.FullName, AppResources.Cancel, AppResources.RemoveUser, AppResources.RemoveUserAnalytical);
-            switch (choice)
+
+            if (choice.Equals(AppResources.RemoveUser) || choice.Equals(AppResources.RemoveUserAnalytical))
             {
-                case nameof(AppResources.RemoveUser):
-                case nameof(AppResources.RemoveUserAnalytical):
-                    OnRemoveUserClick(null,null);
-                    break;
-                case nameof(AppResources.BlockUser):
-                    OnBlockUserClick(null, null);
-                    break;
+                OnRemoveUserClick(null, null);
             }
+            else if (choice.Equals(AppResources.RemoveUser))
+            {
+                OnBlockUserClick(null, null);
+            }
+
+            //switch (choice)
+            //{
+            //    case nameof(AppResources.RemoveUser):
+            //    case nameof(AppResources.RemoveUserAnalytical):
+            //        OnRemoveUserClick(null,null);
+            //        break;
+            //    case nameof(AppResources.BlockUser):
+            //        OnBlockUserClick(null, null);
+            //        break;
+            //}
             //var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
             ////if (popupLoginView.TranslationY == -mainDisplayInfo.Height)
             //if (bottomSheet.TranslationY == mainDisplayInfo.Height)
@@ -63,6 +73,7 @@ namespace AlertApp.Pages
         {
             ShowBottomSheet();
         }
+
         private void OnRemoveUserClick(object sender, EventArgs e)
         {
             var vm = this.BindingContext as MyCommunityPageViewModel;
@@ -70,8 +81,9 @@ namespace AlertApp.Pages
             {
                 await vm.RemoveUser(ClickedContact);
             });
-            ShowBottomSheet();
+            //ShowBottomSheet();
         }
+
         private void OnBlockUserClick(object sender, EventArgs e)
         {
             var vm = this.BindingContext as MyCommunityPageViewModel;
@@ -79,7 +91,7 @@ namespace AlertApp.Pages
             {
                 await vm.BlockUser(ClickedContact);
             });
-            ShowBottomSheet();
+            //ShowBottomSheet();
         }
 
         //protected override bool OnBackButtonPressed()
