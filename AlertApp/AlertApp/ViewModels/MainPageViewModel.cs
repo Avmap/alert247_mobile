@@ -694,10 +694,12 @@ Response<NewsEntryResponse> r2 = await _newsService.GetNews(token);
 
         private async void AddSubLink()
         {
-            SetBusy(true);
+            //SetBusy(true);
             //await Launcher.OpenAsync(new Uri(AlertApp.CodeSettings.SubscriptionURL));
-            await Application.Current.MainPage.Navigation.PushAsync(new SubscriptionPage(), false);
-            SetBusy(false);
+            //await Application.Current.MainPage.Navigation.PushAsync(new SubscriptionPage(), false);
+            //SetBusy(false);
+
+            await Browser.OpenAsync(new Uri(AlertApp.CodeSettings.SubscriptionURL), BrowserLaunchMode.SystemPreferred);
         }
 
         private async void TouristGuideScreen()

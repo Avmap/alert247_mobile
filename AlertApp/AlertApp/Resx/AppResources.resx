@@ -782,7 +782,7 @@
     <value>To alert, add contacts or activate your subscription</value>
   </data>
   <data name="AddSub" xml:space="preserve">
-    <value>Activate subscription to SRC</value>
+    <value>SRC Info</value>
   </data>
   <data name="SubscriptionPage" xml:space="preserve">
     <value>Activate subscription</value>

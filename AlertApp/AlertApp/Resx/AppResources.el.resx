@@ -743,7 +743,7 @@
     <value>ΜΗΝΥΜΑ</value>
   </data>
   <data name="AddSub" xml:space="preserve">
-    <value>Ενεργοποίηση συνδρομής Κ.Λ.Σ.</value>
+    <value>Πληροφορίες Κ.Λ.Σ.</value>
   </data>
   <data name="NoContactsNoSub" xml:space="preserve">
     <value>Για alert, προσθέστε επαφές ή ενεργοποιείστε συνδρομή ΚΛΣ</value>
