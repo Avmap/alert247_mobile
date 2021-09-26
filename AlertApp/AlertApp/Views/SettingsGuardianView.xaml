@@ -17,11 +17,11 @@
                 <Label Margin="16,8,16,0" Text="{infrastructure:Translate SettingsFallDetectorMessage}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Style="{StaticResource NormalText14}"></Label>
 
                 <StackLayout Orientation="Horizontal" Margin="0,16,0,0" Spacing="0" HorizontalOptions="FillAndExpand">
-                    <StackLayout.GestureRecognizers>
+                    <!--<StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="LOCATION"></TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
+                    </StackLayout.GestureRecognizers>-->
                     <Label Text="{infrastructure:Translate FallDetectionCaps}"  Padding="16,4,16,4" Style="{StaticResource SwitchText}" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"></Label>
-                    <Switch x:Name="swFallDetection" Toggled="Switch_Toggled"   HorizontalOptions="End" Margin="0,0,16,0" />
+                    <Switch x:Name="swFallDetection"   HorizontalOptions="End" Margin="0,0,16,0" />
                 </StackLayout>
 
             </StackLayout>

@@ -97,7 +97,7 @@
     <Style x:Key="Headline5BoldEntry" TargetType="Entry">
         <Setter Property="TextColor" Value="{StaticResource RegistrationLabelTextColor}" />
         <Setter Property="FontAttributes" Value="Bold" />
-
+        <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontSize" Value="28" />
     </Style>
 
