@@ -166,6 +166,7 @@
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>ARM64</MtouchArch>
+    <MtouchExtraArgs>--linksdkonly</MtouchExtraArgs>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CustomRenderers\DatePicker.cs" />
