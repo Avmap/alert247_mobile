@@ -823,4 +823,7 @@
   <data name="SwitchMap" xml:space="preserve">
     <value>地图</value>
   </data>
+   <data name="InformUserPhoneNumber" xml:space="preserve">
+    <value>Your phone number will be processed in our server.</value>
+  </data>
 </root>

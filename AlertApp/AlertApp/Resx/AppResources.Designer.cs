@@ -1456,5 +1456,11 @@ namespace AlertApp.Resx {
                 return ResourceManager.GetString("SuccessSendAlertMessageSrc", resourceCulture);
             }
         }
+        
+        internal static string InformUserPhoneNumber {
+            get {
+                return ResourceManager.GetString("InformUserPhoneNumber", resourceCulture);
+            }
+        }
     }
 }

@@ -823,4 +823,7 @@
   <data name="AcceptContactRequest" xml:space="preserve">
     <value>Αποδοχή</value>
   </data>
+   <data name="InformUserPhoneNumber" xml:space="preserve">
+    <value>Ο αριθμός τηλεφώνου σας θα υποβληθεί σε επεξεργασία στον διακομιστή μας.</value>
+  </data>
 </root>

@@ -36,7 +36,7 @@ namespace AlertApp.Pages
 
             if (!string.IsNullOrWhiteSpace(vm.Mobile))
             {
-                string message = AppResources.SmsVerificationMessage + " " + String.Format("{0}{1}", vm.CountryPrefix, vm.Mobile);
+                string message = AppResources.SmsVerificationMessage + " " + String.Format("{0}{1}", vm.CountryPrefix, vm.Mobile) + ". " + AppResources.InformUserPhoneNumber;
 
                 var confirm = await DisplayAlert(AppResources.Verification, message, AppResources.ContinueDialogButton, AppResources.Cancel);
                 if (confirm)

@@ -62,7 +62,7 @@ namespace AlertApp.ViewModels
         {
             if (!string.IsNullOrWhiteSpace(Mobile))
             {
-                string message = AppResources.SmsVerificationMessage + " " + String.Format("{0}{1}", CountryPrefix, Mobile);
+                string message = AppResources.SmsVerificationMessage + " " + String.Format("{0}{1}{2}", CountryPrefix, Mobile) + ". " + AppResources.InformUserPhoneNumber;
 
                 var confirm = await showAlertMessage(AppResources.Verification, message, AppResources.ContinueDialogButton, AppResources.Cancel);
                 if (confirm)

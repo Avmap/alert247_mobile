@@ -823,4 +823,7 @@
   <data name="OKButton" xml:space="preserve">
     <value>okay</value>
   </data>
+   <data name="InformUserPhoneNumber" xml:space="preserve">
+    <value>Your phone number will be processed in our server.</value>
+  </data>
 </root>
