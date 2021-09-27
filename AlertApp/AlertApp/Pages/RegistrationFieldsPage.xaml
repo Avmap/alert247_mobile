@@ -4,7 +4,6 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"       
              ios:Page.UseSafeArea="true"
-
              BackgroundColor="{StaticResource RegistrationBackgrounColor}"             
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              x:Class="AlertApp.Pages.RegistrationFieldsPage">
@@ -21,7 +20,7 @@
                         <Image x:Name="topNextImage" HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
                         <Label Text="{infrastructure:Translate Finish}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
                     </StackLayout>
-                    <Frame  HasShadow="False" Margin="0,0,0,0" HorizontalOptions="FillAndExpand">
+                    <Frame BackgroundColor="White" HasShadow="False" Margin="0,0,0,0" HorizontalOptions="FillAndExpand">
                         <ScrollView Margin="0,0,0,0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <StackLayout>
                                 <Label Margin="0,0,0,0" x:Name="labelPrompt"  Text="{infrastructure:Translate RegistrationEnterFieldsPromt}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
@@ -36,7 +35,7 @@
                         Clicked="SubmitRegistrationButton_Clicked"
                         Visual="Material" Padding="10,0"
                             />
-                        
+
                     </StackLayout>
                 </StackLayout>
             </Grid>

@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:AlertApp.Views"
              mc:Ignorable="d"
-             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" 
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
+             BackgroundColor="White"
              x:Class="AlertApp.Views.ChangeMessageView">
     <ContentView.Content>
         <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >

@@ -4,11 +4,11 @@
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              x:Class="AlertApp.Pages.WhoAlertsMePage"
              xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             >
+             BackgroundColor="White">
     <!--Title="{infrastructure:Translate WhoAlertMe}" >-->
     <ContentView.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Label Padding="0,0,0,5" Text="{infrastructure:Translate WhoAlertMe}" FontSize="16" FontAttributes="Bold" HorizontalOptions="Fill" HorizontalTextAlignment="Center" BackgroundColor="#fbfbfb" />
+            <Label TextColor="Black" Padding="0,0,0,5" Text="{infrastructure:Translate WhoAlertMe}" FontSize="16" FontAttributes="Bold" HorizontalOptions="Fill" HorizontalTextAlignment="Center" BackgroundColor="#fbfbfb" />
             <Grid x:Name="mainlayout" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -45,10 +45,10 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                </RefreshView> 
+                </RefreshView>
             </Grid>
-            
-            <Label HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasContacts}" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" Text="{infrastructure:Translate NoItems}" FontFamily="{StaticResource Regular}" />
+
+            <Label TextColor="Black" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasContacts}" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" Text="{infrastructure:Translate NoItems}" FontFamily="{StaticResource Regular}" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

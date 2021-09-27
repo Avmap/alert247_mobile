@@ -4,7 +4,7 @@
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              x:Class="AlertApp.Pages.PendingRequestsPage"
              xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             >
+             BackgroundColor="White">
     <!--Title="{infrastructure:Translate WhoAlertMe}" >-->
     <ContentView.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -45,9 +45,9 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                </RefreshView> 
+                </RefreshView>
             </Grid>
-            
+
             <Label HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasContacts}" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" Text="{infrastructure:Translate NoItems}" FontFamily="{StaticResource Regular}" />
         </StackLayout>
     </ContentView.Content>

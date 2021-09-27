@@ -5,7 +5,7 @@
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"                    
              NavigationPage.HasNavigationBar="false"
              xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-              >
+             BackgroundColor="White">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>

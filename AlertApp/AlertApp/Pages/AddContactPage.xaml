@@ -7,7 +7,6 @@
              BackgroundColor="White"
               xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              Title="{infrastructure:Translate AddContactsPage}">
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <infrastructure:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
@@ -48,7 +47,7 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                           
+
                             <Frame Padding="2,2,2,2" WidthRequest="150" HasShadow="False" HorizontalOptions="FillAndExpand" BackgroundColor="{Binding Selected,Converter={StaticResource SelectedListItemColorConverter},Mode=TwoWay}"   BorderColor="Transparent" CornerRadius="16">
                                 <Grid RowSpacing="0">
                                     <Grid.RowDefinitions>

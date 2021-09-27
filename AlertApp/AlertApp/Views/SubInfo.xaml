@@ -4,6 +4,7 @@
              x:Class="AlertApp.Views.SubInfo"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              x:Name="x_this"
+             BackgroundColor="White"
              >
   <ContentView.Content>
         <StackLayout>

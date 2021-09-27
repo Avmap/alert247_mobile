@@ -7,11 +7,11 @@
              xmlns:views="clr-namespace:AlertApp.Views"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" xmlns:viewmodels="clr-namespace:AlertApp.ViewModels" 
              Title="{infrastructure:Translate WhatsNew}"
-             Visual="Material"
-             >
+             BackgroundColor="White"
+             Visual="Material">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="0" Padding="0" Margin="0" >
-            
+
             <views:GeoWebView Source="{Binding URLSource}" HeightRequest="1000" WidthRequest="1000" Navigated="OnNavigated" ></views:GeoWebView>
             <StackLayout Orientation="Horizontal" Spacing="10" Background="#efefef" Padding="0,10" >
                 <StackLayout.GestureRecognizers>

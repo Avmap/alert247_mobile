@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlertApp.Pages.SendingAlertPage"             
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
-             
+             BackgroundColor="White"
              xmlns:views="clr-namespace:AlertApp.Views"
-             NavigationPage.HasNavigationBar="false"             
-             >
+             NavigationPage.HasNavigationBar="false">
     <ContentPage.Content>
         <Grid >
             <Grid.RowDefinitions>

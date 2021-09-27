@@ -7,15 +7,15 @@
              xmlns:views="clr-namespace:AlertApp.Views"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" xmlns:viewmodels="clr-namespace:AlertApp.ViewModels" 
              Title="{infrastructure:Translate TouristGuide}"
-             Visual="Material"
-             >
+             BackgroundColor="White"
+             Visual="Material">
     <ContentPage.Content>
         <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
 
             </Grid.RowDefinitions>
-            
+
             <views:GeoWebView Source="{Binding MapSource}" HeightRequest="1000" WidthRequest="1000" Navigated="OnNavigated"></views:GeoWebView>
             <ActivityIndicator x:Name="Indicator" IsRunning="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center"></ActivityIndicator>
         </Grid>

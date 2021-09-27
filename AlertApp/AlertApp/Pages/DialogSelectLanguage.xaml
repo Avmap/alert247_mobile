@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                                             
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure"
              xmlns:converters="clr-namespace:AlertApp.Converters;assembly=AlertApp"
+             BackgroundColor="White"
              x:Class="AlertApp.Pages.DialogSelectLanguage">
     <ContentPage.Resources>
         <ResourceDictionary>

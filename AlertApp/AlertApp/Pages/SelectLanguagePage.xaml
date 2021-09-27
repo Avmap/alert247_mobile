@@ -92,7 +92,7 @@
                         <Label Text="Chinese"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                 </StackLayout>
-                
+
             </StackLayout>
 
 
@@ -101,9 +101,9 @@
                 <Label Text="{Binding Version}"  Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 <views:PoweredBy>
                 </views:PoweredBy>
-                
+
             </StackLayout>
-          
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

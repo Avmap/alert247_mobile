@@ -4,20 +4,18 @@
              ios:Page.UseSafeArea="true"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:AlertApp.Views"
-             x:Class="AlertApp.Pages.MainPage"    
-             
+             x:Class="AlertApp.Pages.MainPage"
+             BackgroundColor="White"
              NavigationPage.HasNavigationBar="false"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" xmlns:viewmodels="clr-namespace:AlertApp.ViewModels" 
-             Visual="Material"
-             
-             >
+             Visual="Material">
     <ContentPage.Content>
         <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="80"/>    
+                <RowDefinition Height="80"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>     
-                <RowDefinition Height="*" />   
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <!--Header: -->
             <StackLayout Grid.Row="0" Margin="16,0,16,5" Padding="0,10" >
@@ -33,7 +31,7 @@
                     </Image>
                     <Button IsVisible="{Binding showNonCritical}" Grid.Column="1" Text="&#xF0493;" Style="{StaticResource SettingsButton}" Command="{Binding OpenSettingsCommand}"></Button>
                 </Grid>
-                
+
             </StackLayout>
             <!--Messages: -->
             <Label Grid.Row="1" Padding="16,10,16,10" IsVisible="{Binding ShowCancelButton}" Text="{infrastructure:Translate MainPressToCancel}" HorizontalTextAlignment="Center" Style="{StaticResource MainMessages}"></Label>
@@ -58,7 +56,7 @@
                                 </StackLayout>
                             </Frame>
                             <FlexLayout Direction="Row" AlignItems="Center" AlignContent="SpaceBetween">
-                                
+
                                 <Frame Margin="5" FlexLayout.Grow="1" MinimumWidthRequest="250" IsVisible="{Binding ShowThreatButton, Mode=TwoWay}" Grid.Column="0" Style="{StaticResource MainPageAlertButtons}">
                                     <StackLayout Orientation="Vertical" Spacing="10">
                                         <StackLayout.GestureRecognizers>
@@ -94,9 +92,9 @@
                                 </Frame>
                             </FlexLayout>
                             <Grid IsVisible="{Binding CanSendAlert}">
-                                
+
                             </Grid>
-                            
+
                         </StackLayout>
                     </Grid>
                     <Grid  IsVisible="{Binding ShowCancelButton,Mode=TwoWay}" HorizontalOptions="FillAndExpand">
@@ -164,14 +162,14 @@
                     </Frame>
                     <!--<views:SubInfo IsVisible="{Binding HasSub}" SubscriptionStart="{Binding SubscriptionStart}" SubscriptionEnd="{Binding SubscriptionEnd}" SubscriptionPackage="{Binding SubscriptionPackage}"></views:SubInfo>-->
                 </StackLayout>
-                
+
             </StackLayout>
             <!--Footer -->
             <Frame IsVisible="{Binding showNonCritical}" Grid.Row="3" Padding="0" CornerRadius="0" VerticalOptions="FillAndExpand">
                 <views:NewsFeed NewsSource="{Binding MyNews}" RefreshCommand="{Binding RefreshNewsCommand}" IsRefreshing="{Binding IsRefreshingNews, Mode=TwoWay}"></views:NewsFeed>
             </Frame>
         </Grid>
-       
-            
+
+
     </ContentPage.Content>
 </ContentPage>

@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              x:Name="x_this"
+             BackgroundColor="White"
              x:Class="AlertApp.Views.NewsFeed">
     <ContentView.Content>
         <StackLayout>
@@ -34,9 +35,9 @@
                                     <Label VerticalOptions="Start"  TextColor="{StaticResource OrangeCircleButton}" Text="&#x0F1238;" IsVisible="{Binding IsWarning}" Style="{StaticResource Icon}"  HorizontalOptions="Center" ></Label>
                                     <Label VerticalOptions="Start"  TextColor="{StaticResource RedCircleButton}" Text="&#x0F015C;" IsVisible="{Binding IsDanger}" Style="{StaticResource Icon}"  HorizontalOptions="Center" ></Label>
 
-                                    <Label Margin="10,0,10,0" Text="{Binding PublishDate}" IsVisible="{Binding HasDate}"></Label>
-                                    <Label FontAttributes="Bold" VerticalOptions="StartAndExpand" Text="{Binding Title}" ></Label>
-                                    <Label HorizontalOptions="FillAndExpand" TextType="Html" Text="{Binding Description}" IsVisible="{Binding HasDescription}" ></Label>
+                                    <Label TextColor="Black" Margin="10,0,10,0" Text="{Binding PublishDate}" IsVisible="{Binding HasDate}"></Label>
+                                    <Label TextColor="Black" FontAttributes="Bold" VerticalOptions="StartAndExpand" Text="{Binding Title}" ></Label>
+                                    <Label TextColor="Black" HorizontalOptions ="FillAndExpand" TextType="Html" Text="{Binding Description}" IsVisible="{Binding HasDescription}" ></Label>
                                     
                                 </FlexLayout>
                             </StackLayout>
