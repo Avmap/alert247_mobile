@@ -743,7 +743,7 @@
     <value>ΜΗΝΥΜΑ</value>
   </data>
   <data name="AddSub" xml:space="preserve">
-    <value>Πληροφορίες Κ.Λ.Σ.</value>
+    <value>Κέντρο Λήψης Σημάτων</value>
   </data>
   <data name="NoContactsNoSub" xml:space="preserve">
     <value>Για alert, προσθέστε επαφές ή ενεργοποιείστε συνδρομή ΚΛΣ</value>
@@ -825,5 +825,11 @@
   </data>
    <data name="InformUserPhoneNumber" xml:space="preserve">
     <value>Ο αριθμός τηλεφώνου σας θα υποβληθεί σε επεξεργασία στον διακομιστή μας.</value>
+  </data>
+  <data name="NoSubscription" xml:space="preserve">
+    <value>ΧΩΡΙΣ ΣΥΝΔΡΟΜΗ</value>
+  </data>
+  <data name="NoSubscriptionInfo" xml:space="preserve">
+    <value>Παρακαλώ επικοινωνήστε με το Κ.Λ.Σ.</value>
   </data>
 </root>

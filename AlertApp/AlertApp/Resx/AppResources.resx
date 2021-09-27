@@ -757,6 +757,9 @@
   <data name="SubscriptionStatusInactive" xml:space="preserve">
     <value>INACTIVE</value>
   </data>
+    <data name="NoSubscription" xml:space="preserve">
+    <value>NO SUBSCRIPTION</value>
+  </data>
   <data name="SubscriptionStatusExpiring" xml:space="preserve">
     <value>EXPIRING SOON</value>
   </data>
@@ -768,6 +771,9 @@
   </data>
   <data name="SubscriptionPackage" xml:space="preserve">
     <value>Package</value>
+  </data>
+  <data name="NoSubscriptionInfo" xml:space="preserve">
+    <value>Please contact with SCR</value>
   </data>
   <data name="SubscriptionFrame" xml:space="preserve">
     <value>SUBSCRIPTION TO SIGNAL RECEIVING CENTER</value>
@@ -782,7 +788,7 @@
     <value>To alert, add contacts or activate your subscription</value>
   </data>
   <data name="AddSub" xml:space="preserve">
-    <value>SRC Info</value>
+    <value>Signal Receiving Center</value>
   </data>
   <data name="SubscriptionPage" xml:space="preserve">
     <value>Activate subscription</value>

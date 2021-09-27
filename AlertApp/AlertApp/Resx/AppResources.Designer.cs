@@ -1325,6 +1325,12 @@ namespace AlertApp.Resx {
             }
         }
         
+        internal static string NoSubscription {
+            get {
+                return ResourceManager.GetString("NoSubscription", resourceCulture);
+            }
+        }
+        
         internal static string SubscriptionStatusExpiring {
             get {
                 return ResourceManager.GetString("SubscriptionStatusExpiring", resourceCulture);
@@ -1346,6 +1352,12 @@ namespace AlertApp.Resx {
         internal static string SubscriptionPackage {
             get {
                 return ResourceManager.GetString("SubscriptionPackage", resourceCulture);
+            }
+        }
+        
+        internal static string NoSubscriptionInfo {
+            get {
+                return ResourceManager.GetString("NoSubscriptionInfo", resourceCulture);
             }
         }
         

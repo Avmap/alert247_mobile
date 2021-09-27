@@ -786,7 +786,7 @@
     <value>Основные возможности приложения</value>
   </data>
   <data name="AddSub" xml:space="preserve">
-    <value>Активировать подписку на Центр приема сигналов</value>
+    <value>Центр приема сигналов</value>
   </data>
   <data name="SubscriptionPage" xml:space="preserve">
     <value>Активировать подписку</value>
@@ -825,6 +825,12 @@
     <value>Хорошо</value>
   </data>
    <data name="InformUserPhoneNumber" xml:space="preserve">
-    <value>Your phone number will be processed in our server.</value>
+    <value>Ваш номер телефона будет обработан на нашем сервере.</value>
+  </data>
+  <data name="NoSubscription" xml:space="preserve">
+    <value>БЕЗ ПОДПИСКИ</value>
+  </data>
+  <data name="NoSubscriptionInfo" xml:space="preserve">
+    <value>Пожалуйста, свяжитесь с центром приема сигналов.</value>
   </data>
 </root>

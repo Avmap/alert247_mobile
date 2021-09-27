@@ -776,7 +776,7 @@
     <value>Activer l'abonnement</value>
   </data>
   <data name="AddSub" xml:space="preserve">
-    <value>Activer l'abonnement au Centre de réception de signaux</value>
+    <value>Centre de réception de signaux</value>
   </data>
   <data name="WhatsNew" xml:space="preserve">
     <value>Points forts de l'application</value>
@@ -824,6 +824,12 @@
     <value>CARTE</value>
   </data>
    <data name="InformUserPhoneNumber" xml:space="preserve">
-    <value>Your phone number will be processed in our server.</value>
+    <value>Votre numéro de téléphone sera traité dans notre serveur.</value>
+  </data>
+  <data name="NoSubscription" xml:space="preserve">
+    <value>SANS ABONNEMENT</value>
+  </data>
+  <data name="NoSubscriptionInfo" xml:space="preserve">
+    <value>Veuillez contacter le Centre de réception des signaux</value>
   </data>
 </root>

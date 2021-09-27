@@ -785,7 +785,7 @@
     <value>Anwendungshighlights</value>
   </data>
   <data name="AddSub" xml:space="preserve">
-    <value>Abonnement für das Signalempfangszentrum aktivieren</value>
+    <value>Signalempfangszentrum</value>
   </data>
   <data name="SubscriptionPage" xml:space="preserve">
     <value>Abonnement aktivieren</value>
@@ -824,6 +824,12 @@
     <value>okay</value>
   </data>
    <data name="InformUserPhoneNumber" xml:space="preserve">
-    <value>Your phone number will be processed in our server.</value>
+    <value>Ihre Telefonnummer wird in unserem Server verarbeitet.</value>
+  </data>
+  <data name="NoSubscription" xml:space="preserve">
+    <value>OHNE ABONNEMENT</value>
+  </data>
+  <data name="NoSubscriptionInfo" xml:space="preserve">
+    <value>Bitte kontaktieren Sie die Signalempfangszentrale</value>
   </data>
 </root>

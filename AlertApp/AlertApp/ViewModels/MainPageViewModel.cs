@@ -554,6 +554,8 @@ namespace AlertApp.ViewModels
                 else if (DoesNotHaveSub)
                 {
                     subscriptionItem.Category = NewsEntryCategory.DANGER;
+                    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("NoSubscription"));
+                    subscriptionItem.Description = translate.GetTranslatedValue("NoSubscriptionInfo");
                 }
                 
                 collection.Insert(0, subscriptionItem);

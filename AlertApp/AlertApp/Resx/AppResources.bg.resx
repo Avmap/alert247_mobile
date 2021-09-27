@@ -785,7 +785,7 @@
     <value>Акценти на приложението</value>
   </data>
   <data name="AddSub" xml:space="preserve">
-    <value>Активирайте абонамент за SRC</value>
+    <value>Център за приемане на сигнали</value>
   </data>
   <data name="SubscriptionPage" xml:space="preserve">
     <value>Активирайте абонамента</value>
@@ -821,6 +821,12 @@
     <value>Добре</value>
   </data>
    <data name="InformUserPhoneNumber" xml:space="preserve">
-    <value>Your phone number will be processed in our server.</value>
+    <value>Вашият телефонен номер ще бъде обработен в нашия сървър.</value>
+  </data>
+  <data name="NoSubscription" xml:space="preserve">
+    <value>БЕЗ АБОНАМЕНТ</value>
+  </data>
+  <data name="NoSubscriptionInfo" xml:space="preserve">
+    <value>Моля, свържете се с Центъра за приемане на сигнали</value>
   </data>
 </root>
