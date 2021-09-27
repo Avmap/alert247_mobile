@@ -67,6 +67,7 @@ namespace AlertApp.ViewModels
                 var confirm = await showAlertMessage(AppResources.Verification, message, AppResources.ContinueDialogButton, AppResources.Cancel);
                 if (confirm)
                 {
+                    Preferences.Set(Settings.MobileNumber, CountryPrefix + "" + Mobile);
                     await Application.Current.MainPage.Navigation.PushAsync(new EnterActivationCodePage(String.Format("{0}{1}", CountryPrefix, Mobile)), false);
                 }
 

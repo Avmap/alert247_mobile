@@ -3,6 +3,7 @@ using AlertApp.Model;
 using AlertApp.Resx;
 using AlertApp.Services.Contacts;
 using AlertApp.Services.Settings;
+using AlertApp.Utils;
 using Plugin.ContactService.Shared;
 using System;
 using System.Collections.Generic;
@@ -170,12 +171,14 @@ namespace AlertApp.ViewModels
             {
                 var tempList = new List<ImportContact>();
                 var filteredContacts = contacts.Where(c => c.Phones.Count > 0).OrderBy(c => c.FamilyName).ToList();
+
+                var mobileNumber = Preferences.Get(Settings.MobileNumber, string.Empty);
                 foreach (var item in filteredContacts)
                 {
                     foreach (var number in item.Phones)
                     {
                         var num = ImportContact.GetFormattedNumber(number.PhoneNumber);
-                        if (!community.Contains(num))
+                        if (!community.Contains(num) && !mobileNumber.Equals(num))
                             tempList.Add(new ImportContact(item, num, _contactProfileImageProvider));
                     }
                     
