@@ -25,7 +25,7 @@
                 </StackLayout>
             </ScrollView>
             <infrastructure:LoadingIndicator Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-            <Frame BackgroundColor="White" Grid.Row="2" Style="{StaticResource NormalButton}" CornerRadius="0" HorizontalOptions="FillAndExpand" Padding="10" VerticalOptions="FillAndExpand">
+            <Frame Grid.Row="2" Style="{StaticResource NormalButton}" CornerRadius="0" HorizontalOptions="FillAndExpand" Padding="10" VerticalOptions="FillAndExpand">
                 <StackLayout x:Name="bottomNextButton" Orientation="Vertical" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Center">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="ConfirmSettingsClick" />
