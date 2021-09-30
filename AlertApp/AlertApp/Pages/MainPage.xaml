@@ -114,7 +114,7 @@
                     </Grid>
                 </StackLayout>
                 <StackLayout IsVisible="{Binding CanNotSendAlert}" Margin="0,0,0,20" >
-                    <Label Text="{infrastructure:Translate NoContactsNoSub}" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center" />
+                    <Label Text="{infrastructure:Translate NoContactsNoSub}" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center" TextColor="Black" />
                 </StackLayout>
                 <StackLayout IsVisible="{Binding showNonCritical}" Orientation="Vertical" Margin="0,20,0,0">
                     <Frame IsVisible="{Binding ShowContactsButton}" Style="{StaticResource NormalButton}">
