@@ -38,6 +38,7 @@ namespace AlertApp.Pages
             var dependantsPage = new DependandsPage();
             var whoalertMePage = new WhoAlertsMePage();
             var blockedUsersPage = new BlockedUsersPage();
+            var pendingRequestsPage = new PendingRequestsPage();
 
 
             AbsoluteLayout.SetLayoutBounds(communityPage, new Rectangle(0, 0, 1, 1));
@@ -52,16 +53,19 @@ namespace AlertApp.Pages
             AbsoluteLayout.SetLayoutBounds(blockedUsersPage, new Rectangle(0, 0, 1, 1));
             AbsoluteLayout.SetLayoutFlags(blockedUsersPage, AbsoluteLayoutFlags.All);
 
+            AbsoluteLayout.SetLayoutBounds(pendingRequestsPage, new Rectangle(0, 0, 1, 1));
+            AbsoluteLayout.SetLayoutFlags(pendingRequestsPage, AbsoluteLayoutFlags.All);
+
             this.container.Children.Add(communityPage);
             //this.container.Children.Add(dependantsPage);  //todo: enable when ready
             this.container.Children.Add(whoalertMePage);
             this.container.Children.Add(blockedUsersPage);
+            this.container.Children.Add(pendingRequestsPage);
 
             dependantsPage.IsVisible = false;
             whoalertMePage.IsVisible = false;
             blockedUsersPage.IsVisible = false;
-
-
+            pendingRequestsPage.IsVisible = false;
         }
 
         private void Container_ChildAdded(object sender, ElementEventArgs e)
@@ -215,7 +219,17 @@ namespace AlertApp.Pages
                     //this.container.Children[3].IsVisible = true;
                     addCommunityContact.IsVisible = false;
                     //contactsMenu.IsVisible = true;
-                    tabsList.ScrollTo(3, position: ScrollToPosition.Start);
+                    //tabsList.ScrollTo(3, position: ScrollToPosition.Start);
+                    break;
+                case 5:
+                    this.container.Children.Where(x => x.GetType() == typeof(PendingRequestsPage)).First().IsVisible = true;
+                    //this.container.Children[0].IsVisible = false;
+                    //this.container.Children[1].IsVisible = false;
+                    //this.container.Children[2].IsVisible = false;
+                    //this.container.Children[3].IsVisible = true;
+                    addCommunityContact.IsVisible = false;
+                    //contactsMenu.IsVisible = true;
+                    tabsList.ScrollTo(4, position: ScrollToPosition.Start);
                     break;
             }
 

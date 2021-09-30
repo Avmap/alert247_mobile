@@ -215,7 +215,7 @@
     <value>Ακτίνα επίβλεψης</value>
   </data>
   <data name="TabMyCommunity" xml:space="preserve">
-    <value>Φίλοι από τους οποίους δέχομαι άμεση βοήθεια</value>
+    <value>Δέχομαι βοήθεια από</value>
   </data>
   <data name="TabSuggestions" xml:space="preserve">
     <value>Προτάσεις</value>
@@ -242,7 +242,7 @@
     <value>Καλωσήλθατε στο Alert247</value>
   </data>
   <data name="WhoAlertMe" xml:space="preserve">
-    <value>Προσφέρω βοήθεια</value>
+    <value>Προσφέρω βοήθεια σε</value>
   </data>
   <data name="AddContactsPage" xml:space="preserve">
     <value>Προσθήκη φίλου άμεσης βοήθειας</value>
@@ -356,7 +356,7 @@
     <value>Αποστολή Alert</value>
   </data>
   <data name="BlockedUsersPage" xml:space="preserve">
-    <value>Αγνοημένες επαφές</value>
+    <value>Αποκλεισμένες επαφές</value>
   </data>
   <data name="AcceptedFromMe" xml:space="preserve">
     <value>Έχω αποδεχτεί</value>
@@ -806,7 +806,7 @@
     <value>Αφαίρεση του χρήστη από τα άτομα που ειδοποιείτε;</value>
   </data>
   <data name="PendingRequestsPage" xml:space="preserve">
-    <value>Αιτήματα</value>
+    <value>Ειδοποιήσεις</value>
   </data>
   <data name="DoNotShowSetting" xml:space="preserve">
     <value>Μην το ξαναδείξεις</value>

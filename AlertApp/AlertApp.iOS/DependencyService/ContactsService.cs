@@ -44,7 +44,8 @@ namespace AlertApp.iOS.DependencyService
                         {
                             contacts.Add(new Contact
                             {
-                                FirstName = item.GivenName,                                
+                                FirstName = item.GivenName,
+                                LastName = item.FamilyName,
                                 Cellphone = item2.Value.StringValue
                                 //_id = item2.Value.ValueForKey(new NSString("digits")).ToString()
                             });

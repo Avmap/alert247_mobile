@@ -8,7 +8,7 @@
     <!--Title="{infrastructure:Translate WhoAlertMe}" >-->
     <ContentView.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Label Padding="0,0,0,5" Text="{infrastructure:Translate WhoAlertMe}" FontSize="16" FontAttributes="Bold" HorizontalOptions="Fill" HorizontalTextAlignment="Center" BackgroundColor="#fbfbfb" />
+            <Label TextColor="Black" Padding="0,0,0,5" Text="{infrastructure:Translate PendingRequestsPage}" FontSize="16" FontAttributes="Bold" HorizontalOptions="Fill" HorizontalTextAlignment="Center" BackgroundColor="#fbfbfb" />
             <Grid x:Name="mainlayout" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -29,15 +29,15 @@
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}"></TapGestureRecognizer>
                                     </StackLayout.GestureRecognizers>
-                                    <Image IsVisible="{Binding NoProfileImage}" Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImageDefault}"></Image>
-                                    <Image IsVisible="{Binding HasProfileImage}" Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImage}" Aspect="AspectFill"/>
+                                    <!--<Image IsVisible="{Binding NoProfileImage}" Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImageDefault}"></Image>
+                                    <Image IsVisible="{Binding HasProfileImage}" Margin="16,8,8,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding ProfileImage}" Aspect="AspectFill"/>-->
                                     <Grid HorizontalOptions="FillAndExpand" >
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"></ColumnDefinition>
                                             <ColumnDefinition Width="110"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
-                                        <Label Grid.Column="0" Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource ContactBold}"/>
-                                        <Frame Grid.Column="1" CornerRadius="0" Margin="10,20,10,20" HeightRequest="21" BackgroundColor="{Binding BackgroundStatusColor}" Padding="5,2,5,2">
+                                        <Label Grid.Column="0" Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" Style="{StaticResource ContactBold}" Padding="10,0,0,0"/>
+                                        <Frame Grid.Column="1" CornerRadius="0" Margin="10,20,10,20" HeightRequest="21" BackgroundColor="{Binding BackgroundStatusColor}" Padding="5,2,10,2">
                                             <Label Text="{Binding StatusAlertMe}" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="{Binding ΤextStatusColor}" Style="{StaticResource Subtitle1}"/>
                                         </Frame>
                                     </Grid>
@@ -48,7 +48,7 @@
                 </RefreshView>
             </Grid>
 
-            <Label HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasContacts}" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" Text="{infrastructure:Translate NoItems}" FontFamily="{StaticResource Regular}" />
+            <Label TextColor="Black" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasContacts}" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" Text="{infrastructure:Translate NoItems}" FontFamily="{StaticResource Regular}" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

@@ -64,7 +64,7 @@ namespace AlertApp.ViewModels
             //tempTabs.Add(new TabItem { Name = AppResources.TabDependands, Id = 2 });
             tempTabs.Add(new TabItem { Name = AppResources.WhoAlertMe, Id = 3, NameIcon = "\U000F0B51" });
             tempTabs.Add(new TabItem { Name = AppResources.BlockedUsersPage, Id = 4, NameIcon = "\U000F0012" });
-            //tempTabs.Add(new TabItem { Name = AppResources.PendingRequestsPage, Id = 5, NameIcon = "\U000F009A" });
+            tempTabs.Add(new TabItem { Name = AppResources.PendingRequestsPage, Id = 5, NameIcon = "\U000F009A" });
             Tabs = new ObservableCollection<TabItem>(tempTabs);
         }
 
