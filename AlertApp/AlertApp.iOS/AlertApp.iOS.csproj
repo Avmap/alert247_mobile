@@ -33,7 +33,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
-    <CodesignKey>Apple Development: Kostas Magalios (428FL3V6R9)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignExtraArgs />
     <CodesignResourceRules />
     <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>

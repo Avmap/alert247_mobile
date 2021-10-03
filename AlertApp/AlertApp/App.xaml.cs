@@ -25,6 +25,8 @@ using System.Diagnostics;
 using AlertApp.Resx;
 using AlertApp.Model;
 using AlertApp.Views;
+using Plugin.FirebasePushNotification;
+using System.Collections.Generic;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 [assembly: ExportFont("materialdesignicons-webfont.ttf", Alias = "Material Design Icons")]
@@ -111,7 +113,7 @@ namespace AlertApp
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
                 var localSettings = ViewModelLocator.Instance.Resolve<ILocalSettingsService>();
-                Plugin.FirebasePushNotification.CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
+                CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
                 {
                     if (!string.IsNullOrWhiteSpace(p.Token))
                     {
@@ -149,14 +151,67 @@ namespace AlertApp
                     }
 
                 };
-                   Subscribe();
 
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                    CrossFirebasePushNotification.Current.OnNotificationReceived += async (s, p) =>
+                    {
+                        await HandleNotifications(p.Data);
+                    };
+
+                    CrossFirebasePushNotification.Current.OnNotificationOpened += async (s, p) =>
+                    {
+                        await HandleNotifications(p.Data);
+                    };
+                }
+
+                Subscribe();
             }
 
             var analyticsService = DependencyService.Get<IFirebaseAnalyticsService>();
             if (analyticsService != null)
             {
                 analyticsService.LogOpenAppEvent();
+            }
+        }
+
+        private async Task HandleNotifications(IDictionary<string, object> data)
+        {
+            data.TryGetValue("messageType", out var messageType);
+
+            if (((string)messageType) == "contact")
+            {
+                data.TryGetValue("cellphone", out var cellphone);
+
+                var contact = new Model.Api.Contact { Cellphone = (string)cellphone, NotificationId = 0 };
+                await Current.MainPage.Navigation.PushModalAsync(new CommunityRequestPage(contact));
+            }
+            else if (((string)messageType) == "alert")
+            {
+                data.TryGetValue("alertType", out var alertType);
+                data.TryGetValue("position", out var position);
+                data.TryGetValue("profiledata", out var profiledata);
+                data.TryGetValue("filekey", out var filekey);
+                data.TryGetValue("cellphone", out var cellphone);
+                data.TryGetValue("pkey", out var pkey);
+                data.TryGetValue("alertTime", out var alertTime);
+                data.TryGetValue("alertID", out var alertId);
+
+                var notificationData = new NotificationAction();
+                notificationData.Type = (int)alertType;
+                notificationData.NotificationId = 0;
+                notificationData.Data = new AlertNotificationData
+                {
+                    FileKey = (string)filekey,
+                    ProfileData = (string)profiledata,
+                    Position = (string)position,
+                    AlertType = (int)alertType,
+                    Cellphone = (string)cellphone,
+                    AlertId = (int?)alertId,
+                    AlertTime = (string)alertTime,
+                    PublicKey = (string)pkey
+                };
+                await Current.MainPage.Navigation.PushModalAsync(new AlertRespondPage(notificationData));
             }
         }
 
