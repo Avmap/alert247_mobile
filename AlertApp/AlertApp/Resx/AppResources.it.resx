@@ -452,7 +452,7 @@
     <value>DETTAGLI UTENTE</value>
   </data>
   <data name="RegistrationEnterFieldsPromt" xml:space="preserve">
-    <value>Inserisci i tuoi dati personali. In caso di emergenza verrà inviato ai contatti che sceglierai.</value>
+    <value>Inserisci i tuoi dati personali. In caso di emergenza verrà inviato ai contatti che si sceglie. I tuoi dati saranno trattati nel nostro server.</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>finire</value>

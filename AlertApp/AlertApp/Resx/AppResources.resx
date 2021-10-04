@@ -455,7 +455,7 @@
     <value>USER DETAILS</value>
   </data>
   <data name="RegistrationEnterFieldsPromt" xml:space="preserve">
-    <value>Please enter your personal details. In case of emergency will be sent to the contacts that you choose.</value>
+    <value>Please enter your personal details. In case of emergency will be sent to the contacts that you choose. Your data will be processed in our server.</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Finish</value>

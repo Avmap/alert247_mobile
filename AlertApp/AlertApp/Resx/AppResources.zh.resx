@@ -452,7 +452,7 @@
     <value>用户详细信息</value>
   </data>
   <data name="RegistrationEnterFieldsPromt" xml:space="preserve">
-    <value>请输入您的个人资料。 紧急情况下会发送到您选择的联系人。</value>
+    <value>请输入您的个人资料。 在紧急情况下将发送给您选择的联系人。 您的数据将在我们的服务器中处理。</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>完</value>

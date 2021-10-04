@@ -66,6 +66,11 @@ namespace AlertApp.Views
             {
                 foreach (var item in registrationFieldsResponse.Result)
                 {
+                    if (item.FieldName == "weight" || item.FieldName == "medicine" || item.FieldName == "allergies")
+                    {
+                        continue;
+                    }
+
                     RegistrationStackLayout stack = new RegistrationStackLayout();
                     stack.Orientation = StackOrientation.Horizontal;
                     if (item.Labels != null)

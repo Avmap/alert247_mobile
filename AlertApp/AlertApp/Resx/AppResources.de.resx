@@ -452,7 +452,7 @@
     <value>NUTZERDETAILS</value>
   </data>
   <data name="RegistrationEnterFieldsPromt" xml:space="preserve">
-    <value>Bitte geben Sie Ihre persönlichen Daten ein. Im Notfall wird an die von Ihnen ausgewählten Kontakte gesendet.</value>
+    <value>Bitte geben Sie Ihre persönlichen Daten ein. Im Notfall wird an die von Ihnen ausgewählten Kontakte gesendet. Ihre Daten werden in unserem Server verarbeitet.</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Fertig</value>

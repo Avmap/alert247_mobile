@@ -15,6 +15,8 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using static PCLCrypto.WinRTCrypto;
+using System.Linq;
+using AlertApp.Utils;
 
 namespace AlertApp.ViewModels
 {
@@ -149,9 +151,15 @@ namespace AlertApp.ViewModels
                 await Task.Run(() => _cryptohraphyService.GenerateKeys(String.Format("{0}{1}{2}{3}", Pin1, Pin2, Pin3, Pin4)));
                 SetBusy(false);
                 //await Application.Current.MainPage.Navigation.PushAsync(new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.FallDetectionSetting, new SettingsGuardianView(new RegistrationFieldsPage(App.TempRegistrationFields))), false);
-                await Application.Current.MainPage.Navigation.PushAsync(new RegistrationFieldsPage(App.TempRegistrationFields), false);
+                //await Application.Current.MainPage.Navigation.PushAsync(new RegistrationFieldsPage(App.TempRegistrationFields), false);
                 //we keep TempRegistrationFields in static field in App.xaml.cs.
                 //await Application.Current.MainPage.Navigation.PushAsync(new RegistrationFieldsPage(App.TempRegistrationFields), false);
+                Preferences.Set(Settings.HasFinishRegistration, true);
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current.MainPage.Navigation.InsertPageBefore(new MainPage(), Application.Current.MainPage.Navigation.NavigationStack.First());
+                    Application.Current.MainPage.Navigation.PopToRootAsync();
+                });
             }
         }
 

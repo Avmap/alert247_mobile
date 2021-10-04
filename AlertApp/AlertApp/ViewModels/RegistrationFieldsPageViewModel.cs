@@ -110,6 +110,10 @@ namespace AlertApp.ViewModels
         public async Task<Dictionary<string, string>> DecryptProfileAsync(string encryptedProfileData)
         {
             var json = await _cryptographyService.DecryptProfileData(encryptedProfileData);
+            if (json == null)
+            {
+                return new Dictionary<string, string>();
+            }
             return JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
         }
 
