@@ -29,7 +29,7 @@
                         <Switch  VerticalOptions="Center" IsToggled="{Binding LocationTracking,Mode=TwoWay}"></Switch>
                     </StackLayout>
                     <StackLayout IsVisible="{Binding CanContinue}" Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="Center">
-                        <Button Text="{infrastructure:Translate NextRegistration}"
+                        <Button Text="{infrastructure:Translate Finish}"
                                 VerticalOptions="CenterAndExpand"
                                 HorizontalOptions="Center"
                                 CornerRadius="10"
