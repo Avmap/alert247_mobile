@@ -16,5 +16,8 @@ namespace AlertApp.Model.Api
 
         [DataMember(Name = "profile")]
         public string ProfileData { get; set; }
+
+        [DataMember(Name = "pin")]
+        public string Pin { get; set; }
     }
 }

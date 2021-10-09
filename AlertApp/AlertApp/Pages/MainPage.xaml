@@ -24,9 +24,9 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="60" />
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0"  VerticalOptions="FillAndExpand" Source="logo.png" HorizontalOptions="Start">
+                    <Image Grid.Column="0" VerticalOptions="FillAndExpand" Source="logo.png" HorizontalOptions="Start">
                         <Image.Margin>
-                            <OnPlatform x:TypeArguments="Thickness" iOS="0,32,0,0" Android="0,5,0,0" />
+                            <OnPlatform x:TypeArguments="Thickness" iOS="0,5,0,0" Android="0,5,0,0" />
                         </Image.Margin>
                     </Image>
                     <Button IsVisible="{Binding showNonCritical}" Grid.Column="1" Text="&#xF0493;" Style="{StaticResource SettingsButton}" Command="{Binding OpenSettingsCommand}"></Button>
@@ -138,7 +138,7 @@
                             <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
                         </StackLayout>
                     </Frame>
-                    <Frame IsVisible="{Binding ShowSubscriptionButton}" Style="{StaticResource NormalButton}">
+                    <!--<Frame IsVisible="{Binding ShowSubscriptionButton}" Style="{StaticResource NormalButton}">
                         <StackLayout  Orientation="Horizontal" Spacing="10">
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OpenAddSubCommand}" />
@@ -148,7 +148,7 @@
                             <Label Style="{StaticResource IconText}" Visual="Material" Text="{infrastructure:Translate AddSub}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
                             <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
                         </StackLayout>
-                    </Frame>
+                    </Frame>-->
                     <Frame IsVisible="{Binding ShowMapButton}" Style="{StaticResource NormalButton}" Margin="0,0,0,20" >
                         <StackLayout  Orientation="Horizontal" Spacing="10">
                             <StackLayout.GestureRecognizers>

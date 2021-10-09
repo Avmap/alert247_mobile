@@ -746,7 +746,7 @@
     <value>Спешен приятел</value>
   </data>
   <data name="SubscriptionFrame" xml:space="preserve">
-    <value>АБОНАМЕНТ ЗА ЦЕНТЪР ЗА ПОЛУЧАВАНЕ НА СИГНАЛ</value>
+    <value>ЦЕНТЪР ЗА ПОЛУЧАВАНЕ НА СИГНАЛИ</value>
   </data>
   <data name="SwitchSubscription" xml:space="preserve">
     <value>АБОНАМЕНТ</value>
@@ -800,7 +800,7 @@
     <value>Версия</value>
   </data>
   <data name="NoContactsNoSub" xml:space="preserve">
-    <value>За да предупредите, добавете контакти или активирайте абонамента си</value>
+    <value>За да предупредите, добавете контакти</value>
   </data>
   <data name="RemoveUserAnalytical" xml:space="preserve">
     <value>Да се ​​премахне ли потребителят?</value>

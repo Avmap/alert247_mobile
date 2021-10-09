@@ -747,7 +747,7 @@
 </value>
   </data>
   <data name="SubscriptionFrame" xml:space="preserve">
-    <value>ПОДПИСКА НА ЦЕНТР ПРИЕМА СИГНАЛОВ</value>
+    <value>ЦЕНТР ПРИЕМА СИГНАЛА</value>
   </data>
   <data name="SwitchSubscription" xml:space="preserve">
     <value>ПОДПИСКА</value>
@@ -801,7 +801,7 @@
     <value>Версия</value>
   </data>
   <data name="NoContactsNoSub" xml:space="preserve">
-    <value>Чтобы предупредить, добавьте контакты или активируйте подписку</value>
+    <value>Чтобы предупредить, добавьте контакты</value>
   </data>
   <data name="RemoveUserAnalytical" xml:space="preserve">
     <value>Удалить пользователя?</value>

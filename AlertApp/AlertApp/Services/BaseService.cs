@@ -13,11 +13,11 @@ namespace AlertApp.Services
 
     public abstract class BaseService
     {
-#if STAGINGAPI
-        protected string Url => AlertApp.CodeSettings.StagingAPI;
-#else
+//#if STAGINGAPI
+//        protected string Url => AlertApp.CodeSettings.StagingAPI;
+//#else
         protected string Url => AlertApp.CodeSettings.ProductionAPI;
-#endif
+//#endif
 
 
 

@@ -22,7 +22,7 @@
                 <Label Style="{StaticResource IconTextInverse}" Visual="Material" Text="{infrastructure:Translate OKButton}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
                 <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Margin="10,0,10,0" Spacing="0" HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Horizontal" Margin="10,0,10,0" Spacing="0" HorizontalOptions="FillAndExpand" IsVisible="false">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="DoNotShow"></TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>

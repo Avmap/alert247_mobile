@@ -761,7 +761,7 @@
     <value>Rimuovere l'utente?</value>
   </data>
   <data name="NoContactsNoSub" xml:space="preserve">
-    <value>Per avvisare, aggiungere contatti o attivare il tuo abbonamento</value>
+    <value>Per avvisare, aggiungi contatti</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Versione</value>
@@ -815,7 +815,7 @@
     <value>SOTTOSCRIZIONE</value>
   </data>
   <data name="SubscriptionFrame" xml:space="preserve">
-    <value>ABBONAMENTO AL CENTRO RICEVIMENTO SEGNALI</value>
+    <value>CENTRO DI RICEZIONE SEGNALI</value>
   </data>
   <data name="SingleContact" xml:space="preserve">
     <value>Emergenza amico</value>

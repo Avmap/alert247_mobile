@@ -7,7 +7,7 @@
         <Label Margin="0,0,0,0" FontSize="13" Style="{StaticResource CaptionBold}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
             <Label.FormattedText>
                 <FormattedString>
-                    <Span Text="{infrastructure:Translate DevelopedBy}" />
+                    <!--<Span Text="{infrastructure:Translate DevelopedBy}" />-->
                     <Span Text="AVMap GIS ΑΕ"
                             TextColor="Blue"
                             TextDecorations="Underline">

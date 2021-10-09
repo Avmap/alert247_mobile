@@ -746,7 +746,7 @@
     <value>Κέντρο Λήψης Σημάτων</value>
   </data>
   <data name="NoContactsNoSub" xml:space="preserve">
-    <value>Για alert, προσθέστε επαφές ή ενεργοποιείστε συνδρομή ΚΛΣ</value>
+    <value>Για alert, προσθέστε επαφές</value>
   </data>
   <data name="TouristGuide" xml:space="preserve">
     <value>Xάρτης υποδομών ασφαλείας</value>
@@ -755,7 +755,7 @@
     <value>Λήξη</value>
   </data>
   <data name="SubscriptionFrame" xml:space="preserve">
-    <value>ΣΥΝΔΡΟΜΗ ΣΕ ΚΕΝΤΡΟ ΛΗΨΗΣ ΣΗΜΑΤΩΝ</value>
+    <value>ΚΕΝΤΡΟ ΛΗΨΗΣ ΣΗΜΑΤΩΝ</value>
   </data>
   <data name="SubscriptionPackage" xml:space="preserve">
     <value>Πακέτο συνδρομής</value>
@@ -770,10 +770,10 @@
     <value>ΛΗΓΕΙ ΣΥΝΤΟΜΑ</value>
   </data>
   <data name="SubscriptionStatusInactive" xml:space="preserve">
-    <value>ΑΝΕΝΕΡΓΗ</value>
+    <value>ΑΝΕΝΕΡΓΟ</value>
   </data>
   <data name="SubscriptionStatusOK" xml:space="preserve">
-    <value>ΕΝΕΡΓΗ</value>
+    <value>ΕΝΕΡΓΟ</value>
   </data>
   <data name="SingleContact" xml:space="preserve">
     <value>Φίλος άμεσης βοήθειας</value>

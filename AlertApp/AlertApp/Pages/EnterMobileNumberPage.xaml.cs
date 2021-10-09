@@ -42,7 +42,6 @@ namespace AlertApp.Pages
                 var confirm = await DisplayAlert(AppResources.Verification, message, AppResources.ContinueDialogButton, AppResources.Cancel);
                 if (confirm)
                 {
-                    Preferences.Set(Settings.MobileNumber, vm.CountryPrefix + "" + vm.Mobile);
                     await Navigation.PushAsync(new EnterActivationCodePage(String.Format("{0}{1}", vm.CountryPrefix, vm.Mobile)), false);
                 }
             }

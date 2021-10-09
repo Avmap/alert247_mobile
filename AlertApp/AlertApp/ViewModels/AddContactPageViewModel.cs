@@ -172,7 +172,7 @@ namespace AlertApp.ViewModels
                 var tempList = new List<ImportContact>();
                 var filteredContacts = contacts.Where(c => c.Phones.Count > 0).OrderBy(c => c.FamilyName).ToList();
 
-                var mobileNumber = Preferences.Get(Settings.MobileNumber, string.Empty);
+                var mobileNumber = await _localSettingsService.GetMobilePhone();
                 foreach (var item in filteredContacts)
                 {
                     foreach (var number in item.Phones)

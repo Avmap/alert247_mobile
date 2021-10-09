@@ -776,7 +776,7 @@
     <value>Please contact with SCR</value>
   </data>
   <data name="SubscriptionFrame" xml:space="preserve">
-    <value>SUBSCRIPTION TO SIGNAL RECEIVING CENTER</value>
+    <value>SIGNAL RECEIVING CENTER</value>
   </data>
   <data name="SubscriptionEnd" xml:space="preserve">
     <value>End</value>
@@ -785,7 +785,7 @@
     <value>Emergency Friend</value>
   </data>
   <data name="NoContactsNoSub" xml:space="preserve">
-    <value>To alert, add contacts or activate your subscription</value>
+    <value>To alert, add contacts</value>
   </data>
   <data name="AddSub" xml:space="preserve">
     <value>Signal Receiving Center</value>

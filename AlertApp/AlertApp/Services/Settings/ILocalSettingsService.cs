@@ -10,9 +10,11 @@ namespace AlertApp.Services.Settings
         void SaveAuthToken(string token);
         void SaveSelectedLanguage(string language);
         void SaveApplicationPin(string pin);
+        Task SaveMobilePhone(string mobilePhone);
         string GetSelectedLanguage();
         Task<string> GetAuthToken();
         Task<string> GetApplicationPin();
+        Task<string> GetMobilePhone();
         Task<string> GetPrivateKey();
         Task<string> GetPublicKey();
         void SavePrivateKey(string key);

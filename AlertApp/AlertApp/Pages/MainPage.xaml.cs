@@ -38,7 +38,7 @@ namespace AlertApp.Pages
             RegisterForRefreshContacts();
             RefreshContacts();
             ((MainPageViewModel)this.BindingContext).RefreshNews();
-            ((MainPageViewModel)this.BindingContext).RefreshSubInfo();
+            //((MainPageViewModel)this.BindingContext).RefreshSubInfo();
         }
 
         protected override void OnDisappearing()

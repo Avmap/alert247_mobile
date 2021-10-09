@@ -281,6 +281,7 @@ namespace AlertApp.ViewModels
             {
                 _localSettingsService.SaveAuthToken(response.Result.Token);
                 _localSettingsService.SaveUserId(response.Result.UserID);
+                await _localSettingsService.SaveMobilePhone(_MobileNumber);
                 App.TempRegistrationFields = response.Result.Fields;
                 await Application.Current.MainPage.Navigation.PushAsync(new EnterApplicationPinCodePage(), false);
             }

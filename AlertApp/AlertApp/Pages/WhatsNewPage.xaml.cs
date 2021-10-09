@@ -21,7 +21,7 @@ namespace AlertApp.Pages
             IsBusy = true;
             InitializeComponent();
             
-            URLSource = AlertApp.CodeSettings.WhatsNewURL.Replace("$LANG$", Preferences.Get(Settings.SelectedLanguage,"el").Split("-".ToCharArray())[0]);
+            URLSource = CodeSettings.WhatsNewURL.Replace("$LANG$", Preferences.Get(Settings.SelectedLanguage,"el").Split("-".ToCharArray())[0]);
         }
         private ContentPage _next;
 

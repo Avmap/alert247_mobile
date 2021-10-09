@@ -746,7 +746,7 @@
     <value>Notfall Freund</value>
   </data>
   <data name="SubscriptionFrame" xml:space="preserve">
-    <value>ABONNEMENT ZUM SIGNALEMPFANGSZENTRUM</value>
+    <value>SIGNALEMPFANGSZENTRUM</value>
   </data>
   <data name="SwitchSubscription" xml:space="preserve">
     <value>ABONNEMENT</value>
@@ -800,7 +800,7 @@
     <value>Ausführung</value>
   </data>
   <data name="NoContactsNoSub" xml:space="preserve">
-    <value>Um zu alarmieren, fügen Sie Kontakte hinzu oder aktivieren Sie Ihr Abonnement</value>
+    <value>Um eine Benachrichtigung zu erhalten, fügen Sie Kontakte hinzu</value>
   </data>
   <data name="RemoveUserAnalytical" xml:space="preserve">
     <value>Benutzer entfernen?</value>

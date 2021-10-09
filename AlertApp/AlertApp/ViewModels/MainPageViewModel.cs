@@ -425,14 +425,14 @@ namespace AlertApp.ViewModels
                 _localSettingsService.SaveAppHasRunSetting(true);
             }
             PingServer();
-            RefreshSubInfo();
+            //RefreshSubInfo();
         }
 
-        public async void RefreshSubInfo()
-        {
-            var r = await this.GetSubInfo();
+        //public async void RefreshSubInfo()
+        //{
+        //    var r = await this.GetSubInfo();
             
-        }
+        //}
 
         public async Task<Subscription> GetSubInfo()
         {
@@ -507,56 +507,58 @@ namespace AlertApp.ViewModels
             await Task.Run(async () =>
             {
                 var r = await this.GetNews();
-                ObservableCollection<AlertApp.Model.Api.NewsEntry> collection = new ObservableCollection<AlertApp.Model.Api.NewsEntry>(r);
+                ObservableCollection<NewsEntry> collection = new ObservableCollection<NewsEntry>(r);
                 var s = await this.GetSubInfo();
-                var subscriptionItem = new AlertApp.Model.Api.NewsEntry();
+                var subscriptionItem = new NewsEntry();
                 var translate = new TranslateExtension();
                 
                 subscriptionItem.PublishDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-                if (isSubOK)
+                if (isSubOK || IsSubExpiring)
                 {
                     subscriptionItem.Category = NewsEntryCategory.SUCCESS;
                     subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"),translate.GetTranslatedValue("SubscriptionStatusOK"));
-                    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}: {5}",
+                    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}",
                     translate.GetTranslatedValue("SubscriptionStart"),
                     s.Start,
                     translate.GetTranslatedValue("SubscriptionEnd"),
                     s.End,
-                    translate.GetTranslatedValue("SubscriptionPackage"),
                     s.Package);
                 }
-                else if (IsSubExpiring) {
-                    subscriptionItem.Category = NewsEntryCategory.WARNING;
-                    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusExpiring"));
-                    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}: {5}",
-                    translate.GetTranslatedValue("SubscriptionStart"),
-                    s.Start,
-                    translate.GetTranslatedValue("SubscriptionEnd"),
-                    s.End,
-                    translate.GetTranslatedValue("SubscriptionPackage"),
-                    s.Package);
-                }
-                else if (IsSubExpired) {
-                    subscriptionItem.Category = NewsEntryCategory.DANGER;
-                    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusExpired"));
-                    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}: {5}",
-                    translate.GetTranslatedValue("SubscriptionStart"),
-                    s.Start,
-                    translate.GetTranslatedValue("SubscriptionEnd"),
-                    s.End,
-                    translate.GetTranslatedValue("SubscriptionPackage"),
-                    s.Package);
-                }
-                else if (IsSubInactive) {
+                else
+                {
                     subscriptionItem.Category = NewsEntryCategory.DANGER;
                     subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusInactive"));
                 }
-                else if (DoesNotHaveSub)
-                {
-                    subscriptionItem.Category = NewsEntryCategory.DANGER;
-                    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("NoSubscription"));
-                    subscriptionItem.Description = translate.GetTranslatedValue("NoSubscriptionInfo");
-                }
+                //else if (IsSubExpiring) {
+                //    subscriptionItem.Category = NewsEntryCategory.WARNING;
+                //    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusExpiring"));
+                //    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}",
+                //    translate.GetTranslatedValue("SubscriptionStart"),
+                //    s.Start,
+                //    translate.GetTranslatedValue("SubscriptionEnd"),
+                //    s.End,
+                //    s.Package);
+                //}
+                //else if (IsSubExpired) {
+                //    subscriptionItem.Category = NewsEntryCategory.DANGER;
+                //    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusExpired"));
+                //    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}",
+                //    translate.GetTranslatedValue("SubscriptionStart"),
+                //    s.Start,
+                //    translate.GetTranslatedValue("SubscriptionEnd"),
+                //    s.End,
+                //    s.Package);
+                //}
+                //else if (IsSubInactive) {
+                //    subscriptionItem.Category = NewsEntryCategory.DANGER;
+                //    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusInactive"));
+                //}
+                //else if (DoesNotHaveSub)
+                //{
+                //    subscriptionItem.Category = NewsEntryCategory.DANGER;
+                //    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("NoSubscription"));
+                //    subscriptionItem.Description = translate.GetTranslatedValue("NoSubscriptionInfo");
+                //}
                 
                 collection.Insert(0, subscriptionItem);
                 this.MyNews = collection;
@@ -591,11 +593,11 @@ namespace AlertApp.ViewModels
             var r = new List<NewsEntry>();
             try
             {
-#if DEBUG
-                Response<NewsEntryResponse> r2 = await _newsService.GetNewsMock(token); 
-#else
+//#if DEBUG
+//                Response<NewsEntryResponse> r2 = await _newsService.GetNewsMock(token); 
+//#else
 Response<NewsEntryResponse> r2 = await _newsService.GetNews(token); 
-#endif
+//#endif
                 r = r2.Result.News;
             }
             catch (Exception ex)

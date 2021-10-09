@@ -36,5 +36,11 @@ namespace AlertApp.Model.Api
 
         [DataMember]
         public string Package { get; set; }
+
+        [DataMember(Name = "name")]
+        public string Name { get; set; }
+
+        [DataMember(Name = "surname")]
+        public string Surname { get; set; }
     }
 }

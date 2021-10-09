@@ -73,7 +73,8 @@ namespace AlertApp.Pages
         }
         private void UpdateProfile_Tap(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SettingContainerPage(AppResources.SettingAccountTitle, AppResources.SettingUpdateProfle, new UpdateProfileView()), false);
+            ((SettingsPageViewModel)BindingContext).OpenUserProfile().ConfigureAwait(false);
+            //Navigation.PushAsync(new SettingContainerPage(AppResources.SettingAccountTitle, AppResources.SettingUpdateProfle, new UpdateProfileView()), false);
         }
 
         private void ChangeSOS_Tap(object sender, EventArgs e)

@@ -296,6 +296,32 @@ namespace AlertApp.Services.Settings
             Preferences.Set(utils.Settings.FallDetecion, value);
         }
 
+        public async Task SaveMobilePhone(string mobilePhone)
+        {
+            try
+            {
+                await SecureStorage.SetAsync(utils.Settings.MobileNumber, mobilePhone);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                Preferences.Set(utils.Settings.MobileNumber, mobilePhone);
+            }
+        }
+
+        public async Task<string> GetMobilePhone()
+        {
+            try
+            {
+                return await SecureStorage.GetAsync(utils.Settings.MobileNumber);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                return Preferences.Get(utils.Settings.MobileNumber, "");
+            }
+        }
+
         public LocalSettingsService()
         {
 
