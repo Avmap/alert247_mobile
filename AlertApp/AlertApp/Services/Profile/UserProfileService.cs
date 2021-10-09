@@ -149,7 +149,7 @@ namespace AlertApp.Services.Profile
                 var profileDataJson = JsonConvert.SerializeObject(registrationValues);
                 var encryptedProfileData = await _cryptographyService.EncryptProfileData(profileDataJson);
                 var pin = await _localSettingsService.GetApplicationPin();
-                var json = JsonConvert.SerializeObject(new UserProfileBody { Token = token, PublicKey = encryptedProfileData.PublicKey, ProfileData = encryptedProfileData.Data, Pin = pin });
+                var json = JsonConvert.SerializeObject(new UserProfileBody { Token = token, PublicKey = encryptedProfileData.PublicKey, ProfileData = encryptedProfileData.Data, Pin = pin, Name = "K", Surname = "M" });
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await _httpClient.PostAsync("post/alert/storeProfile", content);
 

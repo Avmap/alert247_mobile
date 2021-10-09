@@ -65,7 +65,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Development: Kostas Magalios (428FL3V6R9)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchLink>SdkOnly</MtouchLink>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>

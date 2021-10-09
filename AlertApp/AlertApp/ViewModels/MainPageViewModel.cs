@@ -509,20 +509,28 @@ namespace AlertApp.ViewModels
                 var r = await this.GetNews();
                 ObservableCollection<NewsEntry> collection = new ObservableCollection<NewsEntry>(r);
                 var s = await this.GetSubInfo();
+                if (!HasSub)
+                {
+                    var storedProfile = await _userProfileService.StoreProfile(new Dictionary<string, string>(), await _localSettingsService.GetAuthToken(), await _localSettingsService.GetPublicKey());
+                    if (storedProfile.IsOk)
+                    {
+                        s = await GetSubInfo();
+                    }
+                }
                 var subscriptionItem = new NewsEntry();
                 var translate = new TranslateExtension();
                 
                 subscriptionItem.PublishDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-                if (isSubOK || IsSubExpiring)
+                if (HasSub)
                 {
                     subscriptionItem.Category = NewsEntryCategory.SUCCESS;
                     subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"),translate.GetTranslatedValue("SubscriptionStatusOK"));
-                    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}",
-                    translate.GetTranslatedValue("SubscriptionStart"),
-                    s.Start,
-                    translate.GetTranslatedValue("SubscriptionEnd"),
-                    s.End,
-                    s.Package);
+                    //subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}",
+                    //translate.GetTranslatedValue("SubscriptionStart"),
+                    //s.Start,
+                    //translate.GetTranslatedValue("SubscriptionEnd"),
+                    //s.End,
+                    //s.Package);
                 }
                 else
                 {
