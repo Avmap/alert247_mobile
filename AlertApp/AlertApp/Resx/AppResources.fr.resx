@@ -832,4 +832,13 @@
   <data name="NoSubscriptionInfo" xml:space="preserve">
     <value>Veuillez contacter le Centre de réception des signaux</value>
   </data>
+   <data name="Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+   <data name="Surname" xml:space="preserve">
+    <value>Nom de famille</value>
+  </data>
+   <data name="ProfileValidattion" xml:space="preserve">
+    <value>Tous les champs sont requis</value>
+  </data>
 </root>

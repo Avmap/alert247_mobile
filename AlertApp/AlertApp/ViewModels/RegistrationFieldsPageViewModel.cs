@@ -12,7 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -42,6 +41,12 @@ namespace AlertApp.ViewModels
 
         public async void SendUserProfile(Dictionary<string, string> registrationValues)
         {
+            if (!await ValidateFieds())
+            {
+                showOKMessage(AppResources.Error, AppResources.ProfileValidattion);
+                return;
+            }
+
             try
             {
                 SetBusy(true);
@@ -71,6 +76,12 @@ namespace AlertApp.ViewModels
 
         public async Task<bool> UpdateUserProfile(Dictionary<string, string> registrationValues)
         {
+            if (!await ValidateFieds())
+            {
+                showOKMessage(AppResources.Error, "Please check your internet connection.");
+                return false;
+            }
+
             try
             {
                 SetBusy(true);
@@ -115,6 +126,14 @@ namespace AlertApp.ViewModels
                 return new Dictionary<string, string>();
             }
             return JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+        }
+
+        private async Task<bool> ValidateFieds()
+        {
+            var name = await _localSettingsService.GetName();
+            var surname = await _localSettingsService.GetSurname();
+
+            return !string.IsNullOrWhiteSpace(name) && !string.IsNullOrWhiteSpace(surname);
         }
 
         #region BaseViewModel

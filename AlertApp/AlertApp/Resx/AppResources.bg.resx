@@ -829,4 +829,13 @@
   <data name="NoSubscriptionInfo" xml:space="preserve">
     <value>Моля, свържете се с Центъра за приемане на сигнали</value>
   </data>
+   <data name="Name" xml:space="preserve">
+    <value>Име</value>
+  </data>
+   <data name="Surname" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+   <data name="ProfileValidattion" xml:space="preserve">
+    <value>Всички полета са задължителни</value>
+  </data>
 </root>

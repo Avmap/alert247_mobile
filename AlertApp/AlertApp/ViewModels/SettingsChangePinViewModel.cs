@@ -1,9 +1,11 @@
 ﻿using AlertApp.Infrastructure;
 using AlertApp.Resx;
 using AlertApp.Services.Cryptography;
+using AlertApp.Services.Profile;
 using AlertApp.Services.Settings;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -16,6 +18,7 @@ namespace AlertApp.ViewModels
         #region Services        
         readonly ILocalSettingsService _localSettingsService;
         readonly ICryptographyService _cryptographyService;
+        readonly IUserProfileService _userProfileService;
         #endregion
 
         #region Properties
@@ -70,10 +73,11 @@ namespace AlertApp.ViewModels
 
         public bool CurrentPinLayoutVisible => !NewPinLayoutVisible;
 
-        public SettingsChangePinViewModel(ILocalSettingsService localSettingsService, ICryptographyService cryptographyService)
+        public SettingsChangePinViewModel(ILocalSettingsService localSettingsService, ICryptographyService cryptographyService, IUserProfileService userProfileService)
         {
             _localSettingsService = localSettingsService;
             _cryptographyService = cryptographyService;
+            _userProfileService = userProfileService;
         }
 
         public Task<string> GetApplicationPin()
@@ -87,6 +91,17 @@ namespace AlertApp.ViewModels
             var changed = await _cryptographyService.ChangePin(newPin);
             if (changed)
             {
+                SetBusy(true);
+                try
+                {
+                    var storedProfile = await _userProfileService.StoreProfile(new Dictionary<string, string>(), await _localSettingsService.GetAuthToken(), await _localSettingsService.GetPublicKey());
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+                SetBusy(false);
+
                 showOKMessage(AppResources.Succcess, AppResources.SucccessChangePinMessage);
                 await Application.Current.MainPage.Navigation.PopAsync(false);
             }

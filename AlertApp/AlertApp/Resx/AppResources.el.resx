@@ -832,4 +832,13 @@
   <data name="NoSubscriptionInfo" xml:space="preserve">
     <value>Παρακαλώ επικοινωνήστε με το Κ.Λ.Σ.</value>
   </data>
+   <data name="Name" xml:space="preserve">
+    <value>Όνομα</value>
+  </data>
+   <data name="Surname" xml:space="preserve">
+    <value>Επώνυμο</value>
+  </data>
+   <data name="ProfileValidattion" xml:space="preserve">
+    <value>Όλα τα πεδία είναι υποχρεωτικά</value>
+  </data>
 </root>

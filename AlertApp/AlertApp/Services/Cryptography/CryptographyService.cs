@@ -128,9 +128,9 @@ namespace AlertApp.Services.Cryptography
                 //    }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                var test = ex.Message;
             }
             return null;
         }

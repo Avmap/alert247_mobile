@@ -200,6 +200,7 @@
     <BundleResource Include="Resources\OpenSans-Regular.ttf" />
     <BundleResource Include="Resources\materialdesignicons-webfont.ttf" />
     <Compile Include="CustomRenderers\EntryCenteredOnlyRenderer.cs" />
+    <Compile Include="CustomRenderers\BoxBorderEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard">

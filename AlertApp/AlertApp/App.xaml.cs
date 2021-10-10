@@ -76,9 +76,9 @@ namespace AlertApp
             RegistrationFieldsPageViewModel vm;
             vm = ViewModelLocator.Instance.Resolve<RegistrationFieldsPageViewModel>();
             vm.SetBusy(true);
-            var registrationFieldsResponse = await vm.GetRegistrationFieldsAsync();
-            App.TempRegistrationFields = registrationFieldsResponse.Result;
-             MainPage = new NavigationPage(new RegistrationFieldsPage(App.TempRegistrationFields));
+            //var registrationFieldsResponse = await vm.GetRegistrationFieldsAsync();
+            //App.TempRegistrationFields = registrationFieldsResponse.Result;
+             MainPage = new NavigationPage(new RegistrationFieldsPage(null));
             vm.SetBusy(false);
             
         }

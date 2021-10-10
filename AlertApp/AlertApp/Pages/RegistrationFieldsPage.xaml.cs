@@ -31,8 +31,8 @@ namespace AlertApp.Pages
             var lss = ViewModelLocator.Instance.Resolve<Services.Settings.ILocalSettingsService>();
             var rss = ViewModelLocator.Instance.Resolve<Services.Registration.IRegistrationService>();
             var css = ViewModelLocator.Instance.Resolve<Services.Cryptography.ICryptographyService>();
-            vm = new RegistrationFieldsPageViewModel(ups, lss, rss, css);  
-            AddRegistrationFields(registrationField);
+            vm = new RegistrationFieldsPageViewModel(ups, lss, rss, css);
+            //AddRegistrationFields(registrationField);
 
 
             var profileTapRecognizer = new TapGestureRecognizer
@@ -303,19 +303,23 @@ namespace AlertApp.Pages
         private async void SubmitRegistrationButton_Clicked(object sender, EventArgs e)
         {
             var registrationValues = new Dictionary<string, string>();
-            foreach (var registrationView in registrationContainer.Children)
-            {
-                var registrationStackLayout = registrationView as NoUnderlineEntry;//RegistrationStackLayout;
-                if (registrationStackLayout != null)
-                {
-                    registrationValues.Add(((NoUnderlineEntry)registrationStackLayout).FieldName, registrationStackLayout.Text);
-                    //foreach (var field in registrationStackLayout.Children)
-                    //{
-                    //    if (field is Frame)
-                    //        CollectValues(registrationValues, registrationStackLayout.FieldName, field as Frame);
-                    //}
-                }
-            }
+            //foreach (var registrationView in registrationContainer.Children)
+            //{
+            //    var registrationStackLayout = registrationView as NoUnderlineEntry;//RegistrationStackLayout;
+            //    if (registrationStackLayout != null)
+            //    {
+            //        registrationValues.Add(((NoUnderlineEntry)registrationStackLayout).FieldName, registrationStackLayout.Text);
+            //        //foreach (var field in registrationStackLayout.Children)
+            //        //{
+            //        //    if (field is Frame)
+            //        //        CollectValues(registrationValues, registrationStackLayout.FieldName, field as Frame);
+            //        //}
+            //    }
+            //}
+
+            await _localSettingsService.SaveName(NameEntry.Text);
+            await _localSettingsService.SaveSurname(SurnameEntry.Text);
+
             vm.SendUserProfile(registrationValues);
         }
 

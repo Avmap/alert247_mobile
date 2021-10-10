@@ -12,9 +12,9 @@
         <local:Sizes />
         <local:Colors />
         <local:Fonts />
-        
+
     </ResourceDictionary.MergedDictionaries>
-    
+
     <Style TargetType="NavigationPage">
         <Setter Property="BarBackgroundColor" Value="White"/>
         <Setter Property="BarTextColor" Value="{StaticResource PrimaryColor}"/>
@@ -24,7 +24,7 @@
 
         <Setter Property="TextColor" Value="{StaticResource PrimaryColorText}" />
     </Style>
-   
+
     <Style x:Key="DefaultButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="White" />
         <Setter Property="FontSize" Value="Medium" />
@@ -72,18 +72,18 @@
         <Setter Property="CornerRadius">20</Setter>
         <Setter Property="HeightRequest">40</Setter>
     </Style>
-    
+
     <Style x:Key="RegistrationEntryStyle" TargetType="{x:Type Entry}">
         <Setter Property="TextColor" Value="{StaticResource RegistrationEntryTextColor}" />
         <Setter Property="BackgroundColor" Value="#E6E7E8"></Setter>
-        
+
     </Style>
-    
+
     <Style x:Key="RegistrationLabelStyle" TargetType="{x:Type Label}">
-      <Setter Property="TextColor" Value="#000000" />
-      <Setter Property="FontSize" Value="16" />
-      <Setter Property="FontAttributes" Value="{StaticResource Bold}" />
-       
+        <Setter Property="TextColor" Value="#000000" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontAttributes" Value="{StaticResource Bold}" />
+
     </Style>
     <Style x:Key="RegistrationPickerStyle" TargetType="{x:Type Picker}">
         <Setter Property="TextColor" Value="{StaticResource RegistrationEntryTextColor}" />
@@ -129,6 +129,27 @@
     <Style x:Key="SubscriptionStatusInactive" TargetType="Label">
         <Setter Property="FontAttributes" Value="Bold"></Setter>
         <Setter Property="TextColor" Value="{StaticResource AccentColor}"></Setter>
+    </Style>
+
+    <Style x:Key="EntryStyle"
+                   TargetType="{x:Type Entry}">
+        <Setter Property="BackgroundColor"
+                        Value="{StaticResource PrimaryColorText}" />
+        <Setter Property="TextColor"
+                        Value="{StaticResource BlackColor}" />
+        <Setter Property="HorizontalOptions"
+                        Value="FillAndExpand" />
+        <Setter Property="HeightRequest"
+                        Value="48" />
+        <Setter Property="Opacity"
+                        Value="0.9" />
+        <Style.Triggers>
+            <Trigger TargetType="Entry"
+                             Property="IsFocused" 
+                             Value="True">
+                <Setter Property="Opacity" Value="1" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>

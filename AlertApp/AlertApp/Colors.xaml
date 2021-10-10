@@ -26,6 +26,9 @@
     <Color x:Key="SuccessButtonTextColor">#FFF</Color>
     <Color x:Key="DangerButtonColor">#800000</Color>
     <Color x:Key="DangerButtonTextColor">#FFF</Color>
+    <Color x:Key="BorderColor">#bdbdc3</Color>
+    <Color x:Key="RedColor">#bf1d1d</Color>
+    <Color x:Key="BlackColor">#000000</Color>
 
     <!--<Color x:Key="RegistrationBackgrounColor">#4f0000</Color>-->
 

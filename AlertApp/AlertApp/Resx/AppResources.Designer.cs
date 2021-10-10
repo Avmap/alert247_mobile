@@ -1474,5 +1474,23 @@ namespace AlertApp.Resx {
                 return ResourceManager.GetString("InformUserPhoneNumber", resourceCulture);
             }
         }
+        
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        internal static string Surname {
+            get {
+                return ResourceManager.GetString("Surname", resourceCulture);
+            }
+        }
+        
+        internal static string ProfileValidattion {
+            get {
+                return ResourceManager.GetString("ProfileValidattion", resourceCulture);
+            }
+        }
     }
 }

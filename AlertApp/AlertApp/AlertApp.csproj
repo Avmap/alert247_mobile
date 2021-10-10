@@ -32,6 +32,7 @@
   <ItemGroup>
     <None Remove="materialdesignicons-webfont.ttf" />
     <None Remove="PCLCrypto" />
+    <None Remove="Validation\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -265,5 +266,6 @@
 
   <ItemGroup>
     <Folder Include="Services\User\" />
+    <Folder Include="Validation\" />
   </ItemGroup>
 </Project>

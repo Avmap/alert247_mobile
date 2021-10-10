@@ -833,4 +833,13 @@
   <data name="NoSubscriptionInfo" xml:space="preserve">
     <value>Пожалуйста, свяжитесь с центром приема сигналов.</value>
   </data>
+   <data name="Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+   <data name="Surname" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+   <data name="ProfileValidattion" xml:space="preserve">
+    <value>Все поля обязательны для заполнения</value>
+  </data>
 </root>
