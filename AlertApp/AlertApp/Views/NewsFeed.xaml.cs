@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using AlertApp.Model.Api;
 using System.Windows.Input;
+using Xamarin.Essentials;
 
 namespace AlertApp.Views
 {
@@ -17,6 +18,7 @@ namespace AlertApp.Views
         public NewsFeed()
         {
             InitializeComponent();
+            NewsItemTappedCommand = new Command<object>(async (url) => await OpenNewsUrl(url)); 
         }
 
         public static BindableProperty NewsSourceProperty = BindableProperty.Create(
@@ -65,5 +67,14 @@ namespace AlertApp.Views
         }
 
         private static void DoNothing() { }
+
+        public ICommand NewsItemTappedCommand { get; set; }
+
+        private async Task OpenNewsUrl(object url)
+        {
+            if (url == null)
+                return;
+            await Browser.OpenAsync(new Uri((string)url), BrowserLaunchMode.SystemPreferred);
+        }
     }
 }
