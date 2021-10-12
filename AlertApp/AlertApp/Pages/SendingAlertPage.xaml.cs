@@ -18,7 +18,7 @@ namespace AlertApp.Pages
     public partial class SendingAlertPage : ContentPage
     {
         private bool DeletePressed;
-        volatile int seconds = 10;
+        volatile int seconds = 5;
         volatile bool stop = false;
         Timer timer = null;
         string applicationPin;

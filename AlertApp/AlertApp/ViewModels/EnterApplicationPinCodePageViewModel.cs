@@ -151,7 +151,7 @@ namespace AlertApp.ViewModels
                 }
                 _localSettingsService.SaveSendLocationSetting(LocationTracking);
                 SetBusy(true);
-                //await Task.Run(() => _cryptohraphyService.GenerateKeys(String.Format("{0}{1}{2}{3}", Pin1, Pin2, Pin3, Pin4)));
+                await Task.Run(() => _cryptohraphyService.GenerateKeys(String.Format("{0}{1}{2}{3}", Pin1, Pin2, Pin3, Pin4)));
 
                 //var storedProfile = await _userProfileService.StoreProfile(new Dictionary<string, string>(), await _localSettingsService.GetAuthToken(), await _localSettingsService.GetPublicKey());
                 //if (storedProfile.IsOk)

@@ -521,7 +521,7 @@ namespace AlertApp.ViewModels
                 var translate = new TranslateExtension();
                 
                 subscriptionItem.PublishDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-                if (HasSub)
+                if (isSubOK)
                 {
                     subscriptionItem.Category = NewsEntryCategory.SUCCESS;
                     subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"),translate.GetTranslatedValue("SubscriptionStatusOK"));
@@ -532,10 +532,23 @@ namespace AlertApp.ViewModels
                     //s.End,
                     //s.Package);
                 }
+                else if (IsSubExpired)
+                {
+                    subscriptionItem.Category = NewsEntryCategory.WARNING;
+                    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusExpiring"));
+                    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}",
+                    translate.GetTranslatedValue("SubscriptionStart"),
+                    s.Start,
+                    translate.GetTranslatedValue("SubscriptionEnd"),
+                    s.End,
+                    s.Package);
+                    subscriptionItem.Link = CodeSettings.SubscriptionURL;
+                }
                 else
                 {
                     subscriptionItem.Category = NewsEntryCategory.DANGER;
                     subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusInactive"));
+                    subscriptionItem.Link = CodeSettings.SubscriptionURL;
                 }
                 //else if (IsSubExpiring) {
                 //    subscriptionItem.Category = NewsEntryCategory.WARNING;
@@ -676,10 +689,11 @@ Response<NewsEntryResponse> r2 = await _newsService.GetNews(token);
                     break;
             }
             SetBusy(true);
-            ShowCancelButton = true;
+            ShowCancelButton = false;
             stop = false;
             StartTimer();
         }
+
         private async void CancelSendAlert()
         {
             currentSecond = 0;
@@ -727,35 +741,38 @@ Response<NewsEntryResponse> r2 = await _newsService.GetNews(token);
 
         private async void StartTimer()
         {
-            for (int i = currentSecond; i < maxSeconds; i++)
-            {
-                if (stop)
-                {
-                    ShowCancelButton = false;
-                    i = maxSeconds;
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        CancelButtonText = maxSeconds.ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
-                    });
-                    break;
-                }
+            //for (int i = currentSecond; i < maxSeconds; i++)
+            //{
+            //    if (stop)
+            //    {
+            //        ShowCancelButton = false;
+            //        i = maxSeconds;
+            //        Device.BeginInvokeOnMainThread(() =>
+            //        {
+            //            CancelButtonText = maxSeconds.ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
+            //        });
+            //        break;
+            //    }
 
-                if (!stop)
-                {
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        CancelButtonText = (maxSeconds - i).ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
-                    });
-                    await Task.Delay(TimeSpan.FromSeconds(1));
-                }
+            //    if (!stop)
+            //    {
+            //        Device.BeginInvokeOnMainThread(() =>
+            //        {
+            //            CancelButtonText = (maxSeconds - i).ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
+            //        });
+            //        await Task.Delay(TimeSpan.FromSeconds(1));
+            //    }
 
-            }
+            //}
 
-            if (!stop)
-            {
-                await Application.Current.MainPage.Navigation.PushAsync(new SendingAlertPage(alertType), false);
-                SetBusy(false);
-            }
+            //if (!stop)
+            //{
+            //    await Application.Current.MainPage.Navigation.PushAsync(new SendingAlertPage(alertType), false);
+            //    SetBusy(false);
+            //}
+
+            await Application.Current.MainPage.Navigation.PushAsync(new SendingAlertPage(alertType), false);
+            SetBusy(false);
 
             ShowCancelButton = false;
         }
