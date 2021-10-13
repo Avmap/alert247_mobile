@@ -580,7 +580,7 @@ namespace AlertApp.ViewModels
                 //    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("NoSubscription"));
                 //    subscriptionItem.Description = translate.GetTranslatedValue("NoSubscriptionInfo");
                 //}
-                
+
                 collection.Insert(0, subscriptionItem);
 
                 //for (int i = MyNews.Count - 1; i >= 0; i--)
@@ -592,6 +592,9 @@ namespace AlertApp.ViewModels
                 //{
                 //    MyNews.Add(item);
                 //}
+
+                OnPropertyChanged("CanSendAlert");
+                OnPropertyChanged("CanNotSendAlert");
 
                 MyNews = collection;
                 IsRefreshingNews = false;
@@ -625,7 +628,7 @@ namespace AlertApp.ViewModels
             try
             {
 //#if DEBUG
-//                Response<NewsEntryResponse> r2 = await _newsService.GetNewsMock(token); 
+                //Response<NewsEntryResponse> r2 = await _newsService.GetNewsMock(token); 
 //#else
 Response<NewsEntryResponse> r2 = await _newsService.GetNews(token); 
 //#endif
