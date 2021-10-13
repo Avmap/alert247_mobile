@@ -520,7 +520,7 @@ namespace AlertApp.ViewModels
                 var subscriptionItem = new NewsEntry();
                 var translate = new TranslateExtension();
                 
-                subscriptionItem.PublishDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                subscriptionItem.PublishDate = DateTime.Now.ToString("dd/MM/yyyy");
                 if (isSubOK)
                 {
                     subscriptionItem.Category = NewsEntryCategory.SUCCESS;
@@ -582,9 +582,19 @@ namespace AlertApp.ViewModels
                 //}
                 
                 collection.Insert(0, subscriptionItem);
-                this.MyNews = collection;
 
-                this.IsRefreshingNews = false;
+                //for (int i = MyNews.Count - 1; i >= 0; i--)
+                //{
+                //    MyNews.RemoveAt(i);
+                //}
+
+                //foreach (var item in collection)
+                //{
+                //    MyNews.Add(item);
+                //}
+
+                MyNews = collection;
+                IsRefreshingNews = false;
             });
         }
 
