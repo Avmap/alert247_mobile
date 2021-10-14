@@ -452,7 +452,7 @@
     <value>DETTAGLI UTENTE</value>
   </data>
   <data name="RegistrationEnterFieldsPromt" xml:space="preserve">
-    <value>Inserisci i tuoi dati personali. In caso di emergenza verrà inviato ai contatti che sceglierai.</value>
+    <value>Inserisci i tuoi dati personali. In caso di emergenza verrà inviato ai contatti che si sceglie. I tuoi dati saranno trattati nel nostro server.</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>finire</value>
@@ -761,7 +761,7 @@
     <value>Rimuovere l'utente?</value>
   </data>
   <data name="NoContactsNoSub" xml:space="preserve">
-    <value>Per avvisare, aggiungere contatti o attivare il tuo abbonamento</value>
+    <value>Per avvisare, aggiungi contatti</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Versione</value>
@@ -776,7 +776,7 @@
     <value>Attiva abbonamento</value>
   </data>
   <data name="AddSub" xml:space="preserve">
-    <value>Attiva l'abbonamento al Centro di ricezione del segnale</value>
+    <value>Centro di ricezione del segnale</value>
   </data>
   <data name="WhatsNew" xml:space="preserve">
     <value>Punti salienti dell'applicazione</value>
@@ -815,12 +815,30 @@
     <value>SOTTOSCRIZIONE</value>
   </data>
   <data name="SubscriptionFrame" xml:space="preserve">
-    <value>ABBONAMENTO AL CENTRO RICEVIMENTO SEGNALI</value>
+    <value>CENTRO DI RICEZIONE SEGNALI</value>
   </data>
   <data name="SingleContact" xml:space="preserve">
     <value>Emergenza amico</value>
   </data>
   <data name="SwitchMap" xml:space="preserve">
     <value>CARTA GEOGRAFICA</value>
+  </data>
+   <data name="InformUserPhoneNumber" xml:space="preserve">
+    <value>Il tuo numero di telefono verrà elaborato nel nostro server.</value>
+  </data>
+  <data name="NoSubscription" xml:space="preserve">
+    <value>SENZA ABBONAMENTO</value>
+  </data>
+  <data name="NoSubscriptionInfo" xml:space="preserve">
+    <value>Si prega di contattare il centro di ricezione del segnale</value>
+  </data>
+   <data name="Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+   <data name="Surname" xml:space="preserve">
+    <value>Cognome</value>
+  </data>
+   <data name="ProfileValidattion" xml:space="preserve">
+    <value>tutti i campi sono obbligatori</value>
   </data>
 </root>

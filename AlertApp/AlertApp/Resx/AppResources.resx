@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -455,7 +455,7 @@
     <value>USER DETAILS</value>
   </data>
   <data name="RegistrationEnterFieldsPromt" xml:space="preserve">
-    <value>Please enter your personal details. In case of emergency will be sent to the contacts that you choose.</value>
+    <value>Please enter your personal details. In case of emergency will be sent to the contacts that you choose. Your data will be processed in our server.</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Finish</value>
@@ -757,6 +757,9 @@
   <data name="SubscriptionStatusInactive" xml:space="preserve">
     <value>INACTIVE</value>
   </data>
+    <data name="NoSubscription" xml:space="preserve">
+    <value>NO SUBSCRIPTION</value>
+  </data>
   <data name="SubscriptionStatusExpiring" xml:space="preserve">
     <value>EXPIRING SOON</value>
   </data>
@@ -769,8 +772,11 @@
   <data name="SubscriptionPackage" xml:space="preserve">
     <value>Package</value>
   </data>
+  <data name="NoSubscriptionInfo" xml:space="preserve">
+    <value>Please contact with SCR</value>
+  </data>
   <data name="SubscriptionFrame" xml:space="preserve">
-    <value>SUBSCRIPTION TO SIGNAL RECEIVING CENTER</value>
+    <value>SIGNAL RECEIVING CENTER</value>
   </data>
   <data name="SubscriptionEnd" xml:space="preserve">
     <value>End</value>
@@ -779,10 +785,10 @@
     <value>Emergency Friend</value>
   </data>
   <data name="NoContactsNoSub" xml:space="preserve">
-    <value>To alert, add contacts or activate your subscription</value>
+    <value>To alert, add contacts</value>
   </data>
   <data name="AddSub" xml:space="preserve">
-    <value>Activate subscription to SRC</value>
+    <value>Signal Receiving Center</value>
   </data>
   <data name="SubscriptionPage" xml:space="preserve">
     <value>Activate subscription</value>
@@ -822,5 +828,17 @@
   </data>
   <data name="SuccessSendAlertMessageSrc" xml:space="preserve">
     <value>Signal Receiving Center</value>
+  </data>
+   <data name="InformUserPhoneNumber" xml:space="preserve">
+    <value>Your phone number will be processed in our server.</value>
+  </data>
+   <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+   <data name="Surname" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+   <data name="ProfileValidattion" xml:space="preserve">
+    <value>All fields are required</value>
   </data>
 </root>

@@ -8,7 +8,7 @@
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" xmlns:viewmodels="clr-namespace:AlertApp.ViewModels" 
              Title="{infrastructure:Translate SubscriptionPage}"
              Visual="Material"
-             >
+             BackgroundColor="White">
     <ContentPage.Content>
         <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
             <Grid.RowDefinitions>

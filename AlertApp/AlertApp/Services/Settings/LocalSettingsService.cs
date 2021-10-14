@@ -296,6 +296,84 @@ namespace AlertApp.Services.Settings
             Preferences.Set(utils.Settings.FallDetecion, value);
         }
 
+        public async Task SaveMobilePhone(string mobilePhone)
+        {
+            try
+            {
+                await SecureStorage.SetAsync(utils.Settings.MobileNumber, mobilePhone);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                Preferences.Set(utils.Settings.MobileNumber, mobilePhone);
+            }
+        }
+
+        public async Task<string> GetMobilePhone()
+        {
+            try
+            {
+                return await SecureStorage.GetAsync(utils.Settings.MobileNumber);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                return Preferences.Get(utils.Settings.MobileNumber, "");
+            }
+        }
+
+        public async Task SaveName(string name)
+        {
+            try
+            {
+                await SecureStorage.SetAsync(utils.Settings.Name, name);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                Preferences.Set(utils.Settings.Name, name);
+            }
+        }
+
+        public async Task SaveSurname(string surname)
+        {
+            try
+            {
+                await SecureStorage.SetAsync(utils.Settings.Surname, surname);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                Preferences.Set(utils.Settings.Surname, surname);
+            }
+        }
+
+        public async Task<string> GetName()
+        {
+            try
+            {
+                return await SecureStorage.GetAsync(utils.Settings.Name);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                return Preferences.Get(utils.Settings.Name, "");
+            }
+        }
+
+        public async Task<string> GetSurname()
+        {
+            try
+            {
+                return await SecureStorage.GetAsync(utils.Settings.Surname);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+                return Preferences.Get(utils.Settings.Surname, "");
+            }
+        }
+
         public LocalSettingsService()
         {
 

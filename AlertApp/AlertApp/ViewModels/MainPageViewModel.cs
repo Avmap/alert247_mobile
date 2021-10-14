@@ -425,14 +425,14 @@ namespace AlertApp.ViewModels
                 _localSettingsService.SaveAppHasRunSetting(true);
             }
             PingServer();
-            RefreshSubInfo();
+            //RefreshSubInfo();
         }
 
-        public async void RefreshSubInfo()
-        {
-            var r = await this.GetSubInfo();
+        //public async void RefreshSubInfo()
+        //{
+        //    var r = await this.GetSubInfo();
             
-        }
+        //}
 
         public async Task<Subscription> GetSubInfo()
         {
@@ -507,55 +507,97 @@ namespace AlertApp.ViewModels
             await Task.Run(async () =>
             {
                 var r = await this.GetNews();
-                ObservableCollection<AlertApp.Model.Api.NewsEntry> collection = new ObservableCollection<AlertApp.Model.Api.NewsEntry>(r);
+                ObservableCollection<NewsEntry> collection = new ObservableCollection<NewsEntry>(r);
                 var s = await this.GetSubInfo();
-                var subscriptionItem = new AlertApp.Model.Api.NewsEntry();
+                if (!HasSub)
+                {
+                    var storedProfile = await _userProfileService.StoreProfile(new Dictionary<string, string>(), await _localSettingsService.GetAuthToken(), await _localSettingsService.GetPublicKey());
+                    if (storedProfile.IsOk)
+                    {
+                        s = await GetSubInfo();
+                    }
+                }
+                var subscriptionItem = new NewsEntry();
                 var translate = new TranslateExtension();
                 
-                subscriptionItem.PublishDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                subscriptionItem.PublishDate = DateTime.Now.ToString("dd/MM/yyyy");
                 if (isSubOK)
                 {
                     subscriptionItem.Category = NewsEntryCategory.SUCCESS;
                     subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"),translate.GetTranslatedValue("SubscriptionStatusOK"));
-                    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}: {5}",
-                    translate.GetTranslatedValue("SubscriptionStart"),
-                    s.Start,
-                    translate.GetTranslatedValue("SubscriptionEnd"),
-                    s.End,
-                    translate.GetTranslatedValue("SubscriptionPackage"),
-                    s.Package);
+                    //subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}",
+                    //translate.GetTranslatedValue("SubscriptionStart"),
+                    //s.Start,
+                    //translate.GetTranslatedValue("SubscriptionEnd"),
+                    //s.End,
+                    //s.Package);
                 }
-                else if (IsSubExpiring) {
+                else if (IsSubExpired)
+                {
                     subscriptionItem.Category = NewsEntryCategory.WARNING;
                     subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusExpiring"));
-                    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}: {5}",
+                    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}",
                     translate.GetTranslatedValue("SubscriptionStart"),
                     s.Start,
                     translate.GetTranslatedValue("SubscriptionEnd"),
                     s.End,
-                    translate.GetTranslatedValue("SubscriptionPackage"),
                     s.Package);
+                    subscriptionItem.Link = CodeSettings.SubscriptionURL;
                 }
-                else if (IsSubExpired) {
-                    subscriptionItem.Category = NewsEntryCategory.DANGER;
-                    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusExpired"));
-                    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}: {5}",
-                    translate.GetTranslatedValue("SubscriptionStart"),
-                    s.Start,
-                    translate.GetTranslatedValue("SubscriptionEnd"),
-                    s.End,
-                    translate.GetTranslatedValue("SubscriptionPackage"),
-                    s.Package);
-                }
-                else if (IsSubInactive) {
+                else
+                {
                     subscriptionItem.Category = NewsEntryCategory.DANGER;
                     subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusInactive"));
+                    subscriptionItem.Link = CodeSettings.SubscriptionURL;
                 }
-                
-                collection.Insert(0, subscriptionItem);
-                this.MyNews = collection;
+                //else if (IsSubExpiring) {
+                //    subscriptionItem.Category = NewsEntryCategory.WARNING;
+                //    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusExpiring"));
+                //    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}",
+                //    translate.GetTranslatedValue("SubscriptionStart"),
+                //    s.Start,
+                //    translate.GetTranslatedValue("SubscriptionEnd"),
+                //    s.End,
+                //    s.Package);
+                //}
+                //else if (IsSubExpired) {
+                //    subscriptionItem.Category = NewsEntryCategory.DANGER;
+                //    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusExpired"));
+                //    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}",
+                //    translate.GetTranslatedValue("SubscriptionStart"),
+                //    s.Start,
+                //    translate.GetTranslatedValue("SubscriptionEnd"),
+                //    s.End,
+                //    s.Package);
+                //}
+                //else if (IsSubInactive) {
+                //    subscriptionItem.Category = NewsEntryCategory.DANGER;
+                //    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusInactive"));
+                //}
+                //else if (DoesNotHaveSub)
+                //{
+                //    subscriptionItem.Category = NewsEntryCategory.DANGER;
+                //    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("NoSubscription"));
+                //    subscriptionItem.Description = translate.GetTranslatedValue("NoSubscriptionInfo");
+                //}
 
-                this.IsRefreshingNews = false;
+                collection.Insert(0, subscriptionItem);
+
+                //for (int i = MyNews.Count - 1; i >= 0; i--)
+                //{
+                //    MyNews.RemoveAt(i);
+                //}
+
+                //foreach (var item in collection)
+                //{
+                //    MyNews.Add(item);
+                //}
+
+                OnPropertyChanged("CanSendAlert");
+                OnPropertyChanged("CanNotSendAlert");
+
+                MyNews = collection;
+                IsRefreshingNews = false;
             });
         }
 
@@ -585,11 +627,11 @@ namespace AlertApp.ViewModels
             var r = new List<NewsEntry>();
             try
             {
-#if DEBUG
-                Response<NewsEntryResponse> r2 = await _newsService.GetNewsMock(token); 
-#else
+//#if DEBUG
+                //Response<NewsEntryResponse> r2 = await _newsService.GetNewsMock(token); 
+//#else
 Response<NewsEntryResponse> r2 = await _newsService.GetNews(token); 
-#endif
+//#endif
                 r = r2.Result.News;
             }
             catch (Exception ex)
@@ -660,10 +702,11 @@ Response<NewsEntryResponse> r2 = await _newsService.GetNews(token);
                     break;
             }
             SetBusy(true);
-            ShowCancelButton = true;
+            ShowCancelButton = false;
             stop = false;
             StartTimer();
         }
+
         private async void CancelSendAlert()
         {
             currentSecond = 0;
@@ -694,10 +737,12 @@ Response<NewsEntryResponse> r2 = await _newsService.GetNews(token);
 
         private async void AddSubLink()
         {
-            SetBusy(true);
+            //SetBusy(true);
             //await Launcher.OpenAsync(new Uri(AlertApp.CodeSettings.SubscriptionURL));
-            await Application.Current.MainPage.Navigation.PushAsync(new SubscriptionPage(), false);
-            SetBusy(false);
+            //await Application.Current.MainPage.Navigation.PushAsync(new SubscriptionPage(), false);
+            //SetBusy(false);
+
+            await Browser.OpenAsync(new Uri(AlertApp.CodeSettings.SubscriptionURL), BrowserLaunchMode.SystemPreferred);
         }
 
         private async void TouristGuideScreen()
@@ -709,35 +754,38 @@ Response<NewsEntryResponse> r2 = await _newsService.GetNews(token);
 
         private async void StartTimer()
         {
-            for (int i = currentSecond; i < maxSeconds; i++)
-            {
-                if (stop)
-                {
-                    ShowCancelButton = false;
-                    i = maxSeconds;
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        CancelButtonText = maxSeconds.ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
-                    });
-                    break;
-                }
+            //for (int i = currentSecond; i < maxSeconds; i++)
+            //{
+            //    if (stop)
+            //    {
+            //        ShowCancelButton = false;
+            //        i = maxSeconds;
+            //        Device.BeginInvokeOnMainThread(() =>
+            //        {
+            //            CancelButtonText = maxSeconds.ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
+            //        });
+            //        break;
+            //    }
 
-                if (!stop)
-                {
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        CancelButtonText = (maxSeconds - i).ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
-                    });
-                    await Task.Delay(TimeSpan.FromSeconds(1));
-                }
+            //    if (!stop)
+            //    {
+            //        Device.BeginInvokeOnMainThread(() =>
+            //        {
+            //            CancelButtonText = (maxSeconds - i).ToString();//AppResources.CancelSendAlert + "\n" + (seconds - i);
+            //        });
+            //        await Task.Delay(TimeSpan.FromSeconds(1));
+            //    }
 
-            }
+            //}
 
-            if (!stop)
-            {
-                await Application.Current.MainPage.Navigation.PushAsync(new SendingAlertPage(alertType), false);
-                SetBusy(false);
-            }
+            //if (!stop)
+            //{
+            //    await Application.Current.MainPage.Navigation.PushAsync(new SendingAlertPage(alertType), false);
+            //    SetBusy(false);
+            //}
+
+            await Application.Current.MainPage.Navigation.PushAsync(new SendingAlertPage(alertType), false);
+            SetBusy(false);
 
             ShowCancelButton = false;
         }

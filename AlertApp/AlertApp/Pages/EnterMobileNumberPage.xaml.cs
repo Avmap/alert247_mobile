@@ -1,12 +1,13 @@
 ﻿using AlertApp.Infrastructure;
 using AlertApp.Resx;
+using AlertApp.Utils;
 using AlertApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -36,7 +37,7 @@ namespace AlertApp.Pages
 
             if (!string.IsNullOrWhiteSpace(vm.Mobile))
             {
-                string message = AppResources.SmsVerificationMessage + " " + String.Format("{0}{1}", vm.CountryPrefix, vm.Mobile);
+                string message = AppResources.SmsVerificationMessage + " " + String.Format("{0}{1}", vm.CountryPrefix, vm.Mobile) + ". " + AppResources.InformUserPhoneNumber;
 
                 var confirm = await DisplayAlert(AppResources.Verification, message, AppResources.ContinueDialogButton, AppResources.Cancel);
                 if (confirm)

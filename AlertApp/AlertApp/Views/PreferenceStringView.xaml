@@ -6,6 +6,7 @@
              xmlns:converters="clr-namespace:AlertApp.Converters;assembly=AlertApp"
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              mc:Ignorable="d"
+             BackgroundColor="White"
              x:Name="this"
              x:Class="AlertApp.Views.PreferenceStringView">
     <ContentView.Resources>

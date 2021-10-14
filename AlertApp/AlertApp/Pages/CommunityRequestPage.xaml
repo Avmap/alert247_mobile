@@ -5,7 +5,7 @@
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"                    
              NavigationPage.HasNavigationBar="false"
              xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-              >
+             BackgroundColor="White">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -15,7 +15,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Frame Grid.Row="0">
+            <Frame Grid.Row="0" BackgroundColor="White">
                 <StackLayout Orientation="Horizontal" Margin="8,14,16,0">
                     <Image Source="logo.png" WidthRequest="100"></Image>
                     <StackLayout  Orientation="Vertical"  HorizontalOptions="EndAndExpand">
@@ -27,8 +27,8 @@
 
             <Label Grid.Row="1" Margin ="46,10,46,0" HorizontalOptions="FillAndExpand" Style="{StaticResource AlertPagesText}"  HorizontalTextAlignment="Center"  Text="{infrastructure:Translate ContactRequestText}"></Label>
 
-            <StackLayout Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center">
-                <Frame Padding="0,0,0,0" Margin="5,5,5,0" HasShadow="False" HorizontalOptions="Center" VerticalOptions="Center" BorderColor="#B8B8B8" CornerRadius="16">
+            <StackLayout Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="White">
+                <Frame Padding="0,0,0,0" Margin="5,5,5,0" HasShadow="False" HorizontalOptions="Center" VerticalOptions="Center" BorderColor="#B8B8B8" CornerRadius="16" BackgroundColor="White">
                     <StackLayout Margin="0,6,0,0"  Spacing="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
                         <Image IsVisible="{Binding Contact.NoProfileImage}" Margin="16,13,11,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding Contact.ProfileImageDefault}"></Image>
                         <circle:CircleImage IsVisible="{Binding Contact.HasProfileImage}"  Margin="16,13,11,8" WidthRequest="{StaticResource ContactImageWidth}" HeightRequest="{StaticResource ContactImageHeight}" Source="{Binding Contact.ProfileImage}" Aspect="AspectFill"/>

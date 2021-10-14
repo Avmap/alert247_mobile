@@ -5,8 +5,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              xmlns:views="clr-namespace:AlertApp.Views"
+             BackgroundColor="White"
              Title="{infrastructure:Translate SettingsTab}"
-             
              x:Class="AlertApp.Pages.SettingsPage">
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" >

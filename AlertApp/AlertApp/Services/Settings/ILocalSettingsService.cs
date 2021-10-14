@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace AlertApp.Services.Settings
 {
@@ -10,9 +7,15 @@ namespace AlertApp.Services.Settings
         void SaveAuthToken(string token);
         void SaveSelectedLanguage(string language);
         void SaveApplicationPin(string pin);
+        Task SaveMobilePhone(string mobilePhone);
+        Task SaveName(string name);
+        Task SaveSurname(string surname);
         string GetSelectedLanguage();
         Task<string> GetAuthToken();
         Task<string> GetApplicationPin();
+        Task<string> GetMobilePhone();
+        Task<string> GetName();
+        Task<string> GetSurname();
         Task<string> GetPrivateKey();
         Task<string> GetPublicKey();
         void SavePrivateKey(string key);

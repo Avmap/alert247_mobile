@@ -4,7 +4,7 @@
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"             
              x:Class="AlertApp.Pages.DependandsPage"
              xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-                  >
+             BackgroundColor="White">
 
     <!--Title="{infrastructure:Translate TabDependands}" >-->
     <ContentView.Content>
@@ -81,7 +81,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-            
+
             <Label HorizontalOptions="CenterAndExpand" IsVisible="{Binding NoContacts}" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" Text="{infrastructure:Translate NoItems}" FontFamily="{StaticResource Regular}" />
             <StackLayout AbsoluteLayout.LayoutBounds="1, 1" AbsoluteLayout.LayoutFlags="XProportional,YProportional" IsVisible="False">
                 <Button BackgroundColor="{StaticResource AccentColor}"  Margin="0,0,16,16" HorizontalOptions="End"  Style="{StaticResource CircleButton}" Image="baseline_person_add_white_24.png" Command="{Binding OpenContactsScreen}"/>

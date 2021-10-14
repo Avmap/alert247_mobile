@@ -21,7 +21,7 @@ namespace AlertApp.iOS.CustomRenderers
                 if (Control != null)
                 {
                     Control.BorderStyle = UITextBorderStyle.None;
-                    Control.Layer.CornerRadius = 10;
+                    Control.Layer.CornerRadius = 0;
                     //Control.TextColor = UIColor.White;
                 }
             }

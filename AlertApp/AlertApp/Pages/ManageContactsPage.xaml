@@ -8,9 +8,9 @@
              xmlns:views="clr-namespace:AlertApp.Views"
              NavigationPage.HasNavigationBar="False"                       
              xmlns:badgeplugin="clr-namespace:Plugin.Badge.Abstractions;assembly=Plugin.Badge.Abstractions"              
-             x:Class="AlertApp.Pages.ManageContactsPage"              
-             Title="{infrastructure:Translate ManageContacts}"
-            >
+             x:Class="AlertApp.Pages.ManageContactsPage"
+             BackgroundColor="White"
+             Title="{infrastructure:Translate ManageContacts}">
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>

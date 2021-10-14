@@ -2,11 +2,11 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              android:TabbedPage.ToolbarPlacement="Bottom"
-               
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:alertapp="clr-namespace:AlertApp.Pages;assembly=AlertApp"
             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
             Title="{infrastructure:Translate AppName}"
+            BackgroundColor="White"
             x:Class="AlertApp.Pages.MainTabbedPage">
 
     <alertapp:MainPage Title="{infrastructure:Translate HomeTab}" Icon="baseline_home_black_24"/>

@@ -29,33 +29,34 @@ namespace AlertApp.Views
             this.BindingContext = ViewModelLocator.Instance.Resolve<SettingsPageViewModel>();
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            var args = e as Xamarin.Forms.TappedEventArgs;
-            toggleSetting(args.Parameter as string, true);
-        }
+        //private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        //{
+        //    var args = e as Xamarin.Forms.TappedEventArgs;
+        //    toggleSetting(args.Parameter as string, true);
+        //}
 
-        private void Switch_Toggled(object sender, ToggledEventArgs e)
-        {
-            var switchView = sender as Switch;
-            toggleSetting(switchView.Id.ToString(), true);
-        }
+        //private void Switch_Toggled(object sender, ToggledEventArgs e)
+        //{
+        //    var switchView = sender as Switch;
+        //    //toggleSetting(switchView.Id.ToString(), true);
+        //    toggle(Settings.SOS_BUTTON_VISIBLE, switchView);
+        //}
 
-        private void toggleSetting(string setting, bool fromCode)
-        {
-            switch (setting)
-            {
-                case "swFallDetection":
-                    toggle(Settings.SOS_BUTTON_VISIBLE, swFallDetection);
-                    break;
+        //private void toggleSetting(string setting, bool fromCode)
+        //{
+        //    switch (setting)
+        //    {
+        //        case "swFallDetection":
+        //            toggle(Settings.SOS_BUTTON_VISIBLE, swFallDetection);
+        //            break;
 
-            }
-        }
-        private void toggle(string setting, Switch switchView)
-        {
-            var newValue = !switchView.IsToggled;
-            switchView.IsToggled = !switchView.IsToggled;
-        }
+        //    }
+        //}
+        //private void toggle(string setting, Switch switchView)
+        //{
+        //    var newValue = !switchView.IsToggled;
+        //    switchView.IsToggled = !switchView.IsToggled;
+        //}
 
         private void ConfirmSettingsClick(object sender, EventArgs e)
         {
@@ -83,6 +84,10 @@ namespace AlertApp.Views
             {
                 vm.DisableFallDetection();
             }
+
+            Preferences.Set(Settings.SOS_BUTTON_VISIBLE, swFallDetection.IsToggled);
+            Preferences.Set(Settings.FallDetecion, swFallDetection.IsToggled);
+
             if (_nextPage != null)
             {
                 Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(_nextPage,false));

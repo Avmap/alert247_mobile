@@ -7,7 +7,6 @@
              BackgroundColor="White"
               xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              Title="{infrastructure:Translate AddContactsPage}">
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <infrastructure:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
@@ -48,7 +47,7 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                           
+
                             <Frame Padding="2,2,2,2" WidthRequest="150" HasShadow="False" HorizontalOptions="FillAndExpand" BackgroundColor="{Binding Selected,Converter={StaticResource SelectedListItemColorConverter},Mode=TwoWay}"   BorderColor="Transparent" CornerRadius="16">
                                 <Grid RowSpacing="0">
                                     <Grid.RowDefinitions>
@@ -59,7 +58,7 @@
                                     <Image IsVisible="{Binding NoProfileImage}" Grid.Row="0"  Margin="0,0,0,0" WidthRequest="45" HeightRequest="45" Source="{Binding ProfileImageDefault}"></Image>
                                     <circle:CircleImage  IsVisible="{Binding HasProfileImage}" Margin="0,0,0,0" Grid.Row="0" WidthRequest="45" HeightRequest="45" Source="{Binding ProfileImage}" Aspect="AspectFill"></circle:CircleImage>
                                     <Label Grid.Row="1"  VerticalOptions="End" TextColor="{Binding Selected,Converter={StaticResource SelectedContactPrimaryTextColorConverter},Mode=TwoWay}" LineBreakMode="TailTruncation" FontSize="12" MaxLines="2" HorizontalTextAlignment="Center" Text="{Binding Name}"></Label>
-                                    <Label Grid.Row="2" VerticalOptions="Start" TextColor="{Binding Selected,Converter={StaticResource SelectedContactTextColorConverter},Mode=TwoWay}"  HorizontalTextAlignment="Center"  FontSize="12"  HorizontalOptions="FillAndExpand" Text="{Binding FormattedNumber}"></Label>
+                                    <Label Grid.Row="2" VerticalOptions="Start" TextColor="{Binding Selected,Converter={StaticResource SelectedContactTextColorConverter},Mode=TwoWay}"  LineBreakMode="NoWrap" HorizontalTextAlignment="Center" FontSize="10"  HorizontalOptions="FillAndExpand" Text="{Binding FormattedNumber}"></Label>
                                 </Grid>
                                 <!--<StackLayout Margin="0,6,0,0"  Spacing="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
                                     <circle:CircleImage WidthRequest="45" HeightRequest="45" Source="{Binding ProfileImage}" Aspect="AspectFill"></circle:CircleImage>

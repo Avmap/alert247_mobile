@@ -3,6 +3,7 @@
              xmlns:views="clr-namespace:AlertApp.Views"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               x:Name="this"
+             BackgroundColor="White"
              x:Class="AlertApp.Views.Toolbar">
   <ContentView.Content>
       

@@ -1,12 +1,10 @@
 ﻿using AlertApp.Model;
 using AlertApp.Pages;
-using AlertApp.Resx;
 using AlertApp.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -284,6 +282,5 @@ namespace AlertApp.Infrastructure
                 Application.Current.MainPage.Navigation.PopToRootAsync();
             });
         }
-
     }
 }

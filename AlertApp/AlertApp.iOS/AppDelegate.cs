@@ -71,7 +71,7 @@ namespace AlertApp.iOS
             // automatically with method swizzling enabled.
             FirebasePushNotificationManager.DidReceiveMessage(userInfo);
             // Do your magic to handle the notification data
-            System.Console.WriteLine(userInfo);
+            //System.Console.WriteLine(userInfo);
 
             completionHandler(UIBackgroundFetchResult.NewData);
         }

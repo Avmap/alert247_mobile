@@ -2,12 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Needs Calendar Permission</string>
 	<key>NSContactsUsageDescription</key>
-	<string>This app requires contacts access to function properly.</string>
+	<string>Accessing your contacts allow us to alert your friends in case of an emergency. The data will be processed in our server.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Alert 24/7 needs location in order to protect you.</string>
+	<string>Turning on location services allow us to alert your friends in case of an emergency. Your location will be processed in our server.</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -36,7 +34,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>gr.avmap.alert247</string>
 	<key>CFBundleVersion</key>
-	<string>1.2.09</string>
+	<string>1.2.914</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -47,7 +45,6 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>location</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
@@ -56,19 +53,17 @@
 	<string>UIStatusBarStyleDefault</string>
 	<key>UIRequiresFullScreen</key>
 	<true/>
-	<key>LSSupportsOpeningDocumentsInPlace</key>
-	<true/>
-	<key>UIFileSharingEnabled</key>
-	<true/>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>New Entry</string>
-	<key>NSAppleMusicUsageDescription</key>
-	<string>New Entry</string>
-	<key>NSSiriUsageDescription</key>
-	<string>Need access to Siri</string>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Need access to Bluetooth</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.2.08</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This app requires calendar access to function properly.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app requires microphone access to function properly.</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>This app requires Apple Music access to function properly.</string>
+	<key>NSSiriUsageDescription</key>
+	<string>This app requires Siri access to function properly.</string>
 </dict>
 </plist>

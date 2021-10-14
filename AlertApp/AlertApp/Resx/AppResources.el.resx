@@ -215,7 +215,7 @@
     <value>Ακτίνα επίβλεψης</value>
   </data>
   <data name="TabMyCommunity" xml:space="preserve">
-    <value>Φίλοι από τους οποίους δέχομαι άμεση βοήθεια</value>
+    <value>Δέχομαι βοήθεια από</value>
   </data>
   <data name="TabSuggestions" xml:space="preserve">
     <value>Προτάσεις</value>
@@ -242,7 +242,7 @@
     <value>Καλωσήλθατε στο Alert247</value>
   </data>
   <data name="WhoAlertMe" xml:space="preserve">
-    <value>Προσφέρω βοήθεια</value>
+    <value>Προσφέρω βοήθεια σε</value>
   </data>
   <data name="AddContactsPage" xml:space="preserve">
     <value>Προσθήκη φίλου άμεσης βοήθειας</value>
@@ -356,7 +356,7 @@
     <value>Αποστολή Alert</value>
   </data>
   <data name="BlockedUsersPage" xml:space="preserve">
-    <value>Αγνοημένες επαφές</value>
+    <value>Αποκλεισμένες επαφές</value>
   </data>
   <data name="AcceptedFromMe" xml:space="preserve">
     <value>Έχω αποδεχτεί</value>
@@ -455,7 +455,7 @@
     <value>ΣΤΟΙΧΕΙΑ ΧΡΗΣΤΗ</value>
   </data>
   <data name="RegistrationEnterFieldsPromt" xml:space="preserve">
-    <value>ΠΡΟΑΙΡΕΤΙΚΟ - συμπληρώστε το προφίλ σας. Σε περίπτωση έκτακτης ανάγκης θα σταλεί στις επιλεγμένες επαφές σας.</value>
+    <value>ΠΡΟΑΙΡΕΤΙΚΟ - συμπληρώστε το προφίλ σας. Σε περίπτωση έκτακτης ανάγκης θα σταλεί στις επιλεγμένες επαφές σας. Τα στοιχεία θα υποβληθούν σε επεξεργασία στον διακομιστή μας.</value>
   </data>
   <data name="Finish" xml:space="preserve">
     <value>Ολοκλήρωση</value>
@@ -743,10 +743,10 @@
     <value>ΜΗΝΥΜΑ</value>
   </data>
   <data name="AddSub" xml:space="preserve">
-    <value>Ενεργοποίηση συνδρομής Κ.Λ.Σ.</value>
+    <value>Κέντρο Λήψης Σημάτων</value>
   </data>
   <data name="NoContactsNoSub" xml:space="preserve">
-    <value>Για alert, προσθέστε επαφές ή ενεργοποιείστε συνδρομή ΚΛΣ</value>
+    <value>Για alert, προσθέστε επαφές</value>
   </data>
   <data name="TouristGuide" xml:space="preserve">
     <value>Xάρτης υποδομών ασφαλείας</value>
@@ -755,7 +755,7 @@
     <value>Λήξη</value>
   </data>
   <data name="SubscriptionFrame" xml:space="preserve">
-    <value>ΣΥΝΔΡΟΜΗ ΣΕ ΚΕΝΤΡΟ ΛΗΨΗΣ ΣΗΜΑΤΩΝ</value>
+    <value>ΚΕΝΤΡΟ ΛΗΨΗΣ ΣΗΜΑΤΩΝ</value>
   </data>
   <data name="SubscriptionPackage" xml:space="preserve">
     <value>Πακέτο συνδρομής</value>
@@ -770,10 +770,10 @@
     <value>ΛΗΓΕΙ ΣΥΝΤΟΜΑ</value>
   </data>
   <data name="SubscriptionStatusInactive" xml:space="preserve">
-    <value>ΑΝΕΝΕΡΓΗ</value>
+    <value>ΑΝΕΝΕΡΓΟ</value>
   </data>
   <data name="SubscriptionStatusOK" xml:space="preserve">
-    <value>ΕΝΕΡΓΗ</value>
+    <value>ΕΝΕΡΓΟ</value>
   </data>
   <data name="SingleContact" xml:space="preserve">
     <value>Φίλος άμεσης βοήθειας</value>
@@ -806,7 +806,7 @@
     <value>Αφαίρεση του χρήστη από τα άτομα που ειδοποιείτε;</value>
   </data>
   <data name="PendingRequestsPage" xml:space="preserve">
-    <value>Αιτήματα</value>
+    <value>Ειδοποιήσεις</value>
   </data>
   <data name="DoNotShowSetting" xml:space="preserve">
     <value>Μην το ξαναδείξεις</value>
@@ -822,5 +822,23 @@
   </data>
   <data name="AcceptContactRequest" xml:space="preserve">
     <value>Αποδοχή</value>
+  </data>
+   <data name="InformUserPhoneNumber" xml:space="preserve">
+    <value>Ο αριθμός τηλεφώνου σας θα υποβληθεί σε επεξεργασία στον διακομιστή μας.</value>
+  </data>
+  <data name="NoSubscription" xml:space="preserve">
+    <value>ΧΩΡΙΣ ΣΥΝΔΡΟΜΗ</value>
+  </data>
+  <data name="NoSubscriptionInfo" xml:space="preserve">
+    <value>Παρακαλώ επικοινωνήστε με το Κ.Λ.Σ.</value>
+  </data>
+   <data name="Name" xml:space="preserve">
+    <value>Όνομα</value>
+  </data>
+   <data name="Surname" xml:space="preserve">
+    <value>Επώνυμο</value>
+  </data>
+   <data name="ProfileValidattion" xml:space="preserve">
+    <value>Όλα τα πεδία είναι υποχρεωτικά</value>
   </data>
 </root>

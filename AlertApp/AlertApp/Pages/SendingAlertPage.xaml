@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlertApp.Pages.SendingAlertPage"             
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
-             
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             BackgroundColor="White"
              xmlns:views="clr-namespace:AlertApp.Views"
-             NavigationPage.HasNavigationBar="false"             
-             >
+             NavigationPage.HasNavigationBar="false"
+             ios:Page.UseSafeArea="true">
     <ContentPage.Content>
         <Grid >
             <Grid.RowDefinitions>
@@ -14,7 +15,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Frame Grid.Row="0" >
+            <Frame Grid.Row="0" BackgroundColor="White">
                 <Label  FontSize="20" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="{StaticResource PrimaryColor}"  Text="{infrastructure:Translate SendAlertTitle}"></Label>
             </Frame>
             <Frame Margin="60,13,60,0" BorderColor="Black" CornerRadius="16" HorizontalOptions="FillAndExpand" Grid.Row="1" BackgroundColor="{StaticResource PrimaryColor}">
@@ -27,8 +28,10 @@
             </Frame>
             <infrastructure:LoadingIndicator  Grid.Row="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
             <StackLayout Grid.Row="2" Orientation="Vertical" Spacing="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Frame Margin="0,16,0,0" HorizontalOptions="Center" BackgroundColor="#E6E7E8" CornerRadius="16" Padding="8,2,8,2" HasShadow="False">
                 <views:PinView x:Name="pinLayout"></views:PinView>
-                <Label FontSize="16" Text="{infrastructure:Translate EnterPinFor}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontAttributes="Bold"></Label>
+                    </Frame>
+                <Label FontSize="16" Text="{infrastructure:Translate EnterPinFor}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}"></Label>
                 <Label FontSize="16" Text="{infrastructure:Translate EnterPinToCancel}" TextColor="{StaticResource PrimaryColor}" HorizontalTextAlignment="Center"  HorizontalOptions="FillAndExpand" FontAttributes="Bold"></Label>
             </StackLayout>
         </Grid>

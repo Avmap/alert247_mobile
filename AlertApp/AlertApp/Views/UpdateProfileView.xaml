@@ -4,10 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" 
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
+             BackgroundColor="White"
              x:Class="AlertApp.Views.UpdateProfileView">
     <ContentView.Content>
-        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -16,7 +17,7 @@
             <ScrollView Grid.Row="0" HorizontalOptions="FillAndExpand">
                 <StackLayout HorizontalOptions="FillAndExpand">
                     <Label Margin="16,0,16,0" x:Name="labelPrompt"  Text="{infrastructure:Translate RegistrationEnterFieldsPromt}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
-                    <Frame IsVisible="{Binding NotBusy}" HasShadow="False" BorderColor="Transparent" CornerRadius="16"  HorizontalOptions="FillAndExpand">
+                    <Frame BackgroundColor="White" IsVisible="{Binding NotBusy}" HasShadow="False" BorderColor="Transparent" CornerRadius="16"  HorizontalOptions="FillAndExpand">
                         <ScrollView Margin="16,0,16,0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <StackLayout Margin="0,12,0,12" x:Name="registrationContainer" Grid.Row="1" Orientation="Vertical"></StackLayout>
                         </ScrollView>

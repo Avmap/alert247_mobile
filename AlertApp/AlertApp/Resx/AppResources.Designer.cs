@@ -1325,6 +1325,12 @@ namespace AlertApp.Resx {
             }
         }
         
+        internal static string NoSubscription {
+            get {
+                return ResourceManager.GetString("NoSubscription", resourceCulture);
+            }
+        }
+        
         internal static string SubscriptionStatusExpiring {
             get {
                 return ResourceManager.GetString("SubscriptionStatusExpiring", resourceCulture);
@@ -1346,6 +1352,12 @@ namespace AlertApp.Resx {
         internal static string SubscriptionPackage {
             get {
                 return ResourceManager.GetString("SubscriptionPackage", resourceCulture);
+            }
+        }
+        
+        internal static string NoSubscriptionInfo {
+            get {
+                return ResourceManager.GetString("NoSubscriptionInfo", resourceCulture);
             }
         }
         
@@ -1454,6 +1466,30 @@ namespace AlertApp.Resx {
         internal static string SuccessSendAlertMessageSrc {
             get {
                 return ResourceManager.GetString("SuccessSendAlertMessageSrc", resourceCulture);
+            }
+        }
+        
+        internal static string InformUserPhoneNumber {
+            get {
+                return ResourceManager.GetString("InformUserPhoneNumber", resourceCulture);
+            }
+        }
+        
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        internal static string Surname {
+            get {
+                return ResourceManager.GetString("Surname", resourceCulture);
+            }
+        }
+        
+        internal static string ProfileValidattion {
+            get {
+                return ResourceManager.GetString("ProfileValidattion", resourceCulture);
             }
         }
     }

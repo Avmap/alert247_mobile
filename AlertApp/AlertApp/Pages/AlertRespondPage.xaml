@@ -9,7 +9,7 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              NavigationPage.HasNavigationBar="false"
-             >
+             BackgroundColor="White">
     <ContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
@@ -47,7 +47,7 @@
                                 <Label Text="&#x0F0376;" Style="{StaticResource IconInverse}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
                                 <Label Style="{StaticResource IconTextInverse}" Visual="Material" Text="{infrastructure:Translate IgnoreHelp}" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
                                 <StackLayout HorizontalOptions="EndAndExpand"></StackLayout>
-                                
+
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>
@@ -65,7 +65,7 @@
                         <StackLayout Grid.Row="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="0">
                             <Frame Padding="1,1,1,1" Margin="00,0,0,0" HasShadow="False" HorizontalOptions="FillAndExpand" WidthRequest="180" BorderColor="{StaticResource PrimaryColor}" CornerRadius="0">
                                 <Image BackgroundColor="#ccc" Source="{Binding ProfileImage}" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>
-                                
+
                             </Frame>
                             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                                 <Label Padding="10,10,10,10" FontAttributes="Bold" TextColor="{StaticResource PrimaryColorText}" BackgroundColor="{StaticResource PrimaryColor}" MaxLines="1" FontSize="15" HorizontalOptions="FillAndExpand" LineBreakMode="TailTruncation"  HorizontalTextAlignment="Center" Text="{Binding ContactName}"></Label>
@@ -82,14 +82,14 @@
                                                     <Label Margin="0,0,2,0" FontAttributes="Bold" TextColor="Black" HorizontalOptions="StartAndExpand" Text="{Binding Label}"></Label>
                                                     <Label FontAttributes="None" FontSize="14" TextColor="Black" HorizontalOptions="StartAndExpand" Text="{Binding Value}"></Label>
                                                 </FlexLayout>
-                                                
+
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>
                                     </StackLayout>
                                 </ScrollView>
                             </StackLayout>
-                            
-                         
+
+
                         </StackLayout>
                         <StackLayout Grid.Row="1" BackgroundColor="{StaticResource PrimaryColor}" Margin="0,0,0,0" Padding="8,2,2,2" HorizontalOptions="FillAndExpand">
                             <Label  FontSize="12" TextColor="White" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Text="{infrastructure:Translate UserIsInPosition}"></Label>
@@ -113,7 +113,7 @@
                 </Frame>
             </StackLayout>
 
-            
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

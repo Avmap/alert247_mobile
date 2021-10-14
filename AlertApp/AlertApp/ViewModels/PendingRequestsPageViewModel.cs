@@ -152,7 +152,7 @@ namespace AlertApp.ViewModels
 
                             if (addressBookItem != null)
                             {
-                                tempContacts.Add(new Contact { ProfileImageUri = addressBookItem.PhotoUri, Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage });
+                                tempContacts.Add(new Contact { Accepted = item.Accepted, Cellphone = item.Cellphone, FirstName = addressBookItem.Name, Stats = item.Stats, ProfileImage = addressBookItem.ProfileImage });
                             }
                             else
                             {

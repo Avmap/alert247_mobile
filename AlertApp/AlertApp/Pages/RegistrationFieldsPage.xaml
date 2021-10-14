@@ -4,9 +4,8 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"       
              ios:Page.UseSafeArea="true"
-
              BackgroundColor="{StaticResource RegistrationBackgrounColor}"             
-             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" xmlns:renderers="clr-namespace:AlertApp.Infrastructure"
              x:Class="AlertApp.Pages.RegistrationFieldsPage">
     <ContentPage.Content>
         <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
@@ -21,11 +20,15 @@
                         <Image x:Name="topNextImage" HeightRequest="56" WidthRequest="56"  Source="accept_button.png"/>
                         <Label Text="{infrastructure:Translate Finish}" HorizontalTextAlignment="Center" Style="{StaticResource CaptionBold}" VerticalTextAlignment="Center"/>
                     </StackLayout>
-                    <Frame  HasShadow="False" Margin="0,0,0,0" HorizontalOptions="FillAndExpand">
+                    <Frame BackgroundColor="White" HasShadow="False" Margin="0,0,0,0" HorizontalOptions="FillAndExpand">
                         <ScrollView Margin="0,0,0,0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <StackLayout>
                                 <Label Margin="0,0,0,0" x:Name="labelPrompt"  Text="{infrastructure:Translate RegistrationEnterFieldsPromt}" HorizontalTextAlignment="Center" Style="{StaticResource RegistrationText}"></Label>
-                                <StackLayout Margin="0,0,0,0" x:Name="registrationContainer" Grid.Row="1" Orientation="Vertical"></StackLayout>
+                                <StackLayout Margin="0,0,0,0" x:Name="registrationContainer" Grid.Row="1" Orientation="Vertical">
+                                    <renderers:BoxBorderEntry x:Name="NameEntry" Keyboard="Text" Placeholder="{infrastructure:Translate Name}" HorizontalTextAlignment="Center" NormalBorderColor="{StaticResource BorderColor}" ErrorBorderColor="{StaticResource RedColor}" Style="{StaticResource EntryStyle}"/>
+                                    <BoxView Color="Transparent" HeightRequest="2" />
+                                    <renderers:BoxBorderEntry x:Name="SurnameEntry" Keyboard="Text" Placeholder="{infrastructure:Translate Surname}" HorizontalTextAlignment="Center" NormalBorderColor="{StaticResource BorderColor}" ErrorBorderColor="{StaticResource RedColor}" Style="{StaticResource EntryStyle}"/>
+                                </StackLayout>
                             </StackLayout>
                         </ScrollView>
                     </Frame>
@@ -34,9 +37,7 @@
                         VerticalOptions="CenterAndExpand"
                         HorizontalOptions="Center"
                         Clicked="SubmitRegistrationButton_Clicked"
-                        Visual="Material" Padding="10,0"
-                            />
-                        
+                        Visual="Material" Padding="10,0"/>
                     </StackLayout>
                 </StackLayout>
             </Grid>

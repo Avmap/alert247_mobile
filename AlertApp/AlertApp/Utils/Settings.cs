@@ -20,6 +20,9 @@ namespace AlertApp.Utils
         public static string SendLocation = "SendLocation";
         public static string AppHasRun = "AppHasRun";
         public static string FallDetecion = "FallDetecion";
+        public static string MobileNumber = "MobileNumber";
+        public static string Name = "Name";
+        public static string Surname = "Surname";
 
 
         public static string SOS_BUTTON_VISIBLE = "SOS_BUTTON_VISIBLE";

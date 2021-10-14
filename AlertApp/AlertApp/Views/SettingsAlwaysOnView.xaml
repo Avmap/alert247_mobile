@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp" 
+             xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
+             BackgroundColor="White"
              x:Class="AlertApp.Views.SettingsAlwaysOnView">
     <ContentView.Content>
         <Grid VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" >

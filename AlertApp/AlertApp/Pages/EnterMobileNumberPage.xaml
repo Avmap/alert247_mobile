@@ -4,8 +4,7 @@
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              xmlns:views="clr-namespace:AlertApp.Views"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
-             BackgroundColor="{StaticResource RegistrationBackgrounColor}"         
-             
+             BackgroundColor="{StaticResource RegistrationBackgrounColor}"
              NavigationPage.HasNavigationBar="False"
              ios:Page.UseSafeArea="true"
              Title="{infrastructure:Translate EnterMobileNumberTitle}"             

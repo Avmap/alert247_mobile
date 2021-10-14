@@ -3,6 +3,7 @@ using AlertApp.MessageCenter;
 using AlertApp.Model;
 using AlertApp.Pages;
 using AlertApp.Resx;
+using AlertApp.Services.Cryptography;
 using AlertApp.Services.Settings;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace AlertApp.ViewModels
         #region Services
         readonly IGuardian _guardian;
         readonly ILocalSettingsService _localSettingsService;
+        readonly ICryptographyService _cryptographyService;
         #endregion
 
         #region Properties
@@ -55,10 +57,11 @@ namespace AlertApp.ViewModels
 
         #endregion
 
-        public SettingsPageViewModel(ILocalSettingsService localSettingsService)
+        public SettingsPageViewModel(ILocalSettingsService localSettingsService, ICryptographyService cryptographyService)
         {
             _localSettingsService = localSettingsService;
             _guardian = DependencyService.Get<IGuardian>();
+            _cryptographyService = cryptographyService;
         }
 
         public async Task<LocationResult> EnableFallDetection()
@@ -290,6 +293,13 @@ namespace AlertApp.ViewModels
             this.Busy = isBusy;
         }
 
+        public async Task OpenUserProfile()
+        {
+            var mobilePhone = await _localSettingsService.GetMobilePhone();
+            var urlSource = CodeSettings.UserProfilePage.Replace("$MOBILE$", mobilePhone.Replace("+", string.Empty));
+            urlSource = urlSource.Replace("$PIN$", await _localSettingsService.GetApplicationPin());
+            await Browser.OpenAsync(new Uri(urlSource), BrowserLaunchMode.SystemPreferred);
+        }
         #endregion
     }
 

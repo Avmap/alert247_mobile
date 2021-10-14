@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             BackgroundColor="White"
              mc:Ignorable="d"
              xmlns:converters="clr-namespace:AlertApp.Converters;assembly=AlertApp"
              xmlns:view="clr-namespace:AlertApp.Views"
-             
              xmlns:infrastructure="clr-namespace:AlertApp.Infrastructure;assembly=AlertApp"
              x:Class="AlertApp.Views.SettingsFallDetectorView">
     <ContentView.Resources>
@@ -30,7 +30,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Text="{infrastructure:Translate FALLING_WAIST_SV_TOT}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
+                    <Label TextColor="Black" Text="{infrastructure:Translate FALLING_WAIST_SV_TOT}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
                     <Frame HasShadow="False" BackgroundColor="#E6E7E8" Grid.Column="1" CornerRadius="4" BorderColor="#CACCCD" Padding="2,0,2,0" HorizontalOptions="FillAndExpand">
                         <infrastructure:DecimalEntry Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontSize="16"  HorizontalTextAlignment="Start"  HorizontalOptions="FillAndExpand" Text="{Binding FALLING_WAIST_SV_TOT,Converter={StaticResource cnvInvert}}"></infrastructure:DecimalEntry>
                     </Frame>
@@ -41,7 +41,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Text="{infrastructure:Translate IMPACT_WAIST_SV_TOT}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
+                    <Label TextColor="Black" Text="{infrastructure:Translate IMPACT_WAIST_SV_TOT}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
                     <Frame HasShadow="False" BackgroundColor="#E6E7E8" Grid.Column="1" CornerRadius="4" BorderColor="#CACCCD" Padding="2,0,2,0" HorizontalOptions="FillAndExpand">
                         <infrastructure:DecimalEntry Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" FontSize="16" Text="{Binding IMPACT_WAIST_SV_TOT,Converter={StaticResource cnvInvert}}"></infrastructure:DecimalEntry>
                     </Frame>
@@ -52,7 +52,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Text="{infrastructure:Translate IMPACT_WAIST_SV_D}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
+                    <Label TextColor="Black" Text="{infrastructure:Translate IMPACT_WAIST_SV_D}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
                     <Frame HasShadow="False" BackgroundColor="#E6E7E8" Grid.Column="1" CornerRadius="4" BorderColor="#CACCCD" Padding="2,0,2,0" HorizontalOptions="FillAndExpand">
                         <infrastructure:DecimalEntry Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" FontSize="16" Text="{Binding IMPACT_WAIST_SV_D,Converter={StaticResource cnvInvert}}"></infrastructure:DecimalEntry>
                     </Frame>
@@ -62,7 +62,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Text="{infrastructure:Translate IMPACT_WAIST_SV_MAXMIN}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
+                    <Label TextColor="Black" Text="{infrastructure:Translate IMPACT_WAIST_SV_MAXMIN}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
                     <Frame HasShadow="False" BackgroundColor="#E6E7E8" Grid.Column="1" CornerRadius="4" BorderColor="#CACCCD" Padding="2,0,2,0" HorizontalOptions="FillAndExpand">
                         <infrastructure:DecimalEntry Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" FontSize="16" Text="{Binding IMPACT_WAIST_SV_MAXMIN,Converter={StaticResource cnvInvert}}"></infrastructure:DecimalEntry>
                     </Frame>
@@ -72,7 +72,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Text="{infrastructure:Translate IMPACT_WAIST_Z_2}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
+                    <Label TextColor="Black" Text="{infrastructure:Translate IMPACT_WAIST_Z_2}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
                     <Frame HasShadow="False" BackgroundColor="#E6E7E8" Grid.Column="1" CornerRadius="4" BorderColor="#CACCCD" Padding="2,0,2,0" HorizontalOptions="FillAndExpand">
                         <infrastructure:DecimalEntry Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" FontSize="16" Text="{Binding IMPACT_WAIST_Z_2,Converter={StaticResource cnvInvert}}"></infrastructure:DecimalEntry>
                     </Frame>
@@ -83,7 +83,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Text="{infrastructure:Translate INTERVAL_MS}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
+                    <Label TextColor="Black" Text="{infrastructure:Translate INTERVAL_MS}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
                     <Frame HasShadow="False" BackgroundColor="#E6E7E8" Grid.Column="1" CornerRadius="4" BorderColor="#CACCCD" Padding="2,0,2,0" HorizontalOptions="FillAndExpand">
                         <infrastructure:DecimalEntry Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" FontSize="16" Text="{Binding INTERVAL_MS,Converter={StaticResource cnvInvert}}"></infrastructure:DecimalEntry>
                     </Frame>
@@ -94,7 +94,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Text="{infrastructure:Translate FILTER_LPF_GAIN}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
+                    <Label TextColor="Black" Text="{infrastructure:Translate FILTER_LPF_GAIN}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
                     <Frame HasShadow="False" BackgroundColor="#E6E7E8" Grid.Column="1" CornerRadius="4" BorderColor="#CACCCD" Padding="2,0,2,0" HorizontalOptions="FillAndExpand">
                         <infrastructure:DecimalEntry Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" FontSize="16" Text="{Binding FILTER_LPF_GAIN,Converter={StaticResource cnvInvert}}"></infrastructure:DecimalEntry>
                     </Frame>
@@ -104,7 +104,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Text="{infrastructure:Translate FILTER_HPF_GAIN}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
+                    <Label TextColor="Black" Text="{infrastructure:Translate FILTER_HPF_GAIN}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
                     <Frame HasShadow="False" BackgroundColor="#E6E7E8" Grid.Column="1" CornerRadius="4" BorderColor="#CACCCD" Padding="2,0,2,0" HorizontalOptions="FillAndExpand">
                         <infrastructure:DecimalEntry Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" FontSize="16" Text="{Binding FILTER_HPF_GAIN,Converter={StaticResource cnvInvert}}"></infrastructure:DecimalEntry>
                     </Frame>
@@ -114,7 +114,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Text="{infrastructure:Translate FILTER_FACTOR_0}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
+                    <Label TextColor="Black" Text="{infrastructure:Translate FILTER_FACTOR_0}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
                     <Frame HasShadow="False" BackgroundColor="#E6E7E8" Grid.Column="1" CornerRadius="4" BorderColor="#CACCCD" Padding="2,0,2,0" HorizontalOptions="FillAndExpand">
                         <infrastructure:DecimalEntry SupportNegativeValues="True" Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" FontSize="16" Text="{Binding FILTER_FACTOR_0,Converter={StaticResource cnvInvert}}"></infrastructure:DecimalEntry>
                     </Frame>
@@ -124,7 +124,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Text="{infrastructure:Translate FILTER_FACTOR_1}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
+                    <Label TextColor="Black" Text="{infrastructure:Translate FILTER_FACTOR_1}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
                     <Frame HasShadow="False" BackgroundColor="#E6E7E8" Grid.Column="1" CornerRadius="4" BorderColor="#CACCCD" Padding="2,0,2,0" HorizontalOptions="FillAndExpand">
                         <infrastructure:DecimalEntry Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" FontSize="16" Text="{Binding FILTER_FACTOR_1,Converter={StaticResource cnvInvert}}"></infrastructure:DecimalEntry>
                     </Frame>
@@ -134,7 +134,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Text="{infrastructure:Translate LYING_AVERAGE_Z_LPF}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
+                    <Label TextColor="Black" Text="{infrastructure:Translate LYING_AVERAGE_Z_LPF}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand"></Label>
                     <Frame HasShadow="False" BackgroundColor="#E6E7E8" Grid.Column="1" CornerRadius="4" BorderColor="#CACCCD" Padding="2,0,2,0" HorizontalOptions="FillAndExpand">
                         <infrastructure:DecimalEntry Keyboard="Numeric" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" FontSize="16" Text="{Binding LYING_AVERAGE_Z_LPF,Converter={StaticResource cnvInvert}}"></infrastructure:DecimalEntry>
                     </Frame>

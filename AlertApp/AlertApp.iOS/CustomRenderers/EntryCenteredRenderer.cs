@@ -98,6 +98,7 @@ namespace AlertApp.iOS.CustomRenderers
         {
             //BorderStyle = UITextBorderStyle.RoundedRect;
             BorderStyle = UITextBorderStyle.Line;
+            TextColor = Color.FromHex("#37474F").ToUIColor();
             TextAlignment = UITextAlignment.Center;
             ClipsToBounds = true;
             KeyboardType = UIKeyboardType.NumberPad;
