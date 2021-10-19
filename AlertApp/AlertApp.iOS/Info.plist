@@ -34,7 +34,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>gr.avmap.alert247</string>
 	<key>CFBundleVersion</key>
-	<string>1.2.914</string>
+	<string>1.2.915</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
