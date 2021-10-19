@@ -24,6 +24,9 @@ namespace AlertApp.Model.Api
     {
         [DataMember(Name = "token")]
         public string Token { get; set; }
+
+        [DataMember(Name = "lang")]
+        public string Lang { get; set; }
     }
 
     [DataContract]
