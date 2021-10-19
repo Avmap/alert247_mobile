@@ -17,7 +17,40 @@ namespace AlertApp.Pages
             BindingContext = this;
             IsBusy = true;
             InitializeComponent();
-            MapSource = AlertApp.CodeSettings.MapURL;
+
+            var selectedLanguage = Preferences.Get(Utils.Settings.SelectedLanguage, "");
+            selectedLanguage = selectedLanguage.Substring(0, 2);
+
+            switch (selectedLanguage)
+            {
+                case "el":
+                    MapSource = AlertApp.CodeSettings.MapURL;
+                    break;
+                case "en":
+                    MapSource = AlertApp.CodeSettings.MapURLEn;
+                    break;
+                case "bg":
+                    MapSource = AlertApp.CodeSettings.MapURLBg;
+                    break;
+                case "zh":
+                    MapSource = AlertApp.CodeSettings.MapURLZh;
+                    break;
+                case "fr":
+                    MapSource = AlertApp.CodeSettings.MapURLFr;
+                    break;
+                case "de":
+                    MapSource = AlertApp.CodeSettings.MapURLDe;
+                    break;
+                case "it":
+                    MapSource = AlertApp.CodeSettings.MapURLIt;
+                    break;
+                case "ru":
+                    MapSource = AlertApp.CodeSettings.MapURLRu;
+                    break;
+                default:
+                    MapSource = AlertApp.CodeSettings.MapURL;
+                    break;
+            }
         }
         private string _mapSource;
         public string MapSource

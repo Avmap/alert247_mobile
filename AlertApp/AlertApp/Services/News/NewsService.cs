@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AlertApp.Model.Api;
 using Newtonsoft.Json;
+using Xamarin.Essentials;
 
 namespace AlertApp.Services.News
 {
@@ -15,7 +16,8 @@ namespace AlertApp.Services.News
             var res = new Response<NewsEntryResponse>();
             try
             {
-                var json = JsonConvert.SerializeObject(new GetNewsPostBody { Token = token });
+                var selectedLanguage = Preferences.Get(Utils.Settings.SelectedLanguage, "");
+                var json = JsonConvert.SerializeObject(new GetNewsPostBody { Token = token, Lang = selectedLanguage.Substring(0, 2) });
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await _httpClient.PostAsync("post/alert/getNews", content);
