@@ -295,9 +295,12 @@ namespace AlertApp.ViewModels
 
         public async Task OpenUserProfile()
         {
+            var selectedLanguage = Preferences.Get(Utils.Settings.SelectedLanguage, "");
+            selectedLanguage = selectedLanguage.Substring(0, 2);
             var mobilePhone = await _localSettingsService.GetMobilePhone();
             var urlSource = CodeSettings.UserProfilePage.Replace("$MOBILE$", mobilePhone.Replace("+", string.Empty));
             urlSource = urlSource.Replace("$PIN$", await _localSettingsService.GetApplicationPin());
+            urlSource = urlSource.Replace("$LANG$", selectedLanguage);
             await Browser.OpenAsync(new Uri(urlSource), BrowserLaunchMode.SystemPreferred);
         }
         #endregion
