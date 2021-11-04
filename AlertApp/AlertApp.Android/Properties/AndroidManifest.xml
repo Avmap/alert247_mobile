@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.2.08" package="gr.avmap.alert247" android:installLocation="auto" android:versionCode="000210">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.2.08" package="gr.avmap.alert247" android:installLocation="auto" android:versionCode="000211">
 	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="30" />
 	<!-- Using speaker volume control -->
 	<!-- If you need to modify files in external storage, request
@@ -16,7 +16,6 @@
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
 	<uses-feature android:name="android.hardware.location" android:required="false" />
 	<uses-feature android:name="android.hardware.location.gps" android:required="false" />
