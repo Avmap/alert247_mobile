@@ -41,6 +41,8 @@
                                 VerticalOptions="CenterAndExpand"
                                 HorizontalOptions="Center"
                                 CornerRadius="10"
+                            WidthRequest="80"
+                            Clicked="Button_Clicked"
                                 TextColor="{StaticResource DangerButtonTextColor}"
                                 BackgroundColor="{StaticResource DangerButtonColor}"
                                 BorderColor="{StaticResource DangerButtonColor}"    

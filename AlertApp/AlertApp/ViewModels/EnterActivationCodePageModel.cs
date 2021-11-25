@@ -262,7 +262,6 @@ namespace AlertApp.ViewModels
             var response = await _registrationService.Register(_MobileNumber, _localSettingsService.GetSelectedLanguage(), applicationHash);
             if (response.IsOk)
             {
-
                 _smsTimer.Start();
                 CanResendCode = false;
             }

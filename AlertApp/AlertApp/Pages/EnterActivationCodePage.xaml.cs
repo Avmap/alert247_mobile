@@ -169,5 +169,12 @@ namespace AlertApp.Pages
 
             }
         }
+
+        void Button_Clicked(System.Object sender, System.EventArgs e)
+        {
+            var vm = this.BindingContext as EnterActivationCodePageViewModel;
+            var command = vm.ResendCodeCommand;
+            command.Execute(null);
+        }
     }
 }

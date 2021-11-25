@@ -169,7 +169,7 @@ namespace AlertApp.ViewModels
 
         private int timerRunTimes;
 
-        private int _countDownSeconds = 59;
+        private int _countDownSeconds = 120;
         #endregion
 
         #region Commands
@@ -208,9 +208,9 @@ namespace AlertApp.ViewModels
             _localSettingsService = localSettingsService;
             _MobileNumber = mobilenumber;
 
-            //_smsTimer = new System.Timers.Timer();
-            //_smsTimer.Interval = 1000;
-            //_smsTimer.Elapsed += OnTimedEvent;
+            _smsTimer = new System.Timers.Timer();
+            _smsTimer.Interval = 1000;
+            _smsTimer.Elapsed += OnTimedEvent;
 //#if Release
             RequestVerificationCode();
 //#endif
@@ -280,7 +280,7 @@ namespace AlertApp.ViewModels
 
             if (response.IsOk)
             {
-                //_smsTimer.Start();
+                _smsTimer.Start();
                 CanResendCode = false;
             }
 
@@ -288,7 +288,7 @@ namespace AlertApp.ViewModels
             {
                 showOKMessage(AppResources.Error, GetErrorDescription(response.ErrorDescription.Labels));
 
-                //_smsTimer.Stop();
+                _smsTimer.Stop();
                 CanResendCode = true;
             }
             else if (!response.IsOk && !response.IsOnline)
