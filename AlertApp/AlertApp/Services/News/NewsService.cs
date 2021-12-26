@@ -17,10 +17,14 @@ namespace AlertApp.Services.News
             try
             {
                 var selectedLanguage = Preferences.Get(Utils.Settings.SelectedLanguage, "");
-                var json = JsonConvert.SerializeObject(new GetNewsPostBody { Token = token, Lang = selectedLanguage.Substring(0, 2) });
+                //var json = JsonConvert.SerializeObject(new GetNewsPostBody { Token = token, Lang = selectedLanguage.Substring(0, 2) });
 
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await _httpClient.PostAsync("post/alert/getNews", content);
+                var getNewsObj = new GetNewsPostBody { Token = token, Lang = selectedLanguage.Substring(0, 2) };
+
+                //var content = new StringContent(json, Encoding.UTF8, "application/json");
+                //var response = await _httpClient.PostAsync("post/alert/getNews", content);
+
+                var response = await _httpClient.GetAsync($"post/alert/getNews?api_key={getNewsObj.api_key}&lang={getNewsObj.Lang}");
 
                 if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                 {

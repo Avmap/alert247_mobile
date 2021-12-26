@@ -22,7 +22,7 @@ namespace AlertApp
         public const string StagingAPIKey = "NDTSAM2DAWCYS5MPPNWQ";
         public const string ProductionAPI = "https://alert247.gr/api/";
         public const string ProductionAPIKey = "N0S16FDLV2LQ6KEYF3E6";
-        public const string UserProfilePage = "https://alert247.gr/$LANG$/diaxeirisi-profil?user=sub$MOBILE$@alert247.gr&passw=$PIN$";
+        public const string UserProfilePage = "https://alert247.gr/$LANG$/diaxeirisi-profil?user=sub$MOBILE$&passw=$PIN$";
 #if DEBUG
         public const string AndroidMapsKey = "AIzaSyD0tos4Y8_QAWxkEnYRuKT7ftEfMT_MZpU";
 #else

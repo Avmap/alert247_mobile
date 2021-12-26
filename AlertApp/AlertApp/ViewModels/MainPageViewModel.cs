@@ -16,6 +16,8 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Web;
 
 namespace AlertApp.ViewModels
 {
@@ -542,13 +544,13 @@ namespace AlertApp.ViewModels
                     translate.GetTranslatedValue("SubscriptionEnd"),
                     s.End,
                     s.Package);
-                    subscriptionItem.Link = CodeSettings.SubscriptionURL;
+                    //subscriptionItem.Link = CodeSettings.SubscriptionURL;
                 }
                 else
                 {
                     subscriptionItem.Category = NewsEntryCategory.DANGER;
                     subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusInactive"));
-                    subscriptionItem.Link = CodeSettings.SubscriptionURL;
+                    //subscriptionItem.Link = CodeSettings.SubscriptionURL;
                 }
                 //else if (IsSubExpiring) {
                 //    subscriptionItem.Category = NewsEntryCategory.WARNING;
@@ -630,7 +632,22 @@ namespace AlertApp.ViewModels
 //#if DEBUG
                 //Response<NewsEntryResponse> r2 = await _newsService.GetNewsMock(token); 
 //#else
-Response<NewsEntryResponse> r2 = await _newsService.GetNews(token); 
+Response<NewsEntryResponse> r2 = await _newsService.GetNews(token);
+
+                var profileEntry = r2.Result.News.FirstOrDefault(p => p.Title.Contains("**"));
+                if (profileEntry != null)
+                {
+                    var selectedLanguage = Preferences.Get(Utils.Settings.SelectedLanguage, "");
+                    selectedLanguage = selectedLanguage.Substring(0, 2);
+                    var mobilePhone = await _localSettingsService.GetMobilePhone();
+                    var user = $"{mobilePhone.Replace("+", string.Empty)}@alert247.gr";
+                    var urlSource = CodeSettings.UserProfilePage.Replace("$MOBILE$", HttpUtility.UrlEncode(user));
+                    urlSource = urlSource.Replace("$PIN$", await _localSettingsService.GetApplicationPin());
+                    urlSource = urlSource.Replace("$LANG$", selectedLanguage);
+
+                    profileEntry.Link = urlSource;
+                    profileEntry.Title = profileEntry.Title.Replace("**", string.Empty);
+                }
 //#endif
                 r = r2.Result.News;
             }

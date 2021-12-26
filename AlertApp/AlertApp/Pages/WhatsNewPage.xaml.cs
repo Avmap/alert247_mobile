@@ -20,8 +20,11 @@ namespace AlertApp.Pages
             BindingContext = this;
             IsBusy = true;
             InitializeComponent();
-            
-            URLSource = CodeSettings.WhatsNewURL.Replace("$LANG$", Preferences.Get(Settings.SelectedLanguage,"el").Split("-".ToCharArray())[0]);
+
+            var selectedLanguage = Preferences.Get(Settings.SelectedLanguage, "el");
+            selectedLanguage = selectedLanguage.Substring(0, 2);
+
+            URLSource = CodeSettings.WhatsNewURL.Replace("$LANG$", selectedLanguage);
         }
         private ContentPage _next;
 

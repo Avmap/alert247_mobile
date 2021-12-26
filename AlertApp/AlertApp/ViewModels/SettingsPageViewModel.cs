@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -298,7 +299,8 @@ namespace AlertApp.ViewModels
             var selectedLanguage = Preferences.Get(Utils.Settings.SelectedLanguage, "");
             selectedLanguage = selectedLanguage.Substring(0, 2);
             var mobilePhone = await _localSettingsService.GetMobilePhone();
-            var urlSource = CodeSettings.UserProfilePage.Replace("$MOBILE$", mobilePhone.Replace("+", string.Empty));
+            var user = $"{mobilePhone.Replace("+", string.Empty)}@alert247.gr";
+            var urlSource = CodeSettings.UserProfilePage.Replace("$MOBILE$", HttpUtility.UrlEncode(user));
             urlSource = urlSource.Replace("$PIN$", await _localSettingsService.GetApplicationPin());
             urlSource = urlSource.Replace("$LANG$", selectedLanguage);
             await Browser.OpenAsync(new Uri(urlSource), BrowserLaunchMode.SystemPreferred);
