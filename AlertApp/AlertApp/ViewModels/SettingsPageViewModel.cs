@@ -55,6 +55,18 @@ namespace AlertApp.ViewModels
             }
         }
 
+        private ICommand _LinkPoweredByCommand;
+        public ICommand LinkPoweredByCommand
+        {
+            get
+            {
+                return _LinkPoweredByCommand ?? (_LinkPoweredByCommand = new Command<string>(OpenPoweredByLink, (url) =>
+                {
+                    return !Busy;
+                }));
+            }
+        }
+
 
         #endregion
 
@@ -284,7 +296,15 @@ namespace AlertApp.ViewModels
 
         private void OpenLink(string link)
         {
-            Launcher.OpenAsync(new System.Uri(link));
+            var selectedLanguage = Preferences.Get(Utils.Settings.SelectedLanguage, "");
+            selectedLanguage = selectedLanguage.Substring(0, 2);
+
+            Launcher.OpenAsync(new Uri($"{link}/{selectedLanguage}"));
+        }
+
+        private void OpenPoweredByLink(string link)
+        {
+            Launcher.OpenAsync(new Uri(link));
         }
 
         #region BaseViewModel

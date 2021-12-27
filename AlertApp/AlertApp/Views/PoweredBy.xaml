@@ -12,7 +12,7 @@
                             TextColor="Blue"
                             TextDecorations="Underline">
                         <Span.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding LinkCommand}"
+                            <TapGestureRecognizer Command="{Binding LinkPoweredByCommand}"
                                           CommandParameter="https://www.avmap.gr/" />
                         </Span.GestureRecognizers>
                     </Span>
