@@ -6,6 +6,7 @@ using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
 using Plugin.FirebasePushNotification;
 using UIKit;
+using Xamarin.Essentials;
 
 namespace AlertApp.iOS
 {
@@ -15,8 +16,6 @@ namespace AlertApp.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
-
-
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
         // method you should instantiate the window, load the UI into it and then make the window
@@ -37,13 +36,25 @@ namespace AlertApp.iOS
             Xamarin.FormsMaps.Init();
             //Firebase.Core.App.Configure();
 
-            if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
-            {
-                var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
-                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
-                );
+            // if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            // {
+            //     var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
+            //         UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
+            //     );
+            //
+            //     app.RegisterUserNotificationSettings(notificationSettings);
+            // }
+            
+            if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) {
+                var pushSettings = UIUserNotificationSettings.GetSettingsForTypes (
+                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound,
+                    new NSSet ());
 
-                app.RegisterUserNotificationSettings(notificationSettings);
+                UIApplication.SharedApplication.RegisterUserNotificationSettings (pushSettings);
+                UIApplication.SharedApplication.RegisterForRemoteNotifications ();
+            } else {
+                var notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge | UIRemoteNotificationType.Sound;
+                UIApplication.SharedApplication.RegisterForRemoteNotificationTypes (notificationTypes);
             }
 
                 //Firebase.Core . App . Configure ();
@@ -53,6 +64,12 @@ namespace AlertApp.iOS
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
         {
             FirebasePushNotificationManager.DidRegisterRemoteNotifications(deviceToken);
+
+            var bytes = deviceToken.ToArray<byte>();
+            var hexArray = bytes.Select(b => b.ToString("x2")).ToArray();
+            var token = string.Join(string.Empty, hexArray);
+            
+            SecureStorage.SetAsync(Utils.Settings.IOSDeviceToken, token);
         }
         public override void FailedToRegisterForRemoteNotifications(UIApplication application, NSError error)
         {

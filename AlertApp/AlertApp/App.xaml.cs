@@ -35,6 +35,7 @@ namespace AlertApp
     public partial class App : Application
     {
         public static RegistrationField[] TempRegistrationFields { get; set; }
+
         public App()
         {
             InitializeComponent();
@@ -143,7 +144,18 @@ namespace AlertApp
                                 var authToken = await localSettings.GetAuthToken();
                                 if (!string.IsNullOrWhiteSpace(authToken))
                                 {
-                                    await userProfileService.Ping(authToken, location != null ? location.Latitude : (double?)null, location != null ? location.Longitude : (double?)null, p.Token);
+                                    var deviceToken = string.Empty;
+                                    if (Device.RuntimePlatform == Device.iOS)
+                                    {
+                                        deviceToken = await SecureStorage.GetAsync(Settings.IOSDeviceToken);
+                                    }
+                                    
+                                    //var deviceTokem = !string.IsNullOrWhiteSpace(DeviceToken) ? DeviceToken : string.Empty;
+                                    await userProfileService.Ping(authToken, 
+                                        location != null ? location.Latitude : (double?)null, 
+                                        location != null ? location.Longitude : (double?)null, 
+                                        p.Token, 
+                                        deviceToken);
                                 }
                             });
 

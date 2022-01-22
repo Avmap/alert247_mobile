@@ -41,19 +41,19 @@
 
   <ItemGroup>
     <PackageReference Include="CarouselView.FormsPlugin" Version="6.0.0" />
-    <PackageReference Include="CommonServiceLocator" Version="2.0.4" />
+    <PackageReference Include="CommonServiceLocator" Version="2.0.6" />
     <PackageReference Include="LiveXAML" Version="2.1.73" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-    <PackageReference Include="Plugin.Badge" Version="2.3.0" />
-    <PackageReference Include="Plugin.FirebasePushNotification" Version="3.3.10" />
-    <PackageReference Include="Unity" Version="5.10.3" />
-    <PackageReference Include="Unity.Container" Version="5.10.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Plugin.Badge" Version="2.3.1" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="3.4.1" />
+    <PackageReference Include="Unity" Version="5.11.10" />
+    <PackageReference Include="Unity.Container" Version="5.11.11" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
-    <PackageReference Include="Xamarin.Build.Download" Version="0.10.0" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Build.Download" Version="0.11.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
     <PackageReference Include="Xamarin.Forms.Contacts" Version="1.0.5" />
-    <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2291" />
     <PackageReference Include="PCLCrypto" Version="2.1.40-alpha" />
   </ItemGroup>
 

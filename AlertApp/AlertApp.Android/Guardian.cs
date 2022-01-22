@@ -401,7 +401,7 @@ namespace AlertApp.Droid
                     var firebaseToken = Plugin.FirebasePushNotification.CrossFirebasePushNotification.Current.Token;
                     if (!string.IsNullOrWhiteSpace(firebaseToken))
                     {
-                        await UserProfileService.Ping(token, location.Latitude, location.Longitude, firebaseToken);
+                        await UserProfileService.Ping(token, location.Latitude, location.Longitude, firebaseToken, string.Empty);
                     }
                 });
                 // Toast.MakeText(context, "New location", ToastLength.Short).Show();
