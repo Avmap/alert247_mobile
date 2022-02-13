@@ -70,7 +70,7 @@
                             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                                 <Label Padding="10,10,10,10" FontAttributes="Bold" TextColor="{StaticResource PrimaryColorText}" BackgroundColor="{StaticResource PrimaryColor}" MaxLines="1" FontSize="15" HorizontalOptions="FillAndExpand" LineBreakMode="TailTruncation"  HorizontalTextAlignment="Center" Text="{Binding ContactName}"></Label>
                                 <StackLayout Orientation="Horizontal" Padding="10,0,10,0" HorizontalOptions="Center">
-                                    <Label TextColor="Black"  Text="ΣΤΑΛΘΗΚΕ:" FontSize="13" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" ></Label>
+                                    <Label TextColor="Black"  Text="{infrastructure:Translate SendAlertRespond}" FontSize="13" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" ></Label>
                                     <Label TextColor="Black"  Text="{Binding AlertTime}" FontSize="13" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" ></Label>
                                 </StackLayout>
 

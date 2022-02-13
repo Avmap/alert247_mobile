@@ -841,4 +841,7 @@
    <data name="ProfileValidattion" xml:space="preserve">
     <value>各个领域都需要</value>
   </data>
+  <data name="SendAlertRespond" xml:space="preserve">
+    <value>发送</value>
+  </data>
 </root>

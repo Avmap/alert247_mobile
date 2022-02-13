@@ -838,4 +838,7 @@
    <data name="ProfileValidattion" xml:space="preserve">
     <value>Всички полета са задължителни</value>
   </data>
+  <data name="SendAlertRespond" xml:space="preserve">
+    <value>Изпратено:</value>
+  </data>
 </root>

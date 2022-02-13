@@ -841,4 +841,7 @@
    <data name="ProfileValidattion" xml:space="preserve">
     <value>Tous les champs sont requis</value>
   </data>
+  <data name="SendAlertRespond" xml:space="preserve">
+    <value>Expédié:</value>
+  </data>
 </root>

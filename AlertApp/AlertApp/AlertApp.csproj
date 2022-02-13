@@ -50,10 +50,10 @@
     <PackageReference Include="Unity.Container" Version="5.11.11" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
     <PackageReference Include="Xamarin.Build.Download" Version="0.11.0" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
     <PackageReference Include="Xamarin.Forms.Contacts" Version="1.0.5" />
-    <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2291" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2337" />
     <PackageReference Include="PCLCrypto" Version="2.1.40-alpha" />
   </ItemGroup>
 

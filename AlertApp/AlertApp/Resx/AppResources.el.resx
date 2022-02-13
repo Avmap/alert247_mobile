@@ -841,4 +841,7 @@
    <data name="ProfileValidattion" xml:space="preserve">
     <value>Όλα τα πεδία είναι υποχρεωτικά</value>
   </data>
+  <data name="SendAlertRespond" xml:space="preserve">
+    <value>Στάλθηκε:</value>
+  </data>
 </root>
