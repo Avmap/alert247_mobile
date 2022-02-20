@@ -23,47 +23,49 @@ namespace AlertApp.Views
             this.BindingContext = ViewModelLocator.Instance.Resolve<SettingsPageViewModel>();
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            var args = e as Xamarin.Forms.TappedEventArgs;
-            toggleSetting(args.Parameter as string, true);
-        }
-
-        private void Switch_Toggled(object sender, ToggledEventArgs e)
-        {
-            var switchView = sender as Switch;
-            toggleSetting(switchView.Id.ToString(), true);
-        }
-
-        private void toggleSetting(string setting, bool fromCode)
-        {
-            switch (setting)
-            {
-                case "swAlaysOn":
-                    toggle(Settings.SOS_BUTTON_VISIBLE, swAlaysOn);
-                    break;
-
-            }
-        }
-        private void toggle(string setting, Switch switchView)
-        {
-            var newValue = !switchView.IsToggled;
-            switchView.IsToggled = !switchView.IsToggled;
-        }
+        // private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        // {
+        //     var args = e as Xamarin.Forms.TappedEventArgs;
+        //     toggleSetting(args.Parameter as string, true);
+        // }
+        //
+        // private void Switch_Toggled(object sender, ToggledEventArgs e)
+        // {
+        //     var switchView = sender as Switch;
+        //     toggleSetting(switchView.Id.ToString(), true);
+        // }
+        //
+        // private void toggleSetting(string setting, bool fromCode)
+        // {
+        //     switch (setting)
+        //     {
+        //         case "swAlaysOn":
+        //             toggle(Settings.SOS_BUTTON_VISIBLE, swAlaysOn);
+        //             break;
+        //
+        //     }
+        // }
+        // private void toggle(string setting, Switch switchView)
+        // {
+        //     var newValue = !switchView.IsToggled;
+        //     switchView.IsToggled = !switchView.IsToggled;
+        // }
 
         private void ConfirmSettingsClick(object sender, EventArgs e)
         {
-            var confirmView = new ConfirmChangeView();
-            var page = new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.Confirmation, confirmView);
-            page.Disappearing += (sender2, e2) =>
-            {
-                if (confirmView.Confirmed)
-                {
-                    SaveChanges();
-                }
-            };
+            // var confirmView = new ConfirmChangeView();
+            // var page = new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.Confirmation, confirmView);
+            // page.Disappearing += (sender2, e2) =>
+            // {
+            //     if (confirmView.Confirmed)
+            //     {
+            //         SaveChanges();
+            //     }
+            // };
+            
+            SaveChanges();
 
-            Navigation.PushModalAsync(page);
+            //Navigation.PushModalAsync(page);
         }
 
         private async void SaveChanges()
@@ -78,6 +80,8 @@ namespace AlertApp.Views
             {
                 vm.DisableAllwaysOn();                
             }
+            
+            Preferences.Set(Settings.AlwaysOn, swAlaysOn.IsToggled);
 
             Device.BeginInvokeOnMainThread(() => Navigation.PopAsync(false));
         }

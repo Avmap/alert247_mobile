@@ -671,7 +671,7 @@
     <value>Πτώση</value>
   </data>
   <data name="FallDetectionSetting" xml:space="preserve">
-    <value>Εντοπισμός αυτόματης πτώσης</value>
+    <value>Ανίχνευση σύγκρουσης και πτώσης</value>
   </data>
   <data name="FallDetectionCaps" xml:space="preserve">
     <value>ΑΝΙΧΝΕΥΣΗ ΠΤΏΣΗΣ</value>

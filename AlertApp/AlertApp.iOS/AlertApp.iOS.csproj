@@ -180,6 +180,7 @@
     <Compile Include="DependencyService\ContactProfileImageProvider.cs" />
     <Compile Include="DependencyService\ContactsService.cs" />
     <Compile Include="DependencyService\FirebaseAnalyticsService.cs" />
+    <Compile Include="DependencyService\GuardianPlatform.cs" />
     <Compile Include="DependencyService\Localize.cs" />
     <Compile Include="DependencyService\Location.cs" />
     <Compile Include="DependencyService\Storage.cs" />
