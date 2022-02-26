@@ -62,7 +62,7 @@
                 <Frame Padding="0,0,0,0" HasShadow="False" Margin="0,0,0,0" BorderColor="{StaticResource PrimaryColor}" CornerRadius="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="100"></RowDefinition>
+                            <RowDefinition Height="90"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
@@ -71,8 +71,8 @@
                                 <Image BackgroundColor="#ccc" Source="{Binding ProfileImage}" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>
                             </Frame>
                             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                                <Label Padding="10,10,10,10" FontAttributes="Bold" TextColor="{StaticResource PrimaryColorText}" BackgroundColor="{StaticResource PrimaryColor}" MaxLines="1" FontSize="15" HorizontalOptions="FillAndExpand"  HorizontalTextAlignment="Center" Text="{Binding ContactName}"></Label>
-                                <StackLayout Orientation="Horizontal" Padding="10,0,10,0" HorizontalOptions="Center">
+                                <Label Padding="10,10,10,10" FontAttributes="Bold" TextColor="{StaticResource PrimaryColorText}" BackgroundColor="{StaticResource PrimaryColor}" MaxLines="1" FontSize="18" HorizontalOptions="FillAndExpand"  HorizontalTextAlignment="Center" Text="{Binding ContactName}"></Label>
+                                <StackLayout Orientation="Horizontal" Padding="10,0,10,0" HorizontalOptions="Center" BackgroundColor="White">
                                     <Label TextColor="Black"  Text="{infrastructure:Translate SendAlertRespond}" FontSize="13" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" ></Label>
                                     <Label TextColor="Black"  Text="{Binding AlertTime}" FontSize="13" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" ></Label>
                                 </StackLayout>

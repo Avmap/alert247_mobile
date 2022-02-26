@@ -8,47 +8,45 @@
              x:Class="AlertApp.Views.NewsFeed">
     <ContentView.Content>
         <StackLayout>
-            <Label IsVisible="False" Margin="0,10,0,0" VerticalOptions="Center" HorizontalOptions="Center" Style="{StaticResource IconText}" TextColor="#333" Text="{infrastructure:Translate InfoTab}" />
-            <RefreshView Padding="0,16,0,16" IsRefreshing="{Binding IsRefreshing, Source={Reference x_this}}" Command="{Binding RefreshCommand, Source={Reference x_this}}">
+            <!-- <Label IsVisible="False" Margin="0,10,0,0" VerticalOptions="Center" HorizontalOptions="Center" Style="{StaticResource IconText}" TextColor="#333" Text="{infrastructure:Translate InfoTab}" /> -->
+            <RefreshView Padding="0,0,0,0" IsRefreshing="{Binding IsRefreshing, Source={Reference x_this}}" Command="{Binding RefreshCommand, Source={Reference x_this}}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <CollectionView
                     ItemsSource="{Binding NewsSource, Source={Reference x_this}}"
                         x:Name="MyNewsCont"
                         HorizontalOptions="FillAndExpand"
-                        VerticalOptions="CenterAndExpand"
+                        VerticalOptions="FillAndExpand"
                         Margin="16,0,16,0">
                     <CollectionView.ItemsLayout>
-                        
-                        <GridItemsLayout VerticalItemSpacing="25" Orientation="Vertical"></GridItemsLayout>
+                        <GridItemsLayout VerticalItemSpacing="0" Orientation="Vertical"></GridItemsLayout>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-
-                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" Margin="0,0,0,10">
-                                <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="Start" Wrap="Wrap" HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
-                                    <FlexLayout.GestureRecognizers>
+                            <!-- <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical" Margin="0,0,0,0"> -->
+                            <!-- Direction="Row" AlignItems="Center" JustifyContent="Start" Wrap="Wrap" -->
+                                <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding NewsItemTappedCommand, Source={Reference x_this}}" CommandParameter="{Binding Link}"/>
-                                    </FlexLayout.GestureRecognizers>
+                                    </StackLayout.GestureRecognizers>
                                     
-                                    <Label VerticalOptions="Start"  TextColor="{StaticResource RedCircleButton}" Text="&#x0F05D5;" IsVisible="{Binding IsAir}" Style="{StaticResource Icon}" HorizontalOptions="Center" ></Label>
-                                    <Label VerticalOptions="Start"  TextColor="{StaticResource RedCircleButton}" Text="&#x0F0EC8;" IsVisible="{Binding IsSea}" Style="{StaticResource Icon}" HorizontalOptions="Center" ></Label>
-                                    <Label VerticalOptions="Start"  TextColor="{StaticResource RedCircleButton}" Text="&#x0F00E7;" IsVisible="{Binding IsTransport}" Style="{StaticResource Icon}" HorizontalOptions="Center" ></Label>
-                                    <Label VerticalOptions="Start"  TextColor="{StaticResource RedCircleButton}" Text="&#x0F1001;" IsVisible="{Binding IsGeneric}" Style="{StaticResource Icon}"  HorizontalOptions="Center" ></Label>
-                                    <Label VerticalOptions="Start"  TextColor="{StaticResource GreenCircleButton}" Text="&#x0F012C;" IsVisible="{Binding IsSuccess}" Style="{StaticResource Icon}"  HorizontalOptions="Center" ></Label>
-                                    <Label VerticalOptions="Start"  TextColor="{StaticResource OrangeCircleButton}" Text="&#x0F1238;" IsVisible="{Binding IsWarning}" Style="{StaticResource Icon}"  HorizontalOptions="Center" ></Label>
-                                    <Label VerticalOptions="Start"  TextColor="{StaticResource RedCircleButton}" Text="&#x0F015C;" IsVisible="{Binding IsDanger}" Style="{StaticResource Icon}"  HorizontalOptions="Center" ></Label>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Label VerticalOptions="CenterAndExpand"  TextColor="{StaticResource RedCircleButton}" Text="&#x0F05D5;" IsVisible="{Binding IsAir}" Style="{StaticResource Icon}" HorizontalOptions="Start" ></Label>
+                                        <Label VerticalOptions="CenterAndExpand"  TextColor="{StaticResource RedCircleButton}" Text="&#x0F0EC8;" IsVisible="{Binding IsSea}" Style="{StaticResource Icon}" HorizontalOptions="Start" ></Label>
+                                        <Label VerticalOptions="CenterAndExpand"  TextColor="{StaticResource RedCircleButton}" Text="&#x0F00E7;" IsVisible="{Binding IsTransport}" Style="{StaticResource Icon}" HorizontalOptions="Start" ></Label>
+                                        <Label VerticalOptions="CenterAndExpand"  TextColor="{StaticResource RedCircleButton}" Text="&#x0F1001;" IsVisible="{Binding IsGeneric}" Style="{StaticResource Icon}"  HorizontalOptions="Start" ></Label>
+                                        <Label VerticalOptions="CenterAndExpand"  TextColor="{StaticResource GreenCircleButton}" Text="&#x0F012C;" IsVisible="{Binding IsSuccess}" Style="{StaticResource Icon}"  HorizontalOptions="Start" ></Label>
+                                        <Label VerticalOptions="CenterAndExpand"  TextColor="{StaticResource OrangeCircleButton}" Text="&#x0F1238;" IsVisible="{Binding IsWarning}" Style="{StaticResource Icon}"  HorizontalOptions="Start" ></Label>
+                                        <Label VerticalOptions="CenterAndExpand"  TextColor="{StaticResource RedCircleButton}" Text="&#x0F015C;" IsVisible="{Binding IsDanger}" Style="{StaticResource Icon}"  HorizontalOptions="Start" ></Label>
 
-                                    <Label TextColor="Black" Margin="10,0,10,0" Text="{Binding PublishDate}" IsVisible="{Binding HasDate}"/>
-                                    <Label TextColor="Black" FontAttributes="Bold" VerticalOptions="StartAndExpand" Text="{Binding Title}"/>
-                                    <Label TextColor="Black" HorizontalOptions ="FillAndExpand" TextType="Html" Text="{Binding Description}" IsVisible="{Binding HasDescription}"/>
-
-                                </FlexLayout>
-                            </StackLayout>
-
+                                        <Label TextColor="Black" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Text="{Binding PublishDate}" IsVisible="{Binding HasDate}"/>
+                                        <Label TextColor="Black" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Text="{Binding Title}" LineBreakMode="TailTruncation"/>
+                                    </StackLayout>
+                                    <Label TextColor="Black" FontSize="Medium" HorizontalOptions ="FillAndExpand" TextType="Html" Text="{Binding Description}" IsVisible="{Binding HasDescription}"/>
+                                </StackLayout>
+                            <!-- </StackLayout> -->
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </RefreshView>
-            
         </StackLayout>
     </ContentView.Content>
 </ContentView>
