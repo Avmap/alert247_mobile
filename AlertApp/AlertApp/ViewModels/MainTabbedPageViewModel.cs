@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using AlertApp.Utils;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -79,7 +80,18 @@ namespace AlertApp.ViewModels
             {
 
             }
-            await _userProfileService.Ping(userToken, location != null ? location.Latitude : (double?)null, location != null ? location.Longitude : (double?)null, firebaseToken);
+            
+            var deviceToken = string.Empty;
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                deviceToken = await SecureStorage.GetAsync(Settings.IOSDeviceToken);
+            }
+            
+            await _userProfileService.Ping(userToken, 
+                location != null ? location.Latitude : (double?)null, 
+                location != null ? location.Longitude : (double?)null, 
+                firebaseToken, 
+                deviceToken);
 
             //var locales = await TextToSpeech.GetLocalesAsync();
 

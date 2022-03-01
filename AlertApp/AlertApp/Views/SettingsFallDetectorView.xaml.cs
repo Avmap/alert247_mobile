@@ -34,17 +34,19 @@ namespace AlertApp.Views
                 return;
             }
 
-            var confirmView = new ConfirmChangeView();
-            var page = new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.Confirmation, confirmView);
-            page.Disappearing += (sender2, e2) =>
-            {
-                if (confirmView.Confirmed)
-                {
-                    SaveChanges();
-                }
-            };
+            // var confirmView = new ConfirmChangeView();
+            // var page = new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.Confirmation, confirmView);
+            // page.Disappearing += (sender2, e2) =>
+            // {
+            //     if (confirmView.Confirmed)
+            //     {
+            //         SaveChanges();
+            //     }
+            // };
+            
+            SaveChanges();
 
-            Navigation.PushModalAsync(page);
+            //Navigation.PushModalAsync(page);
         }
 
         private void SaveChanges()

@@ -797,7 +797,7 @@
     <value>Ne pas montrer de nouveau</value>
   </data>
   <data name="MSG" xml:space="preserve">
-    <value>UN MESSAGE</value>
+    <value>MESSAGE AUX AMIS</value>
   </data>
   <data name="SwitchSOS" xml:space="preserve">
     <value>UN MESSAGE</value>
@@ -840,5 +840,8 @@
   </data>
    <data name="ProfileValidattion" xml:space="preserve">
     <value>Tous les champs sont requis</value>
+  </data>
+  <data name="SendAlertRespond" xml:space="preserve">
+    <value>Expédié:</value>
   </data>
 </root>

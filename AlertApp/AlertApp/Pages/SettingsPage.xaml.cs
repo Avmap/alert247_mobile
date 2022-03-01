@@ -24,8 +24,6 @@ namespace AlertApp.Pages
             this.BindingContext = ViewModelLocator.Instance.Resolve<SettingsPageViewModel>();
         }
 
-
-
         private void Language_Tap(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SettingContainerPage(AppResources.SettingLanguageTitle, AppResources.SettingLanguageSubTitle, new SelectLanguageView()), false);

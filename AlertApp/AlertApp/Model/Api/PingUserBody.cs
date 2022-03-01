@@ -16,5 +16,7 @@ namespace AlertApp.Model.Api
         public double? Lng { get; set; }
         [DataMember(Name = "deviceID")]
         public string FirebaseToken { get; set; }
+        [DataMember(Name = "deviceID2")]
+        public string IOSDeviceToken { get; set; }
     }
 }

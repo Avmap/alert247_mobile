@@ -190,12 +190,10 @@ namespace AlertApp.ViewModels
                 var language = _localSettingsService.GetSelectedLanguage();
                 foreach (var item in registrationFiedsResult.Result)
                 {
-                    if (item.Labels != null)
-                    {
-                        string label = "";
-                        item.Labels.TryGetValue(language, out label);
-                        tempFields.Add(new Field { Key = item.FieldName, Label = label });
-                    }
+                    if (item.Labels == null) continue;
+                    var label = "";
+                    item.Labels.TryGetValue(language, out label);
+                    tempFields.Add(new Field { Key = item.FieldName, Label = label });
                 }
             }
             var alertTitleType = "";
@@ -226,10 +224,9 @@ namespace AlertApp.ViewModels
             if (!string.IsNullOrWhiteSpace(data.ProfileData))
             {
                 var profileData = await _cryptographyService.GetAlertSenderProfileData(data.ProfileData, data.FileKey);
-                string name = "";
-                string surname = "";
-               
-                                
+                var name = "";
+                var surname = "";
+
                 if (profileData != null)
                 {
                     if (profileData.ContainsKey(RegistrationField.Names.Name))
@@ -262,10 +259,10 @@ namespace AlertApp.ViewModels
                     {
                         if (item.Key != RegistrationField.Names.Surname && item.Key != RegistrationField.Names.Name && !string.IsNullOrWhiteSpace(item.Value))
                         {
-                            var registrationField = tempFields.Where(tf => tf.Key == item.Key).FirstOrDefault();
+                            var registrationField = tempFields.FirstOrDefault(tf => tf.Key == item.Key);
                             if (registrationField != null)
                             {
-                                Fields.Add(new Field { Label = registrationField.Label+":", Value = item.Value });
+                                Fields.Add(new Field { Label = registrationField.Label + ":", Value = item.Value });
                             }
 
                         }
@@ -323,8 +320,6 @@ namespace AlertApp.ViewModels
                 ProfileImage = ImageSource.FromFile("call_center.png");
             }
         }
-
-
 
         private void Accept()
         {

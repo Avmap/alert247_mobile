@@ -743,7 +743,7 @@
     <value>Registration</value>
   </data>
   <data name="MSG" xml:space="preserve">
-    <value>MESSAGE</value>
+    <value>MESSAGE TO FRIENDS</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
@@ -840,5 +840,8 @@
   </data>
    <data name="ProfileValidattion" xml:space="preserve">
     <value>All fields are required</value>
+  </data>
+  <data name="SendAlertRespond" xml:space="preserve">
+    <value>Sent:</value>
   </data>
 </root>

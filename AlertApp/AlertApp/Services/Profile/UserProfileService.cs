@@ -107,7 +107,7 @@ namespace AlertApp.Services.Profile
             return res;
         }
 
-        public async Task<Response> Ping(string token, double? lat, double? lng, string firebaseToken)
+        public async Task<Response> Ping(string token, double? lat, double? lng, string firebaseToken, string deviceToken)
         {
             var res = new Response();
             try
@@ -118,7 +118,7 @@ namespace AlertApp.Services.Profile
                     lat = null;
                     lng = null;
                 }
-                var json = JsonConvert.SerializeObject(new PingUserBody { Token = token, Lat = lat, Lng = lng, FirebaseToken = firebaseToken });
+                var json = JsonConvert.SerializeObject(new PingUserBody { Token = token, Lat = lat, Lng = lng, FirebaseToken = firebaseToken, IOSDeviceToken = deviceToken});
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await _httpClient.PostAsync("post/alert/ping", content);
                 if (response.Content != null)

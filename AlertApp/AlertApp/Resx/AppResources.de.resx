@@ -764,7 +764,7 @@
     <value>BOTSCHAFT</value>
   </data>
   <data name="MSG" xml:space="preserve">
-    <value>BOTSCHAFT</value>
+    <value>NACHRICHT AN FREUNDE</value>
   </data>
   <data name="DoNotShowSetting" xml:space="preserve">
     <value>Nicht mehr anzeigen</value>
@@ -840,5 +840,8 @@
   </data>
    <data name="ProfileValidattion" xml:space="preserve">
     <value>alle Felder sind erforderlich</value>
+  </data>
+  <data name="SendAlertRespond" xml:space="preserve">
+    <value>Gesendet:</value>
   </data>
 </root>

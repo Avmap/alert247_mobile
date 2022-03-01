@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -48,6 +49,18 @@ namespace AlertApp.ViewModels
             get
             {
                 return _LinkCommand ?? (_LinkCommand = new Command<string>(OpenLink, (url) =>
+                {
+                    return !Busy;
+                }));
+            }
+        }
+
+        private ICommand _LinkPoweredByCommand;
+        public ICommand LinkPoweredByCommand
+        {
+            get
+            {
+                return _LinkPoweredByCommand ?? (_LinkPoweredByCommand = new Command<string>(OpenPoweredByLink, (url) =>
                 {
                     return !Busy;
                 }));
@@ -283,7 +296,15 @@ namespace AlertApp.ViewModels
 
         private void OpenLink(string link)
         {
-            Launcher.OpenAsync(new System.Uri(link));
+            var selectedLanguage = Preferences.Get(Utils.Settings.SelectedLanguage, "");
+            selectedLanguage = selectedLanguage.Substring(0, 2);
+
+            Launcher.OpenAsync(new Uri($"{link}/{selectedLanguage}"));
+        }
+
+        private void OpenPoweredByLink(string link)
+        {
+            Launcher.OpenAsync(new Uri(link));
         }
 
         #region BaseViewModel
@@ -298,7 +319,8 @@ namespace AlertApp.ViewModels
             var selectedLanguage = Preferences.Get(Utils.Settings.SelectedLanguage, "");
             selectedLanguage = selectedLanguage.Substring(0, 2);
             var mobilePhone = await _localSettingsService.GetMobilePhone();
-            var urlSource = CodeSettings.UserProfilePage.Replace("$MOBILE$", mobilePhone.Replace("+", string.Empty));
+            var user = $"{mobilePhone.Replace("+", string.Empty)}@alert247.gr";
+            var urlSource = CodeSettings.UserProfilePage.Replace("$MOBILE$", HttpUtility.UrlEncode(user));
             urlSource = urlSource.Replace("$PIN$", await _localSettingsService.GetApplicationPin());
             urlSource = urlSource.Replace("$LANG$", selectedLanguage);
             await Browser.OpenAsync(new Uri(urlSource), BrowserLaunchMode.SystemPreferred);

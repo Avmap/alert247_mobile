@@ -77,8 +77,7 @@ namespace AlertApp.Droid
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_NOTIFICATION_TYPE),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_ID),
             Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_ALERT_TIME),
-            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_SENDER_PUBLIC_KEY)
-            ,
+            Intent.GetStringExtra(AlertFirebaseMessagingService.EXTRA_SENDER_PUBLIC_KEY),
             Intent.Flags);
 
         }

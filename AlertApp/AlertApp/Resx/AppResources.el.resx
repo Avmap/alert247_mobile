@@ -671,7 +671,7 @@
     <value>Πτώση</value>
   </data>
   <data name="FallDetectionSetting" xml:space="preserve">
-    <value>Εντοπισμός αυτόματης πτώσης</value>
+    <value>Ανίχνευση σύγκρουσης και πτώσης</value>
   </data>
   <data name="FallDetectionCaps" xml:space="preserve">
     <value>ΑΝΙΧΝΕΥΣΗ ΠΤΏΣΗΣ</value>
@@ -740,7 +740,7 @@
     <value>Επεξεργασία προφίλ</value>
   </data>
   <data name="MSG" xml:space="preserve">
-    <value>ΜΗΝΥΜΑ</value>
+    <value>ΜΗΝΥΜΑ ΣΕ ΦΙΛΟΥΣ</value>
   </data>
   <data name="AddSub" xml:space="preserve">
     <value>Κέντρο Λήψης Σημάτων</value>
@@ -840,5 +840,8 @@
   </data>
    <data name="ProfileValidattion" xml:space="preserve">
     <value>Όλα τα πεδία είναι υποχρεωτικά</value>
+  </data>
+  <data name="SendAlertRespond" xml:space="preserve">
+    <value>Στάλθηκε:</value>
   </data>
 </root>

@@ -23,6 +23,7 @@ namespace AlertApp.Utils
         public static string MobileNumber = "MobileNumber";
         public static string Name = "Name";
         public static string Surname = "Surname";
+        public static string IOSDeviceToken = "IOSDeviceToken";
 
 
         public static string SOS_BUTTON_VISIBLE = "SOS_BUTTON_VISIBLE";

@@ -764,7 +764,7 @@
     <value>СЪОБЩЕНИЕ</value>
   </data>
   <data name="MSG" xml:space="preserve">
-    <value>СЪОБЩЕНИЕ</value>
+    <value>СЪОБЩЕНИЕ ДО ПРИЯТЕЛИ</value>
   </data>
   <data name="DoNotShowSetting" xml:space="preserve">
     <value>Не показвай отново</value>
@@ -837,5 +837,8 @@
   </data>
    <data name="ProfileValidattion" xml:space="preserve">
     <value>Всички полета са задължителни</value>
+  </data>
+  <data name="SendAlertRespond" xml:space="preserve">
+    <value>Изпратено:</value>
   </data>
 </root>

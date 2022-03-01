@@ -60,16 +60,19 @@ namespace AlertApp.Views
 
         private void ConfirmSettingsClick(object sender, EventArgs e)
         {
-            var confirmView = new ConfirmChangeView();
-            var page = new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.Confirmation, confirmView);
-            page.Disappearing += (sender2, e2) =>
-            {
-                if (confirmView.Confirmed)
-                {
-                    SaveChanges();
-                }
-            };
-            Navigation.PushModalAsync(page);
+            // var confirmView = new ConfirmChangeView();
+            // var page = new SettingContainerPage(AppResources.SettingPermissionTitle, AppResources.Confirmation, confirmView);
+            // page.Disappearing += (sender2, e2) =>
+            // {
+            //     if (confirmView.Confirmed)
+            //     {
+            //         SaveChanges();
+            //     }
+            // };
+            
+            SaveChanges();
+            
+            //Navigation.PushModalAsync(page);
         }
 
         private async void SaveChanges()

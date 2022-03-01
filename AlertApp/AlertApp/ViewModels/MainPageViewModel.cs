@@ -16,6 +16,8 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Web;
 
 namespace AlertApp.ViewModels
 {
@@ -506,8 +508,10 @@ namespace AlertApp.ViewModels
         {
             await Task.Run(async () =>
             {
+                //MyNews = null;
+                
                 var r = await this.GetNews();
-                ObservableCollection<NewsEntry> collection = new ObservableCollection<NewsEntry>(r);
+                var collection = new ObservableCollection<NewsEntry>(r);
                 var s = await this.GetSubInfo();
                 if (!HasSub)
                 {
@@ -520,11 +524,15 @@ namespace AlertApp.ViewModels
                 var subscriptionItem = new NewsEntry();
                 var translate = new TranslateExtension();
                 
-                subscriptionItem.PublishDate = DateTime.Now.ToString("dd/MM/yyyy");
+                //subscriptionItem.PublishDate = DateTime.Now.ToString("dd/MM/yyyy");
                 if (isSubOK)
                 {
+                    //subscriptionItem.PublishDate = DateTime.Now.ToString("dd/MM/yyyy");
                     subscriptionItem.Category = NewsEntryCategory.SUCCESS;
-                    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"),translate.GetTranslatedValue("SubscriptionStatusOK"));
+                    subscriptionItem.Title = translate.GetTranslatedValue("SubscriptionFrame");
+                    //var sub = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"),translate.GetTranslatedValue("SubscriptionStatusOK"));
+                    var sub = translate.GetTranslatedValue("SubscriptionStatusOK");
+                    subscriptionItem.Description = $"<p>{sub}</p>";
                     //subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}",
                     //translate.GetTranslatedValue("SubscriptionStart"),
                     //s.Start,
@@ -535,20 +543,27 @@ namespace AlertApp.ViewModels
                 else if (IsSubExpired)
                 {
                     subscriptionItem.Category = NewsEntryCategory.WARNING;
-                    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusExpiring"));
-                    subscriptionItem.Description = String.Format("{0}: {1}, {2}: {3}, {4}",
+                    //subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusExpiring"));
+                    subscriptionItem.Title = translate.GetTranslatedValue("SubscriptionFrame");
+                    var sub = String.Format("{0}: {1}, {2}: {3}, {4}",
                     translate.GetTranslatedValue("SubscriptionStart"),
                     s.Start,
                     translate.GetTranslatedValue("SubscriptionEnd"),
                     s.End,
                     s.Package);
-                    subscriptionItem.Link = CodeSettings.SubscriptionURL;
+                    
+                    subscriptionItem.Description = $"<p>{translate.GetTranslatedValue("SubscriptionStatusExpiring")}<br>{sub}</p>";
+                    //subscriptionItem.Link = CodeSettings.SubscriptionURL;
                 }
                 else
                 {
+                    //subscriptionItem.PublishDate = DateTime.Now.ToString("dd/MM/yyyy");
                     subscriptionItem.Category = NewsEntryCategory.DANGER;
-                    subscriptionItem.Title = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusInactive"));
-                    subscriptionItem.Link = CodeSettings.SubscriptionURL;
+                    subscriptionItem.Title = translate.GetTranslatedValue("SubscriptionFrame");
+                    //var sub = String.Format("{0}: {1}", translate.GetTranslatedValue("SubscriptionFrame"), translate.GetTranslatedValue("SubscriptionStatusInactive"));
+                    var sub = translate.GetTranslatedValue("SubscriptionStatusInactive");
+                    subscriptionItem.Description = $"<p>{sub}</p>";
+                    //subscriptionItem.Link = CodeSettings.SubscriptionURL;
                 }
                 //else if (IsSubExpiring) {
                 //    subscriptionItem.Category = NewsEntryCategory.WARNING;
@@ -596,6 +611,14 @@ namespace AlertApp.ViewModels
                 OnPropertyChanged("CanSendAlert");
                 OnPropertyChanged("CanNotSendAlert");
 
+                foreach (var newEntry in collection)
+                {
+                    if (newEntry.Category == "ΕΝΗΜΕΡΩΣΕΙΣ")
+                    {
+                        newEntry.Category = NewsEntryCategory.WARNING;
+                    }
+                }
+
                 MyNews = collection;
                 IsRefreshingNews = false;
             });
@@ -630,7 +653,23 @@ namespace AlertApp.ViewModels
 //#if DEBUG
                 //Response<NewsEntryResponse> r2 = await _newsService.GetNewsMock(token); 
 //#else
-Response<NewsEntryResponse> r2 = await _newsService.GetNews(token); 
+                var r2 = await _newsService.GetNews(token);
+
+                var profileEntry = r2.Result.News.FirstOrDefault(p => p.Title.Contains("**"));
+                if (profileEntry != null)
+                {
+                    var selectedLanguage = Preferences.Get(Utils.Settings.SelectedLanguage, "");
+                    selectedLanguage = selectedLanguage.Substring(0, 2);
+                    var mobilePhone = await _localSettingsService.GetMobilePhone();
+                    var user = $"{mobilePhone.Replace("+", string.Empty)}@alert247.gr";
+                    var urlSource = CodeSettings.UserProfilePage.Replace("$MOBILE$", HttpUtility.UrlEncode(user));
+                    urlSource = urlSource.Replace("$PIN$", await _localSettingsService.GetApplicationPin());
+                    urlSource = urlSource.Replace("$LANG$", selectedLanguage);
+
+                    profileEntry.Link = urlSource;
+                    profileEntry.Title = profileEntry.Title.Replace("**", string.Empty);
+                }
+
 //#endif
                 r = r2.Result.News;
             }
@@ -641,7 +680,6 @@ Response<NewsEntryResponse> r2 = await _newsService.GetNews(token);
 #endif
             }
             return r;
-
         }
 
         private async void PingServer()
@@ -661,7 +699,18 @@ Response<NewsEntryResponse> r2 = await _newsService.GetNews(token);
             {
 
             }
-            await _userProfileService.Ping(userToken, location != null ? location.Latitude : (double?)null, location != null ? location.Longitude : (double?)null, firebaseToken);
+            
+            var deviceToken = string.Empty;
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                deviceToken = await SecureStorage.GetAsync(Settings.IOSDeviceToken);
+            }
+            
+            await _userProfileService.Ping(userToken, 
+                location != null ? location.Latitude : (double?)null, 
+                location != null ? location.Longitude : (double?)null, 
+                firebaseToken, 
+                deviceToken);
 
             //var locales = await TextToSpeech.GetLocalesAsync();
 

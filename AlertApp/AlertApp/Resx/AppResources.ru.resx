@@ -765,7 +765,7 @@
     <value>СООБЩЕНИЕ</value>
   </data>
   <data name="MSG" xml:space="preserve">
-    <value>СООБЩЕНИЕ</value>
+    <value>СООБЩЕНИЕ ДРУЗЬЯМ</value>
   </data>
   <data name="DoNotShowSetting" xml:space="preserve">
     <value>Не показывай снова</value>
@@ -841,5 +841,8 @@
   </data>
    <data name="ProfileValidattion" xml:space="preserve">
     <value>Все поля обязательны для заполнения</value>
+  </data>
+  <data name="SendAlertRespond" xml:space="preserve">
+    <value>Отправил:</value>
   </data>
 </root>
